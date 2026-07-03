@@ -1,0 +1,14 @@
+{
+  "_설명": "커스텀 그룹 매핑. 여기 정의된 티커는 '커스텀' 보기에서 해당 그룹으로 묶이고, 없는 티커는 yfinance industry를 그대로 따라갑니다. 그룹 추가/수정 후 커밋만 하면 다음 업데이트부터 반영됩니다.",
+  "groups": {
+    "반도체 · 메모리/스토리지": ["MU", "WDC", "STX", "SNDK"],
+    "반도체 · GPU/AI가속": ["NVDA", "AMD"],
+    "반도체 · CPU/IP": ["INTC", "ARM"],
+    "반도체 · 네트워킹/커스텀ASIC": ["AVGO", "MRVL"],
+    "반도체 · 아날로그/전력": ["TXN", "ADI", "MPWR", "ON"],
+    "반도체 · RF/모바일": ["QCOM", "SWKS", "QRVO"],
+    "반도체 · 차량/MCU": ["NXPI", "MCHP"],
+    "반도체 · 장비": ["AMAT", "LRCX", "KLAC", "ASML", "TER"],
+    "소프트웨어 · 사이버보안": ["PANW", "CRWD", "FTNT", "GEN"]
+  }
+}

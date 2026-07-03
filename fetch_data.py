@@ -1,0 +1,182 @@
+# -*- coding: utf-8 -*-
+"""
+BMO Money Flow — 일별 데이터 수집 스크립트
+S&P 500 + 나스닥 100 전 종목의 거래대금(종가×거래량)을 수집하고
+전일/20일/60일/120일 평균 대비 지표를 계산해 data.json으로 저장.
+GitHub Actions에서 매일 자동 실행되는 것을 전제로 작성됨.
+"""
+import json
+import math
+import os
+import sys
+import time
+
+import pandas as pd
+import yfinance as yf
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
+CUSTOM_GROUPS_PATH = os.path.join(HERE, "custom_groups.json")
+DATA_PATH = os.path.join(HERE, "data.json")
+
+WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
+
+
+def load_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
+
+
+def get_universe(cache):
+    """위키피디아에서 S&P 500 + 나스닥 100 구성종목을 가져온다.
+    실패하면 sector_map.json 캐시에 있는 티커로 폴백."""
+    tickers = {}  # ticker -> name
+    try:
+        sp = pd.read_html(WIKI_SP500)[0]
+        for _, r in sp.iterrows():
+            t = str(r["Symbol"]).strip().replace(".", "-")
+            tickers[t] = str(r["Security"]).strip()
+        print(f"S&P 500: {len(tickers)}종목")
+    except Exception as e:
+        print(f"[경고] S&P 500 목록 로드 실패: {e}")
+
+    try:
+        found = False
+        for tbl in pd.read_html(WIKI_NDX):
+            cols = [str(c).lower() for c in tbl.columns]
+            if any("ticker" in c or "symbol" in c for c in cols):
+                tcol = tbl.columns[[i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c][0]]
+                ncol = None
+                for i, c in enumerate(cols):
+                    if "company" in c or "security" in c:
+                        ncol = tbl.columns[i]
+                        break
+                for _, r in tbl.iterrows():
+                    t = str(r[tcol]).strip().replace(".", "-")
+                    if not t or t.lower() == "nan":
+                        continue
+                    name = str(r[ncol]).strip() if ncol is not None else tickers.get(t, t)
+                    tickers.setdefault(t, name)
+                found = True
+                break
+        if found:
+            print(f"나스닥 100 병합 후: {len(tickers)}종목")
+    except Exception as e:
+        print(f"[경고] 나스닥 100 목록 로드 실패: {e}")
+
+    if not tickers:
+        print("[폴백] 캐시된 티커 사용")
+        tickers = {t: v.get("name", t) for t, v in cache.items()}
+
+    if not tickers:
+        sys.exit("유니버스를 구성할 수 없습니다 (위키 접근 실패 + 캐시 없음)")
+    return tickers
+
+
+def update_sector_map(tickers, cache):
+    """섹터/industry 정보는 캐시에 저장하고, 신규 티커만 yfinance에서 조회."""
+    missing = [t for t in tickers if t not in cache or not cache[t].get("industry")]
+    print(f"섹터 정보 신규 조회 대상: {len(missing)}종목")
+    for i, t in enumerate(missing):
+        try:
+            info = yf.Ticker(t).info
+            cache[t] = {
+                "name": tickers[t],
+                "sector": info.get("sector") or "기타",
+                "industry": info.get("industry") or "기타",
+            }
+        except Exception as e:
+            print(f"  [경고] {t} 정보 실패: {e}")
+            cache.setdefault(t, {"name": tickers[t], "sector": "기타", "industry": "기타"})
+        if (i + 1) % 25 == 0:
+            print(f"  ...{i + 1}/{len(missing)}")
+            time.sleep(1)
+    with open(SECTOR_MAP_PATH, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=1)
+    return cache
+
+
+def safe(x, nd=2):
+    if x is None or (isinstance(x, float) and (math.isnan(x) or math.isinf(x))):
+        return None
+    return round(float(x), nd)
+
+
+def main():
+    cache = load_json(SECTOR_MAP_PATH, {})
+    tickers = get_universe(cache)
+    cache = update_sector_map(tickers, cache)
+
+    custom = load_json(CUSTOM_GROUPS_PATH, {"groups": {}})
+    ticker_to_group = {}
+    for g, lst in custom.get("groups", {}).items():
+        for t in lst:
+            ticker_to_group[t.replace(".", "-")] = g
+
+    symbols = sorted(tickers.keys())
+    print(f"가격 데이터 다운로드: {len(symbols)}종목")
+    px = yf.download(symbols, period="200d", interval="1d",
+                     auto_adjust=False, group_by="ticker",
+                     threads=True, progress=False)
+
+    stocks = []
+    market_date = None
+    for t in symbols:
+        try:
+            df = px[t].dropna(subset=["Close", "Volume"])
+        except Exception:
+            continue
+        if len(df) < 22:  # 최소 20일 평균 계산 가능해야 포함
+            continue
+        close = df["Close"]
+        vol = df["Volume"]
+        dv = close * vol  # 거래대금 (달러)
+
+        today = dv.iloc[-1]
+        prev = dv.iloc[-2]
+        hist = dv.iloc[:-1]  # 당일 제외
+        a20 = hist.tail(20).mean()
+        a60 = hist.tail(60).mean() if len(hist) >= 60 else None
+        a120 = hist.tail(120).mean() if len(hist) >= 120 else None
+
+        pc = (close.iloc[-1] / close.iloc[-2] - 1) * 100
+        market_date = str(df.index[-1].date())
+
+        meta = cache.get(t, {})
+        row = {
+            "t": t,
+            "n": meta.get("name", tickers.get(t, t)),
+            "sec": meta.get("sector", "기타"),
+            "ind": meta.get("industry", "기타"),
+            "c": safe(close.iloc[-1]),
+            "pc": safe(pc),
+            "dv": safe(today, 0),
+            "dvp": safe(prev, 0),
+            "a20": safe(a20, 0),
+            "a60": safe(a60, 0),
+            "a120": safe(a120, 0),
+        }
+        if t in ticker_to_group:
+            row["grp"] = ticker_to_group[t]
+        stocks.append(row)
+
+    if not stocks:
+        sys.exit("수집된 종목이 없습니다")
+
+    out = {
+        "updated": pd.Timestamp.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
+        "market_date": market_date,
+        "count": len(stocks),
+        "stocks": stocks,
+    }
+    with open(DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"완료: {len(stocks)}종목 → data.json (기준일 {market_date})")
+
+
+if __name__ == "__main__":
+    main()
