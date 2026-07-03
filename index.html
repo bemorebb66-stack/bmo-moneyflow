@@ -9,7 +9,10 @@
 <meta property="og:description" content="S&P 500 + 나스닥 100 거래대금으로 보는 오늘의 자금 로테이션. 매 거래일 자동 갱신.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bemorebb66-stack.github.io/bmo-moneyflow/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://bemorebb66-stack.github.io/bmo-moneyflow/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -161,6 +164,16 @@ footer b{color:var(--red)}
 .sortable.on{color:var(--red)}
 .addc{border:1px solid var(--rule-dark);background:var(--panel);cursor:pointer;padding:1px 8px;color:var(--red);font-weight:700;font-size:13px}
 .addc:disabled{opacity:.35;cursor:default}
+.star{border:0;background:none;cursor:pointer;font-size:15px;color:var(--rule-dark);opacity:.45;padding:0 2px}
+.star.on{color:#D9A441;opacity:1}
+.spk{vertical-align:-3px;margin-left:8px}
+.preset-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:9px 14px;border-bottom:1px solid var(--rule);font-size:11.5px;color:var(--muted)}
+.preset-row button{border:1px solid var(--rule-dark);background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:11.5px;padding:3px 10px;cursor:pointer}
+.preset-row button:hover{background:var(--red-soft)}
+.tbl-scroll th:first-child,.tbl-scroll td:first-child{position:sticky;left:0;background:var(--panel);z-index:2}
+.watch-head{display:flex;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.watch-head h2{font-family:var(--serif);font-weight:700;font-size:14.5px}
+.watch-head small{font-size:11.5px;color:var(--muted)}
 
 @media (max-width:760px){
   .ledger-head{display:none}
@@ -220,7 +233,7 @@ footer b{color:var(--red)}
 <script>
 "use strict";
 /* ───────── 상태 ───────── */
-const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"r1", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"dv", range:60, chart:null, gSort:"chg", scrollTo:null, scrollChart:false };
+const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"r1", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"dv", range:60, chart:null, gSort:"chg", scrollTo:null, scrollChart:false, watch:[] };
 const PAL_LIGHT = ["#C41E2F","#1E56A0","#B8860B","#2E7D4F","#7B4B94","#D2691E","#4A6B7A","#16130F"];
 const PAL_DARK  = ["#E05565","#6B9BDC","#D9A441","#4FA872","#A47BC4","#E08A4E","#7FA3B5","#EAE6DC"];
 let LINE_COLORS = PAL_LIGHT;
@@ -422,13 +435,40 @@ function aggregate(stocks, period){
 }
 
 function signalOf(o){
-  if(o.chg==null) return ["quiet","데이터 부족"];
-  if(o.chg > 3 && o.pc > 0.15) return ["in","매수세 유입"];
-  if(o.chg > 3 && o.pc < -0.15) return ["out","매도세 출회"];
-  if(o.chg < -3) return ["quiet","거래 위축"];
-  return ["quiet","중립"];
+  if(o.chg==null) return ["quiet","데이터 부족","비교 기간 데이터가 부족합니다"];
+  if(o.chg > 3 && o.pc > 0.15) return ["in","매수세 유입","거래대금이 기준 대비 3% 이상 늘고, 거래대금가중 등락률이 +0.15% 이상"];
+  if(o.chg > 3 && o.pc < -0.15) return ["out","매도세 출회","거래대금이 기준 대비 3% 이상 늘었지만, 가중등락률이 −0.15% 이하 (하락하며 대량 거래)"];
+  if(o.chg < -3) return ["quiet","거래 위축","거래대금이 기준 대비 3% 이상 감소 (관심 이탈)"];
+  return ["quiet","중립","거래대금·가격 변화가 임계값(±3%, ±0.15%) 이내"];
 }
 
+
+/* ───────── 워치리스트 / 스파크라인 / 프리셋 ───────── */
+function loadWatch(){ try{ return JSON.parse(localStorage.getItem("bmoWatch")||"[]"); }catch(e){ return []; } }
+function saveWatch(){ try{ localStorage.setItem("bmoWatch", JSON.stringify(S.watch)); }catch(e){} }
+function spark(t){
+  if(!S.hist || !S.hist.stocks || !S.hist.stocks[t]) return "";
+  const v = S.hist.stocks[t].slice(-20);
+  if(v.length < 5) return "";
+  const min = Math.min(...v), max = Math.max(...v), rng = (max-min) || 1;
+  const pts = v.map((x,i)=>`${(i/(v.length-1)*58+1).toFixed(1)},${(16.5-(x-min)/rng*14).toFixed(1)}`).join(" ");
+  const up = v[v.length-1] >= v.reduce((a,b)=>a+b,0)/v.length;
+  return `<svg class="spk" width="60" height="18" viewBox="0 0 60 18" aria-hidden="true"><title>최근 20일 거래대금 추이</title><polyline points="${pts}" fill="none" stroke="${up?"var(--red)":"var(--blue)"}" stroke-width="1.5"/></svg>`;
+}
+const PRESETS = [
+  {label:"반도체 세분화", mode:"custom", metric:"share", groups:["반도체 · 메모리/스토리지","반도체 · GPU/AI가속","반도체 · 네트워킹/커스텀ASIC","반도체 · 장비"], stocks:[]},
+  {label:"빅테크 7", mode:"custom", metric:"dv", groups:[], stocks:["NVDA","MSFT","AAPL","AMZN","GOOGL","META","TSLA"]},
+  {label:"시총 로테이션", mode:"cap", metric:"share", groups:["메가캡 ($200B+)","대형주 ($50B~200B)","중형주 ($10B~50B)","소형주 (<$10B)"], stocks:[]},
+  {label:"방어 vs 경기", mode:"sector", metric:"share", groups:["Consumer Defensive","Utilities","Consumer Cyclical","Technology"], stocks:[]},
+];
+function applyPreset(i){
+  const p = PRESETS[i];
+  if(!p) return;
+  S.mode = p.mode; S.metric = p.metric;
+  S.selByMode[p.mode] = p.groups.slice();
+  S.selStocks = p.stocks.slice();
+  render();
+}
 
 /* ───────── 분석: 연속 추세 / 급증 / 요약 ───────── */
 function shareStreaks(){
@@ -564,6 +604,7 @@ function render(){
     <section class="chartbox" aria-label="그룹 비교 차트">
       <div class="chartbox-head">
         <h2>그룹 비교 차트</h2>
+        <button class="theme-btn" id="copyLink" title="현재 화면 상태가 담긴 링크를 복사합니다">🔗 링크 복사</button>
         <div class="seg" role="tablist" aria-label="지표">
           <button class="${S.metric==="dv"?"on":""}" data-metric="dv">거래대금</button>
           <button class="${S.metric==="share"?"on":""}" data-metric="share">시장 점유율</button>
@@ -571,6 +612,9 @@ function render(){
         <div class="seg" role="tablist" aria-label="기간">
           ${[20,60,120].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}일</button>`).join("")}
         </div>
+      </div>
+      <div class="preset-row">프리셋
+        ${PRESETS.map((p,i)=>`<button data-preset="${i}">${esc(p.label)}</button>`).join("")}
       </div>
       <div class="chartbox-body">
         <div class="chip-row">
@@ -601,6 +645,18 @@ function render(){
       : `<div class="spike-empty">오늘은 기준을 충족하는 급증 종목이 없습니다.</div>`}
   </section>`;
 
+  /* ── 관심종목 ── */
+  if(S.watch.length && !q){
+    const ws = S.watch.map(t=>d.stocks.find(s=>s.t===t)).filter(Boolean);
+    if(ws.length){
+      html += `
+      <section class="spike" aria-label="내 관심종목">
+        <div class="watch-head"><h2>⭐ 내 관심종목</h2><small>이 브라우저에만 저장됩니다 · ★를 다시 누르면 해제</small></div>
+        <div class="gdetail">${stockTable(ws, "watch")}</div>
+      </section>`;
+    }
+  }
+
   if(q){
     const hits = d.stocks.filter(st => st.t.includes(q) || st.n.toUpperCase().includes(q) || koName(st).toUpperCase().includes(q));
     html += `<div class="ledger"><div style="padding:10px;font-family:var(--serif);font-weight:700">검색 결과 ${hits.length}건</div>
@@ -611,15 +667,17 @@ function render(){
       <div class="ledger-head"><span>그룹</span><span style="text-align:center">거래대금 ${esc(periodLabel)} 변화</span><span class="r sortable ${S.gSort==="chg"?"on":""}" data-gsort="chg">변화율${S.gSort==="chg"?" ▼":""}</span><span class="r sortable ${S.gSort==="shareD"?"on":""}" data-gsort="shareD">점유율Δ${S.gSort==="shareD"?" ▼":""}</span><span class="r">신호</span></div>
       ${rows.map(r=>{
         const w = r.chg==null ? 0 : Math.min(50, Math.abs(r.chg)/maxAbs*50);
-        const [sc, sl] = signalOf(r);
+        const op = (0.4 + 0.6*Math.min(1, (r.now/totNow)/0.10)).toFixed(2);
+        const top3 = [...r.stocks].sort((a,b)=>b.dv-a.dv).slice(0,3).map(s=>s.t).join(", ");
+        const [sc, sl, sd] = signalOf(r);
         const open = S.open.has(r.name);
         return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
-          <button class="grow-main" aria-expanded="${open}">
+          <button class="grow-main" aria-expanded="${open}" title="거래대금 상위: ${esc(top3)}">
             <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향(추정) <span class="${cls(r.net)}">${fmtNet(r.net)}</span></small></span>
-            <span class="barwrap" aria-hidden="true"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%"></span></span>
+            <span class="barwrap" aria-hidden="true" title="바 진하기 = 시장 내 거래대금 비중"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%;opacity:${op}"></span></span>
             <span class="num n-chg ${cls(r.chg)}">${arrow(r.chg)}${fmtPct(r.chg)}</span>
             <span class="num n-share ${cls(r.shareD)}">${fmtPp(r.shareD)}<small>점유율</small></span>
-            <span class="num n-sig"><span class="signal ${sc}">${sl}</span></span>
+            <span class="num n-sig"><span class="signal ${sc}" title="${esc(sd)}">${sl}</span></span>
           </button>
           <div class="gdetail">${open ? stockTable(r.stocks, r.name) : ""}</div>
         </div>`;
@@ -648,12 +706,11 @@ function stockRows(stocks){
 
 function stockTable(stocks, gid){
   const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"],["r120","120일比"]];
-  const spikeMode = gid==="spike";
   const rows = stockRows(stocks);
   return `<div class="tbl-scroll"><table>
-    <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}${spikeMode?`<th>비교</th>`:""}</tr></thead>
+    <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}<th>액션</th></tr></thead>
     <tbody>${rows.map(({st,r1,r20,r60,r120})=>`<tr>
-      <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span></td>
+      <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span>${spark(st.t)}</td>
       <td>${fmtCap(st.mc)}</td>
       <td>$${st.c==null?"—":st.c.toLocaleString()}</td>
       <td class="${cls(st.pc)}">${fmtPct(st.pc)}</td>
@@ -662,7 +719,7 @@ function stockTable(stocks, gid){
       <td class="${cls(r20)}">${fmtPct(r20)}</td>
       <td class="${cls(r60)}">${fmtPct(r60)}</td>
       <td class="${cls(r120)}">${fmtPct(r120)}</td>
-      ${spikeMode?`<td style="white-space:nowrap"><button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""} title="비교 차트에 추가">＋차트</button> <a href="https://news.google.com/search?q=${esc(st.t)}%20stock" target="_blank" rel="noopener" title="관련 뉴스 검색" style="text-decoration:none">📰</a></td>`:""}
+      <td style="white-space:nowrap"><button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""} title="비교 차트에 추가">＋차트</button> <a href="https://news.google.com/search?q=${esc(st.t)}%20stock" target="_blank" rel="noopener" title="관련 뉴스 검색" style="text-decoration:none">📰</a> <button class="star ${S.watch.includes(st.t)?"on":""}" data-star="${esc(st.t)}" title="관심종목 ${S.watch.includes(st.t)?"해제":"추가"}">★</button></td>
     </tr>`).join("")}</tbody>
   </table></div>`;
 }
@@ -796,6 +853,25 @@ function bind(){
     if(t && t.scrollIntoView) t.scrollIntoView({behavior:"smooth"});
   });
   document.querySelectorAll("[data-gsort]").forEach(x=>x.onclick=()=>{S.gSort=x.dataset.gsort;render();});
+  document.querySelectorAll("[data-star]").forEach(x=>x.onclick=e=>{
+    e.stopPropagation();
+    const t=x.dataset.star;
+    S.watch = S.watch.includes(t) ? S.watch.filter(w=>w!==t) : [...S.watch, t];
+    saveWatch(); render();
+  });
+  document.querySelectorAll("[data-preset]").forEach(x=>x.onclick=()=>applyPreset(+x.dataset.preset));
+  const cl=document.getElementById("copyLink");
+  if(cl){
+    cl.onclick=()=>{
+      saveHash();
+      const url = location.href;
+      const done = ()=>{ cl.textContent="✓ 복사됨"; setTimeout(()=>{ cl.textContent="🔗 링크 복사"; }, 1500); };
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done, ()=>prompt("링크를 복사하세요:", url)); }
+        else prompt("링크를 복사하세요:", url);
+      }catch(e){ try{ prompt("링크를 복사하세요:", url); }catch(_){} }
+    };
+  }
   document.querySelectorAll("[data-addchart]").forEach(x=>x.onclick=()=>{
     const t=x.dataset.addchart;
     if(!S.selStocks.includes(t) && currentSel().length+S.selStocks.length<LINE_COLORS.length){
@@ -835,6 +911,7 @@ function bind(){
   if(b) b.onclick = ()=>{ applyTheme(isDark() ? "light" : "dark"); render(); };
 })();
 loadHash();
+S.watch = loadWatch();
 (function initSkeleton(){
   const a = document.getElementById("app");
   if(a) a.innerHTML = skeletonHTML();
