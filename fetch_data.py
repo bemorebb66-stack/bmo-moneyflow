@@ -91,7 +91,7 @@ def get_universe(cache):
 
 def update_sector_map(tickers, cache):
     """섹터/industry 정보는 캐시에 저장하고, 신규 티커만 yfinance에서 조회."""
-    missing = [t for t in tickers if t not in cache or not cache[t].get("industry")]
+    missing = [t for t in tickers if t not in cache or not cache[t].get("industry") or cache[t].get("mcap") is None]
     print(f"섹터 정보 신규 조회 대상: {len(missing)}종목")
     for i, t in enumerate(missing):
         try:
@@ -100,16 +100,30 @@ def update_sector_map(tickers, cache):
                 "name": tickers[t],
                 "sector": info.get("sector") or "기타",
                 "industry": info.get("industry") or "기타",
+                "mcap": info.get("marketCap") or 0,
             }
         except Exception as e:
             print(f"  [경고] {t} 정보 실패: {e}")
-            cache.setdefault(t, {"name": tickers[t], "sector": "기타", "industry": "기타"})
+            cache.setdefault(t, {"name": tickers[t], "sector": "기타", "industry": "기타", "mcap": 0})
+            cache[t].setdefault("mcap", 0)
         if (i + 1) % 25 == 0:
             print(f"  ...{i + 1}/{len(missing)}")
             time.sleep(1)
     with open(SECTOR_MAP_PATH, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=1)
     return cache
+
+
+def cap_bucket(m):
+    if not m:
+        return "기타"
+    if m >= 200e9:
+        return "메가캡 ($200B+)"
+    if m >= 50e9:
+        return "대형주 ($50B~200B)"
+    if m >= 10e9:
+        return "중형주 ($10B~50B)"
+    return "소형주 (<$10B)"
 
 
 def safe(x, nd=2):
@@ -174,6 +188,8 @@ def main():
             "a60": safe(a60, 0),
             "a120": safe(a120, 0),
         }
+        row["mc"] = int(meta.get("mcap") or 0)
+        row["cap"] = cap_bucket(meta.get("mcap"))
         if t in ticker_to_group:
             row["grp"] = ticker_to_group[t]
         stocks.append(row)
@@ -209,6 +225,8 @@ def main():
         "sector": series_by(lambda t: meta.get(t, {}).get("sec", "기타")),
         "industry": series_by(lambda t: meta.get(t, {}).get("ind", "기타")),
         "custom": series_by(lambda t: meta.get(t, {}).get("grp") or meta.get(t, {}).get("ind", "기타")),
+        "cap": series_by(lambda t: meta.get(t, {}).get("cap", "기타")),
+        "stocks": {t: [int(v / 1e6) if v == v else 0 for v in hist[t]] for t in hist.columns},
     }
     with open(HISTORY_PATH, "w", encoding="utf-8") as f:
         json.dump(hist_out, f, ensure_ascii=False, separators=(",", ":"))
