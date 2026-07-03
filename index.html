@@ -179,11 +179,110 @@ const cls = v => v==null||Math.abs(v)<0.05 ? "flat-t" : v>0 ? "pos-t" : "neg-t";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const chg = (now, ref) => (ref==null || !ref) ? null : (now/ref - 1) * 100;
 
+
+/* ───────── 한국어 표시 ───────── */
+const KO_SEC = {
+"Technology":"기술","Information Technology":"기술","Communication Services":"커뮤니케이션",
+"Consumer Cyclical":"임의소비재","Consumer Discretionary":"임의소비재",
+"Consumer Defensive":"필수소비재","Consumer Staples":"필수소비재",
+"Financial Services":"금융","Financials":"금융","Healthcare":"헬스케어","Health Care":"헬스케어",
+"Energy":"에너지","Industrials":"산업재","Utilities":"유틸리티",
+"Basic Materials":"소재","Materials":"소재","Real Estate":"부동산","기타":"기타"};
+const KO_IND = {
+"Semiconductors":"반도체","Semiconductor Equipment & Materials":"반도체 장비·소재","Semiconductor Equipment":"반도체 장비",
+"Software - Infrastructure":"소프트웨어(인프라)","Software - Application":"소프트웨어(응용)",
+"Information Technology Services":"IT 서비스","Consumer Electronics":"가전·전자기기",
+"Computer Hardware":"컴퓨터 하드웨어","Technology Hardware":"기술 하드웨어","Communication Equipment":"통신장비",
+"Electronic Components":"전자부품","Scientific & Technical Instruments":"계측·정밀기기","Solar":"태양광",
+"Internet Content & Information":"인터넷 콘텐츠·정보","Entertainment":"엔터테인먼트","Telecom Services":"통신 서비스",
+"Electronic Gaming & Multimedia":"게임·멀티미디어","Advertising Agencies":"광고","Broadcasting":"방송",
+"Internet Retail":"인터넷 소매","Specialty Retail":"전문 소매","Auto Manufacturers":"자동차",
+"Auto Parts":"자동차 부품","Auto & Truck Dealerships":"자동차 딜러","Restaurants":"외식",
+"Travel Services":"여행","Lodging":"호텔·숙박","Resorts & Casinos":"리조트·카지노","Gambling":"게이밍(베팅)",
+"Home Improvement Retail":"홈임프루브먼트","Apparel Retail":"의류 소매","Apparel Manufacturing":"의류 제조",
+"Footwear & Accessories":"신발·액세서리","Residential Construction":"주택건설",
+"Furnishings, Fixtures & Appliances":"가구·가전","Leisure":"레저용품","Luxury Goods":"명품","Personal Services":"개인 서비스",
+"Discount Stores":"할인점","Grocery Stores":"식료품점","Household & Personal Products":"생활용품",
+"Household Products":"생활용품","Beverages - Non-Alcoholic":"음료(무알콜)","Beverages":"음료",
+"Beverages - Brewers":"맥주","Beverages - Wineries & Distilleries":"주류","Packaged Foods":"포장식품",
+"Confectioners":"제과","Farm Products":"농산물","Food Distribution":"식품유통","Tobacco":"담배",
+"Education & Training Services":"교육",
+"Banks - Diversified":"은행(대형)","Banks - Regional":"은행(지역)","Credit Services":"신용·결제",
+"Capital Markets":"증권·IB","Asset Management":"자산운용","Financial Data & Stock Exchanges":"금융데이터·거래소",
+"Insurance - Diversified":"보험(종합)","Insurance - Life":"생명보험","Insurance - Property & Casualty":"손해보험",
+"Insurance Brokers":"보험중개","Insurance - Reinsurance":"재보험","Insurance - Specialty":"특수보험",
+"Drug Manufacturers - General":"제약(대형)","Drug Manufacturers - Specialty & Generic":"제약(스페셜티)","Drug Manufacturers":"제약",
+"Biotechnology":"바이오","Medical Devices":"의료기기","Medical Instruments & Supplies":"의료 소모품",
+"Diagnostics & Research":"진단·리서치","Healthcare Plans":"건강보험","Medical Care Facilities":"의료시설",
+"Medical Distribution":"의약품 유통","Health Information Services":"헬스케어 IT","Pharmaceutical Retailers":"약국",
+"Oil & Gas Integrated":"석유(통합)","Oil & Gas E&P":"석유 탐사·생산","Oil & Gas Midstream":"석유 미드스트림",
+"Oil & Gas Refining & Marketing":"정유","Oil & Gas Equipment & Services":"유전서비스","Oil & Gas Equipment":"유전서비스",
+"Oil & Gas Drilling":"시추","Uranium":"우라늄",
+"Aerospace & Defense":"항공우주·방산","Railroads":"철도","Airlines":"항공사",
+"Farm & Heavy Construction Machinery":"농기계·중장비","Farm & Construction Equipment":"농기계·중장비",
+"Specialty Industrial Machinery":"산업기계","Building Products & Equipment":"건축자재·설비",
+"Electrical Equipment & Parts":"전기장비","Electrical Equipment":"전기장비","Engineering & Construction":"건설·엔지니어링",
+"Industrial Distribution":"산업재 유통","Integrated Freight & Logistics":"물류","Trucking":"트럭운송",
+"Waste Management":"폐기물 처리","Consulting Services":"컨설팅","Staffing & Employment Services":"인력 서비스",
+"Rental & Leasing Services":"렌탈·리스","Security & Protection Services":"보안 서비스",
+"Specialty Business Services":"기업 서비스","Conglomerates":"복합기업","Marine Shipping":"해운",
+"Tools & Accessories":"공구","Pollution & Treatment Controls":"환경설비","Airports & Air Services":"공항·항공 서비스",
+"Metal Fabrication":"금속가공","Business Equipment & Supplies":"사무용품",
+"Utilities - Regulated Electric":"전력(규제)","Utilities - Regulated Gas":"가스(규제)","Utilities - Regulated Water":"수도",
+"Utilities - Diversified":"유틸리티(복합)","Utilities - Independent Power Producers":"전력(민자·IPP)",
+"Utilities - Independent Producers":"전력(민자·IPP)","Utilities - Renewable":"신재생에너지",
+"Specialty Chemicals":"특수화학","Chemicals":"화학","Agricultural Inputs":"농자재",
+"Copper":"구리","Gold":"금","Silver":"은","Steel":"철강","Aluminum":"알루미늄","Building Materials":"건자재",
+"Lumber & Wood Production":"목재","Paper & Paper Products":"제지",
+"Other Industrial Metals & Mining":"산업금속·광산","Other Precious Metals & Mining":"귀금속·광산",
+"REIT - Industrial":"리츠(물류·산업)","REIT - Specialty":"리츠(특수)","REIT - Residential":"리츠(주거)",
+"REIT - Retail":"리츠(리테일)","REIT - Office":"리츠(오피스)","REIT - Healthcare Facilities":"리츠(헬스케어)",
+"REIT - Hotel & Motel":"리츠(호텔)","REIT - Diversified":"리츠(복합)","REIT - Mortgage":"모기지 리츠",
+"Real Estate Services":"부동산 서비스","Real Estate - Development":"부동산 개발","Real Estate - Diversified":"부동산(복합)"};
+const KO_NAME = {
+MSFT:"마이크로소프트",AAPL:"애플",NVDA:"엔비디아",AMZN:"아마존",GOOGL:"알파벳A",GOOG:"알파벳C",META:"메타",
+TSLA:"테슬라",AVGO:"브로드컴",AMD:"AMD",INTC:"인텔",MU:"마이크론",QCOM:"퀄컴",TXN:"텍사스인스트루먼트",
+ADI:"아날로그디바이시스",MRVL:"마벨",ARM:"암홀딩스",NXPI:"NXP",MCHP:"마이크로칩",ON:"온세미컨덕터",MPWR:"모놀리식파워",
+SWKS:"스카이웍스",QRVO:"코보",AMAT:"어플라이드머티어리얼즈",LRCX:"램리서치",KLAC:"KLA",ASML:"ASML",TER:"테라다인",
+WDC:"웨스턴디지털",STX:"씨게이트",SNDK:"샌디스크",PLTR:"팔란티어",ORCL:"오라클",CRM:"세일즈포스",ADBE:"어도비",
+NOW:"서비스나우",INTU:"인튜이트",IBM:"IBM",PANW:"팔로알토",CRWD:"크라우드스트라이크",FTNT:"포티넷",SNPS:"시놉시스",
+CDNS:"케이던스",WDAY:"워크데이",DDOG:"데이터독",TTD:"트레이드데스크",APP:"앱러빈",ANET:"아리스타",CSCO:"시스코",
+DELL:"델",HPQ:"HP",HPE:"HPE",SMCI:"슈퍼마이크로",NFLX:"넷플릭스",DIS:"디즈니",CMCSA:"컴캐스트",
+TMUS:"T모바일",VZ:"버라이즌",T:"AT&T",CHTR:"차터",WBD:"워너브라더스디스커버리",EA:"일렉트로닉아츠",TTWO:"테이크투",
+SPOT:"스포티파이",ABNB:"에어비앤비",BKNG:"부킹홀딩스",UBER:"우버",DASH:"도어대시",SBUX:"스타벅스",MCD:"맥도날드",
+CMG:"치폴레",NKE:"나이키",LULU:"룰루레몬",HD:"홈디포",LOW:"로우스",TJX:"TJX",ROST:"로스스토어즈",
+F:"포드",GM:"GM",RIVN:"리비안",LCID:"루시드",MAR:"메리어트",HLT:"힐튼",RCL:"로얄캐리비안",CCL:"카니발",
+WMT:"월마트",COST:"코스트코",TGT:"타깃",KR:"크로거",PG:"P&G",KO:"코카콜라",PEP:"펩시코",
+MDLZ:"몬델리즈",KHC:"크래프트하인즈",GIS:"제너럴밀스",CL:"콜게이트",KMB:"킴벌리클라크",EL:"에스티로더",
+MO:"알트리아",PM:"필립모리스",MNST:"몬스터베버리지",KDP:"큐리그닥터페퍼",STZ:"컨스텔레이션",
+JPM:"JP모건",BAC:"뱅크오브아메리카",WFC:"웰스파고",C:"씨티그룹",GS:"골드만삭스",MS:"모건스탠리",
+SCHW:"찰스슈왑",BLK:"블랙록",BX:"블랙스톤",KKR:"KKR",V:"비자",MA:"마스터카드",AXP:"아멕스",
+PYPL:"페이팔",COIN:"코인베이스",HOOD:"로빈후드","BRK-B":"버크셔해서웨이",SPGI:"S&P글로벌",MCO:"무디스",
+ICE:"ICE",CME:"CME그룹",NDAQ:"나스닥",COF:"캐피털원",
+LLY:"일라이릴리",UNH:"유나이티드헬스",JNJ:"존슨앤드존슨",ABBV:"애브비",MRK:"머크",PFE:"화이자",
+BMY:"브리스톨마이어스",AMGN:"암젠",GILD:"길리어드",VRTX:"버텍스",REGN:"리제네론",BIIB:"바이오젠",MRNA:"모더나",
+TMO:"써모피셔",DHR:"다나허",ABT:"애보트",ISRG:"인튜이티브서지컬",MDT:"메드트로닉",BSX:"보스턴사이언티픽",
+SYK:"스트라이커",CI:"시그나",CVS:"CVS헬스",HCA:"HCA헬스케어",MCK:"맥케슨",
+XOM:"엑슨모빌",CVX:"셰브런",COP:"코노코필립스",EOG:"EOG리소시스",SLB:"슐룸버거",HAL:"핼리버턴",
+OXY:"옥시덴탈",PSX:"필립스66",VLO:"발레로",MPC:"마라톤페트롤리엄",KMI:"킨더모건",WMB:"윌리엄스",
+GE:"GE에어로스페이스",RTX:"RTX",LMT:"록히드마틴",NOC:"노스롭그루먼",GD:"제너럴다이내믹스",BA:"보잉",
+HON:"허니웰",CAT:"캐터필러",DE:"디어",ETN:"이튼",EMR:"에머슨",PH:"파커하니핀",ITW:"일리노이툴웍스",
+MMM:"3M",VRT:"버티브",PWR:"콴타서비스",UNP:"유니온퍼시픽",CSX:"CSX",NSC:"노퍽서던",UPS:"UPS",FDX:"페덱스",
+DAL:"델타항공",UAL:"유나이티드항공",LUV:"사우스웨스트",WM:"웨이스트매니지먼트",URI:"유나이티드렌탈스",
+NEE:"넥스트에라",DUK:"듀크에너지",SO:"서던컴퍼니",D:"도미니언",AEP:"AEP",EXC:"엑셀론",
+VST:"비스트라",CEG:"컨스텔레이션에너지",NRG:"NRG에너지",PCG:"PG&E",SRE:"셈프라",
+LIN:"린데",APD:"에어프로덕츠",SHW:"셔윈윌리엄스",ECL:"에코랩",FCX:"프리포트맥모란",NEM:"뉴몬트",NUE:"뉴코어",
+DOW:"다우",DD:"듀폰",PLD:"프로로지스",AMT:"아메리칸타워",EQIX:"에퀴닉스",CCI:"크라운캐슬",
+SPG:"사이먼프로퍼티",O:"리얼티인컴",PSA:"퍼블릭스토리지",DLR:"디지털리얼티"};
+const koSec = s => KO_SEC[s] || s;
+const koInd = s => KO_IND[s] || s;
+const koName = st => KO_NAME[st.t] || st.n;
+
 /* ───────── 그룹 키 ───────── */
 function groupOf(st){
-  if(S.mode==="sector") return st.sec;
-  if(S.mode==="industry") return st.ind;
-  return st.grp || st.ind;
+  if(S.mode==="sector") return koSec(st.sec);
+  if(S.mode==="industry") return koInd(st.ind);
+  return st.grp || koInd(st.ind);
 }
 
 /* ───────── 집계 ───────── */
@@ -267,7 +366,7 @@ function render(){
   </div>`;
 
   if(q){
-    const hits = d.stocks.filter(st => st.t.includes(q) || st.n.toUpperCase().includes(q));
+    const hits = d.stocks.filter(st => st.t.includes(q) || st.n.toUpperCase().includes(q) || koName(st).toUpperCase().includes(q));
     html += `<div class="ledger"><div style="padding:10px;font-family:var(--serif);font-weight:700">검색 결과 ${hits.length}건</div>
       <div class="gdetail" style="display:block">${stockTable(hits, "search")}</div></div>`;
   } else {
@@ -316,7 +415,7 @@ function stockTable(stocks, gid){
   return `<div class="tbl-scroll"><table>
     <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}</tr></thead>
     <tbody>${rows.map(({st,r1,r20,r60,r120})=>`<tr>
-      <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(st.n)}</span></td>
+      <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span></td>
       <td>$${st.c==null?"—":st.c.toLocaleString()}</td>
       <td class="${cls(st.pc)}">${fmtPct(st.pc)}</td>
       <td>${fmtDv(st.dv)}</td>
