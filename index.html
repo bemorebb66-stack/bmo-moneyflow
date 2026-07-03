@@ -128,12 +128,10 @@ tbody tr:hover{background:var(--paper)}
 
 
 /* ── 오늘의 요약 ── */
-.brief{margin:22px 0 6px;border:1px solid var(--rule-dark);border-left:4px solid var(--red);background:var(--panel);padding:14px 16px}
-.brief h2{font-family:var(--serif);font-weight:900;font-size:15px;margin-bottom:7px}
-.brief p{font-size:14px;line-height:1.75;max-width:80ch}
-.brief .hi-in{color:var(--red);font-weight:700}
-.brief .hi-out{color:var(--blue);font-weight:700}
-.brief .hi-n{font-weight:700;font-variant-numeric:tabular-nums}
+.rot-brief{padding:11px 14px;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.75}
+.hi-in{color:var(--red);font-weight:700}
+.hi-out{color:var(--blue);font-weight:700}
+.hi-n{font-weight:700;font-variant-numeric:tabular-nums}
 /* ── 거래대금 급증 ── */
 .spike{margin:16px 0 6px;border:1px solid var(--rule-dark);background:var(--panel)}
 .spike-head{display:flex;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule)}
@@ -233,7 +231,7 @@ footer b{color:var(--red)}
 <script>
 "use strict";
 /* ───────── 상태 ───────── */
-const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"r1", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"dv", range:60, chart:null, gSort:"chg", scrollTo:null, scrollChart:false, watch:[] };
+const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null, gSort:"chg", scrollTo:null, scrollChart:false, watch:[] };
 const PAL_LIGHT = ["#C41E2F","#1E56A0","#B8860B","#2E7D4F","#7B4B94","#D2691E","#4A6B7A","#16130F"];
 const PAL_DARK  = ["#E05565","#6B9BDC","#D9A441","#4FA872","#A47BC4","#E08A4E","#7FA3B5","#EAE6DC"];
 let LINE_COLORS = PAL_LIGHT;
@@ -256,6 +254,10 @@ function saveHash(){
     const g = S.selByMode[S.mode];
     if(g && g.length) parts.push("g="+encodeURIComponent(g.join("|")));
     if(S.selStocks.length) parts.push("s="+S.selStocks.join(","));
+    if(S.gSort!=="chg") parts.push("gs="+S.gSort);
+    if(S.sortKey!=="mc" || S.sortDir!==-1) parts.push("sk="+S.sortKey+"&sd="+(S.sortDir>0?"a":"d"));
+    const op = [...S.open].slice(0,3);
+    if(op.length) parts.push("o="+encodeURIComponent(op.join("|")));
     history.replaceState(null, "", "#"+parts.join("&"));
   }catch(e){}
 }
@@ -271,11 +273,16 @@ function loadHash(){
     if(kv.r && [20,60,120].includes(+kv.r)) S.range = +kv.r;
     if(kv.g) S.selByMode[S.mode] = decodeURIComponent(kv.g).split("|").filter(Boolean);
     if(kv.s) S.selStocks = kv.s.split(",").filter(Boolean).slice(0, LINE_COLORS.length);
+    if(kv.mt==="dv") S.metric = "idx"; // 구버전 링크 호환
+    if(kv.gs==="shareD") S.gSort = "shareD";
+    if(kv.sk && ["t","mc","c","pc","dv","r1","r20","r60"].includes(kv.sk)) S.sortKey = kv.sk;
+    if(kv.sd==="a") S.sortDir = 1;
+    if(kv.o) S.open = new Set(decodeURIComponent(kv.o).split("|").filter(Boolean));
   }catch(e){}
 }
-const PERIODS = [["1d","전일比"],["20d","20일比"],["60d","60일比"],["120d","120일比"]];
+const PERIODS = [["1d","전일比"],["20d","20일比"],["60d","60일比"]];
 const MODES = [["sector","대분류 섹터"],["industry","세부 산업"],["custom","커스텀 그룹"],["cap","시가총액"]];
-const REF = {"1d":"dvp","20d":"a20","60d":"a60","120d":"a120"};
+const REF = {"1d":"dvp","20d":"a20","60d":"a60"};
 
 /* ───────── 유틸 ───────── */
 const fmtPct = v => v==null ? "—" : (v>0?"+":"") + v.toFixed(v>=100?0:1) + "%";
@@ -457,7 +464,7 @@ function spark(t){
 }
 const PRESETS = [
   {label:"반도체 세분화", mode:"custom", metric:"share", groups:["반도체 · 메모리/스토리지","반도체 · GPU/AI가속","반도체 · 네트워킹/커스텀ASIC","반도체 · 장비"], stocks:[]},
-  {label:"빅테크 7", mode:"custom", metric:"dv", groups:[], stocks:["NVDA","MSFT","AAPL","AMZN","GOOGL","META","TSLA"]},
+  {label:"빅테크 7", mode:"custom", metric:"idx", groups:[], stocks:["NVDA","MSFT","AAPL","AMZN","GOOGL","META","TSLA"]},
   {label:"시총 로테이션", mode:"cap", metric:"share", groups:["메가캡 ($200B+)","대형주 ($50B~200B)","중형주 ($10B~50B)","소형주 (<$10B)"], stocks:[]},
   {label:"방어 vs 경기", mode:"sector", metric:"share", groups:["Consumer Defensive","Utilities","Consumer Cyclical","Technology"], stocks:[]},
 ];
@@ -561,13 +568,9 @@ function render(){
     html += `<div style="margin:18px 0 0;border:1px solid var(--red);background:var(--red-soft);padding:10px 14px;font-size:13px"><b style="color:var(--red)">⚠ 데이터 갱신 지연</b> — 기준일(${esc(d.market_date)})이 ${staleDays}영업일 이전입니다. 자동 수집이 실패했을 수 있으니 GitHub Actions 상태를 확인해 주세요.</div>`;
   }
   html += `
-  <section class="brief" aria-label="오늘의 요약">
-    <h2>오늘의 요약</h2>
-    <p>${buildBrief(agg1d.rows, agg1d.totNow, agg1d.totRef, spikes, streaks)}</p>
-  </section>
-
   <section class="rotation" aria-label="오늘의 자금 로테이션">
     <div class="rotation-head"><span class="dot"></span>오늘의 로테이션 <span style="font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--muted)">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span></div>
+    <div class="rot-brief">${buildBrief(agg1d.rows, agg1d.totNow, agg1d.totRef, spikes, streaks)}</div>
     <div class="rotation-body">
       <div class="rot-col outflow"><h3>점유율 축소 (자금 이탈 추정)</h3>
         ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
@@ -606,7 +609,7 @@ function render(){
         <h2>그룹 비교 차트</h2>
         <button class="theme-btn" id="copyLink" title="현재 화면 상태가 담긴 링크를 복사합니다">🔗 링크 복사</button>
         <div class="seg" role="tablist" aria-label="지표">
-          <button class="${S.metric==="dv"?"on":""}" data-metric="dv">거래대금</button>
+          <button class="${S.metric==="idx"?"on":""}" data-metric="idx">지수화 (시작=100)</button>
           <button class="${S.metric==="share"?"on":""}" data-metric="share">시장 점유율</button>
         </div>
         <div class="seg" role="tablist" aria-label="기간">
@@ -631,7 +634,7 @@ function render(){
         </div>
         <div class="chart-wrap"><canvas id="cmpChart"></canvas></div>
       </div>
-      <div class="chart-note">점유율 = 거래대금 ÷ 시장 전체 거래대금. 그룹·종목 합쳐 최대 ${LINE_COLORS.length}개까지 비교할 수 있으며, 종목은 점선으로 표시됩니다.</div>
+      <div class="chart-note">지수화 = 표시 구간 시작일 거래대금을 100으로 환산 (상대 추세 비교) · 점유율 = 거래대금 ÷ 시장 전체. 그룹·종목 합쳐 최대 ${LINE_COLORS.length}개, 종목은 점선.</div>
     </section>`;
   }
 
@@ -673,7 +676,7 @@ function render(){
         const open = S.open.has(r.name);
         return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
           <button class="grow-main" aria-expanded="${open}" title="거래대금 상위: ${esc(top3)}">
-            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향(추정) <span class="${cls(r.net)}">${fmtNet(r.net)}</span></small></span>
+            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향(추정) <span class="${cls(r.net)}">${fmtNet(r.net)}</span>${(()=>{ if(r.stocks.length<2||!r.now) return ""; const t1=[...r.stocks].sort((a,b)=>b.dv-a.dv)[0]; return ` · 1위 ${esc(t1.t)} ${(t1.dv/r.now*100).toFixed(0)}%`; })()}</small></span>
             <span class="barwrap" aria-hidden="true" title="바 진하기 = 시장 내 거래대금 비중"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%;opacity:${op}"></span></span>
             <span class="num n-chg ${cls(r.chg)}">${arrow(r.chg)}${fmtPct(r.chg)}</span>
             <span class="num n-share ${cls(r.shareD)}">${fmtPp(r.shareD)}<small>점유율</small></span>
@@ -692,7 +695,7 @@ function render(){
 
 function stockRows(stocks){
   const rows = stocks.map(st=>({
-    st, r1:chg(st.dv,st.dvp), r20:chg(st.dv,st.a20), r60:chg(st.dv,st.a60), r120:chg(st.dv,st.a120)
+    st, r1:chg(st.dv,st.dvp), r20:chg(st.dv,st.a20), r60:chg(st.dv,st.a60)
   }));
   const k = S.sortKey;
   rows.sort((a,b)=>{
@@ -705,11 +708,11 @@ function stockRows(stocks){
 }
 
 function stockTable(stocks, gid){
-  const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"],["r120","120일比"]];
+  const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"]];
   const rows = stockRows(stocks);
   return `<div class="tbl-scroll"><table>
     <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}<th>액션</th></tr></thead>
-    <tbody>${rows.map(({st,r1,r20,r60,r120})=>`<tr>
+    <tbody>${rows.map(({st,r1,r20,r60})=>`<tr>
       <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span>${spark(st.t)}</td>
       <td>${fmtCap(st.mc)}</td>
       <td>$${st.c==null?"—":st.c.toLocaleString()}</td>
@@ -718,7 +721,6 @@ function stockTable(stocks, gid){
       <td class="${cls(r1)}">${fmtPct(r1)}</td>
       <td class="${cls(r20)}">${fmtPct(r20)}</td>
       <td class="${cls(r60)}">${fmtPct(r60)}</td>
-      <td class="${cls(r120)}">${fmtPct(r120)}</td>
       <td style="white-space:nowrap"><button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""} title="비교 차트에 추가">＋차트</button> <a href="https://news.google.com/search?q=${esc(st.t)}%20stock" target="_blank" rel="noopener" title="관련 뉴스 검색" style="text-decoration:none">📰</a> <button class="star ${S.watch.includes(st.t)?"on":""}" data-star="${esc(st.t)}" title="관심종목 ${S.watch.includes(st.t)?"해제":"추가"}">★</button></td>
     </tr>`).join("")}</tbody>
   </table></div>`;
@@ -771,9 +773,10 @@ function drawChart(){
   ];
   const datasets = entries.map((e,i)=>{
     const raw = e.raw.slice(-n);
+    const base = raw.find(v=>v>0) || 1;
     const vals = S.metric==="share"
       ? raw.map((v,j)=> total[j] ? +(v/total[j]*100).toFixed(2) : null)
-      : raw.map(v=> +(v/1000).toFixed(2)); // $B
+      : raw.map(v=> +(v/base*100).toFixed(1)); // 시작일=100 지수화
     return { label:e.label, data:vals, borderColor:LINE_COLORS[i%LINE_COLORS.length],
       backgroundColor:LINE_COLORS[i%LINE_COLORS.length], borderWidth:2, pointRadius:0,
       pointHoverRadius:4, tension:.25, borderDash: e.dashed ? [5,3] : [] };
@@ -785,12 +788,12 @@ function drawChart(){
       responsive:true, maintainAspectRatio:false, interaction:{mode:"index",intersect:false},
       plugins:{
         legend:{ display:false },
-        tooltip:{ callbacks:{ label:c=>` ${c.dataset.label}: ${S.metric==="share" ? c.parsed.y+"%" : "$"+c.parsed.y+"B"}` } }
+        tooltip:{ callbacks:{ label:c=>` ${c.dataset.label}: ${S.metric==="share" ? c.parsed.y+"%" : c.parsed.y+" (시작=100)"}` } }
       },
       scales:{
         x:{ grid:{display:false}, ticks:{maxTicksLimit:8, font:{family:"'Noto Sans KR'",size:10}, color:cssVar("--tick")||"#6F6A5F"} },
         y:{ grid:{color:cssVar("--grid")||"#EFEDE6"}, ticks:{font:{family:"'Noto Sans KR'",size:10}, color:cssVar("--tick")||"#6F6A5F",
-            callback:v=> S.metric==="share" ? v+"%" : "$"+v+"B" } }
+            callback:v=> S.metric==="share" ? v+"%" : v } }
       }
     }
   });
