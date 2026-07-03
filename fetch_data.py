@@ -12,7 +12,17 @@ import sys
 import time
 
 import pandas as pd
+import requests
 import yfinance as yf
+from io import StringIO
+
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"}
+
+
+def read_wiki_tables(url):
+    resp = requests.get(url, headers=UA, timeout=30)
+    resp.raise_for_status()
+    return pd.read_html(StringIO(resp.text))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
@@ -36,7 +46,7 @@ def get_universe(cache):
     실패하면 sector_map.json 캐시에 있는 티커로 폴백."""
     tickers = {}  # ticker -> name
     try:
-        sp = pd.read_html(WIKI_SP500)[0]
+        sp = read_wiki_tables(WIKI_SP500)[0]
         for _, r in sp.iterrows():
             t = str(r["Symbol"]).strip().replace(".", "-")
             tickers[t] = str(r["Security"]).strip()
@@ -46,7 +56,7 @@ def get_universe(cache):
 
     try:
         found = False
-        for tbl in pd.read_html(WIKI_NDX):
+        for tbl in read_wiki_tables(WIKI_NDX):
             cols = [str(c).lower() for c in tbl.columns]
             if any("ticker" in c or "symbol" in c for c in cols):
                 tcol = tbl.columns[[i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c][0]]
