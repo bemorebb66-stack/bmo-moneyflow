@@ -28,6 +28,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
 CUSTOM_GROUPS_PATH = os.path.join(HERE, "custom_groups.json")
 DATA_PATH = os.path.join(HERE, "data.json")
+HISTORY_PATH = os.path.join(HERE, "history.json")
+HISTORY_DAYS = 120
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
@@ -135,6 +137,7 @@ def main():
 
     stocks = []
     market_date = None
+    dv_map = {}  # 히스토리용: 티커별 일별 거래대금 시리즈
     for t in symbols:
         try:
             df = px[t].dropna(subset=["Close", "Volume"])
@@ -155,6 +158,7 @@ def main():
 
         pc = (close.iloc[-1] / close.iloc[-2] - 1) * 100
         market_date = str(df.index[-1].date())
+        dv_map[t] = dv
 
         meta = cache.get(t, {})
         row = {
@@ -186,6 +190,29 @@ def main():
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print(f"완료: {len(stocks)}종목 → data.json (기준일 {market_date})")
+
+    # ── 그룹별 일별 거래대금 히스토리 (비교 차트용) ──
+    hist = pd.DataFrame(dv_map).tail(HISTORY_DAYS)
+    dates = [str(d.date()) for d in hist.index]
+
+    def series_by(keyfunc):
+        buckets = {}
+        for t in hist.columns:
+            buckets.setdefault(keyfunc(t), []).append(t)
+        return {k: [int(v / 1e6) if v == v else 0 for v in hist[cols].sum(axis=1)]
+                for k, cols in buckets.items()}
+
+    meta = {s["t"]: s for s in stocks}
+    hist_out = {
+        "dates": dates,
+        "total": [int(v / 1e6) for v in hist.sum(axis=1)],
+        "sector": series_by(lambda t: meta.get(t, {}).get("sec", "기타")),
+        "industry": series_by(lambda t: meta.get(t, {}).get("ind", "기타")),
+        "custom": series_by(lambda t: meta.get(t, {}).get("grp") or meta.get(t, {}).get("ind", "기타")),
+    }
+    with open(HISTORY_PATH, "w", encoding="utf-8") as f:
+        json.dump(hist_out, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"히스토리: {len(dates)}거래일 → history.json")
 
 
 if __name__ == "__main__":
