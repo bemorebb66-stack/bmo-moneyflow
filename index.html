@@ -110,6 +110,25 @@ tbody tr:hover{background:var(--paper)}
 .chart-note{padding:10px 14px;font-size:12px;color:var(--muted);border-top:1px dashed var(--rule)}
 @media (max-width:760px){.chart-wrap{height:240px}.gsel{max-width:100%;width:100%}}
 
+
+/* ── 오늘의 요약 ── */
+.brief{margin:22px 0 6px;border:1px solid var(--rule-dark);border-left:4px solid var(--red);background:#fff;padding:14px 16px}
+.brief h2{font-family:var(--serif);font-weight:900;font-size:15px;margin-bottom:7px}
+.brief p{font-size:14px;line-height:1.75;max-width:80ch}
+.brief .hi-in{color:var(--red);font-weight:700}
+.brief .hi-out{color:var(--blue);font-weight:700}
+.brief .hi-n{font-weight:700;font-variant-numeric:tabular-nums}
+/* ── 거래대금 급증 ── */
+.spike{margin:16px 0 6px;border:1px solid var(--rule-dark);background:#fff}
+.spike-head{display:flex;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.spike-head h2{font-family:var(--serif);font-weight:700;font-size:14.5px}
+.spike-head small{font-size:11.5px;color:var(--muted)}
+.spike .gdetail{display:block;background:#fff;padding:4px 10px 12px}
+.spike-empty{padding:18px 14px;font-size:13px;color:var(--muted)}
+.streak{display:inline-block;font-size:10px;font-weight:700;padding:1px 5px;margin-left:5px;vertical-align:1px}
+.streak.up{background:var(--red-soft);color:var(--red)}
+.streak.dn{background:var(--blue-soft);color:var(--blue)}
+
 /* ── 방법론 / 푸터 ── */
 .method{border-top:2px solid var(--rule-dark);padding:18px 0 8px;margin-top:6px}
 .method h2{font-family:var(--serif);font-size:16px;font-weight:900;margin-bottom:8px}
@@ -178,10 +197,10 @@ footer b{color:var(--red)}
 <script>
 "use strict";
 /* ───────── 상태 ───────── */
-const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"r1", sortDir:-1, data:null, hist:null, selByMode:{}, metric:"dv", range:60, chart:null };
+const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"r1", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"dv", range:60, chart:null };
 const LINE_COLORS = ["#C41E2F","#1E56A0","#B8860B","#2E7D4F","#7B4B94","#D2691E","#4A6B7A","#16130F"];
 const PERIODS = [["1d","전일比"],["20d","20일比"],["60d","60일比"],["120d","120일比"]];
-const MODES = [["sector","대분류 섹터"],["industry","세부 산업"],["custom","커스텀 그룹"]];
+const MODES = [["sector","대분류 섹터"],["industry","세부 산업"],["custom","커스텀 그룹"],["cap","시가총액"]];
 const REF = {"1d":"dvp","20d":"a20","60d":"a60","120d":"a120"};
 
 /* ───────── 유틸 ───────── */
@@ -196,6 +215,12 @@ const fmtDv  = v => {
 const cls = v => v==null||Math.abs(v)<0.05 ? "flat-t" : v>0 ? "pos-t" : "neg-t";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const chg = (now, ref) => (ref==null || !ref) ? null : (now/ref - 1) * 100;
+const fmtCap = v => {
+  if(!v) return "—";
+  if(v>=1e12) return "$"+(v/1e12).toFixed(2)+"T";
+  if(v>=1e9)  return "$"+(v/1e9).toFixed(0)+"B";
+  return "$"+(v/1e6).toFixed(0)+"M";
+};
 
 
 /* ───────── 한국어 표시 ───────── */
@@ -300,12 +325,13 @@ const koName = st => KO_NAME[st.t] || st.n;
 function groupOf(st){
   if(S.mode==="sector") return koSec(st.sec);
   if(S.mode==="industry") return koInd(st.ind);
+  if(S.mode==="cap") return st.cap || "기타";
   return st.grp || koInd(st.ind);
 }
 
 /* ───────── 집계 ───────── */
-function aggregate(stocks){
-  const ref = REF[S.period];
+function aggregate(stocks, period){
+  const ref = REF[period || S.period];
   const g = new Map();
   let totNow = 0, totRef = 0;
   for(const st of stocks){
@@ -340,6 +366,59 @@ function signalOf(o){
   return ["quiet","중립"];
 }
 
+
+/* ───────── 분석: 연속 추세 / 급증 / 요약 ───────── */
+function shareStreaks(){
+  // 현재 모드 그룹별 점유율이 며칠 연속 확대/축소 중인지 (표시명 기준 맵)
+  const out = {};
+  if(!S.hist) return out;
+  const H = S.hist[S.mode] || {}, T = S.hist.total || [];
+  for(const k in H){
+    const s = H[k], n = Math.min(s.length, T.length);
+    if(n < 3) continue;
+    const share = [];
+    for(let i=0;i<n;i++) share.push(T[T.length-n+i] ? s[s.length-n+i]/T[T.length-n+i] : 0);
+    let st = 0;
+    for(let i=share.length-1; i>0; i--){
+      const d = share[i]-share[i-1];
+      if(st===0) st = d>0?1:d<0?-1:0;
+      else if((st>0&&d>0)||(st<0&&d<0)) st += Math.sign(st);
+      else break;
+      if(st===0) break;
+    }
+    if(Math.abs(st)>=3) out[dispName(k)] = st;
+  }
+  return out;
+}
+function spikeStocks(){
+  // 거래대금이 20일 평균 대비 +100% 이상 & 절대 규모 $150M 이상
+  if(!S.data) return [];
+  return S.data.stocks
+    .filter(st=>st.dv>=1.5e8 && st.a20 && st.dv/st.a20-1>=1.0)
+    .sort((a,b)=>(b.dv/b.a20)-(a.dv/a.a20))
+    .slice(0,12);
+}
+function buildBrief(rows1d, totNow, totPrev, spikes, streaks){
+  const totChg = chg(totNow, totPrev);
+  const ws = rows1d.filter(r=>r.shareD!=null);
+  const top = [...ws].sort((a,b)=>b.shareD-a.shareD)[0];
+  const bot = [...ws].sort((a,b)=>a.shareD-b.shareD)[0];
+  let s = `시장 전체 거래대금은 <span class="hi-n">${fmtDv(totNow)}</span>로 전일 대비 <span class="hi-n ${cls(totChg)}">${fmtPct(totChg)}</span> ${totChg>=0?"늘었":"줄었"}습니다.`;
+  if(top && bot && top!==bot){
+    s += ` 자금은 <span class="hi-in">${esc(top.name)}</span>(${fmtPp(top.shareD)})으로 향했고, <span class="hi-out">${esc(bot.name)}</span>(${fmtPp(bot.shareD)})에서 이탈했습니다.`;
+  }
+  const sk = Object.entries(streaks).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,2);
+  for(const [name, st] of sk){
+    s += st>0
+      ? ` <span class="hi-in">${esc(name)}</span> 점유율은 <span class="hi-n">${st}일 연속</span> 확대 중입니다.`
+      : ` <span class="hi-out">${esc(name)}</span> 점유율은 <span class="hi-n">${-st}일 연속</span> 축소 중입니다.`;
+  }
+  s += spikes.length
+    ? ` 거래대금이 20일 평균의 2배를 넘긴 종목은 <a href="#spike" style="color:var(--red);font-weight:700">${spikes.length}개</a>입니다.`
+    : ` 20일 평균 대비 2배 이상 거래된 종목은 없습니다.`;
+  return s;
+}
+
 /* ───────── 렌더 ───────── */
 function render(){
   const app = document.getElementById("app");
@@ -351,12 +430,22 @@ function render(){
   const totChg = chg(totNow, totRef);
   const periodLabel = PERIODS.find(p=>p[0]===S.period)[1];
 
+  /* 분석 데이터 */
+  const agg1d = S.period==="1d" ? {rows, totNow, totRef} : aggregate(d.stocks, "1d");
+  const spikes = spikeStocks();
+  const streaks = shareStreaks();
+
   /* 로테이션 요약: 점유율 변화 기준 */
   const withShare = rows.filter(r=>r.shareD!=null);
   const inflow  = [...withShare].sort((a,b)=>b.shareD-a.shareD).slice(0,3);
   const outflow = [...withShare].sort((a,b)=>a.shareD-b.shareD).slice(0,3);
 
   let html = `
+  <section class="brief" aria-label="오늘의 요약">
+    <h2>오늘의 요약</h2>
+    <p>${buildBrief(agg1d.rows, agg1d.totNow, agg1d.totRef, spikes, streaks)}</p>
+  </section>
+
   <section class="rotation" aria-label="오늘의 자금 로테이션">
     <div class="rotation-head"><span class="dot"></span>오늘의 로테이션 <span style="font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--muted)">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span></div>
     <div class="rotation-body">
@@ -406,16 +495,31 @@ function render(){
       <div class="chartbox-body">
         <div class="chip-row">
           ${sel.map((k,i)=>`<span class="chip"><span class="sw" style="background:${LINE_COLORS[i%LINE_COLORS.length]}"></span>${esc(dispName(k))}<button data-rm="${esc(k)}" aria-label="${esc(dispName(k))} 제거">✕</button></span>`).join("")}
+          ${S.selStocks.map((t,i)=>`<span class="chip"><span class="sw" style="background:${LINE_COLORS[(sel.length+i)%LINE_COLORS.length]}"></span>${esc(t)} ${esc(stockLabel(t))}<button data-rms="${esc(t)}" aria-label="${esc(t)} 제거">✕</button></span>`).join("")}
           <select class="gsel" id="gsel" aria-label="비교할 그룹 추가">
             <option value="">+ 그룹 추가…</option>
             ${options.map(k=>`<option value="${esc(k)}">${esc(dispName(k))}</option>`).join("")}
           </select>
+          <input class="gsel" id="ssel" list="tickList" placeholder="+ 종목 추가 (예: MU)" aria-label="비교할 종목 추가">
+          <datalist id="tickList">
+            ${(S.data?S.data.stocks:[]).map(st=>`<option value="${esc(st.t)}">${esc(koName(st))}</option>`).join("")}
+          </datalist>
         </div>
         <div class="chart-wrap"><canvas id="cmpChart"></canvas></div>
       </div>
-      <div class="chart-note">점유율 = 해당 그룹 거래대금 ÷ 시장 전체 거래대금. 그룹은 최대 ${LINE_COLORS.length}개까지 비교할 수 있습니다.</div>
+      <div class="chart-note">점유율 = 거래대금 ÷ 시장 전체 거래대금. 그룹·종목 합쳐 최대 ${LINE_COLORS.length}개까지 비교할 수 있으며, 종목은 점선으로 표시됩니다.</div>
     </section>`;
   }
+
+
+  /* ── 거래대금 급증 종목 ── */
+  html += `
+  <section class="spike" id="spike" aria-label="거래대금 급증 종목">
+    <div class="spike-head"><h2>거래대금 급증</h2><small>20일 평균 대비 +100% 이상 · 거래대금 $150M 이상 · 상위 12</small></div>
+    ${spikes.length
+      ? `<div class="gdetail">${stockTable(spikes, "spike")}</div>`
+      : `<div class="spike-empty">오늘은 기준을 충족하는 급증 종목이 없습니다.</div>`}
+  </section>`;
 
   if(q){
     const hits = d.stocks.filter(st => st.t.includes(q) || st.n.toUpperCase().includes(q) || koName(st).toUpperCase().includes(q));
@@ -431,7 +535,7 @@ function render(){
         const open = S.open.has(r.name);
         return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
           <button class="grow-main" aria-expanded="${open}">
-            <span class="gname">${esc(r.name)}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span></small></span>
+            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span></small></span>
             <span class="barwrap" aria-hidden="true"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%"></span></span>
             <span class="num n-chg ${cls(r.chg)}">${fmtPct(r.chg)}</span>
             <span class="num n-share ${cls(r.shareD)}">${fmtPp(r.shareD)}<small>점유율</small></span>
@@ -453,8 +557,8 @@ function stockRows(stocks){
   }));
   const k = S.sortKey;
   rows.sort((a,b)=>{
-    const av = k==="t"? a.st.t : k==="c"? a.st.c : k==="pc"? a.st.pc : k==="dv"? a.st.dv : a[k];
-    const bv = k==="t"? b.st.t : k==="c"? b.st.c : k==="pc"? b.st.pc : k==="dv"? b.st.dv : b[k];
+    const av = k==="t"? a.st.t : k==="mc"? a.st.mc : k==="c"? a.st.c : k==="pc"? a.st.pc : k==="dv"? a.st.dv : a[k];
+    const bv = k==="t"? b.st.t : k==="mc"? b.st.mc : k==="c"? b.st.c : k==="pc"? b.st.pc : k==="dv"? b.st.dv : b[k];
     if(av==null) return 1; if(bv==null) return -1;
     return (av<bv?-1:av>bv?1:0) * S.sortDir;
   });
@@ -462,12 +566,13 @@ function stockRows(stocks){
 }
 
 function stockTable(stocks, gid){
-  const cols = [["t","종목"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"],["r120","120일比"]];
+  const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"],["r120","120일比"]];
   const rows = stockRows(stocks);
   return `<div class="tbl-scroll"><table>
     <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}</tr></thead>
     <tbody>${rows.map(({st,r1,r20,r60,r120})=>`<tr>
       <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span></td>
+      <td>${fmtCap(st.mc)}</td>
       <td>$${st.c==null?"—":st.c.toLocaleString()}</td>
       <td class="${cls(st.pc)}">${fmtPct(st.pc)}</td>
       <td>${fmtDv(st.dv)}</td>
@@ -481,8 +586,22 @@ function stockTable(stocks, gid){
 
 
 /* ───────── 비교 차트 ───────── */
+function stockLabel(t){
+  const st = S.data ? S.data.stocks.find(s=>s.t===t) : null;
+  return st ? koName(st) : "";
+}
+function findTicker(input){
+  if(!S.data) return null;
+  const q = input.trim().toUpperCase();
+  if(!q) return null;
+  let st = S.data.stocks.find(s=>s.t===q);
+  if(!st) st = S.data.stocks.find(s=>koName(s).toUpperCase()===q || s.n.toUpperCase()===q);
+  if(!st) st = S.data.stocks.find(s=>koName(s).toUpperCase().includes(q) || s.n.toUpperCase().includes(q));
+  return st ? st.t : null;
+}
 function dispName(k){
   if(S.mode==="sector") return koSec(k);
+  if(S.mode==="cap") return k;
   return koInd(k);
 }
 function currentSel(){
@@ -495,20 +614,29 @@ function currentSel(){
 }
 function drawChart(){
   const cv = document.getElementById("cmpChart");
-  if(!cv || !S.hist || typeof Chart === "undefined") return;
+  if(!cv || !S.hist) return;
+  if(typeof Chart === "undefined"){
+    cv.parentElement.innerHTML = '<div style="padding:40px 10px;text-align:center;color:var(--muted);font-size:13px">차트 라이브러리(Chart.js)를 불러오지 못했습니다.<br>네트워크 상태를 확인하거나 새로고침해 주세요.</div>';
+    return;
+  }
   if(S.chart){ S.chart.destroy(); S.chart = null; }
   const H = S.hist[S.mode] || {};
   const n = Math.min(S.range, S.hist.dates.length);
   const labels = S.hist.dates.slice(-n).map(d=>d.slice(5));
   const total = S.hist.total.slice(-n);
-  const datasets = currentSel().filter(k=>H[k]).map((k,i)=>{
-    const raw = H[k].slice(-n);
+  const SH = S.hist.stocks || {};
+  const entries = [
+    ...currentSel().filter(k=>H[k]).map(k=>({label:dispName(k), raw:H[k]})),
+    ...S.selStocks.filter(t=>SH[t]).map(t=>({label:t+" "+stockLabel(t), raw:SH[t], dashed:true}))
+  ];
+  const datasets = entries.map((e,i)=>{
+    const raw = e.raw.slice(-n);
     const vals = S.metric==="share"
       ? raw.map((v,j)=> total[j] ? +(v/total[j]*100).toFixed(2) : null)
       : raw.map(v=> +(v/1000).toFixed(2)); // $B
-    return { label:dispName(k), data:vals, borderColor:LINE_COLORS[i%LINE_COLORS.length],
+    return { label:e.label, data:vals, borderColor:LINE_COLORS[i%LINE_COLORS.length],
       backgroundColor:LINE_COLORS[i%LINE_COLORS.length], borderWidth:2, pointRadius:0,
-      pointHoverRadius:4, tension:.25 };
+      pointHoverRadius:4, tension:.25, borderDash: e.dashed ? [5,3] : [] };
   });
   S.chart = new Chart(cv, {
     type:"line",
@@ -555,12 +683,30 @@ function bind(){
     gsel.onchange=()=>{
       if(!gsel.value) return;
       const sel=currentSel();
-      if(sel.length<LINE_COLORS.length) sel.push(gsel.value);
+      if(sel.length+S.selStocks.length<LINE_COLORS.length) sel.push(gsel.value);
       render();
     };
   }
+  document.querySelectorAll("[data-rms]").forEach(b=>b.onclick=e=>{
+    e.stopPropagation();
+    S.selStocks=S.selStocks.filter(t=>t!==b.dataset.rms);
+    render();
+  });
+  const ssel=document.getElementById("ssel");
+  if(ssel){
+    const addStock=()=>{
+      const t=findTicker(ssel.value);
+      if(t && !S.selStocks.includes(t) && currentSel().length+S.selStocks.length<LINE_COLORS.length){
+        S.selStocks.push(t); render();
+      } else { ssel.value=""; }
+    };
+    ssel.onchange=addStock;
+    ssel.onkeydown=e=>{ if(e.key==="Enter") addStock(); };
+  }
   drawChart();
   const q=document.getElementById("q");
+
+
 
 
   if(q){
@@ -569,12 +715,12 @@ function bind(){
 }
 
 /* ───────── 초기화 ───────── */
-fetch("history.json")
+fetch("history.json?v=" + Date.now())
   .then(r=> r.ok ? r.json() : null)
   .then(h=>{ S.hist=h; if(S.data) render(); })
   .catch(()=>{ S.hist=null; });
 
-fetch("data.json")
+fetch("data.json?v=" + Date.now())
   .then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
   .then(d=>{
     S.data=d;
