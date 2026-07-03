@@ -231,7 +231,7 @@ footer b{color:var(--red)}
 <script>
 "use strict";
 /* ───────── 상태 ───────── */
-const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null, gSort:"chg", scrollTo:null, scrollChart:false, watch:[] };
+const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null, gSort:"now", gDir:-1, scrollTo:null, scrollChart:false, watch:[] };
 const PAL_LIGHT = ["#C41E2F","#1E56A0","#B8860B","#2E7D4F","#7B4B94","#D2691E","#4A6B7A","#16130F"];
 const PAL_DARK  = ["#E05565","#6B9BDC","#D9A441","#4FA872","#A47BC4","#E08A4E","#7FA3B5","#EAE6DC"];
 let LINE_COLORS = PAL_LIGHT;
@@ -254,7 +254,7 @@ function saveHash(){
     const g = S.selByMode[S.mode];
     if(g && g.length) parts.push("g="+encodeURIComponent(g.join("|")));
     if(S.selStocks.length) parts.push("s="+S.selStocks.join(","));
-    if(S.gSort!=="chg") parts.push("gs="+S.gSort);
+    if(S.gSort!=="now") parts.push("gs="+S.gSort+(S.gDir===1?"&gd=a":""));
     if(S.sortKey!=="mc" || S.sortDir!==-1) parts.push("sk="+S.sortKey+"&sd="+(S.sortDir>0?"a":"d"));
     const op = [...S.open].slice(0,3);
     if(op.length) parts.push("o="+encodeURIComponent(op.join("|")));
@@ -274,7 +274,8 @@ function loadHash(){
     if(kv.g) S.selByMode[S.mode] = decodeURIComponent(kv.g).split("|").filter(Boolean);
     if(kv.s) S.selStocks = kv.s.split(",").filter(Boolean).slice(0, LINE_COLORS.length);
     if(kv.mt==="dv") S.metric = "idx"; // 구버전 링크 호환
-    if(kv.gs==="shareD") S.gSort = "shareD";
+    if(kv.gs==="chg"||kv.gs==="shareD") S.gSort = kv.gs;
+    if(kv.gd==="a") S.gDir = 1;
     if(kv.sk && ["t","mc","c","pc","dv","r1","r20","r60"].includes(kv.sk)) S.sortKey = kv.sk;
     if(kv.sd==="a") S.sortDir = 1;
     if(kv.o) S.open = new Set(decodeURIComponent(kv.o).split("|").filter(Boolean));
@@ -549,7 +550,11 @@ function render(){
 
   const q = S.query.trim().toUpperCase();
   const {rows, totNow, totRef} = aggregate(d.stocks);
-  rows.sort((a,b)=>((b[S.gSort]??-1e9)-(a[S.gSort]??-1e9)));
+  rows.sort((a,b)=>{
+    const av=a[S.gSort], bv=b[S.gSort];
+    if(av==null) return 1; if(bv==null) return -1;
+    return (av<bv?1:av>bv?-1:0)*(S.gDir===-1?1:-1);
+  });
   const totChg = chg(totNow, totRef);
   const periodLabel = PERIODS.find(p=>p[0]===S.period)[1];
 
@@ -667,7 +672,7 @@ function render(){
   } else {
     const maxAbs = Math.max(12, ...rows.map(r=>Math.abs(r.chg??0)));
     html += `<div class="ledger">
-      <div class="ledger-head"><span>그룹</span><span style="text-align:center">거래대금 ${esc(periodLabel)} 변화</span><span class="r sortable ${S.gSort==="chg"?"on":""}" data-gsort="chg">변화율${S.gSort==="chg"?" ▼":""}</span><span class="r sortable ${S.gSort==="shareD"?"on":""}" data-gsort="shareD">점유율Δ${S.gSort==="shareD"?" ▼":""}</span><span class="r">신호</span></div>
+      <div class="ledger-head"><span>그룹</span><span style="text-align:center">거래대금 ${esc(periodLabel)} 변화</span><span class="r sortable ${S.gSort==="chg"?"on":""}" data-gsort="chg" title="클릭: 높은순 → 낮은순 → 기본(거래대금순)">변화율${S.gSort==="chg"?(S.gDir===-1?" ▼":" ▲"):""}</span><span class="r sortable ${S.gSort==="shareD"?"on":""}" data-gsort="shareD" title="클릭: 높은순 → 낮은순 → 기본(거래대금순)">점유율Δ${S.gSort==="shareD"?(S.gDir===-1?" ▼":" ▲"):""}</span><span class="r">신호</span></div>
       ${rows.map(r=>{
         const w = r.chg==null ? 0 : Math.min(50, Math.abs(r.chg)/maxAbs*50);
         const op = (0.4 + 0.6*Math.min(1, (r.now/totNow)/0.10)).toFixed(2);
@@ -811,7 +816,9 @@ function bind(){
   document.querySelectorAll("th[data-sort]").forEach(th=>th.onclick=e=>{
     e.stopPropagation();
     const k=th.dataset.sort;
-    if(S.sortKey===k) S.sortDir*=-1; else {S.sortKey=k;S.sortDir=-1;}
+    if(S.sortKey!==k){ S.sortKey=k; S.sortDir=-1; }
+    else if(S.sortDir===-1){ S.sortDir=1; }
+    else { S.sortKey="mc"; S.sortDir=-1; }
     render();
   });
   document.querySelectorAll("[data-metric]").forEach(b=>b.onclick=()=>{S.metric=b.dataset.metric;render();});
@@ -855,7 +862,13 @@ function bind(){
     const t=document.getElementById(x.dataset.goto);
     if(t && t.scrollIntoView) t.scrollIntoView({behavior:"smooth"});
   });
-  document.querySelectorAll("[data-gsort]").forEach(x=>x.onclick=()=>{S.gSort=x.dataset.gsort;render();});
+  document.querySelectorAll("[data-gsort]").forEach(x=>x.onclick=()=>{
+    const k=x.dataset.gsort;
+    if(S.gSort!==k){ S.gSort=k; S.gDir=-1; }        // 1클릭: 높은순
+    else if(S.gDir===-1){ S.gDir=1; }               // 2클릭: 낮은순
+    else { S.gSort="now"; S.gDir=-1; }              // 3클릭: 기본(거래대금순)
+    render();
+  });
   document.querySelectorAll("[data-star]").forEach(x=>x.onclick=e=>{
     e.stopPropagation();
     const t=x.dataset.star;
