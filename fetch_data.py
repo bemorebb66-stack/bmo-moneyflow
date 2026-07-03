@@ -161,7 +161,12 @@ def main():
             continue
         close = df["Close"]
         vol = df["Volume"]
-        dv = close * vol  # 거래대금 (달러)
+        dv = close * vol  # 거래대금 (달러) — 원주가 기준이 맞음
+        # 등락률은 분할/배당 왜곡을 피하기 위해 조정종가 기준
+        try:
+            adj = df["Adj Close"].fillna(close)
+        except Exception:
+            adj = close
 
         today = dv.iloc[-1]
         prev = dv.iloc[-2]
@@ -170,7 +175,7 @@ def main():
         a60 = hist.tail(60).mean() if len(hist) >= 60 else None
         a120 = hist.tail(120).mean() if len(hist) >= 120 else None
 
-        pc = (close.iloc[-1] / close.iloc[-2] - 1) * 100
+        pc = (adj.iloc[-1] / adj.iloc[-2] - 1) * 100
         market_date = str(df.index[-1].date())
         dv_map[t] = dv
 
@@ -203,6 +208,15 @@ def main():
         "count": len(stocks),
         "stocks": stocks,
     }
+
+    # 휴장일 등 시장 데이터가 그대로면 파일 갱신 생략 (무의미한 커밋 방지)
+    old = load_json(DATA_PATH, {})
+    def _strip(d):
+        d = dict(d); d.pop("updated", None); return d
+    if _strip(old) == _strip(out):
+        print(f"시장 데이터 변동 없음 (기준일 {market_date} 동일, 휴장일 추정) — 갱신 생략")
+        return
+
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print(f"완료: {len(stocks)}종목 → data.json (기준일 {market_date})")
