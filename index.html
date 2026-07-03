@@ -208,6 +208,7 @@ footer b{color:var(--red)}
     </div>
     <p>거래대금(종가×거래량)은 매수와 매도가 함께 잡히는 지표입니다. 따라서 "거래대금 증가 = 매수 유입"이 아니라, <b>거래대금 변화 × 가격 방향</b>을 결합해 해석합니다. 거래대금이 늘며 가격이 오르면 매수세 유입, 거래대금이 늘며 가격이 내리면 매도세 출회, 거래대금 자체가 줄면 시장의 관심 이탈로 봅니다.</p>
     <p>점유율(Δ)은 그날 시장 전체 거래대금에서 해당 그룹이 차지한 비중이 비교 기간 대비 몇 %p 움직였는지를 뜻합니다. 이 수치가 "돈이 어디서 어디로 이동했는가"에 가장 가까운 신호입니다.</p>
+    <p>과거 시계열(비교 차트·연속 추세)은 <b>현재 시점의 지수 구성 종목</b>을 기준으로 소급 계산한 것으로, 편입·제외 이력은 반영되지 않습니다. 등락률은 분할·배당 왜곡을 피하기 위해 조정종가 기준이며, 거래대금은 실제 체결 기준(원주가×거래량)입니다. 순방향(추정)은 Σ(거래대금×가격방향)으로 계산한 방향성 추정치입니다.</p>
     <p>본 사이트의 모든 수치는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance, 매 거래일 마감 후 자동 갱신.</p>
   </section>
   <footer>
@@ -275,6 +276,8 @@ const fmtDv  = v => {
 const cls = v => v==null||Math.abs(v)<0.05 ? "flat-t" : v>0 ? "pos-t" : "neg-t";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const chg = (now, ref) => (ref==null || !ref) ? null : (now/ref - 1) * 100;
+const arrow = v => v==null ? "" : v>0.001 ? "▲ " : v<-0.001 ? "▼ " : "";
+const fmtNet = v => v==null ? "—" : (v>=0?"+":"−") + fmtDv(Math.abs(v)).slice(0);
 const fmtCap = v => {
   if(!v) return "—";
   if(v>=1e12) return "$"+(v/1e12).toFixed(2)+"T";
@@ -393,15 +396,15 @@ function groupOf(st){
 function aggregate(stocks, period){
   const ref = REF[period || S.period];
   const g = new Map();
-  let totNow = 0, totRef = 0;
+  let totNow = 0, totRef = 0, totNowRef = 0;
   for(const st of stocks){
     if(st.dv==null) continue;
     const k = groupOf(st);
-    if(!g.has(k)) g.set(k, {name:k, now:0, ref:0, wpc:0, stocks:[], sec:st.sec});
+    if(!g.has(k)) g.set(k, {name:k, now:0, ref:0, wpc:0, net:0, up:0, stocks:[], sec:st.sec});
     const o = g.get(k);
     o.now += st.dv;
-    if(st[ref]!=null){ o.ref += st[ref]; totRef += st[ref]; }
-    if(st.pc!=null) o.wpc += st.dv * st.pc;
+    if(st[ref]!=null){ o.ref += st[ref]; totRef += st[ref]; totNowRef += st.dv; o.nowRef = (o.nowRef||0) + st.dv; }
+    if(st.pc!=null){ o.wpc += st.dv * st.pc; o.net += st.dv * Math.sign(st.pc); if(st.pc>0) o.up++; }
     o.stocks.push(st);
     totNow += st.dv;
   }
@@ -409,7 +412,7 @@ function aggregate(stocks, period){
   for(const o of g.values()){
     o.chg = o.ref ? (o.now/o.ref - 1)*100 : null;
     o.pc = o.now ? o.wpc/o.now : null;
-    o.shareNow = totNow ? o.now/totNow*100 : null;
+    o.shareNow = totNowRef ? (o.nowRef||0)/totNowRef*100 : null;
     o.shareRef = totRef && o.ref ? o.ref/totRef*100 : null;
     o.shareD = (o.shareNow!=null && o.shareRef!=null) ? o.shareNow - o.shareRef : null;
     rows.push(o);
@@ -485,6 +488,18 @@ function render(){
   const d = S.data;
   if(!d){ app.innerHTML = skeletonHTML(); return; }
 
+  /* 데이터 신선도 검사: 기준일과 오늘 사이 평일이 2일 이상이면 경고 */
+  let staleDays = 0;
+  try{
+    const md = new Date(d.market_date + "T00:00:00Z");
+    const today = new Date(); 
+    const t0 = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+    for(let ts = md.getTime() + 864e5; ts < t0; ts += 864e5){
+      const dow = new Date(ts).getUTCDay();
+      if(dow !== 0 && dow !== 6) staleDays++;
+    }
+  }catch(e){}
+
   const q = S.query.trim().toUpperCase();
   const {rows, totNow, totRef} = aggregate(d.stocks);
   rows.sort((a,b)=>((b[S.gSort]??-1e9)-(a[S.gSort]??-1e9)));
@@ -501,7 +516,11 @@ function render(){
   const inflow  = [...withShare].sort((a,b)=>b.shareD-a.shareD).slice(0,3);
   const outflow = [...withShare].sort((a,b)=>a.shareD-b.shareD).slice(0,3);
 
-  let html = `
+  let html = "";
+  if(staleDays >= 2){
+    html += `<div style="margin:18px 0 0;border:1px solid var(--red);background:var(--red-soft);padding:10px 14px;font-size:13px"><b style="color:var(--red)">⚠ 데이터 갱신 지연</b> — 기준일(${esc(d.market_date)})이 ${staleDays}영업일 이전입니다. 자동 수집이 실패했을 수 있으니 GitHub Actions 상태를 확인해 주세요.</div>`;
+  }
+  html += `
   <section class="brief" aria-label="오늘의 요약">
     <h2>오늘의 요약</h2>
     <p>${buildBrief(agg1d.rows, agg1d.totNow, agg1d.totRef, spikes, streaks)}</p>
@@ -511,11 +530,11 @@ function render(){
     <div class="rotation-head"><span class="dot"></span>오늘의 로테이션 <span style="font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--muted)">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span></div>
     <div class="rotation-body">
       <div class="rot-col outflow"><h3>점유율 축소 (자금 이탈 추정)</h3>
-        ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${fmtPp(r.shareD)}</span></div>`).join("")}
+        ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
       </div>
       <div class="rot-arrow" aria-hidden="true">→</div>
       <div class="rot-col inflow"><h3>점유율 확대 (자금 유입 추정)</h3>
-        ${inflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${fmtPp(r.shareD)}</span></div>`).join("")}
+        ${inflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
       </div>
     </div>
     <div class="mkt-line">시장 전체 거래대금 <b>${fmtDv(totNow)}</b> · ${esc(periodLabel)} <b class="${cls(totChg)}">${fmtPct(totChg)}</b></div>
@@ -596,9 +615,9 @@ function render(){
         const open = S.open.has(r.name);
         return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
           <button class="grow-main" aria-expanded="${open}">
-            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span></small></span>
+            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향(추정) <span class="${cls(r.net)}">${fmtNet(r.net)}</span></small></span>
             <span class="barwrap" aria-hidden="true"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%"></span></span>
-            <span class="num n-chg ${cls(r.chg)}">${fmtPct(r.chg)}</span>
+            <span class="num n-chg ${cls(r.chg)}">${arrow(r.chg)}${fmtPct(r.chg)}</span>
             <span class="num n-share ${cls(r.shareD)}">${fmtPp(r.shareD)}<small>점유율</small></span>
             <span class="num n-sig"><span class="signal ${sc}">${sl}</span></span>
           </button>
@@ -643,7 +662,7 @@ function stockTable(stocks, gid){
       <td class="${cls(r20)}">${fmtPct(r20)}</td>
       <td class="${cls(r60)}">${fmtPct(r60)}</td>
       <td class="${cls(r120)}">${fmtPct(r120)}</td>
-      ${spikeMode?`<td><button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""} title="비교 차트에 추가">＋차트</button></td>`:""}
+      ${spikeMode?`<td style="white-space:nowrap"><button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""} title="비교 차트에 추가">＋차트</button> <a href="https://news.google.com/search?q=${esc(st.t)}%20stock" target="_blank" rel="noopener" title="관련 뉴스 검색" style="text-decoration:none">📰</a></td>`:""}
     </tr>`).join("")}</tbody>
   </table></div>`;
 }
