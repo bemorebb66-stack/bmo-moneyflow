@@ -1,237 +1,738 @@
-# -*- coding: utf-8 -*-
-"""
-BMO Money Flow — 일별 데이터 수집 스크립트
-S&P 500 + 나스닥 100 전 종목의 거래대금(종가×거래량)을 수집하고
-전일/20일/60일/120일 평균 대비 지표를 계산해 data.json으로 저장.
-GitHub Actions에서 매일 자동 실행되는 것을 전제로 작성됨.
-"""
-import json
-import math
-import os
-import sys
-import time
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMO Money Flow — 미국 대형주 자금 흐름 추적</title>
+<meta name="description" content="S&P 500 + 나스닥 100 전 종목의 거래대금 변화를 매일 추적해 섹터 간 자금 이동을 시각화합니다. BMO Value Talks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --paper:#FBFAF6; --ink:#16130F; --muted:#6F6A5F;
+  --red:#C41E2F; --blue:#1E56A0;
+  --red-soft:rgba(196,30,47,.09); --blue-soft:rgba(30,86,160,.09);
+  --rule:#E4DFD4; --rule-dark:#16130F;
+  --serif:'Noto Serif KR',serif; --sans:'Noto Sans KR',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
-import pandas as pd
-import requests
-import yfinance as yf
-from io import StringIO
+/* ── 마스트헤드 ── */
+header{border-bottom:3px solid var(--rule-dark);padding:26px 0 14px}
+.mast-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+.brand-eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.22em;color:var(--red);font-weight:700}
+.mast h1{font-family:var(--serif);font-weight:900;font-size:clamp(30px,5.4vw,50px);letter-spacing:-.01em;line-height:1.05}
+.mast h1 .flow{color:var(--red)}
+.dateline{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;padding-top:8px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--muted)}
+.dateline b{color:var(--ink)}
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"}
+/* ── 로테이션 요약 ── */
+.rotation{margin:22px 0 6px;border:1px solid var(--rule-dark);background:#fff}
+.rotation-head{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--rule);font-family:var(--serif);font-weight:700;font-size:14px}
+.rotation-head .dot{width:8px;height:8px;background:var(--red);border-radius:50%}
+.rotation-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch}
+.rot-col{padding:12px 16px}
+.rot-col h3{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:700;margin-bottom:7px}
+.rot-col.outflow h3{color:var(--blue)} .rot-col.inflow h3{color:var(--red)}
+.rot-item{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:2.5px 0}
+.rot-item .v{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.outflow .v{color:var(--blue)} .inflow .v{color:var(--red)}
+.rot-arrow{display:flex;align-items:center;justify-content:center;padding:0 10px;border-left:1px dashed var(--rule);border-right:1px dashed var(--rule);font-size:22px;color:var(--red)}
+.mkt-line{padding:8px 14px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--muted)}
+.mkt-line b{color:var(--ink);font-variant-numeric:tabular-nums}
 
+/* ── 컨트롤 ── */
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 4px}
+.seg{display:flex;border:1px solid var(--rule-dark);background:#fff}
+.seg button{appearance:none;border:0;background:transparent;font-family:var(--sans);font-size:12.5px;font-weight:500;padding:7px 13px;cursor:pointer;color:var(--muted);border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--ink);color:var(--paper);font-weight:700}
+.seg button:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.seg-label{font-size:11px;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-right:-4px}
+.search{margin-left:auto}
+.search input{font-family:var(--sans);font-size:13px;padding:7px 12px;border:1px solid var(--rule-dark);background:#fff;width:190px;color:var(--ink)}
+.search input:focus{outline:2px solid var(--red);outline-offset:-1px}
 
-def read_wiki_tables(url):
-    resp = requests.get(url, headers=UA, timeout=30)
-    resp.raise_for_status()
-    return pd.read_html(StringIO(resp.text))
+/* ── 원장 (그룹 리스트) ── */
+.ledger{margin:14px 0 30px;border-top:2px solid var(--rule-dark)}
+.ledger-head{display:grid;grid-template-columns:minmax(150px,1.15fr) 2fr 96px 84px 84px;gap:12px;padding:8px 10px;font-size:10.5px;letter-spacing:.1em;color:var(--muted);font-weight:700;border-bottom:1px solid var(--rule)}
+.ledger-head .r{text-align:right}
+.grow{border-bottom:1px solid var(--rule)}
+.grow-main{display:grid;grid-template-columns:minmax(150px,1.15fr) 2fr 96px 84px 84px;gap:12px;align-items:center;padding:10px;cursor:pointer;background:transparent;transition:background .12s;width:100%;border:0;text-align:left;font-family:var(--sans);font-size:inherit;color:inherit}
+.grow-main:hover{background:#fff}
+.grow-main:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.gname{font-family:var(--serif);font-weight:700;font-size:14.5px;line-height:1.3}
+.gname small{display:block;font-family:var(--sans);font-weight:400;font-size:11px;color:var(--muted);margin-top:1px}
+.barwrap{position:relative;height:22px;background:linear-gradient(to right,transparent calc(50% - .5px),var(--rule) calc(50% - .5px),var(--rule) calc(50% + .5px),transparent calc(50% + .5px))}
+.bar{position:absolute;top:3px;height:16px}
+.bar.pos{left:50%;background:var(--red)}
+.bar.neg{right:50%;background:var(--blue)}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;font-size:13.5px;white-space:nowrap}
+.num small{display:block;font-weight:400;font-size:10.5px;color:var(--muted)}
+.pos-t{color:var(--red)} .neg-t{color:var(--blue)} .flat-t{color:var(--muted)}
+.signal{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;white-space:nowrap}
+.signal.in{background:var(--red-soft);color:var(--red)}
+.signal.out{background:var(--blue-soft);color:var(--blue)}
+.signal.quiet{background:#EFEDE6;color:var(--muted)}
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
-CUSTOM_GROUPS_PATH = os.path.join(HERE, "custom_groups.json")
-DATA_PATH = os.path.join(HERE, "data.json")
-HISTORY_PATH = os.path.join(HERE, "history.json")
-HISTORY_DAYS = 120
-
-WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
-
-
-def load_json(path, default):
-    try:
-        with open(path, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return default
-
-
-def get_universe(cache):
-    """위키피디아에서 S&P 500 + 나스닥 100 구성종목을 가져온다.
-    실패하면 sector_map.json 캐시에 있는 티커로 폴백."""
-    tickers = {}  # ticker -> name
-    try:
-        sp = read_wiki_tables(WIKI_SP500)[0]
-        for _, r in sp.iterrows():
-            t = str(r["Symbol"]).strip().replace(".", "-")
-            tickers[t] = str(r["Security"]).strip()
-        print(f"S&P 500: {len(tickers)}종목")
-    except Exception as e:
-        print(f"[경고] S&P 500 목록 로드 실패: {e}")
-
-    try:
-        found = False
-        for tbl in read_wiki_tables(WIKI_NDX):
-            cols = [str(c).lower() for c in tbl.columns]
-            if any("ticker" in c or "symbol" in c for c in cols):
-                tcol = tbl.columns[[i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c][0]]
-                ncol = None
-                for i, c in enumerate(cols):
-                    if "company" in c or "security" in c:
-                        ncol = tbl.columns[i]
-                        break
-                for _, r in tbl.iterrows():
-                    t = str(r[tcol]).strip().replace(".", "-")
-                    if not t or t.lower() == "nan":
-                        continue
-                    name = str(r[ncol]).strip() if ncol is not None else tickers.get(t, t)
-                    tickers.setdefault(t, name)
-                found = True
-                break
-        if found:
-            print(f"나스닥 100 병합 후: {len(tickers)}종목")
-    except Exception as e:
-        print(f"[경고] 나스닥 100 목록 로드 실패: {e}")
-
-    if not tickers:
-        print("[폴백] 캐시된 티커 사용")
-        tickers = {t: v.get("name", t) for t, v in cache.items()}
-
-    if not tickers:
-        sys.exit("유니버스를 구성할 수 없습니다 (위키 접근 실패 + 캐시 없음)")
-    return tickers
-
-
-def update_sector_map(tickers, cache):
-    """섹터/industry 정보는 캐시에 저장하고, 신규 티커만 yfinance에서 조회."""
-    missing = [t for t in tickers if t not in cache or not cache[t].get("industry") or cache[t].get("mcap") is None]
-    print(f"섹터 정보 신규 조회 대상: {len(missing)}종목")
-    for i, t in enumerate(missing):
-        try:
-            info = yf.Ticker(t).info
-            cache[t] = {
-                "name": tickers[t],
-                "sector": info.get("sector") or "기타",
-                "industry": info.get("industry") or "기타",
-                "mcap": info.get("marketCap") or 0,
-            }
-        except Exception as e:
-            print(f"  [경고] {t} 정보 실패: {e}")
-            cache.setdefault(t, {"name": tickers[t], "sector": "기타", "industry": "기타", "mcap": 0})
-            cache[t].setdefault("mcap", 0)
-        if (i + 1) % 25 == 0:
-            print(f"  ...{i + 1}/{len(missing)}")
-            time.sleep(1)
-    with open(SECTOR_MAP_PATH, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False, indent=1)
-    return cache
+/* ── 종목 테이블 (확장) ── */
+.gdetail{display:none;padding:4px 10px 16px;background:#fff}
+.grow.open .gdetail{display:block}
+.grow.open .grow-main{background:#fff}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+th{font-size:10.5px;letter-spacing:.08em;color:var(--muted);font-weight:700;text-align:right;padding:7px 8px;border-bottom:1px solid var(--rule-dark);cursor:pointer;user-select:none;white-space:nowrap}
+th:first-child{text-align:left}
+th.sorted{color:var(--red)}
+td{padding:7px 8px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td:first-child{text-align:left}
+td .tk{font-weight:700}
+td .nm{color:var(--muted);font-size:11.5px;margin-left:6px}
+tbody tr:hover{background:var(--paper)}
 
 
-def cap_bucket(m):
-    if not m:
-        return "기타"
-    if m >= 200e9:
-        return "메가캡 ($200B+)"
-    if m >= 50e9:
-        return "대형주 ($50B~200B)"
-    if m >= 10e9:
-        return "중형주 ($10B~50B)"
-    return "소형주 (<$10B)"
+/* ── 비교 차트 ── */
+.chartbox{margin:16px 0 6px;border:1px solid var(--rule-dark);background:#fff}
+.chartbox-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.chartbox-head h2{font-family:var(--serif);font-weight:700;font-size:14.5px;margin-right:auto}
+.chartbox-body{padding:12px 14px 14px}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 8px;border:1px solid var(--rule-dark);background:var(--paper)}
+.chip .sw{width:9px;height:9px;display:inline-block}
+.chip button{appearance:none;border:0;background:none;cursor:pointer;font-size:13px;line-height:1;color:var(--muted);padding:0}
+.chip button:hover{color:var(--red)}
+.gsel{font-family:var(--sans);font-size:12.5px;padding:5px 8px;border:1px solid var(--rule-dark);background:#fff;color:var(--ink);max-width:240px}
+.chart-wrap{position:relative;height:300px}
+.chart-note{padding:10px 14px;font-size:12px;color:var(--muted);border-top:1px dashed var(--rule)}
+@media (max-width:760px){.chart-wrap{height:240px}.gsel{max-width:100%;width:100%}}
 
 
-def safe(x, nd=2):
-    if x is None or (isinstance(x, float) and (math.isnan(x) or math.isinf(x))):
-        return None
-    return round(float(x), nd)
+/* ── 오늘의 요약 ── */
+.brief{margin:22px 0 6px;border:1px solid var(--rule-dark);border-left:4px solid var(--red);background:#fff;padding:14px 16px}
+.brief h2{font-family:var(--serif);font-weight:900;font-size:15px;margin-bottom:7px}
+.brief p{font-size:14px;line-height:1.75;max-width:80ch}
+.brief .hi-in{color:var(--red);font-weight:700}
+.brief .hi-out{color:var(--blue);font-weight:700}
+.brief .hi-n{font-weight:700;font-variant-numeric:tabular-nums}
+/* ── 거래대금 급증 ── */
+.spike{margin:16px 0 6px;border:1px solid var(--rule-dark);background:#fff}
+.spike-head{display:flex;align-items:baseline;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.spike-head h2{font-family:var(--serif);font-weight:700;font-size:14.5px}
+.spike-head small{font-size:11.5px;color:var(--muted)}
+.spike .gdetail{display:block;background:#fff;padding:4px 10px 12px}
+.spike-empty{padding:18px 14px;font-size:13px;color:var(--muted)}
+.streak{display:inline-block;font-size:10px;font-weight:700;padding:1px 5px;margin-left:5px;vertical-align:1px}
+.streak.up{background:var(--red-soft);color:var(--red)}
+.streak.dn{background:var(--blue-soft);color:var(--blue)}
+
+/* ── 방법론 / 푸터 ── */
+.method{border-top:2px solid var(--rule-dark);padding:18px 0 8px;margin-top:6px}
+.method h2{font-family:var(--serif);font-size:16px;font-weight:900;margin-bottom:8px}
+.method p{font-size:13px;color:var(--muted);max-width:74ch;margin-bottom:7px}
+.method .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;margin:10px 0}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.legend .l-in::before{background:var(--red)} .legend .l-out::before{background:var(--blue)}
+footer{border-top:1px solid var(--rule);margin-top:14px;padding:14px 0 34px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+footer b{color:var(--red)}
+.loading{padding:60px 0;text-align:center;color:var(--muted);font-family:var(--serif)}
+
+@media (max-width:760px){
+  .ledger-head{display:none}
+  .grow-main{grid-template-columns:1fr 92px;grid-template-areas:"name chg" "bar bar" "sig s20";row-gap:6px}
+  .grow-main>.gname{grid-area:name}
+  .grow-main>.barwrap{grid-area:bar}
+  .grow-main>.n-chg{grid-area:chg}
+  .grow-main>.n-sig{grid-area:sig;text-align:left}
+  .grow-main>.n-share{grid-area:s20}
+  .rotation-body{grid-template-columns:1fr}
+  .rot-arrow{border:0;border-top:1px dashed var(--rule);border-bottom:1px dashed var(--rule);padding:4px;transform:rotate(90deg);max-height:34px}
+  .search{margin-left:0;width:100%}
+  .search input{width:100%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mast-top">
+      <div class="mast">
+        <div class="brand-eyebrow">BMO VALUE TALKS</div>
+        <h1>BMO Money <span class="flow">Flow</span></h1>
+      </div>
+    </div>
+    <div class="dateline">
+      <span>S&amp;P 500 + 나스닥 100 · <b id="d-count">—</b>종목 거래대금 추적</span>
+      <span>기준일 <b id="d-date">—</b> · 갱신 <span id="d-updated">—</span></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="app" class="loading">데이터를 불러오는 중…</div>
+</main>
+
+<div class="wrap">
+  <section class="method">
+    <h2>읽는 법</h2>
+    <div class="legend">
+      <span class="l-in">빨강 = 거래대금 증가 (관심·자금 집중)</span>
+      <span class="l-out">파랑 = 거래대금 감소 (관심 이탈)</span>
+    </div>
+    <p>거래대금(종가×거래량)은 매수와 매도가 함께 잡히는 지표입니다. 따라서 "거래대금 증가 = 매수 유입"이 아니라, <b>거래대금 변화 × 가격 방향</b>을 결합해 해석합니다. 거래대금이 늘며 가격이 오르면 매수세 유입, 거래대금이 늘며 가격이 내리면 매도세 출회, 거래대금 자체가 줄면 시장의 관심 이탈로 봅니다.</p>
+    <p>점유율(Δ)은 그날 시장 전체 거래대금에서 해당 그룹이 차지한 비중이 비교 기간 대비 몇 %p 움직였는지를 뜻합니다. 이 수치가 "돈이 어디서 어디로 이동했는가"에 가장 가까운 신호입니다.</p>
+    <p>본 사이트의 모든 수치는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance, 매 거래일 마감 후 자동 갱신.</p>
+  </section>
+  <footer>
+    <span><b>BMO</b> Value Talks — blog.naver.com/bmovaluetalks</span>
+    <span>@BMOvalueTalk</span>
+  </footer>
+</div>
+
+<script>
+"use strict";
+/* ───────── 상태 ───────── */
+const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"r1", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"dv", range:60, chart:null };
+const LINE_COLORS = ["#C41E2F","#1E56A0","#B8860B","#2E7D4F","#7B4B94","#D2691E","#4A6B7A","#16130F"];
+const PERIODS = [["1d","전일比"],["20d","20일比"],["60d","60일比"],["120d","120일比"]];
+const MODES = [["sector","대분류 섹터"],["industry","세부 산업"],["custom","커스텀 그룹"],["cap","시가총액"]];
+const REF = {"1d":"dvp","20d":"a20","60d":"a60","120d":"a120"};
+
+/* ───────── 유틸 ───────── */
+const fmtPct = v => v==null ? "—" : (v>0?"+":"") + v.toFixed(v>=100?0:1) + "%";
+const fmtPp  = v => v==null ? "—" : (v>0?"+":"") + v.toFixed(2) + "%p";
+const fmtDv  = v => {
+  if(v==null) return "—";
+  if(v>=1e12) return "$"+(v/1e12).toFixed(2)+"T";
+  if(v>=1e9)  return "$"+(v/1e9).toFixed(1)+"B";
+  return "$"+(v/1e6).toFixed(0)+"M";
+};
+const cls = v => v==null||Math.abs(v)<0.05 ? "flat-t" : v>0 ? "pos-t" : "neg-t";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chg = (now, ref) => (ref==null || !ref) ? null : (now/ref - 1) * 100;
+const fmtCap = v => {
+  if(!v) return "—";
+  if(v>=1e12) return "$"+(v/1e12).toFixed(2)+"T";
+  if(v>=1e9)  return "$"+(v/1e9).toFixed(0)+"B";
+  return "$"+(v/1e6).toFixed(0)+"M";
+};
 
 
-def main():
-    cache = load_json(SECTOR_MAP_PATH, {})
-    tickers = get_universe(cache)
-    cache = update_sector_map(tickers, cache)
+/* ───────── 한국어 표시 ───────── */
+const KO_SEC = {
+"Technology":"기술","Information Technology":"기술","Communication Services":"커뮤니케이션",
+"Consumer Cyclical":"임의소비재","Consumer Discretionary":"임의소비재",
+"Consumer Defensive":"필수소비재","Consumer Staples":"필수소비재",
+"Financial Services":"금융","Financials":"금융","Healthcare":"헬스케어","Health Care":"헬스케어",
+"Energy":"에너지","Industrials":"산업재","Utilities":"유틸리티",
+"Basic Materials":"소재","Materials":"소재","Real Estate":"부동산","기타":"기타"};
+const KO_IND = {
+"Semiconductors":"반도체","Semiconductor Equipment & Materials":"반도체 장비·소재","Semiconductor Equipment":"반도체 장비",
+"Software - Infrastructure":"소프트웨어(인프라)","Software - Application":"소프트웨어(응용)",
+"Information Technology Services":"IT 서비스","Consumer Electronics":"가전·전자기기",
+"Computer Hardware":"컴퓨터 하드웨어","Technology Hardware":"기술 하드웨어","Communication Equipment":"통신장비",
+"Electronic Components":"전자부품","Scientific & Technical Instruments":"계측·정밀기기","Solar":"태양광",
+"Internet Content & Information":"인터넷 콘텐츠·정보","Entertainment":"엔터테인먼트","Telecom Services":"통신 서비스",
+"Electronic Gaming & Multimedia":"게임·멀티미디어","Advertising Agencies":"광고","Broadcasting":"방송",
+"Internet Retail":"인터넷 소매","Specialty Retail":"전문 소매","Auto Manufacturers":"자동차",
+"Auto Parts":"자동차 부품","Auto & Truck Dealerships":"자동차 딜러","Restaurants":"외식",
+"Travel Services":"여행","Lodging":"호텔·숙박","Resorts & Casinos":"리조트·카지노","Gambling":"게이밍(베팅)",
+"Home Improvement Retail":"홈임프루브먼트","Apparel Retail":"의류 소매","Apparel Manufacturing":"의류 제조",
+"Footwear & Accessories":"신발·액세서리","Residential Construction":"주택건설",
+"Furnishings, Fixtures & Appliances":"가구·가전","Leisure":"레저용품","Luxury Goods":"명품","Personal Services":"개인 서비스",
+"Discount Stores":"할인점","Grocery Stores":"식료품점","Household & Personal Products":"생활용품",
+"Household Products":"생활용품","Beverages - Non-Alcoholic":"음료(무알콜)","Beverages":"음료",
+"Beverages - Brewers":"맥주","Beverages - Wineries & Distilleries":"주류","Packaged Foods":"포장식품",
+"Confectioners":"제과","Farm Products":"농산물","Food Distribution":"식품유통","Tobacco":"담배",
+"Education & Training Services":"교육",
+"Banks - Diversified":"은행(대형)","Banks - Regional":"은행(지역)","Credit Services":"신용·결제",
+"Capital Markets":"증권·IB","Asset Management":"자산운용","Financial Data & Stock Exchanges":"금융데이터·거래소",
+"Insurance - Diversified":"보험(종합)","Insurance - Life":"생명보험","Insurance - Property & Casualty":"손해보험",
+"Insurance Brokers":"보험중개","Insurance - Reinsurance":"재보험","Insurance - Specialty":"특수보험",
+"Drug Manufacturers - General":"제약(대형)","Drug Manufacturers - Specialty & Generic":"제약(스페셜티)","Drug Manufacturers":"제약",
+"Biotechnology":"바이오","Medical Devices":"의료기기","Medical Instruments & Supplies":"의료 소모품",
+"Diagnostics & Research":"진단·리서치","Healthcare Plans":"건강보험","Medical Care Facilities":"의료시설",
+"Medical Distribution":"의약품 유통","Health Information Services":"헬스케어 IT","Pharmaceutical Retailers":"약국",
+"Oil & Gas Integrated":"석유(통합)","Oil & Gas E&P":"석유 탐사·생산","Oil & Gas Midstream":"석유 미드스트림",
+"Oil & Gas Refining & Marketing":"정유","Oil & Gas Equipment & Services":"유전서비스","Oil & Gas Equipment":"유전서비스",
+"Oil & Gas Drilling":"시추","Uranium":"우라늄",
+"Aerospace & Defense":"항공우주·방산","Railroads":"철도","Airlines":"항공사",
+"Farm & Heavy Construction Machinery":"농기계·중장비","Farm & Construction Equipment":"농기계·중장비",
+"Specialty Industrial Machinery":"산업기계","Building Products & Equipment":"건축자재·설비",
+"Electrical Equipment & Parts":"전기장비","Electrical Equipment":"전기장비","Engineering & Construction":"건설·엔지니어링",
+"Industrial Distribution":"산업재 유통","Integrated Freight & Logistics":"물류","Trucking":"트럭운송",
+"Waste Management":"폐기물 처리","Consulting Services":"컨설팅","Staffing & Employment Services":"인력 서비스",
+"Rental & Leasing Services":"렌탈·리스","Security & Protection Services":"보안 서비스",
+"Specialty Business Services":"기업 서비스","Conglomerates":"복합기업","Marine Shipping":"해운",
+"Tools & Accessories":"공구","Pollution & Treatment Controls":"환경설비","Airports & Air Services":"공항·항공 서비스",
+"Metal Fabrication":"금속가공","Business Equipment & Supplies":"사무용품",
+"Utilities - Regulated Electric":"전력(규제)","Utilities - Regulated Gas":"가스(규제)","Utilities - Regulated Water":"수도",
+"Utilities - Diversified":"유틸리티(복합)","Utilities - Independent Power Producers":"전력(민자·IPP)",
+"Utilities - Independent Producers":"전력(민자·IPP)","Utilities - Renewable":"신재생에너지",
+"Specialty Chemicals":"특수화학","Chemicals":"화학","Agricultural Inputs":"농자재",
+"Copper":"구리","Gold":"금","Silver":"은","Steel":"철강","Aluminum":"알루미늄","Building Materials":"건자재",
+"Lumber & Wood Production":"목재","Paper & Paper Products":"제지",
+"Other Industrial Metals & Mining":"산업금속·광산","Other Precious Metals & Mining":"귀금속·광산",
+"REIT - Industrial":"리츠(물류·산업)","REIT - Specialty":"리츠(특수)","REIT - Residential":"리츠(주거)",
+"REIT - Retail":"리츠(리테일)","REIT - Office":"리츠(오피스)","REIT - Healthcare Facilities":"리츠(헬스케어)",
+"REIT - Hotel & Motel":"리츠(호텔)","REIT - Diversified":"리츠(복합)","REIT - Mortgage":"모기지 리츠",
+"Real Estate Services":"부동산 서비스","Real Estate - Development":"부동산 개발","Real Estate - Diversified":"부동산(복합)"};
+const KO_NAME = {
+MSFT:"마이크로소프트",AAPL:"애플",NVDA:"엔비디아",AMZN:"아마존",GOOGL:"알파벳A",GOOG:"알파벳C",META:"메타",
+TSLA:"테슬라",AVGO:"브로드컴",AMD:"AMD",INTC:"인텔",MU:"마이크론",QCOM:"퀄컴",TXN:"텍사스인스트루먼트",
+ADI:"아날로그디바이시스",MRVL:"마벨",ARM:"암홀딩스",NXPI:"NXP",MCHP:"마이크로칩",ON:"온세미컨덕터",MPWR:"모놀리식파워",
+SWKS:"스카이웍스",QRVO:"코보",AMAT:"어플라이드머티어리얼즈",LRCX:"램리서치",KLAC:"KLA",ASML:"ASML",TER:"테라다인",
+WDC:"웨스턴디지털",STX:"씨게이트",SNDK:"샌디스크",PLTR:"팔란티어",ORCL:"오라클",CRM:"세일즈포스",ADBE:"어도비",
+NOW:"서비스나우",INTU:"인튜이트",IBM:"IBM",PANW:"팔로알토",CRWD:"크라우드스트라이크",FTNT:"포티넷",SNPS:"시놉시스",
+CDNS:"케이던스",WDAY:"워크데이",DDOG:"데이터독",TTD:"트레이드데스크",APP:"앱러빈",ANET:"아리스타",CSCO:"시스코",
+DELL:"델",HPQ:"HP",HPE:"HPE",SMCI:"슈퍼마이크로",NFLX:"넷플릭스",DIS:"디즈니",CMCSA:"컴캐스트",
+TMUS:"T모바일",VZ:"버라이즌",T:"AT&T",CHTR:"차터",WBD:"워너브라더스디스커버리",EA:"일렉트로닉아츠",TTWO:"테이크투",
+SPOT:"스포티파이",ABNB:"에어비앤비",BKNG:"부킹홀딩스",UBER:"우버",DASH:"도어대시",SBUX:"스타벅스",MCD:"맥도날드",
+CMG:"치폴레",NKE:"나이키",LULU:"룰루레몬",HD:"홈디포",LOW:"로우스",TJX:"TJX",ROST:"로스스토어즈",
+F:"포드",GM:"GM",RIVN:"리비안",LCID:"루시드",MAR:"메리어트",HLT:"힐튼",RCL:"로얄캐리비안",CCL:"카니발",
+WMT:"월마트",COST:"코스트코",TGT:"타깃",KR:"크로거",PG:"P&G",KO:"코카콜라",PEP:"펩시코",
+MDLZ:"몬델리즈",KHC:"크래프트하인즈",GIS:"제너럴밀스",CL:"콜게이트",KMB:"킴벌리클라크",EL:"에스티로더",
+MO:"알트리아",PM:"필립모리스",MNST:"몬스터베버리지",KDP:"큐리그닥터페퍼",STZ:"컨스텔레이션",
+JPM:"JP모건",BAC:"뱅크오브아메리카",WFC:"웰스파고",C:"씨티그룹",GS:"골드만삭스",MS:"모건스탠리",
+SCHW:"찰스슈왑",BLK:"블랙록",BX:"블랙스톤",KKR:"KKR",V:"비자",MA:"마스터카드",AXP:"아멕스",
+PYPL:"페이팔",COIN:"코인베이스",HOOD:"로빈후드","BRK-B":"버크셔해서웨이",SPGI:"S&P글로벌",MCO:"무디스",
+ICE:"ICE",CME:"CME그룹",NDAQ:"나스닥",COF:"캐피털원",
+LLY:"일라이릴리",UNH:"유나이티드헬스",JNJ:"존슨앤드존슨",ABBV:"애브비",MRK:"머크",PFE:"화이자",
+BMY:"브리스톨마이어스",AMGN:"암젠",GILD:"길리어드",VRTX:"버텍스",REGN:"리제네론",BIIB:"바이오젠",MRNA:"모더나",
+TMO:"써모피셔",DHR:"다나허",ABT:"애보트",ISRG:"인튜이티브서지컬",MDT:"메드트로닉",BSX:"보스턴사이언티픽",
+SYK:"스트라이커",CI:"시그나",CVS:"CVS헬스",HCA:"HCA헬스케어",MCK:"맥케슨",
+XOM:"엑슨모빌",CVX:"셰브런",COP:"코노코필립스",EOG:"EOG리소시스",SLB:"슐룸버거",HAL:"핼리버턴",
+OXY:"옥시덴탈",PSX:"필립스66",VLO:"발레로",MPC:"마라톤페트롤리엄",KMI:"킨더모건",WMB:"윌리엄스",
+GE:"GE에어로스페이스",RTX:"RTX",LMT:"록히드마틴",NOC:"노스롭그루먼",GD:"제너럴다이내믹스",BA:"보잉",
+HON:"허니웰",CAT:"캐터필러",DE:"디어",ETN:"이튼",EMR:"에머슨",PH:"파커하니핀",ITW:"일리노이툴웍스",
+MMM:"3M",VRT:"버티브",PWR:"콴타서비스",UNP:"유니온퍼시픽",CSX:"CSX",NSC:"노퍽서던",UPS:"UPS",FDX:"페덱스",
+DAL:"델타항공",UAL:"유나이티드항공",LUV:"사우스웨스트",WM:"웨이스트매니지먼트",URI:"유나이티드렌탈스",
+NEE:"넥스트에라",DUK:"듀크에너지",SO:"서던컴퍼니",D:"도미니언",AEP:"AEP",EXC:"엑셀론",
+VST:"비스트라",CEG:"컨스텔레이션에너지",NRG:"NRG에너지",PCG:"PG&E",SRE:"셈프라",
+LIN:"린데",APD:"에어프로덕츠",SHW:"셔윈윌리엄스",ECL:"에코랩",FCX:"프리포트맥모란",NEM:"뉴몬트",NUE:"뉴코어",
+DOW:"다우",DD:"듀폰",PLD:"프로로지스",AMT:"아메리칸타워",EQIX:"에퀴닉스",CCI:"크라운캐슬",
+SPG:"사이먼프로퍼티",O:"리얼티인컴",PSA:"퍼블릭스토리지",DLR:"디지털리얼티"};
+const koSec = s => KO_SEC[s] || s;
+const koInd = s => KO_IND[s] || s;
+const koName = st => KO_NAME[st.t] || st.n;
 
-    custom = load_json(CUSTOM_GROUPS_PATH, {"groups": {}})
-    ticker_to_group = {}
-    for g, lst in custom.get("groups", {}).items():
-        for t in lst:
-            ticker_to_group[t.replace(".", "-")] = g
+/* ───────── 그룹 키 ───────── */
+function groupOf(st){
+  if(S.mode==="sector") return koSec(st.sec);
+  if(S.mode==="industry") return koInd(st.ind);
+  if(S.mode==="cap") return st.cap || "기타";
+  return st.grp || koInd(st.ind);
+}
 
-    symbols = sorted(tickers.keys())
-    print(f"가격 데이터 다운로드: {len(symbols)}종목")
-    px = yf.download(symbols, period="200d", interval="1d",
-                     auto_adjust=False, group_by="ticker",
-                     threads=True, progress=False)
+/* ───────── 집계 ───────── */
+function aggregate(stocks, period){
+  const ref = REF[period || S.period];
+  const g = new Map();
+  let totNow = 0, totRef = 0;
+  for(const st of stocks){
+    if(st.dv==null) continue;
+    const k = groupOf(st);
+    if(!g.has(k)) g.set(k, {name:k, now:0, ref:0, wpc:0, stocks:[], sec:st.sec});
+    const o = g.get(k);
+    o.now += st.dv;
+    if(st[ref]!=null){ o.ref += st[ref]; totRef += st[ref]; }
+    if(st.pc!=null) o.wpc += st.dv * st.pc;
+    o.stocks.push(st);
+    totNow += st.dv;
+  }
+  const rows = [];
+  for(const o of g.values()){
+    o.chg = o.ref ? (o.now/o.ref - 1)*100 : null;
+    o.pc = o.now ? o.wpc/o.now : null;
+    o.shareNow = totNow ? o.now/totNow*100 : null;
+    o.shareRef = totRef && o.ref ? o.ref/totRef*100 : null;
+    o.shareD = (o.shareNow!=null && o.shareRef!=null) ? o.shareNow - o.shareRef : null;
+    rows.push(o);
+  }
+  rows.sort((a,b) => (b.chg??-1e9) - (a.chg??-1e9));
+  return {rows, totNow, totRef};
+}
 
-    stocks = []
-    market_date = None
-    dv_map = {}  # 히스토리용: 티커별 일별 거래대금 시리즈
-    for t in symbols:
-        try:
-            df = px[t].dropna(subset=["Close", "Volume"])
-        except Exception:
-            continue
-        if len(df) < 22:  # 최소 20일 평균 계산 가능해야 포함
-            continue
-        close = df["Close"]
-        vol = df["Volume"]
-        dv = close * vol  # 거래대금 (달러)
+function signalOf(o){
+  if(o.chg==null) return ["quiet","데이터 부족"];
+  if(o.chg > 3 && o.pc > 0.15) return ["in","매수세 유입"];
+  if(o.chg > 3 && o.pc < -0.15) return ["out","매도세 출회"];
+  if(o.chg < -3) return ["quiet","거래 위축"];
+  return ["quiet","중립"];
+}
 
-        today = dv.iloc[-1]
-        prev = dv.iloc[-2]
-        hist = dv.iloc[:-1]  # 당일 제외
-        a20 = hist.tail(20).mean()
-        a60 = hist.tail(60).mean() if len(hist) >= 60 else None
-        a120 = hist.tail(120).mean() if len(hist) >= 120 else None
 
-        pc = (close.iloc[-1] / close.iloc[-2] - 1) * 100
-        market_date = str(df.index[-1].date())
-        dv_map[t] = dv
-
-        meta = cache.get(t, {})
-        row = {
-            "t": t,
-            "n": meta.get("name", tickers.get(t, t)),
-            "sec": meta.get("sector", "기타"),
-            "ind": meta.get("industry", "기타"),
-            "c": safe(close.iloc[-1]),
-            "pc": safe(pc),
-            "dv": safe(today, 0),
-            "dvp": safe(prev, 0),
-            "a20": safe(a20, 0),
-            "a60": safe(a60, 0),
-            "a120": safe(a120, 0),
-        }
-        row["mc"] = int(meta.get("mcap") or 0)
-        row["cap"] = cap_bucket(meta.get("mcap"))
-        if t in ticker_to_group:
-            row["grp"] = ticker_to_group[t]
-        stocks.append(row)
-
-    if not stocks:
-        sys.exit("수집된 종목이 없습니다")
-
-    out = {
-        "updated": pd.Timestamp.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
-        "market_date": market_date,
-        "count": len(stocks),
-        "stocks": stocks,
+/* ───────── 분석: 연속 추세 / 급증 / 요약 ───────── */
+function shareStreaks(){
+  // 현재 모드 그룹별 점유율이 며칠 연속 확대/축소 중인지 (표시명 기준 맵)
+  const out = {};
+  if(!S.hist) return out;
+  const H = S.hist[S.mode] || {}, T = S.hist.total || [];
+  for(const k in H){
+    const s = H[k], n = Math.min(s.length, T.length);
+    if(n < 3) continue;
+    const share = [];
+    for(let i=0;i<n;i++) share.push(T[T.length-n+i] ? s[s.length-n+i]/T[T.length-n+i] : 0);
+    let st = 0;
+    for(let i=share.length-1; i>0; i--){
+      const d = share[i]-share[i-1];
+      if(st===0) st = d>0?1:d<0?-1:0;
+      else if((st>0&&d>0)||(st<0&&d<0)) st += Math.sign(st);
+      else break;
+      if(st===0) break;
     }
-    with open(DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"완료: {len(stocks)}종목 → data.json (기준일 {market_date})")
+    if(Math.abs(st)>=3) out[dispName(k)] = st;
+  }
+  return out;
+}
+function spikeStocks(){
+  // 거래대금이 20일 평균 대비 +100% 이상 & 절대 규모 $150M 이상
+  if(!S.data) return [];
+  return S.data.stocks
+    .filter(st=>st.dv>=1.5e8 && st.a20 && st.dv/st.a20-1>=1.0)
+    .sort((a,b)=>(b.dv/b.a20)-(a.dv/a.a20))
+    .slice(0,12);
+}
+function buildBrief(rows1d, totNow, totPrev, spikes, streaks){
+  const totChg = chg(totNow, totPrev);
+  const ws = rows1d.filter(r=>r.shareD!=null);
+  const top = [...ws].sort((a,b)=>b.shareD-a.shareD)[0];
+  const bot = [...ws].sort((a,b)=>a.shareD-b.shareD)[0];
+  let s = `시장 전체 거래대금은 <span class="hi-n">${fmtDv(totNow)}</span>로 전일 대비 <span class="hi-n ${cls(totChg)}">${fmtPct(totChg)}</span> ${totChg>=0?"늘었":"줄었"}습니다.`;
+  if(top && bot && top!==bot){
+    s += ` 자금은 <span class="hi-in">${esc(top.name)}</span>(${fmtPp(top.shareD)})으로 향했고, <span class="hi-out">${esc(bot.name)}</span>(${fmtPp(bot.shareD)})에서 이탈했습니다.`;
+  }
+  const sk = Object.entries(streaks).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,2);
+  for(const [name, st] of sk){
+    s += st>0
+      ? ` <span class="hi-in">${esc(name)}</span> 점유율은 <span class="hi-n">${st}일 연속</span> 확대 중입니다.`
+      : ` <span class="hi-out">${esc(name)}</span> 점유율은 <span class="hi-n">${-st}일 연속</span> 축소 중입니다.`;
+  }
+  s += spikes.length
+    ? ` 거래대금이 20일 평균의 2배를 넘긴 종목은 <a href="#spike" style="color:var(--red);font-weight:700">${spikes.length}개</a>입니다.`
+    : ` 20일 평균 대비 2배 이상 거래된 종목은 없습니다.`;
+  return s;
+}
 
-    # ── 그룹별 일별 거래대금 히스토리 (비교 차트용) ──
-    hist = pd.DataFrame(dv_map).tail(HISTORY_DAYS)
-    dates = [str(d.date()) for d in hist.index]
+/* ───────── 렌더 ───────── */
+function render(){
+  const app = document.getElementById("app");
+  const d = S.data;
+  if(!d){ app.innerHTML = '<div class="loading">데이터를 불러오는 중…</div>'; return; }
 
-    def series_by(keyfunc):
-        buckets = {}
-        for t in hist.columns:
-            buckets.setdefault(keyfunc(t), []).append(t)
-        return {k: [int(v / 1e6) if v == v else 0 for v in hist[cols].sum(axis=1)]
-                for k, cols in buckets.items()}
+  const q = S.query.trim().toUpperCase();
+  const {rows, totNow, totRef} = aggregate(d.stocks);
+  const totChg = chg(totNow, totRef);
+  const periodLabel = PERIODS.find(p=>p[0]===S.period)[1];
 
-    meta = {s["t"]: s for s in stocks}
-    hist_out = {
-        "dates": dates,
-        "total": [int(v / 1e6) for v in hist.sum(axis=1)],
-        "sector": series_by(lambda t: meta.get(t, {}).get("sec", "기타")),
-        "industry": series_by(lambda t: meta.get(t, {}).get("ind", "기타")),
-        "custom": series_by(lambda t: meta.get(t, {}).get("grp") or meta.get(t, {}).get("ind", "기타")),
-        "cap": series_by(lambda t: meta.get(t, {}).get("cap", "기타")),
-        "stocks": {t: [int(v / 1e6) if v == v else 0 for v in hist[t]] for t in hist.columns},
+  /* 분석 데이터 */
+  const agg1d = S.period==="1d" ? {rows, totNow, totRef} : aggregate(d.stocks, "1d");
+  const spikes = spikeStocks();
+  const streaks = shareStreaks();
+
+  /* 로테이션 요약: 점유율 변화 기준 */
+  const withShare = rows.filter(r=>r.shareD!=null);
+  const inflow  = [...withShare].sort((a,b)=>b.shareD-a.shareD).slice(0,3);
+  const outflow = [...withShare].sort((a,b)=>a.shareD-b.shareD).slice(0,3);
+
+  let html = `
+  <section class="brief" aria-label="오늘의 요약">
+    <h2>오늘의 요약</h2>
+    <p>${buildBrief(agg1d.rows, agg1d.totNow, agg1d.totRef, spikes, streaks)}</p>
+  </section>
+
+  <section class="rotation" aria-label="오늘의 자금 로테이션">
+    <div class="rotation-head"><span class="dot"></span>오늘의 로테이션 <span style="font-family:var(--sans);font-weight:400;font-size:11.5px;color:var(--muted)">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span></div>
+    <div class="rotation-body">
+      <div class="rot-col outflow"><h3>점유율 축소 (자금 이탈 추정)</h3>
+        ${outflow.map(r=>`<div class="rot-item"><span>${esc(r.name)}</span><span class="v">${fmtPp(r.shareD)}</span></div>`).join("")}
+      </div>
+      <div class="rot-arrow" aria-hidden="true">→</div>
+      <div class="rot-col inflow"><h3>점유율 확대 (자금 유입 추정)</h3>
+        ${inflow.map(r=>`<div class="rot-item"><span>${esc(r.name)}</span><span class="v">${fmtPp(r.shareD)}</span></div>`).join("")}
+      </div>
+    </div>
+    <div class="mkt-line">시장 전체 거래대금 <b>${fmtDv(totNow)}</b> · ${esc(periodLabel)} <b class="${cls(totChg)}">${fmtPct(totChg)}</b></div>
+  </section>
+
+  <div class="controls">
+    <span class="seg-label">분류</span>
+    <div class="seg" role="tablist" aria-label="분류 단위">
+      ${MODES.map(([k,l])=>`<button role="tab" aria-selected="${S.mode===k}" class="${S.mode===k?"on":""}" data-mode="${k}">${l}</button>`).join("")}
+    </div>
+    <span class="seg-label">비교</span>
+    <div class="seg" role="tablist" aria-label="비교 기간">
+      ${PERIODS.map(([k,l])=>`<button role="tab" aria-selected="${S.period===k}" class="${S.period===k?"on":""}" data-period="${k}">${l}</button>`).join("")}
+    </div>
+    <div class="search"><input id="q" type="search" placeholder="티커 검색 (예: MU)" value="${esc(S.query)}" aria-label="티커 검색"></div>
+  </div>`;
+
+
+  /* ── 비교 차트 패널 ── */
+  if(S.hist){
+    const H = S.hist[S.mode] || {};
+    const sel = currentSel();
+    const options = Object.keys(H)
+      .sort((a,b)=>H[b][H[b].length-1]-H[a][H[a].length-1])
+      .filter(k=>!sel.includes(k));
+    html += `
+    <section class="chartbox" aria-label="그룹 비교 차트">
+      <div class="chartbox-head">
+        <h2>그룹 비교 차트</h2>
+        <div class="seg" role="tablist" aria-label="지표">
+          <button class="${S.metric==="dv"?"on":""}" data-metric="dv">거래대금</button>
+          <button class="${S.metric==="share"?"on":""}" data-metric="share">시장 점유율</button>
+        </div>
+        <div class="seg" role="tablist" aria-label="기간">
+          ${[20,60,120].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}일</button>`).join("")}
+        </div>
+      </div>
+      <div class="chartbox-body">
+        <div class="chip-row">
+          ${sel.map((k,i)=>`<span class="chip"><span class="sw" style="background:${LINE_COLORS[i%LINE_COLORS.length]}"></span>${esc(dispName(k))}<button data-rm="${esc(k)}" aria-label="${esc(dispName(k))} 제거">✕</button></span>`).join("")}
+          ${S.selStocks.map((t,i)=>`<span class="chip"><span class="sw" style="background:${LINE_COLORS[(sel.length+i)%LINE_COLORS.length]}"></span>${esc(t)} ${esc(stockLabel(t))}<button data-rms="${esc(t)}" aria-label="${esc(t)} 제거">✕</button></span>`).join("")}
+          <select class="gsel" id="gsel" aria-label="비교할 그룹 추가">
+            <option value="">+ 그룹 추가…</option>
+            ${options.map(k=>`<option value="${esc(k)}">${esc(dispName(k))}</option>`).join("")}
+          </select>
+          <input class="gsel" id="ssel" list="tickList" placeholder="+ 종목 추가 (예: MU)" aria-label="비교할 종목 추가">
+          <datalist id="tickList">
+            ${(S.data?S.data.stocks:[]).map(st=>`<option value="${esc(st.t)}">${esc(koName(st))}</option>`).join("")}
+          </datalist>
+        </div>
+        <div class="chart-wrap"><canvas id="cmpChart"></canvas></div>
+      </div>
+      <div class="chart-note">점유율 = 거래대금 ÷ 시장 전체 거래대금. 그룹·종목 합쳐 최대 ${LINE_COLORS.length}개까지 비교할 수 있으며, 종목은 점선으로 표시됩니다.</div>
+    </section>`;
+  }
+
+
+  /* ── 거래대금 급증 종목 ── */
+  html += `
+  <section class="spike" id="spike" aria-label="거래대금 급증 종목">
+    <div class="spike-head"><h2>거래대금 급증</h2><small>20일 평균 대비 +100% 이상 · 거래대금 $150M 이상 · 상위 12</small></div>
+    ${spikes.length
+      ? `<div class="gdetail">${stockTable(spikes, "spike")}</div>`
+      : `<div class="spike-empty">오늘은 기준을 충족하는 급증 종목이 없습니다.</div>`}
+  </section>`;
+
+  if(q){
+    const hits = d.stocks.filter(st => st.t.includes(q) || st.n.toUpperCase().includes(q) || koName(st).toUpperCase().includes(q));
+    html += `<div class="ledger"><div style="padding:10px;font-family:var(--serif);font-weight:700">검색 결과 ${hits.length}건</div>
+      <div class="gdetail" style="display:block">${stockTable(hits, "search")}</div></div>`;
+  } else {
+    const maxAbs = Math.max(12, ...rows.map(r=>Math.abs(r.chg??0)));
+    html += `<div class="ledger">
+      <div class="ledger-head"><span>그룹</span><span style="text-align:center">거래대금 ${esc(periodLabel)} 변화</span><span class="r">변화율</span><span class="r">점유율Δ</span><span class="r">신호</span></div>
+      ${rows.map(r=>{
+        const w = r.chg==null ? 0 : Math.min(50, Math.abs(r.chg)/maxAbs*50);
+        const [sc, sl] = signalOf(r);
+        const open = S.open.has(r.name);
+        return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
+          <button class="grow-main" aria-expanded="${open}">
+            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span></small></span>
+            <span class="barwrap" aria-hidden="true"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%"></span></span>
+            <span class="num n-chg ${cls(r.chg)}">${fmtPct(r.chg)}</span>
+            <span class="num n-share ${cls(r.shareD)}">${fmtPp(r.shareD)}<small>점유율</small></span>
+            <span class="num n-sig"><span class="signal ${sc}">${sl}</span></span>
+          </button>
+          <div class="gdetail">${open ? stockTable(r.stocks, r.name) : ""}</div>
+        </div>`;
+      }).join("")}
+    </div>`;
+  }
+  app.className = "";
+  app.innerHTML = html;
+  bind();
+}
+
+function stockRows(stocks){
+  const rows = stocks.map(st=>({
+    st, r1:chg(st.dv,st.dvp), r20:chg(st.dv,st.a20), r60:chg(st.dv,st.a60), r120:chg(st.dv,st.a120)
+  }));
+  const k = S.sortKey;
+  rows.sort((a,b)=>{
+    const av = k==="t"? a.st.t : k==="mc"? a.st.mc : k==="c"? a.st.c : k==="pc"? a.st.pc : k==="dv"? a.st.dv : a[k];
+    const bv = k==="t"? b.st.t : k==="mc"? b.st.mc : k==="c"? b.st.c : k==="pc"? b.st.pc : k==="dv"? b.st.dv : b[k];
+    if(av==null) return 1; if(bv==null) return -1;
+    return (av<bv?-1:av>bv?1:0) * S.sortDir;
+  });
+  return rows;
+}
+
+function stockTable(stocks, gid){
+  const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"],["r120","120일比"]];
+  const rows = stockRows(stocks);
+  return `<div class="tbl-scroll"><table>
+    <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(({st,r1,r20,r60,r120})=>`<tr>
+      <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span></td>
+      <td>${fmtCap(st.mc)}</td>
+      <td>$${st.c==null?"—":st.c.toLocaleString()}</td>
+      <td class="${cls(st.pc)}">${fmtPct(st.pc)}</td>
+      <td>${fmtDv(st.dv)}</td>
+      <td class="${cls(r1)}">${fmtPct(r1)}</td>
+      <td class="${cls(r20)}">${fmtPct(r20)}</td>
+      <td class="${cls(r60)}">${fmtPct(r60)}</td>
+      <td class="${cls(r120)}">${fmtPct(r120)}</td>
+    </tr>`).join("")}</tbody>
+  </table></div>`;
+}
+
+
+/* ───────── 비교 차트 ───────── */
+function stockLabel(t){
+  const st = S.data ? S.data.stocks.find(s=>s.t===t) : null;
+  return st ? koName(st) : "";
+}
+function findTicker(input){
+  if(!S.data) return null;
+  const q = input.trim().toUpperCase();
+  if(!q) return null;
+  let st = S.data.stocks.find(s=>s.t===q);
+  if(!st) st = S.data.stocks.find(s=>koName(s).toUpperCase()===q || s.n.toUpperCase()===q);
+  if(!st) st = S.data.stocks.find(s=>koName(s).toUpperCase().includes(q) || s.n.toUpperCase().includes(q));
+  return st ? st.t : null;
+}
+function dispName(k){
+  if(S.mode==="sector") return koSec(k);
+  if(S.mode==="cap") return k;
+  return koInd(k);
+}
+function currentSel(){
+  if(!S.selByMode[S.mode]){
+    const H = S.hist ? (S.hist[S.mode]||{}) : {};
+    S.selByMode[S.mode] = Object.keys(H)
+      .sort((a,b)=>H[b][H[b].length-1]-H[a][H[a].length-1]).slice(0,3);
+  }
+  return S.selByMode[S.mode];
+}
+function drawChart(){
+  const cv = document.getElementById("cmpChart");
+  if(!cv || !S.hist) return;
+  if(typeof Chart === "undefined"){
+    cv.parentElement.innerHTML = '<div style="padding:40px 10px;text-align:center;color:var(--muted);font-size:13px">차트 라이브러리(Chart.js)를 불러오지 못했습니다.<br>네트워크 상태를 확인하거나 새로고침해 주세요.</div>';
+    return;
+  }
+  if(S.chart){ S.chart.destroy(); S.chart = null; }
+  const H = S.hist[S.mode] || {};
+  const n = Math.min(S.range, S.hist.dates.length);
+  const labels = S.hist.dates.slice(-n).map(d=>d.slice(5));
+  const total = S.hist.total.slice(-n);
+  const SH = S.hist.stocks || {};
+  const entries = [
+    ...currentSel().filter(k=>H[k]).map(k=>({label:dispName(k), raw:H[k]})),
+    ...S.selStocks.filter(t=>SH[t]).map(t=>({label:t+" "+stockLabel(t), raw:SH[t], dashed:true}))
+  ];
+  const datasets = entries.map((e,i)=>{
+    const raw = e.raw.slice(-n);
+    const vals = S.metric==="share"
+      ? raw.map((v,j)=> total[j] ? +(v/total[j]*100).toFixed(2) : null)
+      : raw.map(v=> +(v/1000).toFixed(2)); // $B
+    return { label:e.label, data:vals, borderColor:LINE_COLORS[i%LINE_COLORS.length],
+      backgroundColor:LINE_COLORS[i%LINE_COLORS.length], borderWidth:2, pointRadius:0,
+      pointHoverRadius:4, tension:.25, borderDash: e.dashed ? [5,3] : [] };
+  });
+  S.chart = new Chart(cv, {
+    type:"line",
+    data:{ labels, datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false, interaction:{mode:"index",intersect:false},
+      plugins:{
+        legend:{ display:false },
+        tooltip:{ callbacks:{ label:c=>` ${c.dataset.label}: ${S.metric==="share" ? c.parsed.y+"%" : "$"+c.parsed.y+"B"}` } }
+      },
+      scales:{
+        x:{ grid:{display:false}, ticks:{maxTicksLimit:8, font:{family:"'Noto Sans KR'",size:10}, color:"#6F6A5F"} },
+        y:{ grid:{color:"#EFEDE6"}, ticks:{font:{family:"'Noto Sans KR'",size:10}, color:"#6F6A5F",
+            callback:v=> S.metric==="share" ? v+"%" : "$"+v+"B" } }
+      }
     }
-    with open(HISTORY_PATH, "w", encoding="utf-8") as f:
-        json.dump(hist_out, f, ensure_ascii=False, separators=(",", ":"))
-    print(f"히스토리: {len(dates)}거래일 → history.json")
+  });
+}
+
+/* ───────── 이벤트 ───────── */
+function bind(){
+  document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{S.mode=b.dataset.mode;S.open.clear();render();});
+  document.querySelectorAll("[data-period]").forEach(b=>b.onclick=()=>{S.period=b.dataset.period;render();});
+  document.querySelectorAll(".grow-main").forEach(b=>b.onclick=()=>{
+    const g=b.parentElement.dataset.g;
+    S.open.has(g)?S.open.delete(g):S.open.add(g);
+    render();
+  });
+  document.querySelectorAll("th[data-sort]").forEach(th=>th.onclick=e=>{
+    e.stopPropagation();
+    const k=th.dataset.sort;
+    if(S.sortKey===k) S.sortDir*=-1; else {S.sortKey=k;S.sortDir=-1;}
+    render();
+  });
+  document.querySelectorAll("[data-metric]").forEach(b=>b.onclick=()=>{S.metric=b.dataset.metric;render();});
+  document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{S.range=+b.dataset.range;render();});
+  document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=e=>{
+    e.stopPropagation();
+    S.selByMode[S.mode]=currentSel().filter(k=>k!==b.dataset.rm);
+    render();
+  });
+  const gsel=document.getElementById("gsel");
+  if(gsel){
+    gsel.onchange=()=>{
+      if(!gsel.value) return;
+      const sel=currentSel();
+      if(sel.length+S.selStocks.length<LINE_COLORS.length) sel.push(gsel.value);
+      render();
+    };
+  }
+  document.querySelectorAll("[data-rms]").forEach(b=>b.onclick=e=>{
+    e.stopPropagation();
+    S.selStocks=S.selStocks.filter(t=>t!==b.dataset.rms);
+    render();
+  });
+  const ssel=document.getElementById("ssel");
+  if(ssel){
+    const addStock=()=>{
+      const t=findTicker(ssel.value);
+      if(t && !S.selStocks.includes(t) && currentSel().length+S.selStocks.length<LINE_COLORS.length){
+        S.selStocks.push(t); render();
+      } else { ssel.value=""; }
+    };
+    ssel.onchange=addStock;
+    ssel.onkeydown=e=>{ if(e.key==="Enter") addStock(); };
+  }
+  drawChart();
+  const q=document.getElementById("q");
 
 
-if __name__ == "__main__":
-    main()
+
+
+  if(q){
+    q.oninput=()=>{S.query=q.value;render();const nq=document.getElementById("q");nq.focus();nq.setSelectionRange(nq.value.length,nq.value.length);};
+  }
+}
+
+/* ───────── 초기화 ───────── */
+fetch("history.json?v=" + Date.now())
+  .then(r=> r.ok ? r.json() : null)
+  .then(h=>{ S.hist=h; if(S.data) render(); })
+  .catch(()=>{ S.hist=null; });
+
+fetch("data.json?v=" + Date.now())
+  .then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d=>{
+    S.data=d;
+    document.getElementById("d-count").textContent=d.count;
+    document.getElementById("d-date").textContent=d.market_date;
+    document.getElementById("d-updated").textContent=d.updated;
+    render();
+  })
+  .catch(()=>{
+    document.getElementById("app").innerHTML =
+      '<div class="loading">data.json을 불러오지 못했습니다.<br>GitHub Actions에서 "Update market data" 워크플로를 한 번 실행해 주세요.</div>';
+  });
+</script>
+</body>
+</html>
