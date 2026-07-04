@@ -285,7 +285,7 @@ function loadHash(){
     if(kv.m && MODES.some(([k])=>k===kv.m)) S.mode = kv.m;
     if(kv.p && REF[kv.p]) S.period = kv.p;
     if(kv.mt==="share"||kv.mt==="dv") S.metric = kv.mt;
-    if(kv.r && [20,60,120].includes(+kv.r)) S.range = +kv.r;
+    if(kv.r && [5,20,60].includes(+kv.r)) S.range = +kv.r;
     if(kv.g) S.selByMode[S.mode] = decodeURIComponent(kv.g).split("|").filter(Boolean);
     if(kv.s) S.selStocks = kv.s.split(",").filter(Boolean).slice(0, LINE_COLORS.length);
     if(kv.mt==="dv") S.metric = "idx"; // 구버전 링크 호환
@@ -624,7 +624,7 @@ function render(){
           <button class="${S.metric==="share"?"on":""}" data-metric="share">시장 점유율</button>
         </div>
         <div class="seg" role="tablist" aria-label="기간">
-          ${[20,60,120].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}일</button>`).join("")}
+          ${[5,20,60].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}일</button>`).join("")}
         </div>
       </div>
       <div class="preset-row">프리셋
