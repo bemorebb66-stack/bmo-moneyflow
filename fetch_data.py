@@ -91,7 +91,8 @@ def get_universe(cache):
 
 def update_sector_map(tickers, cache):
     """섹터/industry 정보는 캐시에 저장하고, 신규 티커만 yfinance에서 조회."""
-    missing = [t for t in tickers if t not in cache or not cache[t].get("industry") or cache[t].get("mcap") is None]
+    missing = [t for t in tickers if t not in cache or not cache[t].get("industry")
+               or cache[t].get("industry") == "기타" or cache[t].get("mcap") is None]
     print(f"섹터 정보 신규 조회 대상: {len(missing)}종목")
     for i, t in enumerate(missing):
         try:
