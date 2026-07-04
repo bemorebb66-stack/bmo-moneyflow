@@ -172,6 +172,7 @@ def main():
         today = dv.iloc[-1]
         prev = dv.iloc[-2]
         hist = dv.iloc[:-1]  # 당일 제외
+        a5 = hist.tail(5).mean()
         a20 = hist.tail(20).mean()
         a60 = hist.tail(60).mean() if len(hist) >= 60 else None
         a120 = hist.tail(120).mean() if len(hist) >= 120 else None
@@ -190,6 +191,7 @@ def main():
             "pc": safe(pc),
             "dv": safe(today, 0),
             "dvp": safe(prev, 0),
+            "a5": safe(a5, 0),
             "a20": safe(a20, 0),
             "a60": safe(a60, 0),
             "a120": safe(a120, 0),
