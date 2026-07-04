@@ -20,16 +20,16 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --paper:#F7F4ED; --panel:#FFFFFF; --panel2:#FBF9F4; --ink:#1A1611; --muted:#736C5E; --faint:#A39B8B;
+  --paper:#F7F4ED; --panel:#FFFFFF; --panel2:#FBF9F4; --ink:#1A1611; --muted:#736C5E; --faint:#8C8474;
   --red:#C0392B; --blue:#1F5FA8; --gold:#A9863F;
   --red-soft:rgba(192,57,43,.08); --blue-soft:rgba(31,95,168,.08); --gold-soft:rgba(169,134,63,.10);
   --rule:#E7E1D4; --rule-dark:#1A1611; --hair:#EFEBE0; --quiet:#EFEBE0;
-  --grid:#EEEADF; --tick:#8B8button; --tick:#8B8474;
+  --grid:#EEEADF; --tick:#8B8474;
   --shadow:0 1px 2px rgba(26,22,17,.04), 0 8px 24px -14px rgba(26,22,17,.14);
   --serif:'Noto Serif KR',serif; --sans:'Noto Sans KR',sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 [data-theme="dark"]{
-  --paper:#100E0C; --panel:#1A1714; --panel2:#151310; --ink:#EBE7DD; --muted:#928B7E; --faint:#6B6559;
+  --paper:#100E0C; --panel:#1A1714; --panel2:#151310; --ink:#EBE7DD; --muted:#928B7E; --faint:#807A6C;
   --red:#E86A6E; --blue:#6FA0DE; --gold:#CDAA6A;
   --red-soft:rgba(232,106,110,.13); --blue-soft:rgba(111,160,222,.15); --gold-soft:rgba(205,170,106,.13);
   --rule:#2A2620; --rule-dark:#494339; --hair:#241F1A; --quiet:#242019;
@@ -291,14 +291,14 @@ function loadHash(){
     if(kv.mt==="dv") S.metric = "idx"; // 구버전 링크 호환
     if(kv.gs==="chg"||kv.gs==="shareD") S.gSort = kv.gs;
     if(kv.gd==="a") S.gDir = 1;
-    if(kv.sk && ["t","mc","c","pc","dv","r1","r20","r60"].includes(kv.sk)) S.sortKey = kv.sk;
+    if(kv.sk && ["t","mc","c","pc","dv","r1","r5","r20","r60"].includes(kv.sk)) S.sortKey = kv.sk;
     if(kv.sd==="a") S.sortDir = 1;
     if(kv.o) S.open = new Set(decodeURIComponent(kv.o).split("|").filter(Boolean));
   }catch(e){}
 }
-const PERIODS = [["1d","전일比"],["20d","20일比"],["60d","60일比"]];
+const PERIODS = [["1d","전일比"],["5d","5일比"],["20d","20일比"],["60d","60일比"]];
 const MODES = [["sector","대분류 섹터"],["industry","세부 산업"],["custom","커스텀 그룹"],["cap","시가총액"]];
-const REF = {"1d":"dvp","20d":"a20","60d":"a60"};
+const REF = {"1d":"dvp","5d":"a5","20d":"a20","60d":"a60"};
 
 /* ───────── 유틸 ───────── */
 const fmtPct = v => v==null ? "—" : (v>0?"+":"") + v.toFixed(v>=100?0:1) + "%";
@@ -703,7 +703,7 @@ function render(){
 
 function stockRows(stocks){
   const rows = stocks.map(st=>({
-    st, r1:chg(st.dv,st.dvp), r20:chg(st.dv,st.a20), r60:chg(st.dv,st.a60)
+    st, r1:chg(st.dv,st.dvp), r5:chg(st.dv,st.a5), r20:chg(st.dv,st.a20), r60:chg(st.dv,st.a60)
   }));
   const k = S.sortKey;
   rows.sort((a,b)=>{
@@ -716,18 +716,19 @@ function stockRows(stocks){
 }
 
 function stockTable(stocks, gid){
-  const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r20","20일比"],["r60","60일比"]];
+  const cols = [["t","종목"],["mc","시총"],["c","종가"],["pc","등락률"],["dv","거래대금"],["r1","전일比"],["r5","5일比"],["r20","20일比"],["r60","60일比"]];
   const rows = stockRows(stocks);
   return `<div class="tbl-scroll"><table>
     <thead><tr>${cols.map(([k,l])=>`<th data-sort="${k}" class="${S.sortKey===k?"sorted":""}">${l}${S.sortKey===k?(S.sortDir>0?" ▲":" ▼"):""}</th>`).join("")}<th>액션</th></tr></thead>
-    <tbody>${rows.map(({st,r1,r20,r60})=>`<tr>
+    <tbody>${rows.map(({st,r1,r5,r20,r60})=>`<tr>
       <td><span class="tk">${esc(st.t)}</span><span class="nm">${esc(koName(st))}</span>${spark(st.t)}</td>
       <td>${fmtCap(st.mc)}</td>
       <td>$${st.c==null?"—":st.c.toLocaleString()}</td>
       <td class="${cls(st.pc)}">${fmtPct(st.pc)}</td>
       <td>${fmtDv(st.dv)}</td>
       <td class="${cls(r1)}">${fmtPct(r1)}</td>
-      <td class="${cls(r20)}">${fmtPct(r20)}</td>
+            <td class="${cls(r5)}">${fmtPct(r5)}</td>
+<td class="${cls(r20)}">${fmtPct(r20)}</td>
       <td class="${cls(r60)}">${fmtPct(r60)}</td>
       <td style="white-space:nowrap"><button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""} title="비교 차트에 추가">＋차트</button> <a href="https://news.google.com/search?q=${esc(st.t)}%20stock" target="_blank" rel="noopener" title="관련 뉴스 검색" style="text-decoration:none">📰</a> <button class="star ${S.watch.includes(st.t)?"on":""}" data-star="${esc(st.t)}" title="관심종목 ${S.watch.includes(st.t)?"해제":"추가"}">★</button></td>
     </tr>`).join("")}</tbody>
