@@ -13,6 +13,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bemorebb66-stack.github.io/bmo-moneyflow/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -223,9 +224,10 @@ footer b{color:var(--red)}
     <p>본 사이트의 모든 수치는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance, 매 거래일 마감 후 자동 갱신.</p>
   </section>
   <footer>
-    <span><b>BMO</b> Value Talks — <a href="https://blog.naver.com/bmovaluetalks" target="_blank" rel="noopener" style="color:inherit">blog.naver.com/bmovaluetalks</a></span>
+    <span><b>BMO</b> Value Talks — <a href="https://blog.naver.com/bmovaluetalks" target="_blank" rel="noopener" style="color:inherit">blog.naver.com/bmovaluetalks</a> · <a href="about.html" style="color:inherit">소개</a> · <a href="privacy-policy.html" style="color:inherit">개인정보처리방침</a></span>
     <span><a href="https://www.instagram.com/BMOvalueTalk" target="_blank" rel="noopener" style="color:inherit">@BMOvalueTalk</a></span>
   </footer>
+  <p style="text-align:center;color:var(--muted);font-size:11.5px;padding-bottom:26px">데이터: Yahoo Finance · 미국 장마감 확정치 기준(실시간 아님) · 매 거래일 아침 자동 갱신 · 투자 판단의 참고용으로만 사용하세요</p>
 </div>
 
 <script>
@@ -354,7 +356,7 @@ const KO_IND = {
 "Rental & Leasing Services":"렌탈·리스","Security & Protection Services":"보안 서비스",
 "Specialty Business Services":"기업 서비스","Conglomerates":"복합기업","Marine Shipping":"해운",
 "Tools & Accessories":"공구","Pollution & Treatment Controls":"환경설비","Airports & Air Services":"공항·항공 서비스",
-"Metal Fabrication":"금속가공","Business Equipment & Supplies":"사무용품",
+"Metal Fabrication":"금속가공","Business Equipment & Supplies":"사무용품","Packaging & Containers":"포장·용기",
 "Utilities - Regulated Electric":"전력(규제)","Utilities - Regulated Gas":"가스(규제)","Utilities - Regulated Water":"수도",
 "Utilities - Diversified":"유틸리티(복합)","Utilities - Independent Power Producers":"전력(민자·IPP)",
 "Utilities - Independent Producers":"전력(민자·IPP)","Utilities - Renewable":"신재생에너지",
@@ -407,10 +409,10 @@ const koName = st => KO_NAME[st.t] || st.n;
 
 /* ───────── 그룹 키 ───────── */
 function groupOf(st){
-  if(S.mode==="sector") return koSec(st.sec);
-  if(S.mode==="industry") return koInd(st.ind);
+  if(S.mode==="sector") return st.sec;
+  if(S.mode==="industry") return st.ind;
   if(S.mode==="cap") return st.cap || "기타";
-  return st.grp || koInd(st.ind);
+  return st.grp || st.ind;
 }
 
 /* ───────── 집계 ───────── */
@@ -497,7 +499,7 @@ function shareStreaks(){
       else break;
       if(st===0) break;
     }
-    if(Math.abs(st)>=3) out[dispName(k)] = st;
+    if(Math.abs(st)>=3) out[k] = st;
   }
   return out;
 }
@@ -516,13 +518,13 @@ function buildBrief(rows1d, totNow, totPrev, spikes, streaks){
   const bot = [...ws].sort((a,b)=>a.shareD-b.shareD)[0];
   let s = `시장 전체 거래대금은 <span class="hi-n">${fmtDv(totNow)}</span>로 전일 대비 <span class="hi-n ${cls(totChg)}">${fmtPct(totChg)}</span> ${totChg>=0?"늘었":"줄었"}습니다.`;
   if(top && bot && top!==bot){
-    s += ` 자금은 <span class="hi-in">${esc(top.name)}</span>(${fmtPp(top.shareD)})으로 향했고, <span class="hi-out">${esc(bot.name)}</span>(${fmtPp(bot.shareD)})에서 이탈했습니다.`;
+    s += ` 자금은 <span class="hi-in">${esc(dispName(top.name))}</span>(${fmtPp(top.shareD)})으로 향했고, <span class="hi-out">${esc(dispName(bot.name))}</span>(${fmtPp(bot.shareD)})에서 이탈했습니다.`;
   }
   const sk = Object.entries(streaks).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,2);
   for(const [name, st] of sk){
     s += st>0
-      ? ` <span class="hi-in">${esc(name)}</span> 점유율은 <span class="hi-n">${st}일 연속</span> 확대 중입니다.`
-      : ` <span class="hi-out">${esc(name)}</span> 점유율은 <span class="hi-n">${-st}일 연속</span> 축소 중입니다.`;
+      ? ` <span class="hi-in">${esc(dispName(name))}</span> 점유율은 <span class="hi-n">${st}일 연속</span> 확대 중입니다.`
+      : ` <span class="hi-out">${esc(dispName(name))}</span> 점유율은 <span class="hi-n">${-st}일 연속</span> 축소 중입니다.`;
   }
   s += spikes.length
     ? ` 거래대금이 20일 평균의 2배를 넘긴 종목은 <span data-goto="spike" style="color:var(--red);font-weight:700;cursor:pointer;text-decoration:underline">${spikes.length}개</span>입니다.`
@@ -578,11 +580,11 @@ function render(){
     <div class="rot-brief">${buildBrief(agg1d.rows, agg1d.totNow, agg1d.totRef, spikes, streaks)}</div>
     <div class="rotation-body">
       <div class="rot-col outflow"><h3>점유율 축소 (자금 이탈 추정)</h3>
-        ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
+        ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(dispName(r.name))}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
       </div>
       <div class="rot-arrow" aria-hidden="true">→</div>
       <div class="rot-col inflow"><h3>점유율 확대 (자금 유입 추정)</h3>
-        ${inflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(r.name)}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
+        ${inflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(dispName(r.name))}</span><span class="v">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
       </div>
     </div>
     <div class="mkt-line">시장 전체 거래대금 <b>${fmtDv(totNow)}</b> · ${esc(periodLabel)} <b class="${cls(totChg)}">${fmtPct(totChg)}</b></div>
@@ -681,7 +683,7 @@ function render(){
         const open = S.open.has(r.name);
         return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
           <button class="grow-main" aria-expanded="${open}" title="거래대금 상위: ${esc(top3)}">
-            <span class="gname">${esc(r.name)}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향(추정) <span class="${cls(r.net)}">${fmtNet(r.net)}</span>${(()=>{ if(r.stocks.length<2||!r.now) return ""; const t1=[...r.stocks].sort((a,b)=>b.dv-a.dv)[0]; return ` · 1위 ${esc(t1.t)} ${(t1.dv/r.now*100).toFixed(0)}%`; })()}</small></span>
+            <span class="gname">${esc(dispName(r.name))}${streaks[r.name] ? `<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>` : ""}<small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향(추정) <span class="${cls(r.net)}">${fmtNet(r.net)}</span>${(()=>{ if(r.stocks.length<2||!r.now) return ""; const t1=[...r.stocks].sort((a,b)=>b.dv-a.dv)[0]; return ` · 1위 ${esc(t1.t)} ${(t1.dv/r.now*100).toFixed(0)}%`; })()}</small></span>
             <span class="barwrap" aria-hidden="true" title="바 진하기 = 시장 내 거래대금 비중"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%;opacity:${op}"></span></span>
             <span class="num n-chg ${cls(r.chg)}">${arrow(r.chg)}${fmtPct(r.chg)}</span>
             <span class="num n-share ${cls(r.shareD)}">${fmtPp(r.shareD)}<small>점유율</small></span>
