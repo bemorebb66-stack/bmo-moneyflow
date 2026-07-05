@@ -16,22 +16,22 @@
 <link rel="canonical" href="https://bemorebb66-stack.github.io/bmo-moneyflow/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --paper:#F7F4ED; --panel:#FFFFFF; --panel2:#FBF9F4; --ink:#1A1611; --muted:#736C5E; --faint:#8C8474;
-  --red:#C0392B; --blue:#1F5FA8; --gold:#A9863F;
-  --red-soft:rgba(192,57,43,.08); --blue-soft:rgba(31,95,168,.08); --gold-soft:rgba(169,134,63,.10);
+  --paper:#FAF7F0; --panel:#FFFEFA; --panel2:#F6F2E9; --ink:#211C15; --muted:#79716B; --faint:#8F877B;
+  --red:#C2402B; --blue:#2E5F72; --gold:#B0873B;
+  --red-soft:rgba(194,64,43,.08); --blue-soft:rgba(46,95,114,.09); --gold-soft:rgba(176,135,59,.10);
   --rule:#E7E1D4; --rule-dark:#1A1611; --hair:#EFEBE0; --quiet:#EFEBE0;
   --grid:#EEEADF; --tick:#8B8474;
   --shadow:0 1px 2px rgba(26,22,17,.04), 0 8px 24px -14px rgba(26,22,17,.14);
-  --serif:'Noto Serif KR',serif; --sans:'Noto Sans KR',sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --serif:'Playfair Display','Noto Sans KR',serif; --sans:'Inter','Noto Sans KR',sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
 }
 [data-theme="dark"]{
-  --paper:#100E0C; --panel:#1A1714; --panel2:#151310; --ink:#EBE7DD; --muted:#928B7E; --faint:#807A6C;
-  --red:#E86A6E; --blue:#6FA0DE; --gold:#CDAA6A;
-  --red-soft:rgba(232,106,110,.13); --blue-soft:rgba(111,160,222,.15); --gold-soft:rgba(205,170,106,.13);
+  --paper:#12100D; --panel:#1C1915; --panel2:#171411; --ink:#ECE7DD; --muted:#968E81; --faint:#82796B;
+  --red:#E2704F; --blue:#7FB1C4; --gold:#CFAB68;
+  --red-soft:rgba(226,112,79,.14); --blue-soft:rgba(127,177,196,.15); --gold-soft:rgba(207,171,104,.13);
   --rule:#2A2620; --rule-dark:#494339; --hair:#241F1A; --quiet:#242019;
   --grid:#241F19; --tick:#928B7E;
   --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6);
@@ -45,7 +45,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 /* ── 마스트헤드 ── */
 header{border-bottom:2.5px solid var(--rule-dark);padding:30px 0 0}
 .mast-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px}
-.brand-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:10.5px;letter-spacing:.34em;color:var(--gold);font-weight:700;margin-bottom:8px}
+.brand-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:10.5px;letter-spacing:.28em;color:var(--red);font-weight:700;margin-bottom:8px}
 .brand-eyebrow::before{content:"";width:18px;height:1.5px;background:var(--gold)}
 .mast h1{font-family:var(--serif);font-weight:900;font-size:clamp(32px,5.6vw,54px);letter-spacing:-.015em;line-height:1}
 .mast h1 .flow{color:var(--red);font-style:italic;font-weight:600}
@@ -161,7 +161,9 @@ tbody tr:hover{background:var(--panel2)}
 .legend span{display:inline-flex;align-items:center;color:var(--ink)}
 .legend span::before{content:"";display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:8px}
 .legend .l-in::before{background:var(--red)} .legend .l-out::before{background:var(--blue)}
-footer{border-top:1px solid var(--rule);margin-top:16px;padding:16px 0 34px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+footer{background:#232A31;color:#C4CCD3;margin-top:22px;padding:20px 22px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-radius:2px}
+footer a{color:#E4E9ED !important}
+footer b{color:#E8A28D}
 footer b{color:var(--red)}
 footer a:hover{color:var(--red)!important}
 .loading{padding:64px 0;text-align:center;color:var(--muted);font-family:var(--serif);font-size:15px}
@@ -247,8 +249,8 @@ footer a:hover{color:var(--red)!important}
 "use strict";
 /* ───────── 상태 ───────── */
 const S = { mode:"custom", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1, data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null, gSort:"now", gDir:-1, scrollTo:null, scrollChart:false, watch:[] };
-const PAL_LIGHT = ["#C0392B","#1F5FA8","#A9863F","#2E7D4F","#7B4B94","#D2691E","#4A6B7A","#1A1611"];
-const PAL_DARK  = ["#E86A6E","#6FA0DE","#CDAA6A","#4FA872","#A47BC4","#E08A4E","#7FA3B5","#EBE7DD"];
+const PAL_LIGHT = ["#C2402B","#2E5F72","#B0873B","#2E7D4F","#7B4B94","#D2691E","#5B6B74","#211C15"];
+const PAL_DARK  = ["#E2704F","#7FB1C4","#CFAB68","#4FA872","#A47BC4","#E08A4E","#93A8B2","#ECE7DD"];
 let LINE_COLORS = PAL_LIGHT;
 const cssVar = n => { try{ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }catch(e){ return ""; } };
 function isDark(){ try{ return document.documentElement.dataset.theme==="dark"; }catch(e){ return false; } }
