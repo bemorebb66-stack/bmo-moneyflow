@@ -360,7 +360,7 @@ let LINE_COLORS = PAL_LIGHT;
 const S = {
   mode:"sector", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1,
   data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null,
-  gSort:"now", gDir:-1, gSignal:"all", gLimit:30, scrollTo:null, scrollChart:false, watch:[], applyingHash:false
+  gSort:"now", gDir:-1, gSignal:"all", gLimit:30, scrollTo:null, scrollChart:false, watch:[], applyingHash:false, searchComposing:false
 };
 
 const PERIODS = [["1d","전일比"],["5d","5일比"],["20d","20일比"],["60d","60일比"]];
@@ -1082,10 +1082,22 @@ function bind(){
   }
   drawChart();
   const qEl=document.getElementById("q");
-  if(qEl) qEl.oninput=()=>{
-    S.query=qEl.value; render();
-    const nq=document.getElementById("q");
-    if(nq){nq.focus();nq.setSelectionRange(nq.value.length,nq.value.length);}
+  if(qEl){
+    qEl.oncompositionstart=()=>{ S.searchComposing=true; };
+    qEl.oncompositionend=()=>{
+      S.searchComposing=false;
+      S.query=qEl.value;
+      render();
+      const nq=document.getElementById("q");
+      if(nq){nq.focus();nq.setSelectionRange(nq.value.length,nq.value.length);}
+    };
+    qEl.oninput=e=>{
+      S.query=qEl.value;
+      if(S.searchComposing||e.isComposing) return;
+      render();
+      const nq=document.getElementById("q");
+      if(nq){nq.focus();nq.setSelectionRange(nq.value.length,nq.value.length);}
+    };
   };
 }
 
