@@ -113,11 +113,13 @@ def get_universe(cache):
     옵션에 따라 IWM 보유 종목으로 러셀2000 상위권을 합친다.
     실패하면 sector_map.json 캐시에 있는 티커로 폴백."""
     tickers = {}  # ticker -> name
+    universes = {}  # ticker -> set of index/universe labels
     try:
         sp = read_wiki_tables(WIKI_SP500)[0]
         for _, r in sp.iterrows():
             t = str(r["Symbol"]).strip().replace(".", "-")
             tickers[t] = str(r["Security"]).strip()
+            universes.setdefault(t, set()).add("S&P 500")
         print(f"S&P 500: {len(tickers)}종목")
     except Exception as e:
         print(f"[경고] S&P 500 목록 로드 실패: {e}")
@@ -139,6 +141,7 @@ def get_universe(cache):
                         continue
                     name = str(r[ncol]).strip() if ncol is not None else tickers.get(t, t)
                     tickers.setdefault(t, name)
+                    universes.setdefault(t, set()).add("Nasdaq 100")
                 found = True
                 break
         if found:
@@ -154,6 +157,7 @@ def get_universe(cache):
                 if t not in tickers:
                     added += 1
                 tickers.setdefault(t, name)
+                universes.setdefault(t, set()).add("Russell 2000")
             scope = "전체" if RUSSELL_MODE == "all" else f"상위 {RUSSELL_MAX}개"
             print(f"러셀2000(IWM) {scope} 병합: +{added}종목 → {len(tickers)}종목")
         except Exception as e:
@@ -162,10 +166,11 @@ def get_universe(cache):
     if not tickers:
         print("[폴백] 캐시된 티커 사용")
         tickers = {t: v.get("name", t) for t, v in cache.items()}
+        universes = {t: set(v.get("universe", ["기존 데이터"])) for t, v in cache.items()}
 
     if not tickers:
         sys.exit("유니버스를 구성할 수 없습니다 (위키 접근 실패 + 캐시 없음)")
-    return tickers
+    return tickers, universes
 
 
 def update_sector_map(tickers, cache):
@@ -323,8 +328,13 @@ a{{color:var(--red)}}
 
 def main():
     cache = load_json(SECTOR_MAP_PATH, {})
-    tickers = get_universe(cache)
+    tickers, universes = get_universe(cache)
     cache = update_sector_map(tickers, cache)
+    for t, labels in universes.items():
+        if t in cache:
+            cache[t]["universe"] = sorted(labels)
+    with open(SECTOR_MAP_PATH, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=1)
 
     custom = load_json(CUSTOM_GROUPS_PATH, {"groups": {}})
     ticker_to_group = {}
@@ -373,6 +383,7 @@ def main():
             "n": meta.get("name", tickers.get(t, t)),
             "sec": meta.get("sector", "기타"),
             "ind": meta.get("industry", "기타"),
+            "uni": sorted(universes.get(t, {"기존 데이터"})),
             "c": safe(close.iloc[-1]),
             "pc": safe(pc),
             "dv": safe(today, 0),
@@ -430,9 +441,10 @@ def main():
     hist_out = {
         "dates": dates,
         "total": [int(v / 1e6) for v in hist.sum(axis=1)],
-        "sector": series_by(lambda t: meta.get(t, {}).get("sec", "기타")),
-        "industry": series_by(lambda t: meta.get(t, {}).get("ind", "기타")),
-        "custom": series_by(lambda t: meta.get(t, {}).get("grp") or meta.get(t, {}).get("ind", "기타")),
+            "sector": series_by(lambda t: meta.get(t, {}).get("sec", "기타")),
+            "industry": series_by(lambda t: meta.get(t, {}).get("ind", "기타")),
+        "universe": series_by(lambda t: " + ".join(meta.get(t, {}).get("uni", ["기존 데이터"]))),
+            "custom": series_by(lambda t: meta.get(t, {}).get("grp") or meta.get(t, {}).get("ind", "기타")),
         "cap": series_by(lambda t: meta.get(t, {}).get("cap", "기타")),
         "stocks": {t: [int(v / 1e6) if v == v else 0 for v in hist[t]] for t in hist.columns},
     }
