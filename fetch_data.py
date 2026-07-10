@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 BMO Money Flow — 일별 데이터 수집 스크립트
-S&P 500 + 나스닥 100 전 종목의 거래대금(종가×거래량)을 수집하고
+S&P 500 + 나스닥 100 + 러셀2000 상위권의 거래대금(종가×거래량)을 수집하고
 전일/20일/60일/120일 평균 대비 지표를 계산해 data.json으로 저장.
 GitHub Actions에서 매일 자동 실행되는 것을 전제로 작성됨.
 """
@@ -24,6 +24,67 @@ def read_wiki_tables(url):
     resp.raise_for_status()
     return pd.read_html(StringIO(resp.text))
 
+
+def read_iwm_holdings(limit=None):
+    """IWM ETF 보유 종목으로 러셀2000 후보군을 가져온다."""
+    if limit is None:
+        limit = RUSSELL_MAX
+    resp = requests.get(IWM_HOLDINGS_CSV, headers=UA, timeout=45)
+    resp.raise_for_status()
+    text = resp.text.replace("\ufeff", "")
+    lines = text.splitlines()
+    start = None
+    for i, line in enumerate(lines):
+        first = line.split(",", 1)[0].strip().strip('"').lower()
+        if first in ("ticker", "symbol"):
+            start = i
+            break
+    if start is None:
+        raise ValueError("IWM holdings CSV에서 Ticker 헤더를 찾지 못했습니다")
+
+    df = pd.read_csv(StringIO("\n".join(lines[start:])))
+    lower = {str(c).strip().lower(): c for c in df.columns}
+    tcol = lower.get("ticker") or lower.get("symbol")
+    ncol = lower.get("name") or lower.get("holding name")
+    wcol = lower.get("weight (%)") or lower.get("weight")
+    if tcol is None:
+        raise ValueError("IWM holdings CSV에 ticker 컬럼이 없습니다")
+
+    if wcol is not None:
+        df["_w"] = pd.to_numeric(df[wcol], errors="coerce").fillna(0)
+        df = df.sort_values("_w", ascending=False)
+    if RUSSELL_MODE == "top" and limit > 0:
+        df = df.head(limit)
+
+    out = {}
+    for _, r in df.iterrows():
+        raw = str(r[tcol]).strip()
+        if not raw or raw.lower() == "nan" or raw in ("-", "—"):
+            continue
+        t = raw.replace(".", "-").upper()
+        if not t.isascii() or " " in t:
+            continue
+        name = str(r[ncol]).strip() if ncol is not None and str(r[ncol]).strip() else t
+        out[t] = name
+    return out
+
+
+def download_prices(symbols):
+    frames = []
+    for i in range(0, len(symbols), YF_CHUNK_SIZE):
+        chunk = symbols[i:i + YF_CHUNK_SIZE]
+        print(f"  가격 데이터 묶음 {i//YF_CHUNK_SIZE + 1}: {len(chunk)}종목")
+        df = yf.download(chunk, period="200d", interval="1d",
+                         auto_adjust=False, group_by="ticker",
+                         threads=True, progress=False)
+        if len(chunk) == 1 and not isinstance(df.columns, pd.MultiIndex):
+            df.columns = pd.MultiIndex.from_product([chunk, df.columns])
+        frames.append(df)
+        time.sleep(1)
+    if not frames:
+        return pd.DataFrame()
+    return pd.concat(frames, axis=1)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
 CUSTOM_GROUPS_PATH = os.path.join(HERE, "custom_groups.json")
@@ -33,6 +94,10 @@ HISTORY_DAYS = 120
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
+IWM_HOLDINGS_CSV = "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf/1467271812596.ajax?fileType=csv&fileName=IWM_holdings&dataType=fund"
+RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # off / top / all
+RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
+YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
 
 
 def load_json(path, default):
@@ -44,7 +109,8 @@ def load_json(path, default):
 
 
 def get_universe(cache):
-    """위키피디아에서 S&P 500 + 나스닥 100 구성종목을 가져온다.
+    """위키피디아에서 S&P 500 + 나스닥 100 구성종목을 가져오고,
+    옵션에 따라 IWM 보유 종목으로 러셀2000 상위권을 합친다.
     실패하면 sector_map.json 캐시에 있는 티커로 폴백."""
     tickers = {}  # ticker -> name
     try:
@@ -79,6 +145,19 @@ def get_universe(cache):
             print(f"나스닥 100 병합 후: {len(tickers)}종목")
     except Exception as e:
         print(f"[경고] 나스닥 100 목록 로드 실패: {e}")
+
+    if RUSSELL_MODE != "off":
+        try:
+            r2k = read_iwm_holdings()
+            added = 0
+            for t, name in r2k.items():
+                if t not in tickers:
+                    added += 1
+                tickers.setdefault(t, name)
+            scope = "전체" if RUSSELL_MODE == "all" else f"상위 {RUSSELL_MAX}개"
+            print(f"러셀2000(IWM) {scope} 병합: +{added}종목 → {len(tickers)}종목")
+        except Exception as e:
+            print(f"[경고] 러셀2000(IWM) 목록 로드 실패: {e}")
 
     if not tickers:
         print("[폴백] 캐시된 티커 사용")
@@ -222,7 +301,7 @@ a{{color:var(--red)}}
     <h1>오늘의 섹터 로테이션 — 미국 주식 자금 흐름 요약</h1>
     <p class="date">기준일 {market_date} (미국 장마감 확정치) · 매 거래일 아침 자동 갱신</p>
   </header>
-  <p>미국 증시(S&amp;P 500 + 나스닥 100, 약 550종목)의 전체 거래대금은 <b>{fmt_dv(tot_now)}</b>로 전일 대비 <b>{tot_chg:+.1f}%</b>를 기록했습니다. 시장 내 거래대금 점유율 기준으로 자금이 향한 섹터와 이탈한 섹터는 다음과 같습니다.</p>
+  <p>미국 증시(S&amp;P 500 + 나스닥 100 + 러셀2000 상위권, {len(stocks)}종목)의 전체 거래대금은 <b>{fmt_dv(tot_now)}</b>로 전일 대비 <b>{tot_chg:+.1f}%</b>를 기록했습니다. 시장 내 거래대금 점유율 기준으로 자금이 향한 섹터와 이탈한 섹터는 다음과 같습니다.</p>
   <h2>자금 유입 상위 섹터 (점유율 확대)</h2>
   <ul>
 {li_rows(inflow, "in")}
@@ -255,9 +334,7 @@ def main():
 
     symbols = sorted(tickers.keys())
     print(f"가격 데이터 다운로드: {len(symbols)}종목")
-    px = yf.download(symbols, period="200d", interval="1d",
-                     auto_adjust=False, group_by="ticker",
-                     threads=True, progress=False)
+    px = download_prices(symbols)
 
     stocks = []
     market_date = None
