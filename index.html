@@ -134,7 +134,7 @@ header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .rot-val { font-weight: 600; font-size: 13px; white-space: nowrap; }
 .rot-col.outflow .rot-val { color: var(--blue); }
 .rot-col.inflow .rot-val { color: var(--red); }
-.rot-arrow { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 10px; line-height: 1.35; letter-spacing: .08em; color: var(--faint); border-left: 1px dashed var(--rule); border-right: 1px dashed var(--rule); writing-mode: vertical-rl; text-orientation: mixed; }
+.rot-arrow { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 18px; line-height: 1; color: var(--gold); border-left: 1px dashed var(--rule); border-right: 1px dashed var(--rule); }
 .mkt-line { padding: 9px 16px; border-top: 1px solid var(--hair); font-size: 12px; color: var(--muted); background: var(--panel2); }
 .mkt-line b { color: var(--ink); font-weight: 600; }
 
@@ -278,7 +278,7 @@ footer b { color: #DC6B52; }
   .grow-main > .n-share { grid-area: share; }
   .rot-body { grid-template-columns: 1fr; }
   .rot-brief { grid-template-columns: 1fr; }
-  .rot-arrow { border: none; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); padding: 6px; max-height: 32px; writing-mode: horizontal-tb; }
+  .rot-arrow { border: none; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); padding: 6px; max-height: 32px; }
   header { padding: 14px 0 0; }
   .mast h1 { font-size: 34px; }
   .dline { font-size: 11px; gap: 3px 14px; }
@@ -816,7 +816,7 @@ function render(){
         <h3>점유율 축소 · Outflow</h3>
         ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(dispName(r.name))}</span><span class="rot-val">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
       </div>
-      <div class="rot-arrow" aria-hidden="true">점유율 변화</div>
+      <div class="rot-arrow" aria-label="점유율 변화 방향">→</div>
       <div class="rot-col inflow">
         <h3>점유율 확대 · Inflow</h3>
         ${inflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(dispName(r.name))}</span><span class="rot-val">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
