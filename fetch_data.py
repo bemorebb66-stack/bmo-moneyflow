@@ -214,6 +214,33 @@ def update_sector_map(tickers, cache):
     return cache
 
 
+def update_korean_names(tickers, universes, cache):
+    """러셀 신규 종목의 영문명을 한국어로 바꾸고 캐시에 저장한다."""
+    if os.getenv("MONEY_FLOW_TRANSLATE_NAMES", "1").strip().lower() in ("0", "false", "off"):
+        return cache
+    targets = [t for t in tickers if "Russell 2000" in universes.get(t, set())
+               and not cache.get(t, {}).get("name_ko")]
+    print(f"러셀 기업명 한국어 번역 대상: {len(targets)}종목")
+    url = "https://translate.googleapis.com/translate_a/single"
+    for i, t in enumerate(targets):
+        name = cache.get(t, {}).get("name", tickers[t])
+        try:
+            resp = requests.get(url, params={
+                "client": "gtx", "sl": "en", "tl": "ko", "dt": "t", "q": name,
+            }, headers=UA, timeout=15)
+            resp.raise_for_status()
+            parts = resp.json()[0]
+            translated = "".join(p[0] for p in parts if p and p[0]).strip()
+            if translated:
+                cache[t]["name_ko"] = translated
+        except Exception as e:
+            print(f"  [참고] {t} 기업명 번역 생략: {e}")
+        if (i + 1) % 25 == 0:
+            print(f"  ...{i + 1}/{len(targets)}")
+        time.sleep(0.08)
+    return cache
+
+
 def cap_bucket(m):
     if not m:
         return "기타"
@@ -345,6 +372,7 @@ def main():
     cache = load_json(SECTOR_MAP_PATH, {})
     tickers, universes = get_universe(cache)
     cache = update_sector_map(tickers, cache)
+    cache = update_korean_names(tickers, universes, cache)
     for t, labels in universes.items():
         if t in cache:
             cache[t]["universe"] = sorted(labels)
@@ -396,6 +424,7 @@ def main():
         row = {
             "t": t,
             "n": meta.get("name", tickers.get(t, t)),
+            "nko": meta.get("name_ko", ""),
             "sec": meta.get("sector", "기타"),
             "ind": meta.get("industry", "기타"),
             "uni": sorted(universes.get(t, {"기존 데이터"})),

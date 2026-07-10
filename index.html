@@ -495,7 +495,7 @@ SPG:"사이먼프로퍼티",O:"리얼티인컴",PSA:"퍼블릭스토리지",DLR:
 const koSec  = s => KO_SEC[s] || s;
 const koInd  = s => KO_IND[s] || s;
 const koUni  = s => s.replace("S&P 500 + Nasdaq 100", "S&P 500 + 나스닥 100").replace("Nasdaq 100 + S&P 500", "나스닥 100 + S&P 500").replace("Russell 2000", "러셀2000 상위권").replace("S&P 500", "S&P 500").replace("Nasdaq 100", "나스닥 100");
-const koName = st => KO_NAME[st.t] || st.n;
+const koName = st => KO_NAME[st.t] || st.nko || st.n;
 
 function dispName(k){
   if(S.mode==="sector") return koSec(k);
