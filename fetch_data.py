@@ -15,6 +15,7 @@ import pandas as pd
 import requests
 import yfinance as yf
 from io import StringIO
+from lxml import etree
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"}
 
@@ -26,29 +27,42 @@ def read_wiki_tables(url):
 
 
 def read_iwm_holdings(limit=None):
-    """IWM ETF 보유 종목으로 러셀2000 후보군을 가져온다."""
+    """BlackRock의 IWM 보유종목 파일에서 러셀2000 후보군을 가져온다."""
     if limit is None:
         limit = RUSSELL_MAX
-    resp = requests.get(IWM_HOLDINGS_CSV, headers=UA, timeout=45)
+    resp = requests.get(IWM_HOLDINGS_XLS, headers={**UA, "Accept": "application/vnd.ms-excel"}, timeout=45)
     resp.raise_for_status()
-    text = resp.text.replace("\ufeff", "")
-    lines = text.splitlines()
-    start = None
-    for i, line in enumerate(lines):
-        first = line.split(",", 1)[0].strip().strip('"').lower()
-        if first in ("ticker", "symbol"):
-            start = i
-            break
-    if start is None:
-        raise ValueError("IWM holdings CSV에서 Ticker 헤더를 찾지 못했습니다")
+    ns = {"ss": "urn:schemas-microsoft-com:office:spreadsheet"}
+    root = etree.fromstring(resp.content, parser=etree.XMLParser(recover=True))
+    sheets = root.xpath("//ss:Worksheet", namespaces=ns)
+    if len(sheets) < 2:
+        raise ValueError("IWM holdings 파일에서 Holdings 시트를 찾지 못했습니다")
+    rows = sheets[1].xpath(".//ss:Row", namespaces=ns)
+    ss_index = "{urn:schemas-microsoft-com:office:spreadsheet}Index"
 
-    df = pd.read_csv(StringIO("\n".join(lines[start:])))
-    lower = {str(c).strip().lower(): c for c in df.columns}
+    def row_values(row):
+        out = []
+        for cell in row.xpath("./ss:Cell", namespaces=ns):
+            idx = int(cell.get(ss_index, len(out) + 1)) - 1
+            while len(out) <= idx:
+                out.append("")
+            out[idx] = "".join(cell.xpath(".//ss:Data//text()", namespaces=ns)).strip()
+        return out
+
+    header_at = next((i for i, row in enumerate(rows)
+                      if row_values(row) and row_values(row)[0].lower() in ("ticker", "symbol")), None)
+    if header_at is None:
+        raise ValueError("IWM holdings 파일에서 Ticker 헤더를 찾지 못했습니다")
+    headers = row_values(rows[header_at])
+    records = [row_values(row) for row in rows[header_at + 1:]]
+    width = len(headers)
+    df = pd.DataFrame([(r[:width] + [""] * max(0, width - len(r))) for r in records], columns=headers)
+    lower = {str(c).strip().lower(): c for c in headers}
     tcol = lower.get("ticker") or lower.get("symbol")
     ncol = lower.get("name") or lower.get("holding name")
     wcol = lower.get("weight (%)") or lower.get("weight")
     if tcol is None:
-        raise ValueError("IWM holdings CSV에 ticker 컬럼이 없습니다")
+        raise ValueError("IWM holdings 파일에 ticker 컬럼이 없습니다")
 
     if wcol is not None:
         df["_w"] = pd.to_numeric(df[wcol], errors="coerce").fillna(0)
@@ -94,7 +108,7 @@ HISTORY_DAYS = 120
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
-IWM_HOLDINGS_CSV = "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf/1467271812596.ajax?fileType=csv&fileName=IWM_holdings&dataType=fund"
+IWM_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual"
 RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # off / top / all
 RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
 YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
@@ -162,6 +176,7 @@ def get_universe(cache):
             print(f"러셀2000(IWM) {scope} 병합: +{added}종목 → {len(tickers)}종목")
         except Exception as e:
             print(f"[경고] 러셀2000(IWM) 목록 로드 실패: {e}")
+            raise RuntimeError("러셀2000 목록을 가져오지 못해 데이터 갱신을 중단합니다") from e
 
     if not tickers:
         print("[폴백] 캐시된 티커 사용")
