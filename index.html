@@ -91,7 +91,7 @@ body { background: var(--paper); color: var(--ink); font-family: var(--sans); fo
 .mono, .num, td, th, .rot-val, .dline b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
 /* ── 마스트헤드 ── */
-header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
+header { padding: 14px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .mast-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
 .brand-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 9.5px; letter-spacing: .24em; color: var(--red); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
 .brand-eyebrow::before { content: ""; width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
@@ -102,7 +102,7 @@ header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .mast-meta { align-self: flex-end; display: flex; gap: 10px; align-items: center; padding-bottom: 4px; }
 .theme-btn { border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); color: var(--muted); font-size: 11px; padding: 5px 12px; cursor: pointer; font-family: var(--sans); font-weight: 500; transition: background .15s, color .15s; white-space: nowrap; }
 .theme-btn:hover { background: var(--panel2); color: var(--ink); }
-.dline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; margin-top: 8px; padding: 7px 0; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
+.dline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; margin-top: 7px; padding: 6px 0; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
 .dline b { color: var(--ink); font-weight: 600; font-size: 12px; }
 
 /* ── 스켈레톤 ── */
@@ -111,35 +111,38 @@ header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .loading { padding: 60px 0; text-align: center; color: var(--muted); font-size: 14px; }
 
 /* ── 로테이션 ── */
-.rotation { margin: 16px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
-.rot-head { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--hair); flex-wrap: wrap; }
+.rotation { margin: 12px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
+.rot-head { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--hair); flex-wrap: wrap; }
 .rot-dot { width: 7px; height: 7px; background: var(--red); border-radius: 50%; box-shadow: 0 0 0 4px var(--red-soft); flex-shrink: 0; }
 .rot-head-title { font-family: var(--serif); font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
 .rot-head-sub { font-size: 11.5px; color: var(--muted); }
-.rot-brief { padding: 10px 16px; font-size: 13px; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px 14px; }
+.rot-toggle { margin-left: auto; border: 1px solid var(--rule); border-radius: 16px; background: var(--panel2); color: var(--muted); font-family: var(--sans); font-size: 11px; font-weight: 700; padding: 3px 9px; cursor: pointer; }
+.rot-toggle:hover { color: var(--ink); border-color: var(--gold); }
+.rot-brief { padding: 8px 14px; font-size: 13px; line-height: 1.45; color: var(--ink); border-bottom: 1px solid var(--hair); display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px 12px; }
 .brief-line { min-width: 0; }
 .brief-label { color: var(--faint); font-size: 10px; font-weight: 700; letter-spacing: .08em; margin-right: 6px; }
 .hi-in { color: var(--red); font-weight: 700; }
 .hi-out { color: var(--blue); font-weight: 700; }
 .hi-n { font-family: var(--mono); font-weight: 600; }
 .rot-body { display: grid; grid-template-columns: 1fr 48px 1fr; }
-.rot-col { padding: 12px 16px; }
+.rot-col { padding: 10px 14px; }
 .rot-col h3 { font-size: 9.5px; letter-spacing: .16em; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
 .rot-col.outflow h3 { color: var(--blue); }
 .rot-col.inflow h3 { color: var(--red); }
-.rot-item { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; padding: 5px 0; border-top: 1px solid var(--hair); }
+.rot-item { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; padding: 4px 0; border-top: 1px solid var(--hair); }
 .rot-item:first-of-type { border-top: none; }
 .rot-item[data-open] { cursor: pointer; }
 .rot-item[data-open]:hover span:first-child { text-decoration: underline; text-decoration-style: dotted; }
 .rot-val { font-weight: 600; font-size: 13px; white-space: nowrap; }
 .rot-col.outflow .rot-val { color: var(--blue); }
 .rot-col.inflow .rot-val { color: var(--red); }
-.rot-arrow { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 18px; line-height: 1; color: var(--gold); border-left: 1px dashed var(--rule); border-right: 1px dashed var(--rule); }
-.mkt-line { padding: 9px 16px; border-top: 1px solid var(--hair); font-size: 12px; color: var(--muted); background: var(--panel2); }
+.rot-arrow { display: block; border-left: 1px dashed var(--rule); border-right: 1px dashed var(--rule); background: linear-gradient(to bottom, transparent, var(--gold-soft), transparent); }
+.rotation.is-collapsed .rot-brief, .rotation.is-collapsed .rot-body, .rotation.is-collapsed .mkt-line { display: none; }
+.mkt-line { padding: 8px 14px; border-top: 1px solid var(--hair); font-size: 12px; color: var(--muted); background: var(--panel2); }
 .mkt-line b { color: var(--ink); font-weight: 600; }
 
 /* ── 컨트롤 ── */
-.controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 14px 0 0; position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(8px); padding: 9px 0 10px; border-bottom: 1px solid var(--rule); }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 10px 0 0; position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(8px); padding: 8px 0 9px; border-bottom: 1px solid var(--rule); }
 .seg-label { font-size: 10px; letter-spacing: .08em; color: var(--faint); font-weight: 700; margin-right: -3px; }
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); padding: 2px; box-shadow: var(--shadow-sm); gap: 1px; }
 .seg button { appearance: none; border: none; background: transparent; font-family: var(--sans); font-size: 12.5px; font-weight: 500; padding: 6px 13px; cursor: pointer; color: var(--muted); border-radius: 6px; transition: color .12s, background .12s; white-space: nowrap; }
@@ -152,8 +155,8 @@ header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .search input::placeholder { color: var(--faint); }
 
 /* ── 비교 차트 ── */
-.chartbox { margin: 16px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
-.chartbox-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 20px; border-bottom: 1px solid var(--hair); }
+.chartbox { margin: 12px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
+.chartbox-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 18px; border-bottom: 1px solid var(--hair); }
 .chartbox-head h2 { font-family: var(--serif); font-weight: 700; font-size: 15px; letter-spacing: -.01em; margin-right: auto; }
 .chart-control { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .chart-label { font-size: 10px; letter-spacing: .08em; color: var(--faint); font-weight: 700; }
@@ -161,15 +164,15 @@ header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .chart-control.metric .seg button { border-radius: 0; padding: 5px 1px 4px; border-bottom: 2px solid transparent; }
 .chart-control.metric .seg button.on { background: transparent; color: var(--red); border-bottom-color: var(--red); }
 .chart-subnote { padding: 9px 20px 0; font-size: 11.5px; color: var(--muted); }
-.legend-values { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 6px 12px; margin-bottom: 12px; }
-.legend-item { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 12px; color: var(--ink); }
+.legend-values { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; min-width: 0; max-width: 240px; font-size: 12px; color: var(--ink); border: 1px solid var(--hair); border-radius: 7px; background: var(--panel2); padding: 5px 8px; }
 .legend-item .sw { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
 .legend-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.legend-value { margin-left: auto; font-family: var(--mono); font-weight: 700; }
+.legend-value { margin-left: 6px; font-family: var(--mono); font-weight: 700; }
 .preset-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--hair); font-size: 10px; color: var(--faint); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; }
 .preset-row button { border: 1px solid var(--rule); border-radius: 20px; background: transparent; color: var(--ink); font-family: var(--sans); font-size: 12px; font-weight: 500; padding: 5px 13px; cursor: pointer; text-transform: none; letter-spacing: 0; transition: background .12s, border-color .12s; }
 .preset-row button:hover { background: var(--red-soft); border-color: var(--red); color: var(--red); }
-.chartbox-body { padding: 16px 20px 18px; }
+.chartbox-body { padding: 14px 18px 16px; }
 .chip-row { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
 .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 5px 10px; border: 1px solid var(--rule); border-radius: 20px; background: var(--panel2); color: var(--ink); }
 .chip .sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
@@ -180,8 +183,12 @@ header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .chart-note { padding: 10px 20px; font-size: 11.5px; color: var(--muted); border-top: 1px dashed var(--rule); line-height: 1.7; }
 
 /* ── 원장 ── */
-.ledger-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 10px 12px; border: 1px solid var(--rule); background: var(--panel); box-shadow: var(--shadow-sm); }
+.ledger-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 10px 12px; border: 1px solid var(--rule); background: var(--panel); box-shadow: var(--shadow-sm); }
 .ledger-tools .seg-label { margin-right: 0; }
+.ledger-summary { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0 0; padding: 9px 12px; border: 1px solid var(--rule); background: var(--panel2); font-size: 12.5px; color: var(--muted); }
+.ledger-summary b { color: var(--ink); }
+.clear-filter { border: 1px solid var(--rule); border-radius: 16px; background: var(--panel); color: var(--muted); font-family: var(--sans); font-size: 11px; font-weight: 700; padding: 4px 10px; cursor: pointer; white-space: nowrap; }
+.clear-filter:hover { color: var(--red); border-color: var(--red); }
 .ledger { margin: 8px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); overflow: hidden; box-shadow: var(--shadow); }
 .ledger-head { display: grid; grid-template-columns: minmax(160px,1.2fr) 2fr 100px 90px 88px; gap: 12px; padding: 10px 18px; font-size: 9.5px; letter-spacing: .13em; color: var(--faint); font-weight: 700; border-bottom: 1px solid var(--rule); text-transform: uppercase; background: var(--panel2); }
 .ledger-head .r { text-align: right; }
@@ -278,7 +285,7 @@ footer b { color: #DC6B52; }
   .grow-main > .n-share { grid-area: share; }
   .rot-body { grid-template-columns: 1fr; }
   .rot-brief { grid-template-columns: 1fr; }
-  .rot-arrow { border: none; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); padding: 6px; max-height: 32px; }
+  .rot-arrow { border: none; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); min-height: 10px; background: var(--panel2); }
   header { padding: 14px 0 0; }
   .mast h1 { font-size: 34px; }
   .dline { font-size: 11px; gap: 3px 14px; }
@@ -339,7 +346,7 @@ footer b { color: #DC6B52; }
     </div>
     <p>거래대금(종가×거래량)은 매수와 매도가 함께 잡히는 지표입니다. 따라서 "거래대금 증가 = 매수 유입"이 아니라, <b>거래대금 변화 × 가격 방향</b>을 결합해 해석합니다. 거래대금이 늘며 가격이 오르면 매수세 유입, 거래대금이 늘며 가격이 내리면 매도세 출회, 거래대금 자체가 줄면 시장의 관심 이탈로 봅니다.</p>
     <p>점유율(Δ)은 그날 시장 전체 거래대금에서 해당 그룹이 차지한 비중이 비교 기간 대비 몇 %p 움직였는지를 뜻합니다. 이 수치가 "돈이 어디서 어디로 이동했는가"에 가장 가까운 신호입니다.</p>
-    <p>유의: 과거 시계열(차트·연속 추세)은 현재 시점의 지수 구성 종목 기준으로 소급 계산되어, 구성 변경 전의 실제 비중과 다를 수 있습니다. 등락률은 분할·배당을 보정한 조정종가 기준입니다. 순방향(추정)은 상승 종목 거래대금에서 하락 종목 거래대금을 뺀 값으로, 실제 순매수 금액이 아닙니다.</p>
+    <p>유의: 과거 시계열(차트·연속 추세)은 현재 시점의 지수 구성 종목 기준으로 소급 계산되어, 구성 변경 전의 실제 비중과 다를 수 있습니다. 등락률은 분할·배당을 보정한 조정종가 기준입니다. 행에 표시되는 신호는 거래대금 변화와 가격 방향을 함께 본 해석이며, 실제 순매수 금액이 아닙니다.</p>
     <p>본 사이트의 모든 수치는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance, 매 거래일 마감 후 자동 갱신.</p>
   </section>
   <footer>
@@ -360,7 +367,8 @@ let LINE_COLORS = PAL_LIGHT;
 const S = {
   mode:"sector", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1,
   data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null,
-  gSort:"now", gDir:-1, gSignal:"all", gLimit:30, scrollTo:null, scrollChart:false, watch:[], applyingHash:false, searchComposing:false
+  gSort:"now", gDir:-1, gSignal:"all", gLimit:30, yMode:"full", rotCollapsed:false,
+  scrollTo:null, scrollChart:false, watch:[], applyingHash:false, searchComposing:false
 };
 
 const PERIODS = [["1d","전일比"],["5d","5일比"],["20d","20일比"],["60d","60일比"]];
@@ -512,6 +520,7 @@ function saveHash(){
     if(S.selStocks.length) parts.push("s="+S.selStocks.join(","));
     if(S.gSort!=="now"||S.gDir!==-1) parts.push("gs="+S.gSort+(S.gDir===1?"&gd=a":""));
     if(S.gSignal!=="all") parts.push("sig="+S.gSignal);
+    if(S.yMode!=="full") parts.push("ym="+S.yMode);
     if(S.sortKey!=="mc"||S.sortDir!==-1) parts.push("sk="+S.sortKey+"&sd="+(S.sortDir>0?"a":"d"));
     const op=[...S.open].slice(0,3);
     if(op.length) parts.push("o="+encodeURIComponent(op.join("|")));
@@ -521,7 +530,7 @@ function saveHash(){
 }
 function resetUrlState(){
   S.mode="sector"; S.period="1d"; S.metric="idx"; S.range=60;
-  S.selByMode={}; S.selStocks=[]; S.open=new Set(); S.gSignal="all"; S.gSort="now"; S.gDir=-1; S.gLimit=30;
+  S.selByMode={}; S.selStocks=[]; S.open=new Set(); S.gSignal="all"; S.gSort="now"; S.gDir=-1; S.gLimit=30; S.yMode="full";
   S.sortKey="mc"; S.sortDir=-1;
 }
 function loadHash(){
@@ -540,6 +549,7 @@ function loadHash(){
     if(kv.gs==="chg"||kv.gs==="shareD"||kv.gs==="now") S.gSort=kv.gs;
     if(kv.gd==="a") S.gDir=1;
     if(SIG_FILTERS.some(([k])=>k===kv.sig)) S.gSignal=kv.sig;
+    if(kv.ym==="recent") S.yMode="recent";
     if(kv.sk && ["t","mc","c","pc","dv","r1","r5","r20","r60"].includes(kv.sk)) S.sortKey=kv.sk;
     if(kv.sd==="a") S.sortDir=1;
     if(kv.o) S.open=new Set(decodeURIComponent(kv.o).split("|").filter(Boolean));
@@ -591,6 +601,8 @@ function signalOf(o){
 /* ═══ 워치 / 스파크 ═══ */
 function loadWatch(){ try{ return JSON.parse(localStorage.getItem("bmoWatch")||"[]"); }catch(e){ return []; } }
 function saveWatch(){ try{ localStorage.setItem("bmoWatch",JSON.stringify(S.watch)); }catch(e){} }
+function loadRotCollapsed(){ try{ return localStorage.getItem("bmoRotCollapsed")==="1"; }catch(e){ return false; } }
+function saveRotCollapsed(){ try{ localStorage.setItem("bmoRotCollapsed",S.rotCollapsed?"1":"0"); }catch(e){} }
 function spark(t){
   if(!S.hist||!S.hist.stocks||!S.hist.stocks[t]) return "";
   const v = S.hist.stocks[t].slice(-20);
@@ -759,6 +771,18 @@ function chartBaseNote(){
   const d=S.hist.dates.slice(-n)[0];
   return d ? `${d.replaceAll("-",".")} 거래대금 = 100 기준 · ` : "";
 }
+function chartYBounds(datasets){
+  if(S.yMode!=="recent") return {};
+  const vals=[];
+  for(const ds of datasets){
+    const tail=ds.data.filter(v=>v!=null).slice(-Math.min(10, Math.max(5, Math.ceil(S.range/3))));
+    vals.push(...tail);
+  }
+  if(vals.length<2) return {};
+  const min=Math.min(...vals), max=Math.max(...vals);
+  const pad=Math.max((max-min)*0.22, S.metric==="share"?0.4:4);
+  return {min:Math.floor((min-pad)*10)/10, max:Math.ceil((max+pad)*10)/10};
+}
 
 /* ═══ 렌더 ═══ */
 function render(){
@@ -808,15 +832,15 @@ function render(){
   }
 
   let html = staleHtml + `
-  <section class="rotation" aria-label="오늘의 자금 로테이션">
-    <div class="rot-head"><span class="rot-dot"></span><span class="rot-head-title">오늘의 로테이션</span><span class="rot-head-sub">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span></div>
+  <section class="rotation ${S.rotCollapsed?"is-collapsed":""}" aria-label="오늘의 자금 로테이션">
+    <div class="rot-head"><span class="rot-dot"></span><span class="rot-head-title">오늘의 로테이션</span><span class="rot-head-sub">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span><button class="rot-toggle" data-rot-toggle>${S.rotCollapsed?"펼치기":"접기"}</button></div>
     <div class="rot-brief">${buildBrief(agg1d.rows,agg1d.totNow,agg1d.totRef,spikes,streaks)}</div>
     <div class="rot-body">
       <div class="rot-col outflow">
         <h3>점유율 축소 · Outflow</h3>
         ${outflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(dispName(r.name))}</span><span class="rot-val">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
       </div>
-      <div class="rot-arrow" aria-label="점유율 변화 방향">→</div>
+      <div class="rot-arrow" aria-hidden="true"></div>
       <div class="rot-col inflow">
         <h3>점유율 확대 · Inflow</h3>
         ${inflow.map(r=>`<div class="rot-item" data-open="${esc(r.name)}"><span>${esc(dispName(r.name))}</span><span class="rot-val">${arrow(r.shareD)}${fmtPp(r.shareD)}</span></div>`).join("")}
@@ -861,6 +885,13 @@ function render(){
             ${[5,20,60].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}D</button>`).join("")}
           </div>
         </div>
+        <div class="chart-control">
+          <span class="chart-label">보기</span>
+          <div class="seg" role="tablist">
+            <button class="${S.yMode==="full"?"on":""}" data-ymode="full">전체 범위</button>
+            <button class="${S.yMode==="recent"?"on":""}" data-ymode="recent">최근 구간 확대</button>
+          </div>
+        </div>
       </div>
       <div class="preset-row">프리셋 ${PRESETS.map((p,i)=>`<button data-preset="${i}">${esc(p.label)}</button>`).join("")}</div>
       <div class="chartbox-body">
@@ -890,6 +921,8 @@ function render(){
     const canLimit = S.mode==="industry" || ledgerRows.length>35;
     const visibleRows = canLimit ? ledgerRows.slice(0,S.gLimit) : ledgerRows;
     const maxAbs = Math.max(12,...ledgerRows.map(r=>Math.abs(r.chg??0)));
+    const sigLabel = (SIG_FILTERS.find(([k])=>k===S.gSignal)||["all","전체"])[1];
+    const modeLabel = (MODES.find(([k])=>k===S.mode)||["","그룹"])[1];
     html += `<div class="ledger-tools" aria-label="그룹 목록 빠른 필터">
       <span class="seg-label">정렬</span>
       <div class="seg">
@@ -901,6 +934,10 @@ function render(){
       <div class="seg">
         ${SIG_FILTERS.map(([k,l])=>`<button class="${S.gSignal===k?"on":""}" data-gsignal="${k}">${l}</button>`).join("")}
       </div>
+    </div>
+    <div class="ledger-summary">
+      <span><b>그룹 목록</b> · ${esc(modeLabel)} · ${esc(sigLabel)} ${ledgerRows.length}개${canLimit&&visibleRows.length<ledgerRows.length?` · ${visibleRows.length}개 표시`:""}</span>
+      ${S.gSignal!=="all" ? `<button class="clear-filter" data-clearfilters>필터 초기화</button>` : ""}
     </div>
     <div class="ledger" style="margin-bottom:10px">
       <div class="ledger-head">
@@ -917,9 +954,9 @@ function render(){
         const [sc,sl,sd]=signalOf(r);
         const open=S.open.has(r.name);
         return `<div class="grow ${open?"open":""}" data-g="${esc(r.name)}">
-          <button class="grow-main" aria-expanded="${open}" title="거래대금 상위: ${esc(top3)}">
+          <button class="grow-main" aria-expanded="${open}" title="거래대금 상위: ${esc(top3)} · 상승·하락 거래대금 차이(추정): ${fmtNet(r.net)}">
             <span class="gname">${esc(dispName(r.name))}${streaks[r.name]?`<span class="streak ${streaks[r.name]>0?"up":"dn"}">${Math.abs(streaks[r.name])}일 연속${streaks[r.name]>0?"↑":"↓"}</span>`:""}
-              <small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length} · 순방향 <span class="${cls(r.net)}">${fmtNet(r.net)}</span>${(()=>{if(r.stocks.length<2||!r.now)return"";const t1=[...r.stocks].sort((a,b)=>b.dv-a.dv)[0];return` · 1위 ${esc(t1.t)} ${(t1.dv/r.now*100).toFixed(0)}%`;})()}</small>
+              <small>${r.stocks.length}종목 · ${fmtDv(r.now)} · 가중등락 <span class="${cls(r.pc)}">${fmtPct(r.pc)}</span> · 상승 ${r.up}/${r.stocks.length}${(()=>{if(r.stocks.length<2||!r.now)return"";const t1=[...r.stocks].sort((a,b)=>b.dv-a.dv)[0];return` · 1위 ${esc(t1.t)} ${(t1.dv/r.now*100).toFixed(0)}%`;})()}</small>
             </span>
             <span class="barwrap" aria-hidden="true"><span class="bar ${r.chg>=0?"pos":"neg"}" style="width:${w}%;opacity:${op}"></span></span>
             <span class="num n-chg ${cls(r.chg)}">${arrow(r.chg)}${fmtPct(r.chg)}</span>
@@ -953,6 +990,7 @@ function drawChart(){
     borderWidth:e.dashed?1.7:2.2,pointRadius:0,pointHoverRadius:4,tension:.25,
     borderDash:e.dashed?[5,3]:[]
   }));
+  const yBounds=chartYBounds(datasets);
   S.chart=new Chart(cv,{
     type:"line",
     data:{labels,datasets},
@@ -971,7 +1009,7 @@ function drawChart(){
       },
       scales:{
         x:{grid:{display:false},ticks:{maxTicksLimit:8,font:{family:"'JetBrains Mono'",size:10},color:cssVar("--tick")||"#8C8474"}},
-        y:{grid:{color:cssVar("--grid")||"#EAE5D8"},ticks:{font:{family:"'JetBrains Mono'",size:10},color:cssVar("--tick")||"#8C8474",callback:v=>S.metric==="share"?v+"%":v}}
+        y:{...yBounds,grid:{color:cssVar("--grid")||"#EAE5D8"},ticks:{font:{family:"'JetBrains Mono'",size:10},color:cssVar("--tick")||"#8C8474",callback:v=>S.metric==="share"?v+"%":v}}
       }
     }
   });
@@ -981,6 +1019,11 @@ function drawChart(){
 function bind(){
   document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{S.mode=b.dataset.mode;S.open.clear();S.gLimit=30;render();});
   document.querySelectorAll("[data-period]").forEach(b=>b.onclick=()=>{S.period=b.dataset.period;S.gLimit=30;render();});
+  document.querySelectorAll("[data-rot-toggle]").forEach(b=>b.onclick=()=>{
+    S.rotCollapsed=!S.rotCollapsed;
+    saveRotCollapsed();
+    render();
+  });
   document.querySelectorAll(".grow-main").forEach(b=>b.onclick=()=>{
     const g=b.parentElement.dataset.g;
     S.open.has(g)?S.open.delete(g):S.open.add(g);
@@ -996,6 +1039,7 @@ function bind(){
   });
   document.querySelectorAll("[data-metric]").forEach(b=>b.onclick=()=>{S.metric=b.dataset.metric;render();});
   document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{S.range=+b.dataset.range;render();});
+  document.querySelectorAll("[data-ymode]").forEach(b=>b.onclick=()=>{S.yMode=b.dataset.ymode;render();});
   document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=e=>{
     e.stopPropagation();
     S.selByMode[S.mode]=currentSel().filter(k=>k!==b.dataset.rm);
@@ -1025,6 +1069,11 @@ function bind(){
   });
   document.querySelectorAll("[data-gsignal]").forEach(x=>x.onclick=()=>{
     S.gSignal=x.dataset.gsignal;
+    S.gLimit=30;
+    render();
+  });
+  document.querySelectorAll("[data-clearfilters]").forEach(x=>x.onclick=()=>{
+    S.gSignal="all";
     S.gLimit=30;
     render();
   });
@@ -1113,6 +1162,7 @@ function bind(){
 
 loadHash();
 S.watch=loadWatch();
+S.rotCollapsed=loadRotCollapsed();
 window.addEventListener("hashchange",()=>{
   S.applyingHash=true;
   loadHash();
