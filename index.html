@@ -91,18 +91,18 @@ body { background: var(--paper); color: var(--ink); font-family: var(--sans); fo
 .mono, .num, td, th, .rot-val, .dline b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
 /* ── 마스트헤드 ── */
-header { padding: 28px 0 0; border-bottom: 2px solid var(--rule-heavy); }
+header { padding: 18px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .mast-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
-.brand-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .3em; color: var(--red); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+.brand-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 9.5px; letter-spacing: .24em; color: var(--red); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
 .brand-eyebrow::before { content: ""; width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
-.mast h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(36px, 5.5vw, 56px); letter-spacing: -.02em; line-height: 1; }
+.mast h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(32px, 4.2vw, 46px); letter-spacing: -.02em; line-height: 1; }
 .mast h1 .flow { color: var(--red); font-style: italic; font-weight: 500; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.tagline { margin-top: 7px; font-size: 12.5px; color: var(--muted); letter-spacing: .01em; }
+.tagline { margin-top: 5px; font-size: 12px; color: var(--muted); letter-spacing: .01em; }
 .mast-meta { align-self: flex-end; display: flex; gap: 10px; align-items: center; padding-bottom: 4px; }
 .theme-btn { border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); color: var(--muted); font-size: 11px; padding: 5px 12px; cursor: pointer; font-family: var(--sans); font-weight: 500; transition: background .15s, color .15s; white-space: nowrap; }
 .theme-btn:hover { background: var(--panel2); color: var(--ink); }
-.dline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 20px; margin-top: 14px; padding: 10px 0; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
+.dline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; margin-top: 10px; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
 .dline b { color: var(--ink); font-weight: 600; font-size: 12px; }
 
 /* ── 스켈레톤 ── */
@@ -111,21 +111,21 @@ header { padding: 28px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .loading { padding: 60px 0; text-align: center; color: var(--muted); font-size: 14px; }
 
 /* ── 로테이션 ── */
-.rotation { margin: 24px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
-.rot-head { display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-bottom: 1px solid var(--hair); }
+.rotation { margin: 16px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
+.rot-head { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--hair); flex-wrap: wrap; }
 .rot-dot { width: 7px; height: 7px; background: var(--red); border-radius: 50%; box-shadow: 0 0 0 4px var(--red-soft); flex-shrink: 0; }
 .rot-head-title { font-family: var(--serif); font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
 .rot-head-sub { font-size: 11.5px; color: var(--muted); }
-.rot-brief { padding: 14px 20px; font-size: 13.5px; line-height: 1.9; color: var(--ink); border-bottom: 1px solid var(--hair); }
+.rot-brief { padding: 10px 16px; font-size: 13px; line-height: 1.7; color: var(--ink); border-bottom: 1px solid var(--hair); }
 .hi-in { color: var(--red); font-weight: 700; }
 .hi-out { color: var(--blue); font-weight: 700; }
 .hi-n { font-family: var(--mono); font-weight: 600; }
 .rot-body { display: grid; grid-template-columns: 1fr 48px 1fr; }
-.rot-col { padding: 16px 20px; }
-.rot-col h3 { font-size: 9.5px; letter-spacing: .18em; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
+.rot-col { padding: 12px 16px; }
+.rot-col h3 { font-size: 9.5px; letter-spacing: .16em; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
 .rot-col.outflow h3 { color: var(--blue); }
 .rot-col.inflow h3 { color: var(--red); }
-.rot-item { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13.5px; padding: 6px 0; border-top: 1px solid var(--hair); }
+.rot-item { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; padding: 5px 0; border-top: 1px solid var(--hair); }
 .rot-item:first-of-type { border-top: none; }
 .rot-item[data-open] { cursor: pointer; }
 .rot-item[data-open]:hover span:first-child { text-decoration: underline; text-decoration-style: dotted; }
@@ -133,12 +133,12 @@ header { padding: 28px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .rot-col.outflow .rot-val { color: var(--blue); }
 .rot-col.inflow .rot-val { color: var(--red); }
 .rot-arrow { display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--gold); border-left: 1px dashed var(--rule); border-right: 1px dashed var(--rule); }
-.mkt-line { padding: 10px 20px; border-top: 1px solid var(--hair); font-size: 12px; color: var(--muted); background: var(--panel2); }
+.mkt-line { padding: 9px 16px; border-top: 1px solid var(--hair); font-size: 12px; color: var(--muted); background: var(--panel2); }
 .mkt-line b { color: var(--ink); font-weight: 600; }
 
 /* ── 컨트롤 ── */
-.controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 18px 0 0; position: sticky; top: 0; z-index: 30; background: var(--paper); padding: 10px 0 10px; border-bottom: 1px solid var(--rule); }
-.seg-label { font-size: 9.5px; letter-spacing: .16em; color: var(--faint); font-weight: 700; text-transform: uppercase; margin-right: -3px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 14px 0 0; position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(8px); padding: 9px 0 10px; border-bottom: 1px solid var(--rule); }
+.seg-label { font-size: 10px; letter-spacing: .08em; color: var(--faint); font-weight: 700; margin-right: -3px; }
 .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); padding: 2px; box-shadow: var(--shadow-sm); gap: 1px; }
 .seg button { appearance: none; border: none; background: transparent; font-family: var(--sans); font-size: 12.5px; font-weight: 500; padding: 6px 13px; cursor: pointer; color: var(--muted); border-radius: 6px; transition: color .12s, background .12s; white-space: nowrap; }
 .seg button:hover { color: var(--ink); background: var(--panel2); }
@@ -150,9 +150,11 @@ header { padding: 28px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .search input::placeholder { color: var(--faint); }
 
 /* ── 비교 차트 ── */
-.chartbox { margin: 18px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
+.chartbox { margin: 16px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); box-shadow: var(--shadow); }
 .chartbox-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 20px; border-bottom: 1px solid var(--hair); }
 .chartbox-head h2 { font-family: var(--serif); font-weight: 700; font-size: 15px; letter-spacing: -.01em; margin-right: auto; }
+.chart-control { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.chart-label { font-size: 10px; letter-spacing: .08em; color: var(--faint); font-weight: 700; }
 .preset-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--hair); font-size: 10px; color: var(--faint); letter-spacing: .1em; font-weight: 700; text-transform: uppercase; }
 .preset-row button { border: 1px solid var(--rule); border-radius: 20px; background: transparent; color: var(--ink); font-family: var(--sans); font-size: 12px; font-weight: 500; padding: 5px 13px; cursor: pointer; text-transform: none; letter-spacing: 0; transition: background .12s, border-color .12s; }
 .preset-row button:hover { background: var(--red-soft); border-color: var(--red); color: var(--red); }
@@ -167,14 +169,17 @@ header { padding: 28px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .chart-note { padding: 10px 20px; font-size: 11.5px; color: var(--muted); border-top: 1px dashed var(--rule); line-height: 1.7; }
 
 /* ── 원장 ── */
-.ledger { margin: 18px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); overflow: hidden; box-shadow: var(--shadow); }
-.ledger-head { display: grid; grid-template-columns: minmax(160px,1.2fr) 2fr 100px 90px 88px; gap: 12px; padding: 10px 18px; font-size: 9.5px; letter-spacing: .13em; color: var(--faint); font-weight: 700; border-bottom: 1px solid var(--rule); text-transform: uppercase; background: var(--pan2); background: var(--panel2); }
+.ledger-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 10px 12px; border: 1px solid var(--rule); background: var(--panel); box-shadow: var(--shadow-sm); }
+.ledger-tools .seg-label { margin-right: 0; }
+.ledger { margin: 8px 0 0; border: 1px solid var(--rule); border-top: 2.5px solid var(--rule-heavy); background: var(--panel); overflow: hidden; box-shadow: var(--shadow); }
+.ledger-head { display: grid; grid-template-columns: minmax(160px,1.2fr) 2fr 100px 90px 88px; gap: 12px; padding: 10px 18px; font-size: 9.5px; letter-spacing: .13em; color: var(--faint); font-weight: 700; border-bottom: 1px solid var(--rule); text-transform: uppercase; background: var(--panel2); }
 .ledger-head .r { text-align: right; }
 .grow { border-bottom: 1px solid var(--hair); }
 .grow:last-child { border-bottom: none; }
 .grow-main { display: grid; grid-template-columns: minmax(160px,1.2fr) 2fr 100px 90px 88px; gap: 12px; align-items: center; padding: 13px 18px; cursor: pointer; background: transparent; transition: background .1s; width: 100%; border: none; text-align: left; font-family: var(--sans); font-size: inherit; color: inherit; }
 .grow-main:hover { background: var(--panel2); }
 .grow-main:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.grow.open { box-shadow: inset 3px 0 0 var(--gold); }
 .grow.open > .grow-main { background: var(--panel2); }
 .gname { font-family: var(--serif); font-weight: 700; font-size: 14.5px; line-height: 1.3; letter-spacing: -.01em; }
 .gname small { display: block; font-family: var(--sans); font-weight: 400; font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
@@ -199,7 +204,7 @@ header { padding: 28px 0 0; border-bottom: 2px solid var(--rule-heavy); }
 .sortable.on { color: var(--red); }
 
 /* ── 확장 테이블 ── */
-.gdetail { display: none; padding: 8px 18px 18px; background: var(--panel2); }
+.gdetail { display: none; padding: 10px 18px 18px; background: var(--panel2); border-top: 1px solid var(--hair); }
 .grow.open .gdetail { display: block; }
 .tbl-scroll { overflow-x: auto; border: 1px solid var(--hair); border-radius: 6px; background: var(--panel); }
 .tbl-scroll th:first-child, .tbl-scroll td:first-child { position: sticky; left: 0; background: var(--panel); z-index: 2; }
@@ -258,8 +263,8 @@ footer b { color: #DC6B52; }
   .grow-main > .n-share { grid-area: share; }
   .rot-body { grid-template-columns: 1fr; }
   .rot-arrow { border: none; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); padding: 6px; transform: rotate(90deg); max-height: 32px; }
-  header { padding: 18px 0 0; }
-  .mast h1 { font-size: 36px; }
+  header { padding: 14px 0 0; }
+  .mast h1 { font-size: 34px; }
   .dline { font-size: 11px; gap: 3px 14px; }
   .controls { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 8px 0; }
   .controls::-webkit-scrollbar { display: none; }
@@ -278,6 +283,8 @@ footer b { color: #DC6B52; }
   .gdetail { padding: 8px 10px 14px; }
   .chart-wrap { height: 240px; }
   .chartbox-head { flex-direction: column; align-items: flex-start; }
+  .ledger-tools { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .ledger-tools::-webkit-scrollbar { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
 </style>
@@ -337,12 +344,13 @@ let LINE_COLORS = PAL_LIGHT;
 const S = {
   mode:"sector", period:"1d", query:"", open:new Set(), sortKey:"mc", sortDir:-1,
   data:null, hist:null, selByMode:{}, selStocks:[], metric:"idx", range:60, chart:null,
-  gSort:"now", gDir:-1, scrollTo:null, scrollChart:false, watch:[]
+  gSort:"now", gDir:-1, gSignal:"all", scrollTo:null, scrollChart:false, watch:[]
 };
 
 const PERIODS = [["1d","전일比"],["5d","5일比"],["20d","20일比"],["60d","60일比"]];
 const MODES   = [["sector","대분류 섹터"],["industry","세부 산업"],["custom","커스텀 그룹"],["cap","시가총액"]];
 const REF     = {"1d":"dvp","5d":"a5","20d":"a20","60d":"a60"};
+const SIG_FILTERS = [["all","전체"],["in","유입"],["out","이탈"],["quiet","관망"]];
 
 const PRESETS = [
   {label:"반도체 세분화", mode:"custom", metric:"share", groups:["반도체 · 메모리/스토리지","반도체 · GPU/AI가속","반도체 · 네트워킹/커스텀ASIC","반도체 · 장비"], stocks:[]},
@@ -739,7 +747,7 @@ function render(){
     <div class="seg" role="tablist">
       ${MODES.map(([k,l])=>`<button role="tab" aria-selected="${S.mode===k}" class="${S.mode===k?"on":""}" data-mode="${k}">${l}</button>`).join("")}
     </div>
-    <span class="seg-label">비교</span>
+    <span class="seg-label">비교 기준</span>
     <div class="seg" role="tablist">
       ${PERIODS.map(([k,l])=>`<button role="tab" aria-selected="${S.period===k}" class="${S.period===k?"on":""}" data-period="${k}">${l}</button>`).join("")}
     </div>
@@ -757,12 +765,18 @@ function render(){
       <div class="chartbox-head">
         <h2>그룹 비교 차트</h2>
         <button class="theme-btn" id="copyLink">🔗 링크 복사</button>
-        <div class="seg" role="tablist">
-          <button class="${S.metric==="idx"?"on":""}" data-metric="idx">지수화 (시작=100)</button>
-          <button class="${S.metric==="share"?"on":""}" data-metric="share">시장 점유율</button>
+        <div class="chart-control">
+          <span class="chart-label">차트 지표</span>
+          <div class="seg" role="tablist">
+            <button class="${S.metric==="idx"?"on":""}" data-metric="idx">지수화</button>
+            <button class="${S.metric==="share"?"on":""}" data-metric="share">시장 점유율</button>
+          </div>
         </div>
-        <div class="seg" role="tablist">
-          ${[5,20,60].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}일</button>`).join("")}
+        <div class="chart-control">
+          <span class="chart-label">차트 범위</span>
+          <div class="seg" role="tablist">
+            ${[5,20,60].map(n=>`<button class="${S.range===n?"on":""}" data-range="${n}">${n}일</button>`).join("")}
+          </div>
         </div>
       </div>
       <div class="preset-row">프리셋 ${PRESETS.map((p,i)=>`<button data-preset="${i}">${esc(p.label)}</button>`).join("")}</div>
@@ -807,8 +821,21 @@ function render(){
     html += `<div class="ledger"><div style="padding:12px 18px;font-family:var(--serif);font-weight:700">검색 결과 ${hits.length}건</div>
       <div class="gdetail" style="display:block">${stockTable(hits,"search")}</div></div>`;
   } else {
-    const maxAbs = Math.max(12,...rows.map(r=>Math.abs(r.chg??0)));
-    html += `<div class="ledger" style="margin-bottom:10px">
+    const ledgerRows = S.gSignal==="all" ? rows : rows.filter(r=>signalOf(r)[0]===S.gSignal);
+    const maxAbs = Math.max(12,...ledgerRows.map(r=>Math.abs(r.chg??0)));
+    html += `<div class="ledger-tools" aria-label="그룹 목록 빠른 필터">
+      <span class="seg-label">정렬</span>
+      <div class="seg">
+        <button class="${S.gSort==="now"?"on":""}" data-gsort="now">거래대금</button>
+        <button class="${S.gSort==="chg"?"on":""}" data-gsort="chg">변화율</button>
+        <button class="${S.gSort==="shareD"?"on":""}" data-gsort="shareD">점유율Δ</button>
+      </div>
+      <span class="seg-label">신호</span>
+      <div class="seg">
+        ${SIG_FILTERS.map(([k,l])=>`<button class="${S.gSignal===k?"on":""}" data-gsignal="${k}">${l}</button>`).join("")}
+      </div>
+    </div>
+    <div class="ledger" style="margin-bottom:10px">
       <div class="ledger-head">
         <span>그룹</span>
         <span style="text-align:center">거래대금 ${esc(periodLabel)} 변화</span>
@@ -816,7 +843,7 @@ function render(){
         <span class="r sortable ${S.gSort==="shareD"?"on":""}" data-gsort="shareD">점유율Δ${S.gSort==="shareD"?(S.gDir===-1?" ▼":" ▲"):""}</span>
         <span class="r">신호</span>
       </div>
-      ${rows.map(r=>{
+      ${ledgerRows.length ? ledgerRows.map(r=>{
         const w=r.chg==null?0:Math.min(50,Math.abs(r.chg)/maxAbs*50);
         const op=(0.35+0.65*Math.min(1,(r.now/totNow)/0.10)).toFixed(2);
         const top3=[...r.stocks].sort((a,b)=>b.dv-a.dv).slice(0,3).map(s=>s.t).join(", ");
@@ -834,7 +861,7 @@ function render(){
           </button>
           <div class="gdetail">${open?stockTable(r.stocks,r.name):""}</div>
         </div>`;
-      }).join("")}
+      }).join("") : `<div class="spike-empty">선택한 신호에 해당하는 그룹이 없습니다.</div>`}
     </div>`;
   }
 
@@ -933,6 +960,10 @@ function bind(){
     if(S.gSort!==k){S.gSort=k;S.gDir=-1;}
     else if(S.gDir===-1){S.gDir=1;}
     else{S.gSort="now";S.gDir=-1;}
+    render();
+  });
+  document.querySelectorAll("[data-gsignal]").forEach(x=>x.onclick=()=>{
+    S.gSignal=x.dataset.gsignal;
     render();
   });
   document.querySelectorAll("[data-star]").forEach(x=>x.onclick=e=>{
