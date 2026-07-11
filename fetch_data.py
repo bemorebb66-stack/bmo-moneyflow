@@ -26,11 +26,11 @@ def read_wiki_tables(url):
     return pd.read_html(StringIO(resp.text))
 
 
-def read_iwm_holdings(limit=None):
-    """BlackRock의 IWM 보유종목 파일에서 러셀2000 후보군을 가져온다."""
+def read_blackrock_holdings(url, limit=None):
+    """BlackRock ETF 보유종목 파일에서 러셀 유니버스를 가져온다."""
     if limit is None:
         limit = RUSSELL_MAX
-    resp = requests.get(IWM_HOLDINGS_XLS, headers={**UA, "Accept": "application/vnd.ms-excel"}, timeout=45)
+    resp = requests.get(url, headers={**UA, "Accept": "application/vnd.ms-excel"}, timeout=45)
     resp.raise_for_status()
     ns = {"ss": "urn:schemas-microsoft-com:office:spreadsheet"}
     root = etree.fromstring(resp.content, parser=etree.XMLParser(recover=True))
@@ -83,6 +83,14 @@ def read_iwm_holdings(limit=None):
     return out
 
 
+def read_iwm_holdings(limit=None):
+    return read_blackrock_holdings(IWM_HOLDINGS_XLS, limit)
+
+
+def read_iwb_holdings(limit=None):
+    return read_blackrock_holdings(IWB_HOLDINGS_XLS, limit)
+
+
 def download_prices(symbols):
     frames = []
     for i in range(0, len(symbols), YF_CHUNK_SIZE):
@@ -109,8 +117,10 @@ HISTORY_DAYS = 120
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
 IWM_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual"
+IWB_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239707&targetSite=us-ishares&userType=individual"
 RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # off / top / all
 RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
+RUSSELL1000_MAX = int(os.getenv("MONEY_FLOW_RUSSELL1000_MAX", "1000"))
 YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
 
 
@@ -165,6 +175,15 @@ def get_universe(cache):
 
     if RUSSELL_MODE != "off":
         try:
+            r1k = read_iwb_holdings(limit=RUSSELL1000_MAX)
+            added = 0
+            for t, name in r1k.items():
+                if t not in tickers:
+                    added += 1
+                tickers.setdefault(t, name)
+                universes.setdefault(t, set()).add("Russell 1000")
+            print(f"러셀1000(IWB) 상위 {RUSSELL1000_MAX}개 병합: +{added}종목 → {len(tickers)}종목")
+
             r2k = read_iwm_holdings()
             added = 0
             for t, name in r2k.items():
@@ -218,7 +237,7 @@ def update_korean_names(tickers, universes, cache):
     """러셀 신규 종목의 영문명을 한국어로 바꾸고 캐시에 저장한다."""
     if os.getenv("MONEY_FLOW_TRANSLATE_NAMES", "1").strip().lower() in ("0", "false", "off"):
         return cache
-    targets = [t for t in tickers if "Russell 2000" in universes.get(t, set())
+    targets = [t for t in tickers if any(label.startswith("Russell ") for label in universes.get(t, set()))
                and not cache.get(t, {}).get("name_ko")]
     print(f"러셀 기업명 한국어 번역 대상: {len(targets)}종목")
     url = "https://translate.googleapis.com/translate_a/single"
