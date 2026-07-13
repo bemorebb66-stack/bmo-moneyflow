@@ -13,10 +13,10 @@ import { X } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { SECTORS, generateSeries } from "@/lib/mock-data";
+import { generateSeries, type Sector } from "@/lib/mock-data";
 
-type Metric = "index" | "share" | "change";
-type Range = "5d" | "20d" | "60d";
+export type Metric = "index" | "share" | "change";
+export type Range = "5d" | "20d" | "60d";
 type YScale = "auto" | "full";
 
 const RANGE_DAYS: Record<Range, number> = { "5d": 5, "20d": 20, "60d": 60 };
@@ -38,14 +38,18 @@ const PRESETS: { label: string; ids: string[] }[] = [
 ];
 
 interface Props {
+  rows: Sector[];
   selected: string[];
   onSelected: (ids: string[]) => void;
+  metric: Metric;
+  onMetric: (metric: Metric) => void;
+  range: Range;
+  onRange: (range: Range) => void;
 }
 
-export function ComparisonChart({ selected, onSelected }: Props) {
-  const [metric, setMetric] = useState<Metric>("index");
-  const [range, setRange] = useState<Range>("60d");
+export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, range, onRange }: Props) {
   const [yScale, setYScale] = useState<YScale>("auto");
+  const rowMap = useMemo(() => new Map(rows.map((row) => [row.id, row])), [rows]);
 
   const data = useMemo(() => {
     const days = RANGE_DAYS[range];
@@ -59,7 +63,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
         const raw = seriesList[idx][i].value;
         if (metric === "share") {
           row[id] = Number(
-            ((raw / 100) * (SECTORS.find((s) => s.id === id)?.share ?? 5)).toFixed(2),
+            ((raw / 100) * (rowMap.get(id)?.share ?? 5)).toFixed(2),
           );
         } else if (metric === "change") {
           const base = seriesList[idx][0].value || 1;
@@ -70,7 +74,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
       });
       return row;
     });
-  }, [selected, range, metric]);
+  }, [selected, range, metric, rowMap]);
 
   const removeSel = (id: string) => onSelected(selected.filter((s) => s !== id));
   const applyPreset = (ids: string[]) =>
@@ -85,14 +89,14 @@ export function ComparisonChart({ selected, onSelected }: Props) {
           <div className="min-w-0">
             <h2 className="text-base font-semibold sm:text-lg">그룹 비교 차트</h2>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              지수화·시장 점유율·변화율 기준으로 섹터 상대 성과를 비교합니다.
+              지수화·시장 점유율·변화율 기준으로 선택 그룹의 상대 흐름을 비교합니다.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <ChartSeg
               label="지표"
               value={metric}
-              onChange={(v) => setMetric(v as Metric)}
+              onChange={(v) => onMetric(v as Metric)}
               options={[
                 { id: "index", label: "지수화" },
                 { id: "share", label: "시장 점유율" },
@@ -102,7 +106,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
             <ChartSeg
               label="범위"
               value={range}
-              onChange={(v) => setRange(v as Range)}
+              onChange={(v) => onRange(v as Range)}
               options={[
                 { id: "5d", label: "5D" },
                 { id: "20d", label: "20D" },
@@ -123,7 +127,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
 
         <div className="mt-4 flex flex-wrap items-center gap-1.5">
           {selected.map((id, idx) => {
-            const s = SECTORS.find((x) => x.id === id);
+            const s = rowMap.get(id);
             if (!s) return null;
             return (
               <span
@@ -146,7 +150,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
               </span>
             );
           })}
-          {canAdd && <AddButton selected={selected} onAdd={(id) => onSelected([...selected, id])} />}
+          {canAdd && <AddButton rows={rows} selected={selected} onAdd={(id) => onSelected([...selected, id])} />}
           <span className="ml-auto text-[11px] text-muted-foreground">
             최대 8개까지 비교할 수 있어요 · 현재 {selected.length}/8
           </span>
@@ -197,7 +201,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
                 }}
                 labelStyle={{ color: "var(--color-muted-foreground)" }}
                 formatter={(value: number, name: string) => {
-                  const s = SECTORS.find((x) => x.id === name);
+                  const s = rowMap.get(name);
                   const suffix =
                     metric === "share" || metric === "change" ? "%" : "";
                   return [`${value.toFixed(2)}${suffix}`, s?.name ?? name];
@@ -244,7 +248,7 @@ export function ComparisonChart({ selected, onSelected }: Props) {
           <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
             프리셋
           </span>
-          {PRESETS.map((p) => (
+          {PRESETS.filter((p) => p.ids.every((id) => rowMap.has(id))).map((p) => (
             <button
               key={p.label}
               onClick={() => applyPreset(p.ids)}
@@ -298,13 +302,15 @@ function ChartSeg({
 }
 
 function AddButton({
+  rows,
   selected,
   onAdd,
 }: {
+  rows: Sector[];
   selected: string[];
   onAdd: (id: string) => void;
 }) {
-  const available = SECTORS.filter((s) => !selected.includes(s.id));
+  const available = rows.filter((s) => !selected.includes(s.id));
   if (available.length === 0) return null;
   return (
     <div className="group relative">
@@ -326,4 +332,3 @@ function AddButton({
     </div>
   );
 }
-

@@ -1,18 +1,22 @@
 import { Sparkles, TrendingDown, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { DeltaText } from "./signal-badge";
-import { SECTORS } from "@/lib/mock-data";
+import type { Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMoney } from "@/lib/format";
 
-export function RotationSummary() {
-  const inflows = [...SECTORS]
+export function RotationSummary({ rows, categoryLabel, periodLabel }: {
+  rows: Sector[];
+  categoryLabel: string;
+  periodLabel: string;
+}) {
+  const inflows = [...rows]
     .sort((a, b) => b.shareDelta - a.shareDelta)
     .slice(0, 3);
-  const outflows = [...SECTORS]
+  const outflows = [...rows]
     .sort((a, b) => a.shareDelta - b.shareDelta)
     .slice(0, 3);
-  const totalVol = SECTORS.reduce((s, x) => s + x.volume, 0);
-  const advancers = SECTORS.filter((s) => s.priceChange > 0).length;
+  const totalVol = rows.reduce((s, x) => s + x.volume, 0);
+  const advancers = rows.filter((s) => s.priceChange > 0).length;
   const topNames = inflows.slice(0, 2).map((row) => row.name).join("·");
   const bottomNames = outflows.slice(0, 2).map((row) => row.name).join("·");
 
@@ -22,7 +26,7 @@ export function RotationSummary() {
         <CardContent className="p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-brand">
             <Sparkles className="h-3.5 w-3.5" />
-            오늘의 자금 로테이션
+            {periodLabel} {categoryLabel} 자금 로테이션
           </div>
           <p className="mt-2 text-base font-semibold leading-snug text-foreground sm:text-lg">
             {topNames}의 시장 점유율 확대
@@ -33,10 +37,10 @@ export function RotationSummary() {
           <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/70 pt-4 text-sm">
             <Metric label="전체 거래대금" value={fmtMoney(totalVol)} />
             <Metric
-              label="상승 섹터"
-              value={`${advancers} / ${SECTORS.length}`}
+              label="상승 그룹"
+              value={`${advancers} / ${rows.length}`}
             />
-            <Metric label="상승 비율" value={`${Math.round((advancers / Math.max(1, SECTORS.length)) * 100)}%`} tone="success" />
+            <Metric label="상승 비율" value={`${Math.round((advancers / Math.max(1, rows.length)) * 100)}%`} tone="success" />
           </div>
         </CardContent>
       </Card>
@@ -93,7 +97,7 @@ function FlowCard({
   tone: "success" | "danger";
   title: string;
   icon: React.ReactNode;
-  rows: typeof SECTORS;
+  rows: Sector[];
 }) {
   return (
     <Card>

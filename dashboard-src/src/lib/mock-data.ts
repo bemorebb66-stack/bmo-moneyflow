@@ -1,11 +1,13 @@
 // 미국 주식 섹터 자금 흐름 데모용 샘플 데이터 (한국어)
 
 export type Signal = "inflow" | "outflow" | "attention-loss" | "neutral";
+export type MarketCategory = "sector" | "industry" | "universe" | "custom" | "mcap";
+export type MarketPeriod = "1d" | "5d" | "20d" | "60d";
 
 export interface Sector {
   id: string;
   name: string;
-  group: "sector" | "industry";
+  group: MarketCategory;
   parent?: string;
   volume: number; // 거래대금 (백만 달러)
   volumeChange: number; // % vs 20D 평균
@@ -173,6 +175,14 @@ export const LIVE_META = {
 };
 
 export const LIVE_SECTOR_SERIES: Record<string, { date: string; value: number }[]> = {};
+export const LIVE_GROUP_SERIES: Record<string, { date: string; value: number }[]> = {};
+export const LIVE_MARKET_DATA: Record<MarketCategory, Record<MarketPeriod, Sector[]>> = {
+  sector: { "1d": [], "5d": [], "20d": [], "60d": [] },
+  industry: { "1d": [], "5d": [], "20d": [], "60d": [] },
+  universe: { "1d": [], "5d": [], "20d": [], "60d": [] },
+  custom: { "1d": [], "5d": [], "20d": [], "60d": [] },
+  mcap: { "1d": [], "5d": [], "20d": [], "60d": [] },
+};
 
 export const SURGE_STOCKS: StockRow[] = [
   {
@@ -318,7 +328,7 @@ export const SURGE_STOCKS: StockRow[] = [
 
 // 60일 지수화 시계열 생성
 export function generateSeries(sectorId: string, days = 60): { date: string; value: number }[] {
-  const live = LIVE_SECTOR_SERIES[sectorId];
+  const live = LIVE_GROUP_SERIES[sectorId] ?? LIVE_SECTOR_SERIES[sectorId];
   if (live?.length) return live.slice(-days);
   const seed = sectorId
     .split("")

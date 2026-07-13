@@ -1,5 +1,7 @@
 import {
   INSIDER_ROWS,
+  LIVE_GROUP_SERIES,
+  LIVE_MARKET_DATA,
   LIVE_META,
   LIVE_SECTOR_SERIES,
   LOCKUP_ROWS,
@@ -7,6 +9,8 @@ import {
   SURGE_STOCKS,
   type InsiderRow,
   type LockupRow,
+  type MarketCategory,
+  type MarketPeriod,
   type Sector,
   type Signal,
   type StockRow,
@@ -14,7 +18,8 @@ import {
 
 type MarketStock = {
   t: string; n: string; nko?: string; sec: string; c: number; pc: number;
-  dv: number; dvp: number; a20: number; mc: number;
+  ind?: string; uni?: string[]; grp?: string; cap?: string;
+  dv: number; dvp: number; a5: number; a20: number; a60: number; mc: number;
 };
 
 const SECTOR_KO: Record<string, string> = {
@@ -45,12 +50,111 @@ const SECTOR_ID: Record<string, string> = {
   "Basic Materials": "materials",
 };
 
+const INDUSTRY_KO: Record<string, string> = {
+  Semiconductors: "반도체",
+  "Semiconductor Equipment & Materials": "반도체 장비·소재",
+  "Software - Infrastructure": "소프트웨어(인프라)",
+  "Software - Application": "소프트웨어(응용)",
+  "Internet Content & Information": "인터넷 콘텐츠·정보",
+  "Consumer Electronics": "가전·전자기기",
+  "Communication Equipment": "통신장비",
+  "Auto Manufacturers": "자동차",
+  "Auto Parts": "자동차 부품",
+  "Internet Retail": "인터넷 소매",
+  Restaurants: "외식",
+  "Banks - Diversified": "은행(대형)",
+  "Banks - Regional": "은행(지역)",
+  "Credit Services": "신용·결제",
+  "Asset Management": "자산운용",
+  "Capital Markets": "증권·IB",
+  Biotechnology: "바이오",
+  "Drug Manufacturers - General": "제약(대형)",
+  "Medical Devices": "의료기기",
+  "Diagnostics & Research": "진단·리서치",
+  "Healthcare Plans": "건강보험",
+  "Oil & Gas Integrated": "석유(통합)",
+  "Oil & Gas E&P": "석유 탐사·생산",
+  "Oil & Gas Midstream": "석유 미드스트림",
+  "Aerospace & Defense": "항공우주·방산",
+  Airlines: "항공사",
+  Railroads: "철도",
+  "Electrical Equipment & Parts": "전기장비",
+  "Engineering & Construction": "건설·엔지니어링",
+  "Specialty Industrial Machinery": "산업기계",
+  "Utilities - Regulated Electric": "전력(규제)",
+  "Utilities - Renewable": "신재생에너지",
+  "Specialty Chemicals": "특수화학",
+  Copper: "구리",
+  Gold: "금",
+  Steel: "철강",
+  Aluminum: "알루미늄",
+  "REIT - Industrial": "리츠(물류·산업)",
+  "REIT - Residential": "리츠(주거)",
+  "REIT - Retail": "리츠(리테일)",
+  "REIT - Office": "리츠(오피스)",
+};
+
+const PERIOD_REF: Record<MarketPeriod, keyof MarketStock> = {
+  "1d": "dvp", "5d": "a5", "20d": "a20", "60d": "a60",
+};
+
+const CATEGORIES: MarketCategory[] = ["sector", "industry", "universe", "custom", "mcap"];
+const PERIODS: MarketPeriod[] = ["1d", "5d", "20d", "60d"];
+
+const rawGroupName = (stock: MarketStock, category: MarketCategory) => {
+  if (category === "sector") return stock.sec || "기타";
+  if (category === "industry") return stock.ind || "기타";
+  if (category === "universe") return stock.uni?.length ? stock.uni.join(" + ") : "기타";
+  if (category === "mcap") return stock.cap || "기타";
+  return stock.grp || stock.ind || "기타";
+};
+
+const groupId = (raw: string, category: MarketCategory) =>
+  category === "sector" ? (SECTOR_ID[raw] || raw) : `${category}:${raw}`;
+
+const groupLabel = (raw: string, category: MarketCategory) => {
+  if (category === "sector") return SECTOR_KO[raw] || raw;
+  if (category === "industry" || category === "custom") return INDUSTRY_KO[raw] || raw;
+  if (category === "universe") {
+    return raw.replaceAll("Russell 1000", "러셀 1000").replaceAll("Russell 2000", "러셀 2000");
+  }
+  return raw;
+};
+
 const signalFor = (shareDelta: number, volumeChange: number, priceChange: number): Signal => {
   if (shareDelta > 10 && priceChange >= 0) return "inflow";
   if (shareDelta < -10 && priceChange < 0) return "outflow";
   if (volumeChange < -15) return "attention-loss";
   return "neutral";
 };
+
+function aggregateMarket(stocks: MarketStock[], category: MarketCategory, period: MarketPeriod): Sector[] {
+  const refKey = PERIOD_REF[period];
+  const groups = new Map<string, MarketStock[]>();
+  for (const stock of stocks) {
+    const key = rawGroupName(stock, category);
+    groups.set(key, [...(groups.get(key) ?? []), stock]);
+  }
+  const totalNow = stocks.reduce((sum, stock) => sum + (Number(stock.dv) || 0), 0);
+  const totalRef = stocks.reduce((sum, stock) => sum + (Number(stock[refKey]) || 0), 0);
+  return [...groups].map(([raw, rows]) => {
+    const volumeRaw = rows.reduce((sum, row) => sum + (Number(row.dv) || 0), 0);
+    const reference = rows.reduce((sum, row) => sum + (Number(row[refKey]) || 0), 0);
+    const priceChange = volumeRaw
+      ? rows.reduce((sum, row) => sum + (Number(row.pc) || 0) * (Number(row.dv) || 0), 0) / volumeRaw
+      : 0;
+    const share = totalNow ? volumeRaw / totalNow * 100 : 0;
+    const priorShare = totalRef ? reference / totalRef * 100 : 0;
+    const shareDelta = (share - priorShare) * 100;
+    const volumeChange = reference ? (volumeRaw / reference - 1) * 100 : 0;
+    return {
+      id: groupId(raw, category), name: groupLabel(raw, category), group: category,
+      volume: volumeRaw / 1e6, volumeChange, priceChange, shareDelta, share,
+      signal: signalFor(shareDelta, volumeChange, priceChange),
+      leaders: [...rows].sort((a, b) => b.dv - a.dv).slice(0, 3).map((row) => row.t),
+    };
+  }).sort((a, b) => b.volume - a.volume);
+}
 
 const daysUntil = (date: string) => Math.ceil((new Date(`${date}T00:00:00Z`).getTime() - Date.now()) / 86400000);
 
@@ -67,29 +171,12 @@ export async function hydrateLiveData() {
     ]);
 
     const stocks = market.stocks as MarketStock[];
-    const totalNow = stocks.reduce((sum, stock) => sum + (stock.dv || 0), 0);
-    const totalPrev = stocks.reduce((sum, stock) => sum + (stock.dvp || 0), 0);
-    const groups = new Map<string, MarketStock[]>();
-    for (const stock of stocks) {
-      if (!SECTOR_ID[stock.sec]) continue;
-      groups.set(stock.sec, [...(groups.get(stock.sec) ?? []), stock]);
+    for (const category of CATEGORIES) {
+      for (const period of PERIODS) {
+        LIVE_MARKET_DATA[category][period] = aggregateMarket(stocks, category, period);
+      }
     }
-    const sectors: Sector[] = [...groups].map(([name, rows]) => {
-      const volume = rows.reduce((sum, row) => sum + (row.dv || 0), 0);
-      const previous = rows.reduce((sum, row) => sum + (row.dvp || 0), 0);
-      const avg20 = rows.reduce((sum, row) => sum + (row.a20 || 0), 0);
-      const priceChange = volume ? rows.reduce((sum, row) => sum + row.pc * row.dv, 0) / volume : 0;
-      const share = totalNow ? volume / totalNow * 100 : 0;
-      const priorShare = totalPrev ? previous / totalPrev * 100 : 0;
-      const shareDelta = (share - priorShare) * 100;
-      const volumeChange = avg20 ? (volume / avg20 - 1) * 100 : 0;
-      return {
-        id: SECTOR_ID[name], name: SECTOR_KO[name], group: "sector" as const, volume: volume / 1e6,
-        volumeChange, priceChange, shareDelta, share,
-        signal: signalFor(shareDelta, volumeChange, priceChange),
-        leaders: [...rows].sort((a, b) => b.dv - a.dv).slice(0, 3).map((row) => row.t),
-      };
-    }).sort((a, b) => b.volume - a.volume);
+    const sectors = LIVE_MARKET_DATA.sector["1d"];
     SECTORS.splice(0, SECTORS.length, ...sectors);
 
     const surge: StockRow[] = stocks
@@ -105,14 +192,19 @@ export async function hydrateLiveData() {
     SURGE_STOCKS.splice(0, SURGE_STOCKS.length, ...surge);
 
     const dates = history.dates as string[];
-    for (const [name, values] of Object.entries(history.sector ?? {})) {
-      const id = SECTOR_ID[name];
-      if (!id || !Array.isArray(values) || !values.length) continue;
-      const first = Number(values[0]) || 1;
-      LIVE_SECTOR_SERIES[id] = values.map((value, index) => ({
-        date: `${Number(dates[index].slice(5, 7))}/${Number(dates[index].slice(8, 10))}`,
-        value: Number((Number(value) / first * 100).toFixed(2)),
-      }));
+    for (const category of CATEGORIES) {
+      const historyKey = category === "mcap" ? "cap" : category;
+      for (const [name, values] of Object.entries(history[historyKey] ?? {})) {
+        const id = groupId(name, category);
+        if (!Array.isArray(values) || !values.length) continue;
+        const first = Number(values[0]) || 1;
+        const series = values.map((value, index) => ({
+          date: `${Number(dates[index].slice(5, 7))}/${Number(dates[index].slice(8, 10))}`,
+          value: Number((Number(value) / first * 100).toFixed(2)),
+        }));
+        LIVE_GROUP_SERIES[id] = series;
+        if (category === "sector") LIVE_SECTOR_SERIES[id] = series;
+      }
     }
 
     const insiderRows: InsiderRow[] = (insider.trades ?? [])

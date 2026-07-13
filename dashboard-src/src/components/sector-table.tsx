@@ -3,18 +3,21 @@ import { ArrowUpDown, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { SignalBadge, DeltaText } from "./signal-badge";
 import { cn } from "@/lib/utils";
-import { SECTORS, type Sector } from "@/lib/mock-data";
+import type { Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMoney, fmtPct } from "@/lib/format";
 
 type SortKey = "volume" | "volumeChange" | "priceChange" | "shareDelta";
 
 interface Props {
+  data: Sector[];
   selectedIds: string[];
   onToggleCompare: (id: string) => void;
   query: string;
+  categoryLabel: string;
+  periodLabel: string;
 }
 
-export function SectorTable({ selectedIds, onToggleCompare, query }: Props) {
+export function SectorTable({ data, selectedIds, onToggleCompare, query, categoryLabel, periodLabel }: Props) {
   const [sortKey, setSortKey] = useState<SortKey>("volume");
   const [dir, setDir] = useState<"desc" | "asc">("desc");
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -22,18 +25,18 @@ export function SectorTable({ selectedIds, onToggleCompare, query }: Props) {
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
     const filtered = q
-      ? SECTORS.filter(
+      ? data.filter(
           (s) =>
             s.name.toLowerCase().includes(q) ||
             s.leaders.some((t) => t.toLowerCase().includes(q)),
         )
-      : SECTORS;
+      : data;
     return [...filtered].sort((a, b) => {
       const av = a[sortKey];
       const bv = b[sortKey];
       return dir === "desc" ? bv - av : av - bv;
     });
-  }, [sortKey, dir, query]);
+  }, [data, sortKey, dir, query]);
 
   const toggleSort = (k: SortKey) => {
     if (k === sortKey) setDir((d) => (d === "desc" ? "asc" : "desc"));
@@ -48,9 +51,9 @@ export function SectorTable({ selectedIds, onToggleCompare, query }: Props) {
       <CardContent className="p-0">
         <div className="flex items-center justify-between border-b border-border/70 px-4 py-3 sm:px-5">
           <div>
-            <h2 className="text-base font-semibold sm:text-lg">섹터 목록</h2>
+            <h2 className="text-base font-semibold sm:text-lg">{categoryLabel} 목록</h2>
             <p className="text-[11px] text-muted-foreground">
-              거래대금·변화율·점유율 변화·신호별 정렬 · {rows.length}개 섹터
+              거래대금·변화율·점유율 변화·신호별 정렬 · {rows.length}개 그룹
             </p>
           </div>
         </div>
@@ -128,7 +131,7 @@ export function SectorTable({ selectedIds, onToggleCompare, query }: Props) {
                       <td className="py-2.5 text-right">
                         <div className="tabular">{fmtMoney(s.volume)}</div>
                         <div className="text-[11px] text-muted-foreground tabular">
-                          20D 대비 {fmtPct(s.volumeChange, 1)}
+                          {periodLabel} 대비 {fmtPct(s.volumeChange, 1)}
                         </div>
                       </td>
                       <td className="py-2.5 text-right">
@@ -152,7 +155,7 @@ export function SectorTable({ selectedIds, onToggleCompare, query }: Props) {
                         <SignalBadge signal={s.signal} />
                       </td>
                     </tr>
-                    {isOpen && <ExpandedRow sector={s} />}
+                    {isOpen && <ExpandedRow sector={s} periodLabel={periodLabel} />}
                   </Fragment>
                 );
               })}
@@ -278,7 +281,7 @@ function MobileStat({
   );
 }
 
-function ExpandedRow({ sector }: { sector: Sector }) {
+function ExpandedRow({ sector, periodLabel }: { sector: Sector; periodLabel: string }) {
   return (
     <tr className="bg-surface-2/40">
       <td colSpan={6} className="px-4 py-4">
@@ -308,7 +311,7 @@ function ExpandedRow({ sector }: { sector: Sector }) {
           </div>
           <div>
             <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
-              20일 대비 강도
+              {periodLabel} 대비 강도
             </div>
             <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
               <div
@@ -322,7 +325,7 @@ function ExpandedRow({ sector }: { sector: Sector }) {
               />
             </div>
             <div className="mt-1 text-[11px] text-muted-foreground tabular">
-              20D 평균 대비 거래대금 {fmtPct(sector.volumeChange)}
+              {periodLabel} 기준 거래대금 {fmtPct(sector.volumeChange)}
             </div>
           </div>
         </div>
@@ -333,11 +336,10 @@ function ExpandedRow({ sector }: { sector: Sector }) {
 
 function describe(s: Sector) {
   if (s.signal === "inflow")
-    return `${s.name} 섹터로 자금이 뚜렷하게 유입되고 있으며 가격도 함께 상승해 매수 강도가 확인됩니다.`;
+    return `${s.name} 그룹의 거래 비중이 확대됐고 가격도 함께 상승해 매수 강도가 확인됩니다.`;
   if (s.signal === "outflow")
     return `거래대금 증가와 함께 가격이 하락 중이라 매도 출회 신호가 뚜렷합니다.`;
   if (s.signal === "attention-loss")
     return `거래대금이 평균을 크게 하회해 시장의 관심이 이탈하는 구간입니다.`;
   return `자금 흐름이 균형 상태이며 방향성이 뚜렷하지 않습니다.`;
 }
-
