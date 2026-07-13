@@ -16,6 +16,7 @@ import {
   SURGE_STOCKS,
   INSIDER_ROWS,
   LOCKUP_ROWS,
+  LIVE_META,
 } from "@/lib/mock-data";
 import { fmtMoney, fmtPct } from "@/lib/format";
 
@@ -45,11 +46,11 @@ function TodayPage() {
     .filter((s) => s.signal === "inflow")
     .sort((a, b) => b.volumeRatio - a.volumeRatio)
     .slice(0, 3);
-  const insiderTop = [...INSIDER_ROWS]
+  const insiderTop = INSIDER_ROWS.filter((row) => row.tradeDate === LIVE_META.asOf)
     .sort((a, b) => b.amount - a.amount)
     .slice(0, 3);
   const lockupSoon = [...LOCKUP_ROWS]
-    .filter((r) => r.daysLeft >= 0)
+    .filter((r) => r.daysLeft >= 0 && r.daysLeft <= 7)
     .sort((a, b) => a.daysLeft - b.daysLeft)
     .slice(0, 3);
 
@@ -72,9 +73,9 @@ function TodayPage() {
           <span className="text-danger">{bottomSector.name}</span>에서 이탈했습니다.
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
-          20일 평균 대비 거래대금 급증 종목 {SURGE_STOCKS.length}개 · 내부자 신규 공시{" "}
-          {INSIDER_ROWS.length}건 · 14일 내 락업 해제{" "}
-          {LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14).length}건이 예정되어 있습니다.
+          20일 평균 대비 거래대금 급증 종목 {SURGE_STOCKS.length}개 · 기준일 내부자 거래{" "}
+          {insiderTop.length}건 · 7일 내 락업 해제{" "}
+          {lockupSoon.length}건이 예정되어 있습니다.
         </p>
       </section>
 
@@ -85,8 +86,9 @@ function TodayPage() {
           subtitle="섹터 자금 로테이션"
           to="/"
           linkLabel="전체 대시보드로"
+          className="lg:col-span-2"
         >
-          <ul className="divide-y divide-border/70">
+          <ul className="grid gap-x-8 sm:grid-cols-2">
             {[topSector, bottomSector].map((s) => (
               <li key={s.id} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
                 <div className="min-w-0 flex-1">
@@ -134,7 +136,7 @@ function TodayPage() {
         <SectionCard
           icon={Users}
           title="내부자 거래"
-          subtitle="금액 상위 공시"
+          subtitle={`${LIVE_META.asOf} 거래일 기준`}
           to="/insider"
           linkLabel="내부자 거래로"
         >
@@ -164,13 +166,18 @@ function TodayPage() {
                 </span>
               </li>
             ))}
+            {insiderTop.length === 0 && (
+              <li className="py-5 text-center text-sm text-muted-foreground">
+                기준일에 확인된 내부자 거래가 없습니다.
+              </li>
+            )}
           </ul>
         </SectionCard>
 
         <SectionCard
           icon={CalendarClock}
           title="IPO 락업"
-          subtitle="임박 해제 이벤트"
+          subtitle="D-7 이내 해제 이벤트"
           to="/ipo-lockup"
           linkLabel="IPO 락업으로"
         >
@@ -202,6 +209,11 @@ function TodayPage() {
                 </span>
               </li>
             ))}
+            {lockupSoon.length === 0 && (
+              <li className="py-5 text-center text-sm text-muted-foreground">
+                7일 내 예정된 락업 해제가 없습니다.
+              </li>
+            )}
           </ul>
         </SectionCard>
       </div>
@@ -219,6 +231,7 @@ function SectionCard({
   subtitle,
   to,
   linkLabel,
+  className,
   children,
 }: {
   icon: LucideIcon;
@@ -226,10 +239,11 @@ function SectionCard({
   subtitle: string;
   to: string;
   linkLabel: string;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <Card>
+    <Card className={className}>
       <CardContent className="p-4 sm:p-5">
         <div className="flex items-center gap-3">
           <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-brand/10 text-brand">

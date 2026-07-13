@@ -47,7 +47,9 @@ type Range = "7d" | "30d" | "90d";
 function InsiderPage() {
   const [range, setRange] = useState<Range>("30d");
   const [type, setType] = useState<FilterType>("all");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() =>
+    typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("ticker") ?? "",
+  );
   const days = range === "7d" ? 7 : range === "30d" ? 30 : 90;
   const latestFiling = useMemo(
     () => [...INSIDER_ROWS].sort((a, b) => b.filedDate.localeCompare(a.filedDate))[0]?.filedDate ?? "",
@@ -154,8 +156,8 @@ function InsiderPage() {
           </div>
         </div>
 
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-          <Card>
+        <div className="flex flex-col gap-5">
+          <Card className="order-2 mt-1">
             <CardContent className="p-4 sm:p-5">
               <div className="flex items-center justify-between">
                 <div>
@@ -167,7 +169,7 @@ function InsiderPage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-4 h-[360px] w-full">
+              <div className="mt-4 h-[300px] w-full sm:h-[340px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={trend}
@@ -212,7 +214,7 @@ function InsiderPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="order-1">
             <CardContent className="p-0">
               <div className="border-b border-border/70 px-4 py-3 sm:px-5">
                 <h2 className="text-base font-semibold sm:text-lg">최신 공시</h2>

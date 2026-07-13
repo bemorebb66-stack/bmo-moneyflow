@@ -26,6 +26,8 @@ export interface StockRow {
   change: number; // %
   volume: number; // 백만 달러
   volumeRatio: number; // vs 20D avg
+  volumeVs?: Record<MarketPeriod, number>; // 각 기준 대비 거래대금 변화율(%)
+  industry?: string;
   marketCap: number; // 십억 달러
   signal: Signal;
   hasInsider?: boolean;
@@ -442,6 +444,8 @@ export interface LockupRow {
   unlockShares: number; // millions
   estValue: number; // USD millions
   marketCap: number; // USD billions
+  sector?: string;
+  industry?: string;
   importance: Importance;
   lockupDays?: number;
 }

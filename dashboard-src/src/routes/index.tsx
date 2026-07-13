@@ -153,7 +153,7 @@ function MarketFlowPage() {
         <p className="-mt-2 text-xs text-muted-foreground" aria-live="polite">
           현재 조건 · {CATEGORY_LABELS[category]} · {PERIOD_LABELS[period]} 기준 · {rows.length}개 그룹
         </p>
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.7fr)_minmax(360px,0.8fr)]">
           <ComparisonChart
             rows={rows}
             selected={selected}

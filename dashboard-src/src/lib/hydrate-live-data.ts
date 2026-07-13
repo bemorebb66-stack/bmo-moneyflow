@@ -94,6 +94,21 @@ const INDUSTRY_KO: Record<string, string> = {
   "REIT - Office": "리츠(오피스)",
 };
 
+const LOCKUP_COMPANY_KO: Record<string, string> = {
+  SPCX: "스페이스X", BGIN: "비긴 블록체인", NAVN: "나반", LIFE: "이토스 테크놀로지스",
+  OTH: "오프 더 훅 YS", BIXI: "비트코인 인프라스트럭처 애퀴지션",
+  BXDC: "블랙스톤 디지털 인프라스트럭처 트러스트", WLTH: "웰스프론트",
+  LMRI: "루멕사 이미징", MAIR: "매디슨 에어 솔루션스", AVEX: "에이벡스",
+  ALMR: "알라마 바이오사이언시스", BTGO: "비트고", EQPT: "이큅먼트셰어",
+  GIX: "긱캐피털9", SPTX: "시포트 테라퓨틱스", COAG: "헤맙 테라퓨틱스",
+  HAWK: "호크아이 360", OFRM: "원스 어폰 어 팜", SGP: "스파이글래스 파마",
+  JAGU: "재규어 우라늄", VIDA: "비다 글로벌", AADX: "어플라이드 에어로스페이스 앤 디펜스",
+  SSMR: "선샤인 실버 마이닝", SIND: "신다", LIME: "라임",
+  ARXS: "아크시스", XE: "엑스에너지", ODTX: "오디세이 테라퓨틱스",
+  MOBI: "모비아 메디컬", CBRS: "세레브라스 시스템스", LCLN: "링컨 인터내셔널",
+  FRBT: "포브라이트", BSP: "벤딩 스푼스",
+};
+
 const PERIOD_REF: Record<MarketPeriod, keyof MarketStock> = {
   "1d": "dvp", "5d": "a5", "20d": "a20", "60d": "a60",
 };
@@ -125,6 +140,13 @@ const signalFor = (shareDelta: number, volumeChange: number, priceChange: number
   if (shareDelta > 10 && priceChange >= 0) return "inflow";
   if (shareDelta < -10 && priceChange < 0) return "outflow";
   if (volumeChange < -15) return "attention-loss";
+  return "neutral";
+};
+
+const stockSignalFor = (volumeChange: number, priceChange: number): Signal => {
+  if (volumeChange > 3 && priceChange > 0.15) return "inflow";
+  if (volumeChange > 3 && priceChange < -0.15) return "outflow";
+  if (volumeChange < -3) return "attention-loss";
   return "neutral";
 };
 
@@ -185,7 +207,14 @@ export async function hydrateLiveData() {
         ticker: stock.t, name: stock.nko || stock.n, sector: SECTOR_KO[stock.sec] || stock.sec,
         price: stock.c, change: stock.pc, volume: stock.dv / 1e6,
         volumeRatio: stock.dv / stock.a20, marketCap: stock.mc / 1e9,
-        signal: signalFor(0, (stock.dv / stock.a20 - 1) * 100, stock.pc),
+        volumeVs: {
+          "1d": stock.dvp ? (stock.dv / stock.dvp - 1) * 100 : 0,
+          "5d": stock.a5 ? (stock.dv / stock.a5 - 1) * 100 : 0,
+          "20d": stock.a20 ? (stock.dv / stock.a20 - 1) * 100 : 0,
+          "60d": stock.a60 ? (stock.dv / stock.a60 - 1) * 100 : 0,
+        },
+        industry: INDUSTRY_KO[stock.ind || ""] || stock.ind,
+        signal: stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc),
       }))
       .sort((a, b) => b.volumeRatio - a.volumeRatio)
       .slice(0, 100);
@@ -217,14 +246,32 @@ export async function hydrateLiveData() {
       }));
     INSIDER_ROWS.splice(0, INSIDER_ROWS.length, ...insiderRows);
 
-    const lockupRows: LockupRow[] = (lockup.events ?? []).map((row: any) => ({
-      ticker: row.ticker, company: row.company, ipoDate: row.ipoDate,
-      unlockDate: row.lockupDate, daysLeft: daysUntil(row.lockupDate), unlockShares: 0,
-      estValue: 0, marketCap: 0,
-      lockupDays: Number(row.lockupDays) || undefined,
-      importance: daysUntil(row.lockupDate) <= 14 ? "high" : daysUntil(row.lockupDate) <= 30 ? "medium" : "low",
-    }));
+    const stockByTicker = new Map(stocks.map((stock) => [stock.t, stock]));
+    const lockupRows: LockupRow[] = (lockup.events ?? []).map((row: any) => {
+      const daysLeft = daysUntil(row.lockupDate);
+      const marketStock = stockByTicker.get(row.ticker);
+      return {
+        ticker: row.ticker,
+        company: LOCKUP_COMPANY_KO[row.ticker] || marketStock?.nko || row.company,
+        ipoDate: row.ipoDate, unlockDate: row.lockupDate, daysLeft, unlockShares: 0,
+        estValue: 0, marketCap: marketStock?.mc ? marketStock.mc / 1e9 : 0,
+        sector: row.ticker === "SPCX" ? "우주항공·방산" : marketStock ? (SECTOR_KO[marketStock.sec] || marketStock.sec) : undefined,
+        industry: row.ticker === "SPCX" ? "우주 발사체·위성 통신" : marketStock ? (INDUSTRY_KO[marketStock.ind || ""] || marketStock.ind) : undefined,
+        lockupDays: Number(row.lockupDays) || undefined,
+        importance: row.ticker === "SPCX" || (daysLeft >= 0 && daysLeft <= 14)
+          ? "high"
+          : daysLeft >= 15 && daysLeft <= 30 ? "medium" : "low",
+      };
+    });
     LOCKUP_ROWS.splice(0, LOCKUP_ROWS.length, ...lockupRows);
+
+    const insiderTickers = new Set(insiderRows.map((row) => row.ticker));
+    const lockupTickers = new Set(lockupRows.map((row) => row.ticker));
+    for (const stock of SURGE_STOCKS) {
+      stock.hasInsider = insiderTickers.has(stock.ticker);
+      stock.isIpo = lockupTickers.has(stock.ticker);
+      stock.hasNews = true;
+    }
 
     LIVE_META.asOf = market.market_date || "-";
     LIVE_META.updatedAt = market.updated || "-";

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, CalendarClock } from "lucide-react";
+import { Search, CalendarClock, Rocket, Info } from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -34,12 +34,15 @@ function LockupPage() {
   const [win, setWin] = useState<WindowFilter>("all");
   const [mcap, setMcap] = useState<MCapFilter>("all");
   const [size, setSize] = useState<SizeFilter>("all");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() =>
+    typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("ticker") ?? "",
+  );
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
     return LOCKUP_ROWS.filter((r) => {
-      if (win !== "all" && r.daysLeft > Number(win)) return false;
+      if (win !== "all" && (r.daysLeft < 0 || r.daysLeft > Number(win))) return false;
+      if (mcap !== "all" && r.marketCap <= 0) return false;
       if (mcap === "small" && r.marketCap >= 10) return false;
       if (mcap === "mid" && (r.marketCap < 10 || r.marketCap >= 50)) return false;
       if (mcap === "large" && r.marketCap < 50) return false;
@@ -52,7 +55,7 @@ function LockupPage() {
       )
         return false;
       return true;
-    }).sort((a, b) => a.daysLeft - b.daysLeft);
+    }).sort((a, b) => a.ticker === "SPCX" ? -1 : b.ticker === "SPCX" ? 1 : a.daysLeft - b.daysLeft);
   }, [win, mcap, size, query]);
 
   const within14 = LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14).length;
@@ -60,6 +63,7 @@ function LockupPage() {
   const lockupDurations = LOCKUP_ROWS.flatMap((r) => r.lockupDays ? [r.lockupDays] : []);
   const avgLockup = lockupDurations.length ? Math.round(lockupDurations.reduce((sum, days) => sum + days, 0) / lockupDurations.length) : 0;
   const bigEvents = LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.importance === "high").length;
+  const spacex = LOCKUP_ROWS.find((r) => r.ticker === "SPCX");
 
   return (
     <PageShell>
@@ -78,6 +82,35 @@ function LockupPage() {
           <SummaryCard label="평균 락업 기간" value={`${avgLockup}일`} hint="추적 종목 기준" />
           <SummaryCard label="대형 이벤트" value={`${bigEvents}건`} hint="중요도 상위" tone="danger" />
         </section>
+
+        {spacex && (
+          <Card className="border-brand/30 bg-brand/[0.04]">
+            <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:p-5">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand">
+                <Rocket className="h-5 w-5" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-brand">주요 추적 이벤트</span>
+                  <ImportanceBadge importance="high" />
+                </div>
+                <h2 className="mt-1 text-lg font-semibold">스페이스X <span className="font-mono text-sm text-muted-foreground">SPCX</span></h2>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  시장 관심도가 높은 우주항공 IPO · 락업 해제 {spacex.unlockDate} · D-{spacex.daysLeft}
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs sm:text-right">
+                <div><span className="text-muted-foreground">관련 섹터</span><div className="font-medium">{spacex.sector}</div></div>
+                <div><span className="text-muted-foreground">시가총액</span><div className="font-medium">비상장·미수집</div></div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        <div className="flex items-start gap-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 text-xs text-muted-foreground">
+          <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+          <p><strong className="text-foreground">중요도 기준</strong> · 상: 14일 이내 또는 시장 주목 이벤트(SpaceX) · 중: 15~30일 · 하: 31일 이후. 해제 물량·가치가 수집되면 규모도 함께 반영합니다.</p>
+        </div>
 
         <div className="sticky top-14 z-30 -mx-4 flex flex-col gap-3 border-y border-border/70 bg-background/90 px-4 py-3 backdrop-blur lg:mx-0 lg:flex-row lg:items-end lg:gap-4 lg:rounded-xl lg:border">
           <SegBlock
@@ -173,7 +206,7 @@ function LockupPage() {
                           />
                         </div>
                         <div className="mt-1 text-[11px] text-muted-foreground tabular">
-                          해제일 {r.unlockDate} · 예상 가치 {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
+                          {r.sector || "섹터 미수집"} · 해제일 {r.unlockDate} · 예상 가치 {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
                         </div>
                       </div>
                     </li>
@@ -241,10 +274,11 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
           </p>
         </div>
         <div className="overflow-auto">
-          <table className="min-w-[1000px] w-full text-sm">
+          <table className="min-w-[1120px] w-full text-sm">
             <thead className="sticky top-0 bg-surface-2/60 text-[11px] uppercase tracking-wide text-muted-foreground">
               <tr>
                 <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">종목</th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">섹터·산업</th>
                 <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">IPO일</th>
                 <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">해제일</th>
                 <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">남은 일수</th>
@@ -266,6 +300,10 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                         {r.company}
                       </span>
                     </div>
+                  </td>
+                  <td className="whitespace-nowrap py-2.5 pr-3 text-xs">
+                    <div>{r.sector || "미수집"}</div>
+                    <div className="text-[11px] text-muted-foreground">{r.industry || "산업 미수집"}</div>
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-3 text-muted-foreground tabular">
                     {r.ipoDate}
@@ -291,7 +329,7 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
               {rows.length === 0 && (
                 <tr>
                   <td
-                    colSpan={8}
+                    colSpan={9}
                     className="py-10 text-center text-sm text-muted-foreground"
                   >
                     조건에 맞는 데이터가 없습니다.
@@ -337,6 +375,7 @@ function ImportanceBadge({ importance }: { importance: Importance }) {
         : { label: "중요도 하", cls: "border-border bg-muted text-muted-foreground" };
   return (
     <span
+      title="상: 14일 이내 또는 시장 주목 이벤트 · 중: 15~30일 · 하: 31일 이후"
       className={cn(
         "inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-medium",
         meta.cls,

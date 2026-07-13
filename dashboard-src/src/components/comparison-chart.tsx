@@ -156,7 +156,7 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
           </span>
         </div>
 
-        <div className="mt-4 h-[380px] w-full sm:h-[440px]">
+        <div className="mt-4 h-[420px] w-full sm:h-[500px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -4 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.5} />
