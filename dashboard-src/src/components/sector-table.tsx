@@ -335,9 +335,20 @@ function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
                     <td className="px-3 py-2 text-right tabular">${fmtPrice(company.price)}</td>
                     <td className={cn("px-3 py-2 text-right font-medium tabular", company.change > 0 ? "text-success" : company.change < 0 ? "text-danger" : "text-muted-foreground")}>{fmtPct(company.change)}</td>
                     <td className="px-3 py-2 text-right tabular">{fmtMoney(company.volume)}</td>
-                    {(["1d", "5d", "20d", "60d"] as const).map((period) => (
-                      <td key={period} className="px-3 py-2 text-right tabular">{fmtPct(company.volumeVs?.[period] ?? 0)}</td>
-                    ))}
+                    {(["1d", "5d", "20d", "60d"] as const).map((period) => {
+                      const value = company.volumeVs?.[period] ?? 0;
+                      return (
+                        <td
+                          key={period}
+                          className={cn(
+                            "px-3 py-2 text-right font-medium tabular",
+                            value > 0 ? "text-success" : value < 0 ? "text-danger" : "text-muted-foreground",
+                          )}
+                        >
+                          {fmtPct(value)}
+                        </td>
+                      );
+                    })}
                     <td className="px-3 py-2 text-right tabular text-muted-foreground">{fmtMcap(company.marketCap)}</td>
                     <td className="px-3 py-2 text-right">
                       <button
