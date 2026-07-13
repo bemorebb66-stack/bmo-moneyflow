@@ -366,8 +366,8 @@ footer b { color: #DC6B52; }
     </div>
     <nav class="service-nav" aria-label="BVT Money Flow 서비스">
       <a class="active" href="./">시장 흐름</a>
-      <a href="https://bemorebb66-stack.github.io/bmo-antman/?tab=insider">내부자 거래</a>
-      <a href="https://bemorebb66-stack.github.io/bmo-antman/?tab=lockup">IPO 락업</a>
+      <a href="/insider/">내부자 거래</a>
+      <a href="/ipo-lockup/">IPO 락업</a>
       <a href="today.html">오늘의 요약</a>
     </nav>
     <div class="dline">
@@ -779,8 +779,8 @@ function stockTable(stocks, gid){
       <td class="${cls(r60)}">${fmtPct(r60)}</td>
       <td style="white-space:nowrap">
         <button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""}>＋차트</button>
-        <a class="cross-link" href="https://bemorebb66-stack.github.io/bmo-antman/?tab=insider&amp;ticker=${encodeURIComponent(st.t)}" title="내부자 거래 보기">내부자</a>
-        <a class="cross-link" href="https://bemorebb66-stack.github.io/bmo-antman/?tab=lockup&amp;ticker=${encodeURIComponent(st.t)}" title="IPO 락업 보기">IPO</a>
+        <a class="cross-link" href="/insider/?ticker=${encodeURIComponent(st.t)}" title="내부자 거래 보기">내부자</a>
+        <a class="cross-link" href="/ipo-lockup/?ticker=${encodeURIComponent(st.t)}" title="IPO 락업 보기">IPO</a>
         <a href="https://news.google.com/search?q=${esc(st.t)}+stock" target="_blank" rel="noopener" title="관련 뉴스" style="text-decoration:none;margin:0 3px">📰</a>
         <button class="star ${S.watch.includes(st.t)?"on":""}" data-star="${esc(st.t)}">★</button>
       </td>
