@@ -59,7 +59,7 @@
   --shadow-sm: 0 1px 3px rgba(26,22,14,.05), 0 4px 16px -8px rgba(26,22,14,.10);
   --shadow: 0 1px 4px rgba(26,22,14,.06), 0 8px 28px -12px rgba(26,22,14,.14);
   --shadow-lg: 0 18px 50px -28px rgba(26,22,14,.28);
-  --serif: 'Playfair Display','Noto Sans KR',serif;
+  --serif: Georgia,'Times New Roman','Noto Sans KR',serif;
   --sans: 'Inter','Noto Sans KR',sans-serif;
   --mono: 'JetBrains Mono',ui-monospace,monospace;
   --r: 3px;
@@ -90,26 +90,27 @@ html { scroll-behavior: smooth; }
 body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14.5px; line-height: 1.55; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
 button, input, select { min-height: 40px; }
 button { touch-action: manipulation; }
-.wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 .mono, .num, td, th, .rot-val, .dline b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
 /* ── 마스트헤드 ── */
-header { padding: 14px 0 0; border-bottom: 2px solid var(--rule-heavy); background: color-mix(in srgb, var(--panel) 92%, transparent); }
+header { padding: 16px 0 0; border-top: 0; border-bottom: 1px solid var(--rule-heavy); background: color-mix(in srgb, var(--panel) 92%, transparent); }
 .mast-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
-.brand-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 9.5px; letter-spacing: .24em; color: var(--red); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+.brand-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .22em; color: var(--red); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
 .brand-eyebrow::before { content: ""; width: 20px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
-.mast h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(32px, 4.2vw, 46px); letter-spacing: -.02em; line-height: 1; }
-.mast h1 .flow { color: var(--red); font-style: italic; font-weight: 500; }
+.mast h1 { display:flex; align-items:baseline; gap:10px; font-family: var(--serif); font-weight: 700; font-size: 54px; letter-spacing: -.035em; line-height: 1; }
+.mast h1 .flow { color: var(--red); font-style: italic; font-weight: 600; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.tagline { margin-top: 5px; font-size: 12px; color: var(--muted); letter-spacing: .01em; }
-.mast-meta { align-self: flex-end; display: flex; gap: 10px; align-items: center; padding-bottom: 4px; }
+.tagline { margin: 8px 0 14px; font-size: 14px; font-weight:400; line-height:1.5; color: var(--muted); letter-spacing: 0; }
+.mast-meta { align-self: center; display: flex; gap: 10px; align-items: center; }
 .service-nav { display: flex; gap: 5px; overflow-x: auto; margin-top: 9px; padding-bottom: 7px; scrollbar-width: none; }
 .service-nav::-webkit-scrollbar { display: none; }
 .service-nav a { flex-shrink: 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); color: var(--muted); font-size: 11.5px; font-weight: 700; padding: 5px 10px; text-decoration: none; }
 .service-nav a:hover { color: var(--ink); border-color: var(--gold); }
 .service-nav a.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.theme-btn { border: 1px solid var(--rule); border-radius: 9px; background: var(--panel); color: var(--muted); font-size: 12px; padding: 7px 13px; cursor: pointer; font-family: var(--sans); font-weight: 600; transition: background .15s, color .15s, transform .15s; white-space: nowrap; }
-.theme-btn:hover { background: var(--panel2); color: var(--ink); }
+.theme-toggle { display:inline-flex; align-items:center; gap:2px; padding:3px; border:1px solid var(--rule); border-radius:999px; background:var(--panel); box-shadow:var(--shadow-sm); }
+.theme-toggle button { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; min-height:36px; padding:0; border:0; border-radius:50%; background:transparent; color:var(--muted); font-size:18px; cursor:pointer; }
+.theme-toggle button.active { background:var(--rule-heavy); color:var(--panel); }
 .dline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; margin-top: 7px; padding: 6px 0; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
 .dline b { color: var(--ink); font-weight: 600; font-size: 12px; }
 
@@ -309,7 +310,7 @@ footer b { color: #DC6B52; }
   .rot-brief { grid-template-columns: 1fr; }
   .rot-arrow { border: none; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); min-height: 10px; background: var(--panel2); }
   header { padding: 14px 0 0; }
-  .mast h1 { font-size: 36px; }
+  .mast h1 { font-size: 40px; gap:7px; }
   .tagline { font-size: 12.5px; }
   .dline { font-size: 11px; gap: 3px 14px; }
   .controls { margin-left: -14px; margin-right: -14px; padding: 9px 14px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; box-shadow: 0 8px 20px -18px rgba(0,0,0,.5); }
@@ -357,11 +358,14 @@ footer b { color: #DC6B52; }
     <div class="mast-top">
       <div class="mast">
         <div class="brand-eyebrow">BMO VALUE TALKS</div>
-        <h1><a href="./" title="처음 화면으로" style="color:inherit;text-decoration:none">Money <span class="flow">Flow</span></a><span class="sr-only"> — 미국 주식 섹터 자금 흐름 · 거래대금 추적기</span></h1>
+        <h1><a href="./" title="처음 화면으로" style="display:flex;align-items:baseline;gap:inherit;color:inherit;text-decoration:none"><span>Money</span><span class="flow">Flow</span></a><span class="sr-only"> — 미국 주식 섹터 자금 흐름 · 거래대금 추적기</span></h1>
         <p class="tagline">미국 주식 섹터 자금 흐름 · 거래대금 추적기</p>
       </div>
       <div class="mast-meta">
-        <button id="themeBtn" class="theme-btn">☾ 다크</button>
+        <div id="themeToggle" class="theme-toggle" aria-label="테마 변경">
+          <button type="button" data-theme-choice="light" aria-label="라이트 모드" title="라이트 모드">☀</button>
+          <button type="button" data-theme-choice="dark" aria-label="다크 모드" title="다크 모드">☾</button>
+        </div>
       </div>
     </div>
     <nav class="service-nav" aria-label="BVT Money Flow 서비스">
@@ -558,8 +562,10 @@ function applyTheme(t){
   document.documentElement.dataset.theme = t;
   LINE_COLORS = t==="dark" ? PAL_DARK : PAL_LIGHT;
   try{ localStorage.setItem("bmoTheme",t); }catch(e){}
-  const b = document.getElementById("themeBtn");
-  if(b) b.textContent = t==="dark" ? "☀ 라이트" : "☾ 다크";
+  document.querySelectorAll("[data-theme-choice]").forEach(b=>{
+    b.classList.toggle("active",b.dataset.themeChoice===t);
+    b.setAttribute("aria-pressed",String(b.dataset.themeChoice===t));
+  });
 }
 
 /* ═══ 해시 ═══ */
@@ -1217,8 +1223,9 @@ function bind(){
   try{t=localStorage.getItem("bmoTheme");}catch(e){}
   if(!t) t=(typeof matchMedia!=="undefined"&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";
   applyTheme(t);
-  const b=document.getElementById("themeBtn");
-  if(b) b.onclick=()=>{applyTheme(isDark()?"light":"dark"); render();};
+  document.querySelectorAll("[data-theme-choice]").forEach(b=>{
+    b.onclick=()=>{applyTheme(b.dataset.themeChoice); render();};
+  });
 })();
 
 loadHash();
