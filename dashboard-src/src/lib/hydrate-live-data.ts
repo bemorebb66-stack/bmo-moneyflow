@@ -1,5 +1,7 @@
 import {
   INSIDER_ROWS,
+  LIVE_COMPANIES_BY_ID,
+  LIVE_GROUP_COMPANIES,
   LIVE_GROUP_SERIES,
   LIVE_MARKET_DATA,
   LIVE_META,
@@ -9,6 +11,7 @@ import {
   SURGE_STOCKS,
   type InsiderRow,
   type LockupRow,
+  type MarketCompany,
   type MarketCategory,
   type MarketPeriod,
   type Sector,
@@ -58,6 +61,17 @@ const INDUSTRY_KO: Record<string, string> = {
   "Internet Content & Information": "인터넷 콘텐츠·정보",
   "Consumer Electronics": "가전·전자기기",
   "Communication Equipment": "통신장비",
+  "Computer Hardware": "컴퓨터 하드웨어",
+  "Industrial Distribution": "산업재 유통",
+  "Utilities - Regulated Gas": "가스(규제)",
+  "Medical Care Facilities": "의료시설",
+  "Furnishings, Fixtures & Appliances": "가구·가전",
+  "Building Products & Equipment": "건축자재·설비",
+  "Specialty Business Services": "기업 서비스",
+  "Travel Services": "여행",
+  "Insurance - Diversified": "보험(종합)",
+  "Grocery Stores": "식료품점",
+  "Integrated Freight & Logistics": "물류",
   "Auto Manufacturers": "자동차",
   "Auto Parts": "자동차 부품",
   "Internet Retail": "인터넷 소매",
@@ -193,6 +207,33 @@ export async function hydrateLiveData() {
     ]);
 
     const stocks = market.stocks as MarketStock[];
+    const totalMarketVolume = stocks.reduce((sum, stock) => sum + (Number(stock.dv) || 0), 0);
+    for (const stock of stocks) {
+      const company: MarketCompany = {
+        id: `stock:${stock.t}`, ticker: stock.t, name: stock.nko || stock.n,
+        sector: SECTOR_KO[stock.sec] || stock.sec,
+        industry: INDUSTRY_KO[stock.ind || ""] || stock.ind,
+        price: stock.c, change: stock.pc, volume: stock.dv / 1e6,
+        volumeRatio: stock.a20 ? stock.dv / stock.a20 : 0,
+        volumeVs: {
+          "1d": stock.dvp ? (stock.dv / stock.dvp - 1) * 100 : 0,
+          "5d": stock.a5 ? (stock.dv / stock.a5 - 1) * 100 : 0,
+          "20d": stock.a20 ? (stock.dv / stock.a20 - 1) * 100 : 0,
+          "60d": stock.a60 ? (stock.dv / stock.a60 - 1) * 100 : 0,
+        },
+        marketCap: stock.mc / 1e9,
+        share: totalMarketVolume ? stock.dv / totalMarketVolume * 100 : 0,
+        signal: stockSignalFor(stock.a20 ? (stock.dv / stock.a20 - 1) * 100 : 0, stock.pc),
+      };
+      LIVE_COMPANIES_BY_ID[company.id] = company;
+      for (const category of CATEGORIES) {
+        const id = groupId(rawGroupName(stock, category), category);
+        (LIVE_GROUP_COMPANIES[id] ??= []).push(company);
+      }
+    }
+    for (const companies of Object.values(LIVE_GROUP_COMPANIES)) {
+      companies.sort((a, b) => b.volume - a.volume);
+    }
     for (const category of CATEGORIES) {
       for (const period of PERIODS) {
         LIVE_MARKET_DATA[category][period] = aggregateMarket(stocks, category, period);
@@ -234,6 +275,14 @@ export async function hydrateLiveData() {
         LIVE_GROUP_SERIES[id] = series;
         if (category === "sector") LIVE_SECTOR_SERIES[id] = series;
       }
+    }
+    for (const [ticker, values] of Object.entries(history.stocks ?? {})) {
+      if (!Array.isArray(values) || !values.length) continue;
+      const first = Number(values[0]) || 1;
+      LIVE_GROUP_SERIES[`stock:${ticker}`] = values.map((value, index) => ({
+        date: `${Number(dates[index].slice(5, 7))}/${Number(dates[index].slice(8, 10))}`,
+        value: Number((Number(value) / first * 100).toFixed(2)),
+      }));
     }
 
     const insiderRows: InsiderRow[] = (insider.trades ?? [])

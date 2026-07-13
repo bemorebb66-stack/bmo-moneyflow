@@ -13,7 +13,7 @@ import { X } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { generateSeries, type Sector } from "@/lib/mock-data";
+import { generateSeries, LIVE_COMPANIES_BY_ID, type Sector } from "@/lib/mock-data";
 
 export type Metric = "index" | "share" | "change";
 export type Range = "5d" | "20d" | "60d";
@@ -49,7 +49,15 @@ interface Props {
 
 export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, range, onRange }: Props) {
   const [yScale, setYScale] = useState<YScale>("auto");
-  const rowMap = useMemo(() => new Map(rows.map((row) => [row.id, row])), [rows]);
+  const rowMap = useMemo(() => {
+    const items = new Map<string, { id: string; name: string; share: number }>();
+    rows.forEach((row) => items.set(row.id, row));
+    selected.forEach((id) => {
+      const company = LIVE_COMPANIES_BY_ID[id];
+      if (company) items.set(id, company);
+    });
+    return items;
+  }, [rows, selected]);
 
   const data = useMemo(() => {
     const days = RANGE_DAYS[range];
@@ -125,7 +133,23 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-1.5">
+        <div className="mt-4 flex flex-wrap items-center gap-2 border-y border-border/70 py-3">
+          <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+            프리셋
+          </span>
+          {PRESETS.filter((p) => p.ids.every((id) => rowMap.has(id))).map((p) => (
+            <button
+              key={p.label}
+              onClick={() => applyPreset(p.ids)}
+              className="rounded-md border border-dashed border-border/80 px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:bg-secondary hover:text-foreground"
+            >
+              {p.label}
+            </button>
+          ))}
+          <span className="ml-auto text-[11px] text-muted-foreground">프리셋 선택 후 기업을 추가해 세부 비교할 수 있어요.</span>
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
           {selected.map((id, idx) => {
             const s = rowMap.get(id);
             if (!s) return null;
@@ -244,20 +268,6 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
           </ResponsiveContainer>
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border/70 pt-3">
-          <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-            프리셋
-          </span>
-          {PRESETS.filter((p) => p.ids.every((id) => rowMap.has(id))).map((p) => (
-            <button
-              key={p.label}
-              onClick={() => applyPreset(p.ids)}
-              className="rounded-md border border-dashed border-border/80 px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:bg-secondary hover:text-foreground"
-            >
-              {p.label}
-            </button>
-          ))}
-        </div>
       </CardContent>
     </Card>
   );

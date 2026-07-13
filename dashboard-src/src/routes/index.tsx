@@ -10,7 +10,7 @@ import {
 import { ComparisonChart, type Metric, type Range } from "@/components/comparison-chart";
 import { SectorTable } from "@/components/sector-table";
 import { ReadingGuide } from "@/components/reading-guide";
-import { LIVE_MARKET_DATA, SECTORS, type Sector } from "@/lib/mock-data";
+import { LIVE_COMPANIES_BY_ID, LIVE_MARKET_DATA, SECTORS, type Sector } from "@/lib/mock-data";
 
 const INITIAL_GROUPS = ["technology", "communication", "financial"];
 const CATEGORY_LABELS: Record<Category, string> = {
@@ -48,7 +48,9 @@ function readUrlState() {
 }
 
 function initialSelection(groups: string[], rows: Sector[]) {
-  const resolved = groups.map((id) => LEGACY_SECTOR_IDS[id] ?? id).filter((id) => rows.some((row) => row.id === id));
+  const resolved = groups.map((id) => LEGACY_SECTOR_IDS[id] ?? id).filter((id) =>
+    rows.some((row) => row.id === id) || Boolean(LIVE_COMPANIES_BY_ID[id]),
+  );
   return (resolved.length ? resolved : rows.slice(0, 3).map((row) => row.id)).slice(0, 8);
 }
 
@@ -103,7 +105,7 @@ function MarketFlowPage() {
 
   useEffect(() => {
     setSelected((current) => {
-      const valid = current.filter((id) => rows.some((row) => row.id === id));
+      const valid = current.filter((id) => rows.some((row) => row.id === id) || Boolean(LIVE_COMPANIES_BY_ID[id]));
       return valid.length ? valid : rows.slice(0, 3).map((row) => row.id);
     });
   }, [category, period, rows]);
@@ -153,7 +155,7 @@ function MarketFlowPage() {
         <p className="-mt-2 text-xs text-muted-foreground" aria-live="polite">
           현재 조건 · {CATEGORY_LABELS[category]} · {PERIOD_LABELS[period]} 기준 · {rows.length}개 그룹
         </p>
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.7fr)_minmax(360px,0.8fr)]">
+        <div className="grid gap-5">
           <ComparisonChart
             rows={rows}
             selected={selected}
@@ -167,6 +169,7 @@ function MarketFlowPage() {
             data={rows}
             selectedIds={selected}
             onToggleCompare={toggleCompare}
+            onAddCompany={toggleCompare}
             query={query}
             categoryLabel={CATEGORY_LABELS[category]}
             periodLabel={PERIOD_LABELS[period]}

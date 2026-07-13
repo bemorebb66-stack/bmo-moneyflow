@@ -35,6 +35,11 @@ export interface StockRow {
   hasNews?: boolean;
 }
 
+export interface MarketCompany extends StockRow {
+  id: string;
+  share: number;
+}
+
 export const SECTORS: Sector[] = [
   {
     id: "technology",
@@ -178,6 +183,8 @@ export const LIVE_META = {
 
 export const LIVE_SECTOR_SERIES: Record<string, { date: string; value: number }[]> = {};
 export const LIVE_GROUP_SERIES: Record<string, { date: string; value: number }[]> = {};
+export const LIVE_GROUP_COMPANIES: Record<string, MarketCompany[]> = {};
+export const LIVE_COMPANIES_BY_ID: Record<string, MarketCompany> = {};
 export const LIVE_MARKET_DATA: Record<MarketCategory, Record<MarketPeriod, Sector[]>> = {
   sector: { "1d": [], "5d": [], "20d": [], "60d": [] },
   industry: { "1d": [], "5d": [], "20d": [], "60d": [] },

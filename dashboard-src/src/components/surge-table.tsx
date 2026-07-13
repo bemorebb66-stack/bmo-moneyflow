@@ -15,8 +15,26 @@ const PERIODS: { id: MarketPeriod; label: string }[] = [
   { id: "60d", label: "60일 대비" },
 ];
 
+type SortKey = "price" | "change" | "volume" | MarketPeriod | "marketCap" | "signal";
+type SortMode = "desc" | "asc" | "average";
+const SIGNAL_RANK = { inflow: 3, neutral: 2, "attention-loss": 1, outflow: 0 } as const;
+const SORT_LABEL: Record<SortKey, string> = {
+  price: "가격", change: "등락", volume: "거래대금", "1d": "1D", "5d": "5D",
+  "20d": "20D", "60d": "60D", marketCap: "시총", signal: "신호",
+};
+
+const sortValue = (stock: (typeof SURGE_STOCKS)[number], key: SortKey) => {
+  if (key === "price") return stock.price;
+  if (key === "change") return stock.change;
+  if (key === "volume") return stock.volume;
+  if (key === "marketCap") return stock.marketCap;
+  if (key === "signal") return SIGNAL_RANK[stock.signal];
+  return stock.volumeVs?.[key] ?? 0;
+};
+
 export function SurgeTable() {
   const [period, setPeriod] = useState<MarketPeriod>("20d");
+  const [sort, setSort] = useState<{ key: SortKey; mode: SortMode }>({ key: "20d", mode: "desc" });
   const [query, setQuery] = useState("");
   const [watch, setWatch] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem("bmoWatch") || "[]"); } catch { return []; }
@@ -28,11 +46,25 @@ export function SurgeTable() {
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return SURGE_STOCKS.filter((stock) =>
+    const filtered = SURGE_STOCKS.filter((stock) =>
       !q || stock.ticker.toLowerCase().includes(q) || stock.name.toLowerCase().includes(q) ||
       stock.sector.toLowerCase().includes(q) || stock.industry?.toLowerCase().includes(q),
-    ).sort((a, b) => (b.volumeVs?.[period] ?? 0) - (a.volumeVs?.[period] ?? 0));
-  }, [period, query]);
+    );
+    const average = filtered.length
+      ? filtered.reduce((sum, stock) => sum + sortValue(stock, sort.key), 0) / filtered.length
+      : 0;
+    return filtered.sort((a, b) => {
+      const av = sortValue(a, sort.key);
+      const bv = sortValue(b, sort.key);
+      if (sort.mode === "average") return Math.abs(av - average) - Math.abs(bv - average);
+      return sort.mode === "desc" ? bv - av : av - bv;
+    });
+  }, [query, sort]);
+
+  const cycleSort = (key: SortKey) => setSort((current) => ({
+    key,
+    mode: current.key !== key ? "desc" : current.mode === "desc" ? "asc" : current.mode === "asc" ? "average" : "desc",
+  }));
 
   const toggleWatch = (ticker: string) =>
     setWatch((current) => current.includes(ticker)
@@ -46,7 +78,7 @@ export function SurgeTable() {
           <div>
             <h2 className="text-base font-semibold sm:text-lg">거래대금 급증 종목</h2>
             <p className="text-[11px] text-muted-foreground">
-              선택 기간 평균 대비 거래대금 증가율 순 · {rows.length}건
+              선택 기간 평균 대비 거래대금 증가율 · {rows.length}건 · 현재 {SORT_LABEL[sort.key]} {sort.mode === "desc" ? "높은 순" : sort.mode === "asc" ? "낮은 순" : "평균 근접 순"}
             </p>
           </div>
           <div className="flex min-w-0 flex-col gap-1 lg:ml-5">
@@ -57,7 +89,7 @@ export function SurgeTable() {
                   key={item.id}
                   role="tab"
                   aria-selected={period === item.id}
-                  onClick={() => setPeriod(item.id)}
+                  onClick={() => { setPeriod(item.id); setSort({ key: item.id, mode: "desc" }); }}
                   className={cn(
                     "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium",
                     period === item.id ? "bg-brand text-brand-foreground" : "text-muted-foreground hover:bg-secondary",
@@ -87,16 +119,14 @@ export function SurgeTable() {
                 <tr>
                   <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">종목</th>
                   <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">섹터·산업</th>
-                  <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">가격</th>
-                  <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">등락</th>
-                  <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">거래대금</th>
+                  <SortableTh label="가격" sortKey="price" sort={sort} onSort={cycleSort} />
+                  <SortableTh label="등락" sortKey="change" sort={sort} onSort={cycleSort} />
+                  <SortableTh label="거래대금" sortKey="volume" sort={sort} onSort={cycleSort} />
                   {PERIODS.map((item) => (
-                    <th key={item.id} className={cn("whitespace-nowrap py-2.5 pr-3 text-right font-medium", period === item.id && "text-foreground")}>
-                      {item.id.toUpperCase()} 대비
-                    </th>
+                    <SortableTh key={item.id} label={`${item.id.toUpperCase()} 대비`} sortKey={item.id} sort={sort} onSort={cycleSort} active={period === item.id} />
                   ))}
-                  <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">시총</th>
-                  <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">신호</th>
+                  <SortableTh label="시총" sortKey="marketCap" sort={sort} onSort={cycleSort} />
+                  <SortableTh label="신호" sortKey="signal" sort={sort} onSort={cycleSort} align="left" />
                   <th className="whitespace-nowrap py-2.5 pr-4 text-right font-medium">액션</th>
                 </tr>
               </thead>
@@ -151,6 +181,32 @@ export function SurgeTable() {
         </TooltipProvider>
       </CardContent>
     </Card>
+  );
+}
+
+function SortableTh({ label, sortKey, sort, onSort, active, align = "right" }: {
+  label: string;
+  sortKey: SortKey;
+  sort: { key: SortKey; mode: SortMode };
+  onSort: (key: SortKey) => void;
+  active?: boolean;
+  align?: "left" | "right";
+}) {
+  const selected = sort.key === sortKey;
+  const indicator = !selected ? "" : sort.mode === "desc" ? "↓" : sort.mode === "asc" ? "↑" : "≈";
+  const description = !selected ? "정렬" : sort.mode === "desc" ? "높은 순" : sort.mode === "asc" ? "낮은 순" : "평균 근접 순";
+  return (
+    <th className={cn("whitespace-nowrap py-2.5 pr-3 font-medium", align === "right" ? "text-right" : "text-left", active && "text-foreground")}>
+      <button
+        type="button"
+        onClick={() => onSort(sortKey)}
+        title={`${label} · 클릭할 때 높은 순 → 낮은 순 → 평균 근접 순`}
+        aria-label={`${label} 정렬 · 현재 ${description}`}
+        className="inline-flex items-center gap-1 rounded px-1 py-0.5 hover:bg-secondary hover:text-foreground"
+      >
+        {label} <span className="w-3 text-center text-[10px]">{indicator}</span>
+      </button>
+    </th>
   );
 }
 

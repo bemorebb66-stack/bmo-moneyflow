@@ -3,8 +3,8 @@ import { ArrowUpDown, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { SignalBadge, DeltaText } from "./signal-badge";
 import { cn } from "@/lib/utils";
-import type { Sector } from "@/lib/mock-data";
-import { fmtBp, fmtMoney, fmtPct } from "@/lib/format";
+import { LIVE_GROUP_COMPANIES, type Sector } from "@/lib/mock-data";
+import { fmtBp, fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 
 type SortKey = "volume" | "volumeChange" | "priceChange" | "shareDelta";
 
@@ -12,12 +12,13 @@ interface Props {
   data: Sector[];
   selectedIds: string[];
   onToggleCompare: (id: string) => void;
+  onAddCompany: (id: string) => void;
   query: string;
   categoryLabel: string;
   periodLabel: string;
 }
 
-export function SectorTable({ data, selectedIds, onToggleCompare, query, categoryLabel, periodLabel }: Props) {
+export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, query, categoryLabel, periodLabel }: Props) {
   const [sortKey, setSortKey] = useState<SortKey>("volume");
   const [dir, setDir] = useState<"desc" | "asc">("desc");
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -28,7 +29,9 @@ export function SectorTable({ data, selectedIds, onToggleCompare, query, categor
       ? data.filter(
           (s) =>
             s.name.toLowerCase().includes(q) ||
-            s.leaders.some((t) => t.toLowerCase().includes(q)),
+            (LIVE_GROUP_COMPANIES[s.id] ?? []).some((company) =>
+              company.ticker.toLowerCase().includes(q) || company.name.toLowerCase().includes(q),
+            ),
         )
       : data;
     return [...filtered].sort((a, b) => {
@@ -155,7 +158,14 @@ export function SectorTable({ data, selectedIds, onToggleCompare, query, categor
                         <SignalBadge signal={s.signal} />
                       </td>
                     </tr>
-                    {isOpen && <ExpandedRow sector={s} periodLabel={periodLabel} />}
+                    {isOpen && (
+                      <ExpandedRow
+                        sector={s}
+                        periodLabel={periodLabel}
+                        selectedIds={selectedIds}
+                        onAddCompany={onAddCompany}
+                      />
+                    )}
                   </Fragment>
                 );
               })}
@@ -281,53 +291,69 @@ function MobileStat({
   );
 }
 
-function ExpandedRow({ sector, periodLabel }: { sector: Sector; periodLabel: string }) {
+function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
+  sector: Sector;
+  periodLabel: string;
+  selectedIds: string[];
+  onAddCompany: (id: string) => void;
+}) {
+  const companies = LIVE_GROUP_COMPANIES[sector.id] ?? [];
   return (
     <tr className="bg-surface-2/40">
       <td colSpan={6} className="px-4 py-4">
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
-              리더 종목
-            </div>
-            <div className="mt-1.5 flex flex-wrap gap-1.5">
-              {sector.leaders.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-md border border-border bg-background px-1.5 py-0.5 font-mono text-[11px] tabular"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+            <h3 className="text-sm font-semibold">{sector.name} 소속 기업 · {companies.length}개</h3>
+            <p className="mt-0.5 text-xs text-muted-foreground">{describe(sector)} 기업별 버튼을 눌러 위 차트에 추가할 수 있습니다.</p>
           </div>
-          <div>
-            <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
-              해석
-            </div>
-            <p className="mt-1 text-xs leading-relaxed text-foreground/80">
-              {describe(sector)}
-            </p>
-          </div>
-          <div>
-            <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
-              {periodLabel} 대비 강도
-            </div>
-            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-              <div
-                className={cn(
-                  "h-full rounded-full",
-                  sector.volumeChange > 0 ? "bg-success" : "bg-danger",
-                )}
-                style={{
-                  width: `${Math.min(100, Math.abs(sector.volumeChange) * 3)}%`,
-                }}
-              />
-            </div>
-            <div className="mt-1 text-[11px] text-muted-foreground tabular">
-              {periodLabel} 기준 거래대금 {fmtPct(sector.volumeChange)}
-            </div>
-          </div>
+          <span className="text-xs text-muted-foreground">{periodLabel} 거래대금 변화 {fmtPct(sector.volumeChange)}</span>
+        </div>
+        <div className="mt-3 max-h-[420px] overflow-auto rounded-lg border border-border/70 bg-background">
+          <table className="min-w-[1050px] w-full text-xs">
+            <thead className="sticky top-0 z-10 bg-surface-2 text-[10px] uppercase tracking-wide text-muted-foreground">
+              <tr>
+                <th className="px-3 py-2 text-left font-medium">기업</th>
+                <th className="px-3 py-2 text-left font-medium">산업</th>
+                <th className="px-3 py-2 text-right font-medium">가격</th>
+                <th className="px-3 py-2 text-right font-medium">등락</th>
+                <th className="px-3 py-2 text-right font-medium">거래대금</th>
+                <th className="px-3 py-2 text-right font-medium">1D</th>
+                <th className="px-3 py-2 text-right font-medium">5D</th>
+                <th className="px-3 py-2 text-right font-medium">20D</th>
+                <th className="px-3 py-2 text-right font-medium">60D</th>
+                <th className="px-3 py-2 text-right font-medium">시총</th>
+                <th className="px-3 py-2 text-right font-medium">비교</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60">
+              {companies.map((company) => {
+                const selected = selectedIds.includes(company.id);
+                return (
+                  <tr key={company.id} className="hover:bg-secondary/40">
+                    <td className="px-3 py-2"><span className="font-mono font-semibold">{company.ticker}</span><span className="ml-2 text-muted-foreground">{company.name}</span></td>
+                    <td className="px-3 py-2 text-muted-foreground">{company.industry || "미수집"}</td>
+                    <td className="px-3 py-2 text-right tabular">${fmtPrice(company.price)}</td>
+                    <td className={cn("px-3 py-2 text-right font-medium tabular", company.change > 0 ? "text-success" : company.change < 0 ? "text-danger" : "text-muted-foreground")}>{fmtPct(company.change)}</td>
+                    <td className="px-3 py-2 text-right tabular">{fmtMoney(company.volume)}</td>
+                    {(["1d", "5d", "20d", "60d"] as const).map((period) => (
+                      <td key={period} className="px-3 py-2 text-right tabular">{fmtPct(company.volumeVs?.[period] ?? 0)}</td>
+                    ))}
+                    <td className="px-3 py-2 text-right tabular text-muted-foreground">{fmtMcap(company.marketCap)}</td>
+                    <td className="px-3 py-2 text-right">
+                      <button
+                        type="button"
+                        onClick={() => onAddCompany(company.id)}
+                        aria-pressed={selected}
+                        className={cn("rounded-md border px-2 py-1 text-[11px] font-medium", selected ? "border-brand/30 bg-brand/10 text-brand" : "border-border hover:bg-secondary")}
+                      >
+                        {selected ? "비교 중" : "차트 추가"}
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </td>
     </tr>
