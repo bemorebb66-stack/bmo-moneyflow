@@ -103,6 +103,11 @@ header { padding: 14px 0 0; border-bottom: 2px solid var(--rule-heavy); backgrou
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .tagline { margin-top: 5px; font-size: 12px; color: var(--muted); letter-spacing: .01em; }
 .mast-meta { align-self: flex-end; display: flex; gap: 10px; align-items: center; padding-bottom: 4px; }
+.service-nav { display: flex; gap: 5px; overflow-x: auto; margin-top: 9px; padding-bottom: 7px; scrollbar-width: none; }
+.service-nav::-webkit-scrollbar { display: none; }
+.service-nav a { flex-shrink: 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); color: var(--muted); font-size: 11.5px; font-weight: 700; padding: 5px 10px; text-decoration: none; }
+.service-nav a:hover { color: var(--ink); border-color: var(--gold); }
+.service-nav a.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .theme-btn { border: 1px solid var(--rule); border-radius: 9px; background: var(--panel); color: var(--muted); font-size: 12px; padding: 7px 13px; cursor: pointer; font-family: var(--sans); font-weight: 600; transition: background .15s, color .15s, transform .15s; white-space: nowrap; }
 .theme-btn:hover { background: var(--panel2); color: var(--ink); }
 .dline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 20px; margin-top: 7px; padding: 6px 0; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
@@ -253,6 +258,8 @@ tbody tr:hover td { background: var(--panel2); }
 .addc { border: 1px solid var(--rule); border-radius: 5px; background: transparent; cursor: pointer; padding: 3px 8px; color: var(--red); font-weight: 600; font-size: 11px; font-family: var(--sans); transition: background .12s; }
 .addc:hover { background: var(--red-soft); }
 .addc:disabled { opacity: .35; cursor: default; }
+.cross-link { display: inline-block; border: 1px solid var(--rule); border-radius: 5px; color: var(--muted); font-family: var(--sans); font-size: 10.5px; font-weight: 700; padding: 3px 7px; text-decoration: none; }
+.cross-link:hover { color: var(--red); border-color: var(--red); background: var(--red-soft); }
 .star { border: none; background: none; cursor: pointer; font-size: 14px; color: var(--faint); opacity: .7; padding: 0 2px; transition: opacity .12s; }
 .star.on { color: #D9A441; opacity: 1; }
 .spk { vertical-align: -3px; margin-left: 8px; }
@@ -357,6 +364,12 @@ footer b { color: #DC6B52; }
         <button id="themeBtn" class="theme-btn">☾ 다크</button>
       </div>
     </div>
+    <nav class="service-nav" aria-label="BVT Money Flow 서비스">
+      <a class="active" href="./">시장 흐름</a>
+      <a href="https://bemorebb66-stack.github.io/bmo-antman/?tab=insider">내부자 거래</a>
+      <a href="https://bemorebb66-stack.github.io/bmo-antman/?tab=lockup">IPO 락업</a>
+      <a href="today.html">오늘의 요약</a>
+    </nav>
     <div class="dline">
       <span><b id="d-count">—</b>종목 추적</span>
       <span>기준일 <b id="d-date">—</b> · 갱신 <span id="d-updated">—</span></span>
@@ -766,6 +779,8 @@ function stockTable(stocks, gid){
       <td class="${cls(r60)}">${fmtPct(r60)}</td>
       <td style="white-space:nowrap">
         <button class="addc" data-addchart="${esc(st.t)}" ${S.selStocks.includes(st.t)?"disabled":""}>＋차트</button>
+        <a class="cross-link" href="https://bemorebb66-stack.github.io/bmo-antman/?tab=insider&amp;ticker=${encodeURIComponent(st.t)}" title="내부자 거래 보기">내부자</a>
+        <a class="cross-link" href="https://bemorebb66-stack.github.io/bmo-antman/?tab=lockup&amp;ticker=${encodeURIComponent(st.t)}" title="IPO 락업 보기">IPO</a>
         <a href="https://news.google.com/search?q=${esc(st.t)}+stock" target="_blank" rel="noopener" title="관련 뉴스" style="text-decoration:none;margin:0 3px">📰</a>
         <button class="star ${S.watch.includes(st.t)?"on":""}" data-star="${esc(st.t)}">★</button>
       </td>
@@ -1207,6 +1222,8 @@ function bind(){
 })();
 
 loadHash();
+const linkedTicker=new URLSearchParams(location.search).get("ticker");
+if(linkedTicker) S.query=linkedTicker.trim().toUpperCase();
 S.watch=loadWatch();
 S.rotCollapsed=loadRotCollapsed();
 window.addEventListener("hashchange",()=>{
