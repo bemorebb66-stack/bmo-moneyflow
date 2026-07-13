@@ -95,6 +95,9 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
       <CardContent className="p-4 sm:p-5">
         <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div className="min-w-0">
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+              GROUP COMPARISON
+            </div>
             <h2 className="text-base font-semibold sm:text-lg">그룹 비교 차트</h2>
             <p className="mt-0.5 text-xs text-muted-foreground">
               지수화·시장 점유율·변화율 기준으로 선택 그룹의 상대 흐름을 비교합니다.

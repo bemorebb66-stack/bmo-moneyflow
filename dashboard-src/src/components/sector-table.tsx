@@ -54,6 +54,9 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
       <CardContent className="p-0">
         <div className="flex items-center justify-between border-b border-border/70 px-4 py-3 sm:px-5">
           <div>
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+              SECTOR MAP
+            </div>
             <h2 className="text-base font-semibold sm:text-lg">{categoryLabel} 목록</h2>
             <p className="text-[11px] text-muted-foreground">
               거래대금·변화율·점유율 변화·신호별 정렬 · {rows.length}개 그룹

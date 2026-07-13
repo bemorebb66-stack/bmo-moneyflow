@@ -23,14 +23,14 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
 
   return (
     <section aria-label="오늘의 자금 로테이션" className="grid gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
-      <Card className="border-brand/15 bg-gradient-to-br from-brand/[0.06] to-transparent">
+      <Card className="border-brand/20 bg-brand/[0.055] dark:bg-brand/[0.08]">
         <CardContent className="p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-brand">
             <Sparkles className="h-3.5 w-3.5" />
-            {periodLabel} {categoryLabel} 자금 로테이션
+            MARKET PULSE · {periodLabel} {categoryLabel}
           </div>
           <p className="mt-2 text-base font-semibold leading-snug text-foreground sm:text-lg">
-            오늘은 {topNames}로 거래가 이동하고, {bottomNames}의 관심은 감소했습니다.
+            {topNames}로 관심 이동, {bottomNames} 비중은 축소
           </p>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             {topNames}의 거래 비중이 확대됐고, {bottomNames}에서는 시장 점유율이 축소됐습니다.
@@ -49,10 +49,11 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
             </Tooltip>
           </TooltipProvider>
           <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/70 pt-4 text-sm">
-            <Metric label="전체 거래대금" value={fmtMoney(totalVol)} />
+            <Metric label="전체 거래대금" value={fmtMoney(totalVol)} tone="brand" />
             <Metric
               label="상승 그룹"
               value={`${advancers} / ${rows.length}`}
+              tone="brand"
             />
             <Metric label="상승 비율" value={`${Math.round((advancers / Math.max(1, rows.length)) * 100)}%`} tone="success" />
           </div>
@@ -82,14 +83,16 @@ function Metric({
 }: {
   label: string;
   value: string;
-  tone?: "success" | "danger";
+  tone?: "brand" | "success" | "danger";
 }) {
   return (
     <div className="min-w-0">
       <div className="text-[11px] text-muted-foreground">{label}</div>
       <div
         className={`truncate text-base font-semibold tabular ${
-          tone === "success"
+          tone === "brand"
+            ? "text-brand"
+            : tone === "success"
             ? "text-success"
             : tone === "danger"
               ? "text-danger"

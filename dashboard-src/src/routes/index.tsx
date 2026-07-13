@@ -141,7 +141,7 @@ function MarketFlowPage() {
     <PageShell>
       <PageHeading
         title="시장 흐름"
-        description="거래대금·시장 점유율 변화로 오늘의 미국 시장 자금 로테이션을 한눈에 확인하세요."
+        description="거래대금 점유율 변화로 미국 시장의 관심 이동을 30초 안에 확인하세요."
       />
       <div className="space-y-5">
         <RotationSummary rows={rows} categoryLabel={CATEGORY_LABELS[category]} periodLabel={PERIOD_LABELS[period]} />
