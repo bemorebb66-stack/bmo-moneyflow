@@ -37,6 +37,7 @@ export const Route = createFileRoute("/insider")({
         content: "임원 매수·매도, 클러스터 거래, 최신 공시를 한 화면에서",
       },
     ],
+    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/insider/" }],
   }),
   component: InsiderPage,
 });

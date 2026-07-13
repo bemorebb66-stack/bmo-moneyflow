@@ -22,6 +22,7 @@ export const Route = createFileRoute("/ipo-lockup")({
         content: "IPO 이후 락업 해제 캘린더와 임박 이벤트를 추적",
       },
     ],
+    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/ipo-lockup/" }],
   }),
   component: LockupPage,
 });

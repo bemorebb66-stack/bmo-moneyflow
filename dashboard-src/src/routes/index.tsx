@@ -69,6 +69,7 @@ export const Route = createFileRoute("/")({
         content: "장 마감 기준 자금 유입·이탈 신호와 섹터 로테이션 데이터 대시보드",
       },
     ],
+    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/" }],
   }),
   component: MarketFlowPage,
 });

@@ -16,6 +16,7 @@ export const Route = createFileRoute("/scanner")({
         content: "장 마감 기준 거래대금이 급증한 미국 주식을 기간별로 비교",
       },
     ],
+    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/scanner/" }],
   }),
   component: ScannerPage,
 });

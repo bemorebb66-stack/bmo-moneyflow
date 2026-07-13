@@ -1,4 +1,5 @@
-import { Search, X } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { ChevronRight, Search, X } from "lucide-react";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 
@@ -98,7 +99,12 @@ function FilterGroup({
       <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
         {label}
       </span>
-      <div className="min-w-0 overflow-x-auto scrollbar-thin">{children}</div>
+      <div className="relative min-w-0">
+        {children}
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex w-9 items-center justify-end bg-gradient-to-l from-background via-background/85 to-transparent pr-0.5 lg:hidden" aria-hidden>
+          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+        </div>
+      </div>
     </div>
   );
 }
@@ -112,32 +118,37 @@ function Segmented<T extends string>({
   onValueChange: (v: T) => void;
   options: { id: T; label: string }[];
 }) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const selected = scrollerRef.current?.querySelector<HTMLElement>("[aria-selected='true']");
+    selected?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [value]);
+
   return (
-    <div
-      role="tablist"
-      className="inline-flex h-9 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5"
-    >
-      {options.map((opt) => {
-        const active = opt.id === value;
-        return (
-          <button
-            key={opt.id}
-            role="tab"
-            aria-selected={active}
-            onClick={() => onValueChange(opt.id)}
-            className={cn(
-              "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-              active
-                ? "bg-brand text-brand-foreground shadow-sm"
-                : "text-muted-foreground hover:bg-secondary hover:text-foreground",
-            )}
-          >
-            {opt.label}
-          </button>
-        );
-      })}
+    <div ref={scrollerRef} className="no-scrollbar overflow-x-auto pr-7 lg:pr-0">
+      <div role="tablist" className="inline-flex h-9 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5">
+        {options.map((opt) => {
+          const active = opt.id === value;
+          return (
+            <button
+              key={opt.id}
+              role="tab"
+              aria-selected={active}
+              onClick={() => onValueChange(opt.id)}
+              className={cn(
+                "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+                active
+                  ? "bg-brand text-brand-foreground shadow-sm"
+                  : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+              )}
+            >
+              {opt.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
-

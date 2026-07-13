@@ -1,5 +1,6 @@
-import { Sparkles, TrendingDown, TrendingUp } from "lucide-react";
+import { CircleHelp, Sparkles, TrendingDown, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { DeltaText } from "./signal-badge";
 import type { Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMoney } from "@/lib/format";
@@ -29,11 +30,24 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
             {periodLabel} {categoryLabel} 자금 로테이션
           </div>
           <p className="mt-2 text-base font-semibold leading-snug text-foreground sm:text-lg">
-            {topNames}의 시장 점유율 확대
+            오늘은 {topNames}로 거래가 이동하고, {bottomNames}의 관심은 감소했습니다.
           </p>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             {topNames}의 거래 비중이 확대됐고, {bottomNames}에서는 시장 점유율이 축소됐습니다.
           </p>
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button type="button" className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline">
+                  <CircleHelp className="h-3.5 w-3.5" />
+                  이게 왜 중요한가요?
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="max-w-xs text-xs leading-relaxed">
+                거래대금 점유율이 커지면 시장 참여자의 관심이 해당 그룹에 더 집중됐다는 뜻입니다. 실제 순매수액이 아니라 관심의 이동을 보여주는 지표입니다.
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/70 pt-4 text-sm">
             <Metric label="전체 거래대금" value={fmtMoney(totalVol)} />
             <Metric

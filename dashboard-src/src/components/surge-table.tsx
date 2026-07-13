@@ -17,6 +17,13 @@ const PERIODS: { id: MarketPeriod; label: string }[] = [
 
 type SortKey = "price" | "change" | "volume" | MarketPeriod | "marketCap" | "signal";
 type SortMode = "desc" | "asc" | "average";
+type InsightFilter = "all" | "new" | "persistent" | "overheated";
+const INSIGHT_FILTERS: { id: InsightFilter; label: string }[] = [
+  { id: "all", label: "전체" },
+  { id: "new", label: "신규 급증" },
+  { id: "persistent", label: "지속 유입" },
+  { id: "overheated", label: "과열 가능성" },
+];
 const SIGNAL_RANK = { inflow: 3, neutral: 2, "attention-loss": 1, outflow: 0 } as const;
 const SORT_LABEL: Record<SortKey, string> = {
   price: "가격", change: "등락", volume: "거래대금", "1d": "1D", "5d": "5D",
@@ -36,6 +43,7 @@ export function SurgeTable() {
   const [period, setPeriod] = useState<MarketPeriod>("20d");
   const [sort, setSort] = useState<{ key: SortKey; mode: SortMode }>({ key: "20d", mode: "desc" });
   const [query, setQuery] = useState("");
+  const [insight, setInsight] = useState<InsightFilter>("all");
   const [watch, setWatch] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem("bmoWatch") || "[]"); } catch { return []; }
   });
@@ -46,10 +54,19 @@ export function SurgeTable() {
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const filtered = SURGE_STOCKS.filter((stock) =>
-      !q || stock.ticker.toLowerCase().includes(q) || stock.name.toLowerCase().includes(q) ||
-      stock.sector.toLowerCase().includes(q) || stock.industry?.toLowerCase().includes(q),
-    );
+    const filtered = SURGE_STOCKS.filter((stock) => {
+      const matchesQuery = !q || stock.ticker.toLowerCase().includes(q) || stock.name.toLowerCase().includes(q) ||
+        stock.sector.toLowerCase().includes(q) || stock.industry?.toLowerCase().includes(q);
+      const current = stock.volumeVs?.[period] ?? 0;
+      const oneDay = stock.volumeVs?.["1d"] ?? 0;
+      const fiveDay = stock.volumeVs?.["5d"] ?? 0;
+      const twentyDay = stock.volumeVs?.["20d"] ?? 0;
+      const matchesInsight = insight === "all" ||
+        (insight === "new" && oneDay >= 30 && fiveDay < 20) ||
+        (insight === "persistent" && fiveDay >= 15 && twentyDay >= 15 && stock.change > 0) ||
+        (insight === "overheated" && current >= 100);
+      return matchesQuery && matchesInsight;
+    });
     const average = filtered.length
       ? filtered.reduce((sum, stock) => sum + sortValue(stock, sort.key), 0) / filtered.length
       : 0;
@@ -59,7 +76,7 @@ export function SurgeTable() {
       if (sort.mode === "average") return Math.abs(av - average) - Math.abs(bv - average);
       return sort.mode === "desc" ? bv - av : av - bv;
     });
-  }, [query, sort]);
+  }, [insight, period, query, sort]);
 
   const cycleSort = (key: SortKey) => setSort((current) => ({
     key,
@@ -112,6 +129,24 @@ export function SurgeTable() {
           </div>
         </div>
 
+        <div className="flex items-center gap-2 overflow-x-auto border-b border-border/70 px-4 py-2.5 sm:px-5 no-scrollbar" aria-label="해석형 필터">
+          <span className="shrink-0 text-[11px] font-medium text-muted-foreground">빠른 해석</span>
+          {INSIGHT_FILTERS.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setInsight(item.id)}
+              aria-pressed={insight === item.id}
+              className={cn(
+                "shrink-0 rounded-md border px-2.5 py-1.5 text-xs font-medium transition-colors",
+                insight === item.id ? "border-brand bg-brand text-brand-foreground" : "border-border bg-surface text-muted-foreground hover:bg-secondary hover:text-foreground",
+              )}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
         <TooltipProvider delayDuration={150}>
           <div className="max-h-[680px] overflow-auto">
             <table className="min-w-[1240px] w-full text-sm">
@@ -150,7 +185,9 @@ export function SurgeTable() {
                       const value = stock.volumeVs?.[item.id] ?? 0;
                       return (
                         <td key={item.id} className={cn("whitespace-nowrap py-2.5 pr-3 text-right font-medium tabular", period === item.id && "bg-brand/[0.04]", value > 0 ? "text-success" : value < 0 ? "text-danger" : "text-muted-foreground")}>
-                          {fmtPct(value)}
+                          <span title={Math.abs(value) >= 200 ? "평균 거래대금이 작거나 일시적 거래가 집중되면 변화율이 크게 확대될 수 있습니다." : undefined}>
+                            {fmtPct(value)}{Math.abs(value) >= 200 && <sup className="ml-0.5 text-[8px] text-warning">주의</sup>}
+                          </span>
                         </td>
                       );
                     })}
