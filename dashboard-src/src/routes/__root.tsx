@@ -81,8 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "장마감 거래대금과 시장 점유율로 미국 주식의 시장 관심 변화를 추적하는 데이터 대시보드",
       },
-      { name: "author", content: "BMO Value Talks" },
-      { property: "og:title", content: "BVT Money Flow by BMO Value Talks" },
+      { name: "author", content: "BVT Money Flow" },
+      { property: "og:title", content: "BVT Money Flow" },
       {
         property: "og:description",
         content: "미국 주식 종목·섹터별 거래대금과 시장 관심 변화 대시보드",

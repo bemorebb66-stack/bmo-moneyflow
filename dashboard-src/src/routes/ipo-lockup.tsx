@@ -73,17 +73,7 @@ function LockupPage() {
         description="IPO 이후 락업 해제 일정과 임박 이벤트, 예상 유통 가치까지 살펴보세요."
       />
 
-      <div className="space-y-5">
-        <section
-          aria-label="IPO 락업 요약"
-          className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          <SummaryCard label="14일 내 해제" value={`${within14}건`} hint="임박 이벤트" tone="danger" />
-          <SummaryCard label="30일 내 해제" value={`${within30}건`} hint="한 달 내 예정" tone="info" />
-          <SummaryCard label="평균 락업 기간" value={`${avgLockup}일`} hint="추적 종목 기준" />
-          <SummaryCard label="대형 이벤트" value={`${bigEvents}건`} hint="중요도 상위" tone="danger" />
-        </section>
-
+      <div className="space-y-4 sm:space-y-5">
         {spacex && (
           <Card className="border-brand/30 bg-brand/[0.04]">
             <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:p-5">
@@ -107,6 +97,16 @@ function LockupPage() {
             </CardContent>
           </Card>
         )}
+
+        <section
+          aria-label="IPO 락업 요약"
+          className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4"
+        >
+          <SummaryCard label="14일 내 해제" value={`${within14}건`} hint="임박 이벤트" tone="danger" />
+          <SummaryCard label="30일 내 해제" value={`${within30}건`} hint="한 달 내 예정" tone="info" />
+          <SummaryCard label="평균 락업 기간" value={`${avgLockup}일`} hint="추적 종목 기준" />
+          <SummaryCard label="대형 이벤트" value={`${bigEvents}건`} hint="중요도 상위" tone="danger" />
+        </section>
 
         <div className="flex items-start gap-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 text-xs text-muted-foreground">
           <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
@@ -155,7 +155,7 @@ function LockupPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="티커·기업 검색"
-              className="h-9 pl-9"
+              className="h-11 pl-9 lg:h-9"
             />
           </div>
         </div>
@@ -400,13 +400,13 @@ function SummaryCard({
 }) {
   return (
     <Card>
-      <CardContent className="p-4">
+      <CardContent className="p-3 sm:p-4">
         <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
           {label}
         </div>
         <div
           className={cn(
-            "mt-1.5 text-xl font-semibold tabular",
+            "mt-1 text-lg font-semibold tabular sm:mt-1.5 sm:text-xl",
             tone === "success" && "text-success",
             tone === "danger" && "text-danger",
             tone === "info" && "text-info",
@@ -438,7 +438,7 @@ function SegBlock({
       </span>
       <div
         role="tablist"
-        className="inline-flex h-9 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5"
+        className="inline-flex h-11 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 lg:h-9"
       >
         {options.map((opt) => {
           const active = opt.id === value;
@@ -449,7 +449,7 @@ function SegBlock({
               aria-selected={active}
               onClick={() => onChange(opt.id)}
               className={cn(
-                "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+                "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors lg:min-h-0",
                 active
                   ? "bg-brand text-brand-foreground shadow-sm"
                   : "text-muted-foreground hover:bg-secondary hover:text-foreground",

@@ -144,7 +144,7 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
             <button
               key={p.label}
               onClick={() => applyPreset(p.ids)}
-              className="rounded-md border border-dashed border-border/80 px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:bg-secondary hover:text-foreground"
+              className="min-h-10 rounded-md border border-dashed border-border/80 px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:bg-secondary hover:text-foreground sm:min-h-0 sm:px-2.5"
             >
               {p.label}
             </button>
@@ -170,7 +170,7 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
                 <button
                   onClick={() => removeSel(id)}
                   aria-label={`${s.name} 삭제`}
-                  className="grid h-5 w-5 place-items-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="grid h-8 w-8 place-items-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground sm:h-5 sm:w-5"
                 >
                   <X className="h-3 w-3" />
                 </button>
@@ -183,7 +183,7 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
           </span>
         </div>
 
-        <div className="mt-4 h-[420px] w-full sm:h-[500px]">
+        <div className="mt-4 h-[340px] w-full sm:h-[500px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -4 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.5} />
@@ -290,7 +290,7 @@ function ChartSeg({
   return (
     <div className="flex items-center gap-2">
       <span className="text-[11px] text-muted-foreground">{label}</span>
-      <div className="inline-flex h-8 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5">
+      <div className="inline-flex h-10 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 sm:h-8">
         {options.map((o) => {
           const active = o.id === value;
           return (
@@ -299,7 +299,7 @@ function ChartSeg({
               onClick={() => onChange(o.id)}
               aria-pressed={active}
               className={cn(
-                "rounded-md px-2.5 py-1 text-[11px] font-medium transition-colors",
+                "min-h-9 rounded-md px-2.5 py-1 text-[11px] font-medium transition-colors sm:min-h-0",
                 active
                   ? "bg-secondary text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground",
@@ -327,7 +327,7 @@ function AddButton({
   if (available.length === 0) return null;
   return (
     <div className="group relative">
-      <Button variant="outline" size="sm" className="h-7 rounded-full px-3 text-xs">
+      <Button variant="outline" size="sm" className="h-10 rounded-full px-3 text-xs sm:h-7">
         + 그룹 추가
       </Button>
       <div className="invisible absolute left-0 top-full z-20 mt-1 w-56 rounded-lg border border-border bg-popover p-1 opacity-0 shadow-md transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">

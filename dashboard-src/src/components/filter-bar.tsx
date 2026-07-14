@@ -69,14 +69,14 @@ export function FilterBar({
             onChange={(e) => onQuery(e.target.value)}
             placeholder="티커·기업명 검색 (예: NVDA, 테슬라)"
             aria-label="티커 또는 기업명 검색"
-            className="h-9 pl-9 pr-8"
+            className="h-11 pl-9 pr-11 lg:h-9 lg:pr-8"
           />
           {query && (
             <button
               type="button"
               onClick={() => onQuery("")}
               aria-label="검색어 지우기"
-              className="absolute right-2 top-1/2 grid h-6 w-6 -translate-y-1/2 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+              className="absolute right-1 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground lg:right-2 lg:h-6 lg:w-6"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -127,7 +127,7 @@ function Segmented<T extends string>({
 
   return (
     <div ref={scrollerRef} className="no-scrollbar overflow-x-auto pr-7 lg:pr-0">
-      <div role="tablist" className="inline-flex h-9 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5">
+      <div role="tablist" className="inline-flex h-11 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 lg:h-9">
         {options.map((opt) => {
           const active = opt.id === value;
           return (
@@ -137,7 +137,7 @@ function Segmented<T extends string>({
               aria-selected={active}
               onClick={() => onValueChange(opt.id)}
               className={cn(
-                "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+                "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors lg:min-h-0",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
                 active
                   ? "bg-brand text-brand-foreground shadow-sm"

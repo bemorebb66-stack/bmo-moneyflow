@@ -43,10 +43,7 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
           <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand text-brand-foreground">
             <TrendingUp className="h-4 w-4" />
           </div>
-          <div className="min-w-0 leading-tight">
-            <div className="truncate text-sm font-semibold">BVT Money Flow</div>
-            <div className="truncate text-[10px] font-medium text-muted-foreground">by BMO Value Talks</div>
-          </div>
+          <div className="truncate text-sm font-semibold tracking-tight">BVT Money Flow</div>
         </Link>
 
         <nav className="ml-6 hidden items-center gap-1 md:flex">
@@ -71,7 +68,7 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <StatusStrip asOf={asOf} updatedAt={updatedAt} universeCount={universeCount} status={status} />
+          <StatusStrip asOf={asOf} universeCount={universeCount} status={status} />
 
           <Button
             variant="ghost"
@@ -90,7 +87,7 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden"
+                className="h-10 w-10 md:hidden"
                 aria-label="메뉴 열기"
               >
                 <Menu className="h-5 w-5" />
@@ -147,12 +144,10 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
 
 function StatusStrip({
   asOf,
-  updatedAt,
   universeCount,
   status,
 }: {
   asOf: string;
-  updatedAt: string;
   universeCount: number;
   status: DataStatus;
 }) {
@@ -165,10 +160,6 @@ function StatusStrip({
       <span className="h-3 w-px bg-border" aria-hidden />
       <span>
         기준일 <span className="text-foreground">{asOf}</span>
-      </span>
-      <span className="h-3 w-px bg-border" aria-hidden />
-      <span>
-        갱신 <span className="text-foreground">{updatedAt}</span>
       </span>
       <span className="h-3 w-px bg-border" aria-hidden />
       <span>

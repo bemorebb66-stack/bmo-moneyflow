@@ -1,8 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { LineChart, Users, Rocket, Newspaper, Star, Search } from "lucide-react";
+import { LineChart, Users, Rocket, Newspaper, Star, Search, MoreHorizontal } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { SignalBadge, DeltaText } from "./signal-badge";
 import { SURGE_STOCKS, type MarketPeriod } from "@/lib/mock-data";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
@@ -100,7 +107,7 @@ export function SurgeTable() {
           </div>
           <div className="flex min-w-0 flex-col gap-1 lg:ml-5">
             <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">비교 기준</span>
-            <div role="tablist" className="inline-flex h-9 overflow-x-auto rounded-lg border border-border bg-surface p-0.5">
+            <div role="tablist" className="no-scrollbar inline-flex h-11 overflow-x-auto rounded-lg border border-border bg-surface p-0.5 sm:h-9">
               {PERIODS.map((item) => (
                 <button
                   key={item.id}
@@ -108,7 +115,7 @@ export function SurgeTable() {
                   aria-selected={period === item.id}
                   onClick={() => { setPeriod(item.id); setSort({ key: item.id, mode: "desc" }); }}
                   className={cn(
-                    "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium",
+                    "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium sm:min-h-0",
                     period === item.id ? "bg-brand text-brand-foreground" : "text-muted-foreground hover:bg-secondary",
                   )}
                 >
@@ -124,7 +131,7 @@ export function SurgeTable() {
               onChange={(event) => setQuery(event.target.value)}
               placeholder="티커·기업·섹터 검색"
               aria-label="급증 종목 검색"
-              className="h-9 pl-9"
+              className="h-11 pl-9 sm:h-9"
             />
           </div>
         </div>
@@ -138,7 +145,7 @@ export function SurgeTable() {
               onClick={() => setInsight(item.id)}
               aria-pressed={insight === item.id}
               className={cn(
-                "shrink-0 rounded-md border px-2.5 py-1.5 text-xs font-medium transition-colors",
+                "min-h-10 shrink-0 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors sm:min-h-0 sm:px-2.5",
                 insight === item.id ? "border-brand bg-brand text-brand-foreground" : "border-border bg-surface text-muted-foreground hover:bg-secondary hover:text-foreground",
               )}
             >
@@ -148,7 +155,8 @@ export function SurgeTable() {
         </div>
 
         <TooltipProvider delayDuration={150}>
-          <div className="max-h-[680px] overflow-auto">
+          <MobileStockList rows={rows} period={period} watch={watch} onToggleWatch={toggleWatch} />
+          <div className="hidden max-h-[680px] overflow-auto md:block">
             <table className="min-w-[1240px] w-full text-sm">
               <thead className="sticky top-0 z-10 bg-surface-2/90 text-[11px] uppercase tracking-wide text-muted-foreground backdrop-blur">
                 <tr>
@@ -221,6 +229,156 @@ export function SurgeTable() {
   );
 }
 
+function MobileStockList({
+  rows,
+  period,
+  watch,
+  onToggleWatch,
+}: {
+  rows: (typeof SURGE_STOCKS)[number][];
+  period: MarketPeriod;
+  watch: string[];
+  onToggleWatch: (ticker: string) => void;
+}) {
+  if (rows.length === 0) {
+    return <div className="py-12 text-center text-sm text-muted-foreground md:hidden">검색 결과가 없습니다.</div>;
+  }
+
+  return (
+    <div className="max-h-[680px] divide-y divide-border/70 overflow-y-auto md:hidden">
+      {rows.map((stock) => {
+        const periodValue = stock.volumeVs?.[period] ?? 0;
+        const watched = watch.includes(stock.ticker);
+        return (
+          <article key={stock.ticker} className="px-4 py-4">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-mono text-sm font-bold tabular">{stock.ticker}</span>
+                  <span className="truncate text-xs font-medium text-muted-foreground">{stock.name}</span>
+                </div>
+                <p className="mt-1 truncate text-xs text-muted-foreground">
+                  {stock.sector} · {stock.industry || "산업 미수집"} · {fmtMcap(stock.marketCap)}
+                </p>
+              </div>
+              <SignalBadge signal={stock.signal} size="xs" />
+            </div>
+
+            <div className="mt-3 grid grid-cols-4 gap-1 rounded-lg border border-border/70 bg-surface-2/55 p-2.5">
+              <MobileMetric label="거래대금" value={fmtMoney(stock.volume)} />
+              <MobileMetric
+                label={`${period.toUpperCase()} 대비`}
+                value={fmtPct(periodValue)}
+                tone={periodValue > 0 ? "success" : periodValue < 0 ? "danger" : undefined}
+                emphasized
+              />
+              <MobileMetric label="가격" value={`$${fmtPrice(stock.price)}`} />
+              <MobileMetric label="등락" value={<DeltaText value={stock.change} />} />
+            </div>
+
+            <div className="mt-3 flex items-center gap-2 border-t border-border/60 pt-3">
+              <a
+                href={`https://finance.yahoo.com/quote/${stock.ticker}/chart/`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-border bg-surface text-xs font-semibold transition-colors hover:bg-secondary"
+              >
+                <LineChart className="h-4 w-4" />
+                가격 차트
+              </a>
+              <MobileActionMenu stock={stock} watched={watched} onToggleWatch={onToggleWatch} />
+              <button
+                type="button"
+                onClick={() => onToggleWatch(stock.ticker)}
+                aria-label={watched ? `${stock.ticker} 관심 종목 제거` : `${stock.ticker} 관심 종목 추가`}
+                aria-pressed={watched}
+                className={cn(
+                  "grid h-10 w-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
+                  watched && "border-brand/30 bg-brand/10 text-brand",
+                )}
+              >
+                <Star className={cn("h-4 w-4", watched && "fill-current")} />
+              </button>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
+function MobileMetric({
+  label,
+  value,
+  tone,
+  emphasized,
+}: {
+  label: string;
+  value: React.ReactNode;
+  tone?: "success" | "danger";
+  emphasized?: boolean;
+}) {
+  return (
+    <div className={cn("min-w-0 text-center", emphasized && "rounded-md bg-brand/[0.07] py-1") }>
+      <div className="truncate text-[10px] text-muted-foreground">{label}</div>
+      <div className={cn(
+        "mt-0.5 truncate text-xs font-semibold tabular",
+        tone === "success" && "text-success",
+        tone === "danger" && "text-danger",
+      )}>
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function MobileActionMenu({
+  stock,
+  watched,
+  onToggleWatch,
+}: {
+  stock: (typeof SURGE_STOCKS)[number];
+  watched: boolean;
+  onToggleWatch: (ticker: string) => void;
+}) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-border bg-surface text-xs font-semibold transition-colors hover:bg-secondary"
+          aria-label={`${stock.ticker} 추가 정보`}
+        >
+          더보기
+          <MoreHorizontal className="h-4 w-4" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-52">
+        <DropdownMenuItem asChild className="min-h-10">
+          <a href={`/insider/?ticker=${encodeURIComponent(stock.ticker)}`}>
+            <Users /> 내부자 거래
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="min-h-10">
+          <a href={`/ipo-lockup/?ticker=${encodeURIComponent(stock.ticker)}`}>
+            <Rocket /> IPO 정보
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="min-h-10">
+          <a href={`https://finance.yahoo.com/quote/${stock.ticker}/news/`} target="_blank" rel="noreferrer">
+            <Newspaper /> 관련 뉴스
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="min-h-10" onSelect={() => onToggleWatch(stock.ticker)}>
+          <Star className={cn(watched && "fill-current text-brand")} />
+          {watched ? "관심 종목 제거" : "관심 종목 추가"}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 function SortableTh({ label, sortKey, sort, onSort, active, align = "right" }: {
   label: string;
   sortKey: SortKey;
@@ -251,7 +409,7 @@ function IconAction({ label, icon, active, onClick, href, external }: {
   label: string; icon: React.ReactNode; active?: boolean; onClick?: () => void; href?: string; external?: boolean;
 }) {
   const className = cn(
-    "relative grid h-7 w-7 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+    "relative grid h-8 w-8 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
     active && "text-brand",
   );
   const content = <>{icon}{active && <span className="absolute right-0.5 top-0.5 h-1.5 w-1.5 rounded-full bg-brand" aria-hidden />}</>;

@@ -91,10 +91,10 @@ function InsiderPage() {
         description="미국 상장기업 임원·이사회의 매수·매도 공시와 클러스터 거래 신호를 추적합니다."
       />
 
-      <div className="space-y-5">
+      <div className="space-y-4 sm:space-y-5">
         <section
           aria-label="내부자 거래 요약"
-          className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4"
         >
           <SummaryCard
             label="유효 공시"
@@ -152,7 +152,7 @@ function InsiderPage() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="티커·기업·내부자 검색"
               aria-label="검색"
-              className="h-9 pl-9"
+              className="h-11 pl-9 lg:h-9"
             />
           </div>
         </div>
@@ -384,13 +384,13 @@ function SummaryCard({
 }) {
   return (
     <Card>
-      <CardContent className="p-4">
+      <CardContent className="p-3 sm:p-4">
         <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
           {label}
         </div>
         <div
           className={cn(
-            "mt-1.5 text-xl font-semibold tabular",
+            "mt-1 text-lg font-semibold tabular sm:mt-1.5 sm:text-xl",
             tone === "success" && "text-success",
             tone === "danger" && "text-danger",
             tone === "info" && "text-info",
@@ -422,7 +422,7 @@ function SegBlock({
       </span>
       <div
         role="tablist"
-        className="inline-flex h-9 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5"
+        className="inline-flex h-11 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 lg:h-9"
       >
         {options.map((opt) => {
           const active = opt.id === value;
@@ -433,7 +433,7 @@ function SegBlock({
               aria-selected={active}
               onClick={() => onChange(opt.id)}
               className={cn(
-                "whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+                "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors lg:min-h-0",
                 active
                   ? "bg-brand text-brand-foreground shadow-sm"
                   : "text-muted-foreground hover:bg-secondary hover:text-foreground",

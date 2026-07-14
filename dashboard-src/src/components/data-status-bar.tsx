@@ -45,7 +45,7 @@ export function DataStatusBar() {
 
   return (
     <div className={cn(
-      "mt-3 rounded-lg border px-3 py-2.5 text-[11px]",
+      "mt-3 rounded-lg border px-3 py-2.5 text-xs sm:text-[11px]",
       warning ? "border-warning/30 bg-warning/[0.07]" : "border-border/70 bg-surface",
     )} role="status" aria-live="polite">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground">
@@ -61,7 +61,7 @@ export function DataStatusBar() {
           <StatusIcon className="h-3.5 w-3.5" />
           {status.label}
         </span>
-        <a href="/methodology/" className="ml-auto inline-flex items-center gap-1.5 font-semibold text-brand hover:underline">
+        <a href="/methodology/" className="ml-auto inline-flex min-h-8 items-center gap-1.5 font-semibold text-brand hover:underline sm:min-h-0">
           <FlaskConical className="h-3.5 w-3.5" />
           출처·산식 보기
         </a>

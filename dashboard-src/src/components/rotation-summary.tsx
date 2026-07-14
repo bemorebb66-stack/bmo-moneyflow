@@ -1,4 +1,5 @@
-import { CircleHelp, Sparkles, TrendingDown, TrendingUp } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, CircleHelp, Sparkles, TrendingDown, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { DeltaText } from "./signal-badge";
@@ -22,8 +23,8 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
   const bottomNames = outflows.slice(0, 2).map((row) => row.name).join("·");
 
   return (
-    <section aria-label="오늘의 거래대금 로테이션" className="grid gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
-      <Card className="border-brand/20 bg-brand/[0.055] dark:bg-brand/[0.08]">
+    <section aria-label="오늘의 거래대금 로테이션" className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <Card className="col-span-2 border-brand/20 bg-brand/[0.055] dark:bg-brand/[0.08] lg:col-span-1">
         <CardContent className="p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-brand">
             <Sparkles className="h-3.5 w-3.5" />
@@ -35,19 +36,28 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             {topNames}의 거래 비중이 확대됐고, {bottomNames}에서는 시장 점유율이 축소됐습니다.
           </p>
-          <TooltipProvider delayDuration={100}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button type="button" className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline">
-                  <CircleHelp className="h-3.5 w-3.5" />
-                  이게 왜 중요한가요?
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" className="max-w-xs text-xs leading-relaxed">
-                거래대금 점유율이 커지면 시장 참여자의 관심이 해당 그룹에 더 집중됐다는 뜻입니다. 실제 순매수액이 아니라 관심의 이동을 보여주는 지표입니다.
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button type="button" className="inline-flex min-h-10 items-center gap-1 text-xs font-medium text-brand hover:underline sm:min-h-0">
+                    <CircleHelp className="h-3.5 w-3.5" />
+                    이게 왜 중요한가요?
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-xs text-xs leading-relaxed">
+                  거래대금 점유율이 커지면 시장 참여자의 관심이 해당 그룹에 더 집중됐다는 뜻입니다. 실제 순매수액이 아니라 관심의 이동을 보여주는 지표입니다.
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <Link
+              to="/scanner"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-brand/25 bg-brand/10 px-3 text-xs font-semibold text-brand transition-colors hover:bg-brand/15 sm:min-h-8"
+            >
+              관련 급증 종목 보기
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
           <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/70 pt-4 text-sm">
             <Metric label="전체 거래대금" value={fmtMoney(totalVol)} tone="brand" />
             <Metric
@@ -118,7 +128,7 @@ function FlowCard({
 }) {
   return (
     <Card>
-      <CardContent className="p-4 sm:p-5">
+      <CardContent className="p-3 sm:p-5">
         <div
           className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide ${
             tone === "success" ? "text-success" : "text-danger"
@@ -127,9 +137,9 @@ function FlowCard({
           {icon}
           {title}
         </div>
-        <ul className="mt-3 space-y-2.5">
-          {rows.map((r) => (
-            <li key={r.id} className="flex items-center justify-between gap-3">
+        <ul className="mt-2.5 space-y-2.5 sm:mt-3">
+          {rows.map((r, index) => (
+            <li key={r.id} className={index > 1 ? "hidden items-center justify-between gap-3 sm:flex" : "flex items-center justify-between gap-2"}>
               <div className="min-w-0">
                 <div className="truncate text-sm font-medium">{r.name}</div>
                 <div className="truncate text-[11px] text-muted-foreground tabular">

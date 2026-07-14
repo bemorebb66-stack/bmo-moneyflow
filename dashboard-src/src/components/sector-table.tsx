@@ -199,7 +199,7 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
                       점유율 {s.share.toFixed(1)}% · 리더 {s.leaders.slice(0, 2).join(", ")}
                     </div>
                   </div>
-                  <label className="flex shrink-0 items-center gap-1 text-[11px] text-muted-foreground">
+                  <label className="flex min-h-10 shrink-0 items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 text-xs text-muted-foreground">
                     <input
                       type="checkbox"
                       checked={isSel}

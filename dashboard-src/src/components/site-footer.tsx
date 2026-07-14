@@ -16,7 +16,7 @@ export function SiteFooter() {
               <Link to="/methodology" className="hover:text-foreground hover:underline">출처·산식</Link>
               <Link to="/disclaimer" className="hover:text-foreground hover:underline">면책·데이터 한계</Link>
             </div>
-            <div>© 2026 BVT Money Flow by BMO Value Talks</div>
+            <div>© 2026 BVT Money Flow</div>
           </div>
         </div>
       </div>

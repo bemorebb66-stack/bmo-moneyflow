@@ -75,7 +75,7 @@ function TodayPage() {
             setShared(true);
             window.setTimeout(() => setShared(false), 1800);
           }}
-          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+          className="inline-flex h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
         >
           {shared ? <Check className="h-3.5 w-3.5 text-success" /> : <Share2 className="h-3.5 w-3.5" />}
           {shared ? "링크 복사됨" : "오늘의 요약 공유"}
