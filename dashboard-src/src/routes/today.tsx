@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -6,8 +5,6 @@ import {
   Search,
   Users,
   CalendarClock,
-  Check,
-  Share2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
@@ -22,6 +19,7 @@ import {
   LIVE_META,
 } from "@/lib/mock-data";
 import { fmtMoney, fmtPct } from "@/lib/format";
+import { ShareMenu } from "@/components/share-menu";
 
 export const Route = createFileRoute("/today")({
   head: () => ({
@@ -44,7 +42,6 @@ export const Route = createFileRoute("/today")({
 });
 
 function TodayPage() {
-  const [shared, setShared] = useState(false);
   const topSector = [...SECTORS].sort((a, b) => b.shareDelta - a.shareDelta)[0];
   const bottomSector = [...SECTORS].sort((a, b) => a.shareDelta - b.shareDelta)[0];
   const surgeTop = [...SURGE_STOCKS]
@@ -66,20 +63,7 @@ function TodayPage() {
         description="장 마감 기준 네 가지 데이터의 핵심을 한 화면에서 확인하세요."
       />
       <div className="-mt-2 mb-4 flex justify-end">
-        <button
-          type="button"
-          onClick={async () => {
-            const shareData = { title: "오늘의 미국 시장 요약", text: "BVT Money Flow 오늘의 시장 요약", url: window.location.href };
-            if (navigator.share) await navigator.share(shareData).catch(() => undefined);
-            else await navigator.clipboard.writeText(window.location.href);
-            setShared(true);
-            window.setTimeout(() => setShared(false), 1800);
-          }}
-          className="inline-flex h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-        >
-          {shared ? <Check className="h-3.5 w-3.5 text-success" /> : <Share2 className="h-3.5 w-3.5" />}
-          {shared ? "링크 복사됨" : "오늘의 요약 공유"}
-        </button>
+        <ShareMenu label="오늘의 요약 공유" />
       </div>
 
       <section

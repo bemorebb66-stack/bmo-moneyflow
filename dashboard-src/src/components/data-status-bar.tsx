@@ -63,7 +63,7 @@ export function DataStatusBar() {
         </span>
         <a href="/methodology/" className="ml-auto inline-flex min-h-8 items-center gap-1.5 font-semibold text-brand hover:underline sm:min-h-0">
           <FlaskConical className="h-3.5 w-3.5" />
-          출처·산식 보기
+          데이터 기준 자세히 보기
         </a>
       </div>
       {warning && <p className="mt-2 border-t border-warning/20 pt-2 font-medium text-warning">{warning}</p>}

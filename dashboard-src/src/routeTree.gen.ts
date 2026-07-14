@@ -14,6 +14,7 @@ import { Route as ScannerRouteImport } from './routes/scanner'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as IpoLockupRouteImport } from './routes/ipo-lockup'
 import { Route as InsiderRouteImport } from './routes/insider'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -42,6 +43,11 @@ const InsiderRoute = InsiderRouteImport.update({
   path: '/insider',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
@@ -56,6 +62,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/feedback': typeof FeedbackRoute
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/feedback': typeof FeedbackRoute
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/feedback': typeof FeedbackRoute
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/disclaimer'
+    | '/feedback'
     | '/insider'
     | '/ipo-lockup'
     | '/methodology'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/disclaimer'
+    | '/feedback'
     | '/insider'
     | '/ipo-lockup'
     | '/methodology'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/disclaimer'
+    | '/feedback'
     | '/insider'
     | '/ipo-lockup'
     | '/methodology'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  FeedbackRoute: typeof FeedbackRoute
   InsiderRoute: typeof InsiderRoute
   IpoLockupRoute: typeof IpoLockupRoute
   MethodologyRoute: typeof MethodologyRoute
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsiderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/disclaimer': {
       id: '/disclaimer'
       path: '/disclaimer'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DisclaimerRoute: DisclaimerRoute,
+  FeedbackRoute: FeedbackRoute,
   InsiderRoute: InsiderRoute,
   IpoLockupRoute: IpoLockupRoute,
   MethodologyRoute: MethodologyRoute,

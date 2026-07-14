@@ -14,6 +14,7 @@ import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { generateSeries, LIVE_COMPANIES_BY_ID, type Sector } from "@/lib/mock-data";
+import { MetricInfo } from "./metric-info";
 
 export type Metric = "index" | "share" | "change";
 export type Range = "5d" | "20d" | "60d";
@@ -98,7 +99,12 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
             <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
               GROUP COMPARISON
             </div>
-            <h2 className="text-base font-semibold sm:text-lg">그룹 비교 차트</h2>
+            <div className="flex items-center gap-1">
+              <h2 className="text-base font-semibold sm:text-lg">그룹 비교 차트</h2>
+              <MetricInfo label="비교 지표 안내">
+                지수화는 시작값을 100으로 맞춰 상대 흐름을 비교합니다. 시장 점유율은 전체 추적 종목 거래대금에서 차지하는 비중이며, 변화율은 선택 범위의 시작점 대비 변화입니다.
+              </MetricInfo>
+            </div>
             <p className="mt-0.5 text-xs text-muted-foreground">
               지수화·시장 점유율·변화율 기준으로 선택 그룹의 상대 흐름을 비교합니다.
             </p>

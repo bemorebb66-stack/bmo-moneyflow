@@ -10,6 +10,7 @@ import {
 import { ComparisonChart, type Metric, type Range } from "@/components/comparison-chart";
 import { SectorTable } from "@/components/sector-table";
 import { ReadingGuide } from "@/components/reading-guide";
+import { FocusStocks } from "@/components/focus-stocks";
 import { LIVE_COMPANIES_BY_ID, LIVE_MARKET_DATA, SECTORS, type Sector } from "@/lib/mock-data";
 
 const INITIAL_GROUPS = ["technology", "communication", "financial"];
@@ -145,6 +146,7 @@ function MarketFlowPage() {
       />
       <div className="space-y-5">
         <RotationSummary rows={rows} categoryLabel={CATEGORY_LABELS[category]} periodLabel={PERIOD_LABELS[period]} />
+        <FocusStocks />
         <FilterBar
           category={category}
           onCategory={changeCategory}

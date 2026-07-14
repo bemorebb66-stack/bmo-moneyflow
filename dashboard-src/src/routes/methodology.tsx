@@ -6,9 +6,9 @@ import { PageHeading, PageShell } from "@/components/page-shell";
 export const Route = createFileRoute("/methodology")({
   head: () => ({
     meta: [
-      { title: "데이터 출처와 계산 방법 | BVT Money Flow" },
+      { title: "데이터 기준 | BVT Money Flow" },
       { name: "description", content: "BVT Money Flow의 거래대금 계산식, 기간별 비교, 유니버스 구성, 데이터 출처와 알려진 한계를 확인하세요." },
-      { property: "og:title", content: "BVT Money Flow 데이터 출처와 계산 방법" },
+      { property: "og:title", content: "BVT Money Flow 데이터 기준" },
       { property: "og:description", content: "거래대금과 시장 점유율 지표를 어떻게 계산하는지 투명하게 공개합니다." },
     ],
     links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/methodology/" }],
@@ -75,7 +75,7 @@ function MethodologyPage() {
   return (
     <PageShell>
       <PageHeading
-        title="데이터 출처와 계산 방법"
+        title="데이터 기준"
         description="화면의 수치가 어디에서 왔고 어떻게 계산되는지 공개합니다."
         showDataStatus={false}
       />

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { LOCKUP_ROWS, type LockupRow, type Importance } from "@/lib/mock-data";
 import { fmtMoney, fmtMcap } from "@/lib/format";
+import { MetricInfo } from "@/components/metric-info";
 
 export const Route = createFileRoute("/ipo-lockup")({
   head: () => ({
@@ -164,9 +165,12 @@ function LockupPage() {
           <Card>
             <CardContent className="p-4 sm:p-5">
               <div>
-                <h2 className="text-base font-semibold sm:text-lg">
-                  락업 해제 타임라인
-                </h2>
+                <div className="flex items-center gap-1">
+                  <h2 className="text-base font-semibold sm:text-lg">락업 해제 타임라인</h2>
+                  <MetricInfo label="중요도 기준">
+                    투자 등급이 아니라 일정 임박도를 뜻합니다. 스페이스X 또는 14일 이내 해제는 높음, 15~30일은 보통, 그 이후는 낮음으로 표시합니다. 예상 물량과 가치는 공개 자료가 있을 때만 함께 제공합니다.
+                  </MetricInfo>
+                </div>
                 <p className="text-[11px] text-muted-foreground">
                   D-day 기준 · 막대 길이는 예상 유통 가치 비중
                 </p>

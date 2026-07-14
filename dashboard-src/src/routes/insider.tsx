@@ -15,6 +15,7 @@ import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { SignalBadge } from "@/components/signal-badge";
+import { MetricInfo } from "@/components/metric-info";
 import { cn } from "@/lib/utils";
 import {
   INSIDER_ROWS,
@@ -162,9 +163,12 @@ function InsiderPage() {
             <CardContent className="p-4 sm:p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-base font-semibold sm:text-lg">
-                    내부자 거래 추이
-                  </h2>
+                  <div className="flex items-center gap-1">
+                    <h2 className="text-base font-semibold sm:text-lg">내부자 거래 추이</h2>
+                    <MetricInfo label="내부자 거래 기준">
+                      미국 SEC Form 4 공시를 거래일 기준으로 합산합니다. 공시일은 실제 거래일보다 늦을 수 있으며, 매수·매도 금액은 공개 공시의 거래 가격과 수량을 기준으로 계산합니다.
+                    </MetricInfo>
+                  </div>
                   <p className="text-[11px] text-muted-foreground">
                     최근 {days}일 · 백만 달러
                   </p>

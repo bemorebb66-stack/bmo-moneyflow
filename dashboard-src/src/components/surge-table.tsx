@@ -14,6 +14,7 @@ import { SignalBadge, DeltaText } from "./signal-badge";
 import { SURGE_STOCKS, type MarketPeriod } from "@/lib/mock-data";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { MetricInfo } from "./metric-info";
 
 const PERIODS: { id: MarketPeriod; label: string }[] = [
   { id: "1d", label: "1일 대비" },
@@ -49,7 +50,11 @@ const sortValue = (stock: (typeof SURGE_STOCKS)[number], key: SortKey) => {
 export function SurgeTable() {
   const [period, setPeriod] = useState<MarketPeriod>("20d");
   const [sort, setSort] = useState<{ key: SortKey; mode: SortMode }>({ key: "20d", mode: "desc" });
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() => {
+    if (typeof window === "undefined") return "";
+    const params = new URLSearchParams(window.location.search);
+    return params.get("ticker") ?? params.get("q") ?? "";
+  });
   const [insight, setInsight] = useState<InsightFilter>("all");
   const [watch, setWatch] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem("bmoWatch") || "[]"); } catch { return []; }
@@ -100,7 +105,12 @@ export function SurgeTable() {
       <CardContent className="p-0">
         <div className="flex flex-col gap-3 border-b border-border/70 px-4 py-3 sm:px-5 lg:flex-row lg:items-end">
           <div>
-            <h2 className="text-base font-semibold sm:text-lg">거래대금 급증 종목</h2>
+            <div className="flex items-center gap-1">
+              <h2 className="text-base font-semibold sm:text-lg">거래대금 급증 종목</h2>
+              <MetricInfo label="급증 기준">
+                선택 기간의 평균 거래대금과 당일 거래대금을 비교합니다. 20일 대비 +80%는 평소보다 1.8배 거래됐다는 뜻이며, 평균 거래대금이 작은 종목은 변화율이 크게 보일 수 있습니다.
+              </MetricInfo>
+            </div>
             <p className="text-[11px] text-muted-foreground">
               선택 기간 평균 대비 거래대금 증가율 · {rows.length}건 · 현재 {SORT_LABEL[sort.key]} {sort.mode === "desc" ? "높은 순" : sort.mode === "asc" ? "낮은 순" : "평균 근접 순"}
             </p>

@@ -5,6 +5,7 @@ import { SignalBadge, DeltaText } from "./signal-badge";
 import { cn } from "@/lib/utils";
 import { LIVE_GROUP_COMPANIES, type Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
+import { MetricInfo } from "./metric-info";
 
 type SortKey = "volume" | "volumeChange" | "priceChange" | "shareDelta";
 
@@ -57,7 +58,12 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
             <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
               SECTOR MAP
             </div>
-            <h2 className="text-base font-semibold sm:text-lg">{categoryLabel} 목록</h2>
+            <div className="flex items-center gap-1">
+              <h2 className="text-base font-semibold sm:text-lg">{categoryLabel} 목록</h2>
+              <MetricInfo label="거래대금 점유율이란?">
+                선택한 섹터·산업·종목의 거래대금이 전체 분석 대상 거래대금에서 차지하는 비중입니다. 점유율 변화는 실제 순매수액이 아니라 시장 관심의 확대·축소를 보여줍니다.
+              </MetricInfo>
+            </div>
             <p className="text-[11px] text-muted-foreground">
               거래대금·변화율·점유율 변화·신호별 정렬 · {rows.length}개 그룹
             </p>

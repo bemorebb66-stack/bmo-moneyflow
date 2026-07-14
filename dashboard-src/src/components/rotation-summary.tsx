@@ -5,6 +5,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
 import { DeltaText } from "./signal-badge";
 import type { Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMoney } from "@/lib/format";
+import { ShareMenu } from "./share-menu";
 
 export function RotationSummary({ rows, categoryLabel, periodLabel }: {
   rows: Sector[];
@@ -50,13 +51,16 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-            <Link
-              to="/scanner"
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-brand/25 bg-brand/10 px-3 text-xs font-semibold text-brand transition-colors hover:bg-brand/15 sm:min-h-8"
-            >
-              관련 급증 종목 보기
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            <div className="flex items-center gap-2">
+              <ShareMenu label="브리핑 공유" />
+              <Link
+                to="/scanner"
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-brand/25 bg-brand/10 px-3 text-xs font-semibold text-brand transition-colors hover:bg-brand/15 sm:min-h-8"
+              >
+                관련 급증 종목 보기
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/70 pt-4 text-sm">
             <Metric label="전체 거래대금" value={fmtMoney(totalVol)} tone="brand" />
