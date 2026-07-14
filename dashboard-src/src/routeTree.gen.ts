@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TodayRouteImport } from './routes/today'
 import { Route as ScannerRouteImport } from './routes/scanner'
+import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as IpoLockupRouteImport } from './routes/ipo-lockup'
 import { Route as InsiderRouteImport } from './routes/insider'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TodayRoute = TodayRouteImport.update({
@@ -25,6 +27,11 @@ const ScannerRoute = ScannerRouteImport.update({
   path: '/scanner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IpoLockupRoute = IpoLockupRouteImport.update({
   id: '/ipo-lockup',
   path: '/ipo-lockup',
@@ -35,6 +42,11 @@ const InsiderRoute = InsiderRouteImport.update({
   path: '/insider',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,38 +55,68 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/disclaimer': typeof DisclaimerRoute
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
+  '/methodology': typeof MethodologyRoute
   '/scanner': typeof ScannerRoute
   '/today': typeof TodayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/disclaimer': typeof DisclaimerRoute
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
+  '/methodology': typeof MethodologyRoute
   '/scanner': typeof ScannerRoute
   '/today': typeof TodayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/disclaimer': typeof DisclaimerRoute
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
+  '/methodology': typeof MethodologyRoute
   '/scanner': typeof ScannerRoute
   '/today': typeof TodayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/insider' | '/ipo-lockup' | '/scanner' | '/today'
+  fullPaths:
+    | '/'
+    | '/disclaimer'
+    | '/insider'
+    | '/ipo-lockup'
+    | '/methodology'
+    | '/scanner'
+    | '/today'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/insider' | '/ipo-lockup' | '/scanner' | '/today'
-  id: '__root__' | '/' | '/insider' | '/ipo-lockup' | '/scanner' | '/today'
+  to:
+    | '/'
+    | '/disclaimer'
+    | '/insider'
+    | '/ipo-lockup'
+    | '/methodology'
+    | '/scanner'
+    | '/today'
+  id:
+    | '__root__'
+    | '/'
+    | '/disclaimer'
+    | '/insider'
+    | '/ipo-lockup'
+    | '/methodology'
+    | '/scanner'
+    | '/today'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DisclaimerRoute: typeof DisclaimerRoute
   InsiderRoute: typeof InsiderRoute
   IpoLockupRoute: typeof IpoLockupRoute
+  MethodologyRoute: typeof MethodologyRoute
   ScannerRoute: typeof ScannerRoute
   TodayRoute: typeof TodayRoute
 }
@@ -95,6 +137,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScannerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ipo-lockup': {
       id: '/ipo-lockup'
       path: '/ipo-lockup'
@@ -109,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsiderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -121,8 +177,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DisclaimerRoute: DisclaimerRoute,
   InsiderRoute: InsiderRoute,
   IpoLockupRoute: IpoLockupRoute,
+  MethodologyRoute: MethodologyRoute,
   ScannerRoute: ScannerRoute,
   TodayRoute: TodayRoute,
 }

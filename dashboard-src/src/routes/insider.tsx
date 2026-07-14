@@ -26,7 +26,7 @@ import { fmtMoney } from "@/lib/format";
 export const Route = createFileRoute("/insider")({
   head: () => ({
     meta: [
-      { title: "내부자 거래 · BMO Money Flow" },
+      { title: "미국 주식 내부자 거래 | BVT Money Flow" },
       {
         name: "description",
         content: "미국 주식 내부자 매수·매도 공시와 클러스터 거래 신호를 추적합니다.",

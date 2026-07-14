@@ -3,6 +3,7 @@ import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { ThemeProvider } from "./theme-provider";
 import { LIVE_META } from "@/lib/mock-data";
+import { DataStatusBar } from "./data-status-bar";
 
 interface Props {
   children: ReactNode;
@@ -16,6 +17,7 @@ export function PageShell({ children }: Props) {
           asOf={LIVE_META.asOf}
           updatedAt={LIVE_META.updatedAt}
           universeCount={LIVE_META.universeCount}
+          status={LIVE_META.status}
         />
         <main className="mx-auto max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
           {children}
@@ -29,14 +31,17 @@ export function PageShell({ children }: Props) {
 export function PageHeading({
   title,
   description,
+  showDataStatus = true,
 }: {
   title: string;
   description: string;
+  showDataStatus?: boolean;
 }) {
   return (
     <div className="mb-4">
       <h1 className="text-xl font-bold tracking-tight sm:text-2xl">{title}</h1>
       <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+      {showDataStatus && <DataStatusBar />}
     </div>
   );
 }

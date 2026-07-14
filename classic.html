@@ -3,27 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BMO Money Flow — 미국 대형주 자금 흐름 추적</title>
-<meta name="description" content="S&P 500 + 나스닥 100 + 러셀2000 상위권의 거래대금으로 섹터 로테이션과 자금 이동을 매일 추적하는 무료 대시보드. 거래대금 급증 종목, 섹터별 자금 유입·이탈을 한눈에.">
-<meta property="og:title" content="BMO Money Flow — 미국 대형주 자금 흐름 추적">
-<meta property="og:description" content="S&P 500 + 나스닥 100 + 러셀2000 상위권의 거래대금으로 섹터 로테이션과 자금 이동을 매일 추적하는 무료 대시보드.">
+<title>BVT Money Flow — 미국 주식 거래대금 흐름 분석</title>
+<meta name="description" content="미국 주식의 종목별 거래대금과 섹터별 거래대금 점유율 변화를 매일 추적하는 무료 대시보드입니다.">
+<meta property="og:title" content="BVT Money Flow — 미국 주식 거래대금 흐름 분석">
+<meta property="og:description" content="S&P 500 + 나스닥 100 + 러셀2000 상위권의 거래대금 점유율 변화와 섹터 로테이션을 매일 추적하는 대시보드.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.bvtmoneyflow.xyz/">
-<meta property="og:image" content="https://www.bvtmoneyflow.xyz/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://www.bvtmoneyflow.xyz/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"BMO Money Flow","alternateName":"미국 주식 섹터 자금 흐름 추적기","url":"https://www.bvtmoneyflow.xyz/","description":"S&P 500, 나스닥 100, 러셀2000 상위권의 거래대금 변화를 매일 추적해 섹터 간 자금 이동(섹터 로테이션)을 시각화하는 무료 도구","applicationCategory":"FinanceApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"ko","creator":{"@type":"Organization","name":"BMO Value Talks","url":"https://blog.naver.com/bmovaluetalks"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"BVT Money Flow","alternateName":"미국 주식 거래대금 흐름 분석","url":"https://www.bvtmoneyflow.xyz/","description":"S&P 500, 나스닥 100, 러셀2000 상위권의 거래대금 점유율 변화와 섹터 로테이션을 시각화하는 도구","applicationCategory":"FinanceApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":"ko","creator":{"@type":"Organization","name":"BMO Value Talks","url":"https://blog.naver.com/bmovaluetalks"}}
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "BMO Money Flow",
+  "name": "BVT Money Flow",
   "url": "https://www.bvtmoneyflow.xyz/",
-  "description": "S&P 500, 나스닥 100, 러셀2000 상위권의 거래대금으로 섹터 로테이션과 자금 이동을 매일 추적하는 무료 대시보드",
+  "description": "S&P 500, 나스닥 100, 러셀2000 상위권의 거래대금 점유율 변화와 섹터 로테이션을 매일 추적하는 대시보드",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "inLanguage": "ko",
@@ -394,10 +393,10 @@ footer b { color: #DC6B52; }
   <section class="method">
     <h2>읽는 법</h2>
     <div class="legend">
-      <span class="l-in">빨강 = 거래대금 증가 (관심·자금 집중)</span>
-      <span class="l-out">파랑 = 거래대금 감소 (관심 이탈)</span>
+      <span class="l-in">빨강 = 거래대금 증가</span>
+      <span class="l-out">파랑 = 거래 관심 감소</span>
     </div>
-    <p>거래대금(종가×거래량)은 매수와 매도가 함께 잡히는 지표입니다. 따라서 "거래대금 증가 = 매수 유입"이 아니라, <b>거래대금 변화 × 가격 방향</b>을 결합해 해석합니다. 거래대금이 늘며 가격이 오르면 매수세 유입, 거래대금이 늘며 가격이 내리면 매도세 출회, 거래대금 자체가 줄면 시장의 관심 이탈로 봅니다.</p>
+    <p>거래대금(종가×거래량)은 매수와 매도가 함께 잡히는 지표입니다. <b>거래대금 변화 × 가격 방향</b>을 결합해 거래 증가·상승, 거래 증가·하락, 거래 관심 감소로 분류하며 실제 순매수·순매도를 뜻하지 않습니다.</p>
     <p>점유율(Δ)은 그날 시장 전체 거래대금에서 해당 그룹이 차지한 비중이 비교 기간 대비 몇 %p 움직였는지를 뜻합니다. 이 수치가 "돈이 어디서 어디로 이동했는가"에 가장 가까운 신호입니다.</p>
     <p>유의: 과거 시계열(차트·연속 추세)은 현재 시점의 지수 구성 종목 기준으로 소급 계산되어, 구성 변경 전의 실제 비중과 다를 수 있습니다. 등락률은 분할·배당을 보정한 조정종가 기준입니다. 행에 표시되는 신호는 거래대금 변화와 가격 방향을 함께 본 해석이며, 실제 순매수 금액이 아닙니다.</p>
     <p>본 사이트의 모든 수치는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance, 매 거래일 마감 후 자동 갱신.</p>
@@ -427,7 +426,7 @@ const S = {
 const PERIODS = [["1d","전일比"],["5d","5일比"],["20d","20일比"],["60d","60일比"]];
 const MODES   = [["sector","대분류 섹터"],["industry","세부 산업"],["universe","시장 유니버스"],["custom","커스텀 그룹"],["cap","시가총액"]];
 const REF     = {"1d":"dvp","5d":"a5","20d":"a20","60d":"a60"};
-const SIG_FILTERS = [["all","전체"],["buy","매수 유입"],["sell","매도 출회"],["fade","관심 이탈"],["neutral","중립"]];
+const SIG_FILTERS = [["all","전체"],["buy","거래 증가·상승"],["sell","거래 증가·하락"],["fade","거래 관심 감소"],["neutral","중립"]];
 
 const PRESETS = [
   {label:"반도체 세분화", mode:"custom", metric:"share", groups:["반도체 · 메모리/스토리지","반도체 · GPU/AI가속","반도체 · 네트워킹/커스텀ASIC","반도체 · 장비"], stocks:[]},
@@ -650,9 +649,9 @@ function aggregate(stocks, period){
 }
 function signalOf(o){
   if(o.chg==null) return ["neutral","데이터 부족","비교 기간 데이터 부족"];
-  if(o.chg>3&&o.pc>0.15)  return ["buy","매수세 유입","거래대금 3%+ 증가 + 가중등락 +0.15% 이상"];
-  if(o.chg>3&&o.pc<-0.15) return ["sell","매도세 출회","거래대금 3%+ 증가 + 가격 하락"];
-  if(o.chg<-3)             return ["fade","관심 이탈","거래대금 3%+ 감소"];
+  if(o.chg>3&&o.pc>0.15)  return ["buy","거래 증가·상승","거래대금 3%+ 증가 + 가중등락 +0.15% 이상"];
+  if(o.chg>3&&o.pc<-0.15) return ["sell","거래 증가·하락","거래대금 3%+ 증가 + 가격 하락"];
+  if(o.chg<-3)             return ["fade","거래 관심 감소","거래대금 3%+ 감소"];
   return ["neutral","중립","거래대금·가격 변화가 임계값 이내"];
 }
 
@@ -892,7 +891,7 @@ function render(){
   }
 
   let html = staleHtml + `
-  <section class="rotation ${S.rotCollapsed?"is-collapsed":""}" id="rotation" aria-label="오늘의 자금 로테이션">
+  <section class="rotation ${S.rotCollapsed?"is-collapsed":""}" id="rotation" aria-label="오늘의 거래대금 로테이션">
     <div class="rot-head"><span class="rot-dot"></span><span class="rot-head-title">오늘의 로테이션</span><span class="rot-head-sub">— 시장 내 거래대금 점유율 변화 (${esc(periodLabel)})</span><button class="rot-toggle" data-rot-toggle>${S.rotCollapsed?"펼치기":"접기"}</button></div>
     <div class="rot-brief">${buildBrief(agg1d.rows,agg1d.totNow,agg1d.totRef,spikes,streaks)}</div>
     <div class="rot-body">

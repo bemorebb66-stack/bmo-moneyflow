@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
+  HeadContent,
   Link,
   createRootRouteWithContext,
   useRouter,
@@ -74,19 +75,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "BMO Money Flow · 미국 주식 섹터 자금 흐름" },
+      { title: "BVT Money Flow · 미국 주식 거래대금 흐름" },
       {
         name: "description",
         content:
-          "실시간 거래대금과 시장 점유율로 미국 주식 섹터 자금 로테이션을 추적하는 데이터 대시보드",
+          "장마감 거래대금과 시장 점유율로 미국 주식의 시장 관심 변화를 추적하는 데이터 대시보드",
       },
       { name: "author", content: "BMO Value Talks" },
-      { property: "og:title", content: "BMO Money Flow" },
+      { property: "og:title", content: "BVT Money Flow by BMO Value Talks" },
       {
         property: "og:description",
-        content: "미국 주식 섹터 자금 흐름 실시간 추적 대시보드",
+        content: "미국 주식 종목·섹터별 거래대금과 시장 관심 변화 대시보드",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "BVT Money Flow" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -100,6 +102,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <HeadContent />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

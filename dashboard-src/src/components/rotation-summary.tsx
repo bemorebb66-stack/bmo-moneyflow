@@ -22,7 +22,7 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
   const bottomNames = outflows.slice(0, 2).map((row) => row.name).join("·");
 
   return (
-    <section aria-label="오늘의 자금 로테이션" className="grid gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
+    <section aria-label="오늘의 거래대금 로테이션" className="grid gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
       <Card className="border-brand/20 bg-brand/[0.055] dark:bg-brand/[0.08]">
         <CardContent className="p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-brand">
@@ -62,13 +62,13 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
 
       <FlowCard
         tone="success"
-        title="유입 상위"
+        title="점유율 확대"
         icon={<TrendingUp className="h-4 w-4" />}
         rows={inflows}
       />
       <FlowCard
         tone="danger"
-        title="유출 상위"
+        title="점유율 축소"
         icon={<TrendingDown className="h-4 w-4" />}
         rows={outflows}
       />

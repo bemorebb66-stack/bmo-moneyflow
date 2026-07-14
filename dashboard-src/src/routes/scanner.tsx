@@ -5,7 +5,7 @@ import { SurgeTable } from "@/components/surge-table";
 export const Route = createFileRoute("/scanner")({
   head: () => ({
     meta: [
-      { title: "종목 스캐너 · BMO Money Flow" },
+      { title: "미국 주식 거래대금 급증 종목 | BVT Money Flow" },
       {
         name: "description",
         content: "전일·5일·20일·60일 기준으로 거래대금이 크게 늘어난 미국 주식을 스캔합니다.",

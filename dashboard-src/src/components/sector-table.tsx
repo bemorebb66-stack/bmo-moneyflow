@@ -376,10 +376,10 @@ function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
 
 function describe(s: Sector) {
   if (s.signal === "inflow")
-    return `${s.name} 그룹의 거래 비중이 확대됐고 가격도 함께 상승해 매수 강도가 확인됩니다.`;
+    return `${s.name} 그룹의 거래 비중이 확대됐고 가격도 함께 상승했습니다. 실제 순매수액을 뜻하지는 않습니다.`;
   if (s.signal === "outflow")
-    return `거래대금 증가와 함께 가격이 하락 중이라 매도 출회 신호가 뚜렷합니다.`;
+    return `거래대금 증가와 함께 가격이 하락했습니다. 실제 순매도액을 뜻하지는 않습니다.`;
   if (s.signal === "attention-loss")
-    return `거래대금이 평균을 크게 하회해 시장의 관심이 이탈하는 구간입니다.`;
-  return `자금 흐름이 균형 상태이며 방향성이 뚜렷하지 않습니다.`;
+    return `거래대금이 평균을 크게 하회해 시장의 거래 관심이 감소한 구간입니다.`;
+  return `거래대금과 가격 방향이 중립적이며 뚜렷한 변화가 없습니다.`;
 }

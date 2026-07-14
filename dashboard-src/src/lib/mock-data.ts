@@ -175,10 +175,19 @@ export const SECTORS: Sector[] = [
   },
 ];
 
-export const LIVE_META = {
+export type DataStatus = "loading" | "normal" | "stale" | "partial" | "failed";
+
+export const LIVE_META: {
+  asOf: string;
+  updatedAt: string;
+  universeCount: number;
+  status: DataStatus;
+  error?: string;
+} = {
   asOf: "-",
   updatedAt: "-",
   universeCount: 0,
+  status: "loading",
 };
 
 export const LIVE_SECTOR_SERIES: Record<string, { date: string; value: number }[]> = {};
@@ -369,9 +378,9 @@ export const SIGNAL_META: Record<
   Signal,
   { label: string; tone: "success" | "danger" | "info" | "muted" }
 > = {
-  inflow: { label: "매수 유입", tone: "success" },
-  outflow: { label: "매도 출회", tone: "danger" },
-  "attention-loss": { label: "관심 이탈", tone: "info" },
+  inflow: { label: "거래 증가·상승", tone: "success" },
+  outflow: { label: "거래 증가·하락", tone: "danger" },
+  "attention-loss": { label: "거래 관심 감소", tone: "info" },
   neutral: { label: "중립", tone: "muted" },
 };
 

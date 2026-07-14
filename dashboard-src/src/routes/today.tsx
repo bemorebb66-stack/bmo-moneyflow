@@ -26,7 +26,7 @@ import { fmtMoney, fmtPct } from "@/lib/format";
 export const Route = createFileRoute("/today")({
   head: () => ({
     meta: [
-      { title: "오늘의 요약 · BMO Money Flow" },
+      { title: "오늘의 미국 시장 거래대금 요약 | BVT Money Flow" },
       {
         name: "description",
         content:
@@ -69,7 +69,7 @@ function TodayPage() {
         <button
           type="button"
           onClick={async () => {
-            const shareData = { title: "오늘의 미국 시장 요약", text: "BMO Money Flow 오늘의 시장 요약", url: window.location.href };
+            const shareData = { title: "오늘의 미국 시장 요약", text: "BVT Money Flow 오늘의 시장 요약", url: window.location.href };
             if (navigator.share) await navigator.share(shareData).catch(() => undefined);
             else await navigator.clipboard.writeText(window.location.href);
             setShared(true);
@@ -90,8 +90,8 @@ function TodayPage() {
           오늘의 한 줄
         </div>
         <p className="mt-1.5 text-base font-semibold sm:text-lg">
-          자금은 <span className="text-success">{topSector.name}</span>로 유입,{" "}
-          <span className="text-danger">{bottomSector.name}</span>에서 이탈했습니다.
+          <span className="text-success">{topSector.name}</span>의 거래대금 점유율은 확대되고,{" "}
+          <span className="text-danger">{bottomSector.name}</span>은 축소됐습니다.
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
           20일 평균 대비 거래대금 급증 종목 {SURGE_STOCKS.length}개 · 기준일 내부자 거래{" "}
@@ -104,7 +104,7 @@ function TodayPage() {
         <SectionCard
           icon={TrendingUp}
           title="시장 흐름"
-          subtitle="섹터 자금 로테이션"
+          subtitle="섹터 거래대금 로테이션"
           to="/"
           linkLabel="전체 대시보드로"
           className="lg:col-span-2"

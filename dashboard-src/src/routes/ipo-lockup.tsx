@@ -11,7 +11,7 @@ import { fmtMoney, fmtMcap } from "@/lib/format";
 export const Route = createFileRoute("/ipo-lockup")({
   head: () => ({
     meta: [
-      { title: "IPO 락업 · BMO Money Flow" },
+      { title: "미국 IPO 락업 해제 일정 | BVT Money Flow" },
       {
         name: "description",
         content: "IPO 락업 해제 일정과 임박 이벤트, 예상 유통 가치까지 한눈에.",

@@ -194,17 +194,47 @@ function aggregateMarket(stocks: MarketStock[], category: MarketCategory, period
 
 const daysUntil = (date: string) => Math.ceil((new Date(`${date}T00:00:00Z`).getTime() - Date.now()) / 86400000);
 
+function tradingDaysSince(marketDate: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(marketDate)) return Number.POSITIVE_INFINITY;
+  const todayKst = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+  const start = new Date(`${marketDate}T00:00:00Z`);
+  const end = new Date(`${todayKst}T00:00:00Z`);
+  let count = 0;
+  for (const cursor = new Date(start.getTime() + 86400000); cursor <= end; cursor.setUTCDate(cursor.getUTCDate() + 1)) {
+    const day = cursor.getUTCDay();
+    if (day !== 0 && day !== 6) count += 1;
+  }
+  return count;
+}
+
 export async function hydrateLiveData() {
+  LIVE_META.status = "loading";
+  LIVE_META.error = undefined;
   try {
-    const [marketRes, historyRes, insiderRes, lockupRes] = await Promise.all([
-      fetch("/data.json"),
-      fetch("/history.json"),
-      fetch("/insider/data/insider.json"),
-      fetch("/ipo-lockup/data/lockup.json"),
+    const fetchJson = async (path: string) => {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`${path} 응답 오류 (${response.status})`);
+      return response.json();
+    };
+    const [marketResult, historyResult, insiderResult, lockupResult] = await Promise.allSettled([
+      fetchJson("/data.json"),
+      fetchJson("/history.json"),
+      fetchJson("/insider/data/insider.json"),
+      fetchJson("/ipo-lockup/data/lockup.json"),
     ]);
-    const [market, history, insider, lockup] = await Promise.all([
-      marketRes.json(), historyRes.json(), insiderRes.json(), lockupRes.json(),
-    ]);
+    if (marketResult.status === "rejected" || historyResult.status === "rejected") {
+      throw new Error("시장 흐름 필수 데이터 파일을 불러오지 못했습니다.");
+    }
+    const market = marketResult.value;
+    const history = historyResult.value;
+    const insider = insiderResult.status === "fulfilled" ? insiderResult.value : { trades: [] };
+    const lockup = lockupResult.status === "fulfilled" ? lockupResult.value : { events: [] };
+    const secondaryDataDelayed = insiderResult.status === "rejected" || lockupResult.status === "rejected";
 
     const stocks = market.stocks as MarketStock[];
     const totalMarketVolume = stocks.reduce((sum, stock) => sum + (Number(stock.dv) || 0), 0);
@@ -325,7 +355,13 @@ export async function hydrateLiveData() {
     LIVE_META.asOf = market.market_date || "-";
     LIVE_META.updatedAt = market.updated || "-";
     LIVE_META.universeCount = Number(market.count) || stocks.length;
+    LIVE_META.status = tradingDaysSince(LIVE_META.asOf) > 1
+      ? "stale"
+      : secondaryDataDelayed ? "partial" : "normal";
+    if (secondaryDataDelayed) LIVE_META.error = "내부자 거래 또는 IPO 락업 데이터가 지연되고 있습니다.";
   } catch (error) {
     console.error("Live data hydration failed", error);
+    LIVE_META.status = "failed";
+    LIVE_META.error = error instanceof Error ? error.message : "알 수 없는 데이터 오류";
   }
 }

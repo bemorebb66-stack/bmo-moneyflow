@@ -18,17 +18,17 @@ jobs:
       - name: Download latest Signal Flow build
         run: git clone --depth 1 https://github.com/bemorebb66-stack/bmo-antman.git /tmp/bmo-antman
 
-      - name: Publish under the BVT Money Flow domain
+      - name: Sync Signal Flow data
         run: |
-          rm -rf insider ipo-lockup
-          mkdir -p insider ipo-lockup
-          cp -R /tmp/bmo-antman/docs/. insider/
-          cp -R /tmp/bmo-antman/docs/. ipo-lockup/
+          rm -rf insider/data ipo-lockup/data
+          mkdir -p insider/data ipo-lockup/data
+          cp -R /tmp/bmo-antman/docs/data/. insider/data/
+          cp -R /tmp/bmo-antman/docs/data/. ipo-lockup/data/
 
-      - name: Commit synced pages
+      - name: Commit synced data
         run: |
           git config user.name "bmo-moneyflow-bot"
           git config user.email "actions@users.noreply.github.com"
           git add insider ipo-lockup
-          git commit -m "Sync Signal Flow pages" || echo "No Signal Flow changes"
+          git commit -m "Sync Signal Flow data" || echo "No Signal Flow changes"
           git push

@@ -21,7 +21,7 @@ type InsightFilter = "all" | "new" | "persistent" | "overheated";
 const INSIGHT_FILTERS: { id: InsightFilter; label: string }[] = [
   { id: "all", label: "전체" },
   { id: "new", label: "신규 급증" },
-  { id: "persistent", label: "지속 유입" },
+  { id: "persistent", label: "지속 증가·상승" },
   { id: "overheated", label: "과열 가능성" },
 ];
 const SIGNAL_RANK = { inflow: 3, neutral: 2, "attention-loss": 1, outflow: 0 } as const;

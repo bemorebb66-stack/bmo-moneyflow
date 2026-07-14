@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-BMO Money Flow — 일별 데이터 수집 스크립트
+BVT Money Flow — 일별 데이터 수집 스크립트
 S&P 500 + 나스닥 100 + 러셀2000 상위권의 거래대금(종가×거래량)을 수집하고
 전일/20일/60일/120일 평균 대비 지표를 계산해 data.json으로 저장.
 GitHub Actions에서 매일 자동 실행되는 것을 전제로 작성됨.
@@ -322,22 +322,21 @@ def write_today_html(stocks, market_date):
             f'<li><b>{k}</b> <span class="{cls}">{d:+.2f}%p</span> (거래대금 {fmt_dv(n)})</li>'
             for k, d, n in rs)
     spike_txt = ", ".join(f'{s["t"]}({s["dv"]/s["a20"]:.1f}배)' for s in spikes) if spikes else "없음"
-    desc = (f"{market_date} 미국 증시 섹터 자금 흐름: "
+    desc = (f"{market_date} 미국 증시 거래대금 점유율 변화: "
             + ", ".join(f"{k} {d:+.2f}%p" for k, d, _ in inflow[:2])
-            + " 유입 · " + ", ".join(f"{k} {d:+.2f}%p" for k, d, _ in outflow[:2]) + " 이탈")
+            + " 확대 · " + ", ".join(f"{k} {d:+.2f}%p" for k, d, _ in outflow[:2]) + " 축소")
     html = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>오늘의 섹터 로테이션 ({market_date}) — 미국 주식 자금 흐름 요약 | BMO Money Flow</title>
+<title>오늘의 섹터 거래대금 로테이션 ({market_date}) | BVT Money Flow</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="https://www.bvtmoneyflow.xyz/today.html">
-<meta property="og:title" content="오늘의 섹터 로테이션 ({market_date}) — BMO Money Flow">
+<link rel="canonical" href="https://www.bvtmoneyflow.xyz/today/">
+<meta property="og:title" content="오늘의 섹터 거래대금 로테이션 ({market_date}) — BVT Money Flow">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://www.bvtmoneyflow.xyz/today.html">
-<meta property="og:image" content="https://www.bvtmoneyflow.xyz/og.png">
+<meta property="og:url" content="https://www.bvtmoneyflow.xyz/today/">
 <meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -363,22 +362,22 @@ a{{color:var(--red)}}
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">BMO MONEY FLOW · DAILY</div>
-    <h1>오늘의 섹터 로테이션 — 미국 주식 자금 흐름 요약</h1>
+    <div class="eyebrow">BVT MONEY FLOW · DAILY</div>
+    <h1>오늘의 섹터 거래대금 요약</h1>
     <p class="date">기준일 {market_date} (미국 장마감 확정치) · 매 거래일 아침 자동 갱신</p>
   </header>
-  <p>미국 증시(S&amp;P 500 + 나스닥 100 + 러셀2000 상위권, {len(stocks)}종목)의 전체 거래대금은 <b>{fmt_dv(tot_now)}</b>로 전일 대비 <b>{tot_chg:+.1f}%</b>를 기록했습니다. 시장 내 거래대금 점유율 기준으로 자금이 향한 섹터와 이탈한 섹터는 다음과 같습니다.</p>
-  <h2>자금 유입 상위 섹터 (점유율 확대)</h2>
+  <p>미국 증시(S&amp;P 500 + 나스닥 100 + 러셀2000 상위권, {len(stocks)}종목)의 전체 거래대금은 <b>{fmt_dv(tot_now)}</b>로 전일 대비 <b>{tot_chg:+.1f}%</b>를 기록했습니다. 시장 내 거래대금 점유율이 확대된 섹터와 축소된 섹터는 다음과 같습니다.</p>
+  <h2>거래대금 점유율 확대 섹터</h2>
   <ul>
 {li_rows(inflow, "in")}
   </ul>
-  <h2>자금 이탈 상위 섹터 (점유율 축소)</h2>
+  <h2>거래대금 점유율 축소 섹터</h2>
   <ul>
 {li_rows(outflow, "out")}
   </ul>
   <h2>거래대금 급증 종목</h2>
   <p>20일 평균 대비 2배 이상 거래된 주요 종목: <b>{spike_txt}</b></p>
-  <a class="cta" href="./">→ 실시간 대시보드에서 세부 산업·종목별로 보기</a>
+  <a class="cta" href="./">→ 대시보드에서 세부 산업·종목별로 보기</a>
   <p class="note">거래대금(종가×거래량)은 매수·매도가 함께 잡히는 지표로, 점유율 변화(%p)가 "돈이 어디서 어디로 이동했는가"에 가장 가까운 신호입니다. 본 페이지는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance · <a href="about.html">방법론 안내</a></p>
 </div>
 </body>

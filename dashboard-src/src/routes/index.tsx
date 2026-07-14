@@ -57,16 +57,16 @@ function initialSelection(groups: string[], rows: Sector[]) {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "미국 주식 시장 흐름 · BMO Money Flow" },
+      { title: "미국 주식 거래대금·시장 흐름 분석 | BVT Money Flow" },
       {
         name: "description",
         content:
-          "거래대금과 시장 점유율로 미국 주식 섹터 자금 로테이션을 추적합니다. 장 마감 기준으로 유입·이탈 신호와 비교 차트를 한눈에.",
+          "미국 주식의 종목별 거래대금, 섹터·산업·시가총액별 시장 관심 변화를 한눈에 확인하세요. 내부자 거래와 IPO 락업 일정도 함께 제공합니다.",
       },
       { property: "og:title", content: "미국 주식 시장 흐름 대시보드" },
       {
         property: "og:description",
-        content: "장 마감 기준 자금 유입·이탈 신호와 섹터 로테이션 데이터 대시보드",
+        content: "장 마감 기준 거래대금 점유율 확대·축소와 섹터 로테이션 데이터 대시보드",
       },
     ],
     links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/" }],

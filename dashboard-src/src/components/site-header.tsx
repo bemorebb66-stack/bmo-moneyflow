@@ -11,6 +11,7 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { cn } from "@/lib/utils";
+import type { DataStatus } from "@/lib/mock-data";
 
 const NAV = [
   { label: "시장 흐름", to: "/" },
@@ -24,9 +25,10 @@ interface Props {
   asOf: string;
   updatedAt: string;
   universeCount: number;
+  status: DataStatus;
 }
 
-export function SiteHeader({ asOf, updatedAt, universeCount }: Props) {
+export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -42,10 +44,8 @@ export function SiteHeader({ asOf, updatedAt, universeCount }: Props) {
             <TrendingUp className="h-4 w-4" />
           </div>
           <div className="min-w-0 leading-tight">
-            <div className="truncate text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              BMO Value Talks
-            </div>
-            <div className="truncate text-sm font-semibold">Money Flow</div>
+            <div className="truncate text-sm font-semibold">BVT Money Flow</div>
+            <div className="truncate text-[10px] font-medium text-muted-foreground">by BMO Value Talks</div>
           </div>
         </Link>
 
@@ -71,7 +71,7 @@ export function SiteHeader({ asOf, updatedAt, universeCount }: Props) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <StatusStrip asOf={asOf} updatedAt={updatedAt} universeCount={universeCount} />
+          <StatusStrip asOf={asOf} updatedAt={updatedAt} universeCount={universeCount} status={status} />
 
           <Button
             variant="ghost"
@@ -134,6 +134,7 @@ export function SiteHeader({ asOf, updatedAt, universeCount }: Props) {
                   <div>기준일 · {asOf}</div>
                   <div>갱신 · {updatedAt}</div>
                   <div>추적 종목 · {universeCount.toLocaleString("ko-KR")}개</div>
+                  <div>데이터 상태 · {status === "normal" ? "정상" : status === "stale" ? "이전 데이터" : status === "partial" ? "일부 지연" : status === "failed" ? "업데이트 실패" : "확인 중"}</div>
                 </div>
               </div>
             </SheetContent>
@@ -148,14 +149,19 @@ function StatusStrip({
   asOf,
   updatedAt,
   universeCount,
+  status,
 }: {
   asOf: string;
   updatedAt: string;
   universeCount: number;
+  status: DataStatus;
 }) {
   return (
     <div className="hidden items-center gap-3 rounded-md border border-border/70 bg-surface px-3 py-1.5 text-[11px] leading-tight text-muted-foreground tabular lg:flex">
-      <span className="font-medium text-foreground">장 마감 기준</span>
+      <span className={cn("inline-flex items-center gap-1.5 font-medium", status === "normal" ? "text-success" : status === "failed" ? "text-danger" : "text-warning")}>
+        <span className="h-1.5 w-1.5 rounded-full bg-current" />
+        {status === "normal" ? "데이터 정상" : status === "stale" ? "이전 데이터" : status === "partial" ? "일부 지연" : status === "failed" ? "업데이트 실패" : "확인 중"}
+      </span>
       <span className="h-3 w-px bg-border" aria-hidden />
       <span>
         기준일 <span className="text-foreground">{asOf}</span>
@@ -171,4 +177,3 @@ function StatusStrip({
     </div>
   );
 }
-
