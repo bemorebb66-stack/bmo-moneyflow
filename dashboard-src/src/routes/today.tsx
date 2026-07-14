@@ -78,6 +78,7 @@ function TodayPage() {
 
       <section
         aria-label="핵심 결론"
+        data-nosnippet
         className="mb-5 rounded-xl border border-border/70 bg-surface p-4 sm:p-5"
       >
         <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
@@ -94,14 +95,13 @@ function TodayPage() {
         </p>
       </section>
 
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div>
         <SectionCard
           icon={TrendingUp}
           title="시장 흐름"
           subtitle="전일 대비 섹터 거래대금 점유율 변화"
           to="/"
           linkLabel="전체 대시보드로"
-          className="lg:col-span-2"
         >
           <ul className="grid gap-x-8 sm:grid-cols-2">
             {[topSector, bottomSector].map((s) => (
@@ -117,6 +117,11 @@ function TodayPage() {
             ))}
           </ul>
         </SectionCard>
+      </div>
+
+      <DailyMarketAnalysis />
+
+      <div className="mt-5 grid gap-5 lg:grid-cols-3">
 
         <SectionCard
           icon={Search}
@@ -231,8 +236,6 @@ function TodayPage() {
           </ul>
         </SectionCard>
       </div>
-
-      <DailyMarketAnalysis />
 
       <p className="mt-5 text-[11px] text-muted-foreground">
         장 마감 데이터와 SEC 공시를 기준으로 정리했습니다. 실제 투자 판단은 원본 공시와 실시간 데이터를 함께 확인하세요. 점유율 확대 1위 {topSector.name} {fmtBp(topSector.shareDelta)}.

@@ -62,12 +62,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "미국 주식의 종목별 거래대금, 섹터·산업·시가총액별 시장 관심 변화를 한눈에 확인하세요. 내부자 거래와 IPO 락업 일정도 함께 제공합니다.",
+          "미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 시장 흐름을 분석합니다. 거래대금 급증 종목, 내부자 거래, IPO 락업 일정과 오늘의 시장 요약을 확인하세요.",
       },
-      { property: "og:title", content: "미국 주식 시장 흐름 대시보드" },
+      { property: "og:title", content: "미국 주식 거래대금·시장 흐름 분석 | BVT Money Flow" },
       {
         property: "og:description",
-        content: "장 마감 기준 거래대금 점유율 확대·축소와 섹터 로테이션 데이터 대시보드",
+        content: "미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 시장 흐름을 확인하세요.",
       },
     ],
     links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/" }],
@@ -144,6 +144,9 @@ function MarketFlowPage() {
         title="시장 흐름"
         description="거래대금 점유율 변화로 미국 시장의 관심 이동을 30초 안에 확인하세요."
       />
+      <p className="-mt-2 mb-5 max-w-4xl text-xs leading-relaxed text-muted-foreground">
+        BVT Money Flow는 미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 거래대금 점유율 변화를 분석하는 금융 데이터 서비스입니다.
+      </p>
       <div className="space-y-5">
         <RotationSummary rows={rows} categoryLabel={CATEGORY_LABELS[category]} periodLabel={PERIOD_LABELS[period]} />
         <FocusStocks />

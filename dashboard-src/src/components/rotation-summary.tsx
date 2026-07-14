@@ -24,7 +24,7 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
   const bottomNames = outflows.slice(0, 2).map((row) => row.name).join("·");
 
   return (
-    <section aria-label="오늘의 거래대금 로테이션" className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
+    <section data-nosnippet aria-label="오늘의 거래대금 로테이션" className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
       <Card className="col-span-2 border-brand/20 bg-brand/[0.055] dark:bg-brand/[0.08] lg:col-span-1">
         <CardContent className="p-4 sm:p-5">
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-brand">
