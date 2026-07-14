@@ -9,7 +9,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
-import { SignalBadge, DeltaText } from "@/components/signal-badge";
+import { DeltaText } from "@/components/signal-badge";
 import { cn } from "@/lib/utils";
 import {
   SECTORS,
@@ -17,8 +17,9 @@ import {
   INSIDER_ROWS,
   LOCKUP_ROWS,
   LIVE_META,
+  LIVE_STOCKS,
 } from "@/lib/mock-data";
-import { fmtMoney, fmtPct } from "@/lib/format";
+import { fmtBp, fmtMoney, fmtPct } from "@/lib/format";
 import { ShareMenu } from "@/components/share-menu";
 
 export const Route = createFileRoute("/today")({
@@ -44,10 +45,12 @@ export const Route = createFileRoute("/today")({
 function TodayPage() {
   const topSector = [...SECTORS].sort((a, b) => b.shareDelta - a.shareDelta)[0];
   const bottomSector = [...SECTORS].sort((a, b) => a.shareDelta - b.shareDelta)[0];
-  const surgeTop = [...SURGE_STOCKS]
-    .filter((s) => s.signal === "inflow")
-    .sort((a, b) => b.volumeRatio - a.volumeRatio)
+  const todayStocks = LIVE_STOCKS.length ? LIVE_STOCKS : SURGE_STOCKS;
+  const surgeTop = [...todayStocks]
+    .filter((s) => (s.volumeVs?.["1d"] ?? 0) > 0)
+    .sort((a, b) => (b.volumeVs?.["1d"] ?? 0) - (a.volumeVs?.["1d"] ?? 0))
     .slice(0, 3);
+  const dailyVolumeGainers = todayStocks.filter((s) => (s.volumeVs?.["1d"] ?? 0) > 0).length;
   const insiderTop = INSIDER_ROWS.filter((row) => row.tradeDate === LIVE_META.asOf)
     .sort((a, b) => b.amount - a.amount)
     .slice(0, 3);
@@ -74,11 +77,11 @@ function TodayPage() {
           오늘의 한 줄
         </div>
         <p className="mt-1.5 text-base font-semibold sm:text-lg">
-          <span className="text-success">{topSector.name}</span>의 거래대금 점유율은 확대되고,{" "}
-          <span className="text-danger">{bottomSector.name}</span>은 축소됐습니다.
+          전일 대비 거래대금 점유율은 <span className="text-success">{topSector.name} {fmtBp(topSector.shareDelta)}</span>,{" "}
+          <span className="text-danger">{bottomSector.name} {fmtBp(bottomSector.shareDelta)}</span>로 변했습니다.
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
-          20일 평균 대비 거래대금 급증 종목 {SURGE_STOCKS.length}개 · 기준일 내부자 거래{" "}
+          전일 대비 거래대금 증가 종목 {dailyVolumeGainers}개 · 기준일 내부자 거래{" "}
           {insiderTop.length}건 · 7일 내 락업 해제{" "}
           {lockupSoon.length}건이 예정되어 있습니다.
         </p>
@@ -88,7 +91,7 @@ function TodayPage() {
         <SectionCard
           icon={TrendingUp}
           title="시장 흐름"
-          subtitle="섹터 거래대금 로테이션"
+          subtitle="전일 대비 섹터 거래대금 점유율 변화"
           to="/"
           linkLabel="전체 대시보드로"
           className="lg:col-span-2"
@@ -102,8 +105,7 @@ function TodayPage() {
                     거래대금 {fmtMoney(s.volume)} · 점유율 {s.share.toFixed(1)}%
                   </div>
                 </div>
-                <DeltaText value={s.priceChange} />
-                <SignalBadge signal={s.signal} size="xs" />
+                <DeltaText value={s.shareDelta} suffix=" bp" digits={0} />
               </li>
             ))}
           </ul>
@@ -112,7 +114,7 @@ function TodayPage() {
         <SectionCard
           icon={Search}
           title="종목 스캐너"
-          subtitle="거래대금 급증 상위"
+          subtitle="전일 대비 거래대금 증가 상위"
           to="/scanner"
           linkLabel="스캐너로"
         >
@@ -129,7 +131,7 @@ function TodayPage() {
                     </span>
                   </div>
                   <div className="text-[11px] text-muted-foreground tabular">
-                    거래대금 {fmtMoney(s.volume)} · 평균비 {s.volumeRatio.toFixed(1)}x
+                    거래대금 {fmtMoney(s.volume)} · 전일 대비 {fmtPct(s.volumeVs?.["1d"] ?? 0, 1)}
                   </div>
                 </div>
                 <DeltaText value={s.change} />
@@ -224,7 +226,7 @@ function TodayPage() {
       </div>
 
       <p className="mt-5 text-[11px] text-muted-foreground">
-        장 마감 데이터와 SEC 공시를 기준으로 정리했습니다. 실제 투자 판단은 원본 공시와 실시간 데이터를 함께 확인하세요. 전일 대비 시장 변화 {fmtPct(topSector.priceChange)}.
+        장 마감 데이터와 SEC 공시를 기준으로 정리했습니다. 실제 투자 판단은 원본 공시와 실시간 데이터를 함께 확인하세요. 점유율 확대 1위 {topSector.name} {fmtBp(topSector.shareDelta)}.
       </p>
     </PageShell>
   );

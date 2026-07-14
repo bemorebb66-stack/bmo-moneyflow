@@ -6,6 +6,7 @@ import {
   LIVE_MARKET_DATA,
   LIVE_META,
   LIVE_SECTOR_SERIES,
+  LIVE_STOCKS,
   LOCKUP_ROWS,
   SECTORS,
   SURGE_STOCKS,
@@ -289,8 +290,7 @@ export async function hydrateLiveData() {
     const sectors = LIVE_MARKET_DATA.sector["1d"];
     SECTORS.splice(0, SECTORS.length, ...sectors);
 
-    const surge: StockRow[] = stocks
-      .filter((stock) => stock.a20 > 0)
+    const stockRows: StockRow[] = stocks
       .map((stock) => ({
         ticker: stock.t, name: stock.nko || stock.n, sector: SECTOR_KO[stock.sec] || stock.sec,
         price: stock.c, change: stock.pc, volume: stock.dv / 1e6,
@@ -302,8 +302,10 @@ export async function hydrateLiveData() {
           "60d": stock.a60 ? (stock.dv / stock.a60 - 1) * 100 : 0,
         },
         industry: INDUSTRY_KO[stock.ind || ""] || stock.ind,
-        signal: stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc),
-      }))
+        signal: stockSignalFor(stock.a20 ? (stock.dv / stock.a20 - 1) * 100 : 0, stock.pc),
+      }));
+    LIVE_STOCKS.splice(0, LIVE_STOCKS.length, ...stockRows);
+    const surge = [...stockRows]
       .sort((a, b) => b.volumeRatio - a.volumeRatio)
       .slice(0, 100);
     SURGE_STOCKS.splice(0, SURGE_STOCKS.length, ...surge);
