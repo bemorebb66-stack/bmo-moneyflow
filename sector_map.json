@@ -2197,7 +2197,7 @@
   "name": "Fiserv",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 27830523904,
+  "mcap": 27291938816,
   "name_ko": "Fiserv",
   "universe": [
    "Russell 1000",
@@ -9648,7 +9648,7 @@
   "name": "LIONSGATE STUDIOS CORP",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 3914834688,
+  "mcap": 3862520576,
   "name_ko": "라이온스게이트 스튜디오 코퍼레이션",
   "universe": [
    "Russell 2000"
@@ -13446,9 +13446,9 @@
  },
  "AYI": {
   "name": "ACUITY INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 10017632256,
+  "sector": "Industrials",
+  "industry": "Electrical Equipment & Parts",
+  "mcap": 9739829248,
   "name_ko": "ACUITY INC",
   "universe": [
    "Russell 1000"
@@ -14726,9 +14726,9 @@
  },
  "MBGL": {
   "name": "MOBILITY GLOBAL INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "mcap": 5978263040,
   "name_ko": "모빌리티 글로벌 INC",
   "universe": [
    "Russell 1000"
@@ -16592,6 +16592,56 @@
   "name_ko": "버켄스톡 홀딩 PLC",
   "universe": [
    "Russell 1000"
+  ]
+ },
+ "MAN": {
+  "name": "MANPOWER INC",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "name_ko": "맨파워(주)",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "EVTC": {
+  "name": "EVERTEC INC",
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "mcap": 1824578432,
+  "name_ko": "에버텍(주)",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "EPAC": {
+  "name": "ENERPAC TOOL GROUP CORP CLASS A",
+  "sector": "Industrials",
+  "industry": "Specialty Industrial Machinery",
+  "mcap": 1791125120,
+  "name_ko": "ENERPAC TOOL GROUP CORP 클래스 A",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "WKC": {
+  "name": "WORLD KINECT CORP",
+  "sector": "Energy",
+  "industry": "Oil & Gas Refining & Marketing",
+  "mcap": 1846228480,
+  "name_ko": "월드키넥트 주식회사",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "TNK": {
+  "name": "TEEKAY TANKERS LTD CLASS A",
+  "sector": "Energy",
+  "industry": "Oil & Gas Midstream",
+  "mcap": 2450013440,
+  "name_ko": "TEEKAY TANKERS LTD 클래스 A",
+  "universe": [
+   "Russell 2000"
   ]
  }
 }
