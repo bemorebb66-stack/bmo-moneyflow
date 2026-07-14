@@ -194,18 +194,35 @@ function aggregateMarket(stocks: MarketStock[], category: MarketCategory, period
 
 const daysUntil = (date: string) => Math.ceil((new Date(`${date}T00:00:00Z`).getTime() - Date.now()) / 86400000);
 
-function tradingDaysSince(marketDate: string) {
+function tradingDaysBehindLatestClose(marketDate: string) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(marketDate)) return Number.POSITIVE_INFINITY;
-  const todayKst = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Seoul",
+  const nyParts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-  }).format(new Date());
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+  const part = (type: Intl.DateTimeFormatPartTypes) =>
+    nyParts.find((item) => item.type === type)?.value ?? "";
+  const nyDate = `${part("year")}-${part("month")}-${part("day")}`;
+  const nyHour = Number(part("hour"));
+
+  // 장 마감 직후의 지연을 고려해 뉴욕 17시부터 당일을 완료 거래일로 봅니다.
+  const latestClose = new Date(`${nyDate}T00:00:00Z`);
+  const moveToPreviousWeekday = () => {
+    do latestClose.setUTCDate(latestClose.getUTCDate() - 1);
+    while (latestClose.getUTCDay() === 0 || latestClose.getUTCDay() === 6);
+  };
+  const weekday = latestClose.getUTCDay();
+  if (weekday === 0) latestClose.setUTCDate(latestClose.getUTCDate() - 2);
+  else if (weekday === 6) latestClose.setUTCDate(latestClose.getUTCDate() - 1);
+  else if (nyHour < 17) moveToPreviousWeekday();
+
   const start = new Date(`${marketDate}T00:00:00Z`);
-  const end = new Date(`${todayKst}T00:00:00Z`);
   let count = 0;
-  for (const cursor = new Date(start.getTime() + 86400000); cursor <= end; cursor.setUTCDate(cursor.getUTCDate() + 1)) {
+  for (const cursor = new Date(start.getTime() + 86400000); cursor <= latestClose; cursor.setUTCDate(cursor.getUTCDate() + 1)) {
     const day = cursor.getUTCDay();
     if (day !== 0 && day !== 6) count += 1;
   }
@@ -355,7 +372,7 @@ export async function hydrateLiveData() {
     LIVE_META.asOf = market.market_date || "-";
     LIVE_META.updatedAt = market.updated || "-";
     LIVE_META.universeCount = Number(market.count) || stocks.length;
-    LIVE_META.status = tradingDaysSince(LIVE_META.asOf) > 1
+    LIVE_META.status = tradingDaysBehindLatestClose(LIVE_META.asOf) > 1
       ? "stale"
       : secondaryDataDelayed ? "partial" : "normal";
     if (secondaryDataDelayed) LIVE_META.error = "내부자 거래 또는 IPO 락업 데이터가 지연되고 있습니다.";
