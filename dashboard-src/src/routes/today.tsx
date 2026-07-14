@@ -21,6 +21,7 @@ import {
 } from "@/lib/mock-data";
 import { fmtBp, fmtMoney, fmtPct } from "@/lib/format";
 import { ShareMenu } from "@/components/share-menu";
+import { DailyMarketAnalysis } from "@/components/daily-market-analysis";
 
 export const Route = createFileRoute("/today")({
   head: () => ({
@@ -51,6 +52,12 @@ function TodayPage() {
     .sort((a, b) => (b.volumeVs?.["1d"] ?? 0) - (a.volumeVs?.["1d"] ?? 0))
     .slice(0, 3);
   const dailyVolumeGainers = todayStocks.filter((s) => (s.volumeVs?.["1d"] ?? 0) > 0).length;
+  const totalVolume = todayStocks.reduce((sum, stock) => sum + stock.volume, 0);
+  const previousTotalVolume = todayStocks.reduce((sum, stock) => {
+    const change = stock.volumeVs?.["1d"];
+    return change == null || change <= -100 ? sum : sum + stock.volume / (1 + change / 100);
+  }, 0);
+  const totalVolumeChange = previousTotalVolume ? (totalVolume / previousTotalVolume - 1) * 100 : 0;
   const insiderTop = INSIDER_ROWS.filter((row) => row.tradeDate === LIVE_META.asOf)
     .sort((a, b) => b.amount - a.amount)
     .slice(0, 3);
@@ -81,7 +88,7 @@ function TodayPage() {
           <span className="text-danger">{bottomSector.name} {fmtBp(bottomSector.shareDelta)}</span>로 변했습니다.
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
-          전일 대비 거래대금 증가 종목 {dailyVolumeGainers}개 · 기준일 내부자 거래{" "}
+          전체 거래대금 {fmtMoney(totalVolume)} · 전일 대비 {fmtPct(totalVolumeChange, 1)} · 거래대금 증가 종목 {dailyVolumeGainers}개 · 기준일 내부자 거래{" "}
           {insiderTop.length}건 · 7일 내 락업 해제{" "}
           {lockupSoon.length}건이 예정되어 있습니다.
         </p>
@@ -224,6 +231,8 @@ function TodayPage() {
           </ul>
         </SectionCard>
       </div>
+
+      <DailyMarketAnalysis />
 
       <p className="mt-5 text-[11px] text-muted-foreground">
         장 마감 데이터와 SEC 공시를 기준으로 정리했습니다. 실제 투자 판단은 원본 공시와 실시간 데이터를 함께 확인하세요. 점유율 확대 1위 {topSector.name} {fmtBp(topSector.shareDelta)}.

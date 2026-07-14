@@ -20,6 +20,13 @@ async function copyText(value: string) {
   await navigator.clipboard.writeText(value);
 }
 
+function trackShare(action: string) {
+  const detail = { event: "summary_share_click", market_date: LIVE_META.asOf, action };
+  window.dispatchEvent(new CustomEvent("bvt:analytics", { detail }));
+  const dataLayer = (window as Window & { dataLayer?: Record<string, unknown>[] }).dataLayer;
+  dataLayer?.push(detail);
+}
+
 function saveBriefingImage() {
   const topSector = [...SECTORS].sort((a, b) => b.shareDelta - a.shareDelta)[0];
   const topStocks = [...SURGE_STOCKS].sort((a, b) => b.volumeRatio - a.volumeRatio).slice(0, 3);
@@ -78,6 +85,7 @@ function saveBriefingImage() {
 export function ShareMenu({ label = "공유" }: { label?: string }) {
   const [copied, setCopied] = useState(false);
   const share = async () => {
+    trackShare("native_share");
     const url = window.location.href;
     const text = briefingText();
     if (navigator.share) await navigator.share({ title: "BVT Money Flow 시장 브리핑", text, url }).catch(() => undefined);
@@ -87,11 +95,13 @@ export function ShareMenu({ label = "공유" }: { label?: string }) {
     }
   };
   const copy = async () => {
+    trackShare("copy_link");
     await copyText(window.location.href);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   };
   const shareX = () => {
+    trackShare("x_share");
     const url = `https://x.com/intent/post?text=${encodeURIComponent(briefingText())}&url=${encodeURIComponent(window.location.href)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -108,7 +118,7 @@ export function ShareMenu({ label = "공유" }: { label?: string }) {
         <DropdownMenuItem onSelect={copy} className="min-h-10"><Copy /> 링크 복사</DropdownMenuItem>
         <DropdownMenuItem onSelect={share} className="min-h-10"><MessageCircle /> 카카오톡 등 공유</DropdownMenuItem>
         <DropdownMenuItem onSelect={shareX} className="min-h-10"><Share2 /> X에 공유</DropdownMenuItem>
-        <DropdownMenuItem onSelect={saveBriefingImage} className="min-h-10"><Download /> 이미지로 저장</DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => { trackShare("save_image"); saveBriefingImage(); }} className="min-h-10"><Download /> 이미지로 저장</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

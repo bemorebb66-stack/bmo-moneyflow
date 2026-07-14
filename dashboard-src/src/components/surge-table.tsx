@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { SignalBadge, DeltaText } from "./signal-badge";
-import { SURGE_STOCKS, type MarketPeriod } from "@/lib/mock-data";
+import { LIVE_STOCKS, SURGE_STOCKS, type MarketPeriod } from "@/lib/mock-data";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { MetricInfo } from "./metric-info";
@@ -26,6 +26,11 @@ const PERIODS: { id: MarketPeriod; label: string }[] = [
 type SortKey = "price" | "change" | "volume" | MarketPeriod | "marketCap" | "signal";
 type SortMode = "desc" | "asc" | "average";
 type InsightFilter = "all" | "new" | "persistent" | "overheated";
+type ExternalFilter = {
+  preset?: string;
+  priceDirection?: "up" | "down";
+  tradingValueDirection?: "up" | "down";
+};
 const INSIGHT_FILTERS: { id: InsightFilter; label: string }[] = [
   { id: "all", label: "전체" },
   { id: "new", label: "신규 급증" },
@@ -56,6 +61,17 @@ export function SurgeTable() {
     return params.get("ticker") ?? params.get("q") ?? "";
   });
   const [insight, setInsight] = useState<InsightFilter>("all");
+  const [externalFilter, setExternalFilter] = useState<ExternalFilter>(() => {
+    if (typeof window === "undefined") return {};
+    const params = new URLSearchParams(window.location.search);
+    const priceDirection = params.get("priceDirection");
+    const tradingValueDirection = params.get("tradingValueDirection");
+    return {
+      preset: params.get("preset") ?? undefined,
+      priceDirection: priceDirection === "up" || priceDirection === "down" ? priceDirection : undefined,
+      tradingValueDirection: tradingValueDirection === "up" || tradingValueDirection === "down" ? tradingValueDirection : undefined,
+    };
+  });
   const [watch, setWatch] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem("bmoWatch") || "[]"); } catch { return []; }
   });
@@ -66,7 +82,10 @@ export function SurgeTable() {
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const filtered = SURGE_STOCKS.filter((stock) => {
+    const source = externalFilter.preset || externalFilter.priceDirection || externalFilter.tradingValueDirection
+      ? LIVE_STOCKS
+      : SURGE_STOCKS;
+    const filtered = source.filter((stock) => {
       const matchesQuery = !q || stock.ticker.toLowerCase().includes(q) || stock.name.toLowerCase().includes(q) ||
         stock.sector.toLowerCase().includes(q) || stock.industry?.toLowerCase().includes(q);
       const current = stock.volumeVs?.[period] ?? 0;
@@ -77,7 +96,14 @@ export function SurgeTable() {
         (insight === "new" && oneDay >= 30 && fiveDay < 20) ||
         (insight === "persistent" && fiveDay >= 15 && twentyDay >= 15 && stock.change > 0) ||
         (insight === "overheated" && current >= 100);
-      return matchesQuery && matchesInsight;
+      const matchesPreset = externalFilter.preset !== "trading-value-surge" ||
+        (stock.volumeRatio >= 2 && stock.volume >= 50);
+      const matchesPrice = !externalFilter.priceDirection ||
+        (externalFilter.priceDirection === "up" ? stock.change > 0 : stock.change <= 0);
+      const ratio20d = stock.volumeVs?.["20d"] ?? -100;
+      const matchesTradingValue = !externalFilter.tradingValueDirection ||
+        (externalFilter.tradingValueDirection === "up" ? ratio20d >= 0 : ratio20d < 0);
+      return matchesQuery && matchesInsight && matchesPreset && matchesPrice && matchesTradingValue;
     });
     const average = filtered.length
       ? filtered.reduce((sum, stock) => sum + sortValue(stock, sort.key), 0) / filtered.length
@@ -88,7 +114,26 @@ export function SurgeTable() {
       if (sort.mode === "average") return Math.abs(av - average) - Math.abs(bv - average);
       return sort.mode === "desc" ? bv - av : av - bv;
     });
-  }, [insight, period, query, sort]);
+  }, [externalFilter, insight, period, query, sort]);
+
+  const externalParts = [
+    externalFilter.priceDirection === "up" ? "주가 상승" : externalFilter.priceDirection === "down" ? "주가 하락" : "",
+    externalFilter.tradingValueDirection === "up" ? "거래대금 확대" : externalFilter.tradingValueDirection === "down" ? "거래대금 축소" : "",
+  ].filter(Boolean);
+  const externalLabel = externalFilter.preset === "trading-value-surge"
+    ? "20일 평균 2배 이상 · 거래대금 5천만 달러 이상"
+    : externalParts.join(" · ");
+
+  const clearExternalFilter = () => {
+    setExternalFilter({});
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("preset");
+      url.searchParams.delete("priceDirection");
+      url.searchParams.delete("tradingValueDirection");
+      window.history.replaceState({}, "", url);
+    }
+  };
 
   const cycleSort = (key: SortKey) => setSort((current) => ({
     key,
@@ -163,6 +208,16 @@ export function SurgeTable() {
             </button>
           ))}
         </div>
+
+        {externalLabel && (
+          <div className="flex items-center gap-3 border-b border-brand/20 bg-brand/[0.05] px-4 py-2.5 text-xs sm:px-5">
+            <span className="font-medium text-brand">적용 중 · {externalLabel}</span>
+            <span className="text-muted-foreground">{rows.length}개 종목</span>
+            <button type="button" onClick={clearExternalFilter} className="ml-auto font-medium text-brand hover:underline">
+              필터 초기화
+            </button>
+          </div>
+        )}
 
         <TooltipProvider delayDuration={150}>
           <MobileStockList rows={rows} period={period} watch={watch} onToggleWatch={toggleWatch} />
