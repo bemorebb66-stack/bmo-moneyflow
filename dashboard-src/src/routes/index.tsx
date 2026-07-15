@@ -15,7 +15,7 @@ import { LIVE_COMPANIES_BY_ID, LIVE_MARKET_DATA, SECTORS, type Sector } from "@/
 
 const INITIAL_GROUPS = ["technology", "communication", "financial"];
 const CATEGORY_LABELS: Record<Category, string> = {
-  sector: "대분류 섹터", industry: "세부 산업", universe: "시장 유니버스",
+  sector: "대분류 섹터", industry: "세부 산업", universe: "편입 지수",
   custom: "커스텀 그룹", mcap: "시가총액",
 };
 const PERIOD_LABELS: Record<Period, string> = {

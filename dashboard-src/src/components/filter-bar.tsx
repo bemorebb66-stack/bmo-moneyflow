@@ -9,9 +9,9 @@ export type Period = "1d" | "5d" | "20d" | "60d";
 const CATEGORIES: { id: Category; label: string }[] = [
   { id: "sector", label: "대분류 섹터" },
   { id: "industry", label: "세부 산업" },
-  { id: "universe", label: "시장 유니버스" },
   { id: "custom", label: "커스텀 그룹" },
   { id: "mcap", label: "시가총액" },
+  { id: "universe", label: "편입 지수" },
 ];
 
 const PERIODS: { id: Period; label: string }[] = [
