@@ -191,7 +191,7 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
 
         <div className="mt-4 h-[340px] w-full sm:h-[500px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -4 }}>
+            <LineChart data={data} margin={{ top: 8, right: 28, bottom: 4, left: -4 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.5} />
               <XAxis
                 dataKey="date"
@@ -200,6 +200,7 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
                 tickLine={false}
                 axisLine={false}
                 minTickGap={24}
+                padding={{ left: 4, right: 16 }}
               />
               <YAxis
                 stroke="var(--color-muted-foreground)"
