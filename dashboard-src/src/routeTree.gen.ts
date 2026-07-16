@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TodayRouteImport } from './routes/today'
 import { Route as ScannerRouteImport } from './routes/scanner'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as IpoLockupRouteImport } from './routes/ipo-lockup'
 import { Route as InsiderRouteImport } from './routes/insider'
@@ -26,6 +27,11 @@ const TodayRoute = TodayRouteImport.update({
 const ScannerRoute = ScannerRouteImport.update({
   id: '/scanner',
   path: '/scanner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MethodologyRoute = MethodologyRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/scanner': typeof ScannerRoute
   '/today': typeof TodayRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/scanner': typeof ScannerRoute
   '/today': typeof TodayRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/insider': typeof InsiderRoute
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/scanner': typeof ScannerRoute
   '/today': typeof TodayRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/insider'
     | '/ipo-lockup'
     | '/methodology'
+    | '/privacy-policy'
     | '/scanner'
     | '/today'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/insider'
     | '/ipo-lockup'
     | '/methodology'
+    | '/privacy-policy'
     | '/scanner'
     | '/today'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/insider'
     | '/ipo-lockup'
     | '/methodology'
+    | '/privacy-policy'
     | '/scanner'
     | '/today'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   InsiderRoute: typeof InsiderRoute
   IpoLockupRoute: typeof IpoLockupRoute
   MethodologyRoute: typeof MethodologyRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ScannerRoute: typeof ScannerRoute
   TodayRoute: typeof TodayRoute
 }
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/scanner'
       fullPath: '/scanner'
       preLoaderRoute: typeof ScannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/methodology': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsiderRoute: InsiderRoute,
   IpoLockupRoute: IpoLockupRoute,
   MethodologyRoute: MethodologyRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ScannerRoute: ScannerRoute,
   TodayRoute: TodayRoute,
 }

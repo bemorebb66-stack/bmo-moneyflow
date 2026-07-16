@@ -278,114 +278,6 @@ def safe(x, nd=2):
     return round(float(x), nd)
 
 
-KO_SEC_PY = {
-    "Technology":"기술","Information Technology":"기술","Communication Services":"커뮤니케이션",
-    "Consumer Cyclical":"임의소비재","Consumer Discretionary":"임의소비재",
-    "Consumer Defensive":"필수소비재","Consumer Staples":"필수소비재",
-    "Financial Services":"금융","Financials":"금융","Healthcare":"헬스케어","Health Care":"헬스케어",
-    "Energy":"에너지","Industrials":"산업재","Utilities":"유틸리티",
-    "Basic Materials":"소재","Materials":"소재","Real Estate":"부동산","기타":"기타",
-}
-
-def fmt_dv(v):
-    if not v: return "—"
-    if v >= 1e12: return f"${v/1e12:.2f}T"
-    if v >= 1e9:  return f"${v/1e9:.1f}B"
-    return f"${v/1e6:.0f}M"
-
-def write_today_html(stocks, market_date):
-    """오늘의 섹터 로테이션 정적 요약 페이지 (SEO용, 매일 자동 생성)"""
-    secs = {}
-    tot_now = tot_ref = 0.0
-    for st in stocks:
-        dv, dvp = st.get("dv"), st.get("dvp")
-        if dv is None: continue
-        k = KO_SEC_PY.get(st.get("sec") or "기타", st.get("sec") or "기타")
-        o = secs.setdefault(k, {"now":0.0, "ref":0.0})
-        o["now"] += dv
-        tot_now += dv
-        if dvp:
-            o["ref"] += dvp
-            tot_ref += dvp
-    rows = []
-    for k, o in secs.items():
-        if not (tot_now and tot_ref and o["ref"]): continue
-        rows.append((k, o["now"]/tot_now*100 - o["ref"]/tot_ref*100, o["now"]))
-    rows.sort(key=lambda x: -x[1])
-    inflow, outflow = rows[:3], sorted(rows[-3:], key=lambda x: x[1])
-    spikes = sorted([s for s in stocks if s.get("dv") and s.get("a20") and s["dv"] >= 1.5e8 and s["dv"]/s["a20"] >= 2.0],
-                    key=lambda s: -(s["dv"]/s["a20"]))[:5]
-    tot_chg = (tot_now/tot_ref - 1) * 100 if tot_ref else 0.0
-
-    def li_rows(rs, cls):
-        return "\n".join(
-            f'<li><b>{k}</b> <span class="{cls}">{d:+.2f}%p</span> (거래대금 {fmt_dv(n)})</li>'
-            for k, d, n in rs)
-    spike_txt = ", ".join(f'{s["t"]}({s["dv"]/s["a20"]:.1f}배)' for s in spikes) if spikes else "없음"
-    desc = (f"{market_date} 미국 증시 거래대금 점유율 변화: "
-            + ", ".join(f"{k} {d:+.2f}%p" for k, d, _ in inflow[:2])
-            + " 확대 · " + ", ".join(f"{k} {d:+.2f}%p" for k, d, _ in outflow[:2]) + " 축소")
-    html = f"""<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>오늘의 섹터 거래대금 로테이션 ({market_date}) | BVT Money Flow</title>
-<meta name="description" content="{desc}">
-<link rel="canonical" href="https://www.bvtmoneyflow.xyz/today/">
-<meta property="og:title" content="오늘의 섹터 거래대금 로테이션 ({market_date}) — BVT Money Flow">
-<meta property="og:description" content="{desc}">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://www.bvtmoneyflow.xyz/today/">
-<meta name="twitter:card" content="summary_large_image">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{{--paper:#F8F4EC;--ink:#1E1A12;--muted:#7A7268;--red:#B83A28;--blue:#2A5868;--rule:#E4DDD0}}
-*{{margin:0;padding:0;box-sizing:border-box}}
-body{{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-size:15px;line-height:1.8}}
-.wrap{{max-width:720px;margin:0 auto;padding:0 20px 60px}}
-header{{border-bottom:2px solid var(--ink);padding:26px 0 14px;margin-bottom:24px}}
-.eyebrow{{font-size:10px;letter-spacing:.3em;color:var(--red);font-weight:700;text-transform:uppercase;margin-bottom:6px}}
-h1{{font-family:'Playfair Display','Noto Sans KR',serif;font-weight:700;font-size:26px;line-height:1.35}}
-h2{{font-family:'Playfair Display','Noto Sans KR',serif;font-size:17px;margin:26px 0 10px;border-left:3px solid var(--red);padding-left:10px}}
-p,li{{color:#3A342A}}
-ul{{margin:0 0 12px 22px}}
-li{{margin-bottom:7px}}
-.in{{color:var(--red);font-weight:700}}
-.out{{color:var(--blue);font-weight:700}}
-.cta{{display:inline-block;margin-top:22px;background:var(--red);color:#fff;padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:700}}
-.date{{color:var(--muted);font-size:13px;margin-top:6px}}
-.note{{color:var(--muted);font-size:12px;margin-top:26px;border-top:1px solid var(--rule);padding-top:12px}}
-a{{color:var(--red)}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header>
-    <div class="eyebrow">BVT MONEY FLOW · DAILY</div>
-    <h1>오늘의 섹터 거래대금 요약</h1>
-    <p class="date">기준일 {market_date} (미국 장마감 확정치) · 매 거래일 아침 자동 갱신</p>
-  </header>
-  <p>미국 증시(S&amp;P 500 + 나스닥 100 + 러셀2000 상위권, {len(stocks)}종목)의 전체 거래대금은 <b>{fmt_dv(tot_now)}</b>로 전일 대비 <b>{tot_chg:+.1f}%</b>를 기록했습니다. 시장 내 거래대금 점유율이 확대된 섹터와 축소된 섹터는 다음과 같습니다.</p>
-  <h2>거래대금 점유율 확대 섹터</h2>
-  <ul>
-{li_rows(inflow, "in")}
-  </ul>
-  <h2>거래대금 점유율 축소 섹터</h2>
-  <ul>
-{li_rows(outflow, "out")}
-  </ul>
-  <h2>거래대금 급증 종목</h2>
-  <p>20일 평균 대비 2배 이상 거래된 주요 종목: <b>{spike_txt}</b></p>
-  <a class="cta" href="./">→ 대시보드에서 세부 산업·종목별로 보기</a>
-  <p class="note">거래대금(종가×거래량)은 매수·매도가 함께 잡히는 지표로, 점유율 변화(%p)가 "돈이 어디서 어디로 이동했는가"에 가장 가까운 신호입니다. 본 페이지는 정보 제공 목적이며 투자 권유가 아닙니다. 데이터: Yahoo Finance · <a href="about.html">방법론 안내</a></p>
-</div>
-</body>
-</html>"""
-    with open("today.html", "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"today.html 생성 (기준일 {market_date})")
-
 def main():
     cache = load_json(SECTOR_MAP_PATH, {})
     tickers, universes = get_universe(cache)
@@ -482,11 +374,6 @@ def main():
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print(f"완료: {len(stocks)}종목 → data.json (기준일 {market_date})")
-
-    try:
-        write_today_html(stocks, market_date)
-    except Exception as e:
-        print(f"today.html 생성 실패(무시): {e}")
 
     # ── 그룹별 일별 거래대금 히스토리 (비교 차트용) ──
     hist = pd.DataFrame(dv_map).tail(HISTORY_DAYS)

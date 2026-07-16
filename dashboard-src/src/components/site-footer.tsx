@@ -27,6 +27,7 @@ export function SiteFooter() {
             <div className="flex gap-3 sm:justify-end">
               <Link to="/methodology" className="hover:text-foreground hover:underline">데이터 기준</Link>
               <Link to="/disclaimer" className="hover:text-foreground hover:underline">면책·데이터 한계</Link>
+              <Link to="/privacy-policy" className="hover:text-foreground hover:underline">개인정보처리방침</Link>
             </div>
             <div className="flex flex-wrap gap-3 sm:justify-end">
               <a href={`/feedback/?type=data&page=${pageParam}`} className="inline-flex items-center gap-1 hover:text-foreground hover:underline"><Bug className="h-3.5 w-3.5" />데이터 오류 신고</a>
