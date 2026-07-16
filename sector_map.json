@@ -2197,7 +2197,7 @@
   "name": "Fiserv",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 26854670336,
+  "mcap": 27579895808,
   "name_ko": "Fiserv",
   "universe": [
    "Russell 1000",
@@ -6359,7 +6359,8 @@
   "mcap": 0,
   "name_ko": "미화 현금",
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "Russell 2000"
   ]
  },
  "GATX": {
@@ -9647,7 +9648,7 @@
   "name": "LIONSGATE STUDIOS CORP",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 4057245184,
+  "mcap": 3958429696,
   "name_ko": "라이온스게이트 스튜디오 코퍼레이션",
   "universe": [
    "Russell 2000"
@@ -16749,6 +16750,46 @@
   "industry": "Oil & Gas Equipment & Services",
   "mcap": 2913477120,
   "name_ko": "국가 에너지 서비스 재통합",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "IOVA": {
+  "name": "IOVANCE BIOTHERAPEUTICS INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 2080701056,
+  "name_ko": "IOVANCE BIOTHERAPEUTICS INC",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "PRG": {
+  "name": "PROG HOLDINGS INC",
+  "sector": "Industrials",
+  "industry": "Rental & Leasing Services",
+  "mcap": 1904316160,
+  "name_ko": "PROG 홀딩스 INC",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "TDOC": {
+  "name": "TELADOC HEALTH INC",
+  "sector": "Healthcare",
+  "industry": "Health Information Services",
+  "mcap": 1709458944,
+  "name_ko": "TELADOC 건강 INC",
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "BLX": {
+  "name": "BLADEX INC CLASS E",
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 2231578624,
+  "name_ko": "BLADEX INC 클래스 E",
   "universe": [
    "Russell 2000"
   ]
