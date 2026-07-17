@@ -2,8 +2,8 @@ name: Update market data
 
 on:
   schedule:
-    # 매일 22:30 UTC = 한국시간 오전 7:30 (미국 장 마감 후, 서머타임 무관 안전)
-    - cron: "30 22 * * 1-5"
+    # 일~목 22:30 UTC = 한국시간 월~금 오전 7:30
+    - cron: "30 22 * * 0-4"
   workflow_dispatch: {}
 
 permissions:
