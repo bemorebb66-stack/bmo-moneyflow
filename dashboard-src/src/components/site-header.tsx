@@ -12,6 +12,7 @@ import {
 } from "./ui/sheet";
 import { cn } from "@/lib/utils";
 import type { DataStatus } from "@/lib/mock-data";
+import { GlobalSearch } from "./global-search";
 
 const NAV = [
   { label: "시장 흐름", to: "/" },
@@ -68,6 +69,7 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
+          <GlobalSearch />
           <StatusStrip asOf={asOf} universeCount={universeCount} status={status} />
 
           <Button

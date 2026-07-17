@@ -76,7 +76,7 @@ def read_blackrock_holdings(url, limit=None):
         if not raw or raw.lower() == "nan" or raw in ("-", "—"):
             continue
         t = raw.replace(".", "-").upper()
-        if not t.isascii() or " " in t:
+        if not t.isascii() or " " in t or t in NON_EQUITY_TICKERS:
             continue
         name = str(r[ncol]).strip() if ncol is not None and str(r[ncol]).strip() else t
         out[t] = name
@@ -112,6 +112,7 @@ SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
 CUSTOM_GROUPS_PATH = os.path.join(HERE, "custom_groups.json")
 DATA_PATH = os.path.join(HERE, "data.json")
 HISTORY_PATH = os.path.join(HERE, "history.json")
+KOREAN_NAMES_PATH = os.path.join(HERE, "korean_names.json")
 HISTORY_DAYS = 120
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
@@ -122,6 +123,121 @@ RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # of
 RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
 RUSSELL1000_MAX = int(os.getenv("MONEY_FLOW_RUSSELL1000_MAX", "1000"))
 YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
+NON_EQUITY_TICKERS = {"USD"}
+
+# 자동 번역이 영문을 그대로 반환하거나 기업명답지 않게 번역한 종목은
+# 국내 투자자가 일반적으로 읽는 표기로 고정한다.
+KOREAN_NAME_OVERRIDES = {
+    "ADT": "에이디티",
+    "ALLE": "알레지온",
+    "APLE": "애플 호스피탈리티 리츠",
+    "ARQT": "아르쿠티스 바이오테라퓨틱스",
+    "ATI": "에이티아이",
+    "ATMU": "애트머스 필트레이션 테크놀로지스",
+    "ATR": "앱타그룹",
+    "AUPH": "오리니아 파마슈티컬스",
+    "AVT": "애브넷",
+    "AVTR": "아반토",
+    "AXGN": "액소젠",
+    "AXS": "액시스 캐피털 홀딩스",
+    "AXSM": "액섬 테라퓨틱스",
+    "AXTI": "에이엑스티",
+    "AYI": "어큐이티",
+    "BAH": "부즈 앨런 해밀턴",
+    "BCRX": "바이오크리스트 파마슈티컬스",
+    "BE": "블룸 에너지",
+    "BF-B": "브라운포맨",
+    "BRK-B": "버크셔 해서웨이",
+    "CLMT": "칼루멧",
+    "CORT": "코셉트 테라퓨틱스",
+    "CRH": "씨알에이치",
+    "CRDO": "크레도 테크놀로지",
+    "CRSP": "크리스퍼 테라퓨틱스",
+    "DNTH": "다이앤서스 테라퓨틱스",
+    "DOCN": "디지털오션 홀딩스",
+    "DOX": "암독스",
+    "ERIE": "이리 인뎀니티",
+    "ETSY": "엣시",
+    "FISV": "파이서브",
+    "FROG": "제이프로그",
+    "FTI": "테크닙FMC",
+    "GNRC": "제너락",
+    "HAPN": "해픈",
+    "HQY": "헬스에쿼티",
+    "IBM": "아이비엠",
+    "IDA": "아이다코프",
+    "IESC": "아이이에스",
+    "IOVA": "아이오반스 바이오테라퓨틱스",
+    "IRDM": "이리디움 커뮤니케이션스",
+    "ITT": "아이티티",
+    "MD": "페디아트릭스 메디컬 그룹",
+    "MHO": "엠아이 홈스",
+    "MKSI": "엠케이에스 인스트루먼츠",
+    "MMM": "쓰리엠",
+    "NHI": "내셔널 헬스 인베스터스",
+    "NNN": "엔엔엔 리츠",
+    "NRIX": "누릭스 테라퓨틱스",
+    "NVR": "엔브이알",
+    "NXPI": "엔엑스피 세미컨덕터",
+    "ONTO": "온투 이노베이션",
+    "PCVX": "백사이트",
+    "PSKY": "파라마운트 스카이댄스",
+    "PTGX": "프로태거니스트 테라퓨틱스",
+    "QXO": "큐엑스오",
+    "RH": "알에이치",
+    "RXO": "알엑스오",
+    "SEZL": "시즐",
+    "SFBS": "서비스퍼스트 뱅크셰어스",
+    "SNDX": "신닥스 파마슈티컬스",
+    "SRPT": "사렙타 테라퓨틱스",
+    "STX": "씨게이트 테크놀로지",
+    "SYRE": "스파이어 테라퓨틱스",
+    "T": "에이티앤티",
+    "TEL": "티이 커넥티비티",
+    "TGTX": "티지 테라퓨틱스",
+    "UNM": "유넘 그룹",
+    "VVX": "브이투엑스",
+    "WAFD": "와에프디",
+    "WDFC": "더블유디-40",
+    "AES": "에이이에스",
+    "AIR": "에이에이알",
+    "APA": "에이피에이",
+    "AZZ": "에이지지",
+    "BXP": "비엑스피",
+    "CBZ": "씨비즈",
+    "CDW": "씨디더블유",
+    "CSX": "씨에스엑스",
+    "EQT": "이큐티",
+    "ESAB": "이삽",
+    "FFIV": "에프파이브",
+    "FNB": "에프엔비",
+    "GATX": "지에이티엑스",
+    "GPGI": "지피지아이",
+    "HNI": "에이치엔아이",
+    "HPQ": "에이치피",
+    "JBS": "제이비에스",
+    "KBR": "케이비알",
+    "KKR": "케이케이알",
+    "KLAC": "케이엘에이",
+    "LKQ": "엘케이큐",
+    "MSCI": "엠에스씨아이",
+    "PPL": "피피엘",
+    "PTC": "피티씨",
+    "RTX": "알티엑스",
+    "SGHC": "에스지에이치씨",
+    "SLB": "에스엘비",
+    "SLM": "에스엘엠",
+    "SOLS": "솔스",
+    "TPG": "티피지",
+    "UDR": "유디알",
+    "UGI": "유지아이",
+    "VFC": "브이에프",
+    "VSEC": "브이섹",
+}
+
+
+def has_hangul(value):
+    return any("가" <= char <= "힣" for char in str(value or ""))
 
 
 def load_json(path, default):
@@ -228,18 +344,30 @@ def update_sector_map(tickers, cache):
         if (i + 1) % 25 == 0:
             print(f"  ...{i + 1}/{len(missing)}")
             time.sleep(1)
+    # 구성 종목 파일의 최신 기업명을 매일 반영해 사명 변경과 오탈자를 따라간다.
+    for t, name in tickers.items():
+        cache.setdefault(t, {"sector": "기타", "industry": "기타", "mcap": 0})
+        cache[t]["name"] = name
     with open(SECTOR_MAP_PATH, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=1)
     return cache
 
 
 def update_korean_names(tickers, universes, cache):
-    """러셀 신규 종목의 영문명을 한국어로 바꾸고 캐시에 저장한다."""
+    """전체 종목의 한글명을 검증하고 영문으로 남은 이름을 번역한다."""
     if os.getenv("MONEY_FLOW_TRANSLATE_NAMES", "1").strip().lower() in ("0", "false", "off"):
         return cache
-    targets = [t for t in tickers if any(label.startswith("Russell ") for label in universes.get(t, set()))
-               and not cache.get(t, {}).get("name_ko")]
-    print(f"러셀 기업명 한국어 번역 대상: {len(targets)}종목")
+    catalog = load_json(KOREAN_NAMES_PATH, {})
+    for t, translated in catalog.items():
+        if t in tickers and t in cache and has_hangul(translated):
+            cache[t]["name_ko"] = translated
+    for t, translated in KOREAN_NAME_OVERRIDES.items():
+        if t in tickers and t in cache:
+            cache[t]["name_ko"] = translated
+    targets = [t for t in tickers
+               if t not in KOREAN_NAME_OVERRIDES
+               and not has_hangul(cache.get(t, {}).get("name_ko"))]
+    print(f"전체 기업명 한글 재검사 대상: {len(targets)}종목")
     url = "https://translate.googleapis.com/translate_a/single"
     for i, t in enumerate(targets):
         name = cache.get(t, {}).get("name", tickers[t])
@@ -250,7 +378,7 @@ def update_korean_names(tickers, universes, cache):
             resp.raise_for_status()
             parts = resp.json()[0]
             translated = "".join(p[0] for p in parts if p and p[0]).strip()
-            if translated:
+            if has_hangul(translated):
                 cache[t]["name_ko"] = translated
         except Exception as e:
             print(f"  [참고] {t} 기업명 번역 생략: {e}")
