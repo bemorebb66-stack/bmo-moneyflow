@@ -85,9 +85,14 @@ export function SurgeTable() {
     const source = q || externalFilter.preset || externalFilter.priceDirection || externalFilter.tradingValueDirection
       ? LIVE_STOCKS
       : SURGE_STOCKS;
+    const hasExactTicker = q
+      ? source.some((stock) => stock.ticker.toLowerCase() === q)
+      : false;
     const filtered = source.filter((stock) => {
-      const matchesQuery = !q || stock.ticker.toLowerCase().includes(q) || stock.name.toLowerCase().includes(q) ||
-        stock.sector.toLowerCase().includes(q) || stock.industry?.toLowerCase().includes(q);
+      const matchesQuery = !q || (hasExactTicker
+        ? stock.ticker.toLowerCase() === q
+        : stock.ticker.toLowerCase().includes(q) || stock.name.toLowerCase().includes(q) ||
+          stock.sector.toLowerCase().includes(q) || stock.industry?.toLowerCase().includes(q));
       const current = stock.volumeVs?.[period] ?? 0;
       const oneDay = stock.volumeVs?.["1d"] ?? 0;
       const fiveDay = stock.volumeVs?.["5d"] ?? 0;
