@@ -82,7 +82,7 @@ export function SurgeTable() {
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const source = externalFilter.preset || externalFilter.priceDirection || externalFilter.tradingValueDirection
+    const source = q || externalFilter.preset || externalFilter.priceDirection || externalFilter.tradingValueDirection
       ? LIVE_STOCKS
       : SURGE_STOCKS;
     const filtered = source.filter((stock) => {
