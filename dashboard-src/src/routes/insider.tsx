@@ -30,7 +30,8 @@ export const Route = createFileRoute("/insider")({
       { title: "미국 주식 내부자 거래 | BVT Money Flow" },
       {
         name: "description",
-        content: "미국 주식 내부자 매수·매도 공시와 클러스터 거래 신호를 추적합니다.",
+        content:
+          "미국 주식 내부자 매수·매도 공시와 클러스터 거래 신호를 추적합니다.",
       },
       { property: "og:title", content: "미국 주식 내부자 거래" },
       {
@@ -38,7 +39,9 @@ export const Route = createFileRoute("/insider")({
         content: "임원 매수·매도, 클러스터 거래, 최신 공시를 한 화면에서",
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/insider/" }],
+    links: [
+      { rel: "canonical", href: "https://www.bvtmoneyflow.xyz/insider/" },
+    ],
   }),
   component: InsiderPage,
 });
@@ -50,11 +53,16 @@ function InsiderPage() {
   const [range, setRange] = useState<Range>("30d");
   const [type, setType] = useState<FilterType>("all");
   const [query, setQuery] = useState(() =>
-    typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("ticker") ?? "",
+    typeof window === "undefined"
+      ? ""
+      : (new URLSearchParams(window.location.search).get("ticker") ?? ""),
   );
   const days = range === "7d" ? 7 : range === "30d" ? 30 : 90;
   const latestFiling = useMemo(
-    () => [...INSIDER_ROWS].sort((a, b) => b.filedDate.localeCompare(a.filedDate))[0]?.filedDate ?? "",
+    () =>
+      [...INSIDER_ROWS].sort((a, b) =>
+        b.filedDate.localeCompare(a.filedDate),
+      )[0]?.filedDate ?? "",
     [],
   );
 
@@ -63,7 +71,10 @@ function InsiderPage() {
     return INSIDER_ROWS.filter(
       (r) =>
         (type === "all" || r.type === type) &&
-        (!latestFiling || (new Date(latestFiling).getTime() - new Date(r.filedDate).getTime()) / 86400000 <= days) &&
+        (!latestFiling ||
+          (new Date(latestFiling).getTime() - new Date(r.filedDate).getTime()) /
+            86400000 <=
+            days) &&
         (!q ||
           r.ticker.toLowerCase().includes(q) ||
           r.company.toLowerCase().includes(q) ||
@@ -164,9 +175,13 @@ function InsiderPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-1">
-                    <h2 className="text-base font-semibold sm:text-lg">내부자 거래 추이</h2>
+                    <h2 className="text-base font-semibold sm:text-lg">
+                      내부자 거래 추이
+                    </h2>
                     <MetricInfo label="내부자 거래 기준">
-                      미국 SEC Form 4 공시를 거래일 기준으로 합산합니다. 공시일은 실제 거래일보다 늦을 수 있으며, 매수·매도 금액은 공개 공시의 거래 가격과 수량을 기준으로 계산합니다.
+                      미국 SEC Form 4 공시를 거래일 기준으로 합산합니다.
+                      공시일은 실제 거래일보다 늦을 수 있으며, 매수·매도 금액은
+                      공개 공시의 거래 가격과 수량을 기준으로 계산합니다.
                     </MetricInfo>
                   </div>
                   <p className="text-[11px] text-muted-foreground">
@@ -211,8 +226,18 @@ function InsiderPage() {
                       }}
                     />
                     <ReferenceLine y={0} stroke="var(--color-border)" />
-                    <Bar dataKey="buy" name="매수" fill="var(--color-success)" radius={[3, 3, 0, 0]} />
-                    <Bar dataKey="sell" name="매도" fill="var(--color-danger)" radius={[3, 3, 0, 0]} />
+                    <Bar
+                      dataKey="buy"
+                      name="매수"
+                      fill="var(--color-success)"
+                      radius={[3, 3, 0, 0]}
+                    />
+                    <Bar
+                      dataKey="sell"
+                      name="매도"
+                      fill="var(--color-danger)"
+                      radius={[3, 3, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -222,7 +247,9 @@ function InsiderPage() {
           <Card className="order-1">
             <CardContent className="p-0">
               <div className="border-b border-border/70 px-4 py-3 sm:px-5">
-                <h2 className="text-base font-semibold sm:text-lg">최신 공시</h2>
+                <h2 className="text-base font-semibold sm:text-lg">
+                  최신 공시
+                </h2>
                 <p className="text-[11px] text-muted-foreground">
                   거래일 기준 최근 순
                 </p>
@@ -246,9 +273,12 @@ function InsiderPage() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5">
-                        <span className="font-mono text-[13px] font-semibold tabular">
+                        <a
+                          href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
+                          className="font-mono text-[13px] font-semibold tabular hover:text-brand"
+                        >
                           {r.ticker}
-                        </span>
+                        </a>
                         <span className="truncate text-xs text-muted-foreground">
                           {r.company}
                         </span>
@@ -261,8 +291,11 @@ function InsiderPage() {
                       </div>
                       <div className="mt-0.5 text-xs">
                         {r.insider}{" "}
-                        <span className="text-muted-foreground">({r.role})</span>{" "}
-                        · {r.type === "buy" ? "매수" : "매도"} {fmtMoney(r.amount)}
+                        <span className="text-muted-foreground">
+                          ({r.role})
+                        </span>{" "}
+                        · {r.type === "buy" ? "매수" : "매도"}{" "}
+                        {fmtMoney(r.amount)}
                       </div>
                       <div className="mt-0.5 text-[11px] text-muted-foreground tabular">
                         거래일 {r.tradeDate} · 공시일 {r.filedDate}
@@ -300,15 +333,33 @@ function InsiderDetailTable({ rows }: { rows: InsiderRow[] }) {
           <table className="min-w-[1000px] w-full text-sm">
             <thead className="sticky top-0 bg-surface-2/60 text-[11px] uppercase tracking-wide text-muted-foreground">
               <tr>
-                <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">종목</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">내부자</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">직책</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">거래 유형</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">주식 수</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">거래 금액</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">거래일</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">공시일</th>
-                <th className="whitespace-nowrap py-2.5 pr-4 text-left font-medium">신호</th>
+                <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
+                  종목
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  내부자
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  직책
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  거래 유형
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  주식 수
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  거래 금액
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  거래일
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  공시일
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-4 text-left font-medium">
+                  신호
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/70">
@@ -316,9 +367,12 @@ function InsiderDetailTable({ rows }: { rows: InsiderRow[] }) {
                 <tr key={i} className="hover:bg-secondary/40">
                   <td className="whitespace-nowrap py-2.5 pl-4 pr-3">
                     <div className="flex flex-col leading-tight">
-                      <span className="font-mono text-[13px] font-semibold tabular">
+                      <a
+                        href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
+                        className="font-mono text-[13px] font-semibold tabular hover:text-brand"
+                      >
                         {r.ticker}
-                      </span>
+                      </a>
                       <span className="text-[11px] text-muted-foreground">
                         {r.company}
                       </span>

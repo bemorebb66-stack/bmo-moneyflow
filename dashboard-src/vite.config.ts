@@ -9,6 +9,7 @@ import { resolve } from "node:path";
 
 const STATIC_ROUTES = [
   "scanner",
+  "stock",
   "insider",
   "ipo-lockup",
   "today",
@@ -21,7 +22,10 @@ const STATIC_ROUTES = [
 const routeShells = () => ({
   name: "route-shells",
   closeBundle() {
-    const outputDir = resolve(fileURLToPath(new URL(".", import.meta.url)), "dist");
+    const outputDir = resolve(
+      fileURLToPath(new URL(".", import.meta.url)),
+      "dist",
+    );
     const shell = resolve(outputDir, "index.html");
 
     for (const route of STATIC_ROUTES) {
@@ -33,6 +37,12 @@ const routeShells = () => ({
 });
 
 export default defineConfig({
-  plugins: [tanstackRouter({ target: "react", autoCodeSplitting: true }), react(), tailwindcss(), tsconfigPaths(), routeShells()],
+  plugins: [
+    tanstackRouter({ target: "react", autoCodeSplitting: true }),
+    react(),
+    tailwindcss(),
+    tsconfigPaths(),
+    routeShells(),
+  ],
   build: { outDir: "dist" },
 });

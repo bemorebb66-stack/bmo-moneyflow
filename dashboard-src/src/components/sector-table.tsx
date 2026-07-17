@@ -19,7 +19,15 @@ interface Props {
   periodLabel: string;
 }
 
-export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, query, categoryLabel, periodLabel }: Props) {
+export function SectorTable({
+  data,
+  selectedIds,
+  onToggleCompare,
+  onAddCompany,
+  query,
+  categoryLabel,
+  periodLabel,
+}: Props) {
   const [sortKey, setSortKey] = useState<SortKey>("volume");
   const [dir, setDir] = useState<"desc" | "asc">("desc");
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -30,8 +38,10 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
       ? data.filter(
           (s) =>
             s.name.toLowerCase().includes(q) ||
-            (LIVE_GROUP_COMPANIES[s.id] ?? []).some((company) =>
-              company.ticker.toLowerCase().includes(q) || company.name.toLowerCase().includes(q),
+            (LIVE_GROUP_COMPANIES[s.id] ?? []).some(
+              (company) =>
+                company.ticker.toLowerCase().includes(q) ||
+                company.name.toLowerCase().includes(q),
             ),
         )
       : data;
@@ -59,9 +69,13 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
               SECTOR MAP
             </div>
             <div className="flex items-center gap-1">
-              <h2 className="text-base font-semibold sm:text-lg">{categoryLabel} 목록</h2>
+              <h2 className="text-base font-semibold sm:text-lg">
+                {categoryLabel} 목록
+              </h2>
               <MetricInfo label="거래대금 점유율이란?">
-                선택한 섹터·산업·종목의 거래대금이 전체 분석 대상 거래대금에서 차지하는 비중입니다. 점유율 변화는 실제 순매수액이 아니라 시장 관심의 확대·축소를 보여줍니다.
+                선택한 섹터·산업·종목의 거래대금이 전체 분석 대상 거래대금에서
+                차지하는 비중입니다. 점유율 변화는 실제 순매수액이 아니라 시장
+                관심의 확대·축소를 보여줍니다.
               </MetricInfo>
             </div>
             <p className="text-[11px] text-muted-foreground">
@@ -77,7 +91,10 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
               <tr>
                 <th className="w-8 py-2.5 pl-4"></th>
                 <th className="py-2.5 text-left font-medium">섹터</th>
-                <Th onClick={() => toggleSort("volume")} active={sortKey === "volume"}>
+                <Th
+                  onClick={() => toggleSort("volume")}
+                  active={sortKey === "volume"}
+                >
                   거래대금
                 </Th>
                 <Th
@@ -180,7 +197,10 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
               })}
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="py-10 text-center text-sm text-muted-foreground">
+                  <td
+                    colSpan={6}
+                    className="py-10 text-center text-sm text-muted-foreground"
+                  >
                     검색 결과가 없습니다. 다른 키워드를 시도해 보세요.
                   </td>
                 </tr>
@@ -202,7 +222,8 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
                       <SignalBadge signal={s.signal} size="xs" />
                     </div>
                     <div className="mt-0.5 text-[11px] text-muted-foreground tabular">
-                      점유율 {s.share.toFixed(1)}% · 리더 {s.leaders.slice(0, 2).join(", ")}
+                      점유율 {s.share.toFixed(1)}% · 리더{" "}
+                      {s.leaders.slice(0, 2).join(", ")}
                     </div>
                   </div>
                   <label className="flex min-h-10 shrink-0 items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 text-xs text-muted-foreground">
@@ -220,7 +241,13 @@ export function SectorTable({ data, selectedIds, onToggleCompare, onAddCompany, 
                   <MobileStat
                     label="점유율 Δ"
                     value={fmtBp(s.shareDelta)}
-                    tone={s.shareDelta > 0 ? "success" : s.shareDelta < 0 ? "danger" : "muted"}
+                    tone={
+                      s.shareDelta > 0
+                        ? "success"
+                        : s.shareDelta < 0
+                          ? "danger"
+                          : "muted"
+                    }
                   />
                   <MobileStat
                     label="거래대금 Δ"
@@ -300,7 +327,12 @@ function MobileStat({
   );
 }
 
-function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
+function ExpandedRow({
+  sector,
+  periodLabel,
+  selectedIds,
+  onAddCompany,
+}: {
   sector: Sector;
   periodLabel: string;
   selectedIds: string[];
@@ -312,10 +344,17 @@ function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
       <td colSpan={6} className="px-4 py-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h3 className="text-sm font-semibold">{sector.name} 소속 기업 · {companies.length}개</h3>
-            <p className="mt-0.5 text-xs text-muted-foreground">{describe(sector)} 기업별 버튼을 눌러 위 차트에 추가할 수 있습니다.</p>
+            <h3 className="text-sm font-semibold">
+              {sector.name} 소속 기업 · {companies.length}개
+            </h3>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              {describe(sector)} 기업별 버튼을 눌러 위 차트에 추가할 수
+              있습니다.
+            </p>
           </div>
-          <span className="text-xs text-muted-foreground">{periodLabel} 거래대금 변화 {fmtPct(sector.volumeChange)}</span>
+          <span className="text-xs text-muted-foreground">
+            {periodLabel} 거래대금 변화 {fmtPct(sector.volumeChange)}
+          </span>
         </div>
         <div className="mt-3 max-h-[420px] overflow-auto rounded-lg border border-border/70 bg-background">
           <table className="min-w-[1050px] w-full text-xs">
@@ -339,11 +378,40 @@ function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
                 const selected = selectedIds.includes(company.id);
                 return (
                   <tr key={company.id} className="hover:bg-secondary/40">
-                    <td className="px-3 py-2"><span className="font-mono font-semibold">{company.ticker}</span><span className="ml-2 text-muted-foreground">{company.name}</span></td>
-                    <td className="px-3 py-2 text-muted-foreground">{company.industry || "미수집"}</td>
-                    <td className="px-3 py-2 text-right tabular">${fmtPrice(company.price)}</td>
-                    <td className={cn("px-3 py-2 text-right font-medium tabular", company.change > 0 ? "text-success" : company.change < 0 ? "text-danger" : "text-muted-foreground")}>{fmtPct(company.change)}</td>
-                    <td className="px-3 py-2 text-right tabular">{fmtMoney(company.volume)}</td>
+                    <td className="px-3 py-2">
+                      <a
+                        href={`/stock/?ticker=${encodeURIComponent(company.ticker)}`}
+                        className="hover:text-brand"
+                      >
+                        <span className="font-mono font-semibold">
+                          {company.ticker}
+                        </span>
+                        <span className="ml-2 text-muted-foreground">
+                          {company.name}
+                        </span>
+                      </a>
+                    </td>
+                    <td className="px-3 py-2 text-muted-foreground">
+                      {company.industry || "미수집"}
+                    </td>
+                    <td className="px-3 py-2 text-right tabular">
+                      ${fmtPrice(company.price)}
+                    </td>
+                    <td
+                      className={cn(
+                        "px-3 py-2 text-right font-medium tabular",
+                        company.change > 0
+                          ? "text-success"
+                          : company.change < 0
+                            ? "text-danger"
+                            : "text-muted-foreground",
+                      )}
+                    >
+                      {fmtPct(company.change)}
+                    </td>
+                    <td className="px-3 py-2 text-right tabular">
+                      {fmtMoney(company.volume)}
+                    </td>
                     {(["1d", "5d", "20d", "60d"] as const).map((period) => {
                       const value = company.volumeVs?.[period] ?? 0;
                       return (
@@ -351,20 +419,31 @@ function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
                           key={period}
                           className={cn(
                             "px-3 py-2 text-right font-medium tabular",
-                            value > 0 ? "text-success" : value < 0 ? "text-danger" : "text-muted-foreground",
+                            value > 0
+                              ? "text-success"
+                              : value < 0
+                                ? "text-danger"
+                                : "text-muted-foreground",
                           )}
                         >
                           {fmtPct(value)}
                         </td>
                       );
                     })}
-                    <td className="px-3 py-2 text-right tabular text-muted-foreground">{fmtMcap(company.marketCap)}</td>
+                    <td className="px-3 py-2 text-right tabular text-muted-foreground">
+                      {fmtMcap(company.marketCap)}
+                    </td>
                     <td className="px-3 py-2 text-right">
                       <button
                         type="button"
                         onClick={() => onAddCompany(company.id)}
                         aria-pressed={selected}
-                        className={cn("rounded-md border px-2 py-1 text-[11px] font-medium", selected ? "border-brand/30 bg-brand/10 text-brand" : "border-border hover:bg-secondary")}
+                        className={cn(
+                          "rounded-md border px-2 py-1 text-[11px] font-medium",
+                          selected
+                            ? "border-brand/30 bg-brand/10 text-brand"
+                            : "border-border hover:bg-secondary",
+                        )}
                       >
                         {selected ? "비교 중" : "차트 추가"}
                       </button>
@@ -381,11 +460,27 @@ function ExpandedRow({ sector, periodLabel, selectedIds, onAddCompany }: {
 }
 
 function describe(s: Sector) {
+  const domain = GROUP_DESCRIPTIONS[s.name];
+  const prefix = domain ? `${domain} ` : "";
   if (s.signal === "inflow")
-    return `${s.name} 그룹의 거래 비중이 확대됐고 가격도 함께 상승했습니다. 실제 순매수액을 뜻하지는 않습니다.`;
+    return `${prefix}${s.name} 그룹의 거래 비중이 확대됐고 가격도 함께 상승했습니다. 실제 순매수액을 뜻하지는 않습니다.`;
   if (s.signal === "outflow")
-    return `거래대금 증가와 함께 가격이 하락했습니다. 실제 순매도액을 뜻하지는 않습니다.`;
+    return `${prefix}거래대금 증가와 함께 가격이 하락했습니다. 실제 순매도액을 뜻하지는 않습니다.`;
   if (s.signal === "attention-loss")
-    return `거래대금이 평균을 크게 하회해 시장의 거래 관심이 감소한 구간입니다.`;
-  return `거래대금과 가격 방향이 중립적이며 뚜렷한 변화가 없습니다.`;
+    return `${prefix}거래대금이 평균을 크게 하회해 시장의 거래 관심이 감소한 구간입니다.`;
+  return `${prefix}거래대금과 가격 방향이 중립적이며 뚜렷한 변화가 없습니다.`;
 }
+
+const GROUP_DESCRIPTIONS: Record<string, string> = {
+  테크놀로지: "반도체·소프트웨어·IT 하드웨어 기업이 모인 대분류입니다.",
+  "커뮤니케이션 서비스": "광고·콘텐츠·통신 플랫폼 기업이 모인 대분류입니다.",
+  금융: "은행·보험·결제·자산운용 기업이 모인 대분류입니다.",
+  "임의 소비재": "자동차·유통·여가처럼 경기와 소비 심리에 민감한 기업군입니다.",
+  헬스케어: "제약·바이오·의료기기·건강보험 기업이 모인 대분류입니다.",
+  산업재: "항공우주·운송·기계·건설 관련 기업이 모인 대분류입니다.",
+  에너지: "석유·가스와 에너지 인프라 기업이 모인 대분류입니다.",
+  "필수 소비재": "식품·생활용품처럼 경기 변동에 비교적 둔감한 기업군입니다.",
+  유틸리티: "전력·가스·수도 등 필수 인프라를 운영하는 기업군입니다.",
+  부동산: "산업·주거·리테일·데이터센터 리츠가 모인 대분류입니다.",
+  소재: "화학·철강·구리·산업 소재를 공급하는 기업군입니다.",
+};

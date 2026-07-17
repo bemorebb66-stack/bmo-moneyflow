@@ -34,32 +34,49 @@ export function GlobalSearch() {
     const keyword = normalize(query);
     const sorted = [...LIVE_STOCKS].sort((a, b) => b.volume - a.volume);
     if (!keyword) return sorted.slice(0, 8);
-    return sorted.filter((stock) => normalize([
-      stock.ticker,
-      stock.name,
-      stock.sector,
-      stock.industry ?? "",
-    ].join(" ")).includes(keyword)).slice(0, 30);
+    return sorted
+      .filter((stock) =>
+        normalize(
+          [stock.ticker, stock.name, stock.sector, stock.industry ?? ""].join(
+            " ",
+          ),
+        ).includes(keyword),
+      )
+      .slice(0, 30);
   }, [query]);
 
   const groups = useMemo(() => {
     const keyword = normalize(query);
     const rows = [
-      ...LIVE_MARKET_DATA.sector["1d"].map((row) => ({ ...row, category: "sector" })),
-      ...LIVE_MARKET_DATA.industry["1d"].map((row) => ({ ...row, category: "industry" })),
+      ...LIVE_MARKET_DATA.sector["1d"].map((row) => ({
+        ...row,
+        category: "sector",
+      })),
+      ...LIVE_MARKET_DATA.industry["1d"].map((row) => ({
+        ...row,
+        category: "industry",
+      })),
     ];
     if (!keyword) return rows.slice(0, 6);
-    return rows.filter((row) => normalize(row.name).includes(keyword)).slice(0, 12);
+    return rows
+      .filter((row) => normalize(row.name).includes(keyword))
+      .slice(0, 12);
   }, [query]);
 
   const goToStock = (ticker: string) => {
     setOpen(false);
-    window.location.assign(`/scanner?q=${encodeURIComponent(ticker)}`);
+    window.location.assign(`/stock/?ticker=${encodeURIComponent(ticker)}`);
   };
 
   const goToGroup = (category: string, id: string) => {
     setOpen(false);
-    const hash = new URLSearchParams({ m: category, p: "1d", mt: "idx", r: "60", g: id });
+    const hash = new URLSearchParams({
+      m: category,
+      p: "1d",
+      mt: "idx",
+      r: "60",
+      g: id,
+    });
     window.location.assign(`/#${hash.toString()}`);
   };
 
@@ -80,7 +97,13 @@ export function GlobalSearch() {
         </kbd>
       </Button>
 
-      <CommandDialog open={open} onOpenChange={(next) => { setOpen(next); if (!next) setQuery(""); }}>
+      <CommandDialog
+        open={open}
+        onOpenChange={(next) => {
+          setOpen(next);
+          if (!next) setQuery("");
+        }}
+      >
         <CommandInput
           value={query}
           onValueChange={setQuery}
@@ -100,14 +123,17 @@ export function GlobalSearch() {
                   <Building2 className="h-4 w-4 text-muted-foreground" />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline gap-2">
-                      <span className="font-semibold text-foreground">{stock.ticker}</span>
+                      <span className="font-semibold text-foreground">
+                        {stock.ticker}
+                      </span>
                       <span className="truncate text-sm">{stock.name}</span>
                     </div>
                     <p className="truncate text-xs text-muted-foreground">
-                      {stock.sector}{stock.industry ? ` · ${stock.industry}` : ""}
+                      {stock.sector}
+                      {stock.industry ? ` · ${stock.industry}` : ""}
                     </p>
                   </div>
-                  <CommandShortcut>스캐너</CommandShortcut>
+                  <CommandShortcut>상세</CommandShortcut>
                 </CommandItem>
               ))}
             </CommandGroup>
@@ -124,7 +150,9 @@ export function GlobalSearch() {
                 >
                   <Layers3 className="h-4 w-4 text-muted-foreground" />
                   <span className="flex-1 font-medium">{row.name}</span>
-                  <CommandShortcut>{row.category === "sector" ? "대분류" : "세부 산업"}</CommandShortcut>
+                  <CommandShortcut>
+                    {row.category === "sector" ? "대분류" : "세부 산업"}
+                  </CommandShortcut>
                 </CommandItem>
               ))}
             </CommandGroup>

@@ -23,7 +23,9 @@ export const Route = createFileRoute("/ipo-lockup")({
         content: "IPO 이후 락업 해제 캘린더와 임박 이벤트를 추적",
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/ipo-lockup/" }],
+    links: [
+      { rel: "canonical", href: "https://www.bvtmoneyflow.xyz/ipo-lockup/" },
+    ],
   }),
   component: LockupPage,
 });
@@ -37,18 +39,23 @@ function LockupPage() {
   const [mcap, setMcap] = useState<MCapFilter>("all");
   const [size, setSize] = useState<SizeFilter>("all");
   const [query, setQuery] = useState(() =>
-    typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("ticker") ?? "",
+    typeof window === "undefined"
+      ? ""
+      : (new URLSearchParams(window.location.search).get("ticker") ?? ""),
   );
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
     return LOCKUP_ROWS.filter((r) => {
-      if (win !== "all" && (r.daysLeft < 0 || r.daysLeft > Number(win))) return false;
+      if (win !== "all" && (r.daysLeft < 0 || r.daysLeft > Number(win)))
+        return false;
       if (mcap !== "all" && r.marketCap <= 0) return false;
       if (mcap === "small" && r.marketCap >= 10) return false;
-      if (mcap === "mid" && (r.marketCap < 10 || r.marketCap >= 50)) return false;
+      if (mcap === "mid" && (r.marketCap < 10 || r.marketCap >= 50))
+        return false;
       if (mcap === "large" && r.marketCap < 50) return false;
-      if (r.estValue > 0 && size === "small" && r.estValue >= 3000) return false;
+      if (r.estValue > 0 && size === "small" && r.estValue >= 3000)
+        return false;
       if (r.estValue > 0 && size === "big" && r.estValue < 3000) return false;
       if (
         q &&
@@ -57,14 +64,33 @@ function LockupPage() {
       )
         return false;
       return true;
-    }).sort((a, b) => a.ticker === "SPCX" ? -1 : b.ticker === "SPCX" ? 1 : a.daysLeft - b.daysLeft);
+    }).sort((a, b) =>
+      a.ticker === "SPCX"
+        ? -1
+        : b.ticker === "SPCX"
+          ? 1
+          : a.daysLeft - b.daysLeft,
+    );
   }, [win, mcap, size, query]);
 
-  const within14 = LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14).length;
-  const within30 = LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 30).length;
-  const lockupDurations = LOCKUP_ROWS.flatMap((r) => r.lockupDays ? [r.lockupDays] : []);
-  const avgLockup = lockupDurations.length ? Math.round(lockupDurations.reduce((sum, days) => sum + days, 0) / lockupDurations.length) : 0;
-  const bigEvents = LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.importance === "high").length;
+  const within14 = LOCKUP_ROWS.filter(
+    (r) => r.daysLeft >= 0 && r.daysLeft <= 14,
+  ).length;
+  const within30 = LOCKUP_ROWS.filter(
+    (r) => r.daysLeft >= 0 && r.daysLeft <= 30,
+  ).length;
+  const lockupDurations = LOCKUP_ROWS.flatMap((r) =>
+    r.lockupDays ? [r.lockupDays] : [],
+  );
+  const avgLockup = lockupDurations.length
+    ? Math.round(
+        lockupDurations.reduce((sum, days) => sum + days, 0) /
+          lockupDurations.length,
+      )
+    : 0;
+  const bigEvents = LOCKUP_ROWS.filter(
+    (r) => r.daysLeft >= 0 && r.importance === "high",
+  ).length;
   const spacex = LOCKUP_ROWS.find((r) => r.ticker === "SPCX");
 
   return (
@@ -83,17 +109,31 @@ function LockupPage() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-semibold uppercase tracking-wide text-brand">주요 추적 이벤트</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-brand">
+                    주요 추적 이벤트
+                  </span>
                   <ImportanceBadge importance="high" />
                 </div>
-                <h2 className="mt-1 text-lg font-semibold">스페이스X <span className="font-mono text-sm text-muted-foreground">SPCX</span></h2>
+                <h2 className="mt-1 text-lg font-semibold">
+                  스페이스X{" "}
+                  <span className="font-mono text-sm text-muted-foreground">
+                    SPCX
+                  </span>
+                </h2>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  시장 관심도가 높은 우주항공 IPO · 락업 해제 {spacex.unlockDate} · D-{spacex.daysLeft}
+                  시장 관심도가 높은 우주항공 IPO · 락업 해제{" "}
+                  {spacex.unlockDate} · D-{spacex.daysLeft}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs sm:text-right">
-                <div><span className="text-muted-foreground">관련 섹터</span><div className="font-medium">{spacex.sector}</div></div>
-                <div><span className="text-muted-foreground">시가총액</span><div className="font-medium">비상장·미수집</div></div>
+                <div>
+                  <span className="text-muted-foreground">관련 섹터</span>
+                  <div className="font-medium">{spacex.sector}</div>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">시가총액</span>
+                  <div className="font-medium">비상장·미수집</div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -103,15 +143,38 @@ function LockupPage() {
           aria-label="IPO 락업 요약"
           className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4"
         >
-          <SummaryCard label="14일 내 해제" value={`${within14}건`} hint="임박 이벤트" tone="danger" />
-          <SummaryCard label="30일 내 해제" value={`${within30}건`} hint="한 달 내 예정" tone="info" />
-          <SummaryCard label="평균 락업 기간" value={`${avgLockup}일`} hint="추적 종목 기준" />
-          <SummaryCard label="대형 이벤트" value={`${bigEvents}건`} hint="중요도 상위" tone="danger" />
+          <SummaryCard
+            label="14일 내 해제"
+            value={`${within14}건`}
+            hint="임박 이벤트"
+            tone="danger"
+          />
+          <SummaryCard
+            label="30일 내 해제"
+            value={`${within30}건`}
+            hint="한 달 내 예정"
+            tone="info"
+          />
+          <SummaryCard
+            label="평균 락업 기간"
+            value={`${avgLockup}일`}
+            hint="추적 종목 기준"
+          />
+          <SummaryCard
+            label="대형 이벤트"
+            value={`${bigEvents}건`}
+            hint="중요도 상위"
+            tone="danger"
+          />
         </section>
 
         <div className="flex items-start gap-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 text-xs text-muted-foreground">
           <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          <p><strong className="text-foreground">중요도 기준</strong> · 상: 14일 이내 또는 시장 주목 이벤트(SpaceX) · 중: 15~30일 · 하: 31일 이후. 해제 물량·가치가 수집되면 규모도 함께 반영합니다.</p>
+          <p>
+            <strong className="text-foreground">중요도 기준</strong> · 상: 14일
+            이내 또는 시장 주목 이벤트(SpaceX) · 중: 15~30일 · 하: 31일 이후.
+            해제 물량·가치가 수집되면 규모도 함께 반영합니다.
+          </p>
         </div>
 
         <div className="sticky top-14 z-30 -mx-4 flex flex-col gap-3 border-y border-border/70 bg-background/90 px-4 py-3 backdrop-blur lg:mx-0 lg:flex-row lg:items-end lg:gap-4 lg:rounded-xl lg:border">
@@ -166,9 +229,14 @@ function LockupPage() {
             <CardContent className="p-4 sm:p-5">
               <div>
                 <div className="flex items-center gap-1">
-                  <h2 className="text-base font-semibold sm:text-lg">락업 해제 타임라인</h2>
+                  <h2 className="text-base font-semibold sm:text-lg">
+                    락업 해제 타임라인
+                  </h2>
                   <MetricInfo label="중요도 기준">
-                    투자 등급이 아니라 일정 임박도를 뜻합니다. 스페이스X 또는 14일 이내 해제는 높음, 15~30일은 보통, 그 이후는 낮음으로 표시합니다. 예상 물량과 가치는 공개 자료가 있을 때만 함께 제공합니다.
+                    투자 등급이 아니라 일정 임박도를 뜻합니다. 스페이스X 또는
+                    14일 이내 해제는 높음, 15~30일은 보통, 그 이후는 낮음으로
+                    표시합니다. 예상 물량과 가치는 공개 자료가 있을 때만 함께
+                    제공합니다.
                   </MetricInfo>
                 </div>
                 <p className="text-[11px] text-muted-foreground">
@@ -182,16 +250,25 @@ function LockupPage() {
                   </li>
                 )}
                 {rows.map((r) => {
-                  const maxVal = Math.max(1, ...LOCKUP_ROWS.map((x) => x.estValue));
+                  const maxVal = Math.max(
+                    1,
+                    ...LOCKUP_ROWS.map((x) => x.estValue),
+                  );
                   const width = Math.max(6, (r.estValue / maxVal) * 100);
                   return (
-                    <li key={r.ticker} className="grid grid-cols-[80px_1fr] items-center gap-3">
+                    <li
+                      key={r.ticker}
+                      className="grid grid-cols-[80px_1fr] items-center gap-3"
+                    >
                       <DdayBadge days={r.daysLeft} />
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                          <span className="font-mono text-[13px] font-semibold tabular">
+                          <a
+                            href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
+                            className="font-mono text-[13px] font-semibold tabular hover:text-brand"
+                          >
                             {r.ticker}
-                          </span>
+                          </a>
                           <span className="truncate text-xs text-muted-foreground">
                             {r.company}
                           </span>
@@ -211,7 +288,9 @@ function LockupPage() {
                           />
                         </div>
                         <div className="mt-1 text-[11px] text-muted-foreground tabular">
-                          {r.sector || "섹터 미수집"} · 해제일 {r.unlockDate} · 예상 가치 {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
+                          {r.sector || "섹터 미수집"} · 해제일 {r.unlockDate} ·
+                          예상 가치{" "}
+                          {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
                         </div>
                       </div>
                     </li>
@@ -224,27 +303,38 @@ function LockupPage() {
           <Card>
             <CardContent className="p-0">
               <div className="border-b border-border/70 px-4 py-3 sm:px-5">
-                <h2 className="text-base font-semibold sm:text-lg">임박 이벤트</h2>
-                <p className="text-[11px] text-muted-foreground">14일 내 해제 예정</p>
+                <h2 className="text-base font-semibold sm:text-lg">
+                  임박 이벤트
+                </h2>
+                <p className="text-[11px] text-muted-foreground">
+                  14일 내 해제 예정
+                </p>
               </div>
               <ul className="divide-y divide-border/70">
-                {LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14).map((r) => (
+                {LOCKUP_ROWS.filter(
+                  (r) => r.daysLeft >= 0 && r.daysLeft <= 14,
+                ).map((r) => (
                   <li key={r.ticker} className="flex items-start gap-3 p-4">
                     <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-danger/10 text-danger">
                       <CalendarClock className="h-4 w-4" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-1.5">
-                        <span className="font-mono text-[13px] font-semibold tabular">
+                        <a
+                          href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
+                          className="font-mono text-[13px] font-semibold tabular hover:text-brand"
+                        >
                           {r.ticker}
-                        </span>
+                        </a>
                         <span className="truncate text-xs text-muted-foreground">
                           {r.company}
                         </span>
                         <ImportanceBadge importance={r.importance} />
                       </div>
                       <div className="mt-0.5 text-xs">
-                        D-{r.daysLeft} · 해제 물량 {r.unlockShares > 0 ? `${r.unlockShares}M` : "미수집"} · {r.estValue > 0 ? fmtMoney(r.estValue) : "가치 미수집"}
+                        D-{r.daysLeft} · 해제 물량{" "}
+                        {r.unlockShares > 0 ? `${r.unlockShares}M` : "미수집"} ·{" "}
+                        {r.estValue > 0 ? fmtMoney(r.estValue) : "가치 미수집"}
                       </div>
                       <div className="mt-0.5 text-[11px] text-muted-foreground tabular">
                         해제일 {r.unlockDate}
@@ -252,7 +342,8 @@ function LockupPage() {
                     </div>
                   </li>
                 ))}
-                {LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14).length === 0 && (
+                {LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14)
+                  .length === 0 && (
                   <li className="p-10 text-center text-sm text-muted-foreground">
                     임박 이벤트가 없습니다.
                   </li>
@@ -282,15 +373,33 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
           <table className="min-w-[1120px] w-full text-sm">
             <thead className="sticky top-0 bg-surface-2/60 text-[11px] uppercase tracking-wide text-muted-foreground">
               <tr>
-                <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">종목</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">섹터·산업</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">IPO일</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">해제일</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">남은 일수</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">해제 주식</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">추정 가치</th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">시총</th>
-                <th className="whitespace-nowrap py-2.5 pr-4 text-left font-medium">중요도</th>
+                <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
+                  종목
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  섹터·산업
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  IPO일
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  해제일
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  남은 일수
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  해제 주식
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  추정 가치
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  시총
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-4 text-left font-medium">
+                  중요도
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/70">
@@ -298,9 +407,12 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                 <tr key={r.ticker} className="hover:bg-secondary/40">
                   <td className="whitespace-nowrap py-2.5 pl-4 pr-3">
                     <div className="flex flex-col leading-tight">
-                      <span className="font-mono text-[13px] font-semibold tabular">
+                      <a
+                        href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
+                        className="font-mono text-[13px] font-semibold tabular hover:text-brand"
+                      >
                         {r.ticker}
-                      </span>
+                      </a>
                       <span className="text-[11px] text-muted-foreground">
                         {r.company}
                       </span>
@@ -308,12 +420,16 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-3 text-xs">
                     <div>{r.sector || "미수집"}</div>
-                    <div className="text-[11px] text-muted-foreground">{r.industry || "산업 미수집"}</div>
+                    <div className="text-[11px] text-muted-foreground">
+                      {r.industry || "산업 미수집"}
+                    </div>
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-3 text-muted-foreground tabular">
                     {r.ipoDate}
                   </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 tabular">{r.unlockDate}</td>
+                  <td className="whitespace-nowrap py-2.5 pr-3 tabular">
+                    {r.unlockDate}
+                  </td>
                   <td className="whitespace-nowrap py-2.5 pr-3">
                     <DdayBadge days={r.daysLeft} size="xs" />
                   </td>
@@ -349,15 +465,21 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
   );
 }
 
-function DdayBadge({ days, size = "sm" }: { days: number; size?: "xs" | "sm" }) {
+function DdayBadge({
+  days,
+  size = "sm",
+}: {
+  days: number;
+  size?: "xs" | "sm";
+}) {
   const tone =
     days < 0
       ? "border-border bg-muted text-muted-foreground"
       : days <= 7
-      ? "border-danger/25 bg-danger/10 text-danger"
-      : days <= 30
-        ? "border-info/25 bg-info/10 text-info"
-        : "border-border bg-muted text-muted-foreground";
+        ? "border-danger/25 bg-danger/10 text-danger"
+        : days <= 30
+          ? "border-info/25 bg-info/10 text-info"
+          : "border-border bg-muted text-muted-foreground";
   return (
     <span
       className={cn(
@@ -377,7 +499,10 @@ function ImportanceBadge({ importance }: { importance: Importance }) {
       ? { label: "중요도 상", cls: "border-danger/25 bg-danger/10 text-danger" }
       : importance === "medium"
         ? { label: "중요도 중", cls: "border-info/25 bg-info/10 text-info" }
-        : { label: "중요도 하", cls: "border-border bg-muted text-muted-foreground" };
+        : {
+            label: "중요도 하",
+            cls: "border-border bg-muted text-muted-foreground",
+          };
   return (
     <span
       title="상: 14일 이내 또는 시장 주목 이벤트 · 중: 15~30일 · 하: 31일 이후"
