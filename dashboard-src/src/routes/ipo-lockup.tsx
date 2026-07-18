@@ -132,7 +132,11 @@ function LockupPage() {
                 </div>
                 <div>
                   <span className="text-muted-foreground">시가총액</span>
-                  <div className="font-medium">비상장·미수집</div>
+                  <div className="font-medium tabular">
+                    {spacex.marketCap > 0
+                      ? fmtMcap(spacex.marketCap)
+                      : "시총 데이터 갱신 중"}
+                  </div>
                 </div>
               </div>
             </CardContent>

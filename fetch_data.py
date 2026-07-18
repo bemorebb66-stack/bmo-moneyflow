@@ -124,10 +124,14 @@ RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
 RUSSELL1000_MAX = int(os.getenv("MONEY_FLOW_RUSSELL1000_MAX", "1000"))
 YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
 NON_EQUITY_TICKERS = {"USD"}
+NEW_LISTING_TICKERS = {
+    "SPCX": "Space Exploration Technologies Corp.",
+}
 
 # 자동 번역이 영문을 그대로 반환하거나 기업명답지 않게 번역한 종목은
 # 국내 투자자가 일반적으로 읽는 표기로 고정한다.
 KOREAN_NAME_OVERRIDES = {
+    "SPCX": "스페이스X",
     "ADT": "에이디티",
     "ALLE": "알레지온",
     "APLE": "애플 호스피탈리티 리츠",
@@ -312,6 +316,11 @@ def get_universe(cache):
         except Exception as e:
             print(f"[경고] 러셀2000(IWM) 목록 로드 실패: {e}")
             raise RuntimeError("러셀2000 목록을 가져오지 못해 데이터 갱신을 중단합니다") from e
+
+    # 지수·ETF 편입이 늦는 대형 신규 상장 종목도 상장일부터 바로 추적한다.
+    for ticker, name in NEW_LISTING_TICKERS.items():
+        tickers.setdefault(ticker, name)
+        universes.setdefault(ticker, set()).add("신규 상장")
 
     if not tickers:
         print("[폴백] 캐시된 티커 사용")
