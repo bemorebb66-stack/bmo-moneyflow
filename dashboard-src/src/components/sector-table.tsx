@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { LIVE_GROUP_COMPANIES, type Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 import { MetricInfo } from "./metric-info";
+import { describeIndustry } from "@/lib/industry-copy";
 
 type SortKey = "volume" | "volumeChange" | "priceChange" | "shareDelta";
 
@@ -213,19 +214,35 @@ export function SectorTable({
         <div className="divide-y divide-border/70 md:hidden">
           {rows.map((s) => {
             const isSel = selectedIds.includes(s.id);
+            const isOpen = expanded === s.id;
+            const companies = LIVE_GROUP_COMPANIES[s.id] ?? [];
             return (
               <div key={s.id} className="p-4">
                 <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`mobile-group-${s.id}`}
+                    onClick={() =>
+                      setExpanded((current) => (current === s.id ? null : s.id))
+                    }
+                    className="min-w-0 flex-1 text-left"
+                  >
                     <div className="flex items-center gap-2">
+                      <ChevronRight
+                        className={cn(
+                          "h-4 w-4 shrink-0 text-muted-foreground transition-transform",
+                          isOpen && "rotate-90",
+                        )}
+                      />
                       <span className="truncate font-medium">{s.name}</span>
                       <SignalBadge signal={s.signal} size="xs" />
                     </div>
-                    <div className="mt-0.5 text-[11px] text-muted-foreground tabular">
+                    <div className="ml-6 mt-0.5 text-[11px] text-muted-foreground tabular">
                       점유율 {s.share.toFixed(1)}% · 리더{" "}
                       {s.leaders.slice(0, 2).join(", ")}
                     </div>
-                  </div>
+                  </button>
                   <label className="flex min-h-10 shrink-0 items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 text-xs text-muted-foreground">
                     <input
                       type="checkbox"
@@ -260,6 +277,27 @@ export function SectorTable({
                     tone={s.priceChange > 0 ? "success" : "danger"}
                   />
                 </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setExpanded((current) => (current === s.id ? null : s.id))
+                  }
+                  className="mt-3 flex min-h-10 w-full items-center justify-between rounded-md border border-border/70 bg-surface-2 px-3 text-xs font-medium"
+                >
+                  <span>소속 종목 {companies.length}개</span>
+                  <span className="text-brand">
+                    {isOpen ? "접기" : "전체 보기"}
+                  </span>
+                </button>
+                {isOpen && (
+                  <MobileExpandedCompanies
+                    id={`mobile-group-${s.id}`}
+                    sector={s}
+                    companies={companies}
+                    selectedIds={selectedIds}
+                    onAddCompany={onAddCompany}
+                  />
+                )}
               </div>
             );
           })}
@@ -271,6 +309,120 @@ export function SectorTable({
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+function MobileExpandedCompanies({
+  id,
+  sector,
+  companies,
+  selectedIds,
+  onAddCompany,
+}: {
+  id: string;
+  sector: Sector;
+  companies: (typeof LIVE_GROUP_COMPANIES)[string];
+  selectedIds: string[];
+  onAddCompany: (id: string) => void;
+}) {
+  return (
+    <div id={id} className="mt-3 border-t border-border/70 pt-3">
+      <p className="mb-3 text-xs leading-relaxed text-muted-foreground">
+        {describe(sector)}
+      </p>
+      <div className="max-h-[460px] divide-y divide-border/60 overflow-y-auto rounded-lg border border-border/70 bg-background">
+        {companies.map((company) => {
+          const selected = selectedIds.includes(company.id);
+          return (
+            <div key={company.id} className="p-3">
+              <div className="flex items-start gap-3">
+                <a
+                  href={`/stock/?ticker=${encodeURIComponent(company.ticker)}`}
+                  className="min-w-0 flex-1"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-sm font-semibold">
+                      {company.ticker}
+                    </span>
+                    <span className="truncate text-xs text-muted-foreground">
+                      {company.name}
+                    </span>
+                  </div>
+                  <div className="mt-0.5 truncate text-[11px] text-muted-foreground">
+                    {company.industry || "산업 미분류"} ·{" "}
+                    {fmtMcap(company.marketCap)}
+                  </div>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => onAddCompany(company.id)}
+                  aria-pressed={selected}
+                  className={cn(
+                    "min-h-9 shrink-0 rounded-md border px-2.5 text-[11px] font-medium",
+                    selected
+                      ? "border-brand/30 bg-brand/10 text-brand"
+                      : "border-border bg-surface",
+                  )}
+                >
+                  {selected ? "비교 중" : "차트 추가"}
+                </button>
+              </div>
+              <div className="mt-2 grid grid-cols-4 gap-2 text-center text-[11px] tabular">
+                <MobileCompanyMetric
+                  label="가격"
+                  value={`$${fmtPrice(company.price)}`}
+                />
+                <MobileCompanyMetric
+                  label="등락"
+                  value={fmtPct(company.change)}
+                  tone={company.change}
+                />
+                <MobileCompanyMetric
+                  label="1D"
+                  value={fmtPct(company.volumeVs?.["1d"] ?? 0)}
+                  tone={company.volumeVs?.["1d"] ?? 0}
+                />
+                <MobileCompanyMetric
+                  label="20D"
+                  value={fmtPct(company.volumeVs?.["20d"] ?? 0)}
+                  tone={company.volumeVs?.["20d"] ?? 0}
+                />
+              </div>
+            </div>
+          );
+        })}
+        {companies.length === 0 && (
+          <div className="p-5 text-center text-xs text-muted-foreground">
+            소속 종목 데이터가 없습니다.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MobileCompanyMetric({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone?: number;
+}) {
+  return (
+    <div className="rounded-md bg-surface-2 px-1 py-1.5">
+      <div className="text-[9px] text-muted-foreground">{label}</div>
+      <div
+        className={cn(
+          "mt-0.5 font-medium",
+          tone != null && tone > 0 && "text-success",
+          tone != null && tone < 0 && "text-danger",
+        )}
+      >
+        {value}
+      </div>
+    </div>
   );
 }
 
@@ -460,7 +612,10 @@ function ExpandedRow({
 }
 
 function describe(s: Sector) {
-  const domain = GROUP_DESCRIPTIONS[s.name];
+  const domain =
+    s.group === "industry"
+      ? describeIndustry(s.name)
+      : (GROUP_DESCRIPTIONS[s.name] ?? `${s.name} 기준으로 묶은 기업군입니다.`);
   const prefix = domain ? `${domain} ` : "";
   if (s.signal === "inflow")
     return `${prefix}${s.name} 그룹의 거래 비중이 확대됐고 가격도 함께 상승했습니다. 실제 순매수액을 뜻하지는 않습니다.`;
