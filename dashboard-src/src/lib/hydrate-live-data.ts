@@ -375,6 +375,39 @@ function tradingDaysBehindLatestClose(marketDate: string, now = new Date()) {
   return count;
 }
 
+function decodeHtml(value = "") {
+  return value
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">");
+}
+
+function translateInsiderRole(rawRole = "") {
+  const role = decodeHtml(rawRole).trim();
+  const lower = role.toLowerCase();
+  if (!role) return "임원";
+  if (/10%/.test(lower)) return "10% 대주주";
+  if (/director|이사/.test(lower)) return "이사";
+  if (/chief executive|\bceo\b/.test(lower)) return "최고경영자";
+  if (/chief financial|\bcfo\b/.test(lower)) return "최고재무책임자";
+  if (/chief operating|\bcoo\b/.test(lower)) return "최고운영책임자";
+  if (/chief technology|\bcto\b/.test(lower)) return "최고기술책임자";
+  if (/chief legal|general counsel/.test(lower)) return "최고법무책임자";
+  if (/chief accounting|controller|\bcao\b/.test(lower))
+    return "최고회계책임자";
+  if (/chief people|human resources|\bchro\b/.test(lower))
+    return "최고인사책임자";
+  if (/executive chairman|chairman/.test(lower)) return "이사회 의장";
+  if (/president/.test(lower)) return "사장";
+  if (/executive vice president|\bevp\b/.test(lower)) return "수석부사장";
+  if (/senior vice president|\bsvp\b/.test(lower)) return "수석부사장";
+  if (/vice president|\bvp\b/.test(lower)) return "부사장";
+  if (/officer|임원/.test(lower)) return "임원";
+  return role;
+}
+
 export async function hydrateLiveData() {
   LIVE_META.status = "loading";
   LIVE_META.delayTradingDays = 0;
@@ -511,27 +544,30 @@ export async function hydrateLiveData() {
       }));
     }
 
+    const stockByTicker = new Map(stocks.map((stock) => [stock.t, stock]));
     const insiderRows: InsiderRow[] = (insider.trades ?? [])
       .filter(
         (row: any) =>
           !row.txDate || !row.filedDate || row.filedDate >= row.txDate,
       )
-      .map((row: any) => ({
-        ticker: row.ticker,
-        company: row.company,
-        insider: row.filer,
-        role: row.role,
-        type: row.txType === "매수" ? "buy" : "sell",
-        shares: Number(row.shares) || 0,
-        amount: (Number(row.value) || 0) / 1e6,
-        tradeDate: row.txDate,
-        filedDate: row.filedDate,
-        signal: row.txType === "매수" ? "inflow" : "outflow",
-        cluster: Number(row.clusterCount) >= 2,
-      }));
+      .map((row: any) => {
+        const marketStock = stockByTicker.get(row.ticker);
+        return {
+          ticker: row.ticker,
+          company: marketStock?.nko || decodeHtml(row.company),
+          insider: decodeHtml(row.filer),
+          role: translateInsiderRole(row.role),
+          type: row.txType === "매수" ? "buy" : "sell",
+          shares: Number(row.shares) || 0,
+          amount: (Number(row.value) || 0) / 1e6,
+          tradeDate: row.txDate,
+          filedDate: row.filedDate,
+          signal: row.txType === "매수" ? "inflow" : "outflow",
+          cluster: Number(row.clusterCount) >= 2,
+        };
+      });
     INSIDER_ROWS.splice(0, INSIDER_ROWS.length, ...insiderRows);
 
-    const stockByTicker = new Map(stocks.map((stock) => [stock.t, stock]));
     const lockupRows: LockupRow[] = (lockup.events ?? []).map((row: any) => {
       const daysLeft = daysUntil(row.lockupDate);
       const marketStock = stockByTicker.get(row.ticker);

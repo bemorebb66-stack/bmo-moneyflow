@@ -104,6 +104,14 @@ function InsiderPage() {
       />
 
       <div className="space-y-4 sm:space-y-5">
+        <aside className="rounded-lg border border-info/25 bg-info/5 px-4 py-3 text-xs leading-5 text-muted-foreground">
+          <strong className="text-foreground">공시 포함 기준</strong>
+          <span className="ml-2">
+            SEC Form 4의 완료된 공개시장 매수(P)·매도(S)만 표시합니다. 주식 보상
+            세금 원천징수(F)와 Form 144 매도 예정 통지는 포함하지 않습니다.
+          </span>
+        </aside>
+
         <section
           aria-label="내부자 거래 요약"
           className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4"
