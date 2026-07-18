@@ -399,10 +399,20 @@ function translateInsiderRole(rawRole = "") {
     return "최고회계책임자";
   if (/chief people|human resources|\bchro\b/.test(lower))
     return "최고인사책임자";
+  if (/chief strategy/.test(lower)) return "최고전략책임자";
+  if (/chief administrative/.test(lower)) return "최고행정책임자";
+  if (/chief comm|corporate affairs/.test(lower))
+    return "커뮤니케이션·대외협력 책임자";
+  if (/chief marketing|\bcmo\b/.test(lower)) return "최고마케팅책임자";
+  if (/vice chairman/.test(lower)) return "이사회 부의장";
   if (/executive chairman|chairman/.test(lower)) return "이사회 의장";
+  if (/managing director|^md\b/.test(lower)) return "전무";
+  if (/head technology/.test(lower)) return "기술·운영 총괄";
   if (/president/.test(lower)) return "사장";
-  if (/executive vice president|\bevp\b/.test(lower)) return "수석부사장";
+  if (/executive vice president|exec vp|\bevp\b/.test(lower))
+    return "수석부사장";
   if (/senior vice president|\bsvp\b/.test(lower)) return "수석부사장";
+  if (/corporate vice president|\bcvp\b/.test(lower)) return "기업부사장";
   if (/vice president|\bvp\b/.test(lower)) return "부사장";
   if (/officer|임원/.test(lower)) return "임원";
   return role;

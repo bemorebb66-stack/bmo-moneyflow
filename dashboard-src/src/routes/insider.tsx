@@ -14,7 +14,6 @@ import { Search, Users, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { SignalBadge } from "@/components/signal-badge";
 import { MetricInfo } from "@/components/metric-info";
 import { cn } from "@/lib/utils";
 import {
@@ -122,13 +121,13 @@ function InsiderPage() {
             hint="거래일·공시일 검증 통과"
           />
           <SummaryCard
-            label="매수 상위"
+            label="매수 합계"
             value={fmtMoney(buyTotal)}
             hint={`${INSIDER_ROWS.filter((r) => r.type === "buy").length}건 · 총액`}
             tone="success"
           />
           <SummaryCard
-            label="매도 상위"
+            label="매도 합계"
             value={fmtMoney(sellTotal)}
             hint={`${INSIDER_ROWS.filter((r) => r.type === "sell").length}건 · 총액`}
             tone="danger"
@@ -415,7 +414,16 @@ function InsiderDetailTable({ rows }: { rows: InsiderRow[] }) {
                     {r.filedDate}
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-4">
-                    <SignalBadge signal={r.signal} size="xs" />
+                    <span
+                      className={cn(
+                        "inline-flex rounded-md border px-1.5 py-0.5 text-xs font-medium",
+                        r.type === "buy"
+                          ? "border-success/25 bg-success/10 text-success"
+                          : "border-danger/25 bg-danger/10 text-danger",
+                      )}
+                    >
+                      {r.type === "buy" ? "매수 공시" : "매도 공시"}
+                    </span>
                   </td>
                 </tr>
               ))}
