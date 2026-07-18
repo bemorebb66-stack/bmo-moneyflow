@@ -1,29 +1,14 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-18T11:51:37.289074+00:00",
+    "generatedAt": "2026-07-18T11:56:39.848903+00:00",
     "status": "ok",
     "from": "2026-07-22",
     "to": "2027-01-14",
-    "count": 197,
+    "count": 196,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
-    {
-      "ticker": "IBM",
-      "company": "아이비엠",
-      "date": "2026-07-22",
-      "hour": "amc",
-      "quarter": 2,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
-      "confirmed": true,
-      "source": "IBM Investor Relations",
-      "sourceUrl": "https://newsroom.ibm.com/2026-07-08-IBM-to-Announce-Second-Quarter-2026-Financial-Results"
-    },
     {
       "ticker": "TSLA",
       "company": "테슬라",
