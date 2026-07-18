@@ -69,7 +69,7 @@ function buildEvents(): CalendarEvent[] {
       kind: "earnings" as const,
       ticker: row.ticker,
       title: `실적 발표 · ${row.ticker}`,
-      detail: `${row.company} · ${hourLabel[row.hour]} · ${eps}`,
+      detail: `${row.company} · ${hourLabel[row.hour]} · ${eps}${row.confirmed ? " · 공식 확정" : ""}`,
       href: `/stock/?ticker=${encodeURIComponent(row.ticker)}`,
     };
   });

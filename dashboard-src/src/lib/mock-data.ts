@@ -553,6 +553,9 @@ export interface EarningsRow {
   epsEstimate?: number;
   revenueActual?: number; // USD
   revenueEstimate?: number; // USD
+  confirmed?: boolean;
+  source?: string;
+  sourceUrl?: string;
 }
 
 export type EconomicEventKind = "fomc" | "cpi" | "ppi" | "jobs" | "pce" | "gdp";

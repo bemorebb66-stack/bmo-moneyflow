@@ -599,6 +599,9 @@ export async function hydrateLiveData() {
           row.revenueActual == null ? undefined : Number(row.revenueActual),
         revenueEstimate:
           row.revenueEstimate == null ? undefined : Number(row.revenueEstimate),
+        confirmed: row.confirmed === true,
+        source: row.source || undefined,
+        sourceUrl: row.sourceUrl || undefined,
       }));
     EARNINGS_ROWS.splice(0, EARNINGS_ROWS.length, ...earningsRows);
 

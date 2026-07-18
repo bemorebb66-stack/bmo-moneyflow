@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "earnings.json"
+MANUAL_INPUT = ROOT / "earnings_manual.json"
 FINNHUB_URL = "https://finnhub.io/api/v1/calendar/earnings"
 
 
@@ -17,10 +18,58 @@ def number_or_none(value):
         return None
 
 
+def load_manual_events():
+    if not MANUAL_INPUT.exists():
+        return []
+    payload = json.loads(MANUAL_INPUT.read_text(encoding="utf-8"))
+    return payload.get("events", [])
+
+
+def merge_events(api_events, manual_events):
+    merged = {
+        (row["ticker"], row["date"]): row
+        for row in api_events
+        if row.get("ticker") and row.get("date")
+    }
+    for row in manual_events:
+        ticker = str(row.get("ticker") or "").upper().strip()
+        event_date = str(row.get("date") or "").strip()
+        if ticker and event_date:
+            merged[(ticker, event_date)] = {**row, "ticker": ticker}
+    return sorted(merged.values(), key=lambda row: (row["date"], row["ticker"]))
+
+
+def write_output(events, source, params=None):
+    dates = [row["date"] for row in events if row.get("date")]
+    output = {
+        "meta": {
+            "source": source,
+            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "status": "ok",
+            "from": params["from"] if params else (min(dates) if dates else ""),
+            "to": params["to"] if params else (max(dates) if dates else ""),
+            "count": len(events),
+            "note": "Finnhub data is supplemented with confirmed dates from official company IR pages.",
+        },
+        "events": events,
+    }
+    OUTPUT.write_text(
+        json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"Saved {len(events)} earnings events to {OUTPUT.name}.")
+
+
 def main():
     api_key = os.environ.get("FINNHUB_API_KEY", "").strip()
+    manual_events = load_manual_events()
     if not api_key:
-        print("FINNHUB_API_KEY is not set; keeping the existing earnings file.")
+        existing = []
+        if OUTPUT.exists():
+            existing = json.loads(OUTPUT.read_text(encoding="utf-8")).get("events", [])
+        write_output(
+            merge_events(existing, manual_events),
+            "Finnhub Earnings Calendar + official company IR pages",
+        )
         return
 
     import requests
@@ -69,23 +118,11 @@ def main():
             }
         )
 
-    events.sort(key=lambda row: (row["date"], row["ticker"]))
-    output = {
-        "meta": {
-            "source": "Finnhub Earnings Calendar",
-            "generatedAt": datetime.now(timezone.utc).isoformat(),
-            "status": "ok",
-            "from": params["from"],
-            "to": params["to"],
-            "count": len(events),
-            "note": "Public display is subject to the site's Finnhub data license.",
-        },
-        "events": events,
-    }
-    OUTPUT.write_text(
-        json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    write_output(
+        merge_events(events, manual_events),
+        "Finnhub Earnings Calendar + official company IR pages",
+        params,
     )
-    print(f"Saved {len(events)} earnings events to {OUTPUT.name}.")
 
 
 if __name__ == "__main__":
