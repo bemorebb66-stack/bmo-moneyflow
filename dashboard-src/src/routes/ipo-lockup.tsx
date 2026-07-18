@@ -15,7 +15,7 @@ export const Route = createFileRoute("/ipo-lockup")({
       { title: "미국 IPO 락업 해제 일정 | BVT Money Flow" },
       {
         name: "description",
-        content: "IPO 락업 해제 일정과 임박 이벤트, 예상 유통 가치까지 한눈에.",
+        content: "미국 상장기업의 IPO 락업 해제 예정일, 예상 가치, 근거와 관련 종목 거래대금을 확인하세요.",
       },
       { property: "og:title", content: "IPO 락업 해제 일정" },
       {

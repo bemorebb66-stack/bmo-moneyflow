@@ -12,7 +12,7 @@ import { PageHeading, PageShell } from "@/components/page-shell";
 export const Route = createFileRoute("/methodology")({
   head: () => ({
     meta: [
-      { title: "데이터 기준 | BVT Money Flow" },
+      { title: "거래대금·시장 흐름 계산 기준 | BVT Money Flow" },
       {
         name: "description",
         content:

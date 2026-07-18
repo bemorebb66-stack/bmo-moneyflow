@@ -12,7 +12,7 @@ interface Props {
 export function PageShell({ children }: Props) {
   return (
     <ThemeProvider>
-      <div className="min-h-dvh bg-background text-foreground">
+      <div className="min-h-dvh w-full min-w-0 overflow-x-clip bg-background text-foreground">
         <SiteHeader
           asOf={LIVE_META.asOf}
           updatedAt={LIVE_META.updatedAt}
@@ -20,7 +20,7 @@ export function PageShell({ children }: Props) {
           status={LIVE_META.status}
           delayTradingDays={LIVE_META.delayTradingDays}
         />
-        <main className="mx-auto max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
+        <main className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
           {children}
         </main>
         <SiteFooter />

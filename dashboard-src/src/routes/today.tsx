@@ -27,11 +27,11 @@ import { EventCalendar } from "@/components/event-calendar";
 export const Route = createFileRoute("/today")({
   head: () => ({
     meta: [
-      { title: "오늘의 미국 시장 거래대금 요약 | BVT Money Flow" },
+      { title: "오늘의 미국 주식 거래대금·시장 요약 | BVT Money Flow" },
       {
         name: "description",
         content:
-          "섹터 자금 흐름, 종목 스캐너, 내부자 거래, IPO 락업의 오늘의 핵심을 한 화면에서.",
+          "오늘 미국 시장의 거래대금 집중 섹터, 급증 종목, 내부자 거래, 실적과 주요 이벤트를 한눈에 확인하세요.",
       },
       { property: "og:title", content: "오늘의 미국 시장 요약" },
       {

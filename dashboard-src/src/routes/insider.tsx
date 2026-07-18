@@ -26,11 +26,11 @@ import { fmtMoney } from "@/lib/format";
 export const Route = createFileRoute("/insider")({
   head: () => ({
     meta: [
-      { title: "미국 주식 내부자 거래 | BVT Money Flow" },
+      { title: "미국 주식 내부자 매수·매도 조회 | BVT Money Flow" },
       {
         name: "description",
         content:
-          "미국 주식 내부자 매수·매도 공시와 클러스터 거래 신호를 추적합니다.",
+          "미국 상장기업 임원과 주요 주주의 내부자 매수·매도 내역을 거래일과 SEC 보고일 기준으로 확인하세요.",
       },
       { property: "og:title", content: "미국 주식 내부자 거래" },
       {
