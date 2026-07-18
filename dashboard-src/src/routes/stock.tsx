@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Building2,
   CalendarClock,
+  ChartNoAxesCombined,
   ExternalLink,
   Users,
 } from "lucide-react";
@@ -25,9 +26,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 import {
+  EARNINGS_ROWS,
   generateSeries,
   INSIDER_ROWS,
   LIVE_MARKET_DATA,
+  LIVE_META,
   LIVE_STOCKS,
   LOCKUP_ROWS,
   type MarketPeriod,
@@ -114,6 +117,15 @@ function StockDetail({ stock }: { stock: StockRow }) {
   );
   const insiders = INSIDER_ROWS.filter((row) => row.ticker === stock.ticker);
   const lockup = LOCKUP_ROWS.find((row) => row.ticker === stock.ticker);
+  const earnings = EARNINGS_ROWS.filter(
+    (row) => row.ticker === stock.ticker,
+  ).sort((a, b) => b.date.localeCompare(a.date));
+  const nextEarnings = [...earnings]
+    .filter((row) => row.date >= LIVE_META.asOf)
+    .sort((a, b) => a.date.localeCompare(b.date))[0];
+  const recentEarnings = earnings
+    .filter((row) => row.date <= LIVE_META.asOf && row.epsActual != null)
+    .slice(0, 4);
   const sectorRow = LIVE_MARKET_DATA.sector["1d"].find(
     (row) => row.name === stock.sector,
   );
@@ -362,6 +374,18 @@ function StockDetail({ stock }: { stock: StockRow }) {
               <h2 className="text-base font-semibold">관련 데이터</h2>
               <div className="mt-3 space-y-2">
                 <ContextLink
+                  href="/today/#event-calendar"
+                  icon={<ChartNoAxesCombined className="h-4 w-4" />}
+                  title="실적 발표"
+                  description={
+                    nextEarnings
+                      ? `${nextEarnings.date} · ${earningsHourLabel(nextEarnings.hour)}`
+                      : recentEarnings.length
+                        ? `최근 실적 ${recentEarnings[0].date}`
+                        : "수집된 실적 일정 없음"
+                  }
+                />
+                <ContextLink
                   href={`/insider/?ticker=${stock.ticker}`}
                   icon={<Users className="h-4 w-4" />}
                   title="내부자 거래"
@@ -386,6 +410,96 @@ function StockDetail({ stock }: { stock: StockRow }) {
           </Card>
         </div>
       </div>
+
+      <Card id="earnings" className="mt-5">
+        <CardContent className="p-0">
+          <div className="flex flex-col gap-2 border-b border-border/70 px-4 py-3 sm:flex-row sm:items-end sm:justify-between sm:px-5">
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+                EARNINGS
+              </div>
+              <h2 className="mt-1 text-base font-semibold sm:text-lg">
+                실적 발표와 예상치 비교
+              </h2>
+              <p className="text-[11px] text-muted-foreground">
+                EPS·매출 실제치와 시장 예상치 · Finnhub 기준
+              </p>
+            </div>
+            {nextEarnings && (
+              <div className="rounded-md border border-success/25 bg-success/5 px-3 py-2 text-xs">
+                <span className="text-muted-foreground">다음 발표 </span>
+                <strong className="ml-1 tabular">
+                  {nextEarnings.date} · {earningsHourLabel(nextEarnings.hour)}
+                </strong>
+              </div>
+            )}
+          </div>
+          {recentEarnings.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[680px] text-left text-xs">
+                <thead className="bg-surface-2 text-[10px] text-muted-foreground">
+                  <tr>
+                    <th className="px-4 py-2.5 font-medium sm:px-5">발표일</th>
+                    <th className="px-4 py-2.5 font-medium">EPS 실제</th>
+                    <th className="px-4 py-2.5 font-medium">EPS 예상</th>
+                    <th className="px-4 py-2.5 font-medium">EPS 서프라이즈</th>
+                    <th className="px-4 py-2.5 font-medium">매출 실제</th>
+                    <th className="px-4 py-2.5 font-medium">매출 예상</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/70">
+                  {recentEarnings.map((row) => {
+                    const surprise = earningsSurprise(
+                      row.epsActual,
+                      row.epsEstimate,
+                    );
+                    return (
+                      <tr key={`${row.ticker}-${row.date}`}>
+                        <td className="px-4 py-3 font-medium tabular sm:px-5">
+                          {row.date}
+                        </td>
+                        <td className="px-4 py-3 tabular">
+                          {row.epsActual == null
+                            ? "-"
+                            : `$${row.epsActual.toFixed(2)}`}
+                        </td>
+                        <td className="px-4 py-3 tabular text-muted-foreground">
+                          {row.epsEstimate == null
+                            ? "-"
+                            : `$${row.epsEstimate.toFixed(2)}`}
+                        </td>
+                        <td
+                          className={cn(
+                            "px-4 py-3 font-semibold tabular",
+                            surprise != null && surprise > 0 && "text-success",
+                            surprise != null && surprise < 0 && "text-danger",
+                          )}
+                        >
+                          {surprise == null ? "-" : fmtPct(surprise)}
+                        </td>
+                        <td className="px-4 py-3 tabular">
+                          {row.revenueActual == null
+                            ? "-"
+                            : fmtMoney(row.revenueActual / 1e6)}
+                        </td>
+                        <td className="px-4 py-3 tabular text-muted-foreground">
+                          {row.revenueEstimate == null
+                            ? "-"
+                            : fmtMoney(row.revenueEstimate / 1e6)}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="px-5 py-8 text-center text-sm text-muted-foreground">
+              아직 수집된 실적 발표 데이터가 없습니다.
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       <Card className="mt-5">
         <CardContent className="p-0">
@@ -441,6 +555,18 @@ function StockDetail({ stock }: { stock: StockRow }) {
       </Card>
     </PageShell>
   );
+}
+
+function earningsHourLabel(hour: "bmo" | "amc" | "dmh" | "") {
+  if (hour === "bmo") return "장전";
+  if (hour === "amc") return "장후";
+  if (hour === "dmh") return "장중";
+  return "시간 미정";
+}
+
+function earningsSurprise(actual?: number, estimate?: number) {
+  if (actual == null || estimate == null || estimate === 0) return null;
+  return ((actual - estimate) / Math.abs(estimate)) * 100;
 }
 
 function interpretStock(stock: StockRow) {

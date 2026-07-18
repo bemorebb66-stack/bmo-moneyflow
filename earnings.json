@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "source": "Finnhub Earnings Calendar",
+    "generatedAt": null,
+    "status": "api_key_required",
+    "note": "Set FINNHUB_API_KEY in GitHub Actions secrets to enable automatic earnings updates."
+  },
+  "events": []
+}

@@ -539,6 +539,39 @@ export const INSIDER_ROWS: InsiderRow[] = [
   },
 ];
 
+// ---------- Earnings and macro calendar ----------
+export type EarningsHour = "bmo" | "amc" | "dmh" | "";
+
+export interface EarningsRow {
+  ticker: string;
+  company: string;
+  date: string;
+  hour: EarningsHour;
+  quarter?: number;
+  year?: number;
+  epsActual?: number;
+  epsEstimate?: number;
+  revenueActual?: number; // USD
+  revenueEstimate?: number; // USD
+}
+
+export type EconomicEventKind = "fomc" | "cpi" | "ppi" | "jobs" | "pce" | "gdp";
+
+export interface EconomicEventRow {
+  id: string;
+  date: string;
+  kind: EconomicEventKind;
+  title: string;
+  detail: string;
+  timeEt: string;
+  importance: "high" | "medium";
+  source: "Federal Reserve" | "BLS" | "BEA";
+  sourceUrl: string;
+}
+
+export const EARNINGS_ROWS: EarningsRow[] = [];
+export const ECONOMIC_EVENTS: EconomicEventRow[] = [];
+
 // 30 day insider net trend series
 export function generateInsiderTrend(
   days = 30,

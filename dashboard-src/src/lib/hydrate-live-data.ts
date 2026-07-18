@@ -1,4 +1,6 @@
 import {
+  ECONOMIC_EVENTS,
+  EARNINGS_ROWS,
   INSIDER_ROWS,
   LIVE_COMPANIES_BY_ID,
   LIVE_GROUP_COMPANIES,
@@ -10,6 +12,8 @@ import {
   LOCKUP_ROWS,
   SECTORS,
   SURGE_STOCKS,
+  type EarningsRow,
+  type EconomicEventRow,
   type InsiderRow,
   type LockupRow,
   type MarketCompany,
@@ -375,13 +379,21 @@ export async function hydrateLiveData() {
         throw new Error(`${path} 응답 오류 (${response.status})`);
       return response.json();
     };
-    const [marketResult, historyResult, insiderResult, lockupResult] =
-      await Promise.allSettled([
-        fetchJson("/data.json"),
-        fetchJson("/history.json"),
-        fetchJson("/insider/data/insider.json"),
-        fetchJson("/ipo-lockup/data/lockup.json"),
-      ]);
+    const [
+      marketResult,
+      historyResult,
+      insiderResult,
+      lockupResult,
+      earningsResult,
+      economicResult,
+    ] = await Promise.allSettled([
+      fetchJson("/data.json"),
+      fetchJson("/history.json"),
+      fetchJson("/insider/data/insider.json"),
+      fetchJson("/ipo-lockup/data/lockup.json"),
+      fetchJson("/earnings.json"),
+      fetchJson("/economic_events.json"),
+    ]);
     if (
       marketResult.status === "rejected" ||
       historyResult.status === "rejected"
@@ -396,6 +408,14 @@ export async function hydrateLiveData() {
         : { trades: [] };
     const lockup =
       lockupResult.status === "fulfilled" ? lockupResult.value : { events: [] };
+    const earnings =
+      earningsResult.status === "fulfilled"
+        ? earningsResult.value
+        : { events: [] };
+    const economic =
+      economicResult.status === "fulfilled"
+        ? economicResult.value
+        : { events: [] };
     const secondaryDataDelayed =
       insiderResult.status === "rejected" || lockupResult.status === "rejected";
 
@@ -559,6 +579,43 @@ export async function hydrateLiveData() {
       };
     });
     LOCKUP_ROWS.splice(0, LOCKUP_ROWS.length, ...lockupRows);
+
+    const earningsRows: EarningsRow[] = (earnings.events ?? [])
+      .filter((row: any) => row.ticker && row.date)
+      .map((row: any) => ({
+        ticker: String(row.ticker).toUpperCase(),
+        company:
+          stockByTicker.get(String(row.ticker).toUpperCase())?.nko ||
+          row.company ||
+          row.ticker,
+        date: row.date,
+        hour: ["bmo", "amc", "dmh"].includes(row.hour) ? row.hour : "",
+        quarter: Number(row.quarter) || undefined,
+        year: Number(row.year) || undefined,
+        epsActual: row.epsActual == null ? undefined : Number(row.epsActual),
+        epsEstimate:
+          row.epsEstimate == null ? undefined : Number(row.epsEstimate),
+        revenueActual:
+          row.revenueActual == null ? undefined : Number(row.revenueActual),
+        revenueEstimate:
+          row.revenueEstimate == null ? undefined : Number(row.revenueEstimate),
+      }));
+    EARNINGS_ROWS.splice(0, EARNINGS_ROWS.length, ...earningsRows);
+
+    const economicRows: EconomicEventRow[] = (economic.events ?? [])
+      .filter((row: any) => row.id && row.date && row.title)
+      .map((row: any) => ({
+        id: row.id,
+        date: row.date,
+        kind: row.kind,
+        title: row.title,
+        detail: row.detail || "",
+        timeEt: row.timeEt || "",
+        importance: row.importance === "medium" ? "medium" : "high",
+        source: row.source,
+        sourceUrl: row.sourceUrl,
+      }));
+    ECONOMIC_EVENTS.splice(0, ECONOMIC_EVENTS.length, ...economicRows);
 
     const insiderTickers = new Set(insiderRows.map((row) => row.ticker));
     const lockupTickers = new Set(lockupRows.map((row) => row.ticker));

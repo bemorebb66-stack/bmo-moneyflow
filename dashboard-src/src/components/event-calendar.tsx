@@ -1,17 +1,25 @@
 import { useMemo, useState } from "react";
 import {
   CalendarDays,
+  ChartNoAxesCombined,
   ChevronLeft,
   ChevronRight,
+  Landmark,
   LockKeyhole,
   Users,
 } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { cn } from "@/lib/utils";
-import { INSIDER_ROWS, LIVE_META, LOCKUP_ROWS } from "@/lib/mock-data";
+import {
+  ECONOMIC_EVENTS,
+  EARNINGS_ROWS,
+  INSIDER_ROWS,
+  LIVE_META,
+  LOCKUP_ROWS,
+} from "@/lib/mock-data";
 import { fmtMoney } from "@/lib/format";
 
-type EventKind = "insider" | "lockup";
+type EventKind = "earnings" | "economic" | "insider" | "lockup";
 type EventFilter = "all" | EventKind;
 
 type CalendarEvent = {
@@ -22,6 +30,7 @@ type CalendarEvent = {
   title: string;
   detail: string;
   href: string;
+  external?: boolean;
 };
 
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
@@ -46,6 +55,34 @@ function monthStartFromMarketDate() {
 }
 
 function buildEvents(): CalendarEvent[] {
+  const hourLabel = { bmo: "장전", amc: "장후", dmh: "장중", "": "시간 미정" };
+  const earningsEvents = EARNINGS_ROWS.filter((row) => row.date).map((row) => {
+    const eps =
+      row.epsActual != null
+        ? `EPS 실제 $${row.epsActual.toFixed(2)}${row.epsEstimate != null ? ` · 예상 $${row.epsEstimate.toFixed(2)}` : ""}`
+        : row.epsEstimate != null
+          ? `EPS 예상 $${row.epsEstimate.toFixed(2)}`
+          : "예상치 미수집";
+    return {
+      id: `earnings-${row.ticker}-${row.date}`,
+      date: row.date,
+      kind: "earnings" as const,
+      ticker: row.ticker,
+      title: `실적 발표 · ${row.ticker}`,
+      detail: `${row.company} · ${hourLabel[row.hour]} · ${eps}`,
+      href: `/stock/?ticker=${encodeURIComponent(row.ticker)}`,
+    };
+  });
+  const economicEvents = ECONOMIC_EVENTS.map((row) => ({
+    id: row.id,
+    date: row.date,
+    kind: "economic" as const,
+    ticker: row.kind.toUpperCase(),
+    title: row.title,
+    detail: `${row.detail} · 미 동부 ${row.timeEt} · ${row.source}`,
+    href: row.sourceUrl,
+    external: true,
+  }));
   const insiderEvents = INSIDER_ROWS.filter((row) => row.filedDate).map(
     (row, index) => ({
       id: `insider-${row.ticker}-${row.filedDate}-${index}`,
@@ -68,9 +105,33 @@ function buildEvents(): CalendarEvent[] {
       href: `/ipo-lockup/?ticker=${encodeURIComponent(row.ticker)}`,
     }),
   );
-  return [...insiderEvents, ...lockupEvents].sort((a, b) =>
-    a.date.localeCompare(b.date),
-  );
+  return [
+    ...earningsEvents,
+    ...economicEvents,
+    ...insiderEvents,
+    ...lockupEvents,
+  ].sort((a, b) => a.date.localeCompare(b.date));
+}
+
+function eventChipClass(kind: EventKind) {
+  if (kind === "earnings") return "bg-success sm:bg-success/10 sm:text-success";
+  if (kind === "economic") return "bg-warning sm:bg-warning/10 sm:text-warning";
+  if (kind === "insider") return "bg-info sm:bg-info/10 sm:text-info";
+  return "bg-danger sm:bg-danger/10 sm:text-danger";
+}
+
+function eventIconClass(kind: EventKind) {
+  if (kind === "earnings") return "bg-success/10 text-success";
+  if (kind === "economic") return "bg-warning/10 text-warning";
+  if (kind === "insider") return "bg-info/10 text-info";
+  return "bg-danger/10 text-danger";
+}
+
+function EventIcon({ kind }: { kind: EventKind }) {
+  if (kind === "earnings") return <ChartNoAxesCombined className="h-4 w-4" />;
+  if (kind === "economic") return <Landmark className="h-4 w-4" />;
+  if (kind === "insider") return <Users className="h-4 w-4" />;
+  return <LockKeyhole className="h-4 w-4" />;
 }
 
 export function EventCalendar() {
@@ -129,7 +190,7 @@ export function EventCalendar() {
   };
 
   return (
-    <Card className="mt-5">
+    <Card id="event-calendar" className="mt-5 scroll-mt-20">
       <CardContent className="p-0">
         <div className="flex flex-col gap-3 border-b border-border/70 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
           <div className="flex items-center gap-3">
@@ -141,14 +202,16 @@ export function EventCalendar() {
                 통합 이벤트 캘린더
               </h2>
               <p className="text-[11px] text-muted-foreground">
-                내부자 공시일과 IPO 락업 해제일 · 이번 달 {monthEvents.length}건
+                실적·경제지표·내부자·IPO 일정 · 이번 달 {monthEvents.length}건
               </p>
             </div>
           </div>
-          <div className="inline-flex h-9 w-fit items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5">
+          <div className="flex h-9 max-w-full items-center gap-0.5 overflow-x-auto rounded-lg border border-border bg-surface p-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {(
               [
                 ["all", "전체"],
+                ["earnings", "실적"],
+                ["economic", "경제"],
                 ["insider", "내부자"],
                 ["lockup", "IPO 락업"],
               ] as const
@@ -158,7 +221,7 @@ export function EventCalendar() {
                 type="button"
                 onClick={() => setFilter(id)}
                 className={cn(
-                  "h-8 rounded-md px-3 text-xs font-medium",
+                  "h-8 shrink-0 whitespace-nowrap rounded-md px-3 text-xs font-medium",
                   filter === id
                     ? "bg-brand text-brand-foreground shadow-sm"
                     : "text-muted-foreground hover:bg-secondary",
@@ -216,10 +279,6 @@ export function EventCalendar() {
               const dayEvents = eventMap.get(key) ?? [];
               const inMonth = day.getMonth() === month.getMonth();
               const selected = selectedDate === key;
-              const insiderCount = dayEvents.filter(
-                (event) => event.kind === "insider",
-              ).length;
-              const lockupCount = dayEvents.length - insiderCount;
               return (
                 <button
                   key={key}
@@ -249,9 +308,7 @@ export function EventCalendar() {
                           key={event.id}
                           className={cn(
                             "h-1.5 w-1.5 rounded-full sm:mb-1 sm:h-auto sm:w-full sm:truncate sm:rounded px-0 sm:px-1 sm:py-0.5 sm:text-[9px]",
-                            event.kind === "insider"
-                              ? "bg-info sm:bg-info/10 sm:text-info"
-                              : "bg-danger sm:bg-danger/10 sm:text-danger",
+                            eventChipClass(event.kind),
                           )}
                         >
                           <span className="hidden sm:inline">
@@ -267,7 +324,7 @@ export function EventCalendar() {
                     </div>
                   )}
                   <span className="sr-only">
-                    내부자 {insiderCount}건, IPO 락업 {lockupCount}건
+                    등록 이벤트 {dayEvents.length}건
                   </span>
                 </button>
               );
@@ -283,21 +340,17 @@ export function EventCalendar() {
                 <a
                   key={event.id}
                   href={event.href}
+                  target={event.external ? "_blank" : undefined}
+                  rel={event.external ? "noreferrer" : undefined}
                   className="flex min-h-14 items-center gap-3 px-3 py-2.5 hover:bg-secondary/50 sm:px-4"
                 >
                   <div
                     className={cn(
                       "grid h-8 w-8 shrink-0 place-items-center rounded-md",
-                      event.kind === "insider"
-                        ? "bg-info/10 text-info"
-                        : "bg-danger/10 text-danger",
+                      eventIconClass(event.kind),
                     )}
                   >
-                    {event.kind === "insider" ? (
-                      <Users className="h-4 w-4" />
-                    ) : (
-                      <LockKeyhole className="h-4 w-4" />
-                    )}
+                    <EventIcon kind={event.kind} />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-xs font-semibold sm:text-sm">
@@ -319,6 +372,12 @@ export function EventCalendar() {
           </div>
 
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <i className="h-2 w-2 rounded-full bg-success" /> 기업 실적 발표
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <i className="h-2 w-2 rounded-full bg-warning" /> 주요 경제 일정
+            </span>
             <span className="inline-flex items-center gap-1.5">
               <i className="h-2 w-2 rounded-full bg-info" /> 내부자 거래 공시일
             </span>

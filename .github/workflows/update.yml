@@ -26,10 +26,15 @@ jobs:
       - name: Fetch data
         run: python fetch_data.py
 
+      - name: Fetch earnings calendar
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python fetch_earnings.py
+
       - name: Commit & push
         run: |
           git config user.name "bmo-moneyflow-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data.json sector_map.json history.json
+          git add data.json sector_map.json history.json earnings.json
           git commit -m "data: $(date -u +%Y-%m-%d)" || echo "변경 없음"
           git push
