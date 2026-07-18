@@ -27,9 +27,16 @@ interface Props {
   updatedAt: string;
   universeCount: number;
   status: DataStatus;
+  delayTradingDays: number;
 }
 
-export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
+export function SiteHeader({
+  asOf,
+  updatedAt,
+  universeCount,
+  status,
+  delayTradingDays,
+}: Props) {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -44,7 +51,9 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
           <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand text-brand-foreground">
             <TrendingUp className="h-4 w-4" />
           </div>
-          <div className="truncate text-sm font-semibold tracking-tight">BVT Money Flow</div>
+          <div className="truncate text-sm font-semibold tracking-tight">
+            BVT Money Flow
+          </div>
         </Link>
 
         <nav className="ml-6 hidden items-center gap-1 md:flex">
@@ -70,18 +79,31 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
 
         <div className="ml-auto flex items-center gap-2">
           <GlobalSearch />
-          <StatusStrip asOf={asOf} universeCount={universeCount} status={status} />
+          <StatusStrip
+            asOf={asOf}
+            universeCount={universeCount}
+            status={status}
+            delayTradingDays={delayTradingDays}
+          />
 
           <Button
             variant="ghost"
             size="sm"
             onClick={toggle}
-            aria-label={theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
+            aria-label={
+              theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"
+            }
             aria-pressed={theme === "dark"}
             className="hidden gap-1.5 sm:inline-flex"
           >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            <span className="text-xs">{theme === "dark" ? "라이트" : "다크"}</span>
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+            <span className="text-xs">
+              {theme === "dark" ? "라이트" : "다크"}
+            </span>
           </Button>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -126,14 +148,31 @@ export function SiteHeader({ asOf, updatedAt, universeCount, status }: Props) {
                   onClick={toggle}
                   className="w-full justify-start gap-2"
                 >
-                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  {theme === "dark" ? (
+                    <Sun className="h-4 w-4" />
+                  ) : (
+                    <Moon className="h-4 w-4" />
+                  )}
                   {theme === "dark" ? "라이트 모드" : "다크 모드"}
                 </Button>
                 <div className="mt-4 space-y-1.5 text-xs text-muted-foreground tabular">
                   <div>기준일 · {asOf}</div>
                   <div>갱신 · {updatedAt}</div>
-                  <div>추적 종목 · {universeCount.toLocaleString("ko-KR")}개</div>
-                  <div>데이터 상태 · {status === "normal" ? "정상" : status === "stale" ? "이전 데이터" : status === "partial" ? "일부 지연" : status === "failed" ? "업데이트 실패" : "확인 중"}</div>
+                  <div>
+                    추적 종목 · {universeCount.toLocaleString("ko-KR")}개
+                  </div>
+                  <div>
+                    데이터 상태 ·{" "}
+                    {status === "normal"
+                      ? "정상"
+                      : status === "stale"
+                        ? `${delayTradingDays}거래일 지연`
+                        : status === "partial"
+                          ? "일부 지연"
+                          : status === "failed"
+                            ? "업데이트 실패"
+                            : "확인 중"}
+                  </div>
                 </div>
               </div>
             </SheetContent>
@@ -148,16 +187,35 @@ function StatusStrip({
   asOf,
   universeCount,
   status,
+  delayTradingDays,
 }: {
   asOf: string;
   universeCount: number;
   status: DataStatus;
+  delayTradingDays: number;
 }) {
   return (
     <div className="hidden items-center gap-3 rounded-md border border-border/70 bg-surface px-3 py-1.5 text-[11px] leading-tight text-muted-foreground tabular lg:flex">
-      <span className={cn("inline-flex items-center gap-1.5 font-medium", status === "normal" ? "text-success" : status === "failed" ? "text-danger" : "text-warning")}>
+      <span
+        className={cn(
+          "inline-flex items-center gap-1.5 font-medium",
+          status === "normal"
+            ? "text-success"
+            : status === "failed"
+              ? "text-danger"
+              : "text-warning",
+        )}
+      >
         <span className="h-1.5 w-1.5 rounded-full bg-current" />
-        {status === "normal" ? "데이터 정상" : status === "stale" ? "이전 데이터" : status === "partial" ? "일부 지연" : status === "failed" ? "업데이트 실패" : "확인 중"}
+        {status === "normal"
+          ? "데이터 정상"
+          : status === "stale"
+            ? `데이터 ${delayTradingDays}거래일 지연`
+            : status === "partial"
+              ? "일부 지연"
+              : status === "failed"
+                ? "업데이트 실패"
+                : "확인 중"}
       </span>
       <span className="h-3 w-px bg-border" aria-hidden />
       <span>
@@ -165,7 +223,10 @@ function StatusStrip({
       </span>
       <span className="h-3 w-px bg-border" aria-hidden />
       <span>
-        종목 <span className="text-foreground">{universeCount.toLocaleString("ko-KR")}</span>
+        종목{" "}
+        <span className="text-foreground">
+          {universeCount.toLocaleString("ko-KR")}
+        </span>
       </span>
     </div>
   );

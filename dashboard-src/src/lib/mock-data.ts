@@ -1,7 +1,8 @@
 // 미국 주식 섹터 자금 흐름 데모용 샘플 데이터 (한국어)
 
 export type Signal = "inflow" | "outflow" | "attention-loss" | "neutral";
-export type MarketCategory = "sector" | "industry" | "universe" | "custom" | "mcap";
+export type MarketCategory =
+  "sector" | "industry" | "universe" | "custom" | "mcap";
 export type MarketPeriod = "1d" | "5d" | "20d" | "60d";
 
 export interface Sector {
@@ -182,20 +183,31 @@ export const LIVE_META: {
   updatedAt: string;
   universeCount: number;
   status: DataStatus;
+  delayTradingDays: number;
   error?: string;
 } = {
   asOf: "-",
   updatedAt: "-",
   universeCount: 0,
   status: "loading",
+  delayTradingDays: 0,
 };
 
-export const LIVE_SECTOR_SERIES: Record<string, { date: string; value: number }[]> = {};
-export const LIVE_GROUP_SERIES: Record<string, { date: string; value: number }[]> = {};
+export const LIVE_SECTOR_SERIES: Record<
+  string,
+  { date: string; value: number }[]
+> = {};
+export const LIVE_GROUP_SERIES: Record<
+  string,
+  { date: string; value: number }[]
+> = {};
 export const LIVE_GROUP_COMPANIES: Record<string, MarketCompany[]> = {};
 export const LIVE_COMPANIES_BY_ID: Record<string, MarketCompany> = {};
 export const LIVE_STOCKS: StockRow[] = [];
-export const LIVE_MARKET_DATA: Record<MarketCategory, Record<MarketPeriod, Sector[]>> = {
+export const LIVE_MARKET_DATA: Record<
+  MarketCategory,
+  Record<MarketPeriod, Sector[]>
+> = {
   sector: { "1d": [], "5d": [], "20d": [], "60d": [] },
   industry: { "1d": [], "5d": [], "20d": [], "60d": [] },
   universe: { "1d": [], "5d": [], "20d": [], "60d": [] },
@@ -346,19 +358,19 @@ export const SURGE_STOCKS: StockRow[] = [
 ];
 
 // 60일 지수화 시계열 생성
-export function generateSeries(sectorId: string, days = 60): { date: string; value: number }[] {
+export function generateSeries(
+  sectorId: string,
+  days = 60,
+): { date: string; value: number }[] {
   const live = LIVE_GROUP_SERIES[sectorId] ?? LIVE_SECTOR_SERIES[sectorId];
   if (live?.length) return live.slice(-days);
-  const seed = sectorId
-    .split("")
-    .reduce((a, c) => a + c.charCodeAt(0), 0);
+  const seed = sectorId.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   let x = seed;
   const rand = () => {
     x = (x * 9301 + 49297) % 233280;
     return x / 233280;
   };
-  const drift =
-    SECTORS.find((s) => s.id === sectorId)?.priceChange ?? 0;
+  const drift = SECTORS.find((s) => s.id === sectorId)?.priceChange ?? 0;
   const trend = drift * 0.6;
   const data: { date: string; value: number }[] = [];
   let value = 100;
@@ -403,22 +415,138 @@ export interface InsiderRow {
 }
 
 export const INSIDER_ROWS: InsiderRow[] = [
-  { ticker: "NVDA", company: "엔비디아", insider: "젠슨 황", role: "CEO", type: "sell", shares: 120000, amount: 110.6, tradeDate: "2026-07-10", filedDate: "2026-07-11", signal: "outflow" },
-  { ticker: "META", company: "메타 플랫폼스", insider: "마크 저커버그", role: "CEO", type: "sell", shares: 45000, amount: 23.1, tradeDate: "2026-07-09", filedDate: "2026-07-10", signal: "neutral" },
-  { ticker: "AMD", company: "AMD", insider: "리사 수", role: "CEO", type: "buy", shares: 25000, amount: 3.96, tradeDate: "2026-07-11", filedDate: "2026-07-12", signal: "inflow", cluster: true },
-  { ticker: "AMD", company: "AMD", insider: "마크 페이퍼마스터", role: "CTO", type: "buy", shares: 8000, amount: 1.27, tradeDate: "2026-07-11", filedDate: "2026-07-12", signal: "inflow", cluster: true },
-  { ticker: "TSLA", company: "테슬라", insider: "로빈 덴홀름", role: "이사회 의장", type: "sell", shares: 20000, amount: 4.98, tradeDate: "2026-07-08", filedDate: "2026-07-10", signal: "outflow" },
-  { ticker: "ARM", company: "ARM 홀딩스", insider: "르네 하스", role: "CEO", type: "buy", shares: 15000, amount: 1.93, tradeDate: "2026-07-10", filedDate: "2026-07-11", signal: "inflow" },
-  { ticker: "JPM", company: "JP모건 체이스", insider: "제이미 다이먼", role: "CEO", type: "sell", shares: 30000, amount: 6.43, tradeDate: "2026-07-07", filedDate: "2026-07-09", signal: "neutral" },
-  { ticker: "AVGO", company: "브로드컴", insider: "혹 탄", role: "CEO", type: "sell", shares: 5000, amount: 8.21, tradeDate: "2026-07-09", filedDate: "2026-07-10", signal: "outflow" },
-  { ticker: "LLY", company: "일라이 릴리", insider: "데이비드 릭스", role: "CEO", type: "buy", shares: 3000, amount: 2.44, tradeDate: "2026-07-11", filedDate: "2026-07-12", signal: "inflow" },
-  { ticker: "XOM", company: "엑슨모빌", insider: "대런 우즈", role: "CEO", type: "sell", shares: 40000, amount: 4.34, tradeDate: "2026-07-08", filedDate: "2026-07-09", signal: "outflow" },
+  {
+    ticker: "NVDA",
+    company: "엔비디아",
+    insider: "젠슨 황",
+    role: "CEO",
+    type: "sell",
+    shares: 120000,
+    amount: 110.6,
+    tradeDate: "2026-07-10",
+    filedDate: "2026-07-11",
+    signal: "outflow",
+  },
+  {
+    ticker: "META",
+    company: "메타 플랫폼스",
+    insider: "마크 저커버그",
+    role: "CEO",
+    type: "sell",
+    shares: 45000,
+    amount: 23.1,
+    tradeDate: "2026-07-09",
+    filedDate: "2026-07-10",
+    signal: "neutral",
+  },
+  {
+    ticker: "AMD",
+    company: "AMD",
+    insider: "리사 수",
+    role: "CEO",
+    type: "buy",
+    shares: 25000,
+    amount: 3.96,
+    tradeDate: "2026-07-11",
+    filedDate: "2026-07-12",
+    signal: "inflow",
+    cluster: true,
+  },
+  {
+    ticker: "AMD",
+    company: "AMD",
+    insider: "마크 페이퍼마스터",
+    role: "CTO",
+    type: "buy",
+    shares: 8000,
+    amount: 1.27,
+    tradeDate: "2026-07-11",
+    filedDate: "2026-07-12",
+    signal: "inflow",
+    cluster: true,
+  },
+  {
+    ticker: "TSLA",
+    company: "테슬라",
+    insider: "로빈 덴홀름",
+    role: "이사회 의장",
+    type: "sell",
+    shares: 20000,
+    amount: 4.98,
+    tradeDate: "2026-07-08",
+    filedDate: "2026-07-10",
+    signal: "outflow",
+  },
+  {
+    ticker: "ARM",
+    company: "ARM 홀딩스",
+    insider: "르네 하스",
+    role: "CEO",
+    type: "buy",
+    shares: 15000,
+    amount: 1.93,
+    tradeDate: "2026-07-10",
+    filedDate: "2026-07-11",
+    signal: "inflow",
+  },
+  {
+    ticker: "JPM",
+    company: "JP모건 체이스",
+    insider: "제이미 다이먼",
+    role: "CEO",
+    type: "sell",
+    shares: 30000,
+    amount: 6.43,
+    tradeDate: "2026-07-07",
+    filedDate: "2026-07-09",
+    signal: "neutral",
+  },
+  {
+    ticker: "AVGO",
+    company: "브로드컴",
+    insider: "혹 탄",
+    role: "CEO",
+    type: "sell",
+    shares: 5000,
+    amount: 8.21,
+    tradeDate: "2026-07-09",
+    filedDate: "2026-07-10",
+    signal: "outflow",
+  },
+  {
+    ticker: "LLY",
+    company: "일라이 릴리",
+    insider: "데이비드 릭스",
+    role: "CEO",
+    type: "buy",
+    shares: 3000,
+    amount: 2.44,
+    tradeDate: "2026-07-11",
+    filedDate: "2026-07-12",
+    signal: "inflow",
+  },
+  {
+    ticker: "XOM",
+    company: "엑슨모빌",
+    insider: "대런 우즈",
+    role: "CEO",
+    type: "sell",
+    shares: 40000,
+    amount: 4.34,
+    tradeDate: "2026-07-08",
+    filedDate: "2026-07-09",
+    signal: "outflow",
+  },
 ];
 
 // 30 day insider net trend series
-export function generateInsiderTrend(days = 30): { date: string; buy: number; sell: number }[] {
+export function generateInsiderTrend(
+  days = 30,
+): { date: string; buy: number; sell: number }[] {
   if (INSIDER_ROWS.length) {
-    const end = new Date(Math.max(...INSIDER_ROWS.map((row) => new Date(row.filedDate).getTime())));
+    const end = new Date(
+      Math.max(...INSIDER_ROWS.map((row) => new Date(row.filedDate).getTime())),
+    );
     const points = new Map<string, { buy: number; sell: number }>();
     for (let i = days; i >= 0; i--) {
       const date = new Date(end);
@@ -429,7 +557,10 @@ export function generateInsiderTrend(days = 30): { date: string; buy: number; se
       const point = points.get(row.filedDate);
       if (point) point[row.type] += row.amount;
     }
-    return [...points].map(([date, value]) => ({ date: `${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}`, ...value }));
+    return [...points].map(([date, value]) => ({
+      date: `${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}`,
+      ...value,
+    }));
   }
   let x = 1234;
   const rand = () => {
@@ -468,12 +599,92 @@ export interface LockupRow {
 }
 
 export const LOCKUP_ROWS: LockupRow[] = [
-  { ticker: "ARM", company: "ARM 홀딩스", ipoDate: "2025-09-14", unlockDate: "2026-07-15", daysLeft: 2, unlockShares: 940, estValue: 120_884, marketCap: 132, importance: "high" },
-  { ticker: "RBLX", company: "레딧", ipoDate: "2025-03-21", unlockDate: "2026-07-19", daysLeft: 6, unlockShares: 78, estValue: 4_212, marketCap: 12.4, importance: "high" },
-  { ticker: "KLAR", company: "클라나", ipoDate: "2025-11-08", unlockDate: "2026-07-22", daysLeft: 9, unlockShares: 62, estValue: 3_180, marketCap: 9.8, importance: "medium" },
-  { ticker: "CRCL", company: "서클 인터넷", ipoDate: "2026-01-15", unlockDate: "2026-07-24", daysLeft: 11, unlockShares: 44, estValue: 2_640, marketCap: 8.2, importance: "medium" },
-  { ticker: "SEVN", company: "세븐 앤 아이", ipoDate: "2025-04-30", unlockDate: "2026-07-28", daysLeft: 15, unlockShares: 210, estValue: 6_720, marketCap: 21, importance: "high" },
-  { ticker: "STBX", company: "스타박스 재상장", ipoDate: "2025-05-15", unlockDate: "2026-08-02", daysLeft: 20, unlockShares: 32, estValue: 1_240, marketCap: 4.2, importance: "low" },
-  { ticker: "GEMI", company: "제미나이 스페이스", ipoDate: "2026-02-10", unlockDate: "2026-08-08", daysLeft: 26, unlockShares: 55, estValue: 1_980, marketCap: 5.6, importance: "medium" },
-  { ticker: "OPAL", company: "오팔 헬스", ipoDate: "2025-08-01", unlockDate: "2026-08-11", daysLeft: 29, unlockShares: 18, estValue: 780, marketCap: 2.8, importance: "low" },
+  {
+    ticker: "ARM",
+    company: "ARM 홀딩스",
+    ipoDate: "2025-09-14",
+    unlockDate: "2026-07-15",
+    daysLeft: 2,
+    unlockShares: 940,
+    estValue: 120_884,
+    marketCap: 132,
+    importance: "high",
+  },
+  {
+    ticker: "RBLX",
+    company: "레딧",
+    ipoDate: "2025-03-21",
+    unlockDate: "2026-07-19",
+    daysLeft: 6,
+    unlockShares: 78,
+    estValue: 4_212,
+    marketCap: 12.4,
+    importance: "high",
+  },
+  {
+    ticker: "KLAR",
+    company: "클라나",
+    ipoDate: "2025-11-08",
+    unlockDate: "2026-07-22",
+    daysLeft: 9,
+    unlockShares: 62,
+    estValue: 3_180,
+    marketCap: 9.8,
+    importance: "medium",
+  },
+  {
+    ticker: "CRCL",
+    company: "서클 인터넷",
+    ipoDate: "2026-01-15",
+    unlockDate: "2026-07-24",
+    daysLeft: 11,
+    unlockShares: 44,
+    estValue: 2_640,
+    marketCap: 8.2,
+    importance: "medium",
+  },
+  {
+    ticker: "SEVN",
+    company: "세븐 앤 아이",
+    ipoDate: "2025-04-30",
+    unlockDate: "2026-07-28",
+    daysLeft: 15,
+    unlockShares: 210,
+    estValue: 6_720,
+    marketCap: 21,
+    importance: "high",
+  },
+  {
+    ticker: "STBX",
+    company: "스타박스 재상장",
+    ipoDate: "2025-05-15",
+    unlockDate: "2026-08-02",
+    daysLeft: 20,
+    unlockShares: 32,
+    estValue: 1_240,
+    marketCap: 4.2,
+    importance: "low",
+  },
+  {
+    ticker: "GEMI",
+    company: "제미나이 스페이스",
+    ipoDate: "2026-02-10",
+    unlockDate: "2026-08-08",
+    daysLeft: 26,
+    unlockShares: 55,
+    estValue: 1_980,
+    marketCap: 5.6,
+    importance: "medium",
+  },
+  {
+    ticker: "OPAL",
+    company: "오팔 헬스",
+    ipoDate: "2025-08-01",
+    unlockDate: "2026-08-11",
+    daysLeft: 29,
+    unlockShares: 18,
+    estValue: 780,
+    marketCap: 2.8,
+    importance: "low",
+  },
 ];

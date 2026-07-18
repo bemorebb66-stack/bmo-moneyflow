@@ -18,6 +18,7 @@ export function PageShell({ children }: Props) {
           updatedAt={LIVE_META.updatedAt}
           universeCount={LIVE_META.universeCount}
           status={LIVE_META.status}
+          delayTradingDays={LIVE_META.delayTradingDays}
         />
         <main className="mx-auto max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
           {children}

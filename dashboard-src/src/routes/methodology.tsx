@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AlertTriangle, Database, RefreshCw, Sigma, Target } from "lucide-react";
+import {
+  AlertTriangle,
+  Database,
+  RefreshCw,
+  Sigma,
+  Target,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageHeading, PageShell } from "@/components/page-shell";
 
@@ -7,26 +13,53 @@ export const Route = createFileRoute("/methodology")({
   head: () => ({
     meta: [
       { title: "데이터 기준 | BVT Money Flow" },
-      { name: "description", content: "BVT Money Flow의 거래대금 계산식, 기간별 비교, 유니버스 구성, 데이터 출처와 알려진 한계를 확인하세요." },
+      {
+        name: "description",
+        content:
+          "BVT Money Flow의 거래대금 계산식, 기간별 비교, 유니버스 구성, 데이터 출처와 알려진 한계를 확인하세요.",
+      },
       { property: "og:title", content: "BVT Money Flow 데이터 기준" },
-      { property: "og:description", content: "거래대금과 시장 점유율 지표를 어떻게 계산하는지 투명하게 공개합니다." },
+      {
+        property: "og:description",
+        content:
+          "거래대금과 시장 점유율 지표를 어떻게 계산하는지 투명하게 공개합니다.",
+      },
     ],
-    links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/methodology/" }],
+    links: [
+      { rel: "canonical", href: "https://www.bvtmoneyflow.xyz/methodology/" },
+    ],
   }),
   component: MethodologyPage,
 });
 
-const SECTIONS: { icon: LucideIcon; title: string; children: React.ReactNode }[] = [
+const SECTIONS: {
+  icon: LucideIcon;
+  title: string;
+  children: React.ReactNode;
+}[] = [
   {
     icon: Sigma,
     title: "계산 방법",
     children: (
       <div className="space-y-3">
         <Formula label="거래대금" value="당일 종가 × 당일 거래량" />
-        <Formula label="기간 대비 변화율" value="(당일 거래대금 ÷ 비교 기준 거래대금 - 1) × 100" />
-        <Formula label="시장 거래대금 점유율" value="그룹 거래대금 합계 ÷ 전체 추적 종목 거래대금 합계 × 100" />
-        <Formula label="점유율 변화" value="현재 점유율 - 비교 기준 점유율 · 화면에서는 100bp = 1%p" />
-        <p>1일은 직전 거래일, 5일·20일·60일은 당일을 제외한 직전 거래일 평균과 비교합니다. 주가 등락률은 주식분할과 배당 영향을 줄이기 위해 조정종가를 사용합니다.</p>
+        <Formula
+          label="기간 대비 변화율"
+          value="(당일 거래대금 ÷ 비교 기준 거래대금 - 1) × 100"
+        />
+        <Formula
+          label="시장 거래대금 점유율"
+          value="그룹 거래대금 합계 ÷ 전체 추적 종목 거래대금 합계 × 100"
+        />
+        <Formula
+          label="점유율 변화"
+          value="현재 점유율 - 비교 기준 점유율 · 화면에서는 100bp = 1%p"
+        />
+        <p>
+          1일은 직전 거래일, 5일·20일·60일은 당일을 제외한 직전 거래일 평균과
+          비교합니다. 주가 등락률은 주식분할과 배당 영향을 줄이기 위해
+          조정종가를 사용합니다.
+        </p>
       </div>
     ),
   },
@@ -35,11 +68,16 @@ const SECTIONS: { icon: LucideIcon; title: string; children: React.ReactNode }[]
     title: "데이터 출처",
     children: (
       <ul className="list-disc space-y-2 pl-5">
-        <li>가격·거래량·조정종가·시가총액: Yahoo Finance에서 수집한 미국 시장 장마감 일봉</li>
+        <li>
+          가격·거래량·조정종가·시가총액: Yahoo Finance에서 수집한 미국 시장
+          장마감 일봉
+        </li>
         <li>S&amp;P 500·Nasdaq 100 구성: 공개 구성 종목 목록</li>
         <li>Russell 1000·2000 범위: BlackRock IWB·IWM 공개 보유 종목 자료</li>
         <li>내부자 거래: 미국 SEC Form 4 공개 공시</li>
-        <li>IPO 락업: 공개된 IPO 자료와 예정 일정. 확정 공시는 원문을 우선합니다.</li>
+        <li>
+          IPO 락업: 공개된 IPO 자료와 예정 일정. 확정 공시는 원문을 우선합니다.
+        </li>
       </ul>
     ),
   },
@@ -47,14 +85,24 @@ const SECTIONS: { icon: LucideIcon; title: string; children: React.ReactNode }[]
     icon: Target,
     title: "추적 범위와 분류",
     children: (
-      <p>S&amp;P 500, Nasdaq 100, Russell 1000 및 Russell 2000 상위 종목을 중복 제거해 추적합니다. 섹터·산업은 수집 시점의 기업 분류를 사용하며, 시가총액은 소형주 100억 달러 미만, 중형주 100억~500억 달러, 대형주 500억~2,000억 달러, 메가캡 2,000억 달러 이상으로 구분합니다.</p>
+      <p>
+        S&amp;P 500, Nasdaq 100, Russell 1000 및 Russell 2000 상위 종목을 중복
+        제거해 추적합니다. 섹터·산업은 수집 시점의 기업 분류를 사용하며,
+        시가총액은 소형주 100억 달러 미만, 중형주 100억~500억 달러, 대형주
+        500억~2,000억 달러, 메가캡 2,000억 달러 이상으로 구분합니다.
+      </p>
     ),
   },
   {
     icon: RefreshCw,
     title: "업데이트와 결측치 처리",
     children: (
-      <p>미국 정규장 마감 후 한국시간 아침에 자동 갱신합니다. 최소 22거래일 데이터가 없는 종목은 20일 비교에서 제외하며, 휴장일에는 직전 거래일 데이터를 유지합니다. 데이터 파일을 불러오지 못하거나 기준일이 늦으면 화면 상단 상태 표시가 경고로 바뀝니다.</p>
+      <p>
+        미국 정규장 마감 후 한국시간 화~토 오전 7시 30분에 자동 갱신합니다. 최소
+        22거래일 데이터가 없는 종목은 20일 비교에서 제외하며, 휴장일에는 직전
+        거래일 데이터를 유지합니다. 최신 완료 거래일보다 하루라도 늦으면 화면
+        상단에 지연 거래일 수를 표시합니다.
+      </p>
     ),
   },
   {
@@ -62,10 +110,20 @@ const SECTIONS: { icon: LucideIcon; title: string; children: React.ReactNode }[]
     title: "알려진 한계",
     children: (
       <ul className="list-disc space-y-2 pl-5">
-        <li>본 서비스의 Money Flow는 실제 펀드 순유입액, 주문 흐름 또는 매수·매도 금액 차이가 아닙니다.</li>
-        <li>거래대금 급증은 관심 증가를 뜻하지만 반드시 상승 지속이나 매수 기회를 의미하지 않습니다.</li>
-        <li>현재 구성 종목 기준의 과거 비교에는 생존 편향이 포함될 수 있습니다.</li>
-        <li>외부 제공처의 지연·수정·누락이 화면 데이터에 반영될 수 있습니다.</li>
+        <li>
+          본 서비스의 Money Flow는 실제 펀드 순유입액, 주문 흐름 또는 매수·매도
+          금액 차이가 아닙니다.
+        </li>
+        <li>
+          거래대금 급증은 관심 증가를 뜻하지만 반드시 상승 지속이나 매수 기회를
+          의미하지 않습니다.
+        </li>
+        <li>
+          현재 구성 종목 기준의 과거 비교에는 생존 편향이 포함될 수 있습니다.
+        </li>
+        <li>
+          외부 제공처의 지연·수정·누락이 화면 데이터에 반영될 수 있습니다.
+        </li>
       </ul>
     ),
   },
@@ -81,8 +139,14 @@ function MethodologyPage() {
       />
       <div className="max-w-4xl">
         <div className="rounded-lg border border-brand/20 bg-brand/[0.06] p-4 text-sm leading-relaxed sm:p-5">
-          <strong className="block text-base text-foreground">BVT Money Flow의 ‘자금 흐름’이란?</strong>
-          <p className="mt-1 text-muted-foreground">실제 순매수액이 아니라 거래대금과 시장 내 거래대금 비중 변화를 이용해 시장의 관심이 확대되거나 축소되는 영역을 보여주는 시장 활동 지표입니다.</p>
+          <strong className="block text-base text-foreground">
+            BVT Money Flow의 ‘자금 흐름’이란?
+          </strong>
+          <p className="mt-1 text-muted-foreground">
+            실제 순매수액이 아니라 거래대금과 시장 내 거래대금 비중 변화를
+            이용해 시장의 관심이 확대되거나 축소되는 영역을 보여주는 시장 활동
+            지표입니다.
+          </p>
         </div>
         <article className="mt-8 space-y-8 text-sm leading-7 text-muted-foreground">
           {SECTIONS.map(({ icon: Icon, title, children }) => (
