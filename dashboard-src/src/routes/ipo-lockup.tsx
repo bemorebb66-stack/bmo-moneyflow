@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, CalendarClock, Rocket, Info } from "lucide-react";
+import { Search, CalendarClock, Rocket, Info, ExternalLink } from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -244,7 +244,7 @@ function LockupPage() {
                   </MetricInfo>
                 </div>
                 <p className="text-[11px] text-muted-foreground">
-                  D-day 기준 · 막대 길이는 예상 유통 가치 비중
+                  D-day 기준 · 해제 규모가 확인된 경우에만 가치 막대를 표시합니다.
                 </p>
               </div>
               <ul className="mt-4 space-y-3">
@@ -278,23 +278,27 @@ function LockupPage() {
                           </span>
                           <ImportanceBadge importance={r.importance} />
                         </div>
-                        <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                          <div
-                            className={cn(
-                              "h-full rounded-full",
-                              r.importance === "high"
-                                ? "bg-danger"
-                                : r.importance === "medium"
-                                  ? "bg-info"
-                                  : "bg-muted-foreground/40",
-                            )}
-                            style={{ width: `${width}%` }}
-                          />
-                        </div>
+                        {r.estValue > 0 ? (
+                          <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                            <div
+                              className={cn(
+                                "h-full rounded-full",
+                                r.importance === "high"
+                                  ? "bg-danger"
+                                  : r.importance === "medium"
+                                    ? "bg-info"
+                                    : "bg-muted-foreground/40",
+                              )}
+                              style={{ width: `${width}%` }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="mt-1 border-t border-dashed border-border" />
+                        )}
                         <div className="mt-1 text-[11px] text-muted-foreground tabular">
                           {r.sector || "섹터 미수집"} · 해제일 {r.unlockDate} ·
-                          예상 가치{" "}
-                          {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
+                          공모가 {r.ipoPrice ? `$${r.ipoPrice.toFixed(2)}` : "미수집"} ·
+                          해제 규모 {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
                         </div>
                       </div>
                     </li>
@@ -374,7 +378,7 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
           </p>
         </div>
         <div className="overflow-auto">
-          <table className="min-w-[1120px] w-full text-sm">
+          <table className="min-w-[1540px] w-full text-sm">
             <thead className="sticky top-0 bg-surface-2/60 text-[11px] uppercase tracking-wide text-muted-foreground">
               <tr>
                 <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
@@ -386,6 +390,12 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                 <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
                   IPO일
                 </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  공모가
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  락업 기간
+                </th>
                 <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
                   해제일
                 </th>
@@ -396,10 +406,19 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                   해제 주식
                 </th>
                 <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  유통주식 대비
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
                   추정 가치
                 </th>
                 <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
                   시총
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
+                  현재 거래대금
+                </th>
+                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                  자료 상태·근거
                 </th>
                 <th className="whitespace-nowrap py-2.5 pr-4 text-left font-medium">
                   중요도
@@ -431,6 +450,12 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                   <td className="whitespace-nowrap py-2.5 pr-3 text-muted-foreground tabular">
                     {r.ipoDate}
                   </td>
+                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
+                    {r.ipoPrice ? `$${r.ipoPrice.toFixed(2)}` : "미수집"}
+                  </td>
+                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
+                    {r.lockupDays ? `${r.lockupDays}일` : "미수집"}
+                  </td>
                   <td className="whitespace-nowrap py-2.5 pr-3 tabular">
                     {r.unlockDate}
                   </td>
@@ -441,10 +466,32 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
                     {r.unlockShares > 0 ? `${r.unlockShares}M` : "미수집"}
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
+                    {r.floatRatio == null ? "미수집" : `${r.floatRatio.toFixed(1)}%`}
+                  </td>
+                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
                     {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular text-muted-foreground">
                     {r.marketCap > 0 ? fmtMcap(r.marketCap) : "미수집"}
+                  </td>
+                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
+                    {r.tradingValue == null ? "미수집" : fmtMoney(r.tradingValue)}
+                  </td>
+                  <td className="whitespace-nowrap py-2.5 pr-3">
+                    <div className="flex items-center gap-2">
+                      <DataStateBadge state={r.dataState} />
+                      {r.sourceUrl && (
+                        <a
+                          href={r.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] font-medium text-brand hover:underline"
+                        >
+                          {r.sourceLabel || "근거 문서"}
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      )}
+                    </div>
                   </td>
                   <td className="whitespace-nowrap py-2.5 pr-4">
                     <ImportanceBadge importance={r.importance} />
@@ -454,7 +501,7 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
               {rows.length === 0 && (
                 <tr>
                   <td
-                    colSpan={9}
+                    colSpan={14}
                     className="py-10 text-center text-sm text-muted-foreground"
                   >
                     조건에 맞는 데이터가 없습니다.
@@ -466,6 +513,32 @@ function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+function DataStateBadge({
+  state = "uncollected",
+}: {
+  state?: LockupRow["dataState"];
+}) {
+  const meta =
+    state === "confirmed"
+      ? { label: "확정", cls: "border-success/25 bg-success/10 text-success" }
+      : state === "estimated"
+        ? { label: "예상", cls: "border-info/25 bg-info/10 text-info" }
+        : {
+            label: "물량 미수집",
+            cls: "border-border bg-muted text-muted-foreground",
+          };
+  return (
+    <span
+      className={cn(
+        "inline-flex rounded-md border px-1.5 py-0.5 text-[10px] font-medium",
+        meta.cls,
+      )}
+    >
+      {meta.label}
+    </span>
   );
 }
 

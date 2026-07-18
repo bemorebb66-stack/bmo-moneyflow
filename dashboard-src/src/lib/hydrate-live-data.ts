@@ -7,6 +7,7 @@ import {
   LIVE_GROUP_SERIES,
   LIVE_MARKET_DATA,
   LIVE_META,
+  MARKET_INDEXES,
   LIVE_SECTOR_SERIES,
   LIVE_STOCKS,
   LOCKUP_ROWS,
@@ -557,6 +558,12 @@ export async function hydrateLiveData() {
         unlockShares: 0,
         estValue: 0,
         marketCap: marketStock?.mc ? marketStock.mc / 1e9 : 0,
+        ipoPrice: Number(row.ipoPrice) || undefined,
+        tradingValue: marketStock?.dv ? marketStock.dv / 1e6 : undefined,
+        priceChange: marketStock?.pc == null ? undefined : Number(marketStock.pc),
+        dataState: "uncollected",
+        sourceLabel: "SEC 424B4 투자설명서",
+        sourceUrl: row.sourceUrl || `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent(row.ticker)}&category=custom&forms=424B4`,
         sector:
           row.ticker === "SPCX"
             ? "우주항공·방산"
@@ -579,6 +586,23 @@ export async function hydrateLiveData() {
       };
     });
     LOCKUP_ROWS.splice(0, LOCKUP_ROWS.length, ...lockupRows);
+
+    const indexNames: Record<string, { id: "sp500" | "russell2000" | "dow" | "nasdaq"; name: string }> = {
+      "^GSPC": { id: "sp500", name: "S&P 500" },
+      "^RUT": { id: "russell2000", name: "Russell 2000" },
+      "^DJI": { id: "dow", name: "Dow Jones" },
+      "^IXIC": { id: "nasdaq", name: "Nasdaq" },
+    };
+    const indexRows = (market.indices ?? [])
+      .filter((row: any) => indexNames[row.symbol])
+      .map((row: any) => ({
+        ...indexNames[row.symbol],
+        symbol: row.symbol,
+        value: Number(row.value) || 0,
+        change: Number(row.change) || 0,
+        asOf: row.date || market.market_date || "-",
+      }));
+    MARKET_INDEXES.splice(0, MARKET_INDEXES.length, ...indexRows);
 
     const earningsRows: EarningsRow[] = (earnings.events ?? [])
       .filter((row: any) => row.ticker && row.date)

@@ -193,6 +193,17 @@ export const LIVE_META: {
   delayTradingDays: 0,
 };
 
+export interface MarketIndexQuote {
+  id: "sp500" | "russell2000" | "dow" | "nasdaq";
+  name: string;
+  symbol: string;
+  value: number;
+  change: number;
+  asOf: string;
+}
+
+export const MARKET_INDEXES: MarketIndexQuote[] = [];
+
 export const LIVE_SECTOR_SERIES: Record<
   string,
   { date: string; value: number }[]
@@ -632,6 +643,13 @@ export interface LockupRow {
   industry?: string;
   importance: Importance;
   lockupDays?: number;
+  ipoPrice?: number;
+  tradingValue?: number; // USD millions
+  priceChange?: number;
+  floatRatio?: number;
+  dataState?: "confirmed" | "estimated" | "uncollected";
+  sourceLabel?: string;
+  sourceUrl?: string;
 }
 
 export const LOCKUP_ROWS: LockupRow[] = [

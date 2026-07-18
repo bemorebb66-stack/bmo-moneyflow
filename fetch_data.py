@@ -114,6 +114,7 @@ DATA_PATH = os.path.join(HERE, "data.json")
 HISTORY_PATH = os.path.join(HERE, "history.json")
 KOREAN_NAMES_PATH = os.path.join(HERE, "korean_names.json")
 HISTORY_DAYS = 120
+MARKET_INDEX_SYMBOLS = ["^GSPC", "^RUT", "^DJI", "^IXIC"]
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
@@ -434,7 +435,7 @@ def main():
 
     symbols = sorted(tickers.keys())
     print(f"가격 데이터 다운로드: {len(symbols)}종목")
-    px = download_prices(symbols)
+    px = download_prices(symbols + MARKET_INDEX_SYMBOLS)
 
     stocks = []
     market_date = None
@@ -493,10 +494,27 @@ def main():
     if not stocks:
         sys.exit("수집된 종목이 없습니다")
 
+    indices = []
+    for symbol in MARKET_INDEX_SYMBOLS:
+        try:
+            index_df = px[symbol].dropna(subset=["Close"])
+            close = index_df["Close"]
+            if len(close) < 2:
+                continue
+            indices.append({
+                "symbol": symbol,
+                "date": str(index_df.index[-1].date()),
+                "value": safe(close.iloc[-1]),
+                "change": safe((close.iloc[-1] / close.iloc[-2] - 1) * 100),
+            })
+        except Exception as exc:
+            print(f"  [참고] {symbol} 지수 데이터 생략: {exc}")
+
     out = {
         "updated": pd.Timestamp.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
         "market_date": market_date,
         "count": len(stocks),
+        "indices": indices,
         "stocks": stocks,
     }
 
