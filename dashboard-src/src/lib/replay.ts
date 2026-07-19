@@ -6,6 +6,10 @@ export type ReplayExecution = {
   price: number;
   fee: number;
   row: number;
+  executionTime?: string;
+  executionId?: string;
+  orderId?: string;
+  sourceOrderHint?: "chronological" | "reverse-chronological";
 };
 
 export type CompletedTrade = {
@@ -141,7 +145,6 @@ export function parseReplayCsv(text: string): ParseResult {
       executions.push({ ticker, transactionDate, side, quantity, price, fee, row });
     }
   });
-  executions.sort((a, b) => a.transactionDate.localeCompare(b.transactionDate) || a.row - b.row);
   return { executions, errors };
 }
 
@@ -151,14 +154,52 @@ type Position = {
   buyCost: number; realizedCost: number;
 };
 
-export function combineReplayTrades(executions: ReplayExecution[]) {
+export function sortReplayExecutions(executions: ReplayExecution[]) {
+  const bySourceRow = [...executions].sort((a, b) => a.row - b.row);
+  let ascending = 0;
+  let descending = 0;
+  for (let index = 1; index < bySourceRow.length; index += 1) {
+    const comparison = bySourceRow[index].transactionDate.localeCompare(bySourceRow[index - 1].transactionDate);
+    if (comparison > 0) ascending += 1;
+    if (comparison < 0) descending += 1;
+  }
+  const hinted = executions.find((row) => row.sourceOrderHint)?.sourceOrderHint;
+  const sourceOrder = hinted ?? (descending > ascending ? "reverse-chronological" : "chronological");
+  const sorted = [...executions].sort((a, b) => {
+    const date = a.transactionDate.localeCompare(b.transactionDate);
+    if (date) return date;
+    const time = (a.executionTime ?? "").localeCompare(b.executionTime ?? "");
+    if (time) return time;
+    const executionId = (a.executionId ?? "").localeCompare(b.executionId ?? "", undefined, { numeric: true });
+    if (executionId) return executionId;
+    const orderId = (a.orderId ?? "").localeCompare(b.orderId ?? "", undefined, { numeric: true });
+    if (orderId) return orderId;
+    return sourceOrder === "reverse-chronological" ? b.row - a.row : a.row - b.row;
+  });
+  return { executions: sorted, sourceOrder };
+}
+
+export type OpeningHolding = { quantity: number; averagePrice?: number };
+
+export function combineReplayTrades(executions: ReplayExecution[], openingHoldings: Record<string, OpeningHolding> = {}) {
+  const ordered = sortReplayExecutions(executions).executions;
+  const openingShortfalls: Record<string, number> = {};
+  const balances = new Map(Object.entries(openingHoldings).map(([ticker, holding]) => [ticker, Math.max(0, Number(holding.quantity || 0))]));
+  for (const item of ordered) {
+    const balance = (balances.get(item.ticker) ?? 0) + (item.side === "buy" ? item.quantity : -item.quantity);
+    balances.set(item.ticker, balance);
+    if (balance < -1e-9) openingShortfalls[item.ticker] = Math.max(openingShortfalls[item.ticker] ?? 0, Math.abs(balance));
+  }
   const positions = new Map<string, Position>();
   const trades: CompletedTrade[] = [];
   const errors: string[] = [];
-  for (const item of executions) {
+  for (const item of ordered) {
     let position = positions.get(item.ticker);
     if (!position) {
-      position = { quantity: 0, cost: 0, entryDate: "", buyCount: 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: 0, buyCost: 0, realizedCost: 0 };
+      const opening = openingHoldings[item.ticker];
+      const openingQuantity = Math.max(0, Number(opening?.quantity || 0));
+      const openingPrice = Math.max(0, Number(opening?.averagePrice || 0));
+      position = { quantity: openingQuantity, cost: openingQuantity * openingPrice, entryDate: item.transactionDate, buyCount: openingQuantity ? 1 : 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: openingQuantity, buyCost: openingQuantity * openingPrice, realizedCost: 0 };
       positions.set(item.ticker, position);
     }
     if (item.side === "buy") {
@@ -172,7 +213,8 @@ export function combineReplayTrades(executions: ReplayExecution[]) {
       continue;
     }
     if (item.quantity > position.quantity + 1e-9) {
-      errors.push(`${item.row}행 ${item.ticker}: 보유 수량보다 많은 매도입니다.`);
+      // This is usually a position opened before the exported date range.
+      // The caller receives one consolidated shortfall per ticker below.
       continue;
     }
     const averageCost = position.cost / position.quantity;
@@ -191,7 +233,7 @@ export function combineReplayTrades(executions: ReplayExecution[]) {
     }
   }
   const warnings = [...positions].filter(([, row]) => row.quantity > 1e-9).map(([ticker, row]) => `${ticker}: 미청산 수량 ${row.quantity.toLocaleString("ko-KR")}주는 분석에서 제외됩니다.`);
-  return { trades, errors, warnings };
+  return { trades, errors, warnings, openingShortfalls };
 }
 
 export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, contextStatus: string): CompletedTrade {

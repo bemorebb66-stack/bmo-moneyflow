@@ -1,7 +1,7 @@
 import * as XLSX from "xlsx";
 import type { ReplayExecution } from "@/lib/replay";
 
-export type ImportField = "ticker" | "transactionDate" | "transactionType" | "quantity" | "price" | "fee" | "currency";
+export type ImportField = "ticker" | "transactionDate" | "transactionType" | "quantity" | "price" | "fee" | "currency" | "executionTime" | "executionId" | "orderId";
 export type ColumnMapping = Record<ImportField, number | null>;
 
 export type BrokerInspection = {
@@ -35,6 +35,9 @@ const aliases: Record<ImportField, string[]> = {
   price: ["price", "체결단가", "체결가격", "체결가", "매매단가", "약정단가", "거래단가", "가격", "단가"],
   fee: ["fee", "수수료", "매매수수료", "해외수수료", "제비용", "비용"],
   currency: ["currency", "기준통화", "거래통화", "결제통화", "통화코드", "통화"],
+  executionTime: ["executiontime", "execution_time", "체결시간", "거래시간", "매매시간", "시간"],
+  executionId: ["executionid", "execution_id", "체결번호", "체결순번", "체결일련번호"],
+  orderId: ["orderid", "order_id", "주문번호", "주문순번", "주문일련번호"],
 };
 
 const requiredFields: ImportField[] = ["ticker", "transactionDate", "transactionType", "quantity", "price"];
@@ -49,6 +52,9 @@ export const importFieldLabels: Record<ImportField, string> = {
   price: "체결 가격",
   fee: "수수료",
   currency: "통화",
+  executionTime: "체결 시간",
+  executionId: "체결 번호",
+  orderId: "주문 번호",
 };
 
 function normalized(value: unknown) {
@@ -173,6 +179,16 @@ function numeric(value: unknown) {
   return negative ? -parsed : parsed;
 }
 
+function timeValue(value: unknown) {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) return value.toISOString().slice(11, 19);
+  if (typeof value === "number" && value >= 0 && value < 1) {
+    const seconds = Math.round(value * 86400) % 86400;
+    return `${Math.floor(seconds / 3600).toString().padStart(2, "0")}:${Math.floor(seconds % 3600 / 60).toString().padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
+  }
+  const digits = String(value ?? "").replace(/\D/g, "").padStart(6, "0").slice(-6);
+  return digits === "000000" && !String(value ?? "").trim() ? "" : `${digits.slice(0, 2)}:${digits.slice(2, 4)}:${digits.slice(4)}`;
+}
+
 function sideValue(value: unknown) {
   const key = normalized(value);
   if (["매수", "buy", "b", "매수체결", "현금매수", "외화매수"].includes(key)) return "buy" as const;
@@ -209,6 +225,9 @@ export function normalizeBrokerRows(inspection: BrokerInspection, mapping = insp
     const price = numeric(row[mapping.price!]);
     const fee = mapping.fee === null ? 0 : Math.abs(numeric(row[mapping.fee]) || 0);
     const currency = mapping.currency === null ? "USD" : String(row[mapping.currency] || "USD").trim().toUpperCase();
+    const executionTime = mapping.executionTime === null ? "" : timeValue(row[mapping.executionTime]);
+    const executionId = mapping.executionId === null ? "" : String(row[mapping.executionId] ?? "").trim();
+    const orderId = mapping.orderId === null ? "" : String(row[mapping.orderId] ?? "").trim();
     currencySet.add(currency);
     if (!ticker || !transactionDate || !side || !(quantity > 0) || !(price > 0)) {
       addExcluded(excluded, quantity === 0 ? "체결수량 0" : "필수 정보 누락 또는 형식 오류");
@@ -218,9 +237,18 @@ export function normalizeBrokerRows(inspection: BrokerInspection, mapping = insp
     const signature = [ticker, transactionDate, side, quantity, price, fee].join("|");
     if (seen.has(signature)) duplicateCandidates += 1;
     seen.add(signature);
-    executions.push({ ticker, transactionDate, side, quantity, price, fee, row: inspection.headerRow + index + 1 });
+    executions.push({ ticker, transactionDate, side, quantity, price, fee, row: inspection.headerRow + index + 1, executionTime, executionId, orderId });
   });
-  executions.sort((a, b) => a.transactionDate.localeCompare(b.transactionDate) || a.row - b.row);
+  const sourceRows = [...executions].sort((a, b) => a.row - b.row);
+  let ascending = 0;
+  let descending = 0;
+  sourceRows.slice(1).forEach((row, index) => {
+    const comparison = row.transactionDate.localeCompare(sourceRows[index].transactionDate);
+    if (comparison > 0) ascending += 1;
+    if (comparison < 0) descending += 1;
+  });
+  const sourceOrderHint = descending > ascending || (inspection.detectedBroker === "신한투자증권" && ascending === descending) ? "reverse-chronological" as const : "chronological" as const;
+  executions.forEach((row) => { row.sourceOrderHint = sourceOrderHint; });
   if (duplicateCandidates) warnings.push(`동일한 체결 ${duplicateCandidates}건이 있습니다. 실제 분할체결인지 확인해주세요.`);
   const dates = executions.map((row) => row.transactionDate).sort();
   return { executions, errors: [], warnings, excluded, totalRows: inspection.rows.length, period: { first: dates[0] ?? null, last: dates.at(-1) ?? null }, currencies: [...currencySet].sort() };
