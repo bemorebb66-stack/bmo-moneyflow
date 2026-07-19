@@ -4,6 +4,7 @@ import { SiteFooter } from "./site-footer";
 import { ThemeProvider } from "./theme-provider";
 import { LIVE_META } from "@/lib/mock-data";
 import { DataStatusBar } from "./data-status-bar";
+import { MarketIndexPanel } from "./market-index-panel";
 
 interface Props {
   children: ReactNode;
@@ -23,6 +24,7 @@ export function PageShell({ children }: Props) {
         <main className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
           {children}
         </main>
+        <MarketIndexPanel />
         <SiteFooter />
       </div>
     </ThemeProvider>
