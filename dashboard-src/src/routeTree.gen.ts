@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TodayRouteImport } from './routes/today'
 import { Route as StockRouteImport } from './routes/stock'
 import { Route as ScannerRouteImport } from './routes/scanner'
+import { Route as ReplayRouteImport } from './routes/replay'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as IpoLockupRouteImport } from './routes/ipo-lockup'
@@ -33,6 +34,11 @@ const StockRoute = StockRouteImport.update({
 const ScannerRoute = ScannerRouteImport.update({
   id: '/scanner',
   path: '/scanner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReplayRoute = ReplayRouteImport.update({
+  id: '/replay',
+  path: '/replay',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/replay': typeof ReplayRoute
   '/scanner': typeof ScannerRoute
   '/stock': typeof StockRoute
   '/today': typeof TodayRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/replay': typeof ReplayRoute
   '/scanner': typeof ScannerRoute
   '/stock': typeof StockRoute
   '/today': typeof TodayRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/ipo-lockup': typeof IpoLockupRoute
   '/methodology': typeof MethodologyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/replay': typeof ReplayRoute
   '/scanner': typeof ScannerRoute
   '/stock': typeof StockRoute
   '/today': typeof TodayRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/ipo-lockup'
     | '/methodology'
     | '/privacy-policy'
+    | '/replay'
     | '/scanner'
     | '/stock'
     | '/today'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/ipo-lockup'
     | '/methodology'
     | '/privacy-policy'
+    | '/replay'
     | '/scanner'
     | '/stock'
     | '/today'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/ipo-lockup'
     | '/methodology'
     | '/privacy-policy'
+    | '/replay'
     | '/scanner'
     | '/stock'
     | '/today'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   IpoLockupRoute: typeof IpoLockupRoute
   MethodologyRoute: typeof MethodologyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ReplayRoute: typeof ReplayRoute
   ScannerRoute: typeof ScannerRoute
   StockRoute: typeof StockRoute
   TodayRoute: typeof TodayRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/scanner'
       fullPath: '/scanner'
       preLoaderRoute: typeof ScannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/replay': {
+      id: '/replay'
+      path: '/replay'
+      fullPath: '/replay'
+      preLoaderRoute: typeof ReplayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   IpoLockupRoute: IpoLockupRoute,
   MethodologyRoute: MethodologyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ReplayRoute: ReplayRoute,
   ScannerRoute: ScannerRoute,
   StockRoute: StockRoute,
   TodayRoute: TodayRoute,

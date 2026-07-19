@@ -1,0 +1,1 @@
+var e=(e,t=2)=>`${e>0?`+`:``}${e.toFixed(t)}%`,t=e=>`${e>0?`+`:``}${e.toFixed(0)} bp`,n=e=>e>=1e3?`$${(e/1e3).toFixed(2)}B`:`$${e.toFixed(0)}M`,r=e=>e.toLocaleString(`en-US`,{minimumFractionDigits:2,maximumFractionDigits:2}),i=e=>e>=1e3?`$${(e/1e3).toFixed(2)}T`:`$${e.toFixed(0)}B`;export{r as a,e as i,i as n,n as r,t};

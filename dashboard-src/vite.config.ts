@@ -33,6 +33,11 @@ const ROUTE_META = {
     description:
       "오늘 미국 시장의 거래대금 집중 섹터, 급증 종목, 내부자 거래, 실적과 주요 이벤트를 한눈에 확인하세요.",
   },
+  replay: {
+    title: "미국 주식 매매 복기·시장환경 분석 | BVT Replay",
+    description:
+      "거래내역 CSV와 당시 거래대금·산업·시장 흐름을 연결해 반복되는 수익·손실 환경을 확인하세요.",
+  },
   methodology: {
     title: "거래대금·시장 흐름 계산 기준 | BVT Money Flow",
     description:

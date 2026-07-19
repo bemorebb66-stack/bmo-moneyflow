@@ -20,6 +20,7 @@ const NAV = [
   { label: "내부자 거래", to: "/insider" },
   { label: "IPO 락업", to: "/ipo-lockup" },
   { label: "오늘의 요약", to: "/today" },
+  { label: "매매 복기", to: "/replay" },
 ] as const;
 
 interface Props {
@@ -56,7 +57,7 @@ export function SiteHeader({
           </div>
         </Link>
 
-        <nav className="ml-6 hidden items-center gap-1 md:flex">
+        <nav className="ml-6 hidden items-center gap-1 xl:flex">
           {NAV.map((n) => {
             const active = isActive(n.to);
             return (
@@ -111,7 +112,7 @@ export function SiteHeader({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-10 w-10 md:hidden"
+                className="h-10 w-10 xl:hidden"
                 aria-label="메뉴 열기"
               >
                 <Menu className="h-5 w-5" />
