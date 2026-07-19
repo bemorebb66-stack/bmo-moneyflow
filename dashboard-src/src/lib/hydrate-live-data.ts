@@ -591,7 +591,7 @@ export async function hydrateLiveData() {
       "^GSPC": { id: "sp500", name: "S&P 500" },
       "^RUT": { id: "russell2000", name: "Russell 2000" },
       "^DJI": { id: "dow", name: "Dow Jones" },
-      "^IXIC": { id: "nasdaq", name: "Nasdaq" },
+      "^NDX": { id: "nasdaq", name: "Nasdaq 100" },
     };
     const indexRows = (market.indices ?? [])
       .filter((row: any) => indexNames[row.symbol])

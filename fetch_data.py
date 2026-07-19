@@ -114,7 +114,7 @@ DATA_PATH = os.path.join(HERE, "data.json")
 HISTORY_PATH = os.path.join(HERE, "history.json")
 KOREAN_NAMES_PATH = os.path.join(HERE, "korean_names.json")
 HISTORY_DAYS = 120
-MARKET_INDEX_SYMBOLS = ["^GSPC", "^RUT", "^DJI", "^IXIC"]
+MARKET_INDEX_SYMBOLS = ["^GSPC", "^RUT", "^DJI", "^NDX"]
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
