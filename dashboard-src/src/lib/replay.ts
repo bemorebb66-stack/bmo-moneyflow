@@ -77,6 +77,16 @@ const required = ["ticker", "transaction_date", "transaction_type", "quantity", 
 const buys = new Set(["buy", "b", "매수"]);
 const sells = new Set(["sell", "s", "매도"]);
 const EPSILON = 1e-8;
+export const REPLAY_PARSER_VERSION = "2026.07.19-2";
+
+export function parseExecutionTime(value?: string) {
+  if (!value?.trim()) return Number.MAX_SAFE_INTEGER;
+  const parts = value.trim().split(":").map(Number);
+  if (parts.length !== 3 || parts.some(Number.isNaN)) return Number.MAX_SAFE_INTEGER;
+  const [hour, minute, second] = parts;
+  if (hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59) return Number.MAX_SAFE_INTEGER;
+  return hour * 3600 + minute * 60 + second;
+}
 
 function csvRows(text: string) {
   const rows: string[][] = [];
@@ -169,30 +179,34 @@ export function sortReplayExecutions(executions: ReplayExecution[]) {
   const sorted = [...executions].sort((a, b) => {
     const date = a.transactionDate.localeCompare(b.transactionDate);
     if (date) return date;
-    const time = a.executionTime && b.executionTime ? a.executionTime.localeCompare(b.executionTime) : 0;
+    const time = parseExecutionTime(a.executionTime) - parseExecutionTime(b.executionTime);
     if (time) return time;
     const executionId = a.executionId && b.executionId ? a.executionId.localeCompare(b.executionId, undefined, { numeric: true }) : 0;
     if (executionId) return executionId;
     const orderId = a.orderId && b.orderId ? a.orderId.localeCompare(b.orderId, undefined, { numeric: true }) : 0;
     if (orderId) return orderId;
-    // Without an intraday key, buys must be applied before sells on the same day.
-    // This preserves the provable end-of-day quantity and prevents false open lots.
-    if (a.side !== b.side) return a.side === "buy" ? -1 : 1;
     return sourceOrder === "reverse-chronological" ? b.row - a.row : a.row - b.row;
   });
   return { executions: sorted, sourceOrder };
 }
 
 export type OpeningHolding = { quantity: number; averagePrice?: number };
+export type ReplayTickerDebug = { ticker: string; totalBuy: number; totalSell: number; minimumRunningQuantity: number; requiredInitialQuantity: number; finalRemaining: number; actualRemaining: number };
 
 export function combineReplayTrades(executions: ReplayExecution[], openingHoldings: Record<string, OpeningHolding> = {}) {
   const ordered = sortReplayExecutions(executions).executions;
   const openingShortfalls: Record<string, number> = {};
   const balances = new Map(Object.entries(openingHoldings).map(([ticker, holding]) => [ticker, Math.max(0, Number(holding.quantity || 0))]));
+  const debugByTicker = new Map<string, ReplayTickerDebug>();
   for (const item of ordered) {
+    const debug = debugByTicker.get(item.ticker) ?? { ticker: item.ticker, totalBuy: 0, totalSell: 0, minimumRunningQuantity: 0, requiredInitialQuantity: 0, finalRemaining: 0, actualRemaining: 0 };
+    if (item.side === "buy") debug.totalBuy += item.quantity;
+    else debug.totalSell += item.quantity;
     const balance = (balances.get(item.ticker) ?? 0) + (item.side === "buy" ? item.quantity : -item.quantity);
     balances.set(item.ticker, balance);
+    debug.minimumRunningQuantity = Math.min(debug.minimumRunningQuantity, balance);
     if (balance < -EPSILON) openingShortfalls[item.ticker] = Math.max(openingShortfalls[item.ticker] ?? 0, Math.abs(balance));
+    debugByTicker.set(item.ticker, debug);
   }
   const positions = new Map<string, Position>();
   const trades: CompletedTrade[] = [];
@@ -240,14 +254,20 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
   const expectedRemaining = new Map(Object.entries(openingHoldings).map(([ticker, holding]) => [ticker, Math.max(0, Number(holding.quantity || 0))]));
   for (const item of ordered) expectedRemaining.set(item.ticker, (expectedRemaining.get(item.ticker) ?? 0) + (item.side === "buy" ? item.quantity : -item.quantity));
   for (const [ticker, expected] of expectedRemaining) {
-    if (openingShortfalls[ticker]) continue;
     const actual = positions.get(ticker)?.quantity ?? 0;
+    const debug = debugByTicker.get(ticker);
+    if (debug) {
+      debug.requiredInitialQuantity = openingShortfalls[ticker] ?? 0;
+      debug.finalRemaining = Math.abs(expected) < EPSILON ? 0 : expected;
+      debug.actualRemaining = Math.abs(actual) < EPSILON ? 0 : actual;
+    }
+    if (openingShortfalls[ticker]) continue;
     if (Math.abs(actual - expected) >= EPSILON) errors.push(`${ticker}: 거래 수량 내부 일관성 오류가 발생했습니다. 분석을 중단합니다.`);
   }
   const warnings = [...positions]
     .filter(([ticker, row]) => !openingShortfalls[ticker] && row.quantity > EPSILON)
     .map(([ticker, row]) => `${ticker}: 미청산 수량 ${row.quantity.toLocaleString("ko-KR")}주는 분석에서 제외됩니다.`);
-  return { trades, errors, warnings, openingShortfalls };
+  return { trades, errors, warnings, openingShortfalls, tickerDebug: [...debugByTicker.values()].sort((a, b) => a.ticker.localeCompare(b.ticker)) };
 }
 
 export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, contextStatus: string): CompletedTrade {

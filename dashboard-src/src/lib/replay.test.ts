@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { combineReplayTrades, sortReplayExecutions, type ReplayExecution } from "./replay";
+import { combineReplayTrades, parseExecutionTime, sortReplayExecutions, type ReplayExecution } from "./replay";
 
 const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
   ticker: "TEST", transactionDate: "2026-04-01", side: "buy", quantity: 100,
@@ -65,12 +65,30 @@ describe("Replay execution ordering", () => {
 
   it("uses buys before sells on the same day when no intraday key exists", () => {
     const result = combineReplayTrades([
-      row({ ticker: "POET", side: "sell", quantity: 9, price: 12, row: 1, sourceOrderHint: "chronological" }),
-      row({ ticker: "POET", side: "buy", quantity: 9, price: 10, row: 2, sourceOrderHint: "chronological" }),
+      row({ ticker: "POET", side: "sell", quantity: 9, price: 12, row: 1, executionTime: "19:46:29" }),
+      row({ ticker: "POET", side: "buy", quantity: 9, price: 10, row: 2, executionTime: "2:17:29" }),
     ]);
     expect(result.trades).toHaveLength(1);
     expect(result.warnings).toEqual([]);
     expect(result.openingShortfalls).toEqual({});
+  });
+
+  it("sorts single-digit hours numerically", () => {
+    const times = ["2:17:29", "19:46:29", "0:10:42", "23:42:03"];
+    expect([...times].sort((a, b) => parseExecutionTime(a) - parseExecutionTime(b))).toEqual(["0:10:42", "2:17:29", "19:46:29", "23:42:03"]);
+  });
+
+  it("requires an opening holding only when running quantity becomes negative", () => {
+    const covered = combineReplayTrades([
+      row({ quantity: 9, executionTime: "2:17:29", row: 2 }),
+      row({ side: "sell", quantity: 9, executionTime: "19:46:29", row: 1 }),
+    ]);
+    expect(covered.openingShortfalls).toEqual({});
+    const priorHolding = combineReplayTrades([
+      row({ side: "sell", quantity: 13, transactionDate: "2026-04-01", row: 2 }),
+      row({ quantity: 13, transactionDate: "2026-04-02", row: 1 }),
+    ]);
+    expect(priorHolding.openingShortfalls).toEqual({ TEST: 13 });
   });
 
   it("handles decimal quantities and fees within tolerance", () => {

@@ -5,7 +5,7 @@ import { PageHeading, PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { inspectBrokerFile, importFieldLabels, normalizeBrokerRows, type BrokerImportResult, type BrokerInspection, type ColumnMapping, type ImportField } from "@/lib/broker-import";
-import { addContext, combineReplayTrades, confidence, parseReplayCsv, type CompletedTrade, type OpeningHolding, type ReplayExecution, type ReplaySnapshot } from "@/lib/replay";
+import { addContext, combineReplayTrades, confidence, parseReplayCsv, REPLAY_PARSER_VERSION, type CompletedTrade, type OpeningHolding, type ReplayExecution, type ReplaySnapshot, type ReplayTickerDebug } from "@/lib/replay";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/replay")({
@@ -31,6 +31,7 @@ function ReplayPage() {
   const [trades, setTrades] = useState<CompletedTrade[]>([]);
   const [executions, setExecutions] = useState<ReplayExecution[]>([]);
   const [openingShortfalls, setOpeningShortfalls] = useState<Record<string, number>>({});
+  const [tickerDebug, setTickerDebug] = useState<ReplayTickerDebug[]>([]);
   const [executionsCount, setExecutionsCount] = useState(0);
   const [uploadError, setUploadError] = useState("");
   const [inspection, setInspection] = useState<BrokerInspection | null>(null);
@@ -38,7 +39,7 @@ function ReplayPage() {
   const [coverage, setCoverage] = useState<{ first: string | null; last: string | null }>({ first: null, last: null });
 
   const reset = () => {
-    setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setExecutions([]); setOpeningShortfalls({}); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null);
+    setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setExecutions([]); setOpeningShortfalls({}); setTickerDebug([]); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null);
     if (inputRef.current) inputRef.current.value = "";
   };
 
@@ -49,6 +50,7 @@ function ReplayPage() {
     const combined = combineReplayTrades(parsed.executions);
     setExecutions(parsed.executions);
     setOpeningShortfalls(combined.openingShortfalls);
+    setTickerDebug(combined.tickerDebug);
     setExecutionsCount(parsed.executions.length);
     setParseErrors(parsed.errors);
     setTradeErrors(combined.errors);
@@ -62,6 +64,7 @@ function ReplayPage() {
     const combined = combineReplayTrades(imported.executions);
     setExecutions(imported.executions);
     setOpeningShortfalls(combined.openingShortfalls);
+    setTickerDebug(combined.tickerDebug);
     setInspection({ ...source, mapping });
     setImportResult(imported);
     setFileName(source.fileName);
@@ -79,6 +82,7 @@ function ReplayPage() {
     setWarnings([...(importResult?.warnings ?? []), ...combined.warnings]);
     setTrades(combined.trades);
     setOpeningShortfalls(combined.openingShortfalls);
+    setTickerDebug(combined.tickerDebug);
   };
 
   const onFile = async (file?: File) => {
@@ -148,7 +152,7 @@ function ReplayPage() {
 
         {stage === "upload" && <UploadPanel inputRef={inputRef} onFile={onFile} onSample={loadSample} error={uploadError} />}
         {stage === "mapping" && inspection && <MappingPanel inspection={inspection} onApply={(mapping, numericSide) => processInspection(inspection, mapping, numericSide)} />}
-        {stage === "review" && <ReviewPanel fileName={fileName} executions={executionsCount} trades={trades} parseErrors={parseErrors} tradeErrors={tradeErrors} warnings={warnings} openingShortfalls={openingShortfalls} inspection={inspection} importResult={importResult} onApplyOpening={applyOpeningHoldings} onAnalyze={analyze} />}
+        {stage === "review" && <ReviewPanel fileName={fileName} executions={executionsCount} trades={trades} parseErrors={parseErrors} tradeErrors={tradeErrors} warnings={warnings} openingShortfalls={openingShortfalls} tickerDebug={tickerDebug} inspection={inspection} importResult={importResult} onApplyOpening={applyOpeningHoldings} onAnalyze={analyze} />}
         {stage === "loading" && <LoadingPanel />}
         {stage === "result" && <ResultPanel trades={trades} warnings={warnings} coverage={coverage} />}
       </div>
@@ -188,16 +192,21 @@ function MappingPanel({ inspection, onApply }: { inspection: BrokerInspection; o
   </div>;
 }
 
-function ReviewPanel({ fileName, executions, trades, parseErrors, tradeErrors, warnings, openingShortfalls, inspection, importResult, onApplyOpening, onAnalyze }: { fileName: string; executions: number; trades: CompletedTrade[]; parseErrors: string[]; tradeErrors: string[]; warnings: string[]; openingShortfalls: Record<string, number>; inspection: BrokerInspection | null; importResult: BrokerImportResult | null; onApplyOpening: (holdings: Record<string, OpeningHolding>) => void; onAnalyze: () => void }) {
+function ReviewPanel({ fileName, executions, trades, parseErrors, tradeErrors, warnings, openingShortfalls, tickerDebug, inspection, importResult, onApplyOpening, onAnalyze }: { fileName: string; executions: number; trades: CompletedTrade[]; parseErrors: string[]; tradeErrors: string[]; warnings: string[]; openingShortfalls: Record<string, number>; tickerDebug: ReplayTickerDebug[]; inspection: BrokerInspection | null; importResult: BrokerImportResult | null; onApplyOpening: (holdings: Record<string, OpeningHolding>) => void; onAnalyze: () => void }) {
   const errors = [...parseErrors, ...tradeErrors, ...(executions > 500 ? ["체결내역은 최대 500건까지 분석할 수 있습니다."] : [])];
   return <div className="space-y-5">
-    <section className="grid gap-3 sm:grid-cols-3"><Metric label="파일" value={fileName} /><Metric label="인식된 체결" value={`${executions}건`} /><Metric label="완결 거래" value={`${trades.length}건`} /></section>
+    <section className="grid gap-3 sm:grid-cols-4"><Metric label="파일" value={fileName} /><Metric label="인식된 체결" value={`${executions}건`} /><Metric label="완결 거래" value={`${trades.length}건`} /><Metric label="파서 버전" value={REPLAY_PARSER_VERSION} /></section>
     {inspection && importResult && <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">업로드 인식 결과</h2><p className="mt-1 text-xs text-muted-foreground">분석 전에 파일 인식 결과와 제외 항목을 확인해주세요.</p></div><CardContent className="grid gap-x-6 gap-y-4 p-5 text-sm sm:grid-cols-2 lg:grid-cols-4"><ImportInfo label="감지된 증권사" value={`${inspection.detectedBroker} · ${inspection.confidence}`} /><ImportInfo label="시트·헤더" value={`${inspection.selectedSheet} · ${inspection.headerRow}행`} /><ImportInfo label="전체 데이터 행" value={`${importResult.totalRows}건`} /><ImportInfo label="제외된 행" value={`${Object.values(importResult.excluded).reduce((sum, count) => sum + count, 0)}건`} /><ImportInfo label="거래 기간" value={importResult.period.first ? `${importResult.period.first} ~ ${importResult.period.last}` : "-"} /><ImportInfo label="통화" value={importResult.currencies.join(", ") || "USD(기본값)"} /><div className="sm:col-span-2"><div className="text-xs text-muted-foreground">제외 사유</div><div className="mt-1 text-foreground">{Object.entries(importResult.excluded).map(([reason, count]) => `${reason} ${count}건`).join(" · ") || "없음"}</div></div></CardContent></Card>}
     {Object.keys(openingShortfalls).length > 0 && <OpeningHoldingsPanel shortfalls={openingShortfalls} onApply={onApplyOpening} />}
+    <TickerDebugTable rows={tickerDebug} />
     {(errors.length > 0 || warnings.length > 0) && <Card><CardContent className="p-5"><h2 className="flex items-center gap-2 font-semibold"><AlertCircle className="h-5 w-5 text-warning" />확인할 항목</h2><ul className="mt-3 space-y-2 text-sm">{errors.map((message) => <li key={message} className="text-danger">{message}</li>)}{warnings.map((message) => <li key={message} className="text-warning">{message}</li>)}</ul></CardContent></Card>}
     <Card><div className="flex items-center justify-between border-b border-border px-5 py-4"><div><h2 className="font-semibold">완결 거래 미리보기</h2><p className="text-xs text-muted-foreground">전량 매도된 거래만 분석합니다.</p></div><CheckCircle2 className="h-5 w-5 text-success" /></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "최초 매수", "최종 매도", "평균 매수가", "평균 매도가", "수익률", "보유 기간"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{trades.slice(0, 20).map((trade, index) => <tr key={`${trade.ticker}-${trade.entryDate}-${index}`}><td className="px-4 py-3 font-semibold">{trade.ticker}</td><td className="px-4 py-3 text-right tabular">{trade.entryDate}</td><td className="px-4 py-3 text-right tabular">{trade.exitDate}</td><td className="px-4 py-3 text-right tabular">${trade.averageEntryPrice.toFixed(2)}</td><td className="px-4 py-3 text-right tabular">${trade.averageExitPrice.toFixed(2)}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</td><td className="px-4 py-3 text-right tabular">{trade.holdingDays}일</td></tr>)}</tbody></table></div></Card>
     <div className="flex justify-end"><Button size="lg" disabled={Boolean(errors.length) || Boolean(Object.keys(openingShortfalls).length) || !trades.length || executions > 500} onClick={onAnalyze}>시장환경 연결하고 분석하기</Button></div>
   </div>;
+}
+
+function TickerDebugTable({ rows }: { rows: ReplayTickerDebug[] }) {
+  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">종목별 수량 검증</h2><p className="mt-1 text-xs text-muted-foreground">파서 {REPLAY_PARSER_VERSION} · 가격과 개인정보는 표시하지 않습니다.</p></div><div className="max-h-80 overflow-auto"><table className="w-full min-w-[760px] text-sm"><thead className="sticky top-0 bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "총매수", "총매도", "최소 누적수량", "초기 보유 필요", "최종 잔여"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.ticker}><td className="px-4 py-3 font-semibold">{row.ticker}</td><td className="px-4 py-3 text-right tabular">{row.totalBuy.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.totalSell.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.minimumRunningQuantity.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.requiredInitialQuantity.toLocaleString("ko-KR")}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", row.finalRemaining > 0 ? "text-warning" : "text-muted-foreground")}>{row.finalRemaining.toLocaleString("ko-KR")}</td></tr>)}</tbody></table></div></Card>;
 }
 
 function OpeningHoldingsPanel({ shortfalls, onApply }: { shortfalls: Record<string, number>; onApply: (holdings: Record<string, OpeningHolding>) => void }) {
