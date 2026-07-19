@@ -76,6 +76,7 @@ export type ParseResult = {
 const required = ["ticker", "transaction_date", "transaction_type", "quantity", "price", "fee", "currency"];
 const buys = new Set(["buy", "b", "매수"]);
 const sells = new Set(["sell", "s", "매도"]);
+const EPSILON = 1e-8;
 
 function csvRows(text: string) {
   const rows: string[][] = [];
@@ -168,12 +169,15 @@ export function sortReplayExecutions(executions: ReplayExecution[]) {
   const sorted = [...executions].sort((a, b) => {
     const date = a.transactionDate.localeCompare(b.transactionDate);
     if (date) return date;
-    const time = (a.executionTime ?? "").localeCompare(b.executionTime ?? "");
+    const time = a.executionTime && b.executionTime ? a.executionTime.localeCompare(b.executionTime) : 0;
     if (time) return time;
-    const executionId = (a.executionId ?? "").localeCompare(b.executionId ?? "", undefined, { numeric: true });
+    const executionId = a.executionId && b.executionId ? a.executionId.localeCompare(b.executionId, undefined, { numeric: true }) : 0;
     if (executionId) return executionId;
-    const orderId = (a.orderId ?? "").localeCompare(b.orderId ?? "", undefined, { numeric: true });
+    const orderId = a.orderId && b.orderId ? a.orderId.localeCompare(b.orderId, undefined, { numeric: true }) : 0;
     if (orderId) return orderId;
+    // Without an intraday key, buys must be applied before sells on the same day.
+    // This preserves the provable end-of-day quantity and prevents false open lots.
+    if (a.side !== b.side) return a.side === "buy" ? -1 : 1;
     return sourceOrder === "reverse-chronological" ? b.row - a.row : a.row - b.row;
   });
   return { executions: sorted, sourceOrder };
@@ -188,22 +192,23 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
   for (const item of ordered) {
     const balance = (balances.get(item.ticker) ?? 0) + (item.side === "buy" ? item.quantity : -item.quantity);
     balances.set(item.ticker, balance);
-    if (balance < -1e-9) openingShortfalls[item.ticker] = Math.max(openingShortfalls[item.ticker] ?? 0, Math.abs(balance));
+    if (balance < -EPSILON) openingShortfalls[item.ticker] = Math.max(openingShortfalls[item.ticker] ?? 0, Math.abs(balance));
   }
   const positions = new Map<string, Position>();
   const trades: CompletedTrade[] = [];
   const errors: string[] = [];
+  const emptyPosition = (entryDate: string): Position => ({ quantity: 0, cost: 0, entryDate, buyCount: 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: 0, buyCost: 0, realizedCost: 0 });
   for (const item of ordered) {
     let position = positions.get(item.ticker);
     if (!position) {
       const opening = openingHoldings[item.ticker];
       const openingQuantity = Math.max(0, Number(opening?.quantity || 0));
       const openingPrice = Math.max(0, Number(opening?.averagePrice || 0));
-      position = { quantity: openingQuantity, cost: openingQuantity * openingPrice, entryDate: item.transactionDate, buyCount: openingQuantity ? 1 : 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: openingQuantity, buyCost: openingQuantity * openingPrice, realizedCost: 0 };
+      position = { ...emptyPosition(item.transactionDate), quantity: openingQuantity, cost: openingQuantity * openingPrice, buyCount: openingQuantity ? 1 : 0, totalBought: openingQuantity, buyCost: openingQuantity * openingPrice };
       positions.set(item.ticker, position);
     }
     if (item.side === "buy") {
-      if (position.quantity === 0) Object.assign(position, { cost: 0, entryDate: item.transactionDate, buyCount: 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: 0, buyCost: 0, realizedCost: 0 });
+      if (Math.abs(position.quantity) < EPSILON) Object.assign(position, emptyPosition(item.transactionDate));
       const purchaseCost = item.quantity * item.price + item.fee;
       position.quantity += item.quantity;
       position.cost += purchaseCost;
@@ -212,7 +217,7 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
       position.buyCount += 1;
       continue;
     }
-    if (item.quantity > position.quantity + 1e-9) {
+    if (item.quantity > position.quantity + EPSILON) {
       // This is usually a position opened before the exported date range.
       // The caller receives one consolidated shortfall per ticker below.
       continue;
@@ -225,14 +230,23 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
     position.soldQuantity += item.quantity;
     position.sellFees += item.fee;
     position.sellCount += 1;
-    if (Math.abs(position.quantity) < 1e-9) {
+    if (Math.abs(position.quantity) < EPSILON) {
       const profit = position.proceeds - position.sellFees - position.realizedCost;
       const holdingDays = Math.round((Date.parse(`${item.transactionDate}T00:00:00Z`) - Date.parse(`${position.entryDate}T00:00:00Z`)) / 86400000);
       trades.push({ ticker: item.ticker, entryDate: position.entryDate, exitDate: item.transactionDate, averageEntryPrice: position.buyCost / position.totalBought, averageExitPrice: position.proceeds / position.soldQuantity, quantity: position.soldQuantity, realizedProfit: profit, returnPercent: position.realizedCost ? profit / position.realizedCost * 100 : 0, holdingDays, buyCount: position.buyCount, sellCount: position.sellCount });
-      position.quantity = position.cost = 0;
+      Object.assign(position, emptyPosition(item.transactionDate));
     }
   }
-  const warnings = [...positions].filter(([, row]) => row.quantity > 1e-9).map(([ticker, row]) => `${ticker}: 미청산 수량 ${row.quantity.toLocaleString("ko-KR")}주는 분석에서 제외됩니다.`);
+  const expectedRemaining = new Map(Object.entries(openingHoldings).map(([ticker, holding]) => [ticker, Math.max(0, Number(holding.quantity || 0))]));
+  for (const item of ordered) expectedRemaining.set(item.ticker, (expectedRemaining.get(item.ticker) ?? 0) + (item.side === "buy" ? item.quantity : -item.quantity));
+  for (const [ticker, expected] of expectedRemaining) {
+    if (openingShortfalls[ticker]) continue;
+    const actual = positions.get(ticker)?.quantity ?? 0;
+    if (Math.abs(actual - expected) >= EPSILON) errors.push(`${ticker}: 거래 수량 내부 일관성 오류가 발생했습니다. 분석을 중단합니다.`);
+  }
+  const warnings = [...positions]
+    .filter(([ticker, row]) => !openingShortfalls[ticker] && row.quantity > EPSILON)
+    .map(([ticker, row]) => `${ticker}: 미청산 수량 ${row.quantity.toLocaleString("ko-KR")}주는 분석에서 제외됩니다.`);
   return { trades, errors, warnings, openingShortfalls };
 }
 
