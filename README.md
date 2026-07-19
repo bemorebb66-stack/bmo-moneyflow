@@ -74,6 +74,14 @@ python scripts/replay_analyzer.py replay_data/bvt-standard-trades.csv --output r
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
+과거 시장환경은 아래 명령으로 최근 90거래일까지 소급 생성할 수 있습니다.
+
+```bash
+python scripts/backfill_replay_snapshots.py --days 90
+```
+
+과거 백필의 가격과 거래량은 해당 거래일 값이며, 섹터·산업·시총·편입지수는 현재 `data.json`의 분류를 과거에 적용한 근사치입니다. GitHub Actions의 `Backfill BVT Replay history` 작업에서도 대상 거래일 수를 지정해 수동 실행할 수 있습니다.
+
 원본 CSV는 읽기만 하며 별도로 복사하거나 저장하지 않습니다. 분석 JSON에는 계좌번호나 사용자 식별정보가 포함되지 않습니다.
 
 사용자용 2차 화면은 `/replay/`에서 제공합니다. CSV 검토와 평균단가 계산은 브라우저에서 실행되며, 확인된 완결 거래에 공개 Replay 스냅샷을 연결해 조건별 승률과 평균 수익률을 표시합니다.

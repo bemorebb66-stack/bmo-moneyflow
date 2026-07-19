@@ -1,0 +1,35 @@
+name: Backfill BVT Replay history
+
+on:
+  workflow_dispatch:
+    inputs:
+      trading_days:
+        description: Number of recent trading days to rebuild
+        required: true
+        default: "90"
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build historical Replay snapshots
+        run: python scripts/backfill_replay_snapshots.py --days "${{ inputs.trading_days }}"
+      - name: Test Replay data pipeline
+        run: python -m unittest discover -s tests -p "test_*.py"
+      - name: Commit and push snapshots
+        run: |
+          git config user.name "bmo-moneyflow-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add replay_data
+          git commit -m "data: backfill BVT Replay history" || echo "No changes"
+          git push

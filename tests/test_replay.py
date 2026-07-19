@@ -4,11 +4,33 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import pandas as pd
+
 from scripts.build_replay_snapshot import build_snapshot, write_snapshot
+from scripts.backfill_replay_snapshots import build_historical_snapshots
 from scripts.replay_analyzer import analyze, combine_completed_trades, parse_executions
 
 
 class ReplayTests(unittest.TestCase):
+    def test_backfill_builds_requested_dates_with_rolling_context(self):
+        dates = pd.to_datetime(["2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17"])
+        history = {
+            "NVDA": pd.DataFrame(
+                {"Close": [100, 102, 101, 105], "Volume": [10, 20, 15, 30]},
+                index=dates,
+            )
+        }
+        source = {
+            "market_date": "2026-07-17",
+            "stocks": [{"t": "NVDA", "n": "NVIDIA", "sec": "Technology", "ind": "Semiconductors", "cap": "Mega", "mc": 1000, "uni": ["S&P 500"]}],
+        }
+        snapshots, skipped = build_historical_snapshots(source, history, 2)
+        self.assertFalse(skipped)
+        self.assertEqual([row["trading_date"] for row in snapshots], ["2026-07-16", "2026-07-17"])
+        self.assertEqual(snapshots[-1]["tickers"]["NVDA"]["dollar_volume"], 3150)
+        self.assertAlmostEqual(snapshots[-1]["tickers"]["NVDA"]["dollar_volume_ratio_5d"], 1.6353)
+        self.assertEqual(snapshots[-1]["backfill"]["classification_mode"], "current-proxy")
+
     def test_snapshot_is_idempotent(self):
         data = {"market_date": "2026-07-17", "updated": "2026-07-18 06:00 UTC", "indices": [], "stocks": [{"t": "NVDA", "n": "NVIDIA", "c": 170, "pc": 2, "dv": 200, "dvp": 100, "a5": 125, "a20": 100, "sec": "Technology", "ind": "Semiconductors", "cap": "메가캡", "mc": 1000, "uni": ["S&P 500"]}]}
         with tempfile.TemporaryDirectory() as temp:
