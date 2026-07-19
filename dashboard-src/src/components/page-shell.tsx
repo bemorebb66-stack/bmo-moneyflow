@@ -21,12 +21,10 @@ export function PageShell({ children }: Props) {
           status={LIVE_META.status}
           delayTradingDays={LIVE_META.delayTradingDays}
         />
-        <main className="mx-auto w-full min-w-0 max-w-[1680px] px-4 py-5 lg:px-6 lg:py-7">
-          <div className="mx-auto grid min-w-0 max-w-[1400px] gap-5 2xl:max-w-none 2xl:grid-cols-[minmax(0,1fr)_220px]">
-            <div className="min-w-0">{children}</div>
-            <MarketIndexPanel />
-          </div>
+        <main className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
+          {children}
         </main>
+        <MarketIndexPanel />
         <SiteFooter />
       </div>
     </ThemeProvider>

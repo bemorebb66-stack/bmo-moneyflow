@@ -60,8 +60,11 @@ export function MarketIndexPanel() {
   }, []);
 
   return (
-    <aside className="hidden min-w-0 2xl:block" aria-label="미국 주요 시장지수">
-      <div className="sticky top-1/2 -translate-y-1/2">
+    <aside
+      className="fixed left-[calc(50%+716px)] top-1/2 z-20 hidden w-[168px] -translate-y-1/2 min-[1760px]:block"
+      aria-label="미국 주요 시장지수"
+    >
+      <div>
         <div
           ref={springRef}
           className="border-l border-border/70 pl-5 will-change-transform"
