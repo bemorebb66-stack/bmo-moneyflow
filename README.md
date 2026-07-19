@@ -61,3 +61,17 @@ python -m http.server 8000 # http://localhost:8000 접속
 사이트는 **거래대금 변화 × 가격 방향**을 결합해 유입/유출을 추정하며,
 "돈의 이동"에 가장 가까운 지표는 **시장 점유율 변화(Δ%p)**임.
 정보 제공 목적이며 투자 권유 아님.
+
+## BVT Replay 기반
+
+시장 데이터 갱신 뒤 `replay_data/snapshots/YYYY-MM-DD.json`에 종목·섹터·산업·시가총액·편입지수별 지표를 저장합니다. 같은 거래일 파일을 덮어써 중복 생성을 막고 `replay_data/manifest.json`에서 적재 범위를 확인합니다.
+
+표준 거래내역 양식은 `replay_data/bvt-standard-trades.csv`입니다. 현재 내부 MVP는 미국주식 USD 거래와 완전히 청산된 거래를 평균단가 방식으로 분석합니다.
+
+```bash
+python scripts/build_replay_snapshot.py
+python scripts/replay_analyzer.py replay_data/bvt-standard-trades.csv --output replay-result.json
+python -m unittest discover -s tests -p "test_*.py"
+```
+
+원본 CSV는 읽기만 하며 별도로 복사하거나 저장하지 않습니다. 분석 JSON에는 계좌번호나 사용자 식별정보가 포함되지 않습니다.

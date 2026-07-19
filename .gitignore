@@ -1,3 +1,6 @@
 dashboard-src/node_modules/
 dashboard-src/dist/
 dashboard-src/*.tsbuildinfo
+__pycache__/
+*.pyc
+replay_data/sample-analysis.json
