@@ -220,6 +220,9 @@ function LoadingPanel() { return <Card><CardContent className="grid min-h-72 pla
 
 function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[]; warnings: string[]; coverage: { first: string | null; last: string | null } }) {
   const linked = trades.filter((trade) => trade.context);
+  const fullLinked = trades.filter((trade) => trade.context?.supportLevel === "FULL").length;
+  const etfPartial = trades.filter((trade) => trade.context?.supportLevel === "ETF_UNDERLYING_ONLY" || trade.context?.supportLevel === "ETF_SELF_ONLY").length;
+  const unsupported = trades.length - linked.length;
   const winRate = trades.length ? trades.filter((trade) => trade.returnPercent > 0).length / trades.length * 100 : 0;
   const avgReturn = trades.length ? trades.reduce((sum, trade) => sum + trade.returnPercent, 0) / trades.length : 0;
   const avgHolding = trades.length ? trades.reduce((sum, trade) => sum + trade.holdingDays, 0) / trades.length : 0;
@@ -228,9 +231,10 @@ function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[];
   const losing = patterns.filter((row) => row.trades >= 3 && row.averageReturn < 0).sort((a, b) => a.averageReturn - b.averageReturn).slice(0, 5);
   return <div className="space-y-5">
     <section className="grid grid-cols-2 gap-3 lg:grid-cols-5"><Metric label="완결 거래" value={`${trades.length}건`} /><Metric label="승률" value={`${winRate.toFixed(1)}%`} /><Metric label="평균 수익률" value={`${avgReturn >= 0 ? "+" : ""}${avgReturn.toFixed(2)}%`} tone={avgReturn >= 0 ? "positive" : "negative"} /><Metric label="평균 보유" value={`${avgHolding.toFixed(1)}일`} /><Metric label="시장환경 연결" value={`${linked.length}/${trades.length}건`} /></section>
+    <div className="grid gap-3 sm:grid-cols-3"><Metric label="전체 환경 연결" value={`${fullLinked}건`} /><Metric label="ETF 부분 연결" value={`${etfPartial}건`} /><Metric label="데이터 미지원" value={`${unsupported}건`} /></div>
     {linked.length < trades.length && <div className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3 text-sm leading-6 text-warning"><strong>기본 매매 복기는 모든 거래에 제공됩니다.</strong><br />수익률·승률·보유기간은 정상 계산됐습니다. 종목·산업·시장 자금 흐름 분석은 현재 보관 범위인 {coverage.first ?? "-"}~{coverage.last ?? "-"}의 거래에만 연결되며, 과거 데이터는 순차적으로 확대하고 있습니다.</div>}
     <div className="grid gap-5 lg:grid-cols-2"><PatternCard title="수익이 난 시장환경" icon={TrendingUp} rows={profitable} positive /><PatternCard title="손실이 난 시장환경" icon={TrendingDown} rows={losing} /></div>
-    <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">거래별 시장환경</h2><p className="text-xs text-muted-foreground">최초 매수일 또는 직전 거래일 기준</p></div><div className="divide-y divide-border">{trades.map((trade, index) => <div key={`${trade.ticker}-${index}`} className="grid gap-3 px-5 py-4 md:grid-cols-[140px_150px_1fr_auto] md:items-center"><div><div className="font-semibold">{trade.ticker}</div><div className="text-xs text-muted-foreground">{trade.entryDate}</div></div><div className={cn("font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</div><div className="text-sm text-muted-foreground">{trade.context ? `종목 ${trade.context.ticker.volume_state} · 산업 ${trade.context.industry?.flow_status ?? "-"} · 시장 ${trade.context.market.market_regime}` : trade.contextStatus}</div><div className="text-xs text-muted-foreground">{trade.contextStatus}</div></div>)}</div></Card>
+    <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">거래별 시장환경</h2><p className="text-xs text-muted-foreground">최초 매수일 또는 직전 거래일 기준</p></div><div className="divide-y divide-border">{trades.map((trade, index) => <div key={`${trade.ticker}-${index}`} className="grid gap-3 px-5 py-4 md:grid-cols-[140px_150px_1fr_auto] md:items-center"><div><div className="font-semibold">{trade.ticker}</div><div className="text-xs text-muted-foreground">{trade.entryDate}</div></div><div className={cn("font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</div><div className="text-sm text-muted-foreground">{trade.context ? contextDescription(trade.context) : trade.contextStatus}</div><div className="text-xs text-muted-foreground">{trade.contextStatus}</div></div>)}</div></Card>
     {warnings.length > 0 && <p className="text-xs text-muted-foreground">{warnings.join(" · ")}</p>}
     <p className="text-xs leading-5 text-muted-foreground">이 결과는 과거 거래 복기용이며 매수·매도 추천이 아닙니다. 조건별 거래가 3건 미만이면 통계적 결론으로 표시하지 않습니다.</p>
   </div>;
@@ -241,11 +245,24 @@ function patternRows(trades: CompletedTrade[]): Pattern[] {
   const groups = new Map<string, number[]>();
   for (const trade of trades) {
     const context = trade.context!;
-    const labels = [`종목 거래대금 ${context.ticker.volume_state}`, `시장 상태 ${context.market.market_regime}`];
+    const labels = [`시장 상태 ${context.market.market_regime}`];
+    if (context.ticker) labels.push(`종목 거래대금 ${context.ticker.volume_state}`);
+    if (context.asset) labels.push(`자산 유형 ${context.asset.assetType}`, `${context.asset.leverageMultiple}배 상품`, `방향 ${context.asset.direction}`);
+    if (context.underlyingGroup) labels.push(`기초자산 흐름 ${context.underlyingGroup.flow_status}`);
     if (context.industry) labels.push(`산업 흐름 ${context.industry.flow_status}`);
     for (const label of labels) groups.set(label, [...(groups.get(label) ?? []), trade.returnPercent]);
   }
   return [...groups].map(([label, values]) => ({ label, trades: values.length, winRate: values.filter((value) => value > 0).length / values.length * 100, averageReturn: values.reduce((sum, value) => sum + value, 0) / values.length }));
+}
+
+function contextDescription(context: NonNullable<CompletedTrade["context"]>) {
+  if (!context.asset) return `종목 ${context.ticker?.volume_state ?? "-"} · 산업 ${context.industry?.flow_status ?? "-"} · 시장 ${context.market.market_regime}`;
+  const direction = context.asset.direction === "SHORT" ? "하락 방향" : "상승 방향";
+  const self = context.ticker ? `${context.asset.ticker} 자체 거래대금 ${context.ticker.volume_state}` : `${context.asset.ticker} 자체 거래대금 백필 필요`;
+  if (context.underlyingTicker) return `${self} · 기초 ${context.asset.underlyingTicker} 거래대금 ${context.underlyingTicker.volume_state} · ${direction}`;
+  if (context.underlyingGroup) return `${self} · 기초 ${context.asset.theme} 흐름 ${context.underlyingGroup.flow_status} · ${direction}`;
+  if (context.underlyingIndex) return `${self} · ${context.underlyingIndex.name} ${context.underlyingIndex.change_percent != null ? `${context.underlyingIndex.change_percent >= 0 ? "+" : ""}${context.underlyingIndex.change_percent.toFixed(2)}%` : "-"} · ${direction}`;
+  return `${self} · 기초자산 분류 미지원`;
 }
 
 function PatternCard({ title, icon: Icon, rows, positive = false }: { title: string; icon: typeof TrendingUp; rows: Pattern[]; positive?: boolean }) { return <Card><div className="flex items-center gap-2 border-b border-border px-5 py-4"><Icon className={cn("h-5 w-5", positive ? "text-success" : "text-danger")} /><h2 className="font-semibold">{title}</h2></div><CardContent className="p-0">{rows.length ? <div className="divide-y divide-border">{rows.map((row) => <div key={row.label} className="grid grid-cols-[1fr_auto] gap-3 px-5 py-4"><div><div className="text-sm font-medium">{row.label}</div><div className="mt-1 text-xs text-muted-foreground">{row.trades}건 · 승률 {row.winRate.toFixed(1)}% · 신뢰도 {confidence(row.trades)}</div></div><div className={cn("font-semibold tabular", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{row.averageReturn >= 0 ? "+" : ""}{row.averageReturn.toFixed(2)}%</div></div>)}</div> : <div className="px-5 py-10 text-center text-sm text-muted-foreground">표시할 조건이 아직 없습니다.</div>}</CardContent></Card>; }

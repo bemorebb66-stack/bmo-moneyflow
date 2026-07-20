@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { combineReplayTrades, parseExecutionTime, selectCompletedTrades, sortReplayExecutions, type CompletedTrade, type ReplayExecution } from "./replay";
+import { addContext, combineReplayTrades, parseExecutionTime, selectCompletedTrades, sortReplayExecutions, type CompletedTrade, type ReplayExecution, type ReplaySnapshot } from "./replay";
 
 const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
   ticker: "TEST", transactionDate: "2026-04-01", side: "buy", quantity: 100,
@@ -166,5 +166,36 @@ describe("completed trade selection", () => {
   it("returns all trades when fewer than the selected limit exist", () => {
     const trades = [trade("2026-01-01", "2026-01-02"), trade("2026-02-01", "2026-02-02")];
     expect(selectCompletedTrades(trades, { limit: 50, days: null })).toHaveLength(2);
+  });
+});
+
+describe("ETF market context", () => {
+  const completed = (ticker: string): CompletedTrade => ({ ticker, entryDate: "2026-07-17", exitDate: "2026-07-18", averageEntryPrice: 10, averageExitPrice: 11, quantity: 1, realizedProfit: 1, returnPercent: 10, holdingDays: 1, buyCount: 1, sellCount: 1 });
+  const metric = { name: "Underlying", name_ko: "기초자산", volume_state: "강함", dollar_volume_change_1d: 20, dollar_volume_ratio_5d: 1.3, dollar_volume_ratio_20d: 1.5, sector: "Technology", industry: "Semiconductors", market_cap_group: "대형주" };
+  const snapshot: ReplaySnapshot = { trading_date: "2026-07-17", market: { market_regime: "중립", dollar_volume_change_1d: 1, indices: [{ symbol: "^NDX", name: "Nasdaq 100", close: 100, change_percent: 1.2 }] }, tickers: { TSLA: metric, NVDA: metric, COIN: metric, GOOGL: metric, MSTR: metric }, groups: { sector: {}, market_cap: {}, industry: { Semiconductors: { flow_status: "강한 유입", dollar_volume_change_1d: 20, dollar_volume_ratio_5d: 1.4, rank: 1 } } } };
+
+  it("connects SOXL to semiconductor flow when ETF self data is absent", () => {
+    const result = addContext(completed("SOXL"), snapshot, "정상");
+    expect(result.context?.asset?.assetType).toBe("LEVERAGED_ETF");
+    expect(result.context?.underlyingGroup?.flow_status).toBe("강한 유입");
+    expect(result.context?.supportLevel).toBe("ETF_UNDERLYING_ONLY");
+  });
+
+  it("marks SOXS as an inverse product", () => {
+    expect(addContext(completed("SOXS"), snapshot, "정상").context?.asset?.direction).toBe("SHORT");
+  });
+
+  it("connects TSLL to TSLA", () => {
+    expect(addContext(completed("TSLL"), snapshot, "정상").context?.underlyingTicker).toEqual(metric);
+  });
+
+  it("classifies UVIX as volatility without forcing a sector", () => {
+    const context = addContext(completed("UVIX"), snapshot, "정상").context;
+    expect(context?.asset?.underlyingType).toBe("VOLATILITY");
+    expect(context?.industry).toBeUndefined();
+  });
+
+  it("uses one concise unsupported status", () => {
+    expect(addContext(completed("UNMAPPED"), snapshot, "정상").contextStatus).toBe("시장환경 데이터 미지원 · 가격·거래대금 백필 필요");
   });
 });

@@ -1,3 +1,5 @@
+import { getEtfMetadata, type EtfMetadata } from "./etf-metadata";
+
 export type ReplayExecution = {
   ticker: string;
   transactionDate: string;
@@ -33,6 +35,7 @@ export type ReplaySnapshot = {
   market: {
     market_regime: string;
     dollar_volume_change_1d: number | null;
+    indices?: Array<{ symbol: string; name: string; close: number; change_percent: number | null }>;
   };
   tickers: Record<string, {
     name: string;
@@ -61,7 +64,12 @@ type GroupContext = {
 
 export type TradeContext = {
   tradingDate: string;
-  ticker: ReplaySnapshot["tickers"][string];
+  ticker?: ReplaySnapshot["tickers"][string];
+  asset?: EtfMetadata;
+  underlyingTicker?: ReplaySnapshot["tickers"][string];
+  underlyingGroup?: GroupContext;
+  underlyingIndex?: { symbol: string; name: string; close: number; change_percent: number | null };
+  supportLevel: "FULL" | "ETF_UNDERLYING_ONLY" | "ETF_SELF_ONLY";
   industry?: GroupContext;
   sector?: GroupContext;
   marketCap?: GroupContext;
@@ -293,8 +301,14 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
 
 export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, contextStatus: string): CompletedTrade {
   const ticker = snapshot.tickers[trade.ticker];
-  if (!ticker) return { ...trade, contextStatus: "해당 종목 데이터 없음" };
-  return { ...trade, contextStatus, context: { tradingDate: snapshot.trading_date, ticker, industry: snapshot.groups.industry[ticker.industry], sector: snapshot.groups.sector[ticker.sector], marketCap: snapshot.groups.market_cap[ticker.market_cap_group], market: snapshot.market } };
+  const asset = getEtfMetadata(trade.ticker);
+  if (!ticker && !asset) return { ...trade, contextStatus: "시장환경 데이터 미지원 · 가격·거래대금 백필 필요" };
+  const underlyingTicker = asset?.underlyingTicker ? snapshot.tickers[asset.underlyingTicker] : undefined;
+  const underlyingGroup = asset?.underlyingIndustry ? snapshot.groups.industry[asset.underlyingIndustry] : undefined;
+  const underlyingIndex = asset?.underlyingIndex ? snapshot.market.indices?.find((row) => row.name === asset.underlyingIndex) : undefined;
+  const supportLevel = ticker ? (asset && !underlyingTicker && !underlyingGroup && !underlyingIndex ? "ETF_SELF_ONLY" : "FULL") : "ETF_UNDERLYING_ONLY";
+  const status = ticker ? contextStatus : `${asset?.nameKo ?? trade.ticker} 자체 거래대금 백필 필요 · 기초자산 환경 연결`;
+  return { ...trade, contextStatus: status, context: { tradingDate: snapshot.trading_date, ticker, asset, underlyingTicker, underlyingGroup, underlyingIndex, supportLevel, industry: ticker ? snapshot.groups.industry[ticker.industry] : undefined, sector: ticker ? snapshot.groups.sector[ticker.sector] : undefined, marketCap: ticker ? snapshot.groups.market_cap[ticker.market_cap_group] : undefined, market: snapshot.market } };
 }
 
 export function confidence(count: number) {

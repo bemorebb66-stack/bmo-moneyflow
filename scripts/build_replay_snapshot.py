@@ -111,6 +111,15 @@ def build_snapshot(data: dict[str, Any]) -> dict[str, Any]:
             "market_cap": int(stock.get("mc") or 0),
             "market_cap_group": stock.get("cap") or "기타",
             "universes": stock.get("uni") or [],
+            "asset_type": stock.get("asset_type") or "COMMON_STOCK",
+            "leverage_multiple": stock.get("leverage_multiple") or 1,
+            "direction": stock.get("direction") or "LONG",
+            "underlying_type": stock.get("underlying_type"),
+            "underlying_ticker": stock.get("underlying_ticker"),
+            "underlying_index": stock.get("underlying_index"),
+            "underlying_industry": stock.get("underlying_industry"),
+            "theme": stock.get("theme"),
+            "provider": stock.get("provider"),
         }
     total = sum(row["dollar_volume"] for row in tickers.values())
     previous = sum(float(stock.get("dvp") or 0) for stock in stocks)

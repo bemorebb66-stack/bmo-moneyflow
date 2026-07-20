@@ -170,6 +170,15 @@ def build_historical_snapshots(
                 "cap": meta.get("cap"),
                 "mc": meta.get("mc"),
                 "uni": meta.get("uni") or [],
+                "asset_type": meta.get("asset_type") or "COMMON_STOCK",
+                "leverage_multiple": meta.get("leverage_multiple") or 1,
+                "direction": meta.get("direction") or "LONG",
+                "underlying_type": meta.get("underlying_type"),
+                "underlying_ticker": meta.get("underlying_ticker"),
+                "underlying_index": meta.get("underlying_index"),
+                "underlying_industry": meta.get("underlying_industry"),
+                "theme": meta.get("theme"),
+                "provider": meta.get("provider"),
             })
         if not stocks:
             skipped_dates.append(trading_day.date().isoformat())
@@ -196,11 +205,16 @@ def main() -> None:
     parser.add_argument("--data", type=Path, default=ROOT / "data.json")
     parser.add_argument("--output", type=Path, default=ROOT / "replay_data")
     parser.add_argument("--batch-size", type=int, default=150)
+    parser.add_argument("--etf-metadata", type=Path, default=ROOT / "replay_data" / "etf_metadata.json")
     args = parser.parse_args()
     if not 1 <= args.days <= 260:
         raise ValueError("--days must be between 1 and 260")
 
     source = json.loads(args.data.read_text(encoding="utf-8"))
+    if args.etf_metadata.exists():
+        etfs = json.loads(args.etf_metadata.read_text(encoding="utf-8"))
+        existing = {str(row.get("t") or "").upper() for row in source.get("stocks", [])}
+        source.setdefault("stocks", []).extend(row for row in etfs if str(row.get("t") or "").upper() not in existing)
     tickers = sorted({str(row.get("t") or "").upper() for row in source.get("stocks", []) if row.get("t")})
     end = datetime.now(timezone.utc).date() + timedelta(days=2)
     start = end - timedelta(days=max(180, args.days * 2 + 45))

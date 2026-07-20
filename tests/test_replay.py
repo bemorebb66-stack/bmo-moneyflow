@@ -31,6 +31,16 @@ class ReplayTests(unittest.TestCase):
         self.assertAlmostEqual(snapshots[-1]["tickers"]["NVDA"]["dollar_volume_ratio_5d"], 1.6353)
         self.assertEqual(snapshots[-1]["backfill"]["classification_mode"], "current-proxy")
 
+    def test_backfill_preserves_etf_metadata(self):
+        dates = pd.to_datetime(["2026-07-16", "2026-07-17"])
+        history = {"SOXL": pd.DataFrame({"Close": [40, 42], "Volume": [100, 200]}, index=dates)}
+        source = {"market_date": "2026-07-17", "stocks": [{"t": "SOXL", "n": "SOXL", "asset_type": "LEVERAGED_ETF", "leverage_multiple": 3, "direction": "LONG", "underlying_type": "SECTOR", "underlying_industry": "Semiconductors", "theme": "반도체", "provider": "Direxion"}]}
+        snapshots, _ = build_historical_snapshots(source, history, 1)
+        etf = snapshots[0]["tickers"]["SOXL"]
+        self.assertEqual(etf["asset_type"], "LEVERAGED_ETF")
+        self.assertEqual(etf["leverage_multiple"], 3)
+        self.assertEqual(etf["underlying_industry"], "Semiconductors")
+
     def test_snapshot_is_idempotent(self):
         data = {"market_date": "2026-07-17", "updated": "2026-07-18 06:00 UTC", "indices": [], "stocks": [{"t": "NVDA", "n": "NVIDIA", "c": 170, "pc": 2, "dv": 200, "dvp": 100, "a5": 125, "a20": 100, "sec": "Technology", "ind": "Semiconductors", "cap": "메가캡", "mc": 1000, "uni": ["S&P 500"]}]}
         with tempfile.TemporaryDirectory() as temp:
