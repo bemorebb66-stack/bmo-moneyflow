@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-18T11:56:39.848903+00:00",
+    "generatedAt": "2026-07-20T23:30:43.731789+00:00",
     "status": "ok",
-    "from": "2026-07-22",
-    "to": "2027-01-14",
-    "count": 196,
+    "from": "2026-06-05",
+    "to": "2027-01-16",
+    "count": 200,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -1852,6 +1852,18 @@
       "revenueEstimate": 19805590707.0
     },
     {
+      "ticker": "BIRK",
+      "company": "버컨스톡 홀딩",
+      "date": "2026-12-16",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.493,
+      "revenueActual": null,
+      "revenueEstimate": 612703137.0
+    },
+    {
       "ticker": "CTAS",
       "company": "신타스",
       "date": "2026-12-16",
@@ -2378,6 +2390,42 @@
       "epsEstimate": 1.9008,
       "revenueActual": null,
       "revenueEstimate": 22596369228.0
+    },
+    {
+      "ticker": "BAC",
+      "company": "뱅크오브아메리카",
+      "date": "2027-01-15",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.1392,
+      "revenueActual": null,
+      "revenueEstimate": 30364093994.0
+    },
+    {
+      "ticker": "CFG",
+      "company": "시티즌스 파이낸셜 그룹",
+      "date": "2027-01-15",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.4792,
+      "revenueActual": null,
+      "revenueEstimate": 2401574970.0
+    },
+    {
+      "ticker": "PNC",
+      "company": "PNC 파이낸셜 서비스",
+      "date": "2027-01-15",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 5.1231,
+      "revenueActual": null,
+      "revenueEstimate": 6703730509.0
     }
   ]
 }
