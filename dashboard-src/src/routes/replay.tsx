@@ -5,7 +5,7 @@ import { PageHeading, PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { inspectBrokerFile, importFieldLabels, normalizeBrokerRows, type BrokerImportResult, type BrokerInspection, type ColumnMapping, type ImportField } from "@/lib/broker-import";
-import { addContext, combineReplayTrades, confidence, parseReplayCsv, REPLAY_PARSER_VERSION, type CompletedTrade, type OpeningHolding, type ReplayExecution, type ReplaySnapshot, type ReplayTickerDebug } from "@/lib/replay";
+import { addContext, combineReplayTrades, confidence, parseReplayCsv, REPLAY_PARSER_VERSION, selectCompletedTrades, type CompletedTrade, type OpenPosition, type ReplaySnapshot, type ReplayTickerDebug } from "@/lib/replay";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/replay")({
@@ -29,9 +29,13 @@ function ReplayPage() {
   const [tradeErrors, setTradeErrors] = useState<string[]>([]);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [trades, setTrades] = useState<CompletedTrade[]>([]);
-  const [executions, setExecutions] = useState<ReplayExecution[]>([]);
   const [openingShortfalls, setOpeningShortfalls] = useState<Record<string, number>>({});
+  const [openPositions, setOpenPositions] = useState<OpenPosition[]>([]);
   const [tickerDebug, setTickerDebug] = useState<ReplayTickerDebug[]>([]);
+  const [tradeLimit, setTradeLimit] = useState<"10" | "20" | "50" | "100" | "all">("50");
+  const [datePreset, setDatePreset] = useState<"all" | "30" | "90" | "180" | "custom">("all");
+  const [customFrom, setCustomFrom] = useState("");
+  const [customTo, setCustomTo] = useState("");
   const [executionsCount, setExecutionsCount] = useState(0);
   const [uploadError, setUploadError] = useState("");
   const [inspection, setInspection] = useState<BrokerInspection | null>(null);
@@ -39,7 +43,7 @@ function ReplayPage() {
   const [coverage, setCoverage] = useState<{ first: string | null; last: string | null }>({ first: null, last: null });
 
   const reset = () => {
-    setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setExecutions([]); setOpeningShortfalls({}); setTickerDebug([]); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null);
+    setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setOpeningShortfalls({}); setOpenPositions([]); setTickerDebug([]); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null);
     if (inputRef.current) inputRef.current.value = "";
   };
 
@@ -48,8 +52,8 @@ function ReplayPage() {
     setFileName(name);
     const parsed = parseReplayCsv(text);
     const combined = combineReplayTrades(parsed.executions);
-    setExecutions(parsed.executions);
     setOpeningShortfalls(combined.openingShortfalls);
+    setOpenPositions(combined.openPositions);
     setTickerDebug(combined.tickerDebug);
     setExecutionsCount(parsed.executions.length);
     setParseErrors(parsed.errors);
@@ -62,8 +66,8 @@ function ReplayPage() {
   const processInspection = (source: BrokerInspection, mapping = source.mapping, numericSide: "1-buy" | "1-sell" | null = null) => {
     const imported = normalizeBrokerRows(source, mapping, numericSide);
     const combined = combineReplayTrades(imported.executions);
-    setExecutions(imported.executions);
     setOpeningShortfalls(combined.openingShortfalls);
+    setOpenPositions(combined.openPositions);
     setTickerDebug(combined.tickerDebug);
     setInspection({ ...source, mapping });
     setImportResult(imported);
@@ -76,14 +80,7 @@ function ReplayPage() {
     setStage("review");
   };
 
-  const applyOpeningHoldings = (holdings: Record<string, OpeningHolding>) => {
-    const combined = combineReplayTrades(executions, holdings);
-    setTradeErrors(combined.errors);
-    setWarnings([...(importResult?.warnings ?? []), ...combined.warnings]);
-    setTrades(combined.trades);
-    setOpeningShortfalls(combined.openingShortfalls);
-    setTickerDebug(combined.tickerDebug);
-  };
+  const selectedTrades = useMemo(() => selectCompletedTrades(trades, { limit: tradeLimit === "all" ? null : Number(tradeLimit), days: datePreset === "all" || datePreset === "custom" ? null : Number(datePreset), customFrom: datePreset === "custom" ? customFrom || undefined : undefined, customTo: datePreset === "custom" ? customTo || undefined : undefined }), [trades, tradeLimit, datePreset, customFrom, customTo]);
 
   const onFile = async (file?: File) => {
     if (!file) return;
@@ -118,7 +115,7 @@ function ReplayPage() {
       const manifest = await manifestResponse.json() as { dates: string[]; first_date: string | null; last_date: string | null };
       setCoverage({ first: manifest.first_date, last: manifest.last_date });
       const selected = new Map<string, string | null>();
-      for (const trade of trades) {
+      for (const trade of selectedTrades) {
         const date = [...manifest.dates].reverse().find((value) => value <= trade.entryDate) ?? null;
         selected.set(trade.entryDate, date);
       }
@@ -128,7 +125,7 @@ function ReplayPage() {
         const response = await fetch(`/replay_data/snapshots/${date}.json`, { cache: "no-store" });
         if (response.ok) snapshots.set(date, await response.json() as ReplaySnapshot);
       }));
-      setTrades(trades.map((trade) => {
+      setTrades(selectedTrades.map((trade) => {
         const date = selected.get(trade.entryDate);
         const snapshot = date ? snapshots.get(date) : undefined;
         if (!snapshot) return { ...trade, contextStatus: "보관 범위 이전", context: undefined };
@@ -152,7 +149,7 @@ function ReplayPage() {
 
         {stage === "upload" && <UploadPanel inputRef={inputRef} onFile={onFile} onSample={loadSample} error={uploadError} />}
         {stage === "mapping" && inspection && <MappingPanel inspection={inspection} onApply={(mapping, numericSide) => processInspection(inspection, mapping, numericSide)} />}
-        {stage === "review" && <ReviewPanel fileName={fileName} executions={executionsCount} trades={trades} parseErrors={parseErrors} tradeErrors={tradeErrors} warnings={warnings} openingShortfalls={openingShortfalls} tickerDebug={tickerDebug} inspection={inspection} importResult={importResult} onApplyOpening={applyOpeningHoldings} onAnalyze={analyze} />}
+        {stage === "review" && <ReviewPanel fileName={fileName} executions={executionsCount} trades={trades} selectedTrades={selectedTrades} tradeLimit={tradeLimit} datePreset={datePreset} customFrom={customFrom} customTo={customTo} parseErrors={parseErrors} tradeErrors={tradeErrors} warnings={warnings} openingShortfalls={openingShortfalls} openPositions={openPositions} tickerDebug={tickerDebug} inspection={inspection} importResult={importResult} onTradeLimit={setTradeLimit} onDatePreset={setDatePreset} onCustomFrom={setCustomFrom} onCustomTo={setCustomTo} onAnalyze={analyze} />}
         {stage === "loading" && <LoadingPanel />}
         {stage === "result" && <ResultPanel trades={trades} warnings={warnings} coverage={coverage} />}
       </div>
@@ -166,12 +163,12 @@ function UploadPanel({ inputRef, onFile, onSample, error }: { inputRef: RefObjec
     <Card><CardContent className="p-5 sm:p-7">
       <div className="mb-5"><div className="text-xs font-semibold text-brand">TRADE IMPORT</div><h2 className="mt-1 text-xl font-bold">증권사 거래내역 파일 업로드</h2><p className="mt-1 text-sm text-muted-foreground">증권사 HTS에서 받은 CSV 또는 Excel 파일을 그대로 올려주세요.</p></div>
       <div onDragEnter={(event) => { event.preventDefault(); setDragging(true); }} onDragOver={(event) => event.preventDefault()} onDragLeave={() => setDragging(false)} onDrop={(event) => { event.preventDefault(); setDragging(false); onFile(event.dataTransfer.files[0]); }} className={cn("grid min-h-56 place-items-center rounded-lg border border-dashed p-6 text-center transition-colors", dragging ? "border-brand bg-brand/5" : "border-border bg-surface-2/50")}>
-        <div><div className="mx-auto grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand"><Upload className="h-6 w-6" /></div><div className="mt-4 font-semibold">거래내역 파일을 끌어놓거나 선택하세요</div><div className="mt-1 text-xs text-muted-foreground">CSV, XLSX, XLS · 최대 500개 인식 체결</div><Button className="mt-4" onClick={() => inputRef.current?.click()}>파일 선택</Button><input ref={inputRef} className="hidden" type="file" accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" onChange={(event) => onFile(event.target.files?.[0])} /></div>
+        <div><div className="mx-auto grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand"><Upload className="h-6 w-6" /></div><div className="mt-4 font-semibold">거래내역 파일을 끌어놓거나 선택하세요</div><div className="mt-1 text-xs text-muted-foreground">CSV, XLSX, XLS · 과거 전체 체결에서 최근 완결 거래 선택</div><Button className="mt-4" onClick={() => inputRef.current?.click()}>파일 선택</Button><input ref={inputRef} className="hidden" type="file" accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" onChange={(event) => onFile(event.target.files?.[0])} /></div>
       </div>
     </CardContent></Card>
     <div className="space-y-4">
       <Card><CardContent className="p-5"><FileSpreadsheet className="h-5 w-5 text-brand" /><h2 className="mt-3 font-semibold">처음 사용한다면</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">표준 양식에 티커, 거래일, 매수·매도, 수량, 가격, 수수료를 입력하세요.</p><div className="mt-4 grid gap-2"><Button asChild variant="outline" className="w-full"><a href="/replay_data/bvt-standard-trades.csv" download><Download className="mr-2 h-4 w-4" />표준 CSV 받기</a></Button><Button variant="ghost" className="w-full" onClick={onSample}>샘플로 체험하기</Button></div>{error && <p className="mt-3 text-xs leading-5 text-danger">{error}</p>}</CardContent></Card>
-      <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최대 500개 체결</li></ul></CardContent></Card>
+      <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최근 완결 거래 선택 분석</li></ul></CardContent></Card>
     </div>
   </div>;
 }
@@ -192,30 +189,29 @@ function MappingPanel({ inspection, onApply }: { inspection: BrokerInspection; o
   </div>;
 }
 
-function ReviewPanel({ fileName, executions, trades, parseErrors, tradeErrors, warnings, openingShortfalls, tickerDebug, inspection, importResult, onApplyOpening, onAnalyze }: { fileName: string; executions: number; trades: CompletedTrade[]; parseErrors: string[]; tradeErrors: string[]; warnings: string[]; openingShortfalls: Record<string, number>; tickerDebug: ReplayTickerDebug[]; inspection: BrokerInspection | null; importResult: BrokerImportResult | null; onApplyOpening: (holdings: Record<string, OpeningHolding>) => void; onAnalyze: () => void }) {
-  const errors = [...parseErrors, ...tradeErrors, ...(executions > 500 ? ["체결내역은 최대 500건까지 분석할 수 있습니다."] : [])];
+function ReviewPanel({ fileName, executions, trades, selectedTrades, tradeLimit, datePreset, customFrom, customTo, parseErrors, tradeErrors, warnings, openingShortfalls, openPositions, tickerDebug, inspection, importResult, onTradeLimit, onDatePreset, onCustomFrom, onCustomTo, onAnalyze }: { fileName: string; executions: number; trades: CompletedTrade[]; selectedTrades: CompletedTrade[]; tradeLimit: "10" | "20" | "50" | "100" | "all"; datePreset: "all" | "30" | "90" | "180" | "custom"; customFrom: string; customTo: string; parseErrors: string[]; tradeErrors: string[]; warnings: string[]; openingShortfalls: Record<string, number>; openPositions: OpenPosition[]; tickerDebug: ReplayTickerDebug[]; inspection: BrokerInspection | null; importResult: BrokerImportResult | null; onTradeLimit: (value: "10" | "20" | "50" | "100" | "all") => void; onDatePreset: (value: "all" | "30" | "90" | "180" | "custom") => void; onCustomFrom: (value: string) => void; onCustomTo: (value: string) => void; onAnalyze: () => void }) {
+  const errors = [...parseErrors, ...tradeErrors];
+  const displayWarnings = warnings.filter((message) => !message.includes("미청산 수량"));
+  const excluded = [...openPositions, ...Object.entries(openingShortfalls).map(([ticker, quantity]) => ({ ticker, quantity }))].sort((a, b) => a.ticker.localeCompare(b.ticker));
+  const usedExecutions = selectedTrades.reduce((sum, trade) => sum + trade.buyCount + trade.sellCount, 0);
+  const firstExit = selectedTrades.at(-1)?.exitDate ?? "-";
+  const lastExit = selectedTrades[0]?.exitDate ?? "-";
   return <div className="space-y-5">
-    <section className="grid gap-3 sm:grid-cols-4"><Metric label="파일" value={fileName} /><Metric label="인식된 체결" value={`${executions}건`} /><Metric label="완결 거래" value={`${trades.length}건`} /><Metric label="파서 버전" value={REPLAY_PARSER_VERSION} /></section>
+    <section className="grid gap-3 sm:grid-cols-4"><Metric label="파일" value={fileName} /><Metric label="인식된 체결" value={`${executions}건`} /><Metric label="전체 완결 거래" value={`${trades.length}건`} /><Metric label="파서 버전" value={REPLAY_PARSER_VERSION} /></section>
     {inspection && importResult && <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">업로드 인식 결과</h2><p className="mt-1 text-xs text-muted-foreground">분석 전에 파일 인식 결과와 제외 항목을 확인해주세요.</p></div><CardContent className="grid gap-x-6 gap-y-4 p-5 text-sm sm:grid-cols-2 lg:grid-cols-4"><ImportInfo label="감지된 증권사" value={`${inspection.detectedBroker} · ${inspection.confidence}`} /><ImportInfo label="시트·헤더" value={`${inspection.selectedSheet} · ${inspection.headerRow}행`} /><ImportInfo label="전체 데이터 행" value={`${importResult.totalRows}건`} /><ImportInfo label="제외된 행" value={`${Object.values(importResult.excluded).reduce((sum, count) => sum + count, 0)}건`} /><ImportInfo label="거래 기간" value={importResult.period.first ? `${importResult.period.first} ~ ${importResult.period.last}` : "-"} /><ImportInfo label="통화" value={importResult.currencies.join(", ") || "USD(기본값)"} /><div className="sm:col-span-2"><div className="text-xs text-muted-foreground">제외 사유</div><div className="mt-1 text-foreground">{Object.entries(importResult.excluded).map(([reason, count]) => `${reason} ${count}건`).join(" · ") || "없음"}</div></div></CardContent></Card>}
-    {Object.keys(openingShortfalls).length > 0 && <OpeningHoldingsPanel shortfalls={openingShortfalls} onApply={onApplyOpening} />}
-    <TickerDebugTable rows={tickerDebug} />
-    {(errors.length > 0 || warnings.length > 0) && <Card><CardContent className="p-5"><h2 className="flex items-center gap-2 font-semibold"><AlertCircle className="h-5 w-5 text-warning" />확인할 항목</h2><ul className="mt-3 space-y-2 text-sm">{errors.map((message) => <li key={message} className="text-danger">{message}</li>)}{warnings.map((message) => <li key={message} className="text-warning">{message}</li>)}</ul></CardContent></Card>}
-    <Card><div className="flex items-center justify-between border-b border-border px-5 py-4"><div><h2 className="font-semibold">완결 거래 미리보기</h2><p className="text-xs text-muted-foreground">전량 매도된 거래만 분석합니다.</p></div><CheckCircle2 className="h-5 w-5 text-success" /></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "최초 매수", "최종 매도", "평균 매수가", "평균 매도가", "수익률", "보유 기간"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{trades.slice(0, 20).map((trade, index) => <tr key={`${trade.ticker}-${trade.entryDate}-${index}`}><td className="px-4 py-3 font-semibold">{trade.ticker}</td><td className="px-4 py-3 text-right tabular">{trade.entryDate}</td><td className="px-4 py-3 text-right tabular">{trade.exitDate}</td><td className="px-4 py-3 text-right tabular">${trade.averageEntryPrice.toFixed(2)}</td><td className="px-4 py-3 text-right tabular">${trade.averageExitPrice.toFixed(2)}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</td><td className="px-4 py-3 text-right tabular">{trade.holdingDays}일</td></tr>)}</tbody></table></div></Card>
-    <div className="flex justify-end"><Button size="lg" disabled={Boolean(errors.length) || Boolean(Object.keys(openingShortfalls).length) || !trades.length || executions > 500} onClick={onAnalyze}>시장환경 연결하고 분석하기</Button></div>
+    <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">분석 범위</h2><p className="mt-1 text-xs text-muted-foreground">완결 거래를 만든 뒤 최종 매도일 기준으로 선택합니다.</p></div><CardContent className="grid gap-5 p-5 lg:grid-cols-2"><div><div className="mb-2 text-xs font-medium text-muted-foreground">최근 완결 거래</div><div className="flex flex-wrap gap-2">{(["10", "20", "50", "100", "all"] as const).map((value) => <Button key={value} size="sm" variant={tradeLimit === value ? "default" : "outline"} onClick={() => onTradeLimit(value)}>{value === "all" ? "전체" : `${value}건`}</Button>)}</div></div><div><div className="mb-2 text-xs font-medium text-muted-foreground">최종 매도일</div><div className="flex flex-wrap gap-2">{(["all", "30", "90", "180", "custom"] as const).map((value) => <Button key={value} size="sm" variant={datePreset === value ? "default" : "outline"} onClick={() => onDatePreset(value)}>{value === "all" ? "전체 기간" : value === "custom" ? "직접 선택" : `최근 ${value}일`}</Button>)}</div>{datePreset === "custom" && <div className="mt-3 flex gap-2"><input type="date" className="h-9 rounded-md border border-border bg-background px-3 text-sm" value={customFrom} onChange={(event) => onCustomFrom(event.target.value)} /><span className="self-center text-muted-foreground">~</span><input type="date" className="h-9 rounded-md border border-border bg-background px-3 text-sm" value={customTo} onChange={(event) => onCustomTo(event.target.value)} /></div>}</div></CardContent></Card>
+    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5"><Metric label="분석 대상" value={`${selectedTrades.length}건`} /><Metric label="최종 매도 기간" value={`${firstExit} ~ ${lastExit}`} /><Metric label="전체 체결" value={`${executions}건`} /><Metric label="사용된 체결" value={`${usedExecutions}건`} /><Metric label="제외 종목" value={`${excluded.length}개`} /></section>
+    {excluded.length > 0 && <details className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3"><summary className="cursor-pointer text-sm font-medium text-warning">현재 보유 또는 완결 거래를 만들 수 없는 {excluded.length}개 종목은 분석에서 제외되었습니다. 목록 보기</summary><div className="mt-3 flex flex-wrap gap-2">{excluded.map((row) => <span key={row.ticker} className="rounded-md border border-warning/20 bg-background px-2.5 py-1 text-xs"><strong>{row.ticker}</strong> · {row.quantity.toLocaleString("ko-KR")}주</span>)}</div></details>}
+    <details><summary className="cursor-pointer text-xs text-muted-foreground">종목별 수량 검증 보기</summary><div className="mt-3"><TickerDebugTable rows={tickerDebug} /></div></details>
+    {(errors.length > 0 || displayWarnings.length > 0) && <Card><CardContent className="p-5"><h2 className="flex items-center gap-2 font-semibold"><AlertCircle className="h-5 w-5 text-warning" />확인할 항목</h2><ul className="mt-3 space-y-2 text-sm">{errors.map((message) => <li key={message} className="text-danger">{message}</li>)}{displayWarnings.map((message) => <li key={message} className="text-warning">{message}</li>)}</ul></CardContent></Card>}
+    <Card><div className="flex items-center justify-between border-b border-border px-5 py-4"><div><h2 className="font-semibold">최근 완결 거래 미리보기</h2><p className="text-xs text-muted-foreground">선택한 범위 중 최신 20건을 표시합니다.</p></div><CheckCircle2 className="h-5 w-5 text-success" /></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "최초 매수", "최종 매도", "평균 매수가", "평균 매도가", "수익률", "보유 기간"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{selectedTrades.slice(0, 20).map((trade, index) => <tr key={`${trade.ticker}-${trade.entryDate}-${index}`}><td className="px-4 py-3 font-semibold">{trade.ticker}</td><td className="px-4 py-3 text-right tabular">{trade.entryDate}</td><td className="px-4 py-3 text-right tabular">{trade.exitDate}</td><td className="px-4 py-3 text-right tabular">${trade.averageEntryPrice.toFixed(2)}</td><td className="px-4 py-3 text-right tabular">${trade.averageExitPrice.toFixed(2)}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</td><td className="px-4 py-3 text-right tabular">{trade.holdingDays}일</td></tr>)}</tbody></table></div></Card>
+    {selectedTrades.length > 0 && selectedTrades.length < 5 && <p className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3 text-sm text-warning">분석 가능한 완결 거래가 {selectedTrades.length}건입니다. 정확한 패턴 분석을 위해 더 긴 기간의 거래내역을 업로드해주세요.</p>}
+    <div className="flex justify-end"><Button size="lg" disabled={Boolean(errors.length) || !selectedTrades.length} onClick={onAnalyze}>선택한 완결 거래 분석하기</Button></div>
   </div>;
 }
 
 function TickerDebugTable({ rows }: { rows: ReplayTickerDebug[] }) {
   return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">종목별 수량 검증</h2><p className="mt-1 text-xs text-muted-foreground">파서 {REPLAY_PARSER_VERSION} · 가격과 개인정보는 표시하지 않습니다.</p></div><div className="max-h-80 overflow-auto"><table className="w-full min-w-[760px] text-sm"><thead className="sticky top-0 bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "총매수", "총매도", "최소 누적수량", "초기 보유 필요", "최종 잔여"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.ticker}><td className="px-4 py-3 font-semibold">{row.ticker}</td><td className="px-4 py-3 text-right tabular">{row.totalBuy.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.totalSell.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.minimumRunningQuantity.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.requiredInitialQuantity.toLocaleString("ko-KR")}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", row.finalRemaining > 0 ? "text-warning" : "text-muted-foreground")}>{row.finalRemaining.toLocaleString("ko-KR")}</td></tr>)}</tbody></table></div></Card>;
-}
-
-function OpeningHoldingsPanel({ shortfalls, onApply }: { shortfalls: Record<string, number>; onApply: (holdings: Record<string, OpeningHolding>) => void }) {
-  const [values, setValues] = useState<Record<string, { quantity: string; averagePrice: string }>>(() => Object.fromEntries(Object.entries(shortfalls).map(([ticker, quantity]) => [ticker, { quantity: String(quantity), averagePrice: "" }])));
-  const ready = Object.entries(shortfalls).every(([ticker, required]) => Number(values[ticker]?.quantity) >= required && Number(values[ticker]?.averagePrice) > 0);
-  return <Card className="border-warning/40 bg-warning/5">
-    <div className="border-b border-warning/20 px-5 py-4"><h2 className="flex items-center gap-2 font-semibold"><AlertCircle className="h-5 w-5 text-warning" />조회 기간 이전 보유분 확인</h2><p className="mt-1 text-sm text-muted-foreground">파일에 매수 기록 없이 매도부터 시작하는 종목입니다. 조회 시작 전에 보유했던 수량과 평균 매수가를 입력하세요.</p></div>
-    <CardContent className="p-5"><div className="space-y-3">{Object.entries(shortfalls).map(([ticker, required]) => <div key={ticker} className="grid gap-3 rounded-md border border-border bg-background p-3 sm:grid-cols-[minmax(120px,1fr)_180px_180px] sm:items-end"><div><div className="font-semibold">{ticker}</div><div className="mt-1 text-xs text-muted-foreground">최소 초기 보유 수량 {required.toLocaleString("ko-KR")}주</div></div><label className="grid gap-1 text-xs text-muted-foreground">초기 보유 수량<input className="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground" inputMode="decimal" value={values[ticker]?.quantity ?? ""} onChange={(event) => setValues((current) => ({ ...current, [ticker]: { ...current[ticker], quantity: event.target.value } }))} /></label><label className="grid gap-1 text-xs text-muted-foreground">초기 평균 매수가 (USD)<input className="h-10 rounded-md border border-border bg-background px-3 text-sm text-foreground" inputMode="decimal" placeholder="예: 152.40" value={values[ticker]?.averagePrice ?? ""} onChange={(event) => setValues((current) => ({ ...current, [ticker]: { ...current[ticker], averagePrice: event.target.value } }))} /></label></div>)}</div><div className="mt-4 flex flex-wrap items-center justify-between gap-3"><p className="text-xs text-muted-foreground">평균 매수가가 없으면 정확한 손익률을 계산할 수 없어 분석을 진행하지 않습니다.</p><Button disabled={!ready} onClick={() => onApply(Object.fromEntries(Object.entries(values).map(([ticker, value]) => [ticker, { quantity: Number(value.quantity), averagePrice: Number(value.averagePrice) }])))}>초기 보유분 적용</Button></div></CardContent>
-  </Card>;
 }
 
 function ImportInfo({ label, value }: { label: string; value: string }) { return <div><div className="text-xs text-muted-foreground">{label}</div><div className="mt-1 font-medium text-foreground">{value}</div></div>; }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { combineReplayTrades, parseExecutionTime, sortReplayExecutions, type ReplayExecution } from "./replay";
+import { combineReplayTrades, parseExecutionTime, selectCompletedTrades, sortReplayExecutions, type CompletedTrade, type ReplayExecution } from "./replay";
 
 const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
   ticker: "TEST", transactionDate: "2026-04-01", side: "buy", quantity: 100,
@@ -145,5 +145,26 @@ describe("Replay execution ordering", () => {
     const resolved = combineReplayTrades(executions, { TEST: { quantity: 32, averagePrice: 9 } });
     expect(resolved.openingShortfalls).toEqual({});
     expect(resolved.trades[0].realizedProfit).toBe(96);
+  });
+});
+
+describe("completed trade selection", () => {
+  const trade = (entryDate: string, exitDate: string): CompletedTrade => ({ ticker: exitDate, entryDate, exitDate, averageEntryPrice: 10, averageExitPrice: 11, quantity: 1, realizedProfit: 1, returnPercent: 10, holdingDays: 1, buyCount: 1, sellCount: 1 });
+
+  it("selects the latest exits and keeps an older entry date", () => {
+    const trades = [trade("2025-01-01", "2026-06-01"), trade("2026-06-02", "2026-06-03"), trade("2026-06-04", "2026-06-05")];
+    const selected = selectCompletedTrades(trades, { limit: 2, days: null });
+    expect(selected.map((row) => row.exitDate)).toEqual(["2026-06-05", "2026-06-03"]);
+    expect(selectCompletedTrades(trades, { limit: null, days: 5 })).toContainEqual(trades[0]);
+  });
+
+  it("uses final sell dates for custom filtering", () => {
+    const trades = [trade("2025-01-01", "2026-06-01"), trade("2026-06-02", "2026-07-01")];
+    expect(selectCompletedTrades(trades, { limit: 50, days: null, customFrom: "2026-06-15", customTo: "2026-07-31" })).toEqual([trades[1]]);
+  });
+
+  it("returns all trades when fewer than the selected limit exist", () => {
+    const trades = [trade("2026-01-01", "2026-01-02"), trade("2026-02-01", "2026-02-02")];
+    expect(selectCompletedTrades(trades, { limit: 50, days: null })).toHaveLength(2);
   });
 });

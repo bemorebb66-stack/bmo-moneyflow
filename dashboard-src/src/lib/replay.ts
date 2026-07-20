@@ -192,6 +192,23 @@ export function sortReplayExecutions(executions: ReplayExecution[]) {
 
 export type OpeningHolding = { quantity: number; averagePrice?: number };
 export type ReplayTickerDebug = { ticker: string; totalBuy: number; totalSell: number; minimumRunningQuantity: number; requiredInitialQuantity: number; finalRemaining: number; actualRemaining: number };
+export type OpenPosition = { ticker: string; quantity: number };
+export type CompletedTradeSelection = { limit: number | null; days: number | null; customFrom?: string; customTo?: string };
+
+export function selectCompletedTrades(trades: CompletedTrade[], selection: CompletedTradeSelection) {
+  const sorted = [...trades].sort((a, b) => b.exitDate.localeCompare(a.exitDate) || b.entryDate.localeCompare(a.entryDate));
+  const latestExit = sorted[0]?.exitDate;
+  let from = selection.customFrom;
+  let to = selection.customTo;
+  if (selection.days && latestExit) {
+    const start = new Date(`${latestExit}T00:00:00Z`);
+    start.setUTCDate(start.getUTCDate() - selection.days + 1);
+    from = start.toISOString().slice(0, 10);
+    to = latestExit;
+  }
+  const filtered = sorted.filter((trade) => (!from || trade.exitDate >= from) && (!to || trade.exitDate <= to));
+  return selection.limit === null ? filtered : filtered.slice(0, selection.limit);
+}
 
 export function combineReplayTrades(executions: ReplayExecution[], openingHoldings: Record<string, OpeningHolding> = {}) {
   const ordered = sortReplayExecutions(executions).executions;
@@ -267,7 +284,11 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
   const warnings = [...positions]
     .filter(([ticker, row]) => !openingShortfalls[ticker] && row.quantity > EPSILON)
     .map(([ticker, row]) => `${ticker}: 미청산 수량 ${row.quantity.toLocaleString("ko-KR")}주는 분석에서 제외됩니다.`);
-  return { trades, errors, warnings, openingShortfalls, tickerDebug: [...debugByTicker.values()].sort((a, b) => a.ticker.localeCompare(b.ticker)) };
+  const openPositions = [...positions]
+    .filter(([ticker, row]) => !openingShortfalls[ticker] && row.quantity > EPSILON)
+    .map(([ticker, row]) => ({ ticker, quantity: row.quantity }))
+    .sort((a, b) => a.ticker.localeCompare(b.ticker));
+  return { trades, errors, warnings, openingShortfalls, openPositions, tickerDebug: [...debugByTicker.values()].sort((a, b) => a.ticker.localeCompare(b.ticker)) };
 }
 
 export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, contextStatus: string): CompletedTrade {
