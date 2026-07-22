@@ -69,7 +69,7 @@ export type TradeContext = {
   underlyingTicker?: ReplaySnapshot["tickers"][string];
   underlyingGroup?: GroupContext;
   underlyingIndex?: { symbol: string; name: string; close: number; change_percent: number | null };
-  supportLevel: "FULL" | "ETF_UNDERLYING_ONLY" | "ETF_SELF_ONLY";
+  supportLevel: "FULL" | "UNDERLYING_ONLY" | "SECTOR_ONLY" | "INDEX_ONLY" | "PRODUCT_ONLY" | "UNSUPPORTED";
   industry?: GroupContext;
   sector?: GroupContext;
   marketCap?: GroupContext;
@@ -302,12 +302,35 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
 export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, contextStatus: string): CompletedTrade {
   const ticker = snapshot.tickers[trade.ticker];
   const asset = getEtfMetadata(trade.ticker);
-  if (!ticker && !asset) return { ...trade, contextStatus: "시장환경 데이터 미지원 · 가격·거래대금 백필 필요" };
+  if (!ticker && !asset) return { ...trade, contextStatus: "기초자산 매핑 또는 과거 가격·거래대금 데이터가 필요합니다." };
   const underlyingTicker = asset?.underlyingTicker ? snapshot.tickers[asset.underlyingTicker] : undefined;
   const underlyingGroup = asset?.underlyingIndustry ? snapshot.groups.industry[asset.underlyingIndustry] : undefined;
   const underlyingIndex = asset?.underlyingIndex ? snapshot.market.indices?.find((row) => row.name === asset.underlyingIndex) : undefined;
-  const supportLevel = ticker ? (asset && !underlyingTicker && !underlyingGroup && !underlyingIndex ? "ETF_SELF_ONLY" : "FULL") : "ETF_UNDERLYING_ONLY";
-  const status = ticker ? contextStatus : `${asset?.nameKo ?? trade.ticker} 자체 거래대금 백필 필요 · 기초자산 환경 연결`;
+  const hasUnderlying = Boolean(underlyingTicker || underlyingGroup || underlyingIndex);
+  const supportLevel: TradeContext["supportLevel"] = ticker && hasUnderlying
+    ? "FULL"
+    : underlyingTicker
+      ? "UNDERLYING_ONLY"
+      : underlyingGroup
+        ? "SECTOR_ONLY"
+        : underlyingIndex
+          ? "INDEX_ONLY"
+          : ticker
+            ? "PRODUCT_ONLY"
+            : "UNSUPPORTED";
+  const status = supportLevel === "FULL"
+    ? contextStatus
+    : supportLevel === "UNDERLYING_ONLY"
+      ? `${trade.ticker} 자체 거래대금은 미지원입니다. 기초자산 ${asset?.underlyingTicker} 환경을 기준으로 부분 분석했습니다.`
+      : supportLevel === "SECTOR_ONLY"
+        ? `${trade.ticker} 자체 거래대금은 미지원이지만, 기초 ${asset?.theme} 산업 흐름을 기준으로 부분 분석했습니다.`
+        : supportLevel === "INDEX_ONLY"
+          ? `${trade.ticker} 자체 거래대금은 미지원이지만, ${asset?.underlyingIndex} 환경을 기준으로 부분 분석했습니다.`
+          : supportLevel === "PRODUCT_ONLY"
+            ? `${trade.ticker} 상품 자체 데이터만 연결됐으며 기초자산 데이터는 미지원입니다.`
+            : asset?.underlyingType === "VOLATILITY"
+              ? `${trade.ticker}는 VIX 선물 기반 상품으로 일반 주식 섹터와 직접 비교하지 않습니다. 변동성 환경 데이터가 필요합니다.`
+              : `${trade.ticker}는 매핑됐지만 기초자산 과거 데이터가 없어 시장환경 분석에서 제외됐습니다.`;
   return { ...trade, contextStatus: status, context: { tradingDate: snapshot.trading_date, ticker, asset, underlyingTicker, underlyingGroup, underlyingIndex, supportLevel, industry: ticker ? snapshot.groups.industry[ticker.industry] : undefined, sector: ticker ? snapshot.groups.sector[ticker.sector] : undefined, marketCap: ticker ? snapshot.groups.market_cap[ticker.market_cap_group] : undefined, market: snapshot.market } };
 }
 

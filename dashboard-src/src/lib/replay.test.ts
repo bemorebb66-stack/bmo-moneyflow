@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { addContext, combineReplayTrades, parseExecutionTime, selectCompletedTrades, sortReplayExecutions, type CompletedTrade, type ReplayExecution, type ReplaySnapshot } from "./replay";
+import { detectLeveragedProduct } from "./etf-metadata";
 
 const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
   ticker: "TEST", transactionDate: "2026-04-01", side: "buy", quantity: 100,
@@ -178,7 +179,7 @@ describe("ETF market context", () => {
     const result = addContext(completed("SOXL"), snapshot, "정상");
     expect(result.context?.asset?.assetType).toBe("LEVERAGED_ETF");
     expect(result.context?.underlyingGroup?.flow_status).toBe("강한 유입");
-    expect(result.context?.supportLevel).toBe("ETF_UNDERLYING_ONLY");
+    expect(result.context?.supportLevel).toBe("SECTOR_ONLY");
   });
 
   it("marks SOXS as an inverse product", () => {
@@ -189,13 +190,29 @@ describe("ETF market context", () => {
     expect(addContext(completed("TSLL"), snapshot, "정상").context?.underlyingTicker).toEqual(metric);
   });
 
+  it.each([["WDCX", "WDC"], ["MRVU", "MRVL"], ["ADBG", "ADBE"]])("maps %s to its verified single-stock underlying", (ticker, underlying) => {
+    const withUnderlying = { ...snapshot, tickers: { ...snapshot.tickers, [underlying]: metric } };
+    const context = addContext(completed(ticker), withUnderlying, "정상").context;
+    expect(context?.asset?.underlyingTicker).toBe(underlying);
+    expect(context?.asset?.mappingStatus).toBe("VERIFIED");
+    expect(context?.supportLevel).toBe("UNDERLYING_ONLY");
+  });
+
   it("classifies UVIX as volatility without forcing a sector", () => {
     const context = addContext(completed("UVIX"), snapshot, "정상").context;
     expect(context?.asset?.underlyingType).toBe("VOLATILITY");
     expect(context?.industry).toBeUndefined();
+    expect(context?.supportLevel).toBe("UNSUPPORTED");
+  });
+
+  it("flags name-detected leveraged products for review without guessing an underlying", () => {
+    const candidate = detectLeveragedProduct("NEWX", "Example Daily Bull 2X ETF");
+    expect(candidate?.mappingStatus).toBe("REVIEW_REQUIRED");
+    expect(candidate?.underlyingType).toBe("UNKNOWN");
+    expect(candidate?.underlyingTicker).toBeUndefined();
   });
 
   it("uses one concise unsupported status", () => {
-    expect(addContext(completed("UNMAPPED"), snapshot, "정상").contextStatus).toBe("시장환경 데이터 미지원 · 가격·거래대금 백필 필요");
+    expect(addContext(completed("UNMAPPED"), snapshot, "정상").contextStatus).toBe("기초자산 매핑 또는 과거 가격·거래대금 데이터가 필요합니다.");
   });
 });

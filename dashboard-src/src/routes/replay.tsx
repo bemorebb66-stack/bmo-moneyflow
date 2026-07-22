@@ -219,10 +219,12 @@ function ImportInfo({ label, value }: { label: string; value: string }) { return
 function LoadingPanel() { return <Card><CardContent className="grid min-h-72 place-items-center text-center"><div><div className="mx-auto h-9 w-9 animate-spin rounded-full border-2 border-brand border-t-transparent" /><h2 className="mt-4 font-semibold">매수 당시 시장환경을 연결하고 있습니다</h2><p className="mt-1 text-sm text-muted-foreground">종목·산업·시장 상태를 날짜별로 확인합니다.</p></div></CardContent></Card>; }
 
 function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[]; warnings: string[]; coverage: { first: string | null; last: string | null } }) {
-  const linked = trades.filter((trade) => trade.context);
+  const linked = trades.filter((trade) => trade.context && trade.context.supportLevel !== "UNSUPPORTED");
   const fullLinked = trades.filter((trade) => trade.context?.supportLevel === "FULL").length;
-  const etfPartial = trades.filter((trade) => trade.context?.supportLevel === "ETF_UNDERLYING_ONLY" || trade.context?.supportLevel === "ETF_SELF_ONLY").length;
-  const unsupported = trades.length - linked.length;
+  const underlyingLinked = trades.filter((trade) => trade.context?.supportLevel === "UNDERLYING_ONLY").length;
+  const groupLinked = trades.filter((trade) => trade.context?.supportLevel === "SECTOR_ONLY" || trade.context?.supportLevel === "INDEX_ONLY").length;
+  const productOnly = trades.filter((trade) => trade.context?.supportLevel === "PRODUCT_ONLY").length;
+  const unsupported = trades.filter((trade) => !trade.context || trade.context.supportLevel === "UNSUPPORTED").length;
   const winRate = trades.length ? trades.filter((trade) => trade.returnPercent > 0).length / trades.length * 100 : 0;
   const avgReturn = trades.length ? trades.reduce((sum, trade) => sum + trade.returnPercent, 0) / trades.length : 0;
   const avgHolding = trades.length ? trades.reduce((sum, trade) => sum + trade.holdingDays, 0) / trades.length : 0;
@@ -231,12 +233,12 @@ function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[];
   const losing = patterns.filter((row) => row.trades >= 3 && row.averageReturn < 0).sort((a, b) => a.averageReturn - b.averageReturn).slice(0, 5);
   return <div className="space-y-5">
     <section className="grid grid-cols-2 gap-3 lg:grid-cols-5"><Metric label="완결 거래" value={`${trades.length}건`} /><Metric label="승률" value={`${winRate.toFixed(1)}%`} /><Metric label="평균 수익률" value={`${avgReturn >= 0 ? "+" : ""}${avgReturn.toFixed(2)}%`} tone={avgReturn >= 0 ? "positive" : "negative"} /><Metric label="평균 보유" value={`${avgHolding.toFixed(1)}일`} /><Metric label="시장환경 연결" value={`${linked.length}/${trades.length}건`} /></section>
-    <div className="grid gap-3 sm:grid-cols-3"><Metric label="전체 환경 연결" value={`${fullLinked}건`} /><Metric label="ETF 부분 연결" value={`${etfPartial}건`} /><Metric label="데이터 미지원" value={`${unsupported}건`} /></div>
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5"><Metric label="전체 환경 연결" value={`${fullLinked}건`} /><Metric label="기초자산 연결" value={`${underlyingLinked}건`} /><Metric label="섹터·지수 연결" value={`${groupLinked}건`} /><Metric label="상품 데이터만" value={`${productOnly}건`} /><Metric label="매핑·데이터 필요" value={`${unsupported}건`} /></div>
     {linked.length < trades.length && <div className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3 text-sm leading-6 text-warning"><strong>기본 매매 복기는 모든 거래에 제공됩니다.</strong><br />수익률·승률·보유기간은 정상 계산됐습니다. 종목·산업·시장 자금 흐름 분석은 현재 보관 범위인 {coverage.first ?? "-"}~{coverage.last ?? "-"}의 거래에만 연결되며, 과거 데이터는 순차적으로 확대하고 있습니다.</div>}
     <div className="grid gap-5 lg:grid-cols-2"><PatternCard title="수익이 난 시장환경" icon={TrendingUp} rows={profitable} positive /><PatternCard title="손실이 난 시장환경" icon={TrendingDown} rows={losing} /></div>
     <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">거래별 시장환경</h2><p className="text-xs text-muted-foreground">최초 매수일 또는 직전 거래일 기준</p></div><div className="divide-y divide-border">{trades.map((trade, index) => <div key={`${trade.ticker}-${index}`} className="grid gap-3 px-5 py-4 md:grid-cols-[140px_150px_1fr_auto] md:items-center"><div><div className="font-semibold">{trade.ticker}</div><div className="text-xs text-muted-foreground">{trade.entryDate}</div></div><div className={cn("font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</div><div className="text-sm text-muted-foreground">{trade.context ? contextDescription(trade.context) : trade.contextStatus}</div><div className="text-xs text-muted-foreground">{trade.contextStatus}</div></div>)}</div></Card>
     {warnings.length > 0 && <p className="text-xs text-muted-foreground">{warnings.join(" · ")}</p>}
-    <p className="text-xs leading-5 text-muted-foreground">이 결과는 과거 거래 복기용이며 매수·매도 추천이 아닙니다. 조건별 거래가 3건 미만이면 통계적 결론으로 표시하지 않습니다.</p>
+    <p className="text-xs leading-5 text-muted-foreground">이 결과는 과거 거래 복기용이며 매수·매도 추천이 아닙니다. 레버리지·인버스 상품은 일일 재설정, 복리 효과와 추적 오차가 있어 기초자산 수익률과 동일하지 않습니다. 조건별 거래가 3건 미만이면 통계적 결론으로 표시하지 않습니다.</p>
   </div>;
 }
 
