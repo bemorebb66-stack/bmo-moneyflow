@@ -4,7 +4,7 @@ import { Card, CardContent } from "./ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { DeltaText } from "./signal-badge";
 import type { Sector } from "@/lib/mock-data";
-import { fmtBp, fmtMoney } from "@/lib/format";
+import { fmtMoney } from "@/lib/format";
 import { ShareMenu } from "./share-menu";
 
 export function RotationSummary({ rows, categoryLabel, periodLabel }: {
@@ -12,16 +12,29 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
   categoryLabel: string;
   periodLabel: string;
 }) {
+  const SHARE_EPSILON = 0.5;
   const inflows = [...rows]
+    .filter((row) => row.shareDelta > SHARE_EPSILON)
     .sort((a, b) => b.shareDelta - a.shareDelta)
     .slice(0, 3);
   const outflows = [...rows]
+    .filter((row) => row.shareDelta < -SHARE_EPSILON)
     .sort((a, b) => a.shareDelta - b.shareDelta)
     .slice(0, 3);
   const totalVol = rows.reduce((s, x) => s + x.volume, 0);
   const advancers = rows.filter((s) => s.priceChange > 0).length;
   const topNames = inflows.slice(0, 2).map((row) => row.name).join("·");
   const bottomNames = outflows.slice(0, 2).map((row) => row.name).join("·");
+  const headline = inflows.length && outflows.length
+    ? `${topNames}로 관심 이동, ${bottomNames} 비중은 축소`
+    : inflows.length
+      ? `${topNames}의 거래대금 점유율이 확대`
+      : outflows.length
+        ? `${bottomNames}의 거래대금 점유율이 축소`
+        : "그룹별 거래대금 점유율 변화가 크지 않습니다";
+  const description = inflows.length && outflows.length
+    ? `${topNames}의 거래 비중이 확대됐고, ${bottomNames}에서는 시장 점유율이 축소됐습니다.`
+    : "전일 대비 거래대금 점유율이 유의미하게 변한 그룹만 표시합니다.";
 
   return (
     <section data-nosnippet aria-label="오늘의 거래대금 로테이션" className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-[1.4fr_1fr_1fr]">
@@ -32,10 +45,10 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
             MARKET PULSE · {periodLabel} {categoryLabel}
           </div>
           <p className="mt-2 text-base font-semibold leading-snug text-foreground sm:text-lg">
-            {topNames}로 관심 이동, {bottomNames} 비중은 축소
+            {headline}
           </p>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            {topNames}의 거래 비중이 확대됐고, {bottomNames}에서는 시장 점유율이 축소됐습니다.
+            {description}
           </p>
           <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
             <TooltipProvider delayDuration={100}>
@@ -57,7 +70,7 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
                 to="/scanner"
                 className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-brand/25 bg-brand/10 px-3 text-xs font-semibold text-brand transition-colors hover:bg-brand/15 sm:min-h-8"
               >
-                {inflows[0]?.name ?? categoryLabel} 점유율 확대를 이끈 종목 보기
+                {inflows[0]?.name ?? categoryLabel} 관련 종목 보기
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -65,11 +78,11 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
           <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/70 pt-4 text-sm">
             <Metric label="전체 거래대금" value={fmtMoney(totalVol)} tone="brand" />
             <Metric
-              label="상승 그룹"
+              label="가격 상승 그룹"
               value={`${advancers} / ${rows.length}`}
               tone="brand"
             />
-            <Metric label="상승 비율" value={`${Math.round((advancers / Math.max(1, rows.length)) * 100)}%`} tone="success" />
+            <Metric label="가격 상승 비율" value={`${Math.round((advancers / Math.max(1, rows.length)) * 100)}%`} tone="success" />
           </div>
         </CardContent>
       </Card>
@@ -152,12 +165,14 @@ function FlowCard({
               </div>
               <div className="shrink-0 text-right">
                 <DeltaText value={r.shareDelta} suffix=" bp" digits={0} />
-                <div className="text-[11px] text-muted-foreground tabular">
-                  {fmtBp(r.shareDelta)}
-                </div>
               </div>
             </li>
           ))}
+          {rows.length === 0 && (
+            <li className="py-5 text-center text-xs text-muted-foreground">
+              해당 방향의 유의미한 변화가 없습니다.
+            </li>
+          )}
         </ul>
       </CardContent>
     </Card>

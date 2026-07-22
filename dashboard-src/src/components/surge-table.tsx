@@ -408,7 +408,7 @@ export function SurgeTable() {
               </MetricInfo>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              선택 기간 평균 대비 거래대금 증가율 · {rows.length}건 · 현재{" "}
+              전체 {SURGE_STOCKS.length.toLocaleString("ko-KR")}개 중 {rows.length}개 · 현재{" "}
               {SORT_LABEL[sort.key]}{" "}
               {sort.mode === "desc"
                 ? "높은 순"
@@ -679,7 +679,7 @@ export function SurgeTable() {
                             }
                           >
                             {fmtPct(value)}
-                            {Math.abs(value) >= 200 && (
+                            {Math.abs(value) >= 200 && period === item.id && (
                               <sup className="ml-0.5 text-[8px] text-warning">
                                 주의
                               </sup>
@@ -708,12 +708,14 @@ export function SurgeTable() {
                           active={stock.hasInsider}
                           icon={<Users className="h-3.5 w-3.5" />}
                         />
-                        <IconAction
-                          label="IPO 정보"
-                          href={`/ipo-lockup/?ticker=${encodeURIComponent(stock.ticker)}`}
-                          active={stock.isIpo}
-                          icon={<Rocket className="h-3.5 w-3.5" />}
-                        />
+                        {stock.isIpo && (
+                          <IconAction
+                            label="IPO 정보"
+                            href={`/ipo-lockup/?ticker=${encodeURIComponent(stock.ticker)}`}
+                            active
+                            icon={<Rocket className="h-3.5 w-3.5" />}
+                          />
+                        )}
                         <IconAction
                           label="관련 뉴스"
                           href={`https://finance.yahoo.com/quote/${stock.ticker}/news/`}

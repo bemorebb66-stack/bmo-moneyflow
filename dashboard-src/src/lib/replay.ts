@@ -367,7 +367,9 @@ export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, cont
               ? "LEVERAGED_INDEX_ETF"
               : "ETF";
   const underlyingMappingAvailable = Boolean(asset && asset.underlyingType !== "UNKNOWN" && (asset.underlyingTicker || asset.underlyingIndustry || asset.underlyingIndex));
-  const supportLevel: TradeContext["supportLevel"] = asset?.underlyingType === "UNKNOWN"
+  const supportLevel: TradeContext["supportLevel"] = !asset && ticker
+    ? "FULL"
+    : asset?.underlyingType === "UNKNOWN"
     ? "MAPPING_REQUIRED"
     : ticker && hasUnderlying
     ? "FULL"

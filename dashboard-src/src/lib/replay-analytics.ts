@@ -12,6 +12,8 @@ export type PerformanceRow = {
   averageWin: number;
   averageLoss: number;
   payoffRatio: number;
+  wins: number;
+  losses: number;
 };
 
 const average = (values: number[]) => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
@@ -33,6 +35,8 @@ function summarize(label: string, trades: CompletedTrade[]): PerformanceRow {
     averageWin,
     averageLoss,
     payoffRatio: averageLoss ? averageWin / Math.abs(averageLoss) : 0,
+    wins: wins.length,
+    losses: losses.length,
   };
 }
 
@@ -99,6 +103,8 @@ export function analyzeReplayPerformance(trades: CompletedTrade[]) {
     averageWin,
     averageLoss,
     payoffRatio: averageLoss ? averageWin / Math.abs(averageLoss) : 0,
+    winningTrades: wins.length,
+    losingTrades: losses.length,
     expectancy: average(trades.map((trade) => trade.returnPercent)),
     maximumSingleLoss: Math.min(0, ...trades.map((trade) => trade.returnPercent)),
     maximumSingleLossAmount: Math.min(0, ...trades.map((trade) => trade.realizedProfit)),
