@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { BarChart3, CalendarRange, ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { BarChart3, CalendarRange, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { fmtMoney, fmtPct } from "@/lib/format";
@@ -20,7 +20,7 @@ const number = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 2 });
 export function WeeklyMarketSummary() {
   const [data, setData] = useState<Payload | null>(null);
   const [selected, setSelected] = useState("");
-  const [expanded, setExpanded] = useState(false);
+  const weekListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/weekly_summary.json", { cache: "no-store" })
@@ -32,21 +32,26 @@ export function WeeklyMarketSummary() {
   const weeks = data?.weeks ?? [];
   const current = weeks.find((week) => week.weekId === selected) ?? weeks[0];
   if (!current) return null;
-  const visible = expanded ? weeks : weeks.slice(0, 6);
+  const scrollWeeks = (direction: -1 | 1) => {
+    weekListRef.current?.scrollBy({ left: direction * 360, behavior: "smooth" });
+  };
 
   return (
     <section className="mt-5" aria-labelledby="weekly-summary-title">
-      <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+      <div className="mb-3">
         <div>
           <div className="text-[11px] font-semibold uppercase tracking-wide text-brand">Weekly Brief</div>
           <h2 id="weekly-summary-title" className="mt-1 text-lg font-semibold">주간 시장 요약</h2>
           <p className="mt-0.5 text-xs text-muted-foreground">저장된 장마감 데이터를 주별로 비교합니다.</p>
         </div>
-        <div className="flex max-w-full gap-1 overflow-x-auto rounded-lg border bg-muted/35 p-1 no-scrollbar">
-          {visible.map((week) => (
-            <button key={week.weekId} type="button" onClick={() => setSelected(week.weekId)} className={cn("shrink-0 rounded-md px-3 py-1.5 text-xs font-medium", week.weekId === current.weekId ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground")}>{week.label}</button>
-          ))}
-          {weeks.length > 6 && <button type="button" onClick={() => setExpanded((value) => !value)} className="inline-flex shrink-0 items-center gap-1 px-2 text-xs text-brand">{expanded ? "접기" : `이전 ${weeks.length - 6}주`}<ChevronDown className={cn("h-3 w-3", expanded && "rotate-180")} /></button>}
+        <div className="mt-3 grid min-w-0 grid-cols-[36px_minmax(0,1fr)_36px] overflow-hidden rounded-lg border bg-muted/35">
+          <button type="button" onClick={() => scrollWeeks(-1)} aria-label="이전 주간 보기" className="grid place-items-center border-r bg-surface/90 text-muted-foreground hover:text-foreground"><ChevronLeft className="h-4 w-4" /></button>
+          <div ref={weekListRef} onWheel={(event) => { if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) event.currentTarget.scrollLeft += event.deltaY; }} className="flex min-w-0 snap-x snap-mandatory gap-1 overflow-x-auto p-1 no-scrollbar">
+            {weeks.map((week) => (
+              <button key={week.weekId} type="button" onClick={() => setSelected(week.weekId)} className={cn("shrink-0 snap-start rounded-md px-3 py-1.5 text-xs font-medium", week.weekId === current.weekId ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground")}>{week.label}</button>
+            ))}
+          </div>
+          <button type="button" onClick={() => scrollWeeks(1)} aria-label="다음 주간 보기" className="grid place-items-center border-l bg-surface/90 text-muted-foreground hover:text-foreground"><ChevronRight className="h-4 w-4" /></button>
         </div>
       </div>
 
