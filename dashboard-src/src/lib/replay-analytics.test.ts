@@ -19,6 +19,7 @@ describe("Replay performance analytics", () => {
     expect(result.expectancy).toBeCloseTo(-3.333);
     expect(result.maximumLossStreak).toBe(2);
     expect(result.maximumDrawdown).toBe(-200);
+    expect(result.expectedProfit).toBeCloseTo(-33.333);
   });
 
   it("groups ticker, holding period and distribution", () => {

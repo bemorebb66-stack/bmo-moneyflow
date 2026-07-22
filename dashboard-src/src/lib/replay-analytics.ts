@@ -9,11 +9,18 @@ export type PerformanceRow = {
   averageHoldingDays: number;
   maximumGain: number;
   maximumLoss: number;
+  averageWin: number;
+  averageLoss: number;
+  payoffRatio: number;
 };
 
 const average = (values: number[]) => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
 
 function summarize(label: string, trades: CompletedTrade[]): PerformanceRow {
+  const wins = trades.filter((trade) => trade.returnPercent > 0);
+  const losses = trades.filter((trade) => trade.returnPercent < 0);
+  const averageWin = average(wins.map((trade) => trade.returnPercent));
+  const averageLoss = average(losses.map((trade) => trade.returnPercent));
   return {
     label,
     trades: trades.length,
@@ -23,6 +30,9 @@ function summarize(label: string, trades: CompletedTrade[]): PerformanceRow {
     averageHoldingDays: average(trades.map((trade) => trade.holdingDays)),
     maximumGain: Math.max(0, ...trades.map((trade) => trade.returnPercent)),
     maximumLoss: Math.min(0, ...trades.map((trade) => trade.returnPercent)),
+    averageWin,
+    averageLoss,
+    payoffRatio: averageLoss ? averageWin / Math.abs(averageLoss) : 0,
   };
 }
 
@@ -75,7 +85,7 @@ export function analyzeReplayPerformance(trades: CompletedTrade[]) {
   const worstHolding = [...holdingRows].filter((row) => row.trades >= 2).sort((a, b) => a.averageReturn - b.averageReturn)[0];
   const largeLosses = losses.filter((trade) => trade.returnPercent <= -10);
   const diagnostics = [
-    `승률은 ${trades.length ? (wins.length / trades.length * 100).toFixed(1) : "0.0"}%이며 거래당 기대값은 ${average(trades.map((trade) => trade.returnPercent)).toFixed(2)}%입니다.${Math.abs(averageLoss) > averageWin ? " 평균 손실이 평균 이익보다 큽니다." : " 평균 이익이 평균 손실보다 큽니다."}`,
+    `승률은 ${trades.length ? (wins.length / trades.length * 100).toFixed(1) : "0.0"}%지만 평균 이익은 +${averageWin.toFixed(2)}%, 평균 손실은 ${averageLoss.toFixed(2)}%입니다.${averageWin && Math.abs(averageLoss) > averageWin ? ` 손실 규모가 이익의 약 ${(Math.abs(averageLoss) / averageWin).toFixed(1)}배입니다.` : ""}`,
     largeLosses.length ? `-10% 이하 대형 손실 ${largeLosses.length}건이 전체 성과를 훼손했는지 점검하세요.` : "-10% 이하 대형 손실은 없었습니다.",
     worstTicker && bestTicker ? `${worstTicker.label}에서 손실이 가장 컸고, ${bestTicker.label}의 성과가 가장 양호했습니다.` : "종목별 성과를 계산할 거래가 부족합니다.",
     worstHolding ? `${worstHolding.label} 보유 거래의 평균 성과가 ${worstHolding.averageReturn.toFixed(2)}%로 가장 낮았습니다.` : "보유기간별 비교를 위한 표본이 부족합니다.",
@@ -85,11 +95,13 @@ export function analyzeReplayPerformance(trades: CompletedTrade[]) {
     winRate: trades.length ? wins.length / trades.length * 100 : 0,
     averageReturn: average(trades.map((trade) => trade.returnPercent)),
     totalProfit,
+    expectedProfit: trades.length ? totalProfit / trades.length : 0,
     averageWin,
     averageLoss,
     payoffRatio: averageLoss ? averageWin / Math.abs(averageLoss) : 0,
     expectancy: average(trades.map((trade) => trade.returnPercent)),
     maximumSingleLoss: Math.min(0, ...trades.map((trade) => trade.returnPercent)),
+    maximumSingleLossAmount: Math.min(0, ...trades.map((trade) => trade.realizedProfit)),
     maximumLossStreak,
     maximumDrawdown,
     averageHoldingDays: average(trades.map((trade) => trade.holdingDays)),
