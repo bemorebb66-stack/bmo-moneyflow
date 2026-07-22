@@ -23,6 +23,7 @@ import { fmtBp, fmtMoney, fmtPct } from "@/lib/format";
 import { ShareMenu } from "@/components/share-menu";
 import { DailyMarketAnalysis } from "@/components/daily-market-analysis";
 import { EventCalendar } from "@/components/event-calendar";
+import { WeeklyMarketSummary } from "@/components/weekly-market-summary";
 
 export const Route = createFileRoute("/today")({
   head: () => ({
@@ -142,6 +143,8 @@ function TodayPage() {
       </div>
 
       <DailyMarketAnalysis />
+
+      <WeeklyMarketSummary />
 
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <SectionCard
