@@ -2,12 +2,13 @@ import { ArrowDownRight, ArrowUpRight, BarChart3 } from "lucide-react";
 import { MARKET_INDEXES } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 
-const INDEX_ORDER = ["sp500", "russell2000", "dow", "nasdaq"];
+const INDEX_ORDER = ["sp500", "nasdaq", "russell2000", "vix"];
 
 export function MarketIndexPanel() {
-  const rows = [...MARKET_INDEXES].sort(
+  const rows = MARKET_INDEXES.filter((row) => INDEX_ORDER.includes(row.id)).sort(
     (a, b) => INDEX_ORDER.indexOf(a.id) - INDEX_ORDER.indexOf(b.id),
   );
+  const vixPending = !rows.some((row) => row.id === "vix");
   const asOf = rows[0]?.asOf;
 
   return (
@@ -59,6 +60,15 @@ export function MarketIndexPanel() {
                 </li>
               );
             })}
+            {vixPending ? (
+              <li className="py-2.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-medium">VIX</span>
+                  <span className="text-[10px] text-muted-foreground">수집 대기</span>
+                </div>
+                <div className="mt-0.5 text-[11px] text-muted-foreground">-</div>
+              </li>
+            ) : null}
           </ul>
         ) : (
           <p className="mt-3 rounded-md bg-surface-2 px-3 py-3 text-[11px] text-muted-foreground">

@@ -57,7 +57,7 @@ export function RotationSummary({ rows, categoryLabel, periodLabel }: {
                 to="/scanner"
                 className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-brand/25 bg-brand/10 px-3 text-xs font-semibold text-brand transition-colors hover:bg-brand/15 sm:min-h-8"
               >
-                관련 급증 종목 보기
+                {inflows[0]?.name ?? categoryLabel} 점유율 확대를 이끈 종목 보기
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

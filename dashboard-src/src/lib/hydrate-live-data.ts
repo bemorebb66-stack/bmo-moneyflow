@@ -587,11 +587,12 @@ export async function hydrateLiveData() {
     });
     LOCKUP_ROWS.splice(0, LOCKUP_ROWS.length, ...lockupRows);
 
-    const indexNames: Record<string, { id: "sp500" | "russell2000" | "dow" | "nasdaq"; name: string }> = {
+    const indexNames: Record<string, { id: "sp500" | "russell2000" | "dow" | "nasdaq" | "vix"; name: string }> = {
       "^GSPC": { id: "sp500", name: "S&P 500" },
       "^RUT": { id: "russell2000", name: "Russell 2000" },
       "^DJI": { id: "dow", name: "Dow Jones" },
       "^NDX": { id: "nasdaq", name: "Nasdaq 100" },
+      "^VIX": { id: "vix", name: "VIX" },
     };
     const indexRows = (market.indices ?? [])
       .filter((row: any) => indexNames[row.symbol])
