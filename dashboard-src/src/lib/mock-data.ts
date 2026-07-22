@@ -194,7 +194,7 @@ export const LIVE_META: {
 };
 
 export interface MarketIndexQuote {
-  id: "sp500" | "russell2000" | "dow" | "nasdaq" | "vix";
+  id: "sp500" | "russell2000" | "dow" | "nasdaq";
   name: string;
   symbol: string;
   value: number;
