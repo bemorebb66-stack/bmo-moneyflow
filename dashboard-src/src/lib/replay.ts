@@ -69,12 +69,39 @@ export type TradeContext = {
   underlyingTicker?: ReplaySnapshot["tickers"][string];
   underlyingGroup?: GroupContext;
   underlyingIndex?: { symbol: string; name: string; close: number; change_percent: number | null };
-  supportLevel: "FULL" | "UNDERLYING_ONLY" | "SECTOR_ONLY" | "INDEX_ONLY" | "PRODUCT_ONLY" | "UNSUPPORTED";
+  assetType: ReplayAssetType;
+  productDataAvailable: boolean;
+  underlyingMappingAvailable: boolean;
+  underlyingDataAvailable: boolean;
+  sectorDataAvailable: boolean;
+  marketDataAvailable: boolean;
+  missingReasons: string[];
+  supportLevel: CoverageStatus;
   industry?: GroupContext;
   sector?: GroupContext;
   marketCap?: GroupContext;
   market: ReplaySnapshot["market"];
 };
+
+export type ReplayAssetType =
+  | "STOCK"
+  | "ETF"
+  | "LEVERAGED_SINGLE_STOCK_ETF"
+  | "LEVERAGED_SECTOR_ETF"
+  | "LEVERAGED_INDEX_ETF"
+  | "INVERSE_ETF"
+  | "VOLATILITY_ETP"
+  | "UNKNOWN";
+
+export type CoverageStatus =
+  | "FULL"
+  | "UNDERLYING_ONLY"
+  | "SECTOR_ONLY"
+  | "INDEX_ONLY"
+  | "PRODUCT_ONLY"
+  | "MAPPING_REQUIRED"
+  | "HISTORICAL_DATA_MISSING"
+  | "UNSUPPORTED";
 
 export type ParseResult = {
   executions: ReplayExecution[];
@@ -302,12 +329,47 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
 export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, contextStatus: string): CompletedTrade {
   const ticker = snapshot.tickers[trade.ticker];
   const asset = getEtfMetadata(trade.ticker);
-  if (!ticker && !asset) return { ...trade, contextStatus: "기초자산 매핑 또는 과거 가격·거래대금 데이터가 필요합니다." };
+  const marketDataAvailable = Boolean(snapshot.market);
+  if (!ticker && !asset) {
+    const status = "과거 가격·거래대금 데이터가 없어 기본 매매 결과만 제공합니다.";
+    return {
+      ...trade,
+      contextStatus: status,
+      context: {
+        tradingDate: snapshot.trading_date,
+        assetType: "UNKNOWN",
+        productDataAvailable: false,
+        underlyingMappingAvailable: false,
+        underlyingDataAvailable: false,
+        sectorDataAvailable: false,
+        marketDataAvailable,
+        missingReasons: ["종목이 BVT 추적 유니버스에 없거나 과거 가격·거래대금 데이터가 없습니다."],
+        supportLevel: "HISTORICAL_DATA_MISSING",
+        market: snapshot.market,
+      },
+    };
+  }
   const underlyingTicker = asset?.underlyingTicker ? snapshot.tickers[asset.underlyingTicker] : undefined;
   const underlyingGroup = asset?.underlyingIndustry ? snapshot.groups.industry[asset.underlyingIndustry] : undefined;
   const underlyingIndex = asset?.underlyingIndex ? snapshot.market.indices?.find((row) => row.name === asset.underlyingIndex) : undefined;
   const hasUnderlying = Boolean(underlyingTicker || underlyingGroup || underlyingIndex);
-  const supportLevel: TradeContext["supportLevel"] = ticker && hasUnderlying
+  const assetType: ReplayAssetType = !asset
+    ? "STOCK"
+    : asset.assetType === "VOLATILITY_ETP" || asset.underlyingType === "VOLATILITY"
+      ? "VOLATILITY_ETP"
+      : asset.direction === "SHORT"
+        ? "INVERSE_ETF"
+        : asset.leverageMultiple > 1 && asset.underlyingType === "SINGLE_STOCK"
+          ? "LEVERAGED_SINGLE_STOCK_ETF"
+          : asset.leverageMultiple > 1 && asset.underlyingType === "SECTOR"
+            ? "LEVERAGED_SECTOR_ETF"
+            : asset.leverageMultiple > 1 && asset.underlyingType === "INDEX"
+              ? "LEVERAGED_INDEX_ETF"
+              : "ETF";
+  const underlyingMappingAvailable = Boolean(asset && asset.underlyingType !== "UNKNOWN" && (asset.underlyingTicker || asset.underlyingIndustry || asset.underlyingIndex));
+  const supportLevel: TradeContext["supportLevel"] = asset?.underlyingType === "UNKNOWN"
+    ? "MAPPING_REQUIRED"
+    : ticker && hasUnderlying
     ? "FULL"
     : underlyingTicker
       ? "UNDERLYING_ONLY"
@@ -317,7 +379,14 @@ export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, cont
           ? "INDEX_ONLY"
           : ticker
             ? "PRODUCT_ONLY"
-            : "UNSUPPORTED";
+            : asset
+              ? "UNSUPPORTED"
+              : "HISTORICAL_DATA_MISSING";
+  const missingReasons = [
+    !ticker ? "상품 자체 가격·거래대금 데이터 없음" : "",
+    asset && !underlyingMappingAvailable ? "기초자산 매핑 없음" : "",
+    asset && underlyingMappingAvailable && !hasUnderlying ? "기초자산 과거 데이터 없음" : "",
+  ].filter(Boolean);
   const status = supportLevel === "FULL"
     ? contextStatus
     : supportLevel === "UNDERLYING_ONLY"
@@ -331,13 +400,12 @@ export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, cont
             : asset?.underlyingType === "VOLATILITY"
               ? `${trade.ticker}는 VIX 선물 기반 상품으로 일반 주식 섹터와 직접 비교하지 않습니다. 변동성 환경 데이터가 필요합니다.`
               : `${trade.ticker}는 매핑됐지만 기초자산 과거 데이터가 없어 시장환경 분석에서 제외됐습니다.`;
-  return { ...trade, contextStatus: status, context: { tradingDate: snapshot.trading_date, ticker, asset, underlyingTicker, underlyingGroup, underlyingIndex, supportLevel, industry: ticker ? snapshot.groups.industry[ticker.industry] : undefined, sector: ticker ? snapshot.groups.sector[ticker.sector] : undefined, marketCap: ticker ? snapshot.groups.market_cap[ticker.market_cap_group] : undefined, market: snapshot.market } };
+  return { ...trade, contextStatus: status, context: { tradingDate: snapshot.trading_date, ticker, asset, underlyingTicker, underlyingGroup, underlyingIndex, assetType, productDataAvailable: Boolean(ticker), underlyingMappingAvailable, underlyingDataAvailable: hasUnderlying, sectorDataAvailable: Boolean(underlyingGroup || (ticker && snapshot.groups.sector[ticker.sector])), marketDataAvailable, missingReasons, supportLevel, industry: ticker ? snapshot.groups.industry[ticker.industry] : undefined, sector: ticker ? snapshot.groups.sector[ticker.sector] : undefined, marketCap: ticker ? snapshot.groups.market_cap[ticker.market_cap_group] : undefined, market: snapshot.market } };
 }
 
 export function confidence(count: number) {
-  if (count < 3) return "표본 부족";
-  if (count < 5) return "참고";
-  if (count < 10) return "낮음";
-  if (count < 20) return "보통";
-  return "높음";
+  if (count < 5) return "표본 부족";
+  if (count < 15) return "신뢰도 낮음";
+  if (count < 30) return "참고";
+  return "분석 가능";
 }

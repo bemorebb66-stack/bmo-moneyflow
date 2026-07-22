@@ -213,6 +213,9 @@ describe("ETF market context", () => {
   });
 
   it("uses one concise unsupported status", () => {
-    expect(addContext(completed("UNMAPPED"), snapshot, "정상").contextStatus).toBe("기초자산 매핑 또는 과거 가격·거래대금 데이터가 필요합니다.");
+    const result = addContext(completed("UNMAPPED"), snapshot, "정상");
+    expect(result.contextStatus).toBe("과거 가격·거래대금 데이터가 없어 기본 매매 결과만 제공합니다.");
+    expect(result.context?.supportLevel).toBe("HISTORICAL_DATA_MISSING");
+    expect(result.context?.missingReasons).toHaveLength(1);
   });
 });
