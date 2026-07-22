@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-21T23:29:23.460156+00:00",
+    "generatedAt": "2026-07-22T23:31:34.829884+00:00",
     "status": "ok",
-    "from": "2026-06-06",
-    "to": "2027-01-17",
-    "count": 198,
+    "from": "2026-06-07",
+    "to": "2027-01-18",
+    "count": 212,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -494,18 +494,6 @@
       "epsEstimate": 1.9231,
       "revenueActual": null,
       "revenueEstimate": 26343691811.0
-    },
-    {
-      "ticker": "UTI",
-      "company": "유니버설 테크니컬 인스티튜트",
-      "date": "2026-11-17",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.4949,
-      "revenueActual": null,
-      "revenueEstimate": 251879860.0
     },
     {
       "ticker": "VVV",
@@ -1672,6 +1660,18 @@
       "revenueEstimate": 117552179.0
     },
     {
+      "ticker": "PLAB",
+      "company": "포토트로닉스 주식회사",
+      "date": "2026-12-08",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.4284,
+      "revenueActual": null,
+      "revenueEstimate": 219435660.0
+    },
+    {
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2026-12-08",
@@ -2402,6 +2402,174 @@
       "epsEstimate": 5.1231,
       "revenueActual": null,
       "revenueEstimate": 6703730509.0
+    },
+    {
+      "ticker": "DHI",
+      "company": "D.R. 호턴",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 2.2244,
+      "revenueActual": null,
+      "revenueEstimate": 7649593257.0
+    },
+    {
+      "ticker": "FNB",
+      "company": "에프엔비",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.4762,
+      "revenueActual": null,
+      "revenueEstimate": 498716456.0
+    },
+    {
+      "ticker": "HWC",
+      "company": "핸콕 휘트니",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.7513,
+      "revenueActual": null,
+      "revenueEstimate": 425667388.0
+    },
+    {
+      "ticker": "IBKR",
+      "company": "인터랙티브 브로커스 그룹",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.6968,
+      "revenueActual": null,
+      "revenueEstimate": 1903349580.0
+    },
+    {
+      "ticker": "MMM",
+      "company": "쓰리엠",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.9903,
+      "revenueActual": null,
+      "revenueEstimate": 6271445520.0
+    },
+    {
+      "ticker": "NFLX",
+      "company": "넷플릭스",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7524,
+      "revenueActual": null,
+      "revenueEstimate": 13851030207.0
+    },
+    {
+      "ticker": "NIC",
+      "company": "니콜렛 뱅크셰어스",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 3.2098,
+      "revenueActual": null,
+      "revenueEstimate": 172282265.0
+    },
+    {
+      "ticker": "OZK",
+      "company": "뱅크 오즈크",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.5359,
+      "revenueActual": null,
+      "revenueEstimate": 451120206.0
+    },
+    {
+      "ticker": "PNFP",
+      "company": "피너클 파이낸셜 파트너스",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.8066,
+      "revenueActual": null,
+      "revenueEstimate": 1339027715.0
+    },
+    {
+      "ticker": "SFBS",
+      "company": "서비스퍼스트 뱅크셰어스",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.6966,
+      "revenueActual": null,
+      "revenueEstimate": 182996843.0
+    },
+    {
+      "ticker": "SFNC",
+      "company": "시몬스 퍼스트 내셔널",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5453,
+      "revenueActual": null,
+      "revenueEstimate": 263455392.0
+    },
+    {
+      "ticker": "UAL",
+      "company": "유나이티드 에어라인스 홀딩스",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 3.6311,
+      "revenueActual": null,
+      "revenueEstimate": 17572276263.0
+    },
+    {
+      "ticker": "WTFC",
+      "company": "윈트러스트 파이낸셜",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 3.4448,
+      "revenueActual": null,
+      "revenueEstimate": 779998896.0
+    },
+    {
+      "ticker": "ZION",
+      "company": "자이언스 뱅코프",
+      "date": "2027-01-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.7292,
+      "revenueActual": null,
+      "revenueEstimate": 925463544.0
     }
   ]
 }
