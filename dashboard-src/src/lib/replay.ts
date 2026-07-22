@@ -40,6 +40,8 @@ export type ReplaySnapshot = {
   tickers: Record<string, {
     name: string;
     name_ko: string;
+    close_price?: number;
+    daily_return?: number | null;
     volume_state: string;
     dollar_volume_change_1d: number | null;
     dollar_volume_ratio_5d: number | null;

@@ -260,10 +260,11 @@ function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[];
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6"><Metric label="연결률" value={`${connectionRate.toFixed(0)}%`} /><Metric label="전체 연결" value={`${fullLinked}건`} /><Metric label="기초자산 연결" value={`${underlyingLinked}건`} /><Metric label="섹터·지수 연결" value={`${groupLinked}건`} /><Metric label="상품 데이터만" value={`${productOnly}건`} /><Metric label="매핑 필요" value={`${mappingRequired}건`} /></div>
         {connectionRate < 50 && <p className="rounded-md bg-warning/5 px-3 py-2 text-xs text-warning">연결률이 {connectionRate.toFixed(0)}%로 낮아 시장환경 결과는 탐색적 참고자료입니다.</p>}
         {excludedPatterns > 0 && <p className="text-xs text-muted-foreground">표본 10건 미만 조건 {excludedPatterns}개는 시장환경 카드에서 제외했습니다.</p>}
+        <EnvironmentComparisonTable trades={linked} baseline={linkedAverage} />
         <div className="grid gap-5 lg:grid-cols-2"><PatternCard title="연결된 거래에서 관찰된 조건" icon={TrendingUp} rows={profitable} baseline={linkedAverage} positive /><PatternCard title="손실 거래에서 관찰된 조건" icon={TrendingDown} rows={losing} baseline={linkedAverage} /></div>
-        <EnvironmentTradeList trades={linked} linked={linked} />
+        <EnvironmentTradeList trades={linked} linked={linked} baseline={linkedAverage} />
       </TabsContent>
-      <TabsContent value="unlinked" className="space-y-4"><div className="grid gap-3 sm:grid-cols-3"><Metric label="상품 매핑 필요" value={`${mappingRequired}건`} /><Metric label="과거 데이터 부족" value={`${historicalMissing}건`} /><Metric label="미연결 전체" value={`${unlinked.length}건`} /></div><details className="rounded-lg border border-border bg-card"><summary className="cursor-pointer px-5 py-4 text-sm font-semibold">미연결 거래 {unlinked.length}건 보기</summary><div className="border-t border-border"><EnvironmentTradeList trades={unlinked} linked={linked} /></div></details></TabsContent>
+      <TabsContent value="unlinked" className="space-y-4"><div className="grid gap-3 sm:grid-cols-3"><Metric label="상품 매핑 필요" value={`${mappingRequired}건`} /><Metric label="과거 데이터 부족" value={`${historicalMissing}건`} /><Metric label="미연결 전체" value={`${unlinked.length}건`} /></div><details className="rounded-lg border border-border bg-card"><summary className="cursor-pointer px-5 py-4 text-sm font-semibold">미연결 거래 {unlinked.length}건 보기</summary><div className="border-t border-border"><EnvironmentTradeList trades={unlinked} linked={linked} baseline={analytics.averageReturn} /></div></details></TabsContent>
     </Tabs>
     {warnings.length > 0 && <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">분석에서 제외된 미청산·확인 거래 안내 보기</summary><div className="mt-3 space-y-1 text-xs text-muted-foreground">{warnings.map((warning) => <p key={warning}>{warning}</p>)}</div></details>}
     <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">계산 기준 보기</summary><ul className="mt-3 grid gap-1 text-xs leading-5 text-muted-foreground sm:grid-cols-2"><li>손익은 체결 수수료를 반영하며 세금·환율은 반영하지 않은 USD 기준입니다.</li><li>평균 수익률은 완결 거래별 수익률의 단순 평균입니다.</li><li>같은 종목은 보유 수량이 0이 되는 시점마다 거래 한 건으로 닫습니다.</li><li>부분 매도 원가는 평균단가 방식으로 배분합니다.</li><li>최대 낙폭은 최종 매도 완료 순서의 누적 실현손익 기준입니다.</li><li>보유기간 0일은 같은 날짜에 매수와 매도를 마친 당일 거래입니다.</li></ul></details>
@@ -292,7 +293,75 @@ function DistributionChart({ data }: { data: Array<{ label: string; count: numbe
 
 function PerformanceTable({ title, rows, showHolding = false }: { title: string; rows: PerformanceRow[]; showHolding?: boolean }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">{title}</h2></div><div className="overflow-x-auto"><table className="w-full min-w-[920px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["구분", "거래 수", "승률", "평균 수익률", "총 손익", "평균 이익", "평균 손실", "손익비", ...(showHolding ? ["평균 보유"] : []), "최대 이익", "최대 손실", "표본"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.label} className={row.trades < 5 ? "opacity-60" : ""}><td className="px-4 py-3 font-semibold">{row.label}</td><td className="px-4 py-3 text-right">{row.trades}건</td><td className="px-4 py-3 text-right">{row.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right font-semibold", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{row.averageReturn >= 0 ? "+" : ""}{row.averageReturn.toFixed(2)}%</td><td className={cn("px-4 py-3 text-right", row.totalProfit >= 0 ? "text-success" : "text-danger")}>{fmtUsd(row.totalProfit)}</td><td className="px-4 py-3 text-right text-success">{row.wins ? `+${row.averageWin.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-danger">{row.losses ? `${row.averageLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right">{formatPayoffRatio(row.payoffRatio, row.wins, row.losses)}</td>{showHolding && <td className="px-4 py-3 text-right">{row.averageHoldingDays.toFixed(1)}일</td>}<td className="px-4 py-3 text-right text-success">{row.wins ? `+${row.maximumGain.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-danger">{row.losses ? `${row.maximumLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-xs text-muted-foreground">{row.trades < 5 ? "표본 부족" : row.trades < 10 ? "참고" : "분석 가능"}</td></tr>)}</tbody></table></div></Card>; }
 
-function EnvironmentTradeList({ trades, linked }: { trades: CompletedTrade[]; linked: CompletedTrade[] }) { return <Card><div className="divide-y divide-border">{trades.map((trade, index) => <div key={`${trade.ticker}-${trade.entryDate}-${index}`} className="grid gap-3 px-5 py-4 md:grid-cols-[120px_120px_120px_1fr] md:items-center"><div><div className="font-semibold">{trade.ticker}</div><div className="text-xs text-muted-foreground">{trade.entryDate}</div></div><div className={cn("font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</div><div className="text-xs font-semibold">{coverageLabel(trade.context?.supportLevel)}</div><div className="text-sm text-muted-foreground">{trade.context && linked.includes(trade) ? contextDescription(trade.context) : trade.contextStatus}</div></div>)}</div></Card>; }
+function EnvironmentTradeList({ trades, linked, baseline }: { trades: CompletedTrade[]; linked: CompletedTrade[]; baseline: number }) { return <Card><div className="divide-y divide-border">{trades.map((trade, index) => <article key={`${trade.ticker}-${trade.entryDate}-${index}`} className="grid gap-3 px-5 py-5 md:grid-cols-[140px_1fr] md:gap-5"><div><div className="flex items-center gap-2"><span className="font-semibold">{trade.ticker}</span><span className={cn("font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</span></div><div className="mt-1 text-xs text-muted-foreground">{trade.entryDate} 진입</div><div className="mt-2 inline-flex rounded-full bg-secondary px-2 py-1 text-[11px] font-medium">{coverageLabel(trade.context?.supportLevel)}</div></div><div>{trade.context && linked.includes(trade) ? <TradeReviewNarrative trade={trade} baseline={baseline} /> : <p className="text-sm text-muted-foreground">{trade.contextStatus}</p>}</div></article>)}</div></Card>; }
+
+type EnvironmentPerformance = { label: string; trades: number; winRate: number; averageReturn: number; averageLoss: number; payoffRatio: number; difference: number };
+
+function environmentCondition(trade: CompletedTrade) {
+  const context = trade.context;
+  if (!context) return null;
+  const volumeState = context.underlyingTicker?.volume_state ?? (!context.asset ? context.ticker?.volume_state : undefined);
+  if (volumeState) {
+    const bucket = volumeState.includes("강") ? "강함" : volumeState.includes("약") ? "약함" : "보통";
+    return `기초자산 거래대금 ${bucket}`;
+  }
+  const flow = context.underlyingGroup?.flow_status ?? context.industry?.flow_status ?? context.sector?.flow_status;
+  if (flow) {
+    const bucket = /(확대|유입|강함)/.test(flow) ? "점유율 확대" : /(축소|이탈|약함)/.test(flow) ? "점유율 축소" : "중립";
+    return `산업 흐름 ${bucket}`;
+  }
+  return context.underlyingIndex ? `지수 ${context.underlyingIndex.change_percent != null && context.underlyingIndex.change_percent >= 0 ? "상승" : "하락"}` : null;
+}
+
+function environmentPerformanceRows(trades: CompletedTrade[], baseline: number): EnvironmentPerformance[] {
+  const groups = new Map<string, CompletedTrade[]>();
+  for (const trade of trades) {
+    const label = environmentCondition(trade);
+    if (label) groups.set(label, [...(groups.get(label) ?? []), trade]);
+  }
+  return [...groups].map(([label, rows]) => {
+    const wins = rows.filter((trade) => trade.returnPercent > 0);
+    const losses = rows.filter((trade) => trade.returnPercent < 0);
+    const averageReturn = rows.reduce((sum, trade) => sum + trade.returnPercent, 0) / rows.length;
+    const averageWin = wins.length ? wins.reduce((sum, trade) => sum + trade.returnPercent, 0) / wins.length : 0;
+    const averageLoss = losses.length ? losses.reduce((sum, trade) => sum + trade.returnPercent, 0) / losses.length : 0;
+    return { label, trades: rows.length, winRate: wins.length / rows.length * 100, averageReturn, averageLoss, payoffRatio: losses.length && wins.length ? averageWin / Math.abs(averageLoss) : 0, difference: averageReturn - baseline };
+  }).sort((a, b) => b.trades - a.trades || b.averageReturn - a.averageReturn);
+}
+
+function EnvironmentComparisonTable({ trades, baseline }: { trades: CompletedTrade[]; baseline: number }) {
+  const rows = environmentPerformanceRows(trades, baseline);
+  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">진입 환경별 실제 성과</h2><p className="mt-1 text-xs text-muted-foreground">같은 환경에서 내 거래 결과가 전체 연결 거래 평균보다 나았는지 비교합니다.</p></div><div className="overflow-x-auto"><table className="w-full min-w-[760px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["진입 당시 환경", "거래", "승률", "평균 수익률", "평균 손실", "손익비", "전체 평균 대비"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.label}><td className="px-4 py-3 font-semibold">{row.label}</td><td className="px-4 py-3 text-right">{row.trades}건</td><td className="px-4 py-3 text-right">{row.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right font-semibold", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{signedPercent(row.averageReturn)}</td><td className="px-4 py-3 text-right text-danger">{row.averageLoss ? `${row.averageLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right">{row.payoffRatio ? row.payoffRatio.toFixed(2) : "—"}</td><td className={cn("px-4 py-3 text-right", row.difference >= 0 ? "text-success" : "text-danger")}>{signedPercent(row.difference, "p")}</td></tr>)}</tbody></table></div></Card>;
+}
+
+function signedPercent(value: number, suffix = "") {
+  return `${value >= 0 ? "+" : ""}${value.toFixed(2)}%${suffix}`;
+}
+
+function TradeReviewNarrative({ trade, baseline }: { trade: CompletedTrade; baseline: number }) {
+  const context = trade.context!;
+  const asset = context.asset;
+  const metric = context.underlyingTicker ?? (!asset ? context.ticker : undefined);
+  const ratio = metric?.dollar_volume_ratio_20d;
+  const priceDirection = metric?.daily_return == null ? null : metric.daily_return >= 0 ? "상승" : "하락";
+  const direction = asset ? `${asset.leverageMultiple > 1 ? `${asset.leverageMultiple}배 ` : ""}${asset.direction === "SHORT" ? "인버스" : "롱"} 상품` : "일반 주식";
+  const difference = trade.returnPercent - baseline;
+  const subject = asset?.underlyingTicker ?? asset?.theme ?? metric?.name_ko ?? trade.ticker;
+  const environment = metric
+    ? `${subject} 거래대금은 ${ratio != null ? `20일 평균의 ${ratio.toFixed(1)}배` : metric.volume_state}였고${priceDirection ? `, 기초자산 가격은 ${priceDirection} 중` : ""}이었습니다.`
+    : context.underlyingGroup
+      ? `${asset?.theme ?? "관련 산업"} 거래대금 흐름은 ${context.underlyingGroup.flow_status}였습니다.`
+      : context.underlyingIndex
+        ? `${context.underlyingIndex.name}는 ${context.underlyingIndex.change_percent == null ? "변화율 미수집" : signedPercent(context.underlyingIndex.change_percent)} 상태였습니다.`
+        : `진입 당시 시장은 ${context.market.market_regime} 구간이었습니다.`;
+  const result = `${direction} ${trade.ticker}에 진입해 ${signedPercent(trade.returnPercent)}로 마감했으며, 전체 연결 거래 평균보다 ${Math.abs(difference).toFixed(2)}%p ${difference >= 0 ? "높았습니다" : "낮았습니다"}.`;
+  let review = "환경 확인 후 진입했는지와 청산 기준이 일관되었는지 복기해보세요.";
+  if (trade.returnPercent < 0 && metric?.volume_state.includes("강")) review = "거래대금 급증 후 추격 진입했는지, 진입 전 손절 기준이 있었는지 점검하세요.";
+  else if (trade.returnPercent < 0 && metric?.volume_state.includes("약") && asset?.direction !== "SHORT") review = "기초자산의 시장 관심이 약한 상태에서 롱 방향으로 진입한 근거를 점검하세요.";
+  else if (trade.returnPercent > 0 && context.underlyingGroup && /(확대|유입|강함)/.test(context.underlyingGroup.flow_status) && asset?.direction !== "SHORT") review = "산업 흐름과 거래 방향이 일치했습니다. 같은 확인 절차를 반복할 수 있는지 정리해보세요.";
+  else if (asset && asset.leverageMultiple > 1 && (!metric || metric.volume_state === "보통")) review = "뚜렷한 거래대금 확대 없이 고배율 상품에 진입한 근거와 보유 시간을 점검하세요.";
+  return <div className="space-y-3"><div><div className="text-[11px] font-semibold uppercase tracking-wide text-brand">환경</div><p className="mt-1 text-sm leading-6">{environment}</p></div><div className="rounded-md bg-surface-2 px-3 py-3"><div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">내 결과</div><p className="mt-1 text-sm font-medium leading-6">{result}</p></div><div><div className="text-[11px] font-semibold uppercase tracking-wide text-warning">복기 질문</div><p className="mt-1 text-sm leading-6 text-muted-foreground">{review}</p></div></div>;
+}
 
 type Pattern = { label: string; trades: number; winRate: number; averageReturn: number };
 function patternRows(trades: CompletedTrade[]): Pattern[] {
@@ -307,15 +376,6 @@ function patternRows(trades: CompletedTrade[]): Pattern[] {
     for (const label of labels) groups.set(label, [...(groups.get(label) ?? []), trade.returnPercent]);
   }
   return [...groups].map(([label, values]) => ({ label, trades: values.length, winRate: values.filter((value) => value > 0).length / values.length * 100, averageReturn: values.reduce((sum, value) => sum + value, 0) / values.length }));
-}
-
-function contextDescription(context: NonNullable<CompletedTrade["context"]>) {
-  if (!context.asset) return `종목 ${context.ticker?.volume_state ?? "-"} · 산업 ${context.industry?.flow_status ?? "-"} · 시장 ${context.market.market_regime}`;
-  const self = context.ticker ? `${context.asset.ticker} 자체 거래대금은 ${context.ticker.volume_state}이었습니다.` : `${context.asset.ticker} 자체 과거 거래대금은 제공되지 않습니다.`;
-  if (context.underlyingTicker) return `${self} 기초자산 ${context.asset.underlyingTicker} 거래대금은 당시 ${context.underlyingTicker.volume_state}이었습니다.`;
-  if (context.underlyingGroup) return `${self} 기초 ${context.asset.theme} 산업 흐름은 당시 ${context.underlyingGroup.flow_status}이었습니다.`;
-  if (context.underlyingIndex) return `${self} ${context.underlyingIndex.name}는 당시 ${context.underlyingIndex.change_percent != null ? `${context.underlyingIndex.change_percent >= 0 ? "+" : ""}${context.underlyingIndex.change_percent.toFixed(2)}%` : "변화율 미수집"}였습니다.`;
-  return `${self} 기초자산 환경은 아직 연결되지 않았습니다.`;
 }
 
 function coverageLabel(status?: NonNullable<CompletedTrade["context"]>["supportLevel"]) {
