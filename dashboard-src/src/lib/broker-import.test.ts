@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as XLSX from "xlsx";
-import { inspectBrokerFile, normalizeBrokerRows } from "./broker-import";
+import { inspectBrokerFile, inspectBrokerText, normalizeBrokerRows } from "./broker-import";
 
 function workbookFile(name: string, sheets: Record<string, unknown[][]>) {
   const workbook = XLSX.utils.book_new();
@@ -50,5 +50,18 @@ describe("broker Excel import", () => {
     expect(result.executions.map((row) => row.side)).toEqual(["buy", "sell"]);
     expect(result.warnings).toContain("수수료 열이 없어 0으로 계산합니다.");
     expect(result.warnings).toContain("통화 열이 없어 USD로 처리합니다.");
+  });
+
+  it("imports a tab-separated table pasted from an HTS", () => {
+    const inspection = inspectBrokerText([
+      "종목코드\t거래일\t매매구분\t체결수량\t체결단가\t수수료",
+      "AAPL\t2026-07-01\t매수\t2\t200\t1",
+      "AAPL\t2026-07-02\t매도\t2\t205\t1",
+    ].join("\n"));
+    expect(inspection.selectedSheet).toBe("붙여넣기");
+    expect(inspection.automatic).toBe(true);
+    const result = normalizeBrokerRows(inspection);
+    expect(result.executions).toHaveLength(2);
+    expect(result.executions.map((row) => row.side)).toEqual(["buy", "sell"]);
   });
 });

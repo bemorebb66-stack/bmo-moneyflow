@@ -103,14 +103,7 @@ function brokerName(headers: string[]) {
   return "공통 형식";
 }
 
-export async function inspectBrokerFile(file: File): Promise<BrokerInspection> {
-  const extension = file.name.split(".").pop()?.toLowerCase();
-  if (!extension || !["csv", "xlsx", "xls"].includes(extension)) throw new Error("CSV, XLSX, XLS 파일만 올릴 수 있습니다.");
-  const buffer = await file.arrayBuffer();
-  const workbook = extension === "csv"
-    ? XLSX.read(decodeCsv(buffer), { type: "string", cellDates: true, raw: true })
-    : XLSX.read(buffer, { type: "array", cellDates: true, raw: true });
-
+function inspectWorkbook(workbook: XLSX.WorkBook, fileName: string): BrokerInspection {
   type Candidate = { sheet: string; headerRow: number; rows: unknown[][]; mapping: ColumnMapping; score: number };
   let best: Candidate | null = null;
   for (const sheet of workbook.SheetNames) {
@@ -133,7 +126,7 @@ export async function inspectBrokerFile(file: File): Promise<BrokerInspection> {
   const sideSamples = sideIndex === null ? [] : selected.rows.slice(selected.headerRow + 1, selected.headerRow + 21).map((row) => String(row[sideIndex] ?? "").trim()).filter(Boolean);
   const numericSideValues = sideSamples.length > 0 && sideSamples.every((value) => value === "1" || value === "2");
   return {
-    fileName: file.name,
+    fileName,
     selectedSheet: selected.sheet,
     headerRow: selected.headerRow + 1,
     headers,
@@ -144,6 +137,34 @@ export async function inspectBrokerFile(file: File): Promise<BrokerInspection> {
     automatic: mappedRequired === requiredFields.length && !numericSideValues,
     numericSideValues,
   };
+}
+
+export function inspectBrokerRows(rows: unknown[][], fileName: string, sheetName = "붙여넣기"): BrokerInspection {
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(rows), sheetName);
+  return inspectWorkbook(workbook, fileName);
+}
+
+export function inspectBrokerText(text: string, fileName = "붙여넣은 거래내역"): BrokerInspection {
+  const cleaned = text.replace(/^\uFEFF/, "").trim();
+  if (!cleaned) throw new Error("붙여넣은 거래내역이 비어 있습니다.");
+  if (cleaned.includes("\t")) {
+    return inspectBrokerRows(
+      cleaned.split(/\r?\n/).filter((line) => line.trim()).map((line) => line.split("\t").map((cell) => cell.trim())),
+      fileName,
+    );
+  }
+  return inspectWorkbook(XLSX.read(cleaned, { type: "string", cellDates: true, raw: true }), fileName);
+}
+
+export async function inspectBrokerFile(file: File): Promise<BrokerInspection> {
+  const extension = file.name.split(".").pop()?.toLowerCase();
+  if (!extension || !["csv", "xlsx", "xls"].includes(extension)) throw new Error("CSV, XLSX, XLS, PDF 파일만 올릴 수 있습니다.");
+  const buffer = await file.arrayBuffer();
+  const workbook = extension === "csv"
+    ? XLSX.read(decodeCsv(buffer), { type: "string", cellDates: true, raw: true })
+    : XLSX.read(buffer, { type: "array", cellDates: true, raw: true });
+  return inspectWorkbook(workbook, file.name);
 }
 
 function excelDate(serial: number) {

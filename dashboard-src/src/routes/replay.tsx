@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { AlertCircle, CheckCircle2, Download, FileSpreadsheet, RotateCcw, ShieldCheck, TrendingDown, TrendingUp, Upload } from "lucide-react";
+import { AlertCircle, CheckCircle2, ClipboardPaste, Download, FileSpreadsheet, RotateCcw, ShieldCheck, TrendingDown, TrendingUp, Upload } from "lucide-react";
 import { PageHeading, PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip as ChartTooltip, XAxis, YAxis } from "recharts";
-import { inspectBrokerFile, importFieldLabels, normalizeBrokerRows, type BrokerImportResult, type BrokerInspection, type ColumnMapping, type ImportField } from "@/lib/broker-import";
+import { inspectBrokerFile, inspectBrokerText, importFieldLabels, normalizeBrokerRows, type BrokerImportResult, type BrokerInspection, type ColumnMapping, type ImportField } from "@/lib/broker-import";
 import { addContext, combineReplayTrades, confidence, parseReplayCsv, REPLAY_PARSER_VERSION, selectCompletedTrades, type CompletedTrade, type OpenPosition, type ReplaySnapshot, type ReplayTickerDebug } from "@/lib/replay";
 import { cn } from "@/lib/utils";
 import { analyzeReplayPerformance, type PerformanceRow } from "@/lib/replay-analytics";
@@ -89,13 +89,29 @@ function ReplayPage() {
     if (!file) return;
     setUploadError("");
     try {
-      const inspected = await inspectBrokerFile(file);
+      const extension = file.name.split(".").pop()?.toLowerCase();
+      const inspected = extension === "pdf"
+        ? await (await import("@/lib/pdf-trade-import")).inspectPdfTradeFile(file)
+        : await inspectBrokerFile(file);
       setInspection(inspected);
       setFileName(file.name);
       if (inspected.automatic) processInspection(inspected);
       else setStage("mapping");
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "파일을 읽지 못했습니다.");
+    }
+  };
+
+  const onPaste = (text: string) => {
+    setUploadError("");
+    try {
+      const inspected = inspectBrokerText(text);
+      setInspection(inspected);
+      setFileName(inspected.fileName);
+      if (inspected.automatic) processInspection(inspected);
+      else setStage("mapping");
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "붙여넣은 거래내역을 읽지 못했습니다.");
     }
   };
 
@@ -146,11 +162,11 @@ function ReplayPage() {
       <div className="mx-auto max-w-6xl">
         <PageHeading title="BVT Replay" description="내 매매와 당시 거래대금·산업·시장 흐름을 연결해 반복되는 투자 환경을 복기합니다." showDataStatus={false} />
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-success/20 bg-success/5 px-4 py-3 text-xs">
-          <span className="inline-flex items-center gap-2 font-medium"><ShieldCheck className="h-4 w-4 text-success" />원본 CSV·Excel 파일은 서버로 전송되지 않고 이 브라우저에서만 처리됩니다.</span>
+          <span className="inline-flex items-center gap-2 font-medium"><ShieldCheck className="h-4 w-4 text-success" />원본 파일과 붙여넣은 내용은 서버로 전송되지 않고 이 브라우저에서만 처리됩니다.</span>
           {stage !== "upload" && <Button variant="ghost" size="sm" onClick={reset}><RotateCcw className="mr-1.5 h-4 w-4" />처음부터</Button>}
         </div>
 
-        {stage === "upload" && <UploadPanel inputRef={inputRef} onFile={onFile} onSample={loadSample} error={uploadError} />}
+        {stage === "upload" && <UploadPanel inputRef={inputRef} onFile={onFile} onPaste={onPaste} onSample={loadSample} error={uploadError} />}
         {stage === "mapping" && inspection && <MappingPanel inspection={inspection} onApply={(mapping, numericSide) => processInspection(inspection, mapping, numericSide)} />}
         {stage === "review" && <ReviewPanel fileName={fileName} executions={executionsCount} trades={trades} selectedTrades={selectedTrades} tradeLimit={tradeLimit} datePreset={datePreset} customFrom={customFrom} customTo={customTo} parseErrors={parseErrors} tradeErrors={tradeErrors} warnings={warnings} openingShortfalls={openingShortfalls} openPositions={openPositions} tickerDebug={tickerDebug} inspection={inspection} importResult={importResult} onTradeLimit={setTradeLimit} onDatePreset={setDatePreset} onCustomFrom={setCustomFrom} onCustomTo={setCustomTo} onAnalyze={analyze} />}
         {stage === "loading" && <LoadingPanel />}
@@ -160,18 +176,29 @@ function ReplayPage() {
   );
 }
 
-function UploadPanel({ inputRef, onFile, onSample, error }: { inputRef: RefObject<HTMLInputElement | null>; onFile: (file?: File) => void; onSample: () => void; error: string }) {
+function UploadPanel({ inputRef, onFile, onPaste, onSample, error }: { inputRef: RefObject<HTMLInputElement | null>; onFile: (file?: File) => void; onPaste: (text: string) => void; onSample: () => void; error: string }) {
   const [dragging, setDragging] = useState(false);
+  const [inputMode, setInputMode] = useState<"file" | "paste">("file");
+  const [pastedText, setPastedText] = useState("");
   return <div className="grid gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,.65fr)]">
     <Card><CardContent className="p-5 sm:p-7">
-      <div className="mb-5"><div className="text-xs font-semibold text-brand">TRADE IMPORT</div><h2 className="mt-1 text-xl font-bold">증권사 거래내역 파일 업로드</h2><p className="mt-1 text-sm text-muted-foreground">증권사 HTS에서 받은 CSV 또는 Excel 파일을 그대로 올려주세요.</p></div>
-      <div onDragEnter={(event) => { event.preventDefault(); setDragging(true); }} onDragOver={(event) => event.preventDefault()} onDragLeave={() => setDragging(false)} onDrop={(event) => { event.preventDefault(); setDragging(false); onFile(event.dataTransfer.files[0]); }} className={cn("grid min-h-56 place-items-center rounded-lg border border-dashed p-6 text-center transition-colors", dragging ? "border-brand bg-brand/5" : "border-border bg-surface-2/50")}>
-        <div><div className="mx-auto grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand"><Upload className="h-6 w-6" /></div><div className="mt-4 font-semibold">거래내역 파일을 끌어놓거나 선택하세요</div><div className="mt-1 text-xs text-muted-foreground">CSV, XLSX, XLS · 과거 전체 체결에서 최근 완결 거래 선택</div><Button className="mt-4" onClick={() => inputRef.current?.click()}>파일 선택</Button><input ref={inputRef} className="hidden" type="file" accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" onChange={(event) => onFile(event.target.files?.[0])} /></div>
+      <div className="mb-5"><div className="text-xs font-semibold text-brand">TRADE IMPORT</div><h2 className="mt-1 text-xl font-bold">증권사 거래내역 가져오기</h2><p className="mt-1 text-sm text-muted-foreground">파일을 올리거나 HTS·MTS의 거래 표를 그대로 붙여넣으세요.</p></div>
+      <div className="mb-4 inline-flex rounded-md border border-border bg-surface-2 p-1">
+        <Button size="sm" variant={inputMode === "file" ? "default" : "ghost"} onClick={() => setInputMode("file")}><Upload className="mr-1.5 h-4 w-4" />파일 업로드</Button>
+        <Button size="sm" variant={inputMode === "paste" ? "default" : "ghost"} onClick={() => setInputMode("paste")}><ClipboardPaste className="mr-1.5 h-4 w-4" />표 붙여넣기</Button>
       </div>
+      {inputMode === "file" ? <div onDragEnter={(event) => { event.preventDefault(); setDragging(true); }} onDragOver={(event) => event.preventDefault()} onDragLeave={() => setDragging(false)} onDrop={(event) => { event.preventDefault(); setDragging(false); onFile(event.dataTransfer.files[0]); }} className={cn("grid min-h-56 place-items-center rounded-lg border border-dashed p-6 text-center transition-colors", dragging ? "border-brand bg-brand/5" : "border-border bg-surface-2/50")}>
+        <div><div className="mx-auto grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand"><Upload className="h-6 w-6" /></div><div className="mt-4 font-semibold">거래내역 파일을 끌어놓거나 선택하세요</div><div className="mt-1 text-xs text-muted-foreground">CSV, XLSX, XLS, 텍스트형 PDF</div><Button className="mt-4" onClick={() => inputRef.current?.click()}>파일 선택</Button><input ref={inputRef} className="hidden" type="file" accept=".csv,.xlsx,.xls,.pdf,text/csv,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" onChange={(event) => onFile(event.target.files?.[0])} /></div>
+      </div> : <div className="rounded-lg border border-border bg-surface-2/50 p-4">
+        <label className="text-sm font-semibold" htmlFor="trade-paste">거래내역 표 붙여넣기</label>
+        <p className="mt-1 text-xs leading-5 text-muted-foreground">열 제목을 포함해 복사하세요. 티커·거래일·매수/매도·수량·가격 열을 자동으로 찾습니다.</p>
+        <textarea id="trade-paste" className="mt-3 min-h-48 w-full resize-y rounded-md border border-border bg-background p-3 font-mono text-xs outline-none focus:border-brand" placeholder={"종목코드\t거래일\t매매구분\t체결수량\t체결단가\nAAPL\t2026-07-01\t매수\t10\t200.00"} value={pastedText} onChange={(event) => setPastedText(event.target.value)} />
+        <div className="mt-3 flex justify-end"><Button disabled={!pastedText.trim()} onClick={() => onPaste(pastedText)}>붙여넣은 표 확인</Button></div>
+      </div>}
     </CardContent></Card>
     <div className="space-y-4">
       <Card><CardContent className="p-5"><FileSpreadsheet className="h-5 w-5 text-brand" /><h2 className="mt-3 font-semibold">처음 사용한다면</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">표준 양식에 티커, 거래일, 매수·매도, 수량, 가격, 수수료를 입력하세요.</p><div className="mt-4 grid gap-2"><Button asChild variant="outline" className="w-full"><a href="/replay_data/bvt-standard-trades.csv" download><Download className="mr-2 h-4 w-4" />표준 CSV 받기</a></Button><Button variant="ghost" className="w-full" onClick={onSample}>샘플로 체험하기</Button></div>{error && <p className="mt-3 text-xs leading-5 text-danger">{error}</p>}</CardContent></Card>
-      <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최근 완결 거래 선택 분석</li></ul></CardContent></Card>
+      <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS·텍스트형 PDF</li><li>HTS·MTS 거래 표 붙여넣기</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최근 완결 거래 선택 분석</li></ul><p className="mt-4 text-xs leading-5 text-muted-foreground">스캔 이미지 PDF와 암호화 PDF는 표 붙여넣기를 이용해주세요.</p></CardContent></Card>
     </div>
   </div>;
 }
