@@ -22,7 +22,7 @@ export const Route = createFileRoute("/replay")({
   component: ReplayPage,
 });
 
-type Stage = "upload" | "mapping" | "review" | "loading" | "result";
+type Stage = "upload" | "ocr" | "mapping" | "review" | "loading" | "result";
 
 function ReplayPage() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,9 +44,13 @@ function ReplayPage() {
   const [inspection, setInspection] = useState<BrokerInspection | null>(null);
   const [importResult, setImportResult] = useState<BrokerImportResult | null>(null);
   const [coverage, setCoverage] = useState<{ first: string | null; last: string | null }>({ first: null, last: null });
+  const [ocrText, setOcrText] = useState("");
+  const [ocrFileName, setOcrFileName] = useState("");
+  const [ocrProgress, setOcrProgress] = useState(0);
+  const [ocrRunning, setOcrRunning] = useState(false);
 
   const reset = () => {
-    setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setOpeningShortfalls({}); setOpenPositions([]); setTickerDebug([]); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null);
+    setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setOpeningShortfalls({}); setOpenPositions([]); setTickerDebug([]); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null); setOcrText(""); setOcrFileName(""); setOcrProgress(0); setOcrRunning(false);
     if (inputRef.current) inputRef.current.value = "";
   };
 
@@ -90,6 +94,20 @@ function ReplayPage() {
     setUploadError("");
     try {
       const extension = file.name.split(".").pop()?.toLowerCase();
+      if (["png", "jpg", "jpeg", "webp"].includes(extension ?? "")) {
+        setOcrFileName(file.name);
+        setOcrText("");
+        setOcrProgress(0);
+        setOcrRunning(true);
+        setStage("ocr");
+        try {
+          const text = await (await import("@/lib/image-trade-import")).recognizeTradeImage(file, (progress) => setOcrProgress(progress));
+          setOcrText(text);
+        } finally {
+          setOcrRunning(false);
+        }
+        return;
+      }
       const inspected = extension === "pdf"
         ? await (await import("@/lib/pdf-trade-import")).inspectPdfTradeFile(file)
         : await inspectBrokerFile(file);
@@ -102,10 +120,10 @@ function ReplayPage() {
     }
   };
 
-  const onPaste = (text: string) => {
+  const onPaste = (text: string, name = "붙여넣은 거래내역") => {
     setUploadError("");
     try {
-      const inspected = inspectBrokerText(text);
+      const inspected = inspectBrokerText(text, name);
       setInspection(inspected);
       setFileName(inspected.fileName);
       if (inspected.automatic) processInspection(inspected);
@@ -167,6 +185,7 @@ function ReplayPage() {
         </div>
 
         {stage === "upload" && <UploadPanel inputRef={inputRef} onFile={onFile} onPaste={onPaste} onSample={loadSample} error={uploadError} />}
+        {stage === "ocr" && <OcrReviewPanel fileName={ocrFileName} text={ocrText} progress={ocrProgress} running={ocrRunning} error={uploadError} onText={setOcrText} onApply={() => onPaste(ocrText, `${ocrFileName} OCR`)} />}
         {stage === "mapping" && inspection && <MappingPanel inspection={inspection} onApply={(mapping, numericSide) => processInspection(inspection, mapping, numericSide)} />}
         {stage === "review" && <ReviewPanel fileName={fileName} executions={executionsCount} trades={trades} selectedTrades={selectedTrades} tradeLimit={tradeLimit} datePreset={datePreset} customFrom={customFrom} customTo={customTo} parseErrors={parseErrors} tradeErrors={tradeErrors} warnings={warnings} openingShortfalls={openingShortfalls} openPositions={openPositions} tickerDebug={tickerDebug} inspection={inspection} importResult={importResult} onTradeLimit={setTradeLimit} onDatePreset={setDatePreset} onCustomFrom={setCustomFrom} onCustomTo={setCustomTo} onAnalyze={analyze} />}
         {stage === "loading" && <LoadingPanel />}
@@ -188,7 +207,7 @@ function UploadPanel({ inputRef, onFile, onPaste, onSample, error }: { inputRef:
         <Button size="sm" variant={inputMode === "paste" ? "default" : "ghost"} onClick={() => setInputMode("paste")}><ClipboardPaste className="mr-1.5 h-4 w-4" />표 붙여넣기</Button>
       </div>
       {inputMode === "file" ? <div onDragEnter={(event) => { event.preventDefault(); setDragging(true); }} onDragOver={(event) => event.preventDefault()} onDragLeave={() => setDragging(false)} onDrop={(event) => { event.preventDefault(); setDragging(false); onFile(event.dataTransfer.files[0]); }} className={cn("grid min-h-56 place-items-center rounded-lg border border-dashed p-6 text-center transition-colors", dragging ? "border-brand bg-brand/5" : "border-border bg-surface-2/50")}>
-        <div><div className="mx-auto grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand"><Upload className="h-6 w-6" /></div><div className="mt-4 font-semibold">거래내역 파일을 끌어놓거나 선택하세요</div><div className="mt-1 text-xs text-muted-foreground">CSV, XLSX, XLS, 텍스트형 PDF</div><Button className="mt-4" onClick={() => inputRef.current?.click()}>파일 선택</Button><input ref={inputRef} className="hidden" type="file" accept=".csv,.xlsx,.xls,.pdf,text/csv,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" onChange={(event) => onFile(event.target.files?.[0])} /></div>
+        <div><div className="mx-auto grid h-12 w-12 place-items-center rounded-lg bg-brand/10 text-brand"><Upload className="h-6 w-6" /></div><div className="mt-4 font-semibold">거래내역 파일을 끌어놓거나 선택하세요</div><div className="mt-1 text-xs text-muted-foreground">CSV, Excel, PDF, PNG, JPG, WEBP</div><Button className="mt-4" onClick={() => inputRef.current?.click()}>파일 선택</Button><input ref={inputRef} className="hidden" type="file" accept=".csv,.xlsx,.xls,.pdf,.png,.jpg,.jpeg,.webp,text/csv,application/pdf,image/png,image/jpeg,image/webp,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" onChange={(event) => onFile(event.target.files?.[0])} /></div>
       </div> : <div className="rounded-lg border border-border bg-surface-2/50 p-4">
         <label className="text-sm font-semibold" htmlFor="trade-paste">거래내역 표 붙여넣기</label>
         <p className="mt-1 text-xs leading-5 text-muted-foreground">열 제목을 포함해 복사하세요. 티커·거래일·매수/매도·수량·가격 열을 자동으로 찾습니다.</p>
@@ -198,9 +217,20 @@ function UploadPanel({ inputRef, onFile, onPaste, onSample, error }: { inputRef:
     </CardContent></Card>
     <div className="space-y-4">
       <Card><CardContent className="p-5"><FileSpreadsheet className="h-5 w-5 text-brand" /><h2 className="mt-3 font-semibold">처음 사용한다면</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">표준 양식에 티커, 거래일, 매수·매도, 수량, 가격, 수수료를 입력하세요.</p><div className="mt-4 grid gap-2"><Button asChild variant="outline" className="w-full"><a href="/replay_data/bvt-standard-trades.csv" download><Download className="mr-2 h-4 w-4" />표준 CSV 받기</a></Button><Button variant="ghost" className="w-full" onClick={onSample}>샘플로 체험하기</Button></div>{error && <p className="mt-3 text-xs leading-5 text-danger">{error}</p>}</CardContent></Card>
-      <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS·텍스트형 PDF</li><li>HTS·MTS 거래 표 붙여넣기</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최근 완결 거래 선택 분석</li></ul><p className="mt-4 text-xs leading-5 text-muted-foreground">스캔 이미지 PDF와 암호화 PDF는 표 붙여넣기를 이용해주세요.</p></CardContent></Card>
+      <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS·텍스트형 PDF</li><li>PNG·JPG·WEBP 스크린샷 OCR</li><li>HTS·MTS 거래 표 붙여넣기</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최근 완결 거래 선택 분석</li></ul><p className="mt-4 text-xs leading-5 text-muted-foreground">스크린샷 인식 결과는 날짜·수량·가격을 확인한 뒤 사용합니다.</p></CardContent></Card>
     </div>
   </div>;
+}
+
+function OcrReviewPanel({ fileName, text, progress, running, error, onText, onApply }: { fileName: string; text: string; progress: number; running: boolean; error: string; onText: (value: string) => void; onApply: () => void }) {
+  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">스크린샷 거래내역 확인</h2><p className="mt-1 text-sm text-muted-foreground">{fileName} · 인식된 날짜·수량·가격을 확인하고 잘못된 부분을 수정해주세요.</p></div><CardContent className="p-5">
+    {running ? <div className="grid min-h-64 place-items-center text-center"><div><div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-brand border-t-transparent" /><div className="mt-4 font-semibold">스크린샷에서 거래내역을 읽고 있습니다</div><div className="mt-2 text-sm text-muted-foreground">{Math.round(progress * 100)}%</div><div className="mx-auto mt-3 h-2 w-64 overflow-hidden rounded-full bg-surface-2"><div className="h-full bg-brand transition-all" style={{ width: `${Math.max(2, progress * 100)}%` }} /></div></div></div> : <>
+      <div className="rounded-md border border-warning/30 bg-warning/5 px-4 py-3 text-xs leading-5 text-warning">OCR은 숫자를 잘못 읽을 수 있습니다. 열 제목과 티커·거래일·매수/매도·수량·가격을 반드시 확인하세요.</div>
+      <textarea className="mt-4 min-h-80 w-full resize-y rounded-md border border-border bg-background p-3 font-mono text-xs outline-none focus:border-brand" value={text} onChange={(event) => onText(event.target.value)} />
+      {error && <p className="mt-3 text-sm text-danger">{error}</p>}
+      <div className="mt-4 flex justify-end"><Button disabled={!text.trim()} onClick={onApply}>확인한 내용으로 열 연결</Button></div>
+    </>}
+  </CardContent></Card>;
 }
 
 function MappingPanel({ inspection, onApply }: { inspection: BrokerInspection; onApply: (mapping: ColumnMapping, numericSide: "1-buy" | "1-sell" | null) => void }) {
