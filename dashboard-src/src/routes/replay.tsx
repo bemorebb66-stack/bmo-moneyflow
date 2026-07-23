@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type RefObject } from "react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AlertCircle, CheckCircle2, Download, FileSpreadsheet, RotateCcw, ShieldCheck, TrendingDown, TrendingUp, Upload } from "lucide-react";
 import { PageHeading, PageShell } from "@/components/page-shell";
@@ -223,12 +223,15 @@ function LoadingPanel() { return <Card><CardContent className="grid min-h-72 pla
 
 function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[]; warnings: string[]; coverage: { first: string | null; last: string | null } }) {
   const analytics = useMemo(() => analyzeReplayPerformance(trades), [trades]);
+  const worstTicker = analytics.tickerRows.filter((row) => row.trades >= 2).sort((a, b) => a.totalProfit - b.totalProfit)[0];
   const simulations = useMemo(() => [
     { label: "전체 성과", rows: trades },
     { label: "-10% 이하 제외", rows: trades.filter((trade) => trade.returnPercent > -10) },
     { label: "최악 1건 제외", rows: [...trades].sort((a, b) => a.returnPercent - b.returnPercent).slice(1) },
     { label: "최악 3건 제외", rows: [...trades].sort((a, b) => a.returnPercent - b.returnPercent).slice(3) },
-  ].map((item) => ({ label: item.label, analytics: analyzeReplayPerformance(item.rows) })), [trades]);
+    ...(worstTicker?.totalProfit < 0 ? [{ label: `${worstTicker.label} 제외`, rows: trades.filter((trade) => trade.ticker !== worstTicker.label) }] : []),
+    { label: "당일 거래 제외", rows: trades.filter((trade) => trade.holdingDays > 0) },
+  ].map((item) => ({ label: item.label, analytics: analyzeReplayPerformance(item.rows) })), [trades, worstTicker]);
   const linked = trades.filter((trade) => trade.context && ["FULL", "UNDERLYING_ONLY", "SECTOR_ONLY", "INDEX_ONLY", "PRODUCT_ONLY"].includes(trade.context.supportLevel));
   const fullLinked = trades.filter((trade) => trade.context?.supportLevel === "FULL").length;
   const underlyingLinked = trades.filter((trade) => trade.context?.supportLevel === "UNDERLYING_ONLY").length;
@@ -266,10 +269,104 @@ function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[];
       </TabsContent>
       <TabsContent value="unlinked" className="space-y-4"><div className="grid gap-3 sm:grid-cols-3"><Metric label="상품 매핑 필요" value={`${mappingRequired}건`} /><Metric label="과거 데이터 부족" value={`${historicalMissing}건`} /><Metric label="미연결 전체" value={`${unlinked.length}건`} /></div><details className="rounded-lg border border-border bg-card"><summary className="cursor-pointer px-5 py-4 text-sm font-semibold">미연결 거래 {unlinked.length}건 보기</summary><div className="border-t border-border"><EnvironmentTradeList trades={unlinked} linked={linked} baseline={analytics.averageReturn} /></div></details></TabsContent>
     </Tabs>
+    <PersonalRulePanel trades={trades} analytics={analytics} />
     {warnings.length > 0 && <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">분석에서 제외된 미청산·확인 거래 안내 보기</summary><div className="mt-3 space-y-1 text-xs text-muted-foreground">{warnings.map((warning) => <p key={warning}>{warning}</p>)}</div></details>}
     <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">계산 기준 보기</summary><ul className="mt-3 grid gap-1 text-xs leading-5 text-muted-foreground sm:grid-cols-2"><li>손익은 체결 수수료를 반영하며 세금·환율은 반영하지 않은 USD 기준입니다.</li><li>평균 수익률은 완결 거래별 수익률의 단순 평균입니다.</li><li>같은 종목은 보유 수량이 0이 되는 시점마다 거래 한 건으로 닫습니다.</li><li>부분 매도 원가는 평균단가 방식으로 배분합니다.</li><li>최대 낙폭은 최종 매도 완료 순서의 누적 실현손익 기준입니다.</li><li>보유기간 0일은 같은 날짜에 매수와 매도를 마친 당일 거래입니다.</li></ul></details>
     <p className="text-xs leading-5 text-muted-foreground">이 결과는 과거 거래 복기용이며 매수·매도 추천이 아닙니다. 레버리지·인버스 상품은 일일 재설정, 복리 효과와 추적 오차가 있어 기초자산 수익률과 동일하지 않습니다.</p>
   </div>;
+}
+
+type PersonalRule = {
+  id: string;
+  title: string;
+  text: string;
+  kind: "keep" | "loss-limit" | "ticker" | "streak" | "intraday";
+  ticker?: string;
+  violations: number;
+};
+
+function PersonalRulePanel({ trades, analytics }: { trades: CompletedTrade[]; analytics: ReturnType<typeof analyzeReplayPerformance> }) {
+  const storageKey = "bvt-replay-personal-rules";
+  const generated = useMemo<PersonalRule[]>(() => {
+    const worstTicker = analytics.tickerRows.filter((row) => row.trades >= 2).sort((a, b) => a.totalProfit - b.totalProfit)[0];
+    const bestHolding = analytics.holdingRows.filter((row) => row.trades >= 3 && row.averageReturn > 0).sort((a, b) => b.averageReturn - a.averageReturn)[0];
+    const intraday = trades.filter((trade) => trade.holdingDays === 0);
+    const intradayProfit = intraday.reduce((sum, trade) => sum + trade.realizedProfit, 0);
+    const rows: PersonalRule[] = [
+      {
+        id: "loss-limit",
+        title: "한 거래 최대 손실",
+        text: "한 거래의 손실이 -5%에 도달하면 추가 판단 없이 거래를 종료합니다.",
+        kind: "loss-limit",
+        violations: trades.filter((trade) => trade.returnPercent <= -5).length,
+      },
+    ];
+    if (analytics.maximumLossStreak >= 3) rows.push({
+      id: "loss-streak",
+      title: "연속 손실 후 중단",
+      text: "3회 연속 손실이 발생하면 해당일의 신규 거래를 중단합니다.",
+      kind: "streak",
+      violations: Math.max(0, analytics.maximumLossStreak - 2),
+    });
+    if (worstTicker?.totalProfit < 0) rows.push({
+      id: `ticker-${worstTicker.label}`,
+      title: `${worstTicker.label} 반복 거래 제한`,
+      text: `${worstTicker.label} 재진입 전 이전 손실 원인과 진입 근거를 기록합니다.`,
+      kind: "ticker",
+      ticker: worstTicker.label,
+      violations: trades.filter((trade) => trade.ticker === worstTicker.label).length,
+    });
+    if (intraday.length >= 3 && intradayProfit < 0) rows.push({
+      id: "intraday",
+      title: "당일 거래 손실 통제",
+      text: "당일 거래에서 손실이 발생하면 같은 날 거래 규모를 늘리지 않습니다.",
+      kind: "intraday",
+      violations: intraday.filter((trade) => trade.returnPercent < 0).length,
+    });
+    if (bestHolding) rows.unshift({
+      id: "keep-holding",
+      title: "계속할 행동",
+      text: `${bestHolding.label} 보유 거래는 평균 ${bestHolding.averageReturn >= 0 ? "+" : ""}${bestHolding.averageReturn.toFixed(2)}%로 상대적으로 양호했습니다.`,
+      kind: "keep",
+      violations: 0,
+    });
+    return rows;
+  }, [analytics, trades]);
+  const [rules, setRules] = useState<PersonalRule[]>(generated);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (!stored) {
+        setRules(generated);
+        return;
+      }
+      const savedRules = JSON.parse(stored) as Array<Pick<PersonalRule, "id" | "text">>;
+      setRules(generated.map((rule) => ({ ...rule, text: savedRules.find((savedRule) => savedRule.id === rule.id)?.text ?? rule.text })));
+    } catch {
+      setRules(generated);
+    }
+  }, [generated]);
+
+  const saveRules = () => {
+    localStorage.setItem(storageKey, JSON.stringify(rules.map(({ id, text }) => ({ id, text }))));
+    setSaved(true);
+    window.setTimeout(() => setSaved(false), 1800);
+  };
+
+  return <Card className="border-brand/20">
+    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-4">
+      <div><h2 className="flex items-center gap-2 font-semibold"><ShieldCheck className="h-5 w-5 text-brand" />개인 매매 규칙</h2><p className="mt-1 text-xs text-muted-foreground">이번 분석에서 반복된 행동을 다음 거래에서 확인할 규칙으로 바꿨습니다.</p></div>
+      <Button size="sm" onClick={saveRules}>{saved ? "저장됨" : "규칙 저장"}</Button>
+    </div>
+    <CardContent className="grid gap-3 p-5 lg:grid-cols-2">
+      {rules.map((rule) => <div key={rule.id} className={cn("rounded-lg border p-4", rule.kind === "keep" ? "border-success/25 bg-success/5" : "border-border bg-muted/20")}>
+        <div className="flex items-center justify-between gap-3"><span className={cn("text-xs font-semibold", rule.kind === "keep" ? "text-success" : "text-brand")}>{rule.title}</span>{rule.kind !== "keep" && <span className={cn("rounded-full px-2 py-0.5 text-[11px]", rule.violations ? "bg-danger/10 text-danger" : "bg-success/10 text-success")}>이번 분석 {rule.violations}건 해당</span>}</div>
+        <textarea aria-label={`${rule.title} 규칙`} value={rule.text} onChange={(event) => setRules((current) => current.map((item) => item.id === rule.id ? { ...item, text: event.target.value } : item))} className="mt-3 min-h-20 w-full resize-y rounded-md border border-border bg-background px-3 py-2 text-sm leading-6 outline-none focus:border-brand" />
+      </div>)}
+    </CardContent>
+  </Card>;
 }
 
 function fmtUsd(value: number) {
