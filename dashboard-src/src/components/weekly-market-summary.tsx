@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { BarChart3, CalendarRange, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,6 @@ const number = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 2 });
 export function WeeklyMarketSummary() {
   const [data, setData] = useState<Payload | null>(null);
   const [selected, setSelected] = useState("");
-  const weekListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/weekly_summary.json", { cache: "no-store" })
@@ -32,9 +31,9 @@ export function WeeklyMarketSummary() {
   const weeks = data?.weeks ?? [];
   const current = weeks.find((week) => week.weekId === selected) ?? weeks[0];
   if (!current) return null;
-  const scrollWeeks = (direction: -1 | 1) => {
-    weekListRef.current?.scrollBy({ left: direction * 360, behavior: "smooth" });
-  };
+  const currentIndex = weeks.findIndex((week) => week.weekId === current.weekId);
+  const olderWeek = weeks[currentIndex + 1];
+  const newerWeek = weeks[currentIndex - 1];
 
   return (
     <section className="mt-5" aria-labelledby="weekly-summary-title">
@@ -44,14 +43,17 @@ export function WeeklyMarketSummary() {
           <h2 id="weekly-summary-title" className="mt-1 text-lg font-semibold">주간 시장 요약</h2>
           <p className="mt-0.5 text-xs text-muted-foreground">저장된 장마감 데이터를 주별로 비교합니다.</p>
         </div>
-        <div className="mt-3 grid min-w-0 grid-cols-[36px_minmax(0,1fr)_36px] overflow-hidden rounded-lg border bg-muted/35">
-          <button type="button" onClick={() => scrollWeeks(-1)} aria-label="이전 주간 보기" className="grid place-items-center border-r bg-surface/90 text-muted-foreground hover:text-foreground"><ChevronLeft className="h-4 w-4" /></button>
-          <div ref={weekListRef} onWheel={(event) => { if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) event.currentTarget.scrollLeft += event.deltaY; }} className="flex min-w-0 snap-x snap-mandatory gap-1 overflow-x-auto p-1 no-scrollbar">
-            {weeks.map((week) => (
-              <button key={week.weekId} type="button" onClick={() => setSelected(week.weekId)} className={cn("shrink-0 snap-start rounded-md px-3 py-1.5 text-xs font-medium", week.weekId === current.weekId ? "bg-surface text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground")}>{week.label}</button>
-            ))}
-          </div>
-          <button type="button" onClick={() => scrollWeeks(1)} aria-label="다음 주간 보기" className="grid place-items-center border-l bg-surface/90 text-muted-foreground hover:text-foreground"><ChevronRight className="h-4 w-4" /></button>
+        <div className="mt-3 flex items-center gap-2">
+          <button type="button" disabled={!olderWeek} onClick={() => olderWeek && setSelected(olderWeek.weekId)} aria-label="이전 주 보기" title="이전 주" className="grid h-9 w-9 shrink-0 place-items-center rounded-md border bg-surface text-muted-foreground hover:border-brand/40 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-35"><ChevronLeft className="h-4 w-4" /></button>
+          <label className="relative min-w-0 sm:w-64">
+            <span className="sr-only">주차 선택</span>
+            <select value={current.weekId} onChange={(event) => setSelected(event.target.value)} className="h-9 w-full appearance-none rounded-md border bg-surface px-3 pr-9 text-sm font-medium outline-none hover:border-brand/40 focus:border-brand">
+              {weeks.map((week) => <option key={week.weekId} value={week.weekId}>{week.label} · {week.startDate.slice(5)}~{week.endDate.slice(5)}</option>)}
+            </select>
+            <CalendarRange className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          </label>
+          <button type="button" disabled={!newerWeek} onClick={() => newerWeek && setSelected(newerWeek.weekId)} aria-label="다음 주 보기" title="다음 주" className="grid h-9 w-9 shrink-0 place-items-center rounded-md border bg-surface text-muted-foreground hover:border-brand/40 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-35"><ChevronRight className="h-4 w-4" /></button>
+          <span className="hidden text-xs text-muted-foreground sm:inline">전체 {weeks.length}주</span>
         </div>
       </div>
 
