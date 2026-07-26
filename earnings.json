@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-26T09:47:03.448851+00:00",
+    "generatedAt": "2026-07-26T09:52:02.916919+00:00",
     "status": "ok",
     "from": "2026-06-11",
     "to": "2027-01-22",
-    "count": 277,
+    "count": 278,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -314,6 +314,18 @@
       "epsEstimate": 1.3601,
       "revenueActual": null,
       "revenueEstimate": 9587982560.0
+    },
+    {
+      "ticker": "PDD",
+      "company": "핀둬둬 ADR",
+      "date": "2026-11-16",
+      "hour": "bmo",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 18.9638,
+      "revenueActual": null,
+      "revenueEstimate": 122932869726.0
     },
     {
       "ticker": "POWL",
