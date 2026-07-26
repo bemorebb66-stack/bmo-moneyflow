@@ -131,6 +131,7 @@ MARKET_INDEX_SYMBOLS = ["^GSPC", "^RUT", "^DJI", "^NDX"]
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
 WIKI_DOW = "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
+NASDAQ_100_API = "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
 IWM_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual"
 IWB_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239707&targetSite=us-ishares&userType=individual"
 RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # off / top / all
@@ -284,8 +285,22 @@ def get_universe(cache):
 
     try:
         found = False
-        tables = read_wiki_tables(WIKI_NDX)
-        for tbl in tables:
+        try:
+            resp = requests.get(NASDAQ_100_API, headers=UA, timeout=30)
+            resp.raise_for_status()
+            rows = resp.json().get("data", {}).get("data", {}).get("rows", [])
+            for row in rows:
+                t = str(row.get("symbol", "")).strip().replace(".", "-")
+                if not t:
+                    continue
+                name = str(row.get("companyName", "")).strip() or tickers.get(t, t)
+                tickers.setdefault(t, name)
+                universes.setdefault(t, set()).add("Nasdaq 100")
+            found = len(rows) >= 90
+        except Exception as api_error:
+            print(f"[경고] 나스닥 공식 API 로드 실패, 대체 경로 사용: {api_error}")
+
+        for tbl in ([] if found else read_wiki_tables(WIKI_NDX)):
             cols = [str(c).lower() for c in tbl.columns]
             if any("ticker" in c or "symbol" in c for c in cols):
                 tcol = tbl.columns[[i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c][0]]
