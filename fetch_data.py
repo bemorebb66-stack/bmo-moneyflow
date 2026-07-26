@@ -26,6 +26,18 @@ def read_wiki_tables(url):
     return pd.read_html(StringIO(resp.text))
 
 
+def read_wiki_api_tables(page):
+    resp = requests.get(
+        "https://en.wikipedia.org/w/api.php",
+        headers=UA,
+        params={"action": "parse", "page": page, "prop": "text", "format": "json"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    html = resp.json()["parse"]["text"]["*"]
+    return pd.read_html(StringIO(html))
+
+
 def read_blackrock_holdings(url, limit=None):
     """BlackRock ETF 보유종목 파일에서 러셀 유니버스를 가져온다."""
     if limit is None:
@@ -272,7 +284,8 @@ def get_universe(cache):
 
     try:
         found = False
-        for tbl in read_wiki_tables(WIKI_NDX):
+        tables = read_wiki_tables(WIKI_NDX)
+        for tbl in tables:
             cols = [str(c).lower() for c in tbl.columns]
             if any("ticker" in c or "symbol" in c for c in cols):
                 tcol = tbl.columns[[i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c][0]]
@@ -290,8 +303,37 @@ def get_universe(cache):
                     universes.setdefault(t, set()).add("Nasdaq 100")
                 found = True
                 break
+        if not found:
+            tables = read_wiki_api_tables("Nasdaq-100")
+            for tbl in tables:
+                cols = [str(c).lower() for c in tbl.columns]
+                ticker_indexes = [
+                    i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c
+                ]
+                if not ticker_indexes:
+                    continue
+                tcol = tbl.columns[ticker_indexes[0]]
+                ncol = None
+                for i, c in enumerate(cols):
+                    if "company" in c or "security" in c:
+                        ncol = tbl.columns[i]
+                        break
+                rows_added = 0
+                for _, r in tbl.iterrows():
+                    t = str(r[tcol]).strip().replace(".", "-")
+                    if not t or t.lower() == "nan":
+                        continue
+                    name = str(r[ncol]).strip() if ncol is not None else tickers.get(t, t)
+                    tickers.setdefault(t, name)
+                    universes.setdefault(t, set()).add("Nasdaq 100")
+                    rows_added += 1
+                if rows_added >= 90:
+                    found = True
+                    break
         if found:
             print(f"나스닥 100 병합 후: {len(tickers)}종목")
+        else:
+            print("[경고] 나스닥 100 구성종목 표를 찾지 못했습니다")
     except Exception as e:
         print(f"[경고] 나스닥 100 목록 로드 실패: {e}")
 
