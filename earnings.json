@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-24T23:32:19.748316+00:00",
+    "generatedAt": "2026-07-26T09:40:53.024198+00:00",
     "status": "ok",
-    "from": "2026-06-09",
-    "to": "2027-01-20",
-    "count": 272,
+    "from": "2026-06-11",
+    "to": "2027-01-22",
+    "count": 277,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -146,18 +146,6 @@
       "epsEstimate": 1.7922,
       "revenueActual": null,
       "revenueEstimate": 25580325388.0
-    },
-    {
-      "ticker": "M",
-      "company": "메이시스",
-      "date": "2026-11-11",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": -0.0723,
-      "revenueActual": null,
-      "revenueEstimate": 4771788225.0
     },
     {
       "ticker": "AMAT",
@@ -3290,6 +3278,78 @@
       "epsEstimate": 0.9568,
       "revenueActual": null,
       "revenueEstimate": 337490970.0
+    },
+    {
+      "ticker": "BAH",
+      "company": "부즈 앨런 해밀턴",
+      "date": "2027-01-21",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.5518,
+      "revenueActual": null,
+      "revenueEstimate": 2808487810.0
+    },
+    {
+      "ticker": "FCNCA",
+      "company": "퍼스트 시티즌스 뱅크셰어스",
+      "date": "2027-01-21",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 48.7238,
+      "revenueActual": null,
+      "revenueEstimate": 2394958286.0
+    },
+    {
+      "ticker": "NTRS",
+      "company": "노던 트러스트",
+      "date": "2027-01-21",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.8692,
+      "revenueActual": null,
+      "revenueEstimate": 2267500708.0
+    },
+    {
+      "ticker": "SLB",
+      "company": "에스엘비",
+      "date": "2027-01-21",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8613,
+      "revenueActual": null,
+      "revenueEstimate": 9953564544.0
+    },
+    {
+      "ticker": "WBS",
+      "company": "웹스터 파이낸셜",
+      "date": "2027-01-21",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.763,
+      "revenueActual": null,
+      "revenueEstimate": 733599915.0
+    },
+    {
+      "ticker": "RF",
+      "company": "리전스 파이낸셜",
+      "date": "2027-01-22",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7162,
+      "revenueActual": null,
+      "revenueEstimate": 2077011758.0
     }
   ]
 }
