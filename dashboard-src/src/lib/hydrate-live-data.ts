@@ -126,13 +126,13 @@ const CATEGORIES: MarketCategory[] = [
 ];
 const PERIODS: MarketPeriod[] = ["1d", "5d", "20d", "60d"];
 
-const rawGroupName = (stock: MarketStock, category: MarketCategory) => {
-  if (category === "sector") return stock.sec || "기타";
-  if (category === "industry") return stock.ind || "기타";
+const rawGroupNames = (stock: MarketStock, category: MarketCategory) => {
+  if (category === "sector") return [stock.sec || "기타"];
+  if (category === "industry") return [stock.ind || "기타"];
   if (category === "universe")
-    return stock.uni?.length ? stock.uni.join(" + ") : "기타";
-  if (category === "mcap") return stock.cap || "기타";
-  return stock.grp || stock.ind || "기타";
+    return stock.uni?.length ? [...new Set(stock.uni)] : ["기타"];
+  if (category === "mcap") return [stock.cap || "기타"];
+  return [stock.grp || stock.ind || "기타"];
 };
 
 const groupId = (raw: string, category: MarketCategory) =>
@@ -145,7 +145,9 @@ const groupLabel = (raw: string, category: MarketCategory) => {
   if (category === "universe") {
     return raw
       .replaceAll("Russell 1000", "러셀 1000")
-      .replaceAll("Russell 2000", "러셀 2000");
+      .replaceAll("Russell 2000", "러셀 2000")
+      .replaceAll("Nasdaq 100", "나스닥 100")
+      .replaceAll("Dow Jones", "다우존스 30");
   }
   return raw;
 };
@@ -176,8 +178,9 @@ function aggregateMarket(
   const refKey = PERIOD_REF[period];
   const groups = new Map<string, MarketStock[]>();
   for (const stock of stocks) {
-    const key = rawGroupName(stock, category);
-    groups.set(key, [...(groups.get(key) ?? []), stock]);
+    for (const key of rawGroupNames(stock, category)) {
+      groups.set(key, [...(groups.get(key) ?? []), stock]);
+    }
   }
   const totalNow = stocks.reduce(
     (sum, stock) => sum + (Number(stock.dv) || 0),
@@ -451,8 +454,10 @@ export async function hydrateLiveData() {
       };
       LIVE_COMPANIES_BY_ID[company.id] = company;
       for (const category of CATEGORIES) {
-        const id = groupId(rawGroupName(stock, category), category);
-        (LIVE_GROUP_COMPANIES[id] ??= []).push(company);
+        for (const raw of rawGroupNames(stock, category)) {
+          const id = groupId(raw, category);
+          (LIVE_GROUP_COMPANIES[id] ??= []).push(company);
+        }
       }
     }
     for (const companies of Object.values(LIVE_GROUP_COMPANIES)) {

@@ -118,6 +118,7 @@ MARKET_INDEX_SYMBOLS = ["^GSPC", "^RUT", "^DJI", "^NDX"]
 
 WIKI_SP500 = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_NDX = "https://en.wikipedia.org/wiki/Nasdaq-100"
+WIKI_DOW = "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
 IWM_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual"
 IWB_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239707&targetSite=us-ishares&userType=individual"
 RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # off / top / all
@@ -293,6 +294,40 @@ def get_universe(cache):
             print(f"나스닥 100 병합 후: {len(tickers)}종목")
     except Exception as e:
         print(f"[경고] 나스닥 100 목록 로드 실패: {e}")
+
+    try:
+        found = False
+        for tbl in read_wiki_tables(WIKI_DOW):
+            cols = [str(c).lower() for c in tbl.columns]
+            ticker_indexes = [
+                i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c
+            ]
+            if not ticker_indexes:
+                continue
+            tcol = tbl.columns[ticker_indexes[0]]
+            ncol = None
+            for i, c in enumerate(cols):
+                if "company" in c or "security" in c:
+                    ncol = tbl.columns[i]
+                    break
+            rows_added = 0
+            for _, r in tbl.iterrows():
+                t = str(r[tcol]).strip().replace(".", "-")
+                if not t or t.lower() == "nan":
+                    continue
+                name = str(r[ncol]).strip() if ncol is not None else tickers.get(t, t)
+                tickers.setdefault(t, name)
+                universes.setdefault(t, set()).add("Dow Jones")
+                rows_added += 1
+            if rows_added >= 25:
+                found = True
+                break
+        if found:
+            print(f"Dow Jones 30 merged: {len(tickers)} stocks")
+        else:
+            print("[warning] Dow Jones 30 constituent table was not found")
+    except Exception as e:
+        print(f"[warning] Failed to load Dow Jones 30 constituents: {e}")
 
     if RUSSELL_MODE != "off":
         try:
@@ -541,13 +576,24 @@ def main():
         return {k: [int(v / 1e6) if v == v else 0 for v in hist[cols].sum(axis=1)]
                 for k, cols in buckets.items()}
 
+    def universe_series():
+        buckets = {}
+        for t in hist.columns:
+            labels = meta.get(t, {}).get("uni") or ["기존 데이터"]
+            for label in labels:
+                buckets.setdefault(label, []).append(t)
+        return {
+            label: [int(v / 1e6) if v == v else 0 for v in hist[cols].sum(axis=1)]
+            for label, cols in buckets.items()
+        }
+
     meta = {s["t"]: s for s in stocks}
     hist_out = {
         "dates": dates,
         "total": [int(v / 1e6) for v in hist.sum(axis=1)],
             "sector": series_by(lambda t: meta.get(t, {}).get("sec", "기타")),
             "industry": series_by(lambda t: meta.get(t, {}).get("ind", "기타")),
-        "universe": series_by(lambda t: " + ".join(meta.get(t, {}).get("uni", ["기존 데이터"]))),
+        "universe": universe_series(),
             "custom": series_by(lambda t: meta.get(t, {}).get("grp") or meta.get(t, {}).get("ind", "기타")),
         "cap": series_by(lambda t: meta.get(t, {}).get("cap", "기타")),
         "stocks": {t: [int(v / 1e6) if v == v else 0 for v in hist[t]] for t in hist.columns},
