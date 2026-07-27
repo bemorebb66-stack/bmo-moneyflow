@@ -138,6 +138,8 @@ RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "all").strip().lower()  # of
 RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
 RUSSELL1000_MAX = int(os.getenv("MONEY_FLOW_RUSSELL1000_MAX", "1000"))
 YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
+METADATA_ENRICH_MAX = int(os.getenv("MONEY_FLOW_METADATA_ENRICH_MAX", "150"))
+NAME_TRANSLATE_MAX = int(os.getenv("MONEY_FLOW_NAME_TRANSLATE_MAX", "200"))
 NON_EQUITY_TICKERS = {"USD"}
 NEW_LISTING_TICKERS = {
     "SPCX": "Space Exploration Technologies Corp.",
@@ -178,6 +180,7 @@ KOREAN_NAME_OVERRIDES = {
     "ERIE": "이리 인뎀니티",
     "ETSY": "엣시",
     "FISV": "파이서브",
+    "FLNC": "플루언스 에너지",
     "FROG": "제이프로그",
     "FTI": "테크닙FMC",
     "GNRC": "제너락",
@@ -427,28 +430,35 @@ def get_universe(cache):
 
 def update_sector_map(tickers, cache):
     """섹터/industry 정보는 캐시에 저장하고, 신규 티커만 yfinance에서 조회."""
+    for t, name in tickers.items():
+        cache.setdefault(t, {"name": name, "sector": "기타", "industry": "기타", "mcap": 0})
+        cache[t]["name"] = name
+
     missing = [t for t in tickers if t not in cache or not cache[t].get("industry")
                or cache[t].get("industry") == "기타" or cache[t].get("mcap") is None]
-    print(f"섹터 정보 신규 조회 대상: {len(missing)}종목")
-    for i, t in enumerate(missing):
+    missing.sort(key=lambda t: (bool(cache[t].get("metadata_attempted")), t))
+    targets = missing if METADATA_ENRICH_MAX <= 0 else missing[:METADATA_ENRICH_MAX]
+    print(f"섹터 정보 신규 조회 대상: {len(missing)}종목 (이번 실행 {len(targets)}종목)")
+    for i, t in enumerate(targets):
         try:
             info = yf.Ticker(t).info
-            cache[t] = {
-                "name": tickers[t],
+            cache[t].update({
                 "sector": info.get("sector") or "기타",
                 "industry": info.get("industry") or "기타",
                 "mcap": info.get("marketCap") or 0,
-            }
+                "metadata_attempted": True,
+            })
         except Exception as e:
             print(f"  [경고] {t} 정보 실패: {e}")
-            cache.setdefault(t, {"name": tickers[t], "sector": "기타", "industry": "기타", "mcap": 0})
             cache[t].setdefault("mcap", 0)
+            cache[t]["metadata_attempted"] = True
         if (i + 1) % 25 == 0:
-            print(f"  ...{i + 1}/{len(missing)}")
+            print(f"  ...{i + 1}/{len(targets)}")
             time.sleep(1)
+    if len(missing) > len(targets):
+        print(f"  상세정보 {len(missing) - len(targets)}종목은 다음 실행에서 순차 보강")
     # 구성 종목 파일의 최신 기업명을 매일 반영해 사명 변경과 오탈자를 따라간다.
     for t, name in tickers.items():
-        cache.setdefault(t, {"sector": "기타", "industry": "기타", "mcap": 0})
         cache[t]["name"] = name
     with open(SECTOR_MAP_PATH, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=1)
@@ -469,7 +479,11 @@ def update_korean_names(tickers, universes, cache):
     targets = [t for t in tickers
                if t not in KOREAN_NAME_OVERRIDES
                and not has_hangul(cache.get(t, {}).get("name_ko"))]
-    print(f"전체 기업명 한글 재검사 대상: {len(targets)}종목")
+    targets.sort(key=lambda t: (bool(cache[t].get("translation_attempted")), t))
+    all_target_count = len(targets)
+    if NAME_TRANSLATE_MAX > 0:
+        targets = targets[:NAME_TRANSLATE_MAX]
+    print(f"전체 기업명 한글 재검사 대상: {all_target_count}종목 (이번 실행 {len(targets)}종목)")
     url = "https://translate.googleapis.com/translate_a/single"
     for i, t in enumerate(targets):
         name = cache.get(t, {}).get("name", tickers[t])
@@ -482,11 +496,15 @@ def update_korean_names(tickers, universes, cache):
             translated = "".join(p[0] for p in parts if p and p[0]).strip()
             if has_hangul(translated):
                 cache[t]["name_ko"] = translated
+            cache[t]["translation_attempted"] = True
         except Exception as e:
             print(f"  [참고] {t} 기업명 번역 생략: {e}")
+            cache[t]["translation_attempted"] = True
         if (i + 1) % 25 == 0:
             print(f"  ...{i + 1}/{len(targets)}")
         time.sleep(0.08)
+    if all_target_count > len(targets):
+        print(f"  기업명 번역 {all_target_count - len(targets)}종목은 다음 실행에서 순차 보강")
     return cache
 
 
