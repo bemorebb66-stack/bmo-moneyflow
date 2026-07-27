@@ -23,11 +23,21 @@ export const Route = createFileRoute("/feedback")({
 type FeedbackType = "data" | "contact";
 
 function initialParams() {
-  if (typeof window === "undefined") return { type: "data" as FeedbackType, page: "/" };
+  if (typeof window === "undefined") {
+    return {
+      type: "data" as FeedbackType,
+      page: "/",
+      ticker: "",
+      category: "수치 오류",
+    };
+  }
   const params = new URLSearchParams(window.location.search);
+  const missingStock = params.get("type") === "missing-stock";
   return {
     type: params.get("type") === "contact" ? "contact" as FeedbackType : "data" as FeedbackType,
     page: params.get("page") || document.referrer || "/",
+    ticker: params.get("ticker")?.trim().toUpperCase() || "",
+    category: missingStock ? "종목 누락" : "수치 오류",
   };
 }
 
@@ -35,8 +45,8 @@ function FeedbackPage() {
   const [initial] = useState(initialParams);
   const [type, setType] = useState<FeedbackType>(initial.type);
   const [page, setPage] = useState(initial.page);
-  const [ticker, setTicker] = useState("");
-  const [category, setCategory] = useState("수치 오류");
+  const [ticker, setTicker] = useState(initial.ticker);
+  const [category, setCategory] = useState(initial.category);
   const [description, setDescription] = useState("");
   const [copied, setCopied] = useState(false);
 

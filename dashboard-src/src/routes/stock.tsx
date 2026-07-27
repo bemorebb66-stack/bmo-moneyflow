@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -25,6 +25,10 @@ import { SignalBadge } from "@/components/signal-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
+import {
+  loadStockDirectory,
+  type DirectoryStock,
+} from "@/lib/stock-directory";
 import {
   EARNINGS_ROWS,
   generateSeries,
@@ -86,15 +90,88 @@ function StockPage() {
           ?.trim()
           .toUpperCase() ?? "");
   const stock = LIVE_STOCKS.find((row) => row.ticker.toUpperCase() === ticker);
+  const [directoryStock, setDirectoryStock] = useState<
+    DirectoryStock | null | undefined
+  >(undefined);
+
+  useEffect(() => {
+    if (stock) return;
+    if (!ticker) {
+      setDirectoryStock(null);
+      return;
+    }
+    void loadStockDirectory().then((rows) => {
+      setDirectoryStock(
+        rows.find((row) => row.ticker.toUpperCase() === ticker) ?? null,
+      );
+    });
+  }, [stock, ticker]);
 
   if (!stock) {
+    if (directoryStock) {
+      return (
+        <PageShell>
+          <div className="mx-auto max-w-2xl py-12">
+            <Card>
+              <CardContent className="p-6 sm:p-8">
+                <div className="flex items-start gap-3">
+                  <div className="rounded-md bg-brand-soft p-2 text-brand">
+                    <Building2 className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-mono text-sm font-bold text-brand">
+                      {directoryStock.ticker}
+                    </p>
+                    <h1 className="mt-1 text-xl font-bold">
+                      {directoryStock.name}
+                    </h1>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {[directoryStock.sector, directoryStock.industry]
+                        .filter(Boolean)
+                        .join(" · ") || "미국 상장 종목"}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 rounded-md border border-border bg-surface-2 p-4">
+                  <h2 className="font-semibold">거래대금 분석 준비 중</h2>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                    상장 종목으로 확인됐지만 아직 BVT 거래대금 분석 대상에는
+                    포함되지 않았습니다. 데이터 요청을 남기면 수집 우선순위에
+                    반영합니다.
+                  </p>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <a
+                    href={`/feedback/?type=missing-stock&ticker=${encodeURIComponent(directoryStock.ticker)}`}
+                    className="inline-flex min-h-10 items-center rounded-md bg-brand px-4 text-sm font-semibold text-brand-foreground"
+                  >
+                    이 종목 데이터 요청
+                  </a>
+                  <a
+                    href={`https://finance.yahoo.com/quote/${encodeURIComponent(directoryStock.ticker)}/`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border px-4 text-sm font-semibold"
+                  >
+                    외부 시세 확인 <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </PageShell>
+      );
+    }
+
     return (
       <PageShell>
         <div className="mx-auto max-w-xl py-16 text-center">
           <Building2 className="mx-auto h-9 w-9 text-muted-foreground" />
           <h1 className="mt-4 text-xl font-bold">종목을 찾지 못했습니다</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            티커를 다시 확인하거나 전체 종목 스캐너에서 검색해 주세요.
+            {directoryStock === undefined
+              ? "미국 상장 종목 목록을 확인하고 있습니다."
+              : "티커를 다시 확인하거나 데이터 요청을 남겨주세요."}
           </p>
           <a
             href="/scanner/"

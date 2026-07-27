@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Building2, Layers3, Search } from "lucide-react";
+import { Building2, Clock3, Layers3, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   CommandDialog,
@@ -12,12 +12,17 @@ import {
   CommandShortcut,
 } from "./ui/command";
 import { LIVE_MARKET_DATA, LIVE_STOCKS } from "@/lib/mock-data";
+import {
+  loadStockDirectory,
+  type DirectoryStock,
+} from "@/lib/stock-directory";
 
 const normalize = (value: string) => value.trim().toLocaleLowerCase("ko-KR");
 
 export function GlobalSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [directory, setDirectory] = useState<DirectoryStock[]>([]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -29,6 +34,11 @@ export function GlobalSearch() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  useEffect(() => {
+    if (!open || directory.length > 0) return;
+    void loadStockDirectory().then(setDirectory);
+  }, [open, directory.length]);
 
   const companies = useMemo(() => {
     const keyword = normalize(query);
@@ -44,6 +54,31 @@ export function GlobalSearch() {
       )
       .slice(0, 30);
   }, [query]);
+
+  const directoryCompanies = useMemo(() => {
+    const keyword = normalize(query);
+    if (!keyword) return [];
+    const liveTickers = new Set(LIVE_STOCKS.map((stock) => stock.ticker));
+    return directory
+      .filter(
+        (stock) =>
+          !liveTickers.has(stock.ticker) &&
+          normalize(
+            [
+              stock.ticker,
+              stock.name,
+              stock.sector,
+              stock.industry,
+            ].join(" "),
+          ).includes(keyword),
+      )
+      .sort((a, b) => {
+        const aExact = a.ticker.toLowerCase() === keyword ? 1 : 0;
+        const bExact = b.ticker.toLowerCase() === keyword ? 1 : 0;
+        return bExact - aExact || b.marketCap - a.marketCap;
+      })
+      .slice(0, 12);
+  }, [directory, query]);
 
   const groups = useMemo(() => {
     const keyword = normalize(query);
@@ -110,7 +145,9 @@ export function GlobalSearch() {
           placeholder="티커·영문명·한글명·섹터·산업 검색"
         />
         <CommandList>
-          <CommandEmpty>검색 결과가 없습니다.</CommandEmpty>
+          <CommandEmpty>
+            검색 결과가 없습니다. 티커를 확인하거나 데이터 요청을 남겨주세요.
+          </CommandEmpty>
           {companies.length > 0 && (
             <CommandGroup heading={query ? "종목" : "거래대금 상위 종목"}>
               {companies.map((stock) => (
@@ -137,6 +174,37 @@ export function GlobalSearch() {
                 </CommandItem>
               ))}
             </CommandGroup>
+          )}
+          {directoryCompanies.length > 0 && (
+            <>
+              {companies.length > 0 && <CommandSeparator />}
+              <CommandGroup heading="미국 상장 종목 · 분석 준비 중">
+                {directoryCompanies.map((stock) => (
+                  <CommandItem
+                    key={`directory:${stock.ticker}`}
+                    value={`${stock.ticker} ${stock.name} ${stock.sector} ${stock.industry}`}
+                    onSelect={() => goToStock(stock.ticker)}
+                    className="gap-3"
+                  >
+                    <Clock3 className="h-4 w-4 text-muted-foreground" />
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className="font-semibold text-foreground">
+                          {stock.ticker}
+                        </span>
+                        <span className="truncate text-sm">{stock.name}</span>
+                      </div>
+                      <p className="truncate text-xs text-muted-foreground">
+                        {[stock.sector, stock.industry]
+                          .filter(Boolean)
+                          .join(" · ") || "상장 정보 확인됨"}
+                      </p>
+                    </div>
+                    <CommandShortcut>준비 중</CommandShortcut>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
           )}
           {companies.length > 0 && groups.length > 0 && <CommandSeparator />}
           {groups.length > 0 && (
