@@ -134,7 +134,7 @@ WIKI_DOW = "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
 NASDAQ_100_API = "https://api.nasdaq.com/api/quote/list-type/nasdaq100"
 IWM_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual"
 IWB_HOLDINGS_XLS = "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v1/get-fund-document?appSubType=ISHARES&appType=PRODUCT_PAGE&component=fundDownload&locale=en_US&portfolioId=239707&targetSite=us-ishares&userType=individual"
-RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "top").strip().lower()  # off / top / all
+RUSSELL_MODE = os.getenv("MONEY_FLOW_RUSSELL_MODE", "all").strip().lower()  # off / top / all
 RUSSELL_MAX = int(os.getenv("MONEY_FLOW_RUSSELL_MAX", "600"))
 RUSSELL1000_MAX = int(os.getenv("MONEY_FLOW_RUSSELL1000_MAX", "1000"))
 YF_CHUNK_SIZE = int(os.getenv("MONEY_FLOW_YF_CHUNK_SIZE", "250"))
