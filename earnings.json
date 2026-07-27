@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-26T09:52:02.916919+00:00",
+    "generatedAt": "2026-07-27T12:33:20.849946+00:00",
     "status": "ok",
-    "from": "2026-06-11",
-    "to": "2027-01-22",
-    "count": 278,
+    "from": "2026-06-12",
+    "to": "2027-01-23",
+    "count": 415,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -100,6 +100,42 @@
       "sourceUrl": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/event-details/2026/NVIDIA-2nd-Quarter-FY27-Financial-Results/default.aspx"
     },
     {
+      "ticker": "ABUS",
+      "company": "알부투스 바이오파마(주)",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0306,
+      "revenueActual": null,
+      "revenueEstimate": 459000.0
+    },
+    {
+      "ticker": "AIRJ",
+      "company": "AIRJOULE TECHNOLOGIES CORP 클래스 A",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.074,
+      "revenueActual": null,
+      "revenueEstimate": 255000.0
+    },
+    {
+      "ticker": "AIRO",
+      "company": "에어로 그룹 홀딩스 INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1122,
+      "revenueActual": null,
+      "revenueEstimate": 24242003.0
+    },
+    {
       "ticker": "ALMS",
       "company": "알루미스",
       "date": "2026-11-11",
@@ -124,6 +160,78 @@
       "revenueEstimate": 799368645.0
     },
     {
+      "ticker": "BETR",
+      "company": "더 나은 주택 금융 수업",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.8794,
+      "revenueActual": null,
+      "revenueEstimate": 64967880.0
+    },
+    {
+      "ticker": "BOC",
+      "company": "보스턴 오마하 공사 클래스 A",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0202,
+      "revenueActual": null,
+      "revenueEstimate": 28987000.0
+    },
+    {
+      "ticker": "BZH",
+      "company": "BEAZER HOMES INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9292,
+      "revenueActual": null,
+      "revenueEstimate": 828124250.0
+    },
+    {
+      "ticker": "CADL",
+      "company": "CANDEL THERAPEUTICS INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.2614,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "CDZI",
+      "company": "CADIZ INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1224,
+      "revenueActual": null,
+      "revenueEstimate": 4087650.0
+    },
+    {
+      "ticker": "CHCI",
+      "company": "COMSTOCK HOLDING COMPANIES INC CLA",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "CRWV",
       "company": "코어위브",
       "date": "2026-11-11",
@@ -134,6 +242,30 @@
       "epsEstimate": -0.8105,
       "revenueActual": null,
       "revenueEstimate": 3538253346.0
+    },
+    {
+      "ticker": "CSIQ",
+      "company": "CANADIAN SOLAR INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1638,
+      "revenueActual": null,
+      "revenueEstimate": 2025861606.0
+    },
+    {
+      "ticker": "CV",
+      "company": "CAPSOVISION INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1236,
+      "revenueActual": null,
+      "revenueEstimate": 4240510.0
     },
     {
       "ticker": "DIS",
@@ -148,6 +280,126 @@
       "revenueEstimate": 25580325388.0
     },
     {
+      "ticker": "ELTX",
+      "company": "ELICIO THERAPEUTICS INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.4828,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "EPC",
+      "company": "EDGEWELL PERSONAL CARE",
+      "date": "2026-11-11",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8066,
+      "revenueActual": null,
+      "revenueEstimate": 483002200.0
+    },
+    {
+      "ticker": "EVLV",
+      "company": "EVOLV TECHNOLOGIES HOLDINGS INC CL",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0204,
+      "revenueActual": null,
+      "revenueEstimate": 44685180.0
+    },
+    {
+      "ticker": "FENC",
+      "company": "FENNEC PHARMACEUTICALS INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1001,
+      "revenueActual": null,
+      "revenueEstimate": 18768683.0
+    },
+    {
+      "ticker": "FOSL",
+      "company": "FOSSIL GROUP INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.2244,
+      "revenueActual": null,
+      "revenueEstimate": 252428580.0
+    },
+    {
+      "ticker": "GLOB",
+      "company": "GLOBANT SA",
+      "date": "2026-11-11",
+      "hour": "amc",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.6389,
+      "revenueActual": null,
+      "revenueEstimate": 640101000.0
+    },
+    {
+      "ticker": "HZO",
+      "company": "MARINEMAX INC",
+      "date": "2026-11-11",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0672,
+      "revenueActual": null,
+      "revenueEstimate": 570288046.0
+    },
+    {
+      "ticker": "IPSC",
+      "company": "CENTURY THERAPEUTICS INC",
+      "date": "2026-11-11",
+      "hour": "bmo",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1244,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "JBIO",
+      "company": "JADE BIOSCIENCES INC",
+      "date": "2026-11-11",
+      "hour": "amc",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.6834,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "JCAP",
+      "company": "JEFFERSON CAPITAL INC",
+      "date": "2026-11-11",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7217,
+      "revenueActual": null,
+      "revenueEstimate": 176151552.0
+    },
+    {
       "ticker": "AMAT",
       "company": "어플라이드 머티어리얼즈",
       "date": "2026-11-12",
@@ -158,6 +410,54 @@
       "epsEstimate": 3.687,
       "revenueActual": null,
       "revenueEstimate": 9591264734.0
+    },
+    {
+      "ticker": "AREC",
+      "company": "미국 자원 공사 클래스 A",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.068,
+      "revenueActual": null,
+      "revenueEstimate": 4080000.0
+    },
+    {
+      "ticker": "ASST",
+      "company": "STRIVE INC 클래스 A",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.156,
+      "revenueActual": null,
+      "revenueEstimate": 2838660.0
+    },
+    {
+      "ticker": "BNTC",
+      "company": "베니텍 바이오파마 INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.2856,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "BTBT",
+      "company": "BIT DIGITAL INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0255,
+      "revenueActual": null,
+      "revenueEstimate": 37743060.0
     },
     {
       "ticker": "CGON",
@@ -172,6 +472,90 @@
       "revenueEstimate": 1315014.0
     },
     {
+      "ticker": "ELDN",
+      "company": "ELEDON PHARMACEUTICALS INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.2081,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "FBRX",
+      "company": "FORTE BIOSCIENCES INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -1.0506,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "FBYD",
+      "company": "FALCON S BEYOND GLOBAL INC CLASS A",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "GALT",
+      "company": "GALECTIN THERAPEUTICS INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.102,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "GLSI",
+      "company": "GREENWICH LIFESCIENCES INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.3417,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "IKT",
+      "company": "INHIBIKASE THERAPEUTICS INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1068,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "INBX",
+      "company": "INHIBRX BIOSCIENCES INC",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -2.5959,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
       "ticker": "LGN",
       "company": "레전스",
       "date": "2026-11-12",
@@ -184,16 +568,16 @@
       "revenueEstimate": 1090697404.0
     },
     {
-      "ticker": "SR",
-      "company": "스파이어",
+      "ticker": "LWLG",
+      "company": "LIGHTWAVE LOGIC INC",
       "date": "2026-11-12",
-      "hour": "amc",
-      "quarter": 4,
+      "hour": "",
+      "quarter": 3,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": -0.3699,
+      "epsEstimate": null,
       "revenueActual": null,
-      "revenueEstimate": 317178200.0
+      "revenueEstimate": null
     },
     {
       "ticker": "SRRK",
@@ -206,18 +590,6 @@
       "epsEstimate": -0.8657,
       "revenueActual": null,
       "revenueEstimate": 1904992.0
-    },
-    {
-      "ticker": "TWST",
-      "company": "트위스트 바이오사이언스",
-      "date": "2026-11-12",
-      "hour": "bmo",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": -0.4007,
-      "revenueActual": null,
-      "revenueEstimate": 119837382.0
     },
     {
       "ticker": "ACM",
@@ -268,6 +640,18 @@
       "revenueEstimate": 190472760.0
     },
     {
+      "ticker": "BZAI",
+      "company": "BLAIZE HOLDINGS INC",
+      "date": "2026-11-16",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1088,
+      "revenueActual": null,
+      "revenueEstimate": 43207200.0
+    },
+    {
       "ticker": "DLB",
       "company": "돌비 래보라토리스",
       "date": "2026-11-16",
@@ -278,6 +662,30 @@
       "epsEstimate": 1.2145,
       "revenueActual": null,
       "revenueEstimate": 355469247.0
+    },
+    {
+      "ticker": "ENR",
+      "company": "ENERGIZER HOLDINGS INC",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.432,
+      "revenueActual": null,
+      "revenueEstimate": 856840236.0
+    },
+    {
+      "ticker": "ENTA",
+      "company": "ENANTA PHARMACEUTICALS INC",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.6304,
+      "revenueActual": null,
+      "revenueEstimate": 16238400.0
     },
     {
       "ticker": "ESTC",
@@ -304,6 +712,78 @@
       "revenueEstimate": 1063878893.0
     },
     {
+      "ticker": "IBTA",
+      "company": "IBOTTA INC CLASS A",
+      "date": "2026-11-16",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1311,
+      "revenueActual": null,
+      "revenueEstimate": 87726803.0
+    },
+    {
+      "ticker": "IIIV",
+      "company": "I3 VERTICALS INC CLASS A",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3111,
+      "revenueActual": null,
+      "revenueEstimate": 59670000.0
+    },
+    {
+      "ticker": "JJSF",
+      "company": "J AND J SNACK FOODS CORP",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.4596,
+      "revenueActual": null,
+      "revenueEstimate": 413779830.0
+    },
+    {
+      "ticker": "KRMD",
+      "company": "KORU MEDICAL SYSTEMS INC",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0077,
+      "revenueActual": null,
+      "revenueEstimate": 12526416.0
+    },
+    {
+      "ticker": "LFMD",
+      "company": "LIFEMD INC",
+      "date": "2026-11-16",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0238,
+      "revenueActual": null,
+      "revenueEstimate": 59651782.0
+    },
+    {
+      "ticker": "LZB",
+      "company": "LA-Z-BOY INC",
+      "date": "2026-11-16",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.7272,
+      "revenueActual": null,
+      "revenueEstimate": 542762385.0
+    },
+    {
       "ticker": "MDT",
       "company": "메드트로닉",
       "date": "2026-11-16",
@@ -314,6 +794,18 @@
       "epsEstimate": 1.3601,
       "revenueActual": null,
       "revenueEstimate": 9587982560.0
+    },
+    {
+      "ticker": "MH",
+      "company": "MCGRAW HILL INC",
+      "date": "2026-11-16",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.8297,
+      "revenueActual": null,
+      "revenueEstimate": 686525529.0
     },
     {
       "ticker": "PDD",
@@ -328,16 +820,40 @@
       "revenueEstimate": 122932869726.0
     },
     {
-      "ticker": "POWL",
-      "company": "파월 인더스트리스",
+      "ticker": "PSFE",
+      "company": "PAYSAFE LTD",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.6834,
+      "revenueActual": null,
+      "revenueEstimate": 457282320.0
+    },
+    {
+      "ticker": "PXED",
+      "company": "PHOENIX EDUCATION PARTNERS INC",
       "date": "2026-11-16",
       "hour": "",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 1.6004,
+      "epsEstimate": 1.1305,
       "revenueActual": null,
-      "revenueEstimate": 336539483.0
+      "revenueEstimate": 273202042.0
+    },
+    {
+      "ticker": "VENU",
+      "company": "VENU HOLDING CORP",
+      "date": "2026-11-16",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.2856,
+      "revenueActual": null,
+      "revenueEstimate": 5610000.0
     },
     {
       "ticker": "VIK",
@@ -350,6 +866,66 @@
       "epsEstimate": 1.41,
       "revenueActual": null,
       "revenueEstimate": 2286653443.0
+    },
+    {
+      "ticker": "VREX",
+      "company": "VAREX IMAGING CORP",
+      "date": "2026-11-16",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3075,
+      "revenueActual": null,
+      "revenueEstimate": 230214000.0
+    },
+    {
+      "ticker": "ASPI",
+      "company": "ASP ISOTOPES INC",
+      "date": "2026-11-17",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.2992,
+      "revenueActual": null,
+      "revenueEstimate": 7489860.0
+    },
+    {
+      "ticker": "BLSH",
+      "company": "강세",
+      "date": "2026-11-17",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1707,
+      "revenueActual": null,
+      "revenueEstimate": 93939164.0
+    },
+    {
+      "ticker": "BV",
+      "company": "BRIGHTVIEW HOLDINGS INC",
+      "date": "2026-11-17",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3092,
+      "revenueActual": null,
+      "revenueEstimate": 753162883.0
+    },
+    {
+      "ticker": "CRNC",
+      "company": "CERENCE INC",
+      "date": "2026-11-17",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.204,
+      "revenueActual": null,
+      "revenueEstimate": 67558068.0
     },
     {
       "ticker": "DY",
@@ -400,6 +976,18 @@
       "revenueEstimate": 335376000.0
     },
     {
+      "ticker": "MAGN",
+      "company": "MAGNERA CORP",
+      "date": "2026-11-17",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3417,
+      "revenueActual": null,
+      "revenueEstimate": 922353870.0
+    },
+    {
       "ticker": "NJR",
       "company": "뉴저지 리소시스",
       "date": "2026-11-17",
@@ -410,6 +998,18 @@
       "epsEstimate": 0.2384,
       "revenueActual": null,
       "revenueEstimate": 377100336.0
+    },
+    {
+      "ticker": "NUTX",
+      "company": "NUTEX HEALTH INC",
+      "date": "2026-11-17",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 4.46,
+      "revenueActual": null,
+      "revenueEstimate": 223069410.0
     },
     {
       "ticker": "NVDA",
@@ -424,6 +1024,18 @@
       "revenueEstimate": 105311630623.0
     },
     {
+      "ticker": "ODD",
+      "company": "ODDITY TECH LTD CLASS A",
+      "date": "2026-11-17",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1302,
+      "revenueActual": null,
+      "revenueEstimate": 122729039.0
+    },
+    {
       "ticker": "PANW",
       "company": "팔로 알토 네트웍스",
       "date": "2026-11-17",
@@ -434,18 +1046,6 @@
       "epsEstimate": 0.9496,
       "revenueActual": null,
       "revenueEstimate": 3274570923.0
-    },
-    {
-      "ticker": "TGT",
-      "company": "타겟",
-      "date": "2026-11-17",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 1.9231,
-      "revenueActual": null,
-      "revenueEstimate": 26343691811.0
     },
     {
       "ticker": "UTI",
@@ -460,30 +1060,6 @@
       "revenueEstimate": 251879860.0
     },
     {
-      "ticker": "VVV",
-      "company": "밸보라인",
-      "date": "2026-11-17",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.4852,
-      "revenueActual": null,
-      "revenueEstimate": 561457151.0
-    },
-    {
-      "ticker": "WSM",
-      "company": "윌리엄 소노마",
-      "date": "2026-11-17",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 2.1474,
-      "revenueActual": null,
-      "revenueEstimate": 1981705203.0
-    },
-    {
       "ticker": "BBWI",
       "company": "배스 앤 바디 웍스",
       "date": "2026-11-18",
@@ -494,6 +1070,18 @@
       "epsEstimate": 0.2581,
       "revenueActual": null,
       "revenueEstimate": 1578611231.0
+    },
+    {
+      "ticker": "BORR",
+      "company": "BORR 드릴링 LTD",
+      "date": "2026-11-18",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0265,
+      "revenueActual": null,
+      "revenueEstimate": 280551765.0
     },
     {
       "ticker": "CPRT",
@@ -568,6 +1156,42 @@
       "revenueEstimate": 22978166721.0
     },
     {
+      "ticker": "LQDT",
+      "company": "LIQUIDITY SERVICES INC",
+      "date": "2026-11-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.408,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "MATW",
+      "company": "MATTHEWS INTERNATIONAL CORP CLASS",
+      "date": "2026-11-18",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5049,
+      "revenueActual": null,
+      "revenueEstimate": 276879000.0
+    },
+    {
+      "ticker": "MDWD",
+      "company": "MEDIWOUND LTD",
+      "date": "2026-11-18",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.7004,
+      "revenueActual": null,
+      "revenueEstimate": 8876376.0
+    },
+    {
       "ticker": "MMS",
       "company": "막시무스",
       "date": "2026-11-18",
@@ -578,6 +1202,18 @@
       "epsEstimate": 2.3281,
       "revenueActual": null,
       "revenueEstimate": 1330546225.0
+    },
+    {
+      "ticker": "NGVC",
+      "company": "NATURAL GROCERS BY VITAMIN COTTAGE",
+      "date": "2026-11-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5488,
+      "revenueActual": null,
+      "revenueEstimate": 367934400.0
     },
     {
       "ticker": "P",
@@ -604,42 +1240,6 @@
       "revenueEstimate": 2106323460.0
     },
     {
-      "ticker": "ROAD",
-      "company": "컨스트럭션 파트너스",
-      "date": "2026-11-18",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 1.379,
-      "revenueActual": null,
-      "revenueEstimate": 1102857486.0
-    },
-    {
-      "ticker": "ROST",
-      "company": "로스 스토어스",
-      "date": "2026-11-18",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 1.7487,
-      "revenueActual": null,
-      "revenueEstimate": 6104153759.0
-    },
-    {
-      "ticker": "TJX",
-      "company": "TJX 컴퍼니스",
-      "date": "2026-11-18",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 1.3582,
-      "revenueActual": null,
-      "revenueEstimate": 16069481598.0
-    },
-    {
       "ticker": "UGI",
       "company": "유지아이",
       "date": "2026-11-18",
@@ -652,16 +1252,16 @@
       "revenueEstimate": 1445310000.0
     },
     {
-      "ticker": "VEEV",
-      "company": "비바 시스템즈",
-      "date": "2026-11-18",
+      "ticker": "AZTA",
+      "company": "아젠타 INC",
+      "date": "2026-11-19",
       "hour": "amc",
-      "quarter": 3,
-      "year": 2027,
+      "quarter": 4,
+      "year": 2026,
       "epsActual": null,
-      "epsEstimate": 2.3285,
+      "epsEstimate": 0.2203,
       "revenueActual": null,
-      "revenueEstimate": 936407583.0
+      "revenueEstimate": 160986936.0
     },
     {
       "ticker": "BJ",
@@ -676,6 +1276,18 @@
       "revenueEstimate": 6057971234.0
     },
     {
+      "ticker": "BKE",
+      "company": "버클 주식회사",
+      "date": "2026-11-19",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.9191,
+      "revenueActual": null,
+      "revenueEstimate": 330268990.0
+    },
+    {
       "ticker": "IESC",
       "company": "아이이에스",
       "date": "2026-11-19",
@@ -686,18 +1298,6 @@
       "epsEstimate": 5.0082,
       "revenueActual": null,
       "revenueEstimate": 1113840000.0
-    },
-    {
-      "ticker": "WMT",
-      "company": "월마트",
-      "date": "2026-11-19",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 0.6878,
-      "revenueActual": null,
-      "revenueEstimate": 190291388796.0
     },
     {
       "ticker": "A",
@@ -734,6 +1334,18 @@
       "epsEstimate": 3.211,
       "revenueActual": null,
       "revenueEstimate": 2120118490.0
+    },
+    {
+      "ticker": "ALCO",
+      "company": "알리코 주식회사",
+      "date": "2026-11-23",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.6834,
+      "revenueActual": null,
+      "revenueEstimate": 1632000.0
     },
     {
       "ticker": "AMBA",
@@ -784,6 +1396,30 @@
       "revenueEstimate": 52133332.0
     },
     {
+      "ticker": "AVXL",
+      "company": "ANAVEX 생명과학 주식회사",
+      "date": "2026-11-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1122,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "BBW",
+      "company": "BEAR WORKSHOP INC를 구축하세요",
+      "date": "2026-11-23",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.8459,
+      "revenueActual": null,
+      "revenueEstimate": 130258690.0
+    },
+    {
       "ticker": "BBY",
       "company": "베스트 바이",
       "date": "2026-11-23",
@@ -808,6 +1444,18 @@
       "revenueEstimate": 550077503.0
     },
     {
+      "ticker": "BNAI",
+      "company": "브랜드 참여 네트워크 INC",
+      "date": "2026-11-23",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -1.224,
+      "revenueActual": null,
+      "revenueEstimate": 816000.0
+    },
+    {
       "ticker": "BURL",
       "company": "벌링턴 스토어스",
       "date": "2026-11-23",
@@ -818,6 +1466,30 @@
       "epsEstimate": 2.0851,
       "revenueActual": null,
       "revenueEstimate": 3050257572.0
+    },
+    {
+      "ticker": "CENT",
+      "company": "CENTRAL GARDEN AND PET",
+      "date": "2026-11-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.0408,
+      "revenueActual": null,
+      "revenueEstimate": 616732800.0
+    },
+    {
+      "ticker": "CLFD",
+      "company": "CLEARFIELD INC",
+      "date": "2026-11-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.4046,
+      "revenueActual": null,
+      "revenueEstimate": 53448000.0
     },
     {
       "ticker": "CLSK",
@@ -844,6 +1516,30 @@
       "revenueEstimate": 5204871975.0
     },
     {
+      "ticker": "EMBC",
+      "company": "EMBECTA CORP",
+      "date": "2026-11-23",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3494,
+      "revenueActual": null,
+      "revenueEstimate": 289228650.0
+    },
+    {
+      "ticker": "FLNC",
+      "company": "플루언스 에너지",
+      "date": "2026-11-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3882,
+      "revenueActual": null,
+      "revenueEstimate": 1527179230.0
+    },
+    {
       "ticker": "HPQ",
       "company": "에이치피",
       "date": "2026-11-23",
@@ -854,6 +1550,18 @@
       "epsEstimate": 0.68,
       "revenueActual": null,
       "revenueEstimate": 14548768311.0
+    },
+    {
+      "ticker": "JACK",
+      "company": "JACK IN THE BOX INC",
+      "date": "2026-11-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7911,
+      "revenueActual": null,
+      "revenueEstimate": 260938695.0
     },
     {
       "ticker": "KEYS",
@@ -880,6 +1588,18 @@
       "revenueEstimate": 3446077913.0
     },
     {
+      "ticker": "MOV",
+      "company": "MOVADO GROUP INC",
+      "date": "2026-11-23",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.6242,
+      "revenueActual": null,
+      "revenueEstimate": 190494585.0
+    },
+    {
       "ticker": "NTNX",
       "company": "뉴타닉스",
       "date": "2026-11-23",
@@ -892,42 +1612,6 @@
       "revenueEstimate": 769674507.0
     },
     {
-      "ticker": "SJM",
-      "company": "J.M. 스머커",
-      "date": "2026-11-23",
-      "hour": "",
-      "quarter": 2,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 2.5848,
-      "revenueActual": null,
-      "revenueEstimate": 2253936957.0
-    },
-    {
-      "ticker": "SMTC",
-      "company": "셈텍",
-      "date": "2026-11-23",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 0.7249,
-      "revenueActual": null,
-      "revenueEstimate": 364356158.0
-    },
-    {
-      "ticker": "SNEX",
-      "company": "스토넥스 그룹",
-      "date": "2026-11-23",
-      "hour": "",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 1.2291,
-      "revenueActual": null,
-      "revenueEstimate": 663148920.0
-    },
-    {
       "ticker": "URBN",
       "company": "어반 아웃피터스",
       "date": "2026-11-23",
@@ -938,30 +1622,6 @@
       "epsEstimate": 1.5206,
       "revenueActual": null,
       "revenueEstimate": 1675579051.0
-    },
-    {
-      "ticker": "WDAY",
-      "company": "워크데이",
-      "date": "2026-11-23",
-      "hour": "amc",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 2.6901,
-      "revenueActual": null,
-      "revenueEstimate": 2750320860.0
-    },
-    {
-      "ticker": "WWD",
-      "company": "우드워드",
-      "date": "2026-11-23",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 2.5507,
-      "revenueActual": null,
-      "revenueEstimate": 1139353144.0
     },
     {
       "ticker": "ZM",
@@ -988,6 +1648,30 @@
       "revenueEstimate": 954646714.0
     },
     {
+      "ticker": "IMKTA",
+      "company": "INGLES MARKETS INC CLASS A",
+      "date": "2026-11-24",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "LEE",
+      "company": "LEE ENTERPRISES INC",
+      "date": "2026-11-24",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0606,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "DE",
       "company": "디어",
       "date": "2026-11-25",
@@ -1000,6 +1684,18 @@
       "revenueEstimate": 11243674113.0
     },
     {
+      "ticker": "NAT",
+      "company": "NORDIC AMERICAN TANKERS LTD",
+      "date": "2026-11-26",
+      "hour": "bmo",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0404,
+      "revenueActual": null,
+      "revenueEstimate": 54742000.0
+    },
+    {
       "ticker": "AEO",
       "company": "아메리칸 이글 아웃피터스",
       "date": "2026-11-30",
@@ -1010,6 +1706,18 @@
       "epsEstimate": 0.5529,
       "revenueActual": null,
       "revenueEstimate": 1442204755.0
+    },
+    {
+      "ticker": "ASAN",
+      "company": "아사나 INC 클래스 A",
+      "date": "2026-11-30",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.0909,
+      "revenueActual": null,
+      "revenueEstimate": 222524373.0
     },
     {
       "ticker": "BOX",
@@ -1048,6 +1756,18 @@
       "revenueEstimate": 1545053333.0
     },
     {
+      "ticker": "CTRN",
+      "company": "CITI TRENDS INC",
+      "date": "2026-11-30",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.3162,
+      "revenueActual": null,
+      "revenueEstimate": 216910650.0
+    },
+    {
       "ticker": "MDB",
       "company": "몽고DB",
       "date": "2026-11-30",
@@ -1084,18 +1804,6 @@
       "revenueEstimate": 821547698.0
     },
     {
-      "ticker": "SIG",
-      "company": "시그넷 주얼러스",
-      "date": "2026-11-30",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 0.7517,
-      "revenueActual": null,
-      "revenueEstimate": 1402558831.0
-    },
-    {
       "ticker": "UNFI",
       "company": "유나이티드 내추럴 푸드",
       "date": "2026-11-30",
@@ -1108,6 +1816,30 @@
       "revenueEstimate": 8116666575.0
     },
     {
+      "ticker": "VLGEA",
+      "company": "VILLAGE SUPER MARKET INC CLASS A",
+      "date": "2026-11-30",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "VSTS",
+      "company": "VESTIS CORP",
+      "date": "2026-11-30",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1292,
+      "revenueActual": null,
+      "revenueEstimate": 688158810.0
+    },
+    {
       "ticker": "CRM",
       "company": "세일즈포스",
       "date": "2026-12-01",
@@ -1118,6 +1850,30 @@
       "epsEstimate": 3.3913,
       "revenueActual": null,
       "revenueEstimate": 11510843083.0
+    },
+    {
+      "ticker": "CURV",
+      "company": "TORRID HOLDINGS INC",
+      "date": "2026-12-01",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.002,
+      "revenueActual": null,
+      "revenueEstimate": 231983873.0
+    },
+    {
+      "ticker": "CXM",
+      "company": "SPRINKLR INC CLASS A",
+      "date": "2026-12-01",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.1323,
+      "revenueActual": null,
+      "revenueEstimate": 218465777.0
     },
     {
       "ticker": "DLTR",
@@ -1168,6 +1924,30 @@
       "revenueEstimate": 350288331.0
     },
     {
+      "ticker": "MEI",
+      "company": "METHODE ELECTRONICS INC",
+      "date": "2026-12-01",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.1414,
+      "revenueActual": null,
+      "revenueEstimate": 242471710.0
+    },
+    {
+      "ticker": "MPLT",
+      "company": "MAPLIGHT THERAPEUTICS INC",
+      "date": "2026-12-01",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -1.2496,
+      "revenueActual": null,
+      "revenueEstimate": 0.0
+    },
+    {
       "ticker": "NTAP",
       "company": "넷앱",
       "date": "2026-12-01",
@@ -1192,42 +1972,6 @@
       "revenueEstimate": 451066858.0
     },
     {
-      "ticker": "PVH",
-      "company": "필립스 반 휴센",
-      "date": "2026-12-01",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 3.0283,
-      "revenueActual": null,
-      "revenueEstimate": 2307319921.0
-    },
-    {
-      "ticker": "SNOW",
-      "company": "스노우플레이크",
-      "date": "2026-12-01",
-      "hour": "amc",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 0.5254,
-      "revenueActual": null,
-      "revenueEstimate": 1600594383.0
-    },
-    {
-      "ticker": "THO",
-      "company": "소어 인더스트리스",
-      "date": "2026-12-01",
-      "hour": "",
-      "quarter": 1,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 0.5639,
-      "revenueActual": null,
-      "revenueEstimate": 2340322176.0
-    },
-    {
       "ticker": "AGX",
       "company": "아간",
       "date": "2026-12-02",
@@ -1238,6 +1982,18 @@
       "epsEstimate": 3.03,
       "revenueActual": null,
       "revenueEstimate": 339952264.0
+    },
+    {
+      "ticker": "CHPT",
+      "company": "CHARGEPOINT HOLDINGS INC CLASS A",
+      "date": "2026-12-02",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.8033,
+      "revenueActual": null,
+      "revenueEstimate": 111113873.0
     },
     {
       "ticker": "COO",
@@ -1288,6 +2044,42 @@
       "revenueEstimate": 906367603.0
     },
     {
+      "ticker": "DOMO",
+      "company": "DOMO INC CLASS B",
+      "date": "2026-12-02",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.017,
+      "revenueActual": null,
+      "revenueEstimate": 80094653.0
+    },
+    {
+      "ticker": "GCO",
+      "company": "GENESCO INC",
+      "date": "2026-12-02",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.1918,
+      "revenueActual": null,
+      "revenueEstimate": 622538750.0
+    },
+    {
+      "ticker": "HOV",
+      "company": "HOVNANIAN ENTERPRISES INC CLASS A",
+      "date": "2026-12-02",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.3535,
+      "revenueActual": null,
+      "revenueEstimate": 791941000.0
+    },
+    {
       "ticker": "HPE",
       "company": "휴렛패커드 엔터프라이즈",
       "date": "2026-12-02",
@@ -1312,6 +2104,18 @@
       "revenueEstimate": 3272391788.0
     },
     {
+      "ticker": "IDT",
+      "company": "IDT CORP CLASS B",
+      "date": "2026-12-02",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.9898,
+      "revenueActual": null,
+      "revenueEstimate": 320170000.0
+    },
+    {
       "ticker": "KR",
       "company": "크로거",
       "date": "2026-12-02",
@@ -1324,28 +2128,28 @@
       "revenueEstimate": 35432990283.0
     },
     {
-      "ticker": "S",
-      "company": "센티넬원",
+      "ticker": "SFIX",
+      "company": "STITCH FIX INC CLASS A",
       "date": "2026-12-02",
       "hour": "",
-      "quarter": 3,
+      "quarter": 1,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 0.1122,
+      "epsEstimate": -0.0306,
       "revenueActual": null,
-      "revenueEstimate": 315527503.0
+      "revenueEstimate": 347141700.0
     },
     {
-      "ticker": "SAIC",
-      "company": "사이언스 어플리케이션스 인터내셔널",
+      "ticker": "SWBI",
+      "company": "SMITH WESSON BRANDS INC",
       "date": "2026-12-02",
       "hour": "",
-      "quarter": 3,
+      "quarter": 2,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 2.4231,
+      "epsEstimate": 0.0612,
       "revenueActual": null,
-      "revenueEstimate": 1853691787.0
+      "revenueEstimate": 128616900.0
     },
     {
       "ticker": "TTAN",
@@ -1360,18 +2164,6 @@
       "revenueEstimate": 293182445.0
     },
     {
-      "ticker": "ULTA",
-      "company": "울타 뷰티",
-      "date": "2026-12-02",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 5.931,
-      "revenueActual": null,
-      "revenueEstimate": 3060635276.0
-    },
-    {
       "ticker": "WLY",
       "company": "존 윌리 앤 손 Class A",
       "date": "2026-12-02",
@@ -1384,16 +2176,28 @@
       "revenueEstimate": null
     },
     {
-      "ticker": "VSXY",
-      "company": "빅토리아 시크릿",
-      "date": "2026-12-03",
+      "ticker": "ZUMZ",
+      "company": "ZUMIEZ INC",
+      "date": "2026-12-02",
       "hour": "",
       "quarter": 3,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 0.0181,
+      "epsEstimate": 0.6018,
       "revenueActual": null,
-      "revenueEstimate": 1589396538.0
+      "revenueEstimate": 243925860.0
+    },
+    {
+      "ticker": "AI",
+      "company": "C3 AI INC 클래스 A",
+      "date": "2026-12-03",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.2268,
+      "revenueActual": null,
+      "revenueEstimate": 58349500.0
     },
     {
       "ticker": "ASO",
@@ -1444,6 +2248,18 @@
       "revenueEstimate": 232465905.0
     },
     {
+      "ticker": "CAL",
+      "company": "CALERES INC",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.8417,
+      "revenueActual": null,
+      "revenueEstimate": 804516843.0
+    },
+    {
       "ticker": "CASY",
       "company": "케이시스 제너럴 스토어스",
       "date": "2026-12-07",
@@ -1454,6 +2270,30 @@
       "epsEstimate": 6.4729,
       "revenueActual": null,
       "revenueEstimate": 5563728873.0
+    },
+    {
+      "ticker": "CBRL",
+      "company": "CRACKER BARREL OLD COUNTRY STORE I",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.4483,
+      "revenueActual": null,
+      "revenueEstimate": 833308992.0
+    },
+    {
+      "ticker": "CMP",
+      "company": "COMPASS MINERALS INTERNATIONAL INC",
+      "date": "2026-12-07",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.1717,
+      "revenueActual": null,
+      "revenueEstimate": 221190000.0
     },
     {
       "ticker": "CPB",
@@ -1468,6 +2308,30 @@
       "revenueEstimate": 2672334174.0
     },
     {
+      "ticker": "DBI",
+      "company": "DESIGNER BRANDS INC CLASS A",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.2828,
+      "revenueActual": null,
+      "revenueEstimate": 763383250.0
+    },
+    {
+      "ticker": "ESOA",
+      "company": "ENERGY SERVICES OF AMERICA CORP",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3774,
+      "revenueActual": null,
+      "revenueEstimate": 137496000.0
+    },
+    {
       "ticker": "FERG",
       "company": "퍼거슨 엔터프라이즈",
       "date": "2026-12-07",
@@ -1478,6 +2342,30 @@
       "epsEstimate": 3.3538,
       "revenueActual": null,
       "revenueEstimate": 8787909133.0
+    },
+    {
+      "ticker": "GENC",
+      "company": "GENCOR INDUSTRIES INC",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0714,
+      "revenueActual": null,
+      "revenueEstimate": 18787380.0
+    },
+    {
+      "ticker": "GIII",
+      "company": "G III APPAREL GROUP LTD",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.8368,
+      "revenueActual": null,
+      "revenueEstimate": 917391825.0
     },
     {
       "ticker": "GME",
@@ -1516,6 +2404,42 @@
       "revenueEstimate": 753715530.0
     },
     {
+      "ticker": "LE",
+      "company": "LAND END INC",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.2936,
+      "revenueActual": null,
+      "revenueEstimate": 334264355.0
+    },
+    {
+      "ticker": "MAMA",
+      "company": "MAMAS CREATIONS INC",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.0646,
+      "revenueActual": null,
+      "revenueEstimate": 58007736.0
+    },
+    {
+      "ticker": "ODC",
+      "company": "OIL DRI CORPORATION OF AMERICA",
+      "date": "2026-12-07",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "OLLI",
       "company": "올리스 바겐 아웃렛 홀딩스",
       "date": "2026-12-07",
@@ -1528,28 +2452,16 @@
       "revenueEstimate": 701345880.0
     },
     {
-      "ticker": "RBRK",
-      "company": "루브릭",
+      "ticker": "OOMA",
+      "company": "OOMA INC",
       "date": "2026-12-07",
       "hour": "",
       "quarter": 3,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 0.0571,
+      "epsEstimate": 0.3255,
       "revenueActual": null,
-      "revenueEstimate": 426637205.0
-    },
-    {
-      "ticker": "TOL",
-      "company": "톨 브라더스",
-      "date": "2026-12-07",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 5.0716,
-      "revenueActual": null,
-      "revenueEstimate": 3548655260.0
+      "revenueEstimate": 83620324.0
     },
     {
       "ticker": "ADBE",
@@ -1564,6 +2476,18 @@
       "revenueEstimate": 6961319908.0
     },
     {
+      "ticker": "ASYS",
+      "company": "AMTECH 시스템 INC",
+      "date": "2026-12-08",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1326,
+      "revenueActual": null,
+      "revenueEstimate": 22950000.0
+    },
+    {
       "ticker": "CHWY",
       "company": "츄이",
       "date": "2026-12-08",
@@ -1574,6 +2498,30 @@
       "epsEstimate": 0.2178,
       "revenueActual": null,
       "revenueEstimate": 3403842979.0
+    },
+    {
+      "ticker": "DAKT",
+      "company": "DAKTRONICS INC",
+      "date": "2026-12-08",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.4012,
+      "revenueActual": null,
+      "revenueEstimate": 245378003.0
+    },
+    {
+      "ticker": "JILL",
+      "company": "J JILL INC",
+      "date": "2026-12-08",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.9139,
+      "revenueActual": null,
+      "revenueEstimate": 155488800.0
     },
     {
       "ticker": "MTN",
@@ -1612,18 +2560,6 @@
       "revenueEstimate": 21621291461.0
     },
     {
-      "ticker": "PL",
-      "company": "플래닛 랩스 PBC",
-      "date": "2026-12-08",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": -0.0247,
-      "revenueActual": null,
-      "revenueEstimate": 117552179.0
-    },
-    {
       "ticker": "PLAB",
       "company": "포토트로닉스 주식회사",
       "date": "2026-12-08",
@@ -1648,16 +2584,16 @@
       "revenueEstimate": 2603189460.0
     },
     {
-      "ticker": "UEC",
-      "company": "우라늄 에너지",
+      "ticker": "USAU",
+      "company": "US GOLD CORP",
       "date": "2026-12-08",
       "hour": "",
-      "quarter": 1,
+      "quarter": 2,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": -0.0455,
+      "epsEstimate": -0.2397,
       "revenueActual": null,
-      "revenueEstimate": 5050000.0
+      "revenueEstimate": null
     },
     {
       "ticker": "AVGO",
@@ -1696,6 +2632,42 @@
       "revenueEstimate": 74737424332.0
     },
     {
+      "ticker": "FEIM",
+      "company": "FREQUENCY ELECTRONICS INC",
+      "date": "2026-12-09",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.2958,
+      "revenueActual": null,
+      "revenueEstimate": 20680500.0
+    },
+    {
+      "ticker": "FIZZ",
+      "company": "NATIONAL BEVERAGE CORP",
+      "date": "2026-12-09",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.4998,
+      "revenueActual": null,
+      "revenueEstimate": 301450800.0
+    },
+    {
+      "ticker": "LOVE",
+      "company": "LOVESAC COMPANY",
+      "date": "2026-12-09",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.5491,
+      "revenueActual": null,
+      "revenueEstimate": 160000086.0
+    },
+    {
       "ticker": "LULU",
       "company": "룰루레몬 애슬레티카",
       "date": "2026-12-09",
@@ -1708,16 +2680,76 @@
       "revenueEstimate": 2603083482.0
     },
     {
-      "ticker": "RH",
-      "company": "알에이치",
+      "ticker": "MITK",
+      "company": "MITEK SYSTEMS INC",
       "date": "2026-12-09",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1979,
+      "revenueActual": null,
+      "revenueEstimate": 45475272.0
+    },
+    {
+      "ticker": "NX",
+      "company": "QUANEX BUILDING PRODUCTS CORP",
+      "date": "2026-12-09",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7725,
+      "revenueActual": null,
+      "revenueEstimate": 512275907.0
+    },
+    {
+      "ticker": "JOUT",
+      "company": "JOHNSON OUTDOORS INC CLASS A",
+      "date": "2026-12-10",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.4386,
+      "revenueActual": null,
+      "revenueEstimate": 133185480.0
+    },
+    {
+      "ticker": "PPIH",
+      "company": "PERMA PIPE INTERNATIONAL HOLDINGS",
+      "date": "2026-12-10",
       "hour": "",
       "quarter": 3,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 3.2151,
+      "epsEstimate": 0.6834,
       "revenueActual": null,
-      "revenueEstimate": 994314321.0
+      "revenueEstimate": 61200000.0
+    },
+    {
+      "ticker": "FWDI",
+      "company": "FORWARD INDUSTRIES INC",
+      "date": "2026-12-11",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0255,
+      "revenueActual": null,
+      "revenueEstimate": 13443600.0
+    },
+    {
+      "ticker": "KMTS",
+      "company": "KESTRA MEDICAL TECHNOLOGIES LTD",
+      "date": "2026-12-11",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.5668,
+      "revenueActual": null,
+      "revenueEstimate": 32248830.0
     },
     {
       "ticker": "LEN",
@@ -1730,6 +2762,30 @@
       "epsEstimate": 2.0464,
       "revenueActual": null,
       "revenueEstimate": 9511930742.0
+    },
+    {
+      "ticker": "WGO",
+      "company": "WINNEBAGO INDUSTRIES INC",
+      "date": "2026-12-14",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.5039,
+      "revenueActual": null,
+      "revenueEstimate": 727400363.0
+    },
+    {
+      "ticker": "WOR",
+      "company": "WORTHINGTON ENTERPRISES INC",
+      "date": "2026-12-14",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.771,
+      "revenueActual": null,
+      "revenueEstimate": 353999273.0
     },
     {
       "ticker": "ABM",
@@ -1780,6 +2836,18 @@
       "revenueEstimate": 9209822360.0
     },
     {
+      "ticker": "MLKN",
+      "company": "MILLERKNOLL INC",
+      "date": "2026-12-15",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.5644,
+      "revenueActual": null,
+      "revenueEstimate": 1036908203.0
+    },
+    {
       "ticker": "MU",
       "company": "마이크론 테크놀로지",
       "date": "2026-12-15",
@@ -1792,18 +2860,6 @@
       "revenueEstimate": 47903292705.0
     },
     {
-      "ticker": "TTC",
-      "company": "토로",
-      "date": "2026-12-15",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.9744,
-      "revenueActual": null,
-      "revenueEstimate": 1119746600.0
-    },
-    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2026-12-16",
@@ -1814,6 +2870,30 @@
       "epsEstimate": 4.0755,
       "revenueActual": null,
       "revenueEstimate": 19805590707.0
+    },
+    {
+      "ticker": "AVO",
+      "company": "미션 프로듀스 INC",
+      "date": "2026-12-16",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3459,
+      "revenueActual": null,
+      "revenueEstimate": 443794000.0
+    },
+    {
+      "ticker": "BIRK",
+      "company": "버컨스톡 홀딩",
+      "date": "2026-12-16",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.493,
+      "revenueActual": null,
+      "revenueEstimate": 612703137.0
     },
     {
       "ticker": "CTAS",
@@ -1838,6 +2918,18 @@
       "epsEstimate": 2.3631,
       "revenueActual": null,
       "revenueEstimate": 3308016094.0
+    },
+    {
+      "ticker": "FCEL",
+      "company": "FUELCELL ENERGY INC",
+      "date": "2026-12-16",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.4444,
+      "revenueActual": null,
+      "revenueEstimate": 45708097.0
     },
     {
       "ticker": "FDS",
@@ -1876,6 +2968,18 @@
       "revenueEstimate": 1403661569.0
     },
     {
+      "ticker": "ISSC",
+      "company": "INNOVATIVE SOLUTIONS AND SUPPORT I",
+      "date": "2026-12-16",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.2312,
+      "revenueActual": null,
+      "revenueEstimate": 25750236.0
+    },
+    {
       "ticker": "KMX",
       "company": "카맥스",
       "date": "2026-12-16",
@@ -1898,6 +3002,18 @@
       "epsEstimate": 0.5998,
       "revenueActual": null,
       "revenueEstimate": 12461749771.0
+    },
+    {
+      "ticker": "NNE",
+      "company": "NANO NUCLEAR ENERGY INC",
+      "date": "2026-12-16",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.3192,
+      "revenueActual": null,
+      "revenueEstimate": 252500.0
     },
     {
       "ticker": "CAG",
@@ -1924,18 +3040,6 @@
       "revenueEstimate": 1633179072.0
     },
     {
-      "ticker": "PAYX",
-      "company": "페이첵스",
-      "date": "2026-12-17",
-      "hour": "",
-      "quarter": 2,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 1.3824,
-      "revenueActual": null,
-      "revenueEstimate": 1685740026.0
-    },
-    {
       "ticker": "CCL",
       "company": "카니발",
       "date": "2026-12-18",
@@ -1948,6 +3052,54 @@
       "revenueEstimate": 6563312411.0
     },
     {
+      "ticker": "EBF",
+      "company": "ENNIS INC",
+      "date": "2026-12-21",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.4242,
+      "revenueActual": null,
+      "revenueEstimate": 102313000.0
+    },
+    {
+      "ticker": "LMNR",
+      "company": "LIMONEIRA",
+      "date": "2026-12-21",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.238,
+      "revenueActual": null,
+      "revenueEstimate": 41214120.0
+    },
+    {
+      "ticker": "CODI",
+      "company": "COMPASS DIVERSIFIED",
+      "date": "2026-12-28",
+      "hour": "",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0938,
+      "revenueActual": null,
+      "revenueEstimate": 433857000.0
+    },
+    {
+      "ticker": "DJCO",
+      "company": "DAILY JOURNAL CORP",
+      "date": "2026-12-28",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "AIR",
       "company": "에이에이알",
       "date": "2027-01-04",
@@ -1958,6 +3110,18 @@
       "epsEstimate": 1.3332,
       "revenueActual": null,
       "revenueEstimate": 895672040.0
+    },
+    {
+      "ticker": "ANGO",
+      "company": "혈관역학 INC",
+      "date": "2027-01-04",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.0476,
+      "revenueActual": null,
+      "revenueEstimate": 83673996.0
     },
     {
       "ticker": "PENG",
@@ -1984,6 +3148,18 @@
       "revenueEstimate": 162145462.0
     },
     {
+      "ticker": "APOG",
+      "company": "아포지 엔터프라이즈 INC",
+      "date": "2027-01-05",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.8738,
+      "revenueActual": null,
+      "revenueEstimate": 368338320.0
+    },
+    {
       "ticker": "AZZ",
       "company": "에이지지",
       "date": "2027-01-05",
@@ -2008,6 +3184,18 @@
       "revenueEstimate": 718030020.0
     },
     {
+      "ticker": "FC",
+      "company": "FRANKLIN COVEY",
+      "date": "2027-01-05",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.1133,
+      "revenueActual": null,
+      "revenueEstimate": 69988500.0
+    },
+    {
       "ticker": "JEF",
       "company": "제프리스 파이낸셜 그룹",
       "date": "2027-01-05",
@@ -2018,6 +3206,18 @@
       "epsEstimate": 0.9343,
       "revenueActual": null,
       "revenueEstimate": 2144434020.0
+    },
+    {
+      "ticker": "KRUS",
+      "company": "KURA SUSHI USA INC",
+      "date": "2027-01-05",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.1342,
+      "revenueActual": null,
+      "revenueEstimate": 90897300.0
     },
     {
       "ticker": "MSM",
@@ -2032,28 +3232,16 @@
       "revenueEstimate": 1027944336.0
     },
     {
-      "ticker": "PSMT",
-      "company": "프라이스스마트",
+      "ticker": "PCYO",
+      "company": "PURE CYCLE CORP",
       "date": "2027-01-05",
       "hour": "",
       "quarter": 1,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 1.632,
+      "epsEstimate": null,
       "revenueActual": null,
-      "revenueEstimate": 1473094200.0
-    },
-    {
-      "ticker": "STZ",
-      "company": "컨스텔레이션 브랜즈",
-      "date": "2027-01-05",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 2.9881,
-      "revenueActual": null,
-      "revenueEstimate": 2259282493.0
+      "revenueEstimate": null
     },
     {
       "ticker": "UNF",
@@ -2104,6 +3292,30 @@
       "revenueEstimate": 2442266102.0
     },
     {
+      "ticker": "GBX",
+      "company": "GREENBRIER INC",
+      "date": "2027-01-06",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.9343,
+      "revenueActual": null,
+      "revenueEstimate": 703268555.0
+    },
+    {
+      "ticker": "LNN",
+      "company": "LINDSAY CORP",
+      "date": "2027-01-06",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.7978,
+      "revenueActual": null,
+      "revenueEstimate": 165640000.0
+    },
+    {
       "ticker": "NEOG",
       "company": "니오젠",
       "date": "2027-01-06",
@@ -2116,40 +3328,52 @@
       "revenueEstimate": 227034150.0
     },
     {
-      "ticker": "RPM",
-      "company": "RPM 인터내셔널",
+      "ticker": "QTRX",
+      "company": "QUANTERIX CORP",
       "date": "2027-01-06",
-      "hour": "",
-      "quarter": 2,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 1.3522,
-      "revenueActual": null,
-      "revenueEstimate": 2044847343.0
-    },
-    {
-      "ticker": "SNX",
-      "company": "TD 시넥스",
-      "date": "2027-01-06",
-      "hour": "bmo",
+      "hour": "amc",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 4.218,
+      "epsEstimate": -0.2907,
       "revenueActual": null,
-      "revenueEstimate": 17978700940.0
+      "revenueEstimate": 51329123.0
     },
     {
-      "ticker": "WDFC",
-      "company": "더블유디-40",
-      "date": "2027-01-06",
+      "ticker": "CRI",
+      "company": "CARTERS INC",
+      "date": "2027-01-07",
       "hour": "",
-      "quarter": 1,
+      "quarter": 4,
       "year": 2027,
       "epsActual": null,
-      "epsEstimate": 1.3831,
+      "epsEstimate": 2.3533,
       "revenueActual": null,
-      "revenueEstimate": 168504000.0
+      "revenueEstimate": 962514850.0
+    },
+    {
+      "ticker": "BBCP",
+      "company": "콘크리트 펌프 홀딩스 INC",
+      "date": "2027-01-11",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.1071,
+      "revenueActual": null,
+      "revenueEstimate": 114954000.0
+    },
+    {
+      "ticker": "CNXC",
+      "company": "CONCENTRIX CORP",
+      "date": "2027-01-11",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 3.4884,
+      "revenueActual": null,
+      "revenueEstimate": 2654662200.0
     },
     {
       "ticker": "DAL",
@@ -2164,6 +3388,18 @@
       "revenueEstimate": 16590930953.0
     },
     {
+      "ticker": "INSP",
+      "company": "INSPIRE MEDICAL SYSTEMS INC",
+      "date": "2027-01-11",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.1934,
+      "revenueActual": null,
+      "revenueEstimate": 315086160.0
+    },
+    {
       "ticker": "OPCH",
       "company": "옵션 케어 헬스",
       "date": "2027-01-11",
@@ -2176,16 +3412,28 @@
       "revenueEstimate": 1519969932.0
     },
     {
-      "ticker": "TGTX",
-      "company": "티지 테라퓨틱스",
+      "ticker": "UNTY",
+      "company": "UNITY BANCORP INC",
       "date": "2027-01-11",
-      "hour": "amc",
+      "hour": "",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 0.4947,
+      "epsEstimate": 1.5402,
       "revenueActual": null,
-      "revenueEstimate": 270028425.0
+      "revenueEstimate": 37112016.0
+    },
+    {
+      "ticker": "CODI",
+      "company": "COMPASS DIVERSIFIED",
+      "date": "2027-01-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.0714,
+      "revenueActual": null,
+      "revenueEstimate": 434456760.0
     },
     {
       "ticker": "FUL",
@@ -2212,18 +3460,6 @@
       "revenueEstimate": 303161778.0
     },
     {
-      "ticker": "UCB",
-      "company": "유나이티드 커뮤니티 뱅크스",
-      "date": "2027-01-12",
-      "hour": "",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.7711,
-      "revenueActual": null,
-      "revenueEstimate": 294300698.0
-    },
-    {
       "ticker": "BLK",
       "company": "블랙록",
       "date": "2027-01-13",
@@ -2234,6 +3470,18 @@
       "epsEstimate": 14.5764,
       "revenueActual": null,
       "revenueEstimate": 7672190532.0
+    },
+    {
+      "ticker": "BSVN",
+      "company": "BANK7 CORP",
+      "date": "2027-01-13",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.1091,
+      "revenueActual": null,
+      "revenueEstimate": 25422480.0
     },
     {
       "ticker": "FHN",
@@ -2248,6 +3496,18 @@
       "revenueEstimate": 922161693.0
     },
     {
+      "ticker": "IIIN",
+      "company": "INSTEEL INDUSTRIES INC",
+      "date": "2027-01-13",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.2346,
+      "revenueActual": null,
+      "revenueEstimate": 183275640.0
+    },
+    {
       "ticker": "JBHT",
       "company": "J.B 헌트 운송 서비스",
       "date": "2027-01-13",
@@ -2258,18 +3518,6 @@
       "epsEstimate": 2.2086,
       "revenueActual": null,
       "revenueEstimate": 3459342168.0
-    },
-    {
-      "ticker": "WAFD",
-      "company": "와에프디",
-      "date": "2027-01-13",
-      "hour": "",
-      "quarter": 1,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 0.8619,
-      "revenueActual": null,
-      "revenueEstimate": 190213935.0
     },
     {
       "ticker": "BOKF",
@@ -2296,6 +3544,18 @@
       "revenueEstimate": 23010864562.0
     },
     {
+      "ticker": "HIFS",
+      "company": "HINGHAM INSTITUTION FOR SAVINGS",
+      "date": "2027-01-14",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "JPM",
       "company": "제이피모간체이스",
       "date": "2027-01-14",
@@ -2318,18 +3578,6 @@
       "epsEstimate": 2.9387,
       "revenueActual": null,
       "revenueEstimate": 19543665907.0
-    },
-    {
-      "ticker": "STT",
-      "company": "스테이트 스트리트",
-      "date": "2027-01-14",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 3.2583,
-      "revenueActual": null,
-      "revenueEstimate": 3861501417.0
     },
     {
       "ticker": "WFC",
@@ -2380,6 +3628,30 @@
       "revenueEstimate": 6703730509.0
     },
     {
+      "ticker": "BNED",
+      "company": "반스 앤 노블 에듀케이션 INC",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "COSO",
+      "company": "COASTALSOUTH BANCSHARES INC",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.6375,
+      "revenueActual": null,
+      "revenueEstimate": 24720210.0
+    },
+    {
       "ticker": "DHI",
       "company": "D.R. 호턴",
       "date": "2027-01-18",
@@ -2404,6 +3676,30 @@
       "revenueEstimate": 498716456.0
     },
     {
+      "ticker": "FOR",
+      "company": "FORESTAR GROUP INC",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 1,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.2559,
+      "revenueActual": null,
+      "revenueEstimate": 240784000.0
+    },
+    {
+      "ticker": "FVCB",
+      "company": "FVCBANKCORP INC",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.3876,
+      "revenueActual": null,
+      "revenueEstimate": 19415700.0
+    },
+    {
       "ticker": "HWC",
       "company": "핸콕 휘트니",
       "date": "2027-01-18",
@@ -2426,6 +3722,30 @@
       "epsEstimate": 0.6968,
       "revenueActual": null,
       "revenueEstimate": 1903349580.0
+    },
+    {
+      "ticker": "MBWM",
+      "company": "MERCANTILE BANK CORP",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.4355,
+      "revenueActual": null,
+      "revenueEstimate": 72549540.0
+    },
+    {
+      "ticker": "MCB",
+      "company": "METROPOLITAN BANK HOLDING CORP",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.69,
+      "revenueActual": null,
+      "revenueEstimate": 102488406.0
     },
     {
       "ticker": "MMM",
@@ -2464,6 +3784,18 @@
       "revenueEstimate": 172282265.0
     },
     {
+      "ticker": "NPB",
+      "company": "NORTHPOINTE BANCSHARES INC",
+      "date": "2027-01-18",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7147,
+      "revenueActual": null,
+      "revenueEstimate": 69024915.0
+    },
+    {
       "ticker": "OZK",
       "company": "뱅크 오즈크",
       "date": "2027-01-18",
@@ -2476,40 +3808,16 @@
       "revenueEstimate": 451120206.0
     },
     {
-      "ticker": "PNFP",
-      "company": "피너클 파이낸셜 파트너스",
+      "ticker": "PRGS",
+      "company": "PROGRESS SOFTWARE CORP",
       "date": "2027-01-18",
       "hour": "amc",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 2.8066,
+      "epsEstimate": 1.4754,
       "revenueActual": null,
-      "revenueEstimate": 1339027715.0
-    },
-    {
-      "ticker": "SFBS",
-      "company": "서비스퍼스트 뱅크셰어스",
-      "date": "2027-01-18",
-      "hour": "",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 1.6966,
-      "revenueActual": null,
-      "revenueEstimate": 182996843.0
-    },
-    {
-      "ticker": "SFNC",
-      "company": "시몬스 퍼스트 내셔널",
-      "date": "2027-01-18",
-      "hour": "",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.5453,
-      "revenueActual": null,
-      "revenueEstimate": 263455392.0
+      "revenueEstimate": 258645306.0
     },
     {
       "ticker": "UAL",
@@ -2522,18 +3830,6 @@
       "epsEstimate": 3.6311,
       "revenueActual": null,
       "revenueEstimate": 17572276263.0
-    },
-    {
-      "ticker": "WTFC",
-      "company": "윈트러스트 파이낸셜",
-      "date": "2027-01-18",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 3.4448,
-      "revenueActual": null,
-      "revenueEstimate": 779998896.0
     },
     {
       "ticker": "ZION",
@@ -2608,6 +3904,18 @@
       "revenueEstimate": 84630420.0
     },
     {
+      "ticker": "CTBI",
+      "company": "COMMUNITY TRUST BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.5735,
+      "revenueActual": null,
+      "revenueEstimate": 80733000.0
+    },
+    {
       "ticker": "CVBF",
       "company": "CVB 파이낸셜",
       "date": "2027-01-19",
@@ -2618,6 +3926,42 @@
       "epsEstimate": 0.4553,
       "revenueActual": null,
       "revenueEstimate": 184924643.0
+    },
+    {
+      "ticker": "DCOM",
+      "company": "DIME COMMERCIAL BANCSHARES INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9721,
+      "revenueActual": null,
+      "revenueEstimate": 135314220.0
+    },
+    {
+      "ticker": "EGBN",
+      "company": "EAGLE BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.4916,
+      "revenueActual": null,
+      "revenueEstimate": 76499184.0
+    },
+    {
+      "ticker": "EQBK",
+      "company": "EQUITY BANCSHARES INC CLASS A",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.315,
+      "revenueActual": null,
+      "revenueEstimate": 87924336.0
     },
     {
       "ticker": "FAST",
@@ -2668,6 +4012,30 @@
       "revenueEstimate": 3483094980.0
     },
     {
+      "ticker": "FNLC",
+      "company": "FIRST BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "FSBW",
+      "company": "FS BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.158,
+      "revenueActual": null,
+      "revenueEstimate": 43347450.0
+    },
+    {
       "ticker": "FULT",
       "company": "풀턴 파이낸셜",
       "date": "2027-01-19",
@@ -2680,6 +4048,18 @@
       "revenueEstimate": 328202003.0
     },
     {
+      "ticker": "GCBC",
+      "company": "GREENE COUNTY BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "HAL",
       "company": "할리버튼",
       "date": "2027-01-19",
@@ -2690,6 +4070,18 @@
       "epsEstimate": 0.6453,
       "revenueActual": null,
       "revenueEstimate": 5736973982.0
+    },
+    {
+      "ticker": "HBNC",
+      "company": "HORIZON BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5571,
+      "revenueActual": null,
+      "revenueEstimate": 80973036.0
     },
     {
       "ticker": "IPAR",
@@ -2740,6 +4132,30 @@
       "revenueEstimate": 2087092461.0
     },
     {
+      "ticker": "LOB",
+      "company": "LIVE OAK BANCSHARES INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8939,
+      "revenueActual": null,
+      "revenueEstimate": 165748575.0
+    },
+    {
+      "ticker": "MPB",
+      "company": "MID PENN BANCORP INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8686,
+      "revenueActual": null,
+      "revenueEstimate": 76255000.0
+    },
+    {
       "ticker": "MTB",
       "company": "M&T 뱅크",
       "date": "2027-01-19",
@@ -2750,6 +4166,18 @@
       "epsEstimate": 5.0724,
       "revenueActual": null,
       "revenueEstimate": 2569221436.0
+    },
+    {
+      "ticker": "NVEC",
+      "company": "NVE CORP",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
     },
     {
       "ticker": "ONB",
@@ -2764,64 +4192,16 @@
       "revenueEstimate": 757035652.0
     },
     {
-      "ticker": "PLD",
-      "company": "프로로지스",
-      "date": "2027-01-19",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.8535,
-      "revenueActual": null,
-      "revenueEstimate": 2343794082.0
-    },
-    {
-      "ticker": "RLI",
-      "company": "알리",
-      "date": "2027-01-19",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.6922,
-      "revenueActual": null,
-      "revenueEstimate": 381011561.0
-    },
-    {
-      "ticker": "SCHW",
-      "company": "찰스 슈왑",
-      "date": "2027-01-19",
-      "hour": "bmo",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 1.6966,
-      "revenueActual": null,
-      "revenueEstimate": 7226154575.0
-    },
-    {
-      "ticker": "TEL",
-      "company": "티이 커넥티비티",
+      "ticker": "PLBC",
+      "company": "PLUMAS BANCORP",
       "date": "2027-01-19",
       "hour": "",
-      "quarter": 1,
-      "year": 2027,
-      "epsActual": null,
-      "epsEstimate": 2.9812,
-      "revenueActual": null,
-      "revenueEstimate": 5054124728.0
-    },
-    {
-      "ticker": "TRV",
-      "company": "트래블러스 컴퍼니스",
-      "date": "2027-01-19",
-      "hour": "amc",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 9.3039,
+      "epsEstimate": 1.48,
       "revenueActual": null,
-      "revenueEstimate": 10912358150.0
+      "revenueEstimate": 29536140.0
     },
     {
       "ticker": "USB",
@@ -2860,6 +4240,18 @@
       "revenueEstimate": 13675168144.0
     },
     {
+      "ticker": "ACNB",
+      "company": "에이씨앤비(주)",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.3745,
+      "revenueActual": null,
+      "revenueEstimate": 43077996.0
+    },
+    {
       "ticker": "ALK",
       "company": "알래스카 에어 그룹",
       "date": "2027-01-20",
@@ -2870,6 +4262,18 @@
       "epsEstimate": 0.9712,
       "revenueActual": null,
       "revenueEstimate": 4145049524.0
+    },
+    {
+      "ticker": "AMTB",
+      "company": "AMERANT BANCORP INC 클래스 A",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5034,
+      "revenueActual": null,
+      "revenueEstimate": 102828750.0
     },
     {
       "ticker": "ASB",
@@ -2920,6 +4324,78 @@
       "revenueEstimate": 189262530.0
     },
     {
+      "ticker": "BCML",
+      "company": "베이컴 주식회사",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.697,
+      "revenueActual": null,
+      "revenueEstimate": 26553996.0
+    },
+    {
+      "ticker": "BFC",
+      "company": "뱅크 퍼스트 주식회사",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.5654,
+      "revenueActual": null,
+      "revenueEstimate": 67720500.0
+    },
+    {
+      "ticker": "BFST",
+      "company": "BUSINESS FIRST BANCSHARES INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8191,
+      "revenueActual": null,
+      "revenueEstimate": 98234925.0
+    },
+    {
+      "ticker": "BHB",
+      "company": "바하버 은행주",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9393,
+      "revenueActual": null,
+      "revenueEstimate": 50908040.0
+    },
+    {
+      "ticker": "BHRB",
+      "company": "버크 허버트 금융 서비스 C",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.2171,
+      "revenueActual": null,
+      "revenueEstimate": 126890550.0
+    },
+    {
+      "ticker": "BY",
+      "company": "BYLINE BANCORP INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8544,
+      "revenueActual": null,
+      "revenueEstimate": 122203659.0
+    },
+    {
       "ticker": "CASH",
       "company": "패스워드 파이낸셜",
       "date": "2027-01-20",
@@ -2930,6 +4406,18 @@
       "epsEstimate": 1.8156,
       "revenueActual": null,
       "revenueEstimate": 193596000.0
+    },
+    {
+      "ticker": "CASS",
+      "company": "CASS INFORMATION SYSTEMS INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8359,
+      "revenueActual": null,
+      "revenueEstimate": 53968200.0
     },
     {
       "ticker": "CATY",
@@ -3016,6 +4504,18 @@
       "revenueEstimate": 230470938.0
     },
     {
+      "ticker": "CWBC",
+      "company": "COMMUNITY WEST BANCSHARES",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7256,
+      "revenueActual": null,
+      "revenueEstimate": 57217155.0
+    },
+    {
       "ticker": "EBC",
       "company": "이스턴 뱅크셰어스",
       "date": "2027-01-20",
@@ -3026,6 +4526,18 @@
       "epsEstimate": 0.5227,
       "revenueActual": null,
       "revenueEstimate": 324179094.0
+    },
+    {
+      "ticker": "ESQ",
+      "company": "ESQUIRE FINANCIAL HOLDINGS INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.0301,
+      "revenueActual": null,
+      "revenueEstimate": 70278830.0
     },
     {
       "ticker": "EWBC",
@@ -3100,6 +4612,42 @@
       "revenueEstimate": 3044991138.0
     },
     {
+      "ticker": "HFWA",
+      "company": "HERITAGE FINANCIAL CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.6786,
+      "revenueActual": null,
+      "revenueEstimate": 89260812.0
+    },
+    {
+      "ticker": "HTB",
+      "company": "HOMETRUST BANCSHARES INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9042,
+      "revenueActual": null,
+      "revenueEstimate": 54709680.0
+    },
+    {
+      "ticker": "IBCP",
+      "company": "INDEPENDENT BANK CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9615,
+      "revenueActual": null,
+      "revenueEstimate": 59128635.0
+    },
+    {
       "ticker": "INDB",
       "company": "인디펜던트 뱅크 (매사추세츠)",
       "date": "2027-01-20",
@@ -3136,6 +4684,18 @@
       "revenueEstimate": 3276362318.0
     },
     {
+      "ticker": "ISTR",
+      "company": "INVESTAR HOLDING CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7905,
+      "revenueActual": null,
+      "revenueEstimate": 38760000.0
+    },
+    {
       "ticker": "KEY",
       "company": "키코프",
       "date": "2027-01-20",
@@ -3146,6 +4706,30 @@
       "epsEstimate": 0.4983,
       "revenueActual": null,
       "revenueEstimate": 2127991220.0
+    },
+    {
+      "ticker": "KRNY",
+      "company": "KEARNY FINANCIAL CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.1938,
+      "revenueActual": null,
+      "revenueEstimate": 43717200.0
+    },
+    {
+      "ticker": "LYTS",
+      "company": "LSI INDUSTRIES INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.3264,
+      "revenueActual": null,
+      "revenueEstimate": 222309000.0
     },
     {
       "ticker": "MKC",
@@ -3160,6 +4744,42 @@
       "revenueEstimate": 2139137580.0
     },
     {
+      "ticker": "MSBI",
+      "company": "MIDLAND STATES BANCORP INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8135,
+      "revenueActual": null,
+      "revenueEstimate": 82998675.0
+    },
+    {
+      "ticker": "MYFW",
+      "company": "FIRST WESTERN FINANCIAL INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.6135,
+      "revenueActual": null,
+      "revenueEstimate": 30636720.0
+    },
+    {
+      "ticker": "NBBK",
+      "company": "NB BANCORP INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5865,
+      "revenueActual": null,
+      "revenueEstimate": 78576720.0
+    },
+    {
       "ticker": "NG",
       "company": "노바골드 리소시스",
       "date": "2027-01-20",
@@ -3170,6 +4790,42 @@
       "epsEstimate": -0.0169,
       "revenueActual": null,
       "revenueEstimate": 0.0
+    },
+    {
+      "ticker": "NKSH",
+      "company": "NATIONAL BANKSHARES INC",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.8466,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "NWFL",
+      "company": "NORWOOD FINANCIAL CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9435,
+      "revenueActual": null,
+      "revenueEstimate": 30090000.0
+    },
+    {
+      "ticker": "OCFC",
+      "company": "OCEANFIRST FINANCIAL CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.5324,
+      "revenueActual": null,
+      "revenueEstimate": 174691320.0
     },
     {
       "ticker": "OFG",
@@ -3184,6 +4840,18 @@
       "revenueEstimate": 172631220.0
     },
     {
+      "ticker": "OPBK",
+      "company": "OP BANCORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.484,
+      "revenueActual": null,
+      "revenueEstimate": 27030000.0
+    },
+    {
       "ticker": "ORI",
       "company": "올드 리퍼블릭 인터내셔널",
       "date": "2027-01-20",
@@ -3194,6 +4862,18 @@
       "epsEstimate": 0.8548,
       "revenueActual": null,
       "revenueEstimate": 2541311500.0
+    },
+    {
+      "ticker": "PFBC",
+      "company": "PREFERRED BANK",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.7944,
+      "revenueActual": null,
+      "revenueEstimate": 74257785.0
     },
     {
       "ticker": "PG",
@@ -3208,88 +4888,28 @@
       "revenueEstimate": 23622398143.0
     },
     {
-      "ticker": "SLM",
-      "company": "에스엘엠",
-      "date": "2027-01-20",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.7469,
-      "revenueActual": null,
-      "revenueEstimate": 408321618.0
-    },
-    {
-      "ticker": "SSB",
-      "company": "사우스스테이트 뱅크",
-      "date": "2027-01-20",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 2.512,
-      "revenueActual": null,
-      "revenueEstimate": 714029963.0
-    },
-    {
-      "ticker": "STBA",
-      "company": "S AND T BANCORP INC",
+      "ticker": "USCB",
+      "company": "USCB FINANCIAL HOLDINGS INC CLASS",
       "date": "2027-01-20",
       "hour": "",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 0.9639,
+      "epsEstimate": 0.5426,
       "revenueActual": null,
-      "revenueEstimate": 109349100.0
+      "revenueEstimate": 28810410.0
     },
     {
-      "ticker": "TCBI",
-      "company": "텍사스 캐피털 뱅크셰어스",
-      "date": "2027-01-20",
-      "hour": "bmo",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 2.1263,
-      "revenueActual": null,
-      "revenueEstimate": 352689143.0
-    },
-    {
-      "ticker": "TCBK",
-      "company": "트라이코 뱅크셰어스",
-      "date": "2027-01-20",
+      "ticker": "ATLO",
+      "company": "에임스 내셔널 코퍼레이션",
+      "date": "2027-01-21",
       "hour": "",
       "quarter": 4,
       "year": 2026,
       "epsActual": null,
-      "epsEstimate": 1.1013,
+      "epsEstimate": 0.7548,
       "revenueActual": null,
-      "revenueEstimate": 117383844.0
-    },
-    {
-      "ticker": "TFC",
-      "company": "트루이스트 파이낸셜",
-      "date": "2027-01-20",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 1.2622,
-      "revenueActual": null,
-      "revenueEstimate": 5537640120.0
-    },
-    {
-      "ticker": "UBSI",
-      "company": "유나이티드 뱅크셰어스(Nasdaq GS)",
-      "date": "2027-01-20",
-      "hour": "",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.9568,
-      "revenueActual": null,
-      "revenueEstimate": 337490970.0
+      "revenueEstimate": null
     },
     {
       "ticker": "BAH",
@@ -3304,6 +4924,30 @@
       "revenueEstimate": 2808487810.0
     },
     {
+      "ticker": "BVFL",
+      "company": "BV FINANCIAL INC",
+      "date": "2027-01-21",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
+      "ticker": "FCAP",
+      "company": "FIRST CAPITAL INC",
+      "date": "2027-01-21",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "FCNCA",
       "company": "퍼스트 시티즌스 뱅크셰어스",
       "date": "2027-01-21",
@@ -3314,6 +4958,18 @@
       "epsEstimate": 48.7238,
       "revenueActual": null,
       "revenueEstimate": 2394958286.0
+    },
+    {
+      "ticker": "NRIM",
+      "company": "NORTHRIM BANCORP INC",
+      "date": "2027-01-21",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.6732,
+      "revenueActual": null,
+      "revenueEstimate": null
     },
     {
       "ticker": "NTRS",
@@ -3350,18 +5006,6 @@
       "epsEstimate": 1.763,
       "revenueActual": null,
       "revenueEstimate": 733599915.0
-    },
-    {
-      "ticker": "RF",
-      "company": "리전스 파이낸셜",
-      "date": "2027-01-22",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": 0.7162,
-      "revenueActual": null,
-      "revenueEstimate": 2077011758.0
     }
   ]
 }
