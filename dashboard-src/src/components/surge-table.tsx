@@ -249,7 +249,7 @@ export function SurgeTable() {
         !externalFilter.preset ||
         (externalFilter.preset === "trading-value-surge" &&
           stock.volumeRatio >= 2 &&
-          stock.volume >= 50_000_000) ||
+          stock.volume >= 50) ||
         (externalFilter.preset === "up-with-volume" &&
           stock.change > 0 &&
           twentyDay > 0) ||
@@ -258,7 +258,7 @@ export function SurgeTable() {
           twentyDay > 0) ||
         (externalFilter.preset === "sector-leader" && isSectorLeader) ||
         (externalFilter.preset === "large-cap-interest" &&
-          stock.marketCap >= 200_000_000_000 &&
+          stock.marketCap >= 200 &&
           twentyDay > 0);
       const matchesPrice =
         !externalFilter.priceDirection ||
