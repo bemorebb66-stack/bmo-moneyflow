@@ -1,26 +1,38 @@
 import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, CalendarClock, Rocket, Info, ExternalLink } from "lucide-react";
+import {
+  CalendarClock,
+  CheckCircle2,
+  ExternalLink,
+  FileSearch,
+  History,
+  Info,
+  Search,
+} from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { LOCKUP_ROWS, type LockupRow, type Importance } from "@/lib/mock-data";
-import { fmtMoney, fmtMcap } from "@/lib/format";
-import { MetricInfo } from "@/components/metric-info";
+import { LOCKUP_ROWS, type LockupRow } from "@/lib/mock-data";
+import { fmtMcap } from "@/lib/format";
 
 export const Route = createFileRoute("/ipo-lockup")({
   head: () => ({
     meta: [
-      { title: "미국 IPO 락업 해제 일정 | BVT Money Flow" },
+      { title: "미국 IPO 락업 해제 일정·과거 이력 | BVT Money Flow" },
       {
         name: "description",
-        content: "미국 상장기업의 IPO 락업 해제 예정일, 예상 가치, 근거와 관련 종목 거래대금을 확인하세요.",
+        content:
+          "미국 상장기업의 IPO 락업 해제 예정 일정과 과거 이력을 SEC 공시 근거와 함께 확인하세요.",
       },
-      { property: "og:title", content: "IPO 락업 해제 일정" },
+      {
+        property: "og:title",
+        content: "미국 IPO 락업 해제 일정·과거 이력",
+      },
       {
         property: "og:description",
-        content: "IPO 이후 락업 해제 캘린더와 임박 이벤트를 추적",
+        content: "예정 일정과 과거 이력을 구분하고 SEC 근거 문서를 함께 제공합니다.",
       },
     ],
     links: [
@@ -30,14 +42,12 @@ export const Route = createFileRoute("/ipo-lockup")({
   component: LockupPage,
 });
 
+type ViewFilter = "upcoming" | "past" | "all";
 type WindowFilter = "all" | "14" | "30" | "90";
-type MCapFilter = "all" | "small" | "mid" | "large";
-type SizeFilter = "all" | "small" | "big";
 
 function LockupPage() {
+  const [view, setView] = useState<ViewFilter>("upcoming");
   const [win, setWin] = useState<WindowFilter>("all");
-  const [mcap, setMcap] = useState<MCapFilter>("all");
-  const [size, setSize] = useState<SizeFilter>("all");
   const [query, setQuery] = useState(() =>
     typeof window === "undefined"
       ? ""
@@ -46,509 +56,317 @@ function LockupPage() {
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return LOCKUP_ROWS.filter((r) => {
-      if (win !== "all" && (r.daysLeft < 0 || r.daysLeft > Number(win)))
-        return false;
-      if (mcap !== "all" && r.marketCap <= 0) return false;
-      if (mcap === "small" && r.marketCap >= 10) return false;
-      if (mcap === "mid" && (r.marketCap < 10 || r.marketCap >= 50))
-        return false;
-      if (mcap === "large" && r.marketCap < 50) return false;
-      if (r.estValue > 0 && size === "small" && r.estValue >= 3000)
-        return false;
-      if (r.estValue > 0 && size === "big" && r.estValue < 3000) return false;
+    return LOCKUP_ROWS.filter((row) => {
+      if (view === "upcoming" && row.daysLeft < 0) return false;
+      if (view === "past" && row.daysLeft >= 0) return false;
       if (
-        q &&
-        !r.ticker.toLowerCase().includes(q) &&
-        !r.company.toLowerCase().includes(q)
+        view !== "past" &&
+        win !== "all" &&
+        (row.daysLeft < 0 || row.daysLeft > Number(win))
       )
         return false;
-      return true;
+      return (
+        !q ||
+        row.ticker.toLowerCase().includes(q) ||
+        row.company.toLowerCase().includes(q)
+      );
     }).sort((a, b) =>
-      a.ticker === "SPCX"
-        ? -1
-        : b.ticker === "SPCX"
-          ? 1
-          : a.daysLeft - b.daysLeft,
+      view === "past"
+        ? b.unlockDate.localeCompare(a.unlockDate)
+        : a.unlockDate.localeCompare(b.unlockDate),
     );
-  }, [win, mcap, size, query]);
+  }, [query, view, win]);
 
-  const within14 = LOCKUP_ROWS.filter(
-    (r) => r.daysLeft >= 0 && r.daysLeft <= 14,
+  const upcoming = LOCKUP_ROWS.filter((row) => row.daysLeft >= 0);
+  const past = LOCKUP_ROWS.filter((row) => row.daysLeft < 0);
+  const within14 = upcoming.filter((row) => row.daysLeft <= 14).length;
+  const within30 = upcoming.filter((row) => row.daysLeft <= 30).length;
+  const confirmed = LOCKUP_ROWS.filter(
+    (row) => row.dataState === "confirmed",
   ).length;
-  const within30 = LOCKUP_ROWS.filter(
-    (r) => r.daysLeft >= 0 && r.daysLeft <= 30,
-  ).length;
-  const lockupDurations = LOCKUP_ROWS.flatMap((r) =>
-    r.lockupDays ? [r.lockupDays] : [],
-  );
-  const avgLockup = lockupDurations.length
-    ? Math.round(
-        lockupDurations.reduce((sum, days) => sum + days, 0) /
-          lockupDurations.length,
-      )
-    : 0;
-  const bigEvents = LOCKUP_ROWS.filter(
-    (r) => r.daysLeft >= 0 && r.importance === "high",
-  ).length;
-  const spacex = LOCKUP_ROWS.find((r) => r.ticker === "SPCX");
 
   return (
     <PageShell>
       <PageHeading
         title="IPO 락업"
-        description="IPO 이후 락업 해제 일정과 임박 이벤트, 예상 유통 가치까지 살펴보세요."
+        description="락업 해제 예정 일정과 과거 이력을 SEC 공시 근거와 함께 확인하세요."
       />
 
       <div className="space-y-4 sm:space-y-5">
-        {spacex && (
-          <Card className="border-brand/30 bg-brand/[0.04]">
-            <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:p-5">
-              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand">
-                <Rocket className="h-5 w-5" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-semibold uppercase tracking-wide text-brand">
-                    주요 추적 이벤트
-                  </span>
-                  <ImportanceBadge importance="high" />
-                </div>
-                <h2 className="mt-1 text-lg font-semibold">
-                  스페이스X{" "}
-                  <span className="font-mono text-sm text-muted-foreground">
-                    SPCX
-                  </span>
-                </h2>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  시장 관심도가 높은 우주항공 IPO · 락업 해제{" "}
-                  {spacex.unlockDate} · D-{spacex.daysLeft}
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs sm:text-right">
-                <div>
-                  <span className="text-muted-foreground">관련 섹터</span>
-                  <div className="font-medium">{spacex.sector}</div>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">시가총액</span>
-                  <div className="font-medium tabular">
-                    {spacex.marketCap > 0
-                      ? fmtMcap(spacex.marketCap)
-                      : "시총 데이터 갱신 중"}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+        <div className="flex items-start gap-3 rounded-lg border border-info/25 bg-info/5 px-4 py-3 text-xs text-muted-foreground">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-info" />
+          <p className="leading-5">
+            <strong className="text-foreground">날짜 상태를 확인하세요.</strong>{" "}
+            투자설명서의 락업 기간으로 계산한 날짜는 <b>추정</b>으로 표시합니다.
+            조기 해제 조건, 실적 발표일, 거래소 휴장일에 따라 실제 매도 가능일이
+            달라질 수 있으며, 투자 판단 전 SEC 원문 확인이 필요합니다.
+          </p>
+        </div>
 
         <section
           aria-label="IPO 락업 요약"
           className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4"
         >
-          <SummaryCard
-            label="14일 내 해제"
-            value={`${within14}건`}
-            hint="임박 이벤트"
-            tone="danger"
-          />
-          <SummaryCard
-            label="30일 내 해제"
-            value={`${within30}건`}
-            hint="한 달 내 예정"
-            tone="info"
-          />
-          <SummaryCard
-            label="평균 락업 기간"
-            value={`${avgLockup}일`}
-            hint="추적 종목 기준"
-          />
-          <SummaryCard
-            label="대형 이벤트"
-            value={`${bigEvents}건`}
-            hint="중요도 상위"
-            tone="danger"
-          />
+          <SummaryCard label="14일 이내 예정" value={`${within14}건`} />
+          <SummaryCard label="30일 이내 예정" value={`${within30}건`} />
+          <SummaryCard label="공시 확인 완료" value={`${confirmed}건`} />
+          <SummaryCard label="과거 이력" value={`${past.length}건`} />
         </section>
 
-        <div className="flex items-start gap-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 text-xs text-muted-foreground">
-          <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          <p>
-            <strong className="text-foreground">중요도 기준</strong> · 상: 14일
-            이내 또는 시장 주목 이벤트(SpaceX) · 중: 15~30일 · 하: 31일 이후.
-            해제 물량·가치가 수집되면 규모도 함께 반영합니다.
-          </p>
-        </div>
-
-        <div className="sticky top-14 z-30 -mx-4 flex flex-col gap-3 border-y border-border/70 bg-background/90 px-4 py-3 backdrop-blur lg:mx-0 lg:flex-row lg:items-end lg:gap-4 lg:rounded-xl lg:border">
-          <SegBlock
-            label="기간"
-            value={win}
-            onChange={(v) => setWin(v as WindowFilter)}
-            options={[
-              { id: "all", label: "전체" },
-              { id: "14", label: "14일" },
-              { id: "30", label: "30일" },
-              { id: "90", label: "90일" },
-            ]}
-          />
-          <SegBlock
-            label="시가총액"
-            value={mcap}
-            onChange={(v) => setMcap(v as MCapFilter)}
-            options={[
-              { id: "all", label: "전체" },
-              { id: "small", label: "소형" },
-              { id: "mid", label: "중형" },
-              { id: "large", label: "대형" },
-            ]}
-          />
-          <SegBlock
-            label="해제 규모"
-            value={size}
-            onChange={(v) => setSize(v as SizeFilter)}
-            options={[
-              { id: "all", label: "전체" },
-              { id: "small", label: "소규모" },
-              { id: "big", label: "대규모" },
-            ]}
-          />
-          <div className="relative lg:ml-auto lg:w-72">
-            <Search
-              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-              aria-hidden
+        <div className="sticky top-14 z-30 -mx-4 space-y-3 border-y border-border/70 bg-background/95 px-4 py-3 backdrop-blur lg:mx-0 lg:rounded-xl lg:border">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
+            <Segmented
+              label="구분"
+              value={view}
+              onChange={(value) => setView(value as ViewFilter)}
+              options={[
+                { id: "upcoming", label: "예정 일정" },
+                { id: "past", label: "과거 이력" },
+                { id: "all", label: "전체" },
+              ]}
             />
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="티커·기업 검색"
-              className="h-11 pl-9 lg:h-9"
-            />
+            {view !== "past" && (
+              <Segmented
+                label="기간"
+                value={win}
+                onChange={(value) => setWin(value as WindowFilter)}
+                options={[
+                  { id: "all", label: "전체" },
+                  { id: "14", label: "14일" },
+                  { id: "30", label: "30일" },
+                  { id: "90", label: "90일" },
+                ]}
+              />
+            )}
+            <div className="relative lg:ml-auto lg:w-72">
+              <Search
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden
+              />
+              <Input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="티커·기업명 검색"
+                className="h-10 pl-9"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-          <Card>
-            <CardContent className="p-4 sm:p-5">
+        <Card>
+          <CardContent className="p-0">
+            <div className="flex items-center justify-between border-b border-border/70 px-4 py-3 sm:px-5">
               <div>
-                <div className="flex items-center gap-1">
-                  <h2 className="text-base font-semibold sm:text-lg">
-                    락업 해제 타임라인
-                  </h2>
-                  <MetricInfo label="중요도 기준">
-                    투자 등급이 아니라 일정 임박도를 뜻합니다. 스페이스X 또는
-                    14일 이내 해제는 높음, 15~30일은 보통, 그 이후는 낮음으로
-                    표시합니다. 예상 물량과 가치는 공개 자료가 있을 때만 함께
-                    제공합니다.
-                  </MetricInfo>
-                </div>
-                <p className="text-[11px] text-muted-foreground">
-                  D-day 기준 · 해제 규모가 확인된 경우에만 가치 막대를 표시합니다.
-                </p>
-              </div>
-              <ul className="mt-4 space-y-3">
-                {rows.length === 0 && (
-                  <li className="py-10 text-center text-sm text-muted-foreground">
-                    조건에 맞는 이벤트가 없습니다.
-                  </li>
-                )}
-                {rows.map((r) => {
-                  const maxVal = Math.max(
-                    1,
-                    ...LOCKUP_ROWS.map((x) => x.estValue),
-                  );
-                  const width = Math.max(6, (r.estValue / maxVal) * 100);
-                  return (
-                    <li
-                      key={r.ticker}
-                      className="grid grid-cols-[80px_1fr] items-center gap-3"
-                    >
-                      <DdayBadge days={r.daysLeft} />
-                      <div className="min-w-0">
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                          <a
-                            href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
-                            className="font-mono text-[13px] font-semibold tabular hover:text-brand"
-                          >
-                            {r.ticker}
-                          </a>
-                          <span className="truncate text-xs text-muted-foreground">
-                            {r.company}
-                          </span>
-                          <ImportanceBadge importance={r.importance} />
-                        </div>
-                        {r.estValue > 0 ? (
-                          <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                            <div
-                              className={cn(
-                                "h-full rounded-full",
-                                r.importance === "high"
-                                  ? "bg-danger"
-                                  : r.importance === "medium"
-                                    ? "bg-info"
-                                    : "bg-muted-foreground/40",
-                              )}
-                              style={{ width: `${width}%` }}
-                            />
-                          </div>
-                        ) : (
-                          <div className="mt-1 border-t border-dashed border-border" />
-                        )}
-                        <div className="mt-1 text-[11px] text-muted-foreground tabular">
-                          {r.sector || "섹터 미수집"} · 해제일 {r.unlockDate} ·
-                          공모가 {r.ipoPrice ? `$${r.ipoPrice.toFixed(2)}` : "미수집"} ·
-                          해제 규모 {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-0">
-              <div className="border-b border-border/70 px-4 py-3 sm:px-5">
                 <h2 className="text-base font-semibold sm:text-lg">
-                  임박 이벤트
+                  {view === "past"
+                    ? "과거 락업 해제 이력"
+                    : view === "all"
+                      ? "전체 락업 일정"
+                      : "다가오는 락업 해제"}
                 </h2>
                 <p className="text-[11px] text-muted-foreground">
-                  14일 내 해제 예정
+                  {rows.length}건 ·{" "}
+                  {view === "past" ? "최근 해제일 순" : "가까운 예정일 순"}
                 </p>
               </div>
-              <ul className="divide-y divide-border/70">
-                {LOCKUP_ROWS.filter(
-                  (r) => r.daysLeft >= 0 && r.daysLeft <= 14,
-                ).map((r) => (
-                  <li key={r.ticker} className="flex items-start gap-3 p-4">
-                    <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-danger/10 text-danger">
-                      <CalendarClock className="h-4 w-4" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-1.5">
-                        <a
-                          href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
-                          className="font-mono text-[13px] font-semibold tabular hover:text-brand"
-                        >
-                          {r.ticker}
-                        </a>
-                        <span className="truncate text-xs text-muted-foreground">
-                          {r.company}
-                        </span>
-                        <ImportanceBadge importance={r.importance} />
-                      </div>
-                      <div className="mt-0.5 text-xs">
-                        D-{r.daysLeft} · 해제 물량{" "}
-                        {r.unlockShares > 0 ? `${r.unlockShares}M` : "미수집"} ·{" "}
-                        {r.estValue > 0 ? fmtMoney(r.estValue) : "가치 미수집"}
-                      </div>
-                      <div className="mt-0.5 text-[11px] text-muted-foreground tabular">
-                        해제일 {r.unlockDate}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-                {LOCKUP_ROWS.filter((r) => r.daysLeft >= 0 && r.daysLeft <= 14)
-                  .length === 0 && (
-                  <li className="p-10 text-center text-sm text-muted-foreground">
-                    임박 이벤트가 없습니다.
-                  </li>
-                )}
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
+              {view === "past" ? (
+                <History className="h-5 w-5 text-muted-foreground" />
+              ) : (
+                <CalendarClock className="h-5 w-5 text-brand" />
+              )}
+            </div>
 
-        <LockupDetailTable rows={rows} />
+            <div className="divide-y divide-border/70 lg:hidden">
+              {rows.map((row) => (
+                <LockupCard key={`${row.ticker}-${row.unlockDate}`} row={row} />
+              ))}
+              {rows.length === 0 && <EmptyState />}
+            </div>
+
+            <div className="hidden overflow-x-auto lg:block">
+              <LockupTable rows={rows} />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </PageShell>
   );
 }
 
-function LockupDetailTable({ rows }: { rows: LockupRow[] }) {
+function LockupCard({ row }: { row: LockupRow }) {
   return (
-    <Card>
-      <CardContent className="p-0">
-        <div className="border-b border-border/70 px-4 py-3 sm:px-5">
-          <h2 className="text-base font-semibold sm:text-lg">상세 데이터</h2>
-          <p className="text-[11px] text-muted-foreground">
-            {rows.length}건 · D-day 오름차순
+    <article className="space-y-3 p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href={`/stock/?ticker=${encodeURIComponent(row.ticker)}`}
+              className="font-mono text-sm font-semibold hover:text-brand"
+            >
+              {row.ticker}
+            </a>
+            <VerificationBadge state={row.dataState} />
+          </div>
+          <p className="mt-1 truncate text-xs text-muted-foreground">
+            {row.company}
           </p>
         </div>
-        <div className="overflow-auto">
-          <table className="min-w-[1540px] w-full text-sm">
-            <thead className="sticky top-0 bg-surface-2/60 text-[11px] uppercase tracking-wide text-muted-foreground">
-              <tr>
-                <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
-                  종목
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
-                  섹터·산업
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
-                  IPO일
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  공모가
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  락업 기간
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
-                  해제일
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
-                  남은 일수
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  해제 주식
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  유통주식 대비
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  추정 가치
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  시총
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-right font-medium">
-                  현재 거래대금
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
-                  자료 상태·근거
-                </th>
-                <th className="whitespace-nowrap py-2.5 pr-4 text-left font-medium">
-                  중요도
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/70">
-              {rows.map((r) => (
-                <tr key={r.ticker} className="hover:bg-secondary/40">
-                  <td className="whitespace-nowrap py-2.5 pl-4 pr-3">
-                    <div className="flex flex-col leading-tight">
-                      <a
-                        href={`/stock/?ticker=${encodeURIComponent(r.ticker)}`}
-                        className="font-mono text-[13px] font-semibold tabular hover:text-brand"
-                      >
-                        {r.ticker}
-                      </a>
-                      <span className="text-[11px] text-muted-foreground">
-                        {r.company}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-xs">
-                    <div>{r.sector || "미수집"}</div>
-                    <div className="text-[11px] text-muted-foreground">
-                      {r.industry || "산업 미수집"}
-                    </div>
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-muted-foreground tabular">
-                    {r.ipoDate}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                    {r.ipoPrice ? `$${r.ipoPrice.toFixed(2)}` : "미수집"}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                    {r.lockupDays ? `${r.lockupDays}일` : "미수집"}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 tabular">
-                    {r.unlockDate}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3">
-                    <DdayBadge days={r.daysLeft} size="xs" />
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                    {r.unlockShares > 0 ? `${r.unlockShares}M` : "미수집"}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                    {r.floatRatio == null ? "미수집" : `${r.floatRatio.toFixed(1)}%`}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                    {r.estValue > 0 ? fmtMoney(r.estValue) : "미수집"}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular text-muted-foreground">
-                    {r.marketCap > 0 ? fmtMcap(r.marketCap) : "미수집"}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                    {r.tradingValue == null ? "미수집" : fmtMoney(r.tradingValue)}
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-3">
-                    <div className="flex items-center gap-2">
-                      <DataStateBadge state={r.dataState} />
-                      {r.sourceUrl && (
-                        <a
-                          href={r.sourceUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-medium text-brand hover:underline"
-                        >
-                          {r.sourceLabel || "근거 문서"}
-                          <ExternalLink className="h-3 w-3" />
-                        </a>
-                      )}
-                    </div>
-                  </td>
-                  <td className="whitespace-nowrap py-2.5 pr-4">
-                    <ImportanceBadge importance={r.importance} />
-                  </td>
-                </tr>
-              ))}
-              {rows.length === 0 && (
-                <tr>
-                  <td
-                    colSpan={14}
-                    className="py-10 text-center text-sm text-muted-foreground"
-                  >
-                    조건에 맞는 데이터가 없습니다.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </CardContent>
-    </Card>
+        <DdayBadge days={row.daysLeft} />
+      </div>
+
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+        <Metric label="IPO일" value={row.ipoDate || "미수집"} />
+        <Metric label="락업 해제일" value={row.unlockDate || "미수집"} />
+        <Metric
+          label="락업 기간"
+          value={row.lockupDays ? `${row.lockupDays}일` : "미수집"}
+        />
+        <Metric
+          label="시가총액"
+          value={row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
+        />
+      </dl>
+
+      <SourceBlock row={row} />
+    </article>
   );
 }
 
-function DataStateBadge({
+function LockupTable({ rows }: { rows: LockupRow[] }) {
+  return (
+    <table className="w-full min-w-[1040px] text-sm">
+      <thead className="bg-surface-2/60 text-[11px] text-muted-foreground">
+        <tr>
+          <TableHead>종목</TableHead>
+          <TableHead>IPO일</TableHead>
+          <TableHead>락업 해제일</TableHead>
+          <TableHead>남은 기간</TableHead>
+          <TableHead>락업 기간</TableHead>
+          <TableHead>공모가</TableHead>
+          <TableHead>시가총액</TableHead>
+          <TableHead>검증 상태·근거</TableHead>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-border/70">
+        {rows.map((row) => (
+          <tr
+            key={`${row.ticker}-${row.unlockDate}`}
+            className="hover:bg-secondary/40"
+          >
+            <td className="px-4 py-3">
+              <a
+                href={`/stock/?ticker=${encodeURIComponent(row.ticker)}`}
+                className="font-mono text-[13px] font-semibold hover:text-brand"
+              >
+                {row.ticker}
+              </a>
+              <div className="max-w-56 truncate text-[11px] text-muted-foreground">
+                {row.company}
+              </div>
+            </td>
+            <td className="px-4 py-3 tabular">{row.ipoDate || "미수집"}</td>
+            <td className="px-4 py-3 font-medium tabular">
+              {row.unlockDate || "미수집"}
+            </td>
+            <td className="px-4 py-3">
+              <DdayBadge days={row.daysLeft} />
+            </td>
+            <td className="px-4 py-3 tabular">
+              {row.lockupDays ? `${row.lockupDays}일` : "미수집"}
+            </td>
+            <td className="px-4 py-3 tabular">
+              {row.ipoPrice ? `$${row.ipoPrice.toFixed(2)}` : "미수집"}
+            </td>
+            <td className="px-4 py-3 tabular">
+              {row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
+            </td>
+            <td className="max-w-80 px-4 py-3">
+              <SourceBlock row={row} compact />
+            </td>
+          </tr>
+        ))}
+        {rows.length === 0 && (
+          <tr>
+            <td colSpan={8}>
+              <EmptyState />
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
+}
+
+function SourceBlock({
+  row,
+  compact = false,
+}: {
+  row: LockupRow;
+  compact?: boolean;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <div className="flex flex-wrap items-center gap-2">
+        <VerificationBadge state={row.dataState} />
+        {row.sourceUrl && (
+          <a
+            href={row.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-[11px] font-medium text-brand hover:underline"
+          >
+            {row.sourceLabel || "SEC 근거 문서"}
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        )}
+      </div>
+      {!compact && (
+        <p className="text-[11px] leading-4 text-muted-foreground">
+          {row.verificationNote || "근거 문서와 세부 조건을 추가 확인 중입니다."}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function VerificationBadge({
   state = "uncollected",
 }: {
   state?: LockupRow["dataState"];
 }) {
   const meta =
     state === "confirmed"
-      ? { label: "확정", cls: "border-success/25 bg-success/10 text-success" }
+      ? {
+          label: "공시 확인",
+          icon: CheckCircle2,
+          cls: "border-success/25 bg-success/10 text-success",
+        }
       : state === "estimated"
-        ? { label: "예상", cls: "border-info/25 bg-info/10 text-info" }
+        ? {
+            label: "추정 일정",
+            icon: FileSearch,
+            cls: "border-info/25 bg-info/10 text-info",
+          }
         : {
-            label: "물량 미수집",
+            label: "추가 확인 필요",
+            icon: FileSearch,
             cls: "border-border bg-muted text-muted-foreground",
           };
+  const Icon = meta.icon;
   return (
     <span
       className={cn(
-        "inline-flex rounded-md border px-1.5 py-0.5 text-[10px] font-medium",
+        "inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-medium",
         meta.cls,
       )}
     >
+      <Icon className="h-3 w-3" />
       {meta.label}
     </span>
   );
 }
 
-function DdayBadge({
-  days,
-  size = "sm",
-}: {
-  days: number;
-  size?: "xs" | "sm";
-}) {
+function DdayBadge({ days }: { days: number }) {
   const tone =
     days < 0
       ? "border-border bg-muted text-muted-foreground"
@@ -560,73 +378,16 @@ function DdayBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center justify-center rounded-md border font-mono font-semibold tabular",
+        "inline-flex rounded-md border px-2 py-1 font-mono text-[11px] font-semibold tabular",
         tone,
-        size === "xs" ? "px-1.5 py-0.5 text-[10px]" : "px-2 py-1 text-xs",
       )}
     >
-      {days < 0 ? "해제" : `D-${days}`}
+      {days < 0 ? `D+${Math.abs(days)}` : days === 0 ? "D-DAY" : `D-${days}`}
     </span>
   );
 }
 
-function ImportanceBadge({ importance }: { importance: Importance }) {
-  const meta =
-    importance === "high"
-      ? { label: "중요도 상", cls: "border-danger/25 bg-danger/10 text-danger" }
-      : importance === "medium"
-        ? { label: "중요도 중", cls: "border-info/25 bg-info/10 text-info" }
-        : {
-            label: "중요도 하",
-            cls: "border-border bg-muted text-muted-foreground",
-          };
-  return (
-    <span
-      title="상: 14일 이내 또는 시장 주목 이벤트 · 중: 15~30일 · 하: 31일 이후"
-      className={cn(
-        "inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-medium",
-        meta.cls,
-      )}
-    >
-      {meta.label}
-    </span>
-  );
-}
-
-function SummaryCard({
-  label,
-  value,
-  hint,
-  tone,
-}: {
-  label: string;
-  value: string;
-  hint: string;
-  tone?: "success" | "danger" | "info";
-}) {
-  return (
-    <Card>
-      <CardContent className="p-3 sm:p-4">
-        <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-          {label}
-        </div>
-        <div
-          className={cn(
-            "mt-1 text-lg font-semibold tabular sm:mt-1.5 sm:text-xl",
-            tone === "success" && "text-success",
-            tone === "danger" && "text-danger",
-            tone === "info" && "text-info",
-          )}
-        >
-          {value}
-        </div>
-        <div className="mt-1 text-[11px] text-muted-foreground">{hint}</div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function SegBlock({
+function Segmented({
   label,
   value,
   onChange,
@@ -634,38 +395,70 @@ function SegBlock({
 }: {
   label: string;
   value: string;
-  onChange: (v: string) => void;
+  onChange: (value: string) => void;
   options: { id: string; label: string }[];
 }) {
   return (
-    <div className="flex min-w-0 flex-col gap-1.5">
-      <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+    <div>
+      <div className="mb-1 text-[10px] font-medium text-muted-foreground">
         {label}
-      </span>
-      <div
-        role="tablist"
-        className="inline-flex h-11 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 lg:h-9"
-      >
-        {options.map((opt) => {
-          const active = opt.id === value;
-          return (
-            <button
-              key={opt.id}
-              role="tab"
-              aria-selected={active}
-              onClick={() => onChange(opt.id)}
-              className={cn(
-                "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors lg:min-h-0",
-                active
-                  ? "bg-brand text-brand-foreground shadow-sm"
-                  : "text-muted-foreground hover:bg-secondary hover:text-foreground",
-              )}
-            >
-              {opt.label}
-            </button>
-          );
-        })}
       </div>
+      <div className="inline-flex rounded-lg border border-border bg-surface p-0.5">
+        {options.map((option) => (
+          <button
+            key={option.id}
+            type="button"
+            onClick={() => onChange(option.id)}
+            className={cn(
+              "h-8 rounded-md px-3 text-xs font-medium",
+              value === option.id
+                ? "bg-brand text-white shadow-sm"
+                : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SummaryCard({ label, value }: { label: string; value: string }) {
+  return (
+    <Card>
+      <CardContent className="p-3 sm:p-4">
+        <div className="text-[11px] text-muted-foreground">{label}</div>
+        <div className="mt-1 text-xl font-semibold tabular">{value}</div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function Metric({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <dt className="text-muted-foreground">{label}</dt>
+      <dd className="mt-0.5 font-medium tabular">{value}</dd>
+    </div>
+  );
+}
+
+function TableHead({ children }: { children: ReactNode }) {
+  return (
+    <th className="whitespace-nowrap px-4 py-2.5 text-left font-medium">
+      {children}
+    </th>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="px-4 py-12 text-center">
+      <FileSearch className="mx-auto h-6 w-6 text-muted-foreground" />
+      <p className="mt-2 text-sm text-muted-foreground">
+        조건에 맞는 락업 일정이 없습니다.
+      </p>
     </div>
   );
 }

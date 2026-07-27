@@ -650,95 +650,10 @@ export interface LockupRow {
   dataState?: "confirmed" | "estimated" | "uncollected";
   sourceLabel?: string;
   sourceUrl?: string;
+  filingId?: string;
+  verificationNote?: string;
 }
 
-export const LOCKUP_ROWS: LockupRow[] = [
-  {
-    ticker: "ARM",
-    company: "ARM 홀딩스",
-    ipoDate: "2025-09-14",
-    unlockDate: "2026-07-15",
-    daysLeft: 2,
-    unlockShares: 940,
-    estValue: 120_884,
-    marketCap: 132,
-    importance: "high",
-  },
-  {
-    ticker: "RBLX",
-    company: "레딧",
-    ipoDate: "2025-03-21",
-    unlockDate: "2026-07-19",
-    daysLeft: 6,
-    unlockShares: 78,
-    estValue: 4_212,
-    marketCap: 12.4,
-    importance: "high",
-  },
-  {
-    ticker: "KLAR",
-    company: "클라나",
-    ipoDate: "2025-11-08",
-    unlockDate: "2026-07-22",
-    daysLeft: 9,
-    unlockShares: 62,
-    estValue: 3_180,
-    marketCap: 9.8,
-    importance: "medium",
-  },
-  {
-    ticker: "CRCL",
-    company: "서클 인터넷",
-    ipoDate: "2026-01-15",
-    unlockDate: "2026-07-24",
-    daysLeft: 11,
-    unlockShares: 44,
-    estValue: 2_640,
-    marketCap: 8.2,
-    importance: "medium",
-  },
-  {
-    ticker: "SEVN",
-    company: "세븐 앤 아이",
-    ipoDate: "2025-04-30",
-    unlockDate: "2026-07-28",
-    daysLeft: 15,
-    unlockShares: 210,
-    estValue: 6_720,
-    marketCap: 21,
-    importance: "high",
-  },
-  {
-    ticker: "STBX",
-    company: "스타박스 재상장",
-    ipoDate: "2025-05-15",
-    unlockDate: "2026-08-02",
-    daysLeft: 20,
-    unlockShares: 32,
-    estValue: 1_240,
-    marketCap: 4.2,
-    importance: "low",
-  },
-  {
-    ticker: "GEMI",
-    company: "제미나이 스페이스",
-    ipoDate: "2026-02-10",
-    unlockDate: "2026-08-08",
-    daysLeft: 26,
-    unlockShares: 55,
-    estValue: 1_980,
-    marketCap: 5.6,
-    importance: "medium",
-  },
-  {
-    ticker: "OPAL",
-    company: "오팔 헬스",
-    ipoDate: "2025-08-01",
-    unlockDate: "2026-08-11",
-    daysLeft: 29,
-    unlockShares: 18,
-    estValue: 780,
-    marketCap: 2.8,
-    importance: "low",
-  },
-];
+// Live SEC-derived data replaces this array during hydration. Keep it empty so
+// a failed data request never presents sample dates as real lockup events.
+export const LOCKUP_ROWS: LockupRow[] = [];

@@ -24,9 +24,9 @@ const ROUTE_META = {
       "미국 상장기업 임원과 주요 주주의 내부자 매수·매도 내역을 거래일과 SEC 보고일 기준으로 확인하세요.",
   },
   "ipo-lockup": {
-    title: "미국 IPO 락업 해제 일정 | BVT Money Flow",
+    title: "미국 IPO 락업 해제 일정·과거 이력 | BVT Money Flow",
     description:
-      "미국 상장기업의 IPO 락업 해제 예정일, 예상 가치, 근거와 관련 종목 거래대금을 확인하세요.",
+      "미국 상장기업의 IPO 락업 해제 예정 일정과 과거 이력을 SEC 공시 근거와 함께 확인하세요.",
   },
   today: {
     title: "오늘의 미국 주식 거래대금·시장 요약 | BVT Money Flow",

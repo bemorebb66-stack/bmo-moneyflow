@@ -566,9 +566,23 @@ export async function hydrateLiveData() {
         ipoPrice: Number(row.ipoPrice) || undefined,
         tradingValue: marketStock?.dv ? marketStock.dv / 1e6 : undefined,
         priceChange: marketStock?.pc == null ? undefined : Number(marketStock.pc),
-        dataState: "uncollected",
-        sourceLabel: "SEC 424B4 투자설명서",
+        dataState:
+          row.verificationStatus === "confirmed"
+            ? "confirmed"
+            : row.lockupDate && row.ipoDate
+              ? "estimated"
+              : "uncollected",
+        sourceLabel:
+          row.verificationStatus === "confirmed"
+            ? "SEC 공시 원문"
+            : "SEC 투자설명서 검색",
         sourceUrl: row.sourceUrl || `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent(row.ticker)}&category=custom&forms=424B4`,
+        filingId: row.id,
+        verificationNote:
+          row.verificationNote ||
+          (row.verificationStatus === "confirmed"
+            ? "SEC 공시 원문에서 해제일을 확인했습니다."
+            : "투자설명서의 락업 기간을 기준으로 계산한 예정일입니다. 조기 해제 조건과 거래소 휴장일에 따라 달라질 수 있습니다."),
         sector:
           row.ticker === "SPCX"
             ? "우주항공·방산"
