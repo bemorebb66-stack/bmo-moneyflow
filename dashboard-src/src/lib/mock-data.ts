@@ -647,7 +647,8 @@ export interface LockupRow {
   tradingValue?: number; // USD millions
   priceChange?: number;
   floatRatio?: number;
-  dataState?: "confirmed" | "estimated" | "uncollected";
+  dataState?: "confirmed" | "estimated" | "review-needed" | "uncollected";
+  listingStatus?: "listed" | "not-found";
   sourceLabel?: string;
   sourceUrl?: string;
   filingId?: string;

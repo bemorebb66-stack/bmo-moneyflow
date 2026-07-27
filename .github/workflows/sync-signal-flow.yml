@@ -25,6 +25,9 @@ jobs:
           cp -R /tmp/bmo-antman/docs/data/. insider/data/
           cp -R /tmp/bmo-antman/docs/data/. ipo-lockup/data/
 
+      - name: Validate IPO lockup events
+        run: python scripts/validate_lockup_data.py
+
       - name: Commit synced data
         run: |
           git config user.name "bmo-moneyflow-bot"

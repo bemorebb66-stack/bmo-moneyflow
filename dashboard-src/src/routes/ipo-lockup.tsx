@@ -81,8 +81,8 @@ function LockupPage() {
   const past = LOCKUP_ROWS.filter((row) => row.daysLeft < 0);
   const within14 = upcoming.filter((row) => row.daysLeft <= 14).length;
   const within30 = upcoming.filter((row) => row.daysLeft <= 30).length;
-  const confirmed = LOCKUP_ROWS.filter(
-    (row) => row.dataState === "confirmed",
+  const reviewNeeded = LOCKUP_ROWS.filter(
+    (row) => row.dataState === "review-needed",
   ).length;
 
   return (
@@ -109,7 +109,10 @@ function LockupPage() {
         >
           <SummaryCard label="14일 이내 예정" value={`${within14}건`} />
           <SummaryCard label="30일 이내 예정" value={`${within30}건`} />
-          <SummaryCard label="공시 확인 완료" value={`${confirmed}건`} />
+          <SummaryCard
+            label="상장·일정 검증"
+            value={`${LOCKUP_ROWS.length - reviewNeeded}건`}
+          />
           <SummaryCard label="과거 이력" value={`${past.length}건`} />
         </section>
 
@@ -343,10 +346,16 @@ function VerificationBadge({
         }
       : state === "estimated"
         ? {
-            label: "추정 일정",
+            label: "상장 확인·일정 추정",
             icon: FileSearch,
             cls: "border-info/25 bg-info/10 text-info",
           }
+        : state === "review-needed"
+          ? {
+              label: "추가 검토 필요",
+              icon: FileSearch,
+              cls: "border-danger/25 bg-danger/10 text-danger",
+            }
         : {
             label: "추가 확인 필요",
             icon: FileSearch,

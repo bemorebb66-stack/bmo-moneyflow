@@ -569,9 +569,12 @@ export async function hydrateLiveData() {
         dataState:
           row.verificationStatus === "confirmed"
             ? "confirmed"
-            : row.lockupDate && row.ipoDate
-              ? "estimated"
-              : "uncollected",
+            : row.verificationStatus === "review-needed"
+              ? "review-needed"
+              : row.lockupDate && row.ipoDate
+                ? "estimated"
+                : "uncollected",
+        listingStatus: row.listingStatus,
         sourceLabel:
           row.verificationStatus === "confirmed"
             ? "SEC 공시 원문"
