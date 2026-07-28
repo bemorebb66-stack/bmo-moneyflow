@@ -9,6 +9,7 @@ import {
   LIVE_MARKET_DATA,
   LIVE_META,
   MARKET_INDEXES,
+  NEWS_META,
   LIVE_SECTOR_SERIES,
   LIVE_STOCKS,
   LOCKUP_META,
@@ -427,6 +428,7 @@ export async function hydrateLiveData() {
     const news =
       newsResult.status === "fulfilled" ? newsResult.value : { companies: {} };
     Object.assign(COMPANY_NEWS, news.companies ?? {});
+    Object.assign(NEWS_META, news.meta ?? {});
     const secondaryDataDelayed =
       insiderResult.status === "rejected" || lockupResult.status === "rejected";
 

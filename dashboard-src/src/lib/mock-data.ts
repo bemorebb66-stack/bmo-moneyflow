@@ -684,3 +684,11 @@ export interface CompanyNews {
 }
 
 export const COMPANY_NEWS: Record<string, CompanyNews> = {};
+export const NEWS_META = {
+  source: "",
+  generatedAt: "",
+  from: "",
+  to: "",
+  tickerCount: 0,
+  priority: "",
+};

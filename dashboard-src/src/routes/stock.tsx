@@ -40,6 +40,7 @@ import {
   LIVE_META,
   LIVE_STOCKS,
   LOCKUP_ROWS,
+  NEWS_META,
   type MarketPeriod,
   type StockRow,
 } from "@/lib/mock-data";
@@ -94,6 +95,38 @@ function formatNewsDate(timestamp: number) {
   }).format(new Date(timestamp * 1000));
 }
 
+function formatNewsGeneratedAt(value: string) {
+  if (!value) return "수집 시각 미확인";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "수집 시각 미확인";
+  return new Intl.DateTimeFormat("ko-KR", {
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Seoul",
+  }).format(parsed);
+}
+
+function companyXSearchUrl(ticker: string) {
+  return `https://x.com/search?q=${encodeURIComponent(`$${ticker}`)}&src=typed_query&f=live`;
+}
+
+function companyIrSearchUrl(website: string | undefined, name: string) {
+  let domain = "";
+  if (website) {
+    try {
+      domain = new URL(website).hostname.replace(/^www\./, "");
+    } catch {
+      domain = "";
+    }
+  }
+  const query = domain
+    ? `site:${domain} investor relations`
+    : `${name} investor relations`;
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+}
+
 function StockPage() {
   const ticker =
     typeof window === "undefined"
@@ -122,15 +155,18 @@ function StockPage() {
 
   if (!stock) {
     if (directoryStock) {
+      const directoryNews = COMPANY_NEWS[directoryStock.ticker];
       return (
         <PageShell>
           <div className="mx-auto max-w-2xl py-12">
             <Card>
               <CardContent className="p-6 sm:p-8">
-                <div className="flex items-start gap-3">
-                  <div className="rounded-md bg-brand-soft p-2 text-brand">
-                    <Building2 className="h-5 w-5" />
-                  </div>
+                <div className="flex items-start gap-4">
+                  <CompanyLogo
+                    ticker={directoryStock.ticker}
+                    name={directoryStock.name}
+                    preferredLogo={directoryNews?.logo}
+                  />
                   <div className="min-w-0">
                     <p className="font-mono text-sm font-bold text-brand">
                       {directoryStock.ticker}
@@ -168,6 +204,16 @@ function StockPage() {
                   >
                     외부 시세 확인 <ExternalLink className="h-4 w-4" />
                   </a>
+                  {directoryNews?.website && (
+                    <a
+                      href={directoryNews.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border px-4 text-sm font-semibold"
+                    >
+                      공식 홈페이지 <Globe2 className="h-4 w-4" />
+                    </a>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -356,6 +402,24 @@ function StockDetail({ stock }: { stock: StockRow }) {
                 <Globe2 className="h-3.5 w-3.5" /> 공식 홈페이지
               </a>
             )}
+            <a
+              href={companyIrSearchUrl(companyNews?.website, stock.name)}
+              target="_blank"
+              rel="noreferrer"
+              title={`${stock.name} 투자자 관계 페이지 검색`}
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-semibold hover:bg-secondary"
+            >
+              IR 찾기 <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            <a
+              href={companyXSearchUrl(stock.ticker)}
+              target="_blank"
+              rel="noreferrer"
+              title={`X에서 $${stock.ticker} 최신 게시물 검색`}
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-semibold hover:bg-secondary"
+            >
+              X 실시간 검색 <ExternalLink className="h-3.5 w-3.5" />
+            </a>
             <a
               href={`/scanner/?ticker=${encodeURIComponent(stock.ticker)}`}
               className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-semibold hover:bg-secondary"
@@ -666,7 +730,9 @@ function StockDetail({ stock }: { stock: StockRow }) {
                 최신 뉴스
               </h2>
               <p className="text-[11px] text-muted-foreground">
-                최근 헤드라인만 빠르게 확인하고 원문에서 상세 내용을 확인하세요.
+                {companyNews?.news?.length
+                  ? `${companyNews.news.length}개 헤드라인 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
+                  : `BVT 우선 수집 ${NEWS_META.tickerCount || 240}개 종목 · 외부 뉴스로 이어서 확인할 수 있습니다.`}
               </p>
             </div>
             <a
@@ -707,6 +773,9 @@ function StockDetail({ stock }: { stock: StockRow }) {
           ) : (
             <div className="px-5 py-8 text-center text-sm text-muted-foreground">
               <p>최근 수집된 뉴스가 없습니다.</p>
+              <p className="mt-1 text-xs">
+                뉴스가 없거나 현재 BVT 우선 수집 대상 밖에 있는 종목입니다.
+              </p>
               <a
                 href={`https://finance.yahoo.com/quote/${encodeURIComponent(stock.ticker)}/news/`}
                 target="_blank"
@@ -714,6 +783,15 @@ function StockDetail({ stock }: { stock: StockRow }) {
                 className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
               >
                 {stock.ticker} 외부 뉴스 확인
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+              <a
+                href={companyXSearchUrl(stock.ticker)}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-4 mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+              >
+                X 실시간 검색
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>

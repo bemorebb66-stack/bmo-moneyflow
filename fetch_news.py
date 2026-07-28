@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "news.json"
 BASE_URL = "https://finnhub.io/api/v1"
-MAX_TICKERS = 120
+MAX_TICKERS = 240
 GENERIC_COMPANY_WORDS = {
     "class",
     "common",
@@ -63,6 +63,25 @@ def request_json(path, params):
     return response.json()
 
 
+def load_existing_companies():
+    if not OUTPUT.exists():
+        return {}
+    try:
+        payload = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    companies = payload.get("companies", {})
+    return companies if isinstance(companies, dict) else {}
+
+
+def profile_is_complete(company):
+    if not isinstance(company, dict):
+        return False
+    website = str(company.get("website") or "").strip()
+    logo = str(company.get("logo") or "").strip()
+    return website.startswith("http") and logo.startswith("http")
+
+
 def clean_headline(value):
     return " ".join(str(value or "").split()).strip()
 
@@ -111,6 +130,7 @@ def main():
         row["t"]: row.get("n") or row["t"] for row in market.get("stocks", [])
     }
     tickers = priority_tickers(market)
+    existing_companies = load_existing_companies()
     today = date.today()
     start = (today - timedelta(days=10)).isoformat()
     end = today.isoformat()
@@ -119,15 +139,23 @@ def main():
     for index, ticker in enumerate(tickers):
         if index:
             time.sleep(1.05)
+        existing_company = existing_companies.get(ticker, {})
         try:
             headlines = request_json(
                 "company-news",
                 {"symbol": ticker, "from": start, "to": end, "token": token},
             )
-            time.sleep(1.05)
-            profile = request_json(
-                "stock/profile2", {"symbol": ticker, "token": token}
-            )
+            if profile_is_complete(existing_company):
+                profile = {
+                    "name": existing_company.get("company", ""),
+                    "weburl": existing_company.get("website", ""),
+                    "logo": existing_company.get("logo", ""),
+                }
+            else:
+                time.sleep(1.05)
+                profile = request_json(
+                    "stock/profile2", {"symbol": ticker, "token": token}
+                )
         except Exception as error:
             print(f"{ticker}: {error}")
             continue
@@ -181,7 +209,7 @@ def main():
             "from": start,
             "to": end,
             "tickerCount": len(companies),
-            "priority": "거래대금 상위·20일 평균 대비 급증 종목",
+            "priority": "거래대금 상위·20일 평균 대비 급증 종목 240개",
         },
         "companies": companies,
     }

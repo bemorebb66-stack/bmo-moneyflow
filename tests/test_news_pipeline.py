@@ -61,6 +61,29 @@ class NewsPipelineTests(unittest.TestCase):
             )
         )
 
+    def test_existing_profile_is_reused_only_when_links_are_complete(self):
+        self.assertTrue(
+            MODULE.profile_is_complete(
+                {
+                    "website": "https://www.nvidia.com/",
+                    "logo": "https://example.com/nvda.png",
+                }
+            )
+        )
+        self.assertFalse(
+            MODULE.profile_is_complete(
+                {"website": "https://www.nvidia.com/", "logo": ""}
+            )
+        )
+
+    def test_missing_or_invalid_existing_payload_returns_empty_companies(self):
+        original_output = MODULE.OUTPUT
+        MODULE.OUTPUT = Path(__file__).with_name("missing-news-fixture.json")
+        try:
+            self.assertEqual(MODULE.load_existing_companies(), {})
+        finally:
+            MODULE.OUTPUT = original_output
+
 
 if __name__ == "__main__":
     unittest.main()
