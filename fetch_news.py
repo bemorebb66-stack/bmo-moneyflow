@@ -166,9 +166,11 @@ def main():
                 break
 
         website = str(profile.get("weburl") or "").strip()
+        logo = str(profile.get("logo") or "").strip()
         companies[ticker] = {
             "company": names.get(ticker) or profile_name or ticker,
             "website": website if website.startswith("http") else "",
+            "logo": logo if logo.startswith("http") else "",
             "news": news,
         }
 

@@ -11,6 +11,7 @@ import {
   MARKET_INDEXES,
   LIVE_SECTOR_SERIES,
   LIVE_STOCKS,
+  LOCKUP_META,
   LOCKUP_ROWS,
   SECTORS,
   SURGE_STOCKS,
@@ -605,6 +606,8 @@ export async function hydrateLiveData() {
               ? INDUSTRY_KO[marketStock.ind || ""] || marketStock.ind
               : undefined,
         lockupDays: Number(row.lockupDays) || undefined,
+        validatedAt: row.validatedAt || lockup.meta?.validatedAt,
+        sourceType: row.sourceType || "SEC 424B4",
         importance:
           row.ticker === "SPCX" || (daysLeft >= 0 && daysLeft <= 14)
             ? "high"
@@ -614,6 +617,18 @@ export async function hydrateLiveData() {
       };
     });
     LOCKUP_ROWS.splice(0, LOCKUP_ROWS.length, ...lockupRows);
+    Object.assign(LOCKUP_META, {
+      source: lockup.meta?.source || "SEC EDGAR 424B4",
+      generatedAt: lockup.meta?.generatedAt || "",
+      validatedAt: lockup.meta?.validatedAt || "",
+      activeCount: lockupRows.length,
+      excludedCount:
+        Number(lockup.meta?.excludedCount) ||
+        (Array.isArray(lockup.excludedEvents) ? lockup.excludedEvents.length : 0),
+      validationRule:
+        lockup.meta?.validationRule ||
+        "미국 상장 종목 일치와 락업 날짜 계산을 확인합니다.",
+    });
 
     const indexNames: Record<string, { id: "sp500" | "russell2000" | "dow" | "nasdaq"; name: string }> = {
       "^GSPC": { id: "sp500", name: "S&P 500" },

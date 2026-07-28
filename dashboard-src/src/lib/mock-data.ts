@@ -653,11 +653,21 @@ export interface LockupRow {
   sourceUrl?: string;
   filingId?: string;
   verificationNote?: string;
+  validatedAt?: string;
+  sourceType?: string;
 }
 
 // Live SEC-derived data replaces this array during hydration. Keep it empty so
 // a failed data request never presents sample dates as real lockup events.
 export const LOCKUP_ROWS: LockupRow[] = [];
+export const LOCKUP_META = {
+  source: "",
+  generatedAt: "",
+  validatedAt: "",
+  activeCount: 0,
+  excludedCount: 0,
+  validationRule: "",
+};
 
 export interface CompanyNewsItem {
   headline: string;
@@ -669,6 +679,7 @@ export interface CompanyNewsItem {
 export interface CompanyNews {
   company: string;
   website?: string;
+  logo?: string;
   news: CompanyNewsItem[];
 }
 

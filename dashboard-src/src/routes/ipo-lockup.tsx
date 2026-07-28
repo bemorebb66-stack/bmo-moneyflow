@@ -14,7 +14,7 @@ import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { LOCKUP_ROWS, type LockupRow } from "@/lib/mock-data";
+import { LOCKUP_META, LOCKUP_ROWS, type LockupRow } from "@/lib/mock-data";
 import { fmtMcap } from "@/lib/format";
 
 export const Route = createFileRoute("/ipo-lockup")({
@@ -93,6 +93,35 @@ function LockupPage() {
       />
 
       <div className="space-y-4 sm:space-y-5">
+        <div
+          role="status"
+          className="flex flex-wrap items-center gap-x-4 gap-y-1 rounded-lg border border-border bg-surface px-4 py-2.5 text-[11px] text-muted-foreground"
+        >
+          <span className="inline-flex items-center gap-1.5 font-medium text-success">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            상장·날짜 검증 완료
+          </span>
+          <span>
+            유효 일정{" "}
+            <strong className="text-foreground">
+              {LOCKUP_META.activeCount || LOCKUP_ROWS.length}건
+            </strong>
+          </span>
+          <span>
+            검토 제외{" "}
+            <strong className="text-foreground">
+              {LOCKUP_META.excludedCount}건
+            </strong>
+          </span>
+          <span>
+            최종 검증{" "}
+            <strong className="text-foreground">
+              {formatVerifiedAt(LOCKUP_META.validatedAt)}
+            </strong>
+          </span>
+          <span className="ml-auto">출처 · SEC EDGAR 424B4</span>
+        </div>
+
         <div className="flex items-start gap-3 rounded-lg border border-info/25 bg-info/5 px-4 py-3 text-xs text-muted-foreground">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-info" />
           <p className="leading-5">
@@ -328,6 +357,11 @@ function SourceBlock({
           {row.verificationNote || "근거 문서와 세부 조건을 추가 확인 중입니다."}
         </p>
       )}
+      {!compact && row.validatedAt && (
+        <p className="text-[10px] text-muted-foreground">
+          최종 검증 {formatVerifiedAt(row.validatedAt)}
+        </p>
+      )}
     </div>
   );
 }
@@ -470,4 +504,19 @@ function EmptyState() {
       </p>
     </div>
   );
+}
+
+function formatVerifiedAt(value: string) {
+  if (!value) return "확인 중";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return value;
+  return new Intl.DateTimeFormat("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(parsed);
 }

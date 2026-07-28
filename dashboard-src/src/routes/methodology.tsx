@@ -76,7 +76,9 @@ const SECTIONS: {
         <li>Russell 1000·2000 범위: BlackRock IWB·IWM 공개 보유 종목 자료</li>
         <li>내부자 거래: 미국 SEC Form 4 공개 공시</li>
         <li>
-          IPO 락업: 공개된 IPO 자료와 예정 일정. 확정 공시는 원문을 우선합니다.
+          IPO 락업: SEC EDGAR 424B4 투자설명서의 IPO일·락업 기간을 기준으로
+          계산합니다. 현재 미국 상장 종목과 일치하고 날짜 계산이 검증된 일정만
+          공개하며, 확정 해제일은 SEC 원문을 우선합니다.
         </li>
       </ul>
     ),

@@ -200,6 +200,52 @@ function StockPage() {
   return <StockDetail stock={stock} />;
 }
 
+function CompanyLogo({
+  ticker,
+  name,
+  preferredLogo,
+}: {
+  ticker: string;
+  name: string;
+  preferredLogo?: string;
+}) {
+  const sources = useMemo(
+    () =>
+      [
+        preferredLogo,
+        `https://financialmodelingprep.com/image-stock/${encodeURIComponent(ticker)}.png`,
+      ].filter(
+        (value, index, values): value is string =>
+          Boolean(value) && values.indexOf(value) === index,
+      ),
+    [preferredLogo, ticker],
+  );
+  const [sourceIndex, setSourceIndex] = useState(0);
+
+  useEffect(() => setSourceIndex(0), [preferredLogo, ticker]);
+
+  const source = sources[sourceIndex];
+  return (
+    <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-white shadow-sm sm:h-[72px] sm:w-[72px]">
+      {source ? (
+        <img
+          src={source}
+          alt={`${name} 회사 로고`}
+          className="h-full w-full object-contain p-2"
+          loading="eager"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          onError={() => setSourceIndex((current) => current + 1)}
+        />
+      ) : (
+        <span className="px-1 text-center font-mono text-sm font-bold text-slate-700">
+          {ticker.slice(0, 5)}
+        </span>
+      )}
+    </div>
+  );
+}
+
 function StockDetail({ stock }: { stock: StockRow }) {
   const series = useMemo(
     () => generateSeries(`stock:${stock.ticker}`, 60),
@@ -278,19 +324,26 @@ function StockDetail({ stock }: { stock: StockRow }) {
 
       <header className="mb-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-brand/10 px-2 py-1 font-mono text-sm font-bold text-brand">
-                {stock.ticker}
-              </span>
-              <SignalBadge signal={stock.signal} />
+          <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+            <CompanyLogo
+              ticker={stock.ticker}
+              name={stock.name}
+              preferredLogo={companyNews?.logo}
+            />
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-md bg-brand/10 px-2 py-1 font-mono text-sm font-bold text-brand">
+                  {stock.ticker}
+                </span>
+                <SignalBadge signal={stock.signal} />
+              </div>
+              <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+                {stock.name}
+              </h1>
+              <p className="mt-1 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                {summary}
+              </p>
             </div>
-            <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
-              {stock.name}
-            </h1>
-            <p className="mt-1 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              {summary}
-            </p>
           </div>
           <div className="flex flex-wrap gap-2">
             {companyNews?.website && (
