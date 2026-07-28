@@ -10,7 +10,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Search, Users, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import {
+  Search,
+  Users,
+  ArrowUpRight,
+  ArrowDownRight,
+  ExternalLink,
+} from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -57,6 +63,10 @@ function InsiderPage() {
       : (new URLSearchParams(window.location.search).get("ticker") ?? ""),
   );
   const days = range === "7d" ? 7 : range === "30d" ? 30 : 90;
+  const normalizedQuery = query.trim().toUpperCase();
+  const secSearchUrl = normalizedQuery
+    ? `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent(normalizedQuery)}&category=custom&forms=4`
+    : "https://www.sec.gov/edgar/search/#/category=custom&forms=4";
   const latestFiling = useMemo(
     () =>
       [...INSIDER_ROWS].sort((a, b) =>
@@ -106,8 +116,9 @@ function InsiderPage() {
         <aside className="rounded-lg border border-info/25 bg-info/5 px-4 py-3 text-xs leading-5 text-muted-foreground">
           <strong className="text-foreground">공시 포함 기준</strong>
           <span className="ml-2">
-            SEC Form 4의 완료된 공개시장 매수(P)·매도(S)만 표시합니다. 주식 보상
-            세금 원천징수(F)와 Form 144 매도 예정 통지는 포함하지 않습니다.
+            전체 SEC Form 4 발행사를 대상으로 완료된 공개시장 매수(P)·매도(S)만
+            표시합니다. 주식 보상, 세금 원천징수(F)와 Form 144 매도 예정 통지는
+            포함하지 않습니다.
           </span>
         </aside>
 
@@ -311,8 +322,19 @@ function InsiderPage() {
                   </li>
                 ))}
                 {rows.length === 0 && (
-                  <li className="p-10 text-center text-sm text-muted-foreground">
-                    조건에 맞는 공시가 없습니다.
+                  <li className="flex flex-col items-center gap-3 p-10 text-center text-sm text-muted-foreground">
+                    <span>
+                      선택한 기간과 조건에 맞는 공개시장 매수·매도 공시가 없습니다.
+                    </span>
+                    <a
+                      href={secSearchUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-2 text-xs font-medium text-brand hover:bg-secondary"
+                    >
+                      {normalizedQuery || "전체 종목"} SEC Form 4 원문 확인
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
                   </li>
                 )}
               </ul>
@@ -320,13 +342,25 @@ function InsiderPage() {
           </Card>
         </div>
 
-        <InsiderDetailTable rows={rows} />
+        <InsiderDetailTable
+          rows={rows}
+          secSearchUrl={secSearchUrl}
+          query={normalizedQuery}
+        />
       </div>
     </PageShell>
   );
 }
 
-function InsiderDetailTable({ rows }: { rows: InsiderRow[] }) {
+function InsiderDetailTable({
+  rows,
+  secSearchUrl,
+  query,
+}: {
+  rows: InsiderRow[];
+  secSearchUrl: string;
+  query: string;
+}) {
   return (
     <Card>
       <CardContent className="p-0">
@@ -433,7 +467,18 @@ function InsiderDetailTable({ rows }: { rows: InsiderRow[] }) {
                     colSpan={9}
                     className="py-10 text-center text-sm text-muted-foreground"
                   >
-                    조건에 맞는 데이터가 없습니다.
+                    <div className="flex flex-col items-center gap-3">
+                      <span>조건에 맞는 데이터가 없습니다.</span>
+                      <a
+                        href={secSearchUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-2 text-xs font-medium text-brand hover:bg-secondary"
+                      >
+                        {query || "전체 종목"} SEC Form 4 원문 확인
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
                   </td>
                 </tr>
               )}
