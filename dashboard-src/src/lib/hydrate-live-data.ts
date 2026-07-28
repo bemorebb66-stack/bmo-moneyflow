@@ -1,6 +1,7 @@
 import {
   ECONOMIC_EVENTS,
   EARNINGS_ROWS,
+  COMPANY_NEWS,
   INSIDER_ROWS,
   LIVE_COMPANIES_BY_ID,
   LIVE_GROUP_COMPANIES,
@@ -390,6 +391,7 @@ export async function hydrateLiveData() {
       lockupResult,
       earningsResult,
       economicResult,
+      newsResult,
     ] = await Promise.allSettled([
       fetchJson("/data.json"),
       fetchJson("/history.json"),
@@ -397,6 +399,7 @@ export async function hydrateLiveData() {
       fetchJson("/ipo-lockup/data/lockup.json"),
       fetchJson("/earnings.json"),
       fetchJson("/economic_events.json"),
+      fetchJson("/news.json"),
     ]);
     if (
       marketResult.status === "rejected" ||
@@ -420,6 +423,9 @@ export async function hydrateLiveData() {
       economicResult.status === "fulfilled"
         ? economicResult.value
         : { events: [] };
+    const news =
+      newsResult.status === "fulfilled" ? newsResult.value : { companies: {} };
+    Object.assign(COMPANY_NEWS, news.companies ?? {});
     const secondaryDataDelayed =
       insiderResult.status === "rejected" || lockupResult.status === "rejected";
 

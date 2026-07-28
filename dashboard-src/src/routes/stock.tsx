@@ -7,6 +7,8 @@ import {
   CalendarClock,
   ChartNoAxesCombined,
   ExternalLink,
+  Globe2,
+  Newspaper,
   Users,
 } from "lucide-react";
 import {
@@ -31,6 +33,7 @@ import {
 } from "@/lib/stock-directory";
 import {
   EARNINGS_ROWS,
+  COMPANY_NEWS,
   generateSeries,
   INSIDER_ROWS,
   LIVE_MARKET_DATA,
@@ -80,6 +83,16 @@ const COMPANY_SUMMARIES: Record<string, string> = {
   BE: "연료전지 기반 분산형 전력 시스템을 개발하는 청정에너지 기업입니다.",
   CRDO: "데이터센터의 고속 연결을 위한 반도체와 네트워크 솔루션을 설계하는 기업입니다.",
 };
+
+function formatNewsDate(timestamp: number) {
+  if (!timestamp) return "날짜 미확인";
+  return new Intl.DateTimeFormat("ko-KR", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(timestamp * 1000));
+}
 
 function StockPage() {
   const ticker =
@@ -193,6 +206,7 @@ function StockDetail({ stock }: { stock: StockRow }) {
     [stock.ticker],
   );
   const insiders = INSIDER_ROWS.filter((row) => row.ticker === stock.ticker);
+  const companyNews = COMPANY_NEWS[stock.ticker];
   const lockup = LOCKUP_ROWS.find((row) => row.ticker === stock.ticker);
   const earnings = EARNINGS_ROWS.filter(
     (row) => row.ticker === stock.ticker,
@@ -279,6 +293,16 @@ function StockDetail({ stock }: { stock: StockRow }) {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
+            {companyNews?.website && (
+              <a
+                href={companyNews.website}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-semibold hover:bg-secondary"
+              >
+                <Globe2 className="h-3.5 w-3.5" /> 공식 홈페이지
+              </a>
+            )}
             <a
               href={`/scanner/?ticker=${encodeURIComponent(stock.ticker)}`}
               className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-border bg-surface px-3 text-xs font-semibold hover:bg-secondary"
@@ -573,6 +597,72 @@ function StockDetail({ stock }: { stock: StockRow }) {
           ) : (
             <div className="px-5 py-8 text-center text-sm text-muted-foreground">
               아직 수집된 실적 발표 데이터가 없습니다.
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card id="news" className="mt-5">
+        <CardContent className="p-0">
+          <div className="flex flex-col gap-2 border-b border-border/70 px-4 py-3 sm:flex-row sm:items-end sm:justify-between sm:px-5">
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+                LATEST NEWS
+              </div>
+              <h2 className="mt-1 text-base font-semibold sm:text-lg">
+                최신 뉴스
+              </h2>
+              <p className="text-[11px] text-muted-foreground">
+                최근 헤드라인만 빠르게 확인하고 원문에서 상세 내용을 확인하세요.
+              </p>
+            </div>
+            <a
+              href={`https://finance.yahoo.com/quote/${encodeURIComponent(stock.ticker)}/news/`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+            >
+              뉴스 전체 보기 <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+          {companyNews?.news?.length ? (
+            <ul className="divide-y divide-border/70">
+              {companyNews.news.map((item) => (
+                <li key={`${item.datetime}-${item.url}`}>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex items-start gap-3 px-4 py-3 hover:bg-secondary/50 sm:px-5"
+                  >
+                    <div className="mt-0.5 rounded-md bg-brand/10 p-2 text-brand">
+                      <Newspaper className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium leading-5 group-hover:text-brand">
+                        {item.headline}
+                      </p>
+                      <p className="mt-1 text-[11px] text-muted-foreground">
+                        {item.source} · {formatNewsDate(item.datetime)}
+                      </p>
+                    </div>
+                    <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="px-5 py-8 text-center text-sm text-muted-foreground">
+              <p>최근 수집된 뉴스가 없습니다.</p>
+              <a
+                href={`https://finance.yahoo.com/quote/${encodeURIComponent(stock.ticker)}/news/`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+              >
+                {stock.ticker} 외부 뉴스 확인
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             </div>
           )}
         </CardContent>

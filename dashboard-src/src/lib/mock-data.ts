@@ -658,3 +658,18 @@ export interface LockupRow {
 // Live SEC-derived data replaces this array during hydration. Keep it empty so
 // a failed data request never presents sample dates as real lockup events.
 export const LOCKUP_ROWS: LockupRow[] = [];
+
+export interface CompanyNewsItem {
+  headline: string;
+  source: string;
+  url: string;
+  datetime: number;
+}
+
+export interface CompanyNews {
+  company: string;
+  website?: string;
+  news: CompanyNewsItem[];
+}
+
+export const COMPANY_NEWS: Record<string, CompanyNews> = {};
