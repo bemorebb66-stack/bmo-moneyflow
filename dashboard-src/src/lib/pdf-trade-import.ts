@@ -1,4 +1,4 @@
-import { GlobalWorkerOptions, getDocument, type TextItem } from "pdfjs-dist";
+import { GlobalWorkerOptions, getDocument } from "pdfjs-dist";
 import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import { inspectBrokerRows, type BrokerInspection } from "@/lib/broker-import";
 
@@ -41,7 +41,15 @@ export async function inspectPdfTradeFile(file: File): Promise<BrokerInspection>
       const page = await pdf.getPage(pageNumber);
       const content = await page.getTextContent();
       const items = content.items
-        .filter((item): item is TextItem => "str" in item && Boolean(item.str.trim()))
+        .filter(
+          (
+            item,
+          ): item is typeof item & {
+            str: string;
+            transform: number[];
+            width: number;
+          } => "str" in item && Boolean(item.str.trim()),
+        )
         .map((item) => ({
           text: item.str,
           x: item.transform[4],

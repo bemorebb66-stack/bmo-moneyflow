@@ -647,7 +647,12 @@ export interface LockupRow {
   tradingValue?: number; // USD millions
   priceChange?: number;
   floatRatio?: number;
-  dataState?: "confirmed" | "estimated" | "review-needed" | "uncollected";
+  dataState?:
+    | "confirmed"
+    | "conditional"
+    | "estimated"
+    | "review-needed"
+    | "uncollected";
   listingStatus?: "listed" | "not-found";
   sourceLabel?: string;
   sourceUrl?: string;
@@ -655,6 +660,19 @@ export interface LockupRow {
   verificationNote?: string;
   validatedAt?: string;
   sourceType?: string;
+  majorIpo?: boolean;
+  prospectusDate?: string;
+  maxLockupDate?: string;
+  datePrecision?: "fixed" | "conditional-max" | "estimated";
+  releaseRuleType?:
+    | "fixed-days"
+    | "earnings-or-days"
+    | "conditional"
+    | "review-needed";
+  releaseRuleSummary?: string;
+  termsVerified?: boolean;
+  postTradingValueRatio?: number;
+  postTradingValueSessions?: number;
 }
 
 // Live SEC-derived data replaces this array during hydration. Keep it empty so
@@ -666,6 +684,9 @@ export const LOCKUP_META = {
   validatedAt: "",
   activeCount: 0,
   excludedCount: 0,
+  majorIpoCount: 0,
+  directSecSourceCount: 0,
+  conditionalCount: 0,
   validationRule: "",
 };
 

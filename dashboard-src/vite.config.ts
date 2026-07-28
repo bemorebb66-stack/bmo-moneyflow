@@ -98,11 +98,24 @@ const routeShells = () => ({
 
     const html = readFileSync(shell, "utf8");
     for (const [route, meta] of Object.entries(ROUTE_META)) {
+      const resolvedMeta =
+        route === "ipo-lockup"
+          ? {
+              title: "미국 IPO 락업 해제 일정·과거 이력 | BVT Money Flow",
+              description:
+                "미국 주요 IPO의 락업 조건, 최대 예정일과 과거 이력을 SEC 원문 근거와 함께 확인하세요.",
+            }
+          : meta;
       const routeDir = resolve(outputDir, route);
       mkdirSync(routeDir, { recursive: true });
       writeFileSync(
         resolve(routeDir, "index.html"),
-        replaceMeta(html, route, meta.title, meta.description),
+        replaceMeta(
+          html,
+          route,
+          resolvedMeta.title,
+          resolvedMeta.description,
+        ),
       );
     }
   },

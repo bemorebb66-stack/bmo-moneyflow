@@ -9,6 +9,7 @@ import {
   History,
   Info,
   Search,
+  Star,
 } from "lucide-react";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/ipo-lockup")({
       {
         name: "description",
         content:
-          "미국 상장기업의 IPO 락업 해제 예정 일정과 과거 이력을 SEC 공시 근거와 함께 확인하세요.",
+          "미국 상장기업의 IPO 락업 해제 예정 일정과 과거 이력을 SEC 원문 근거와 함께 확인하세요.",
       },
       {
         property: "og:title",
@@ -32,7 +33,8 @@ export const Route = createFileRoute("/ipo-lockup")({
       },
       {
         property: "og:description",
-        content: "예정 일정과 과거 이력을 구분하고 SEC 근거 문서를 함께 제공합니다.",
+        content:
+          "SEC 투자설명서에서 확인한 락업 조건, 최대 예정일과 과거 거래대금 변화를 제공합니다.",
       },
     ],
     links: [
@@ -42,7 +44,7 @@ export const Route = createFileRoute("/ipo-lockup")({
   component: LockupPage,
 });
 
-type ViewFilter = "upcoming" | "past" | "all";
+type ViewFilter = "upcoming" | "past" | "major" | "all";
 type WindowFilter = "all" | "14" | "30" | "90";
 
 function LockupPage() {
@@ -59,10 +61,11 @@ function LockupPage() {
     return LOCKUP_ROWS.filter((row) => {
       if (view === "upcoming" && row.daysLeft < 0) return false;
       if (view === "past" && row.daysLeft >= 0) return false;
+      if (view === "major" && !row.majorIpo) return false;
       if (
-        view !== "past" &&
+        view === "upcoming" &&
         win !== "all" &&
-        (row.daysLeft < 0 || row.daysLeft > Number(win))
+        row.daysLeft > Number(win)
       )
         return false;
       return (
@@ -71,7 +74,7 @@ function LockupPage() {
         row.company.toLowerCase().includes(q)
       );
     }).sort((a, b) =>
-      view === "past"
+      view === "past" || view === "major"
         ? b.unlockDate.localeCompare(a.unlockDate)
         : a.unlockDate.localeCompare(b.unlockDate),
     );
@@ -81,9 +84,10 @@ function LockupPage() {
   const past = LOCKUP_ROWS.filter((row) => row.daysLeft < 0);
   const within14 = upcoming.filter((row) => row.daysLeft <= 14).length;
   const within30 = upcoming.filter((row) => row.daysLeft <= 30).length;
-  const reviewNeeded = LOCKUP_ROWS.filter(
-    (row) => row.dataState === "review-needed",
-  ).length;
+  const majorCount = LOCKUP_ROWS.filter((row) => row.majorIpo).length;
+  const directSourceCount =
+    LOCKUP_META.directSecSourceCount ||
+    LOCKUP_ROWS.filter((row) => row.sourceUrl?.includes("/Archives/")).length;
 
   return (
     <PageShell>
@@ -108,27 +112,26 @@ function LockupPage() {
             </strong>
           </span>
           <span>
-            검토 제외{" "}
-            <strong className="text-foreground">
-              {LOCKUP_META.excludedCount}건
-            </strong>
+            SEC 원문 연결{" "}
+            <strong className="text-foreground">{directSourceCount}건</strong>
           </span>
           <span>
-            최종 검증{" "}
-            <strong className="text-foreground">
-              {formatVerifiedAt(LOCKUP_META.validatedAt)}
-            </strong>
+            주요 IPO{" "}
+            <strong className="text-foreground">{majorCount}건</strong>
           </span>
-          <span className="ml-auto">출처 · SEC EDGAR 424B4</span>
+          <span className="ml-auto">
+            최종 검증 {formatVerifiedAt(LOCKUP_META.validatedAt)}
+          </span>
         </div>
 
         <div className="flex items-start gap-3 rounded-lg border border-info/25 bg-info/5 px-4 py-3 text-xs text-muted-foreground">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-info" />
           <p className="leading-5">
             <strong className="text-foreground">날짜 상태를 확인하세요.</strong>{" "}
-            투자설명서의 락업 기간으로 계산한 날짜는 <b>추정</b>으로 표시합니다.
-            조기 해제 조건, 실적 발표일, 거래소 휴장일에 따라 실제 매도 가능일이
-            달라질 수 있으며, 투자 판단 전 SEC 원문 확인이 필요합니다.
+            `공시 확인`은 투자설명서의 고정 기간을 계산한 날짜이고, `조건부
+            최대일`은 실적 발표·주가 조건 등에 따라 더 일찍 해제될 수 있는
+            최대 예정일입니다. 해제 물량은 SEC 원문에서 명확히 확인된 경우에만
+            표시합니다.
           </p>
         </div>
 
@@ -138,10 +141,7 @@ function LockupPage() {
         >
           <SummaryCard label="14일 이내 예정" value={`${within14}건`} />
           <SummaryCard label="30일 이내 예정" value={`${within30}건`} />
-          <SummaryCard
-            label="상장·일정 검증"
-            value={`${LOCKUP_ROWS.length - reviewNeeded}건`}
-          />
+          <SummaryCard label="SEC 기반 주요 IPO" value={`${majorCount}건`} />
           <SummaryCard label="과거 이력" value={`${past.length}건`} />
         </section>
 
@@ -154,10 +154,11 @@ function LockupPage() {
               options={[
                 { id: "upcoming", label: "예정 일정" },
                 { id: "past", label: "과거 이력" },
+                { id: "major", label: "주요 IPO" },
                 { id: "all", label: "전체" },
               ]}
             />
-            {view !== "past" && (
+            {view === "upcoming" && (
               <Segmented
                 label="기간"
                 value={win}
@@ -192,17 +193,23 @@ function LockupPage() {
                 <h2 className="text-base font-semibold sm:text-lg">
                   {view === "past"
                     ? "과거 락업 해제 이력"
-                    : view === "all"
-                      ? "전체 락업 일정"
-                      : "다가오는 락업 해제"}
+                    : view === "major"
+                      ? "SEC 기반 주요 IPO"
+                      : view === "all"
+                        ? "전체 락업 일정"
+                        : "다가오는 락업 해제"}
                 </h2>
                 <p className="text-[11px] text-muted-foreground">
                   {rows.length}건 ·{" "}
-                  {view === "past" ? "최근 해제일 순" : "가까운 예정일 순"}
+                  {view === "past" || view === "major"
+                    ? "최근 최대 예정일 순"
+                    : "가까운 예정일 순"}
                 </p>
               </div>
               {view === "past" ? (
                 <History className="h-5 w-5 text-muted-foreground" />
+              ) : view === "major" ? (
+                <Star className="h-5 w-5 text-brand" />
               ) : (
                 <CalendarClock className="h-5 w-5 text-brand" />
               )}
@@ -237,6 +244,7 @@ function LockupCard({ row }: { row: LockupRow }) {
             >
               {row.ticker}
             </a>
+            {row.majorIpo && <MajorBadge />}
             <VerificationBadge state={row.dataState} />
           </div>
           <p className="mt-1 truncate text-xs text-muted-foreground">
@@ -248,17 +256,28 @@ function LockupCard({ row }: { row: LockupRow }) {
 
       <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
         <Metric label="IPO일" value={row.ipoDate || "미수집"} />
-        <Metric label="락업 해제일" value={row.unlockDate || "미수집"} />
+        <Metric label={unlockDateLabel(row)} value={row.unlockDate || "미수집"} />
         <Metric
           label="락업 기간"
           value={row.lockupDays ? `${row.lockupDays}일` : "미수집"}
         />
         <Metric
+          label="해제 물량"
+          value={
+            row.unlockShares > 0 ? `${row.unlockShares.toFixed(1)}M주` : "미수집"
+          }
+        />
+        <Metric
           label="시가총액"
           value={row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
         />
+        <Metric
+          label="해제 후 거래대금"
+          value={formatPostTradingValue(row)}
+        />
       </dl>
 
+      <RuleBlock row={row} />
       <SourceBlock row={row} />
     </article>
   );
@@ -266,15 +285,16 @@ function LockupCard({ row }: { row: LockupRow }) {
 
 function LockupTable({ rows }: { rows: LockupRow[] }) {
   return (
-    <table className="w-full min-w-[1040px] text-sm">
+    <table className="w-full min-w-[1320px] text-sm">
       <thead className="bg-surface-2/60 text-[11px] text-muted-foreground">
         <tr>
           <TableHead>종목</TableHead>
           <TableHead>IPO일</TableHead>
-          <TableHead>락업 해제일</TableHead>
+          <TableHead>해제 기준일</TableHead>
           <TableHead>남은 기간</TableHead>
-          <TableHead>락업 기간</TableHead>
-          <TableHead>공모가</TableHead>
+          <TableHead>락업 조건</TableHead>
+          <TableHead>해제 물량</TableHead>
+          <TableHead>해제 후 거래대금</TableHead>
           <TableHead>시가총액</TableHead>
           <TableHead>검증 상태·근거</TableHead>
         </tr>
@@ -286,46 +306,81 @@ function LockupTable({ rows }: { rows: LockupRow[] }) {
             className="hover:bg-secondary/40"
           >
             <td className="px-4 py-3">
-              <a
-                href={`/stock/?ticker=${encodeURIComponent(row.ticker)}`}
-                className="font-mono text-[13px] font-semibold hover:text-brand"
-              >
-                {row.ticker}
-              </a>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`/stock/?ticker=${encodeURIComponent(row.ticker)}`}
+                  className="font-mono text-[13px] font-semibold hover:text-brand"
+                >
+                  {row.ticker}
+                </a>
+                {row.majorIpo && <MajorBadge />}
+              </div>
               <div className="max-w-56 truncate text-[11px] text-muted-foreground">
                 {row.company}
               </div>
             </td>
             <td className="px-4 py-3 tabular">{row.ipoDate || "미수집"}</td>
             <td className="px-4 py-3 font-medium tabular">
+              <span className="block text-[10px] text-muted-foreground">
+                {unlockDateLabel(row)}
+              </span>
               {row.unlockDate || "미수집"}
             </td>
             <td className="px-4 py-3">
               <DdayBadge days={row.daysLeft} />
             </td>
-            <td className="px-4 py-3 tabular">
-              {row.lockupDays ? `${row.lockupDays}일` : "미수집"}
+            <td className="max-w-72 px-4 py-3">
+              <RuleBlock row={row} compact />
             </td>
             <td className="px-4 py-3 tabular">
-              {row.ipoPrice ? `$${row.ipoPrice.toFixed(2)}` : "미수집"}
+              {row.unlockShares > 0
+                ? `${row.unlockShares.toFixed(1)}M주`
+                : "미수집"}
+            </td>
+            <td className="px-4 py-3 tabular">
+              {formatPostTradingValue(row)}
             </td>
             <td className="px-4 py-3 tabular">
               {row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
             </td>
-            <td className="max-w-80 px-4 py-3">
+            <td className="max-w-72 px-4 py-3">
               <SourceBlock row={row} compact />
             </td>
           </tr>
         ))}
         {rows.length === 0 && (
           <tr>
-            <td colSpan={8}>
+            <td colSpan={9}>
               <EmptyState />
             </td>
           </tr>
         )}
       </tbody>
     </table>
+  );
+}
+
+function RuleBlock({
+  row,
+  compact = false,
+}: {
+  row: LockupRow;
+  compact?: boolean;
+}) {
+  const fallback = row.lockupDays
+    ? `투자설명서 기준 ${row.lockupDays}일`
+    : "세부 조건 확인 중";
+  return (
+    <div
+      className={cn(
+        "leading-4",
+        compact
+          ? "text-[11px] text-muted-foreground"
+          : "rounded-md bg-secondary/60 px-3 py-2 text-[11px] text-muted-foreground",
+      )}
+    >
+      {row.releaseRuleSummary || fallback}
+    </div>
   );
 }
 
@@ -354,7 +409,8 @@ function SourceBlock({
       </div>
       {!compact && (
         <p className="text-[11px] leading-4 text-muted-foreground">
-          {row.verificationNote || "근거 문서와 세부 조건을 추가 확인 중입니다."}
+          {row.verificationNote ||
+            "근거 문서와 세부 조건을 추가 확인 중입니다."}
         </p>
       )}
       {!compact && row.validatedAt && (
@@ -378,23 +434,29 @@ function VerificationBadge({
           icon: CheckCircle2,
           cls: "border-success/25 bg-success/10 text-success",
         }
-      : state === "estimated"
+      : state === "conditional"
         ? {
-            label: "상장 확인·일정 추정",
+            label: "조건부 최대일",
             icon: FileSearch,
-            cls: "border-info/25 bg-info/10 text-info",
+            cls: "border-warning/30 bg-warning/10 text-warning-foreground",
           }
-        : state === "review-needed"
+        : state === "estimated"
           ? {
-              label: "추가 검토 필요",
+              label: "상장 확인·일정 추정",
               icon: FileSearch,
-              cls: "border-danger/25 bg-danger/10 text-danger",
+              cls: "border-info/25 bg-info/10 text-info",
             }
-        : {
-            label: "추가 확인 필요",
-            icon: FileSearch,
-            cls: "border-border bg-muted text-muted-foreground",
-          };
+          : state === "review-needed"
+            ? {
+                label: "추가 검토 필요",
+                icon: FileSearch,
+                cls: "border-danger/25 bg-danger/10 text-danger",
+              }
+            : {
+                label: "추가 확인 필요",
+                icon: FileSearch,
+                cls: "border-border bg-muted text-muted-foreground",
+              };
   const Icon = meta.icon;
   return (
     <span
@@ -405,6 +467,15 @@ function VerificationBadge({
     >
       <Icon className="h-3 w-3" />
       {meta.label}
+    </span>
+  );
+}
+
+function MajorBadge() {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-md border border-brand/25 bg-brand/10 px-1.5 py-0.5 text-[10px] font-medium text-brand">
+      <Star className="h-3 w-3" />
+      주요 IPO
     </span>
   );
 }
@@ -446,14 +517,14 @@ function Segmented({
       <div className="mb-1 text-[10px] font-medium text-muted-foreground">
         {label}
       </div>
-      <div className="inline-flex rounded-lg border border-border bg-surface p-0.5">
+      <div className="inline-flex max-w-full overflow-x-auto rounded-lg border border-border bg-surface p-0.5">
         {options.map((option) => (
           <button
             key={option.id}
             type="button"
             onClick={() => onChange(option.id)}
             className={cn(
-              "h-8 rounded-md px-3 text-xs font-medium",
+              "h-8 shrink-0 rounded-md px-3 text-xs font-medium",
               value === option.id
                 ? "bg-brand text-white shadow-sm"
                 : "text-muted-foreground hover:text-foreground",
@@ -504,6 +575,17 @@ function EmptyState() {
       </p>
     </div>
   );
+}
+
+function unlockDateLabel(row: LockupRow) {
+  if (row.datePrecision === "conditional-max") return "조건부 최대 예정일";
+  return row.daysLeft < 0 ? "해제 기준일" : "해제 예정일";
+}
+
+function formatPostTradingValue(row: LockupRow) {
+  if (row.datePrecision === "conditional-max") return "조건부 일정";
+  if (!row.postTradingValueRatio) return row.daysLeft < 0 ? "자료 부족" : "-";
+  return `${row.postTradingValueRatio.toFixed(2)}배 · 이후 ${row.postTradingValueSessions || 5}일`;
 }
 
 function formatVerifiedAt(value: string) {

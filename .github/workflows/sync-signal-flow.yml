@@ -25,6 +25,9 @@ jobs:
           cp -R /tmp/bmo-antman/docs/data/. insider/data/
           cp -R /tmp/bmo-antman/docs/data/. ipo-lockup/data/
 
+      - name: Add SEC-backed major IPO history
+        run: python scripts/enrich_major_lockups.py
+
       - name: Validate IPO lockup events
         run: python scripts/validate_lockup_data.py
 

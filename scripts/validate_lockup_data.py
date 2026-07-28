@@ -29,13 +29,14 @@ def sec_search_url(ticker: str) -> str:
 
 def source_quality(row: dict) -> int:
     source_url = str(row.get("sourceUrl") or "")
-    return (
-        2
-        if row.get("verificationStatus") == "confirmed"
-        else 1
-        if "/Archives/" in source_url
-        else 0
-    )
+    status = row.get("verificationStatus")
+    if status == "confirmed" and "/Archives/" in source_url:
+        return 4
+    if status == "conditional" and "/Archives/" in source_url:
+        return 3
+    if "/Archives/" in source_url:
+        return 2
+    return 1 if status == "confirmed" else 0
 
 
 def validate_payload(lockup: dict, directory: dict) -> dict:
@@ -49,10 +50,15 @@ def validate_payload(lockup: dict, directory: dict) -> dict:
         ticker = str(row.get("ticker", "")).upper().strip()
         is_listed = ticker in listed
         ipo_date = parse_iso_date(row.get("ipoDate"))
-        lockup_date = parse_iso_date(row.get("lockupDate"))
+        prospectus_date = parse_iso_date(row.get("prospectusDate")) or ipo_date
+        lockup_date = parse_iso_date(
+            row.get("maxLockupDate") or row.get("lockupDate")
+        )
         lockup_days = int(row.get("lockupDays") or 0)
         calculated_days = (
-            (lockup_date - ipo_date).days if ipo_date and lockup_date else None
+            (lockup_date - prospectus_date).days
+            if prospectus_date and lockup_date
+            else None
         )
         date_consistent = bool(
             calculated_days is not None
@@ -75,8 +81,9 @@ def validate_payload(lockup: dict, directory: dict) -> dict:
         )
         row["validationChecks"] = {
             "listed": is_listed,
-            "datesPresent": bool(ipo_date and lockup_date and lockup_days),
+            "datesPresent": bool(prospectus_date and lockup_date and lockup_days),
             "dateConsistent": date_consistent,
+            "termsVerified": bool(row.get("termsVerified")),
         }
 
         if not ticker:
@@ -87,26 +94,40 @@ def validate_payload(lockup: dict, directory: dict) -> dict:
         if not is_listed:
             row["verificationStatus"] = "review-needed"
             row["exclusionReason"] = (
-                "현재 상장 종목 디렉터리에서 티커를 확인하지 못했습니다."
+                "현재 미국 상장 종목 디렉터리에서 티커를 확인하지 못했습니다."
             )
             excluded_events.append(row)
             continue
         if not date_consistent:
             row["verificationStatus"] = "review-needed"
             row["exclusionReason"] = (
-                "IPO일·락업 기간·해제일의 계산 결과가 일치하지 않습니다."
+                "투자설명서 기준일·락업 기간·최대 예정일의 계산 결과가 일치하지 않습니다."
             )
             excluded_events.append(row)
             continue
 
-        confirmed = raw.get("verificationStatus") == "confirmed"
-        row["verificationStatus"] = "confirmed" if confirmed else "estimated"
-        row["verificationNote"] = (
-            "현재 미국 상장 종목과 대조했으며, SEC 424B4 원문에서 해제일을 확인했습니다."
-            if confirmed
-            else "현재 미국 상장 종목과 대조했으며, SEC 424B4의 락업 기간을 "
-            "IPO일에 더해 계산했습니다. 조기 해제 조건과 거래소 휴장일은 원문 확인이 필요합니다."
-        )
+        raw_status = raw.get("verificationStatus")
+        if raw_status in {"confirmed", "conditional"}:
+            row["verificationStatus"] = raw_status
+        else:
+            row["verificationStatus"] = "estimated"
+
+        if not row.get("verificationNote"):
+            if row["verificationStatus"] == "confirmed":
+                row["verificationNote"] = (
+                    "SEC 공시 원문에서 락업 기간을 확인했습니다."
+                )
+            elif row["verificationStatus"] == "conditional":
+                row["verificationNote"] = (
+                    "SEC 공시에서 조건을 확인했습니다. 표시일은 최대 예정일이며 "
+                    "조건 충족 시 먼저 해제될 수 있습니다."
+                )
+            else:
+                row["verificationNote"] = (
+                    "투자설명서의 락업 기간을 IPO일에 더해 계산한 예정일입니다. "
+                    "조기 해제 조건과 거래소 휴장일에 따라 달라질 수 있습니다."
+                )
+
         key = (ticker, str(row.get("lockupDate") or ""))
         previous = valid_events.get(key)
         if previous is None or source_quality(row) > source_quality(previous):
@@ -126,8 +147,14 @@ def validate_payload(lockup: dict, directory: dict) -> dict:
     meta["listedMatched"] = len(events)
     meta["reviewNeeded"] = len(excluded_events)
     meta["excludedCount"] = len(excluded_events)
+    meta["directSecSourceCount"] = sum(
+        "/Archives/" in str(row.get("sourceUrl") or "") for row in events
+    )
+    meta["conditionalCount"] = sum(
+        row.get("verificationStatus") == "conditional" for row in events
+    )
     meta["validationRule"] = (
-        "미국 상장 종목 일치 + IPO일·락업 기간·해제일 계산 일치 + 중복 제거"
+        "미국 상장 종목 일치 + 투자설명서 기준일·락업 기간 계산 + SEC 원문 출처 + 중복 제거"
     )
     output["meta"] = meta
     output["events"] = sorted(

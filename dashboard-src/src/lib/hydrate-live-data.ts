@@ -559,35 +559,81 @@ export async function hydrateLiveData() {
       });
     INSIDER_ROWS.splice(0, INSIDER_ROWS.length, ...insiderRows);
 
+    const historyDates: string[] = Array.isArray(history.dates)
+      ? history.dates
+      : [];
+    const historyStocks: Record<string, number[]> = history.stocks ?? {};
+    const getPostLockupTradingValue = (
+      ticker: string,
+      eventDate: string,
+      datePrecision?: string,
+    ) => {
+      if (datePrecision === "conditional-max") return undefined;
+      const series = historyStocks[ticker];
+      if (!Array.isArray(series) || !eventDate || historyDates.length === 0)
+        return undefined;
+      const eventIndex = historyDates.findIndex((value) => value >= eventDate);
+      if (eventIndex < 10 || eventIndex >= historyDates.length) return undefined;
+      const before = series
+        .slice(Math.max(0, eventIndex - 20), eventIndex)
+        .map(Number)
+        .filter((value) => Number.isFinite(value) && value > 0);
+      const after = series
+        .slice(eventIndex, Math.min(series.length, eventIndex + 5))
+        .map(Number)
+        .filter((value) => Number.isFinite(value) && value > 0);
+      if (before.length < 10 || after.length < 3) return undefined;
+      const beforeAverage =
+        before.reduce((sum, value) => sum + value, 0) / before.length;
+      const afterAverage =
+        after.reduce((sum, value) => sum + value, 0) / after.length;
+      return beforeAverage > 0
+        ? {
+            ratio: afterAverage / beforeAverage,
+            sessions: after.length,
+          }
+        : undefined;
+    };
+
     const lockupRows: LockupRow[] = (lockup.events ?? []).map((row: any) => {
       const daysLeft = daysUntil(row.lockupDate);
       const marketStock = stockByTicker.get(row.ticker);
+      const postTradingValue = getPostLockupTradingValue(
+        row.ticker,
+        row.lockupDate,
+        row.datePrecision,
+      );
       return {
         ticker: row.ticker,
         company:
-          LOCKUP_COMPANY_KO[row.ticker] || marketStock?.nko || row.company,
+          row.companyKo ||
+          LOCKUP_COMPANY_KO[row.ticker] ||
+          marketStock?.nko ||
+          row.company,
         ipoDate: row.ipoDate,
         unlockDate: row.lockupDate,
         daysLeft,
-        unlockShares: 0,
-        estValue: 0,
+        unlockShares: Number(row.unlockShares) || 0,
+        estValue: Number(row.estValue) || 0,
         marketCap: marketStock?.mc ? marketStock.mc / 1e9 : 0,
         ipoPrice: Number(row.ipoPrice) || undefined,
         tradingValue: marketStock?.dv ? marketStock.dv / 1e6 : undefined,
         priceChange: marketStock?.pc == null ? undefined : Number(marketStock.pc),
+        floatRatio: Number(row.floatRatio) || undefined,
         dataState:
           row.verificationStatus === "confirmed"
             ? "confirmed"
+            : row.verificationStatus === "conditional"
+              ? "conditional"
             : row.verificationStatus === "review-needed"
               ? "review-needed"
               : row.lockupDate && row.ipoDate
                 ? "estimated"
                 : "uncollected",
         listingStatus: row.listingStatus,
-        sourceLabel:
-          row.verificationStatus === "confirmed"
-            ? "SEC 공시 원문"
-            : "SEC 투자설명서 검색",
+        sourceLabel: String(row.sourceUrl || "").includes("/Archives/")
+          ? "SEC 424B4 원문"
+          : "SEC 투자설명서 검색",
         sourceUrl: row.sourceUrl || `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent(row.ticker)}&category=custom&forms=424B4`,
         filingId: row.id,
         verificationNote:
@@ -610,8 +656,19 @@ export async function hydrateLiveData() {
         lockupDays: Number(row.lockupDays) || undefined,
         validatedAt: row.validatedAt || lockup.meta?.validatedAt,
         sourceType: row.sourceType || "SEC 424B4",
+        majorIpo: Boolean(row.majorIpo),
+        prospectusDate: row.prospectusDate,
+        maxLockupDate: row.maxLockupDate,
+        datePrecision: row.datePrecision,
+        releaseRuleType: row.releaseRuleType,
+        releaseRuleSummary: row.releaseRuleSummary,
+        termsVerified: Boolean(row.termsVerified),
+        postTradingValueRatio: postTradingValue?.ratio,
+        postTradingValueSessions: postTradingValue?.sessions,
         importance:
-          row.ticker === "SPCX" || (daysLeft >= 0 && daysLeft <= 14)
+          row.ticker === "SPCX" ||
+          row.majorIpo ||
+          (daysLeft >= 0 && daysLeft <= 14)
             ? "high"
             : daysLeft >= 15 && daysLeft <= 30
               ? "medium"
@@ -624,6 +681,15 @@ export async function hydrateLiveData() {
       generatedAt: lockup.meta?.generatedAt || "",
       validatedAt: lockup.meta?.validatedAt || "",
       activeCount: lockupRows.length,
+      majorIpoCount:
+        Number(lockup.meta?.majorIpoCount) ||
+        lockupRows.filter((row) => row.majorIpo).length,
+      directSecSourceCount:
+        Number(lockup.meta?.directSecSourceCount) ||
+        lockupRows.filter((row) => row.sourceUrl?.includes("/Archives/")).length,
+      conditionalCount:
+        Number(lockup.meta?.conditionalCount) ||
+        lockupRows.filter((row) => row.dataState === "conditional").length,
       excludedCount:
         Number(lockup.meta?.excludedCount) ||
         (Array.isArray(lockup.excludedEvents) ? lockup.excludedEvents.length : 0),
