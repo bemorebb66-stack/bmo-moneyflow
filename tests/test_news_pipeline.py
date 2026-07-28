@@ -30,6 +30,37 @@ class NewsPipelineTests(unittest.TestCase):
             "New product announced",
         )
 
+    def test_company_aliases_remove_generic_suffixes(self):
+        aliases = MODULE.company_aliases(
+            "MRVL", "Marvell Technology, Inc.", "Marvell Technology Group Ltd"
+        )
+        self.assertIn("mrvl", aliases)
+        self.assertIn("marvell", aliases)
+        self.assertNotIn("technology", aliases)
+
+    def test_relevance_filter_rejects_unrelated_company_news(self):
+        self.assertFalse(
+            MODULE.is_relevant_headline(
+                {"headline": "Tesla shares rise after delivery update"},
+                "NVDA",
+                "NVIDIA Corporation",
+            )
+        )
+        self.assertTrue(
+            MODULE.is_relevant_headline(
+                {"headline": "Nvidia launches a new AI chip platform"},
+                "NVDA",
+                "NVIDIA Corporation",
+            )
+        )
+        self.assertTrue(
+            MODULE.is_relevant_headline(
+                {"headline": "NVDA earnings: what investors should watch"},
+                "NVDA",
+                "NVIDIA Corporation",
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -8,6 +9,26 @@ ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "news.json"
 BASE_URL = "https://finnhub.io/api/v1"
 MAX_TICKERS = 120
+GENERIC_COMPANY_WORDS = {
+    "class",
+    "common",
+    "company",
+    "corp",
+    "corporation",
+    "group",
+    "holding",
+    "holdings",
+    "inc",
+    "incorporated",
+    "industries",
+    "international",
+    "limited",
+    "plc",
+    "stock",
+    "systems",
+    "technology",
+    "technologies",
+}
 
 
 def priority_tickers(market):
@@ -46,6 +67,35 @@ def clean_headline(value):
     return " ".join(str(value or "").split()).strip()
 
 
+def company_aliases(ticker, *names):
+    aliases = set()
+    ticker = str(ticker or "").strip().casefold()
+    if len(ticker) >= 3:
+        aliases.add(ticker)
+
+    for name in names:
+        words = re.findall(r"[a-z0-9]+", str(name or "").casefold())
+        distinctive = [
+            word
+            for word in words
+            if word not in GENERIC_COMPANY_WORDS and len(word) >= 4
+        ]
+        if len(distinctive) >= 2:
+            aliases.add(" ".join(distinctive))
+        aliases.update(word for word in distinctive if len(word) >= 5)
+    return aliases
+
+
+def is_relevant_headline(row, ticker, *names):
+    headline = clean_headline(row.get("headline")).casefold()
+    if not headline:
+        return False
+    return any(
+        re.search(rf"(?<![a-z0-9]){re.escape(alias)}(?![a-z0-9])", headline)
+        for alias in company_aliases(ticker, *names)
+    )
+
+
 def main():
     token = os.environ.get("FINNHUB_API_KEY", "").strip()
     if not token:
@@ -56,6 +106,9 @@ def main():
     names = {
         row["t"]: row.get("nko") or row.get("n") or row["t"]
         for row in market.get("stocks", [])
+    }
+    english_names = {
+        row["t"]: row.get("n") or row["t"] for row in market.get("stocks", [])
     }
     tickers = priority_tickers(market)
     today = date.today()
@@ -81,6 +134,7 @@ def main():
 
         seen = set()
         news = []
+        profile_name = str(profile.get("name") or "").strip()
         for row in sorted(
             headlines if isinstance(headlines, list) else [],
             key=lambda item: int(item.get("datetime") or 0),
@@ -88,7 +142,13 @@ def main():
         ):
             headline = clean_headline(row.get("headline"))
             url = str(row.get("url") or "").strip()
-            if not headline or not url:
+            if (
+                not headline
+                or not url
+                or not is_relevant_headline(
+                    row, ticker, english_names.get(ticker), profile_name
+                )
+            ):
                 continue
             key = headline.casefold()
             if key in seen:
@@ -107,7 +167,7 @@ def main():
 
         website = str(profile.get("weburl") or "").strip()
         companies[ticker] = {
-            "company": names.get(ticker) or profile.get("name") or ticker,
+            "company": names.get(ticker) or profile_name or ticker,
             "website": website if website.startswith("http") else "",
             "news": news,
         }
