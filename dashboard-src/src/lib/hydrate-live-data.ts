@@ -614,6 +614,19 @@ export async function hydrateLiveData() {
         unlockDate: row.lockupDate,
         daysLeft,
         unlockShares: Number(row.unlockShares) || 0,
+        offeringShares: Number(row.offeringShares) || undefined,
+        offeringRatio: Number(row.offeringRatio) || undefined,
+        releaseScope:
+          row.releaseScope === "partial" || row.releaseScope === "full"
+            ? row.releaseScope
+            : undefined,
+        supplyImpact:
+          row.supplyImpact === "high" ||
+          row.supplyImpact === "medium" ||
+          row.supplyImpact === "low"
+            ? row.supplyImpact
+            : undefined,
+        amountSourceNote: row.amountSourceNote || undefined,
         estValue: Number(row.estValue) || 0,
         marketCap: marketStock?.mc ? marketStock.mc / 1e9 : 0,
         ipoPrice: Number(row.ipoPrice) || undefined,

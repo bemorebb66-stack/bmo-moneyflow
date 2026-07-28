@@ -18,6 +18,22 @@ def build_major_event(seed: dict) -> dict:
     maximum_date = prospectus_date + timedelta(days=lockup_days)
     conditional = bool(seed.get("conditional"))
     ticker = seed["ticker"].upper()
+    unlock_shares = seed.get("unlockShares")
+    offering_shares = seed.get("offeringShares")
+    offering_ratio = (
+        round(float(unlock_shares) / float(offering_shares) * 100, 1)
+        if unlock_shares and offering_shares
+        else None
+    )
+    supply_impact = (
+        "high"
+        if offering_ratio is not None and offering_ratio >= 200
+        else "medium"
+        if offering_ratio is not None and offering_ratio >= 50
+        else "low"
+        if offering_ratio is not None
+        else None
+    )
 
     if conditional:
         rule_type = "earnings-or-days"
@@ -50,7 +66,12 @@ def build_major_event(seed: dict) -> dict:
         "lockupDate": maximum_date.isoformat(),
         "maxLockupDate": maximum_date.isoformat(),
         "lockupDays": lockup_days,
-        "unlockShares": None,
+        "unlockShares": unlock_shares,
+        "offeringShares": offering_shares,
+        "offeringRatio": offering_ratio,
+        "releaseScope": seed.get("releaseScope"),
+        "supplyImpact": supply_impact,
+        "amountSourceNote": seed.get("amountSourceNote"),
         "floatRatio": None,
         "underwriter": None,
         "majorIpo": True,

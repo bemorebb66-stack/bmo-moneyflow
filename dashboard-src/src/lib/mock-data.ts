@@ -637,6 +637,11 @@ export interface LockupRow {
   unlockDate: string;
   daysLeft: number;
   unlockShares: number; // millions
+  offeringShares?: number; // IPO offering shares, millions
+  offeringRatio?: number; // unlock shares / IPO offering shares
+  releaseScope?: "partial" | "full";
+  supplyImpact?: Importance;
+  amountSourceNote?: string;
   estValue: number; // USD millions
   marketCap: number; // USD billions
   sector?: string;

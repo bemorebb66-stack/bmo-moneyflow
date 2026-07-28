@@ -54,6 +54,43 @@ class MajorLockupEnrichmentTests(unittest.TestCase):
             any(event["ticker"] == "OTHER" for event in merged["events"])
         )
 
+    def test_exactly_10_major_ipos_have_sec_backed_unlock_amounts(self) -> None:
+        amount_seeds = [seed for seed in self.seeds if seed.get("unlockShares")]
+        self.assertEqual(len(amount_seeds), 10)
+        self.assertEqual(
+            {seed["ticker"] for seed in amount_seeds},
+            {
+                "CHYM",
+                "HNGE",
+                "OMDA",
+                "FIG",
+                "AMBQ",
+                "NIQ",
+                "FLY",
+                "BLSH",
+                "VOYG",
+                "NAVN",
+            },
+        )
+        self.assertTrue(all(seed.get("offeringShares") for seed in amount_seeds))
+        self.assertTrue(
+            all(seed.get("releaseScope") in {"partial", "full"} for seed in amount_seeds)
+        )
+
+    def test_unlock_ratio_and_supply_impact_are_derived_consistently(self) -> None:
+        firefly = next(seed for seed in self.seeds if seed["ticker"] == "FLY")
+        event = build_major_event(firefly)
+        self.assertEqual(event["unlockShares"], 121.94795)
+        self.assertEqual(event["offeringRatio"], 632.0)
+        self.assertEqual(event["releaseScope"], "full")
+        self.assertEqual(event["supplyImpact"], "high")
+
+        chime = next(seed for seed in self.seeds if seed["ticker"] == "CHYM")
+        event = build_major_event(chime)
+        self.assertEqual(event["offeringRatio"], 44.0)
+        self.assertEqual(event["releaseScope"], "partial")
+        self.assertEqual(event["supplyImpact"], "low")
+
 
 if __name__ == "__main__":
     unittest.main()

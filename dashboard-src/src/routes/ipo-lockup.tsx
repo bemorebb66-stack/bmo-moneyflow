@@ -261,12 +261,12 @@ function LockupCard({ row }: { row: LockupRow }) {
           label="락업 기간"
           value={row.lockupDays ? `${row.lockupDays}일` : "미수집"}
         />
-        <Metric
-          label="해제 물량"
-          value={
-            row.unlockShares > 0 ? `${row.unlockShares.toFixed(1)}M주` : "미수집"
-          }
-        />
+        <div>
+          <dt className="text-muted-foreground">해제 물량</dt>
+          <dd className="mt-0.5">
+            <UnlockAmount row={row} />
+          </dd>
+        </div>
         <Metric
           label="시가총액"
           value={row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
@@ -333,9 +333,7 @@ function LockupTable({ rows }: { rows: LockupRow[] }) {
               <RuleBlock row={row} compact />
             </td>
             <td className="px-4 py-3 tabular">
-              {row.unlockShares > 0
-                ? `${row.unlockShares.toFixed(1)}M주`
-                : "미수집"}
+              <UnlockAmount row={row} />
             </td>
             <td className="px-4 py-3 tabular">
               {formatPostTradingValue(row)}
@@ -477,6 +475,62 @@ function MajorBadge() {
       <Star className="h-3 w-3" />
       주요 IPO
     </span>
+  );
+}
+
+function UnlockAmount({ row }: { row: LockupRow }) {
+  if (!(row.unlockShares > 0)) {
+    return <span className="text-muted-foreground">미수집</span>;
+  }
+
+  const impact = row.supplyImpact
+    ? {
+        high: {
+          label: "공급 충격 높음",
+          className: "border-danger/25 bg-danger/10 text-danger",
+        },
+        medium: {
+          label: "공급 충격 중간",
+          className: "border-warning/30 bg-warning/10 text-warning",
+        },
+        low: {
+          label: "공급 충격 관찰",
+          className: "border-info/25 bg-info/10 text-info",
+        },
+      }[row.supplyImpact]
+    : undefined;
+
+  return (
+    <div className="space-y-1">
+      <div className="flex flex-wrap items-center gap-1.5">
+        <strong className="font-semibold tabular">
+          {row.unlockShares.toFixed(row.unlockShares < 10 ? 1 : 0)}M주
+        </strong>
+        <span className="rounded border border-border bg-secondary/60 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+          {row.releaseScope === "partial" ? "부분 해제" : "전량 기준"}
+        </span>
+        {impact && (
+          <span
+            className={cn(
+              "rounded border px-1.5 py-0.5 text-[10px] font-medium",
+              impact.className,
+            )}
+          >
+            {impact.label}
+          </span>
+        )}
+      </div>
+      {row.offeringRatio != null && (
+        <p className="text-[10px] leading-4 text-muted-foreground">
+          IPO 공모 물량 대비 {row.offeringRatio.toFixed(1)}%
+        </p>
+      )}
+      {row.amountSourceNote && (
+        <p className="max-w-72 text-[10px] leading-4 text-muted-foreground">
+          {row.amountSourceNote}
+        </p>
+      )}
+    </div>
   );
 }
 
