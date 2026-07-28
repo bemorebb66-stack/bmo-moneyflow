@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-27T23:42:06.823196+00:00",
+    "generatedAt": "2026-07-28T07:47:15.253096+00:00",
     "status": "ok",
-    "from": "2026-06-12",
-    "to": "2027-01-23",
-    "count": 495,
+    "from": "2026-06-13",
+    "to": "2027-01-24",
+    "count": 513,
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -293,7 +293,7 @@
     },
     {
       "ticker": "EPC",
-      "company": "EDGEWELL PERSONAL CARE",
+      "company": "엣지웰 퍼스널 케어",
       "date": "2026-11-11",
       "hour": "amc",
       "quarter": 4,
@@ -317,7 +317,7 @@
     },
     {
       "ticker": "FENC",
-      "company": "FENNEC PHARMACEUTICALS INC",
+      "company": "페넥 파마슈티컬즈 INC",
       "date": "2026-11-11",
       "hour": "",
       "quarter": 3,
@@ -329,7 +329,7 @@
     },
     {
       "ticker": "FOSL",
-      "company": "FOSSIL GROUP INC",
+      "company": "화석 그룹 INC",
       "date": "2026-11-11",
       "hour": "",
       "quarter": 3,
@@ -341,7 +341,7 @@
     },
     {
       "ticker": "GLOB",
-      "company": "GLOBANT SA",
+      "company": "글로번트 SA",
       "date": "2026-11-11",
       "hour": "amc",
       "quarter": 3,
@@ -485,7 +485,7 @@
     },
     {
       "ticker": "FBRX",
-      "company": "FORTE BIOSCIENCES INC",
+      "company": "포르테 바이오사이언스 INC",
       "date": "2026-11-12",
       "hour": "",
       "quarter": 3,
@@ -497,7 +497,7 @@
     },
     {
       "ticker": "FBYD",
-      "company": "FALCON S BEYOND GLOBAL INC CLASS A",
+      "company": "FALCON S BEYOND GLOBAL INC 클래스 A",
       "date": "2026-11-12",
       "hour": "",
       "quarter": 3,
@@ -509,7 +509,7 @@
     },
     {
       "ticker": "GALT",
-      "company": "GALECTIN THERAPEUTICS INC",
+      "company": "갈렉틴 테라퓨틱스 INC",
       "date": "2026-11-12",
       "hour": "",
       "quarter": 3,
@@ -521,7 +521,7 @@
     },
     {
       "ticker": "GLSI",
-      "company": "GREENWICH LIFESCIENCES INC",
+      "company": "그리니치 생명과학 INC",
       "date": "2026-11-12",
       "hour": "",
       "quarter": 3,
@@ -626,6 +626,18 @@
       "epsEstimate": -0.3699,
       "revenueActual": null,
       "revenueEstimate": 317178200.0
+    },
+    {
+      "ticker": "SRRK",
+      "company": "스칼러 락 홀딩",
+      "date": "2026-11-12",
+      "hour": "",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": -0.8657,
+      "revenueActual": null,
+      "revenueEstimate": 1904992.0
     },
     {
       "ticker": "TE",
@@ -737,7 +749,7 @@
     },
     {
       "ticker": "ENR",
-      "company": "ENERGIZER HOLDINGS INC",
+      "company": "에너자이저 홀딩스 INC",
       "date": "2026-11-16",
       "hour": "amc",
       "quarter": 4,
@@ -749,7 +761,7 @@
     },
     {
       "ticker": "ENTA",
-      "company": "ENANTA PHARMACEUTICALS INC",
+      "company": "에난타 파마슈티컬즈 INC",
       "date": "2026-11-16",
       "hour": "amc",
       "quarter": 4,
@@ -1180,6 +1192,18 @@
       "revenueEstimate": 32742000.0
     },
     {
+      "ticker": "TGT",
+      "company": "타겟",
+      "date": "2026-11-17",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.9231,
+      "revenueActual": null,
+      "revenueEstimate": 26343691811.0
+    },
+    {
       "ticker": "UTI",
       "company": "유니버설 테크니컬 인스티튜트",
       "date": "2026-11-17",
@@ -1190,6 +1214,18 @@
       "epsEstimate": 0.4949,
       "revenueActual": null,
       "revenueEstimate": 251879860.0
+    },
+    {
+      "ticker": "VVV",
+      "company": "밸보라인",
+      "date": "2026-11-17",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.4852,
+      "revenueActual": null,
+      "revenueEstimate": 561457151.0
     },
     {
       "ticker": "WSM",
@@ -1406,6 +1442,18 @@
       "epsEstimate": 1.7487,
       "revenueActual": null,
       "revenueEstimate": 6104153759.0
+    },
+    {
+      "ticker": "TJX",
+      "company": "TJX 컴퍼니스",
+      "date": "2026-11-18",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.3582,
+      "revenueActual": null,
+      "revenueEstimate": 16069481598.0
     },
     {
       "ticker": "UGI",
@@ -1709,7 +1757,7 @@
     },
     {
       "ticker": "EMBC",
-      "company": "EMBECTA CORP",
+      "company": "엠벡타 주식회사",
       "date": "2026-11-23",
       "hour": "bmo",
       "quarter": 4,
@@ -1852,6 +1900,18 @@
       "revenueEstimate": 364356158.0
     },
     {
+      "ticker": "SNEX",
+      "company": "스토넥스 그룹",
+      "date": "2026-11-23",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.2291,
+      "revenueActual": null,
+      "revenueEstimate": 663148920.0
+    },
+    {
       "ticker": "TITN",
       "company": "TITAN MACHINERY INC",
       "date": "2026-11-23",
@@ -1862,6 +1922,18 @@
       "epsEstimate": 0.0026,
       "revenueActual": null,
       "revenueEstimate": 557282100.0
+    },
+    {
+      "ticker": "URBN",
+      "company": "어반 아웃피터스",
+      "date": "2026-11-23",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 1.5206,
+      "revenueActual": null,
+      "revenueEstimate": 1675579051.0
     },
     {
       "ticker": "WDAY",
@@ -1886,6 +1958,18 @@
       "epsEstimate": 0.0509,
       "revenueActual": null,
       "revenueEstimate": 1508686998.0
+    },
+    {
+      "ticker": "WWD",
+      "company": "우드워드",
+      "date": "2026-11-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.5507,
+      "revenueActual": null,
+      "revenueEstimate": 1139353144.0
     },
     {
       "ticker": "ZM",
@@ -2393,7 +2477,7 @@
     },
     {
       "ticker": "GCO",
-      "company": "GENESCO INC",
+      "company": "제네스코(주)",
       "date": "2026-12-02",
       "hour": "",
       "quarter": 3,
@@ -2405,7 +2489,7 @@
     },
     {
       "ticker": "HOV",
-      "company": "HOVNANIAN ENTERPRISES INC CLASS A",
+      "company": "HOVNANIAN ENTERPRISES INC 클래스 A",
       "date": "2026-12-02",
       "hour": "",
       "quarter": 4,
@@ -2510,6 +2594,18 @@
       "epsEstimate": -0.0306,
       "revenueActual": null,
       "revenueEstimate": 347141700.0
+    },
+    {
+      "ticker": "SWBI",
+      "company": "SMITH WESSON BRANDS INC",
+      "date": "2026-12-02",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": 0.0612,
+      "revenueActual": null,
+      "revenueEstimate": 128616900.0
     },
     {
       "ticker": "TTAN",
@@ -2705,7 +2801,7 @@
     },
     {
       "ticker": "ESOA",
-      "company": "ENERGY SERVICES OF AMERICA CORP",
+      "company": "AMERICA CORP의 에너지 서비스",
       "date": "2026-12-07",
       "hour": "",
       "quarter": 4,
@@ -2729,7 +2825,7 @@
     },
     {
       "ticker": "GENC",
-      "company": "GENCOR INDUSTRIES INC",
+      "company": "GENCOR 산업 INC",
       "date": "2026-12-07",
       "hour": "",
       "quarter": 4,
@@ -2741,7 +2837,7 @@
     },
     {
       "ticker": "GIII",
-      "company": "G III APPAREL GROUP LTD",
+      "company": "G III 의류 그룹 LTD",
       "date": "2026-12-07",
       "hour": "",
       "quarter": 3,
@@ -3064,6 +3160,18 @@
       "revenueEstimate": 5050000.0
     },
     {
+      "ticker": "USAU",
+      "company": "US GOLD CORP",
+      "date": "2026-12-08",
+      "hour": "",
+      "quarter": 2,
+      "year": 2027,
+      "epsActual": null,
+      "epsEstimate": -0.2397,
+      "revenueActual": null,
+      "revenueEstimate": null
+    },
+    {
       "ticker": "AVGO",
       "company": "브로드컴",
       "date": "2026-12-09",
@@ -3101,7 +3209,7 @@
     },
     {
       "ticker": "FEIM",
-      "company": "FREQUENCY ELECTRONICS INC",
+      "company": "주파수 전자 INC",
       "date": "2026-12-09",
       "hour": "",
       "quarter": 2,
@@ -3113,7 +3221,7 @@
     },
     {
       "ticker": "FIZZ",
-      "company": "NATIONAL BEVERAGE CORP",
+      "company": "내셔널 음료 회사",
       "date": "2026-12-09",
       "hour": "",
       "quarter": 2,
@@ -3209,7 +3317,7 @@
     },
     {
       "ticker": "FWDI",
-      "company": "FORWARD INDUSTRIES INC",
+      "company": "앞으로 산업 INC",
       "date": "2026-12-11",
       "hour": "",
       "quarter": 4,
@@ -3352,6 +3460,18 @@
       "revenueEstimate": 47903292705.0
     },
     {
+      "ticker": "TTC",
+      "company": "토로",
+      "date": "2026-12-15",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.9744,
+      "revenueActual": null,
+      "revenueEstimate": 1119746600.0
+    },
+    {
       "ticker": "WS",
       "company": "WORTHINGTON STEEL INC",
       "date": "2026-12-15",
@@ -3425,7 +3545,7 @@
     },
     {
       "ticker": "FCEL",
-      "company": "FUELCELL ENERGY INC",
+      "company": "퓨얼셀 에너지 INC",
       "date": "2026-12-16",
       "hour": "amc",
       "quarter": 4,
@@ -3725,7 +3845,7 @@
     },
     {
       "ticker": "FC",
-      "company": "FRANKLIN COVEY",
+      "company": "프랭클린 코비",
       "date": "2027-01-05",
       "hour": "",
       "quarter": 1,
@@ -3869,7 +3989,7 @@
     },
     {
       "ticker": "GBX",
-      "company": "GREENBRIER INC",
+      "company": "그린브리어 INC",
       "date": "2027-01-06",
       "hour": "",
       "quarter": 1,
@@ -4144,6 +4264,18 @@
       "revenueEstimate": null
     },
     {
+      "ticker": "UCB",
+      "company": "유나이티드 커뮤니티 뱅크스",
+      "date": "2027-01-12",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 0.7711,
+      "revenueActual": null,
+      "revenueEstimate": 294300698.0
+    },
+    {
       "ticker": "BLK",
       "company": "블랙록",
       "date": "2027-01-13",
@@ -4253,7 +4385,7 @@
     },
     {
       "ticker": "HIFS",
-      "company": "HINGHAM INSTITUTION FOR SAVINGS",
+      "company": "HINGHAM 저축 연구소",
       "date": "2027-01-14",
       "hour": "",
       "quarter": 4,
@@ -4397,7 +4529,7 @@
     },
     {
       "ticker": "FOR",
-      "company": "FORESTAR GROUP INC",
+      "company": "포레스타 그룹 INC",
       "date": "2027-01-18",
       "hour": "",
       "quarter": 1,
@@ -4733,7 +4865,7 @@
     },
     {
       "ticker": "EGBN",
-      "company": "EAGLE BANCORP INC",
+      "company": "이글 뱅코프 INC",
       "date": "2027-01-19",
       "hour": "",
       "quarter": 4,
@@ -4745,7 +4877,7 @@
     },
     {
       "ticker": "EQBK",
-      "company": "EQUITY BANCSHARES INC CLASS A",
+      "company": "주식 은행 주식 INC 클래스 A",
       "date": "2027-01-19",
       "hour": "",
       "quarter": 4,
@@ -4805,7 +4937,7 @@
     },
     {
       "ticker": "FNLC",
-      "company": "FIRST BANCORP INC",
+      "company": "퍼스트 뱅코프 INC",
       "date": "2027-01-19",
       "hour": "",
       "quarter": 4,
@@ -4817,7 +4949,7 @@
     },
     {
       "ticker": "FSBW",
-      "company": "FS BANCORP INC",
+      "company": "FS 반코프 INC",
       "date": "2027-01-19",
       "hour": "",
       "quarter": 4,
@@ -4841,7 +4973,7 @@
     },
     {
       "ticker": "GCBC",
-      "company": "GREENE COUNTY BANCORP INC",
+      "company": "그린 카운티 BANCORP INC",
       "date": "2027-01-19",
       "hour": "",
       "quarter": 2,
@@ -4865,7 +4997,7 @@
     },
     {
       "ticker": "HBNC",
-      "company": "HORIZON BANCORP INC",
+      "company": "호라이즌 뱅코프 INC",
       "date": "2027-01-19",
       "hour": "",
       "quarter": 4,
@@ -5044,6 +5176,18 @@
       "revenueEstimate": 7226154575.0
     },
     {
+      "ticker": "TCBX",
+      "company": "THIRD COAST BANCSHARES INC",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.0379,
+      "revenueActual": null,
+      "revenueEstimate": 67033380.0
+    },
+    {
       "ticker": "TEL",
       "company": "티이 커넥티비티",
       "date": "2027-01-19",
@@ -5054,6 +5198,18 @@
       "epsEstimate": 2.9812,
       "revenueActual": null,
       "revenueEstimate": 5054124728.0
+    },
+    {
+      "ticker": "TRST",
+      "company": "TRUSTCO BANK CORP",
+      "date": "2027-01-19",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": null,
+      "revenueActual": null,
+      "revenueEstimate": null
     },
     {
       "ticker": "TRV",
@@ -5393,7 +5549,7 @@
     },
     {
       "ticker": "ESQ",
-      "company": "ESQUIRE FINANCIAL HOLDINGS INC",
+      "company": "에스콰이어 파이낸셜 홀딩스 INC",
       "date": "2027-01-20",
       "hour": "",
       "quarter": 4,
@@ -5477,7 +5633,7 @@
     },
     {
       "ticker": "HFWA",
-      "company": "HERITAGE FINANCIAL CORP",
+      "company": "헤리티지 파이낸셜 코퍼레이션",
       "date": "2027-01-20",
       "hour": "",
       "quarter": 4,
@@ -5489,7 +5645,7 @@
     },
     {
       "ticker": "HTB",
-      "company": "HOMETRUST BANCSHARES INC",
+      "company": "홈트러스트 반쉐어스 INC",
       "date": "2027-01-20",
       "hour": "",
       "quarter": 4,
@@ -5800,6 +5956,30 @@
       "revenueEstimate": 408321618.0
     },
     {
+      "ticker": "SRCE",
+      "company": "1ST SOURCE CORP",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.7602,
+      "revenueActual": null,
+      "revenueEstimate": 117570300.0
+    },
+    {
+      "ticker": "SSB",
+      "company": "사우스스테이트 뱅크",
+      "date": "2027-01-20",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.512,
+      "revenueActual": null,
+      "revenueEstimate": 714029963.0
+    },
+    {
       "ticker": "STBA",
       "company": "S AND T BANCORP INC",
       "date": "2027-01-20",
@@ -5810,6 +5990,42 @@
       "epsEstimate": 0.9639,
       "revenueActual": null,
       "revenueEstimate": 109349100.0
+    },
+    {
+      "ticker": "TCBI",
+      "company": "텍사스 캐피털 뱅크셰어스",
+      "date": "2027-01-20",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 2.1263,
+      "revenueActual": null,
+      "revenueEstimate": 352689143.0
+    },
+    {
+      "ticker": "TCBK",
+      "company": "트라이코 뱅크셰어스",
+      "date": "2027-01-20",
+      "hour": "",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.1013,
+      "revenueActual": null,
+      "revenueEstimate": 117383844.0
+    },
+    {
+      "ticker": "TFC",
+      "company": "트루이스트 파이낸셜",
+      "date": "2027-01-20",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": null,
+      "epsEstimate": 1.2622,
+      "revenueActual": null,
+      "revenueEstimate": 5537640120.0
     },
     {
       "ticker": "UBSI",
@@ -5873,7 +6089,7 @@
     },
     {
       "ticker": "FCAP",
-      "company": "FIRST CAPITAL INC",
+      "company": "퍼스트 캐피털 INC",
       "date": "2027-01-21",
       "hour": "",
       "quarter": 4,

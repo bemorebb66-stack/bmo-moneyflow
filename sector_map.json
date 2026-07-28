@@ -17100,7 +17100,9 @@
   "mcap": 0,
   "universe": [
    "Russell 1000"
-  ]
+  ],
+  "name_ko": "페르미 INC",
+  "translation_attempted": true
  },
  "ZG": {
   "name": "ZILLOW GROUP INC CLASS A",
@@ -17182,14 +17184,15 @@
  },
  "COLM": {
   "name": "COLUMBIA SPORTSWEAR",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Apparel Manufacturing",
+  "mcap": 3245394688,
   "universe": [
    "Russell 1000"
   ],
   "name_ko": "컬럼비아 스포츠웨어",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SFD": {
   "name": "SMITHFIELD FOODS INC",
@@ -17321,7 +17324,9 @@
   "mcap": 0,
   "universe": [
    "Russell 1000"
-  ]
+  ],
+  "name_ko": "홀로직(주)",
+  "translation_attempted": true
  },
  "FAU6": {
   "name": "SP MID 400 EMINI SEP 26",
@@ -17330,7 +17335,9 @@
   "mcap": 0,
   "universe": [
    "Russell 1000"
-  ]
+  ],
+  "name_ko": "SP MID 400 EMINI 9월 26일",
+  "translation_attempted": true
  },
  "ESU6": {
   "name": "SP500 EMINI SEP 26",
@@ -17339,18 +17346,22 @@
   "mcap": 0,
   "universe": [
    "Russell 1000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "SP500 EMINI 9월 26일",
+  "translation_attempted": true
  },
  "DXC": {
   "name": "DXC TECHNOLOGY",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Information Technology Services",
+  "mcap": 1679151360,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "DXC 기술",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "WOR": {
   "name": "WORTHINGTON ENTERPRISES INC",
@@ -17392,7 +17403,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "고먼-럽",
+  "translation_attempted": true
  },
  "TNET": {
   "name": "TRINET GROUP INCINARY",
@@ -17423,14 +17436,15 @@
  },
  "CTS": {
   "name": "CTS CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Electronic Components",
+  "mcap": 1727297664,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "씨티에스(주)",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "HOPE": {
   "name": "HOPE BANCORP INC",
@@ -17439,7 +17453,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "호프 뱅코프 INC",
+  "translation_attempted": true
  },
  "HTH": {
   "name": "HILLTOP HOLDINGS INC",
@@ -17448,7 +17464,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "힐탑 홀딩스 INC",
+  "translation_attempted": true
  },
  "AMLX": {
   "name": "AMYLYX PHARMACEUTICALS INC",
@@ -17477,7 +17495,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "해밀턴 보험 그룹 LTD 클래스",
+  "translation_attempted": true
  },
  "SRCE": {
   "name": "1ST SOURCE CORP",
@@ -17517,12 +17537,15 @@
  },
  "EFC": {
   "name": "ELLINGTON FINANCIAL INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "REIT - Mortgage",
+  "mcap": 1702253824,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엘링턴 파이낸셜 INC",
+  "translation_attempted": true
  },
  "ADNT": {
   "name": "ADIENT PLC",
@@ -17547,14 +17570,15 @@
  },
  "DCOM": {
   "name": "DIME COMMERCIAL BANCSHARES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 1773362432,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "다임 상업 은행 공유 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "NUVB": {
   "name": "NUVATION BIO INC CLASS A",
@@ -17617,7 +17641,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그린브리어 INC",
+  "translation_attempted": true
  },
  "HCSG": {
   "name": "HEALTHCARE SERVICES GROUP INC",
@@ -17626,16 +17652,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "의료 서비스 그룹 INC",
+  "translation_attempted": true
  },
  "EYE": {
   "name": "NATIONAL VISION HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Specialty Retail",
+  "mcap": 1661619584,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "내셔널 비전 홀딩스 INC",
+  "translation_attempted": true
  },
  "HLMN": {
   "name": "HILLMAN SOLUTIONS CORP",
@@ -17644,7 +17675,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "힐만 솔루션즈(HILLMAN SOLUTIONS CORP)",
+  "translation_attempted": true
  },
  "OCFC": {
   "name": "OCEANFIRST FINANCIAL CORP",
@@ -17674,7 +17707,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "하모니 바이오사이언스 HLDG INC",
+  "translation_attempted": true
  },
  "CNOB": {
   "name": "CONNECTONE BANCORP INC",
@@ -17708,12 +17743,15 @@
  },
  "ENOV": {
   "name": "ENOVIS CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 1626143616,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에노비스 주식회사",
+  "translation_attempted": true
  },
  "BFC": {
   "name": "BANK FIRST CORP",
@@ -17779,18 +17817,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "천재 스포츠 LTD",
+  "translation_attempted": true
  },
  "DEI": {
   "name": "DOUGLAS EMMETT REIT INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "REIT - Office",
+  "mcap": 2437096448,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "더글라스 에멧 REIT INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MLKN": {
   "name": "MILLERKNOLL INC",
@@ -17872,14 +17913,15 @@
  },
  "DMRA": {
   "name": "DAMORA THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1812125952,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "다모라 테라퓨틱스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MQ": {
   "name": "MARQETA INC CLASS A",
@@ -17910,14 +17952,15 @@
  },
  "DV": {
   "name": "DOUBLEVERIFY HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Advertising Agencies",
+  "mcap": 1680432896,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "더블베리파이 홀딩스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "FLO": {
   "name": "FLOWERS FOODS INC",
@@ -17926,7 +17969,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "꽃 식품 INC",
+  "translation_attempted": true
  },
  "SFL": {
   "name": "SFL LTD",
@@ -18013,7 +18058,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FMC 주식회사",
+  "translation_attempted": true
  },
  "XERS": {
   "name": "XERIS BIOPHARMA HOLDINGS INC",
@@ -18056,14 +18103,15 @@
  },
  "CRI": {
   "name": "CARTERS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Apparel Retail",
+  "mcap": 1427942016,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "카터스 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "ACT": {
   "name": "ENACT HOLDINGS INC",
@@ -18128,7 +18176,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "헬릭스 에너지 솔루션 그룹 INC",
+  "translation_attempted": true
  },
  "ARLO": {
   "name": "ARLO TECHNOLOGIES INC",
@@ -18144,14 +18194,15 @@
  },
  "DJT": {
   "name": "TRUMP MEDIA TECHNOLOGY GROUP CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "mcap": 2647678720,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "트럼프 미디어 기술 그룹 CORP",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GSHD": {
   "name": "GOOSEHEAD INSURANCE INC CLASS A",
@@ -18160,7 +18211,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "구즈헤드 보험(GOOSEHEAD INSURANCE INC) 클래스 A",
+  "translation_attempted": true
  },
  "BKE": {
   "name": "BUCKLE INC",
@@ -18176,14 +18229,15 @@
  },
  "ECVT": {
   "name": "ECOVYST INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Basic Materials",
+  "industry": "Specialty Chemicals",
+  "mcap": 1339710720,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "에코비스트 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "RYZ": {
   "name": "RYERSON HOLDING CORP",
@@ -18267,18 +18321,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "글로번트 SA",
+  "translation_attempted": true
  },
  "DLO": {
   "name": "DLOCAL CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "mcap": 4402266112,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "DLOCAL 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "UVV": {
   "name": "UNIVERSAL CORP",
@@ -18362,12 +18419,15 @@
  },
  "ENR": {
   "name": "ENERGIZER HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Electrical Equipment & Parts",
+  "mcap": 1440682240,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에너자이저 홀딩스 INC",
+  "translation_attempted": true
  },
  "XPRO": {
   "name": "EXPRO NV",
@@ -18380,14 +18440,15 @@
  },
  "DCH": {
   "name": "DAUCH CORPORATION",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Parts",
+  "mcap": 1322132736,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "다우치 코퍼레이션",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "VOYG": {
   "name": "VOYAGER TECHNOLOGIES INC CLASS A",
@@ -18424,12 +18485,15 @@
  },
  "EPC": {
   "name": "EDGEWELL PERSONAL CARE",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Defensive",
+  "industry": "Household & Personal Products",
+  "mcap": 1281521664,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엣지웰 퍼스널 케어",
+  "translation_attempted": true
  },
  "THRM": {
   "name": "GENTHERM INC",
@@ -18492,18 +18556,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "G III 의류 그룹 LTD",
+  "translation_attempted": true
  },
  "CTBI": {
   "name": "COMMUNITY TRUST BANCORP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 1392430848,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "커뮤니티 트러스트 BANCORP INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "TWO": {
   "name": "TWO HARBORS INVESTMENT CORP",
@@ -18521,7 +18588,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "헤리티지 파이낸셜 코퍼레이션",
+  "translation_attempted": true
  },
  "REX": {
   "name": "REX AMERICAN RESOURCES CORP",
@@ -18685,7 +18754,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 중간 은행 주식 INC",
+  "translation_attempted": true
  },
  "RAPP": {
   "name": "RAPPORT THERAPEUTICS INC",
@@ -18712,7 +18783,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "(주)하모닉",
+  "translation_attempted": true
  },
  "HROW": {
   "name": "HARROW INC",
@@ -18721,7 +18794,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "해로우 주식회사",
+  "translation_attempted": true
  },
  "NWPX": {
   "name": "NWPX INFRASTRUCTURE INC",
@@ -18820,7 +18895,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "허벌라이프 주식회사",
+  "translation_attempted": true
  },
  "USLM": {
   "name": "UNITED STATES LIME AND MINERALS IN",
@@ -18851,12 +18928,15 @@
  },
  "EOSE": {
   "name": "EOS ENERGY ENTERPRISES INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Electrical Equipment & Parts",
+  "mcap": 1305691264,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "EOS ENERGY ENTERPRISES INC 클래스 A",
+  "translation_attempted": true
  },
  "AAT": {
   "name": "AMERICAN ASSETS TRUST REIT INC",
@@ -18902,14 +18982,15 @@
  },
  "DFIN": {
   "name": "DONNELLEY FINANCIAL SOLUTIONS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 1255364352,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "도넬리 파이낸셜 솔루션즈 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GBTG": {
   "name": "GLOBAL BUSINESS TRAVEL GROUP INC A",
@@ -18918,7 +18999,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "글로벌 비즈니스 여행 그룹 INC A",
+  "translation_attempted": true
  },
  "NBR": {
   "name": "NABORS INDUSTRIES LTD",
@@ -18991,25 +19074,27 @@
  },
  "DLX": {
   "name": "DELUXE CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Conglomerates",
+  "mcap": 1224265728,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "디럭스 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "COUR": {
   "name": "COURSERA INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Defensive",
+  "industry": "Education & Training Services",
+  "mcap": 1612199040,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "코스라 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "PUMP": {
   "name": "PROPETRO HOLDING CORP",
@@ -19037,7 +19122,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그린 플레인즈 INC",
+  "translation_attempted": true
  },
  "NPKI": {
   "name": "NPK INTERNATIONAL INC",
@@ -19113,14 +19200,15 @@
  },
  "COLL": {
   "name": "COLLEGIUM PHARMACEUTICAL INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - Specialty & Generic",
+  "mcap": 1152047872,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "콜레지움 파마슈티컬 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AZTA": {
   "name": "AZENTA INC",
@@ -19141,7 +19229,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "퓨얼셀 에너지 INC",
+  "translation_attempted": true
  },
  "AORT": {
   "name": "ARTIVION INC",
@@ -19171,7 +19261,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "할리 데이비슨 INC",
+  "translation_attempted": true
  },
  "AVNS": {
   "name": "AVANOS MEDICAL INC",
@@ -19208,12 +19300,15 @@
  },
  "ETON": {
   "name": "ETON PHARMACEUTCIALS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - Specialty & Generic",
+  "mcap": 1158970752,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "ETON 제약 INC",
+  "translation_attempted": true
  },
  "USPH": {
   "name": "US PHYSICAL THERAPY INC",
@@ -19277,25 +19372,27 @@
  },
  "DEA": {
   "name": "EASTERLY GOVERNMENT PROPERTIES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "REIT - Office",
+  "mcap": 1213447168,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "동부 정부 재산 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "DOLE": {
   "name": "DOLE PLC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Defensive",
+  "industry": "Farm Products",
+  "mcap": 1336983296,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "돌 PLC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "UPBD": {
   "name": "UPBOUND GROUP INC",
@@ -19340,7 +19437,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그레이엄 주식회사",
+  "translation_attempted": true
  },
  "AHCO": {
   "name": "ADAPTHEALTH CORP",
@@ -19541,14 +19640,15 @@
  },
  "CRAI": {
   "name": "CRA INTERNATIONAL INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Consulting Services",
+  "mcap": 1122371200,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CRA 인터내셔널 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CDNL": {
   "name": "CARDINAL INFRASTRUCTURE GROUP INC",
@@ -19681,7 +19781,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "호라이즌 뱅코프 INC",
+  "translation_attempted": true
  },
  "UTZ": {
   "name": "UTZ BRANDS INC CLASS A",
@@ -19724,14 +19826,15 @@
  },
  "CNXN": {
   "name": "PC CONNECTION INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Electronics & Computer Distribution",
+  "mcap": 2050877824,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "PC 커넥션 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MSFUT": {
   "name": "CASH COLLATERAL MSFUT USD",
@@ -19823,7 +19926,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FG 연금 및 생명 INC",
+  "translation_attempted": true
  },
  "CEVA": {
   "name": "CEVA INC",
@@ -19853,7 +19958,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "포르테 바이오사이언스 INC",
+  "translation_attempted": true
  },
  "THFF": {
   "name": "FIRST FINANCIAL CORPORATION CORP",
@@ -19890,14 +19997,15 @@
  },
  "CVI": {
   "name": "CVR ENERGY INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas Refining & Marketing",
+  "mcap": 3425077504,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CVR 에너지 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SBSI": {
   "name": "SOUTHSIDE BANCSHARES INC",
@@ -19993,7 +20101,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "파머스 내셔널 뱅크 코퍼레이션",
+  "translation_attempted": true
  },
  "AMTB": {
   "name": "AMERANT BANCORP INC CLASS A",
@@ -20041,18 +20151,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "플렉스 LNG LTD",
+  "translation_attempted": true
  },
  "CRK": {
   "name": "COMSTOCK RESOURCES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "mcap": 3818045952,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "컴스톡 리소스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CDRE": {
   "name": "CADRE HOLDINGS INC",
@@ -20080,14 +20193,15 @@
  },
  "CSR": {
   "name": "CENTERSPACE",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "REIT - Residential",
+  "mcap": 988597184,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "센터스페이스",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MRTN": {
   "name": "MARTEN TRANSPORT LTD",
@@ -20166,14 +20280,15 @@
  },
  "DMC": {
   "name": "DEL MONTE CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Defensive",
+  "industry": "Farm Products",
+  "mcap": 1359263616,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "델 몬테 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "EYPT": {
   "name": "EYEPOINT INC",
@@ -20182,18 +20297,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "아이포인트(주)",
+  "translation_attempted": true
  },
  "CNXC": {
   "name": "CONCENTRIX CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Information Technology Services",
+  "mcap": 1498610688,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "컨센트릭스 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CMP": {
   "name": "COMPASS MINERALS INTERNATIONAL INC",
@@ -20209,21 +20327,27 @@
  },
  "EE": {
   "name": "EXCELERATE ENERGY INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas Midstream",
+  "mcap": 4289076480,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엑셀러레이트 에너지 INC 클래스 A",
+  "translation_attempted": true
  },
  "EIG": {
   "name": "EMPLOYERS HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Insurance - Specialty",
+  "mcap": 905943424,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "고용주 홀딩스 INC",
+  "translation_attempted": true
  },
  "PRCT": {
   "name": "PROCEPT BIOROBOTICS CORP",
@@ -20254,25 +20378,27 @@
  },
  "COTY": {
   "name": "COTY INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Defensive",
+  "industry": "Household & Personal Products",
+  "mcap": 2394868736,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "코티 INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "DEC": {
   "name": "DIVERSIFIED ENERGY COMPANY",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas Integrated",
+  "mcap": 878116032,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "다각화된 에너지 기업",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GCT": {
   "name": "GIGACLOUD TECHNOLOGY INC CLASS A",
@@ -20281,7 +20407,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GIGACCloud TECHNOLOGY INC 클래스 A",
+  "translation_attempted": true
  },
  "WMK": {
   "name": "WEIS MARKETS INC",
@@ -20353,7 +20481,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "한미금융공사",
+  "translation_attempted": true
  },
  "ORIC": {
   "name": "ORIC PHARMACEUTICALS INC",
@@ -20371,7 +20501,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "무화과 INC 클래스 A",
+  "translation_attempted": true
  },
  "FISI": {
   "name": "FINANCIAL INSTITUTIONS INC",
@@ -20380,16 +20512,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "금융 기관 INC",
+  "translation_attempted": true
  },
  "EQBK": {
   "name": "EQUITY BANCSHARES INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 1037194240,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "주식 은행 주식 INC 클래스 A",
+  "translation_attempted": true
  },
  "LQDT": {
   "name": "LIQUIDITY SERVICES INC",
@@ -20402,14 +20539,15 @@
  },
  "CRVS": {
   "name": "CORVUS PHARMACEUTICALS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1086448256,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "코르버스 파마슈티컬즈 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "UMAC": {
   "name": "UNUSUAL MACHINES INC",
@@ -20467,12 +20605,15 @@
  },
  "ESQ": {
   "name": "ESQUIRE FINANCIAL HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 1042166208,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에스콰이어 파이낸셜 홀딩스 INC",
+  "translation_attempted": true
  },
  "GNK": {
   "name": "GENCO SHIPPING AND TRADING LTD",
@@ -20481,7 +20622,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GENCO 배송 및 무역 LTD",
+  "translation_attempted": true
  },
  "JBGS": {
   "name": "JBG SMITH PROPERTIES",
@@ -20494,14 +20637,15 @@
  },
  "CPF": {
   "name": "CENTRAL PACIFIC FINANCIAL CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 1007998720,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "중앙태평양금융공사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "APOG": {
   "name": "APOGEE ENTERPRISES INC",
@@ -20540,7 +20684,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FIRTSTSUN CAPITAL 뱅코프",
+  "translation_attempted": true
  },
  "APEI": {
   "name": "AMERICAN PUBLIC EDUCATION INC",
@@ -20586,12 +20732,15 @@
  },
  "EFOR": {
   "name": "EVERFORTH INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Information Technology Services",
+  "mcap": 883960000,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에버포스 주식회사",
+  "translation_attempted": true
  },
  "BUR": {
   "name": "BURFORD CAPITAL LTD",
@@ -20637,12 +20786,14 @@
  },
  "EVLV": {
   "name": "EVOLV TECHNOLOGIES HOLDINGS INC CL",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Security & Protection Services",
+  "mcap": 980299136,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "SDGR": {
   "name": "SCHRODINGER INC",
@@ -20687,7 +20838,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "식료품점 지주회사",
+  "translation_attempted": true
  },
  "SION": {
   "name": "SIONNA THERAPEUTICS INC",
@@ -20714,7 +20867,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "허드슨 퍼시픽 프로퍼티 리츠 INC",
+  "translation_attempted": true
  },
  "QNST": {
   "name": "QUINSTREET INC",
@@ -20736,12 +20891,15 @@
  },
  "EGBN": {
   "name": "EAGLE BANCORP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 858451584,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "이글 뱅코프 INC",
+  "translation_attempted": true
  },
  "MATW": {
   "name": "MATTHEWS INTERNATIONAL CORP CLASS",
@@ -20763,13 +20921,14 @@
  },
  "DRVN": {
   "name": "DRIVEN BRANDS HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Auto & Truck Dealerships",
+  "mcap": 2370417152,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BKV": {
   "name": "BKV CORP",
@@ -20785,12 +20944,15 @@
  },
  "ESRT": {
   "name": "EMPIRE STATE REALTY REIT INC TRUST",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "REIT - Diversified",
+  "mcap": 1720531584,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엠파이어 스테이트 부동산 REIT INC 신탁",
+  "translation_attempted": true
  },
  "FCBC": {
   "name": "FIRST COMMUNITY BANKSHARES INC",
@@ -20799,7 +20961,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 커뮤니티 은행 공유 INC",
+  "translation_attempted": true
  },
  "ANNX": {
   "name": "ANNEXON INC",
@@ -20898,7 +21062,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "파이브 스타 뱅코프",
+  "translation_attempted": true
  },
  "MPB": {
   "name": "MID PENN BANCORP INC",
@@ -20925,7 +21091,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "골드 주식회사",
+  "translation_attempted": true
  },
  "PLPC": {
   "name": "PREFORMED LINE PRODUCTS",
@@ -20970,7 +21138,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "제론 주식회사",
+  "translation_attempted": true
  },
  "FOXF": {
   "name": "FOX FACTORY HOLDING CORP",
@@ -20979,7 +21149,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "폭스팩토리홀딩코퍼레이션",
+  "translation_attempted": true
  },
  "AMPL": {
   "name": "AMPLITUDE INC CLASS A",
@@ -21046,23 +21218,27 @@
  },
  "ENVX": {
   "name": "ENOVIX CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Electrical Equipment & Parts",
+  "mcap": 922789056,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에노빅스(주)",
+  "translation_attempted": true
  },
  "DJCO": {
   "name": "DAILY JOURNAL CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 800676864,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "데일리저널코퍼레이션",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "VOR": {
   "name": "VOR BIOPHARMA INC",
@@ -21114,14 +21290,15 @@
  },
  "DAKT": {
   "name": "DAKTRONICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Electronic Components",
+  "mcap": 955557120,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "닥트로닉스(주)",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MTUS": {
   "name": "METALLUS INC",
@@ -21242,14 +21419,15 @@
  },
  "CYRX": {
   "name": "CRYOPORT INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Integrated Freight & Logistics",
+  "mcap": 763595008,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "크라이오포트(주)",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "ROOT": {
   "name": "ROOT INC CLASS A",
@@ -21318,7 +21496,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그린 도트 코퍼 클래스 A",
+  "translation_attempted": true
  },
  "PD": {
   "name": "PAGERDUTY INC",
@@ -21336,7 +21516,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GCM 그로스브너 INC 클래스 A",
+  "translation_attempted": true
  },
  "SMBC": {
   "name": "SOUTHERN MISSOURI BANCORP INC",
@@ -21363,7 +21545,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "홈트러스트 반쉐어스 INC",
+  "translation_attempted": true
  },
  "FWRG": {
   "name": "FIRST WATCH RESTAURANT GROUP INC",
@@ -21372,7 +21556,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 시계 레스토랑 그룹 INC",
+  "translation_attempted": true
  },
  "AVAH": {
   "name": "AVEANNA HEALTHCARE HOLDINGS INC",
@@ -21397,35 +21583,38 @@
  },
  "CTO": {
   "name": "CTO REALTY GROWTH INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "REIT - Diversified",
+  "mcap": 744252544,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CSTL": {
   "name": "CASTLE BIOSCIENCES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Diagnostics & Research",
+  "mcap": 741264064,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "캐슬 바이오사이언스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CVLG": {
   "name": "COVENANT LOGISTICS GROUP INC CLASS",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Trucking",
+  "mcap": 1131435904,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "COVENANT LOGISTICS GROUP INC 클래스",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "ADAM": {
   "name": "ADAMAS INC TRUST",
@@ -21476,7 +21665,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "가디언 약국 서비스 INC CLA",
+  "translation_attempted": true
  },
  "OMDA": {
   "name": "OMADA HEALTH INC",
@@ -21515,7 +21706,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "내셔널 음료 회사",
+  "translation_attempted": true
  },
  "PTRN": {
   "name": "PATTERN GROUP INC SERIES A",
@@ -21635,7 +21828,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FLOWCO Holdings INC 클래스 A",
+  "translation_attempted": true
  },
  "RUSHB": {
   "name": "RUSH ENTERPRISES INC CLASS B",
@@ -21653,7 +21848,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "ZOOMINFO 기술 INC",
+  "translation_attempted": true
  },
  "IVR": {
   "name": "INVESCO MORTGAGE CAPITAL REIT INC",
@@ -21671,16 +21868,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "헤리티지 보험 홀딩스 INC",
+  "translation_attempted": true
  },
  "EVER": {
   "name": "EVERQUOTE INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "mcap": 928548608,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "EVERQUOTE INC 클래스 A",
+  "translation_attempted": true
  },
  "JBI": {
   "name": "JANUS INTERNATIONAL GROUP INC",
@@ -21774,14 +21976,15 @@
  },
  "CODI": {
   "name": "COMPASS DIVERSIFIED",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Conglomerates",
+  "mcap": 755369088,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "나침반이 다양해졌습니다.",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "UAMY": {
   "name": "UNITED STATES ANTIMONY CORP",
@@ -21806,12 +22009,14 @@
  },
  "EVC": {
   "name": "ENTRAVISION COMMUNICATIONS CORP CL",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Advertising Agencies",
+  "mcap": 1019794176,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "MMI": {
   "name": "MARCUS  MILLICHAP INC",
@@ -21829,7 +22034,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "LIBERTY CAPITAL CORP 시리즈 C",
+  "translation_attempted": true
  },
  "BLMN": {
   "name": "BLOOMIN BRANDS INC",
@@ -21965,14 +22172,15 @@
  },
  "CTOS": {
   "name": "CUSTOM TRUCK ONE SOURCE INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Rental & Leasing Services",
+  "mcap": 2435805440,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "커스텀 트럭 원 소스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AVR": {
   "name": "ANTERIS TECHNOLOGIES GLOBAL CORP",
@@ -22041,7 +22249,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "헬렌 오브 트로이 LTD",
+  "translation_attempted": true
  },
  "GSBC": {
   "name": "GREAT SOUTHERN BANCORP INC",
@@ -22050,7 +22260,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그레이트 서던 뱅코프 INC",
+  "translation_attempted": true
  },
  "ASAN": {
   "name": "ASANA INC CLASS A",
@@ -22107,7 +22319,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "헬스스트림 주식회사",
+  "translation_attempted": true
  },
  "PRAA": {
   "name": "PRA GROUP INC",
@@ -22129,14 +22343,15 @@
  },
  "CSIQ": {
   "name": "CANADIAN SOLAR INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Solar",
+  "mcap": 936296192,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "캐나다 솔라 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "JBSS": {
   "name": "JOHN B SANFILIPPO AND SON INC",
@@ -22213,7 +22428,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "글래드스톤 커머셜 리츠(GLADSTONE COMMERCIAL REIT CORP)",
+  "translation_attempted": true
  },
  "SG": {
   "name": "SWEETGREEN INC CLASS A",
@@ -22231,7 +22448,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "HOVNANIAN ENTERPRISES INC 클래스 A",
+  "translation_attempted": true
  },
  "KOPN": {
   "name": "KOPIN CORP",
@@ -22346,14 +22565,15 @@
  },
  "CXM": {
   "name": "SPRINKLR INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 1421768704,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "SPRINKLR INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "TRTX": {
   "name": "TPG RE FINANCE TRUST INC",
@@ -22391,7 +22611,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "포럼 에너지 테크놀로지스 INC",
+  "translation_attempted": true
  },
  "VRRM": {
   "name": "VERRA MOBILITY CORP CLASS A",
@@ -22427,7 +22649,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그룹폰(주)",
+  "translation_attempted": true
  },
  "TBLA": {
   "name": "TABOOLA.COM LTD",
@@ -22452,14 +22676,15 @@
  },
  "CWBC": {
   "name": "COMMUNITY WEST BANCSHARES",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 685681408,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "커뮤니티 서부 은행 공유",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BETA": {
   "name": "BETA TECHNOLOGIES INC CLASS A",
@@ -22539,7 +22764,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "프랭클린 BSP 부동산 신탁 INC",
+  "translation_attempted": true
  },
  "TDUP": {
   "name": "THREDUP INC CLASS A",
@@ -22633,14 +22860,15 @@
  },
  "CRMD": {
   "name": "CORMEDIX INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 596234368,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "코메딕스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SBGI": {
   "name": "SINCLAIR INC CLASS A",
@@ -22658,7 +22886,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "최초의 기업 금융 서비스",
+  "translation_attempted": true
  },
  "SFST": {
   "name": "SOUTHERN FIRST BANCSHARES INC",
@@ -22752,23 +22982,27 @@
  },
  "CTMX": {
   "name": "CYTOMX THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 707534464,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "사이톰엑스 테라퓨틱스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "EGY": {
   "name": "VAALCO ENERGY INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "mcap": 552182656,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "발코 에너지 INC",
+  "translation_attempted": true
  },
  "MOV": {
   "name": "MOVADO GROUP INC",
@@ -22809,7 +23043,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "포레스타 그룹 INC",
+  "translation_attempted": true
  },
  "PLSE": {
   "name": "PULSE BIOSCIENCES INC",
@@ -22822,14 +23058,15 @@
  },
  "CSV": {
   "name": "CARRIAGE SERVICES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Personal Services",
+  "mcap": 634893120,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "캐리지 서비스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "PHAT": {
   "name": "PHATHOM PHARMACEUTICALS INC",
@@ -22847,7 +23084,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "히포 홀딩스 INC",
+  "translation_attempted": true
  },
  "KMTS": {
   "name": "KESTRA MEDICAL TECHNOLOGIES LTD",
@@ -22934,27 +23173,33 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "홈 뱅코프 INC",
+  "translation_attempted": true
  },
  "ETD": {
   "name": "ETHAN ALLEN INTERIORS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Furnishings, Fixtures & Appliances",
+  "mcap": 592136320,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "ETHAN ALLEN 인테리어 INC",
+  "translation_attempted": true
  },
  "EBF": {
   "name": "ENNIS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Business Equipment & Supplies",
+  "mcap": 549731456,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "에니스 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "KODK": {
   "name": "EASTMAN KODAK",
@@ -23008,7 +23253,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "하트랜드 익스프레스 INC",
+  "translation_attempted": true
  },
  "LXRX": {
   "name": "LEXICON PHARMACEUTICALS INC",
@@ -23051,14 +23298,15 @@
  },
  "CTKB": {
   "name": "CYTEK BIOSCIENCES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 569518784,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "사이텍 바이오사이언스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MBUU": {
   "name": "MALIBU BOATS CLASS A INC",
@@ -23118,7 +23366,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "할라도르 에너지",
+  "translation_attempted": true
  },
  "HBT": {
   "name": "HBT FINANCIAL INC",
@@ -23127,7 +23377,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "HBT 파이낸셜 INC",
+  "translation_attempted": true
  },
  "RHLD": {
   "name": "RESOLUTE HOLDINGS MANAGEMENT INC",
@@ -23140,25 +23392,27 @@
  },
  "DRUG": {
   "name": "BRIGHT MINDS BIOSCIENCES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 705585344,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "브라이트 마인드 바이오사이언스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "DC": {
   "name": "DAKOTA GOLD CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Basic Materials",
+  "industry": "Gold",
+  "mcap": 641515584,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "다코타 골드 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "RGR": {
   "name": "STURM RUGER INC",
@@ -23194,7 +23448,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "글로벌 산업",
+  "translation_attempted": true
  },
  "ILPT": {
   "name": "INDUSTRIAL LOGISTICS PROPERTIES TR",
@@ -23333,12 +23589,15 @@
  },
  "ELE": {
   "name": "ELEMENTAL ROYALTY CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Basic Materials",
+  "industry": "Other Precious Metals & Mining",
+  "mcap": 1023046400,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엘리멘탈 로얄티 코퍼레이션",
+  "translation_attempted": true
  },
  "MNPR": {
   "name": "MONOPAR THERAPEUTICS INC",
@@ -23369,14 +23628,15 @@
  },
  "CRSR": {
   "name": "CORSAIR GAMING INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Computer Hardware",
+  "mcap": 1125469568,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "해적 게임 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "OIS": {
   "name": "OIL STATES INTERNATIONAL INC",
@@ -23389,14 +23649,15 @@
  },
  "CPS": {
   "name": "COOPER STANDARD HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Parts",
+  "mcap": 508333760,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "쿠퍼 스탠다드 홀딩스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "FEIM": {
   "name": "FREQUENCY ELECTRONICS INC",
@@ -23405,7 +23666,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "주파수 전자 INC",
+  "translation_attempted": true
  },
  "OOMA": {
   "name": "OOMA INC",
@@ -23454,14 +23717,15 @@
  },
  "COFS": {
   "name": "CHOICEONE FINANCIAL SERVICES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 507119968,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CHOICEONE 금융 서비스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AEBI": {
   "name": "AEBI SCHMIDT HOLDING AG",
@@ -23504,12 +23768,15 @@
  },
  "EVH": {
   "name": "EVOLENT HEALTH INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Health Information Services",
+  "mcap": 428552832,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "EVOLENT HEALTH INC 클래스 A",
+  "translation_attempted": true
  },
  "VSTM": {
   "name": "VERASTEM INC",
@@ -23527,7 +23794,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "Greenlight Capital LTD 클래스 A",
+  "translation_attempted": true
  },
  "HYLN": {
   "name": "HYLIION HOLDINGS CORP",
@@ -23566,7 +23835,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GREIF INC 클래스 B",
+  "translation_attempted": true
  },
  "HSHP": {
   "name": "HIMALAYA SHIPPING LTD",
@@ -23575,7 +23846,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "히말라야 배송 LTD",
+  "translation_attempted": true
  },
  "RGNX": {
   "name": "REGENXBIO INC",
@@ -23635,7 +23908,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "농부와 상인 BANCORP INC",
+  "translation_attempted": true
  },
  "HIFS": {
   "name": "HINGHAM INSTITUTION FOR SAVINGS",
@@ -23644,7 +23919,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "HINGHAM 저축 연구소",
+  "translation_attempted": true
  },
  "BWB": {
   "name": "BRIDGEWATER BANCSHARES INC",
@@ -23718,7 +23995,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "4D 분자 치료제 INC",
+  "translation_attempted": true
  },
  "ALLO": {
   "name": "ALLOGENE THERAPEUTICS INC",
@@ -23790,7 +24069,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FTAI 인프라 INC",
+  "translation_attempted": true
  },
  "BMRC": {
   "name": "BANK OF MARIN BANCORP",
@@ -23904,14 +24185,15 @@
  },
  "DFH": {
   "name": "DREAM FINDERS HOMES INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Residential Construction",
+  "mcap": 1430698752,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "드림 파인더 주택 INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MATV": {
   "name": "MATIV HOLDINGS INC",
@@ -23933,14 +24215,15 @@
  },
  "DIN": {
   "name": "DINE BRANDS GLOBAL INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Restaurants",
+  "mcap": 448294080,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "다인 브랜드 글로벌 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BWFG": {
   "name": "BANKWELL FINANCIAL GROUP INC",
@@ -24025,13 +24308,14 @@
  },
  "CWCO": {
   "name": "CONSOLIDATED WATER LTD",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Utilities",
+  "industry": "Utilities - Regulated Water",
+  "mcap": 472325632,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "IHRT": {
   "name": "IHEARTMEDIA INC CLASS A",
@@ -24056,12 +24340,15 @@
  },
  "ERII": {
   "name": "ENERGY RECOVERY INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Pollution & Treatment Controls",
+  "mcap": 439165632,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에너지 회수 INC",
+  "translation_attempted": true
  },
  "IDR": {
   "name": "IDAHO STRATEGIC RESOURCES INC",
@@ -24092,14 +24379,15 @@
  },
  "CZNC": {
   "name": "CITIZENS AND NORTHERN CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 441375776,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "시민과 북부 기업",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MCFT": {
   "name": "MASTERCRAFT BOAT HOLDINGS INC",
@@ -24204,7 +24492,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "LB 포스터",
+  "translation_attempted": true
  },
  "ARHS": {
   "name": "ARHAUS INC CLASS A",
@@ -24274,14 +24564,15 @@
  },
  "DGICA": {
   "name": "DONEGAL GROUP INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Insurance - Property & Casualty",
+  "mcap": 700608000,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "DONEGAL 그룹 INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BBW": {
   "name": "BUILD A BEAR WORKSHOP INC",
@@ -24297,14 +24588,15 @@
  },
  "CTGO": {
   "name": "CONTANGO SILVER AND GOLD INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Basic Materials",
+  "industry": "Gold",
+  "mcap": 549694272,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "콘탱고 실버 앤 골드 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BELFA": {
   "name": "BEL FUSE INC CLASS A",
@@ -24334,7 +24626,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "퍼스트 뱅코프 INC",
+  "translation_attempted": true
  },
  "GSM": {
   "name": "FERROGLOBE PLC",
@@ -24343,7 +24637,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "페로글로브 PLC",
+  "translation_attempted": true
  },
  "OCGN": {
   "name": "OCUGEN INC",
@@ -24361,7 +24657,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 은행",
+  "translation_attempted": true
  },
  "FPI": {
   "name": "FARMLAND PARTNERS INC",
@@ -24370,7 +24668,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "농지 파트너 INC",
+  "translation_attempted": true
  },
  "FRST": {
   "name": "PRIMIS FINANCIAL CORP",
@@ -24379,7 +24679,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "프리미스 파이낸셜 코퍼레이션",
+  "translation_attempted": true
  },
  "FVR": {
   "name": "FRONTVIEW REIT INC",
@@ -24388,7 +24690,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "프론트뷰 리츠 INC",
+  "translation_attempted": true
  },
  "RM": {
   "name": "REGIONAL MANAGEMENT CORP",
@@ -24422,14 +24726,15 @@
  },
  "CRML": {
   "name": "CRITICAL METALS CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Basic Materials",
+  "industry": "Other Industrial Metals & Mining",
+  "mcap": 887208064,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "크리티컬 메탈스 코퍼레이션",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AQST": {
   "name": "AQUESTIVE THERAPEUTICS INC",
@@ -24520,7 +24825,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그라인더 주식회사",
+  "translation_attempted": true
  },
  "PDLB": {
   "name": "PONCE FINANCIAL GROUP INC",
@@ -24612,7 +24919,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "풀전트 제네틱스 INC",
+  "translation_attempted": true
  },
  "KREF": {
   "name": "KKR REAL ESTATE FINANCE INC TRUST",
@@ -24634,14 +24943,15 @@
  },
  "EBS": {
   "name": "EMERGENT BIOSOLUTIONS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - Specialty & Generic",
+  "mcap": 378200832,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "이머전트 바이오솔루션스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "ACCO": {
   "name": "ACCO BRANDS CORP",
@@ -24684,14 +24994,15 @@
  },
  "CRNC": {
   "name": "CERENCE INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 374606912,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "세렌스(주)",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "NUAI": {
   "name": "NEW ERA ENERGY AND DIGITAL INC",
@@ -24709,7 +25020,8 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "translation_attempted": true
  },
  "IPI": {
   "name": "INTREPID POTASH INC",
@@ -24731,14 +25043,15 @@
  },
  "DDD": {
   "name": "3D SYSTEMS CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Computer Hardware",
+  "mcap": 429585536,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "3D 시스템즈 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BBBY": {
   "name": "BED BATH AND BEYOND INC",
@@ -24759,7 +25072,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "플로텍 인더스트리 INC",
+  "translation_attempted": true
  },
  "GDYN": {
   "name": "GRID DYNAMICS HOLDINGS INC CLASS A",
@@ -24768,7 +25083,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GRID DYNAMICS HOLDINGS INC 클래스 A",
+  "translation_attempted": true
  },
  "NECB": {
   "name": "NORTHEAST COMMUNITY BANCORP INC",
@@ -24781,14 +25098,15 @@
  },
  "DSGN": {
   "name": "DESIGN THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 741988864,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "디자인 테라퓨틱스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "HY": {
   "name": "HYSTER YALE INC CLASS A",
@@ -24828,14 +25146,15 @@
  },
  "CYH": {
   "name": "COMMUNITY HEALTH SYSTEMS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Care Facilities",
+  "mcap": 383293440,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "지역사회 건강 시스템 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BWMN": {
   "name": "BOWMAN CONSULTING GROUP LTD",
@@ -24899,12 +25218,15 @@
  },
  "ENTA": {
   "name": "ENANTA PHARMACEUTICALS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 370167776,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에난타 파마슈티컬즈 INC",
+  "translation_attempted": true
  },
  "PBYI": {
   "name": "PUMA BIOTECHNOLOGY INC",
@@ -24940,7 +25262,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "정직한 회사 INC",
+  "translation_attempted": true
  },
  "RMR": {
   "name": "RMR GROUP INC CLASS A",
@@ -24958,7 +25282,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그레이 미디어 INC",
+  "translation_attempted": true
  },
  "STRO": {
   "name": "SUTRO BIOPHARMA INC",
@@ -24971,14 +25297,15 @@
  },
  "DCTH": {
   "name": "DELCATH SYS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 412188448,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "델카스시스(주)",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CLFD": {
   "name": "CLEARFIELD INC",
@@ -24994,34 +25321,39 @@
  },
  "CWH": {
   "name": "CAMPING WORLD HOLDINGS INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Auto & Truck Dealerships",
+  "mcap": 388741056,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "캠핑 월드 홀딩스 INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "DNA": {
   "name": "GINKGO BIOWORKS HOLDINGS INC CLASS",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 486667456,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "은행나무 바이오웍스 홀딩스 INC 클래스",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "EOLS": {
   "name": "EVOLUS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Drug Manufacturers - Specialty & Generic",
+  "mcap": 406982368,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에볼루스 INC",
+  "translation_attempted": true
  },
  "ULCC": {
   "name": "FRONTIER GROUP HOLDINGS INC",
@@ -25057,7 +25389,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "전방항공공사",
+  "translation_attempted": true
  },
  "LAND": {
   "name": "GLADSTONE LAND REIT CORP",
@@ -25106,25 +25440,27 @@
  },
  "CTNM": {
   "name": "CONTINEUM THERAPEUTICS INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 518175168,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CONTINEUM THERAPEUTICS INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CZFS": {
   "name": "CITIZENS FINANCIAL SERVICES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 365031008,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "시민 금융 서비스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GCO": {
   "name": "GENESCO INC",
@@ -25133,7 +25469,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "제네스코(주)",
+  "translation_attempted": true
  },
  "OVID": {
   "name": "OVID THERAPEUTICS INC",
@@ -25351,7 +25689,8 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "translation_attempted": true
  },
  "WSBF": {
   "name": "WATERSTONE FINANCIAL INC",
@@ -25394,14 +25733,15 @@
  },
  "DSGR": {
   "name": "DISTRIBUTION SOLUTIONS GROUP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Industrial Distribution",
+  "mcap": 1596737280,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "유통 솔루션 그룹 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "KIDS": {
   "name": "ORTHOPEDIATRICS CORP",
@@ -25426,14 +25766,15 @@
  },
  "CTRN": {
   "name": "CITI TRENDS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Apparel Retail",
+  "mcap": 543439296,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "씨티 트렌드 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "ALMR": {
   "name": "ALAMAR BIOSCIENCES INC",
@@ -25465,7 +25806,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "생성 생체 의학 INC",
+  "translation_attempted": true
  },
  "AURA": {
   "name": "AURA BIOSCIENCES INC",
@@ -25555,7 +25898,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FS 반코프 INC",
+  "translation_attempted": true
  },
  "ATLO": {
   "name": "AMES NATIONAL CORP",
@@ -25621,7 +25966,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 커뮤니티 회사",
+  "translation_attempted": true
  },
  "BOC": {
   "name": "BOSTON OMAHA CORP CLASS A",
@@ -25658,14 +26005,15 @@
  },
  "CVEO": {
   "name": "CIVEO CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Lodging",
+  "mcap": 377434304,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "시베오 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "OSS": {
   "name": "ONE STOP SYSTEMS INC",
@@ -25683,7 +26031,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GENIE ENERGY LTD 클래스 B",
+  "translation_attempted": true
  },
  "GOGO": {
   "name": "GOGO INC",
@@ -25692,7 +26042,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "고고(주)",
+  "translation_attempted": true
  },
  "CATX": {
   "name": "PERSPECTIVE THERAPEUTICS INC",
@@ -25797,7 +26149,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "페넥 파마슈티컬즈 INC",
+  "translation_attempted": true
  },
  "JMSB": {
   "name": "JOHN MARSHALL BANCORP INC",
@@ -25857,7 +26211,8 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "translation_attempted": true
  },
  "FUNC": {
   "name": "FIRST UNITED CORP",
@@ -25866,7 +26221,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "퍼스트 유나이티드 코퍼레이션",
+  "translation_attempted": true
  },
  "YSWY": {
   "name": "YESWAY INC CLASS A",
@@ -25936,12 +26293,14 @@
  },
  "ELDN": {
   "name": "ELEDON PHARMACEUTICALS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 275560512,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "MYFW": {
   "name": "FIRST WESTERN FINANCIAL INC",
@@ -25954,14 +26313,15 @@
  },
  "CRCT": {
   "name": "CRICUT INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Computer Hardware",
+  "mcap": 940345920,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CRICUT INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SWIM": {
   "name": "LATHAM GROUP INC",
@@ -26021,7 +26381,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "프랭클린 파이낸셜 서비스 코퍼레이션",
+  "translation_attempted": true
  },
  "BGS": {
   "name": "B AND G FOODS INC",
@@ -26101,7 +26463,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FALCON S BEYOND GLOBAL INC 클래스 A",
+  "translation_attempted": true
  },
  "QUAD": {
   "name": "QUAD GRAPHICS INC CLASS A",
@@ -26204,12 +26568,15 @@
  },
  "EDIT": {
   "name": "EDITAS MEDICINE INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 411277728,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에디타스 메디신 INC",
+  "translation_attempted": true
  },
  "ARDT": {
   "name": "ARDENT HEALTH INC",
@@ -26230,7 +26597,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GRANITE RIDGE 리소스 INC",
+  "translation_attempted": true
  },
  "FLXS": {
   "name": "FLEXSTEEL INDUSTRIES INC",
@@ -26239,7 +26608,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FLEXSTEEL 산업 INC",
+  "translation_attempted": true
  },
  "CLW": {
   "name": "CLEARWATER PAPER CORP",
@@ -26281,7 +26652,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FRP 홀딩스 INC",
+  "translation_attempted": true
  },
  "PSIX": {
   "name": "POWER SOLUTIONS INTERNATIONAL INC",
@@ -26362,7 +26735,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 북부 커뮤니티 BANCORP",
+  "translation_attempted": true
  },
  "FXNC": {
   "name": "FIRST NATIONAL CORP",
@@ -26371,7 +26746,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "최초의 국립 기업",
+  "translation_attempted": true
  },
  "LTBR": {
   "name": "LIGHTBRIDGE CORP",
@@ -26398,7 +26775,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "피델리티 D와 D BANCORP INC",
+  "translation_attempted": true
  },
  "NATH": {
   "name": "NATHANS FAMOUS INC",
@@ -26441,14 +26820,15 @@
  },
  "DNUT": {
   "name": "KRISPY KREME INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Defensive",
+  "industry": "Grocery Stores",
+  "mcap": 562024000,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "크리스피 크림 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AVEX": {
   "name": "AEVEX CORP CLASS A",
@@ -26464,12 +26844,14 @@
  },
  "ELMD": {
   "name": "ELECTROMED INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 330043360,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "TSSI": {
   "name": "TSS INC",
@@ -26489,7 +26871,8 @@
    "Russell 2000"
   ],
   "name_ko": "크로포드 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "TLS": {
   "name": "TELOS CORPORATION CORP",
@@ -26564,7 +26947,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FUNKO INC 클래스 A",
+  "translation_attempted": true
  },
  "OPFI": {
   "name": "OPPFI INC CLASS A",
@@ -26582,18 +26967,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FUBOTV INC 클래스 A",
+  "translation_attempted": true
  },
  "CZWI": {
   "name": "CITIZENS COMMUNITY BANCORP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 206384000,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "시민 커뮤니티 BANCORP INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "OPRT": {
   "name": "OPORTUN FINANCIAL CORP",
@@ -26611,17 +26999,20 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FB 뱅코프 INC",
+  "translation_attempted": true
  },
  "DMAC": {
   "name": "DIAMEDICA THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 363173728,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GCBC": {
   "name": "GREENE COUNTY BANCORP INC",
@@ -26630,7 +27021,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그린 카운티 BANCORP INC",
+  "translation_attempted": true
  },
  "CNDT": {
   "name": "CONDUENT INC",
@@ -26744,7 +27137,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "프리드먼 인더스트리 INC",
+  "translation_attempted": true
  },
  "VGZ": {
   "name": "VISTA GOLD CORP",
@@ -26766,12 +27161,14 @@
  },
  "EGHT": {
   "name": "8X8 INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 262297296,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "HDSN": {
   "name": "HUDSON TECHNOLOGIES INC",
@@ -26780,7 +27177,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "허드슨 테크놀로지스 INC",
+  "translation_attempted": true
  },
  "PRTH": {
   "name": "PRIORITY TECHNOLOGY HOLDINGS INC",
@@ -26823,13 +27222,14 @@
  },
  "COSO": {
   "name": "COASTALSOUTH BANCSHARES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 327442944,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "CIA": {
   "name": "CITIZENS INC CLASS A",
@@ -26892,7 +27292,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "앞으로 산업 INC",
+  "translation_attempted": true
  },
  "HTZ": {
   "name": "HERTZ GLOBAL HLDGS INC",
@@ -26901,7 +27303,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "Hertz 글로벌 HLDGS INC",
+  "translation_attempted": true
  },
  "ACH": {
   "name": "ACCENDRA HEALTH INC",
@@ -27051,7 +27455,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "홀리 INC",
+  "translation_attempted": true
  },
  "ASIC": {
   "name": "ATEGRITY SPECIALTY INSURANCE COMPA",
@@ -27088,12 +27494,15 @@
  },
  "EVEX": {
   "name": "EVE HOLDING INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "mcap": 860312320,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "이브 홀딩 INC",
+  "translation_attempted": true
  },
  "HCKT": {
   "name": "HACKETT GROUP INC",
@@ -27102,7 +27511,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "해켓 그룹 INC",
+  "translation_attempted": true
  },
  "AVXL": {
   "name": "ANAVEX LIFE SCIENCES CORP",
@@ -27141,7 +27552,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "펄크럼 테라퓨틱스 INC",
+  "translation_attempted": true
  },
  "ASLE": {
   "name": "AERSALE CORP",
@@ -27166,23 +27579,27 @@
  },
  "ESOA": {
   "name": "ENERGY SERVICES OF AMERICA CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Engineering & Construction",
+  "mcap": 296129120,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "AMERICA CORP의 에너지 서비스",
+  "translation_attempted": true
  },
  "CTEV": {
   "name": "CLARITEV CORP CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Health Information Services",
+  "mcap": 371982720,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CLARITEV CORP 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "OABI": {
   "name": "OMNIAB INC",
@@ -27204,12 +27621,15 @@
  },
  "EU": {
   "name": "ENCORE ENERGY CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Uranium",
+  "mcap": 231137296,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "앙코르에너지(주)",
+  "translation_attempted": true
  },
  "LMRI": {
   "name": "LUMEXA IMAGING HOLDINGS INC",
@@ -27315,14 +27735,15 @@
  },
  "CV": {
   "name": "CAPSOVISION INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 330259296,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "캡소비전 주식회사",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "TARA": {
   "name": "PROTARA THERAPEUTICS INC",
@@ -27349,7 +27770,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "HMH 홀딩 INC 클래스 A",
+  "translation_attempted": true
  },
  "JRVR": {
   "name": "JAMES RIVER GROUP HOLDINGS INC",
@@ -27383,13 +27806,14 @@
  },
  "DUOT": {
   "name": "DUOS TECHNOLOGIES GROUP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 252562096,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "QUIK": {
   "name": "QUICKLOGIC CORP",
@@ -27463,16 +27887,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "화석 그룹 INC",
+  "translation_attempted": true
  },
  "EMBC": {
   "name": "EMBECTA CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Instruments & Supplies",
+  "mcap": 203790560,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엠벡타 주식회사",
+  "translation_attempted": true
  },
  "ZNTL": {
   "name": "ZENTALIS PHARMACEUTICALS INC",
@@ -27640,7 +28069,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "퍼스트 캐피털 INC",
+  "translation_attempted": true
  },
  "CABO": {
   "name": "CABLE ONE INC",
@@ -27661,18 +28092,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "프랭클린 코비",
+  "translation_attempted": true
  },
  "DBI": {
   "name": "DESIGNER BRANDS INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Footwear & Accessories",
+  "mcap": 297553696,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "디자이너 브랜드 INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "WBTN": {
   "name": "WEBTOON ENTERTAINMENT INC",
@@ -27703,14 +28137,15 @@
  },
  "EBMT": {
   "name": "EAGLE BANCORP MONTANA INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 187426592,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "이글 뱅코프 몬타나 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GSIT": {
   "name": "GSI TECHNOLOGY INC",
@@ -27719,7 +28154,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GSI 기술 INC",
+  "translation_attempted": true
  },
  "SRI": {
   "name": "STONERIDGE INC",
@@ -27744,12 +28181,15 @@
  },
  "EVGO": {
   "name": "EVGO INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Specialty Retail",
+  "mcap": 489620576,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "EVGO INC 클래스 A",
+  "translation_attempted": true
  },
  "PBFS": {
   "name": "PIONEER BANCORP INC",
@@ -27762,12 +28202,15 @@
  },
  "EFSI": {
   "name": "EAGLE FINANCIAL SERVICES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 217252768,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "이글 파이낸셜 서비스 INC",
+  "translation_attempted": true
  },
  "USAU": {
   "name": "US GOLD CORP",
@@ -27840,14 +28283,15 @@
  },
  "DSP": {
   "name": "VIANT TECHNOLOGY INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 741165696,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "VIANT TECHNOLOGY INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "RICK": {
   "name": "RCI HOSPITALITY HOLDINGS INC",
@@ -27898,7 +28342,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "제미니 우주 정거장 INC 클래스 A",
+  "translation_attempted": true
  },
  "KROS": {
   "name": "KEROS THERAPEUTICS INC",
@@ -28045,7 +28491,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "하이피크 에너지 INC",
+  "translation_attempted": true
  },
  "PLX": {
   "name": "PROTALIX BIOTHERAPEUTICS INC",
@@ -28094,12 +28542,15 @@
  },
  "EIKN": {
   "name": "EIKON THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 534889664,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에이콘 테라퓨틱스 INC",
+  "translation_attempted": true
  },
  "CHRS": {
   "name": "COHERUS ONCOLOGY INC",
@@ -28204,7 +28655,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "포그혼 테라퓨틱스 INC",
+  "translation_attempted": true
  },
  "LWAY": {
   "name": "LIFEWAY FOODS INC",
@@ -28253,12 +28706,15 @@
  },
  "EVCM": {
   "name": "EVERCOMMERCE INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 2091557248,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에버커머스 INC",
+  "translation_attempted": true
  },
  "PAL": {
   "name": "PROFICIENT AUTO LOGISTICS INC",
@@ -28352,12 +28808,15 @@
  },
  "ESCA": {
   "name": "ESCALADE INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Leisure",
+  "mcap": 261605488,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에스컬레이드 주식회사",
+  "translation_attempted": true
  },
  "VUZI": {
   "name": "VUZIX CORP",
@@ -28375,7 +28834,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "해밀턴 비치 브랜드 홀딩 컴퍼니",
+  "translation_attempted": true
  },
  "ANGI": {
   "name": "ANGI INC CLASS A",
@@ -28487,14 +28948,15 @@
  },
  "DTIL": {
   "name": "PRECISION BIOSCIENCES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 187066304,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "정밀 생명공학 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SMRT": {
   "name": "SMARTRENT INC CLASS A",
@@ -28603,14 +29065,15 @@
  },
  "CVGI": {
   "name": "COMMERCIAL VEHICLE GROUP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Parts",
+  "mcap": 154105136,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "상업용 차량 그룹 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "INTT": {
   "name": "INTEST CORP",
@@ -28701,12 +29164,15 @@
  },
  "EVMN": {
   "name": "EVOMMUNE INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 413130752,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에보뮨 INC",
+  "translation_attempted": true
  },
  "LARK": {
   "name": "LANDMARK BANCORP INC",
@@ -28719,14 +29185,15 @@
  },
  "DOMO": {
   "name": "DOMO INC CLASS B",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 161187504,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "DOMO INC 클래스 B",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SWMR": {
   "name": "SWARMER INC",
@@ -28739,14 +29206,15 @@
  },
  "CRBP": {
   "name": "CORBUS PHARMACEUTICALS HOLDINGS IN",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 168232384,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CORBUS Pharmaceuticals 홀딩스",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "NMRA": {
   "name": "NEUMORA THERAPEUTICS INC",
@@ -28789,12 +29257,15 @@
  },
  "ELA": {
   "name": "ENVELA CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Luxury Goods",
+  "mcap": 556916608,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엔벨라 주식회사",
+  "translation_attempted": true
  },
  "BVFL": {
   "name": "BV FINANCIAL INC",
@@ -28828,14 +29299,15 @@
  },
  "CRBU": {
   "name": "CARIBOU BIOSCIENCES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 157697120,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "순록 생명과학 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AIRJ": {
   "name": "AIRJOULE TECHNOLOGIES CORP CLASS A",
@@ -28886,7 +29358,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GENCOR 산업 INC",
+  "translation_attempted": true
  },
  "BRCB": {
   "name": "BLACK ROCK COFFEE BAR INC CLASS A",
@@ -28923,23 +29397,27 @@
  },
  "ELMT": {
   "name": "ELMET GROUP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "mcap": 441003808,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엘멧 그룹",
+  "translation_attempted": true
  },
  "DOUG": {
   "name": "DOUGLAS ELLIMAN INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Real Estate",
+  "industry": "Real Estate Services",
+  "mcap": 158176576,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "더글러스 엘리먼 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "MDWD": {
   "name": "MEDIWOUND LTD",
@@ -29029,7 +29507,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "갈렉틴 테라퓨틱스 INC",
+  "translation_attempted": true
  },
  "IVVD": {
   "name": "INVIVYD INC",
@@ -29090,14 +29570,15 @@
  },
  "CXDO": {
   "name": "CREXENDO INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Telecom Services",
+  "mcap": 224314384,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "크렉센도(주)",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "KLTR": {
   "name": "KALTURA INC",
@@ -29169,7 +29650,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "AMERICA COMPANIES INC C의 금융",
+  "translation_attempted": true
  },
  "ADCT": {
   "name": "ADC THERAPEUTICS SA",
@@ -29199,7 +29682,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "퓨처퓨엘(주)",
+  "translation_attempted": true
  },
  "RMBI": {
   "name": "RICHMOND MUTUAL BANCORPORATION INC",
@@ -29244,7 +29729,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "핀와이즈 뱅코프",
+  "translation_attempted": true
  },
  "CHPT": {
   "name": "CHARGEPOINT HOLDINGS INC CLASS A",
@@ -29269,14 +29756,15 @@
  },
  "EAF": {
   "name": "GRAFTECH INTERNATIONAL LTD",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Electrical Equipment & Parts",
+  "mcap": 202913008,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "그래프텍 인터내셔널 LTD",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "LE": {
   "name": "LAND END INC",
@@ -29301,12 +29789,15 @@
  },
  "EPM": {
   "name": "EVOLUTION PETROLEUM CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "mcap": 129315280,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "에볼루션 석유 공사",
+  "translation_attempted": true
  },
  "SPRB": {
   "name": "SPRUCE BIOSCIENCES INC",
@@ -29385,12 +29876,14 @@
  },
  "EGAN": {
   "name": "EGAIN CORP",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 186935040,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "RAIL": {
   "name": "FREIGHTCAR AMERICA INC",
@@ -29408,18 +29901,21 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "하노버 BANCORP INC",
+  "translation_attempted": true
  },
  "CURI": {
   "name": "CURIOSITYSTREAM INC CLASS A",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Broadcasting",
+  "mcap": 144661744,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "CURIOSITYSTREAM INC 클래스 A",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "WHWK": {
   "name": "WHITEHAWK THERAPEUTICS INC",
@@ -29459,12 +29955,15 @@
  },
  "ESP": {
   "name": "ESPEY MANUFACTURING AND ELECTRONIC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Electrical Equipment & Parts",
+  "mcap": 174093024,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "ESPEY 제조 및 전자",
+  "translation_attempted": true
  },
  "LAW": {
   "name": "CS DISCO INC",
@@ -29491,7 +29990,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "스타파이터즈 스페이스 INC",
+  "translation_attempted": true
  },
  "KVHI": {
   "name": "KVH INDUSTRIES INC",
@@ -29655,7 +30156,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "그리니치 생명과학 INC",
+  "translation_attempted": true
  },
  "PAMT": {
   "name": "PAMT CORP",
@@ -29673,7 +30176,8 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "translation_attempted": true
  },
  "CARL": {
   "name": "CARLSMED INC",
@@ -29689,14 +30193,15 @@
  },
  "CPSS": {
   "name": "CONSUMER PORTFOLIO SERVICES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Credit Services",
+  "mcap": 201145696,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "소비자 포트폴리오 서비스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "BHA": {
   "name": "BIGLARI HOLDINGS INC CLASS A",
@@ -29724,14 +30229,15 @@
  },
  "DMRC": {
   "name": "DIGIMARC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 136682256,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "디지마크",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "GPRO": {
   "name": "GOPRO INC CLASS A",
@@ -29740,7 +30246,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "GOPRO INC 클래스 A",
+  "translation_attempted": true
  },
  "GLIBA": {
   "name": "LIBERTY CAPITAL CORP SERIES A",
@@ -29749,7 +30257,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "리버티 캐피털 코퍼레이션 시리즈 A",
+  "translation_attempted": true
  },
  "CBNA": {
   "name": "CHAIN BRIDGE BANCORP INC CLASS A",
@@ -29765,14 +30275,15 @@
  },
  "ECBK": {
   "name": "ECB BANCORP INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 178580992,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "ECB 뱅코프 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "LCUT": {
   "name": "LIFETIME BRANDS INC",
@@ -29805,14 +30316,15 @@
  },
  "CURV": {
   "name": "TORRID HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Consumer Cyclical",
+  "industry": "Apparel Retail",
+  "mcap": 256762576,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "토리드 홀딩스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "SMID": {
   "name": "SMITH MIDLAND CORP",
@@ -29837,14 +30349,15 @@
  },
  "CNTN": {
   "name": "CANTON STRATEGIC HOLDINGS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 156558848,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "캔톤 전략 홀딩스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "STXS": {
   "name": "STEREOTAXIS INC",
@@ -29857,13 +30370,14 @@
  },
  "DIBS": {
   "name": "1STDIBS COM INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "mcap": 152287440,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "FLWS": {
   "name": "1-800 FLOWERS.COM INC CLASS A",
@@ -29872,25 +30386,33 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "1-800 FLOWERS.COM INC 클래스 A",
+  "translation_attempted": true
  },
  "EVI": {
   "name": "EVI INDUSTRIES INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Industrials",
+  "industry": "Industrial Distribution",
+  "mcap": 182870096,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "EVI 산업 INC",
+  "translation_attempted": true
  },
  "EPSN": {
   "name": "EPSILON ENERGY LTD",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Energy",
+  "industry": "Oil & Gas E&P",
+  "mcap": 173324576,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "name_ko": "엡실론 에너지 LTD",
+  "translation_attempted": true
  },
  "WATT": {
   "name": "ENERGOUS CORP",
@@ -29935,7 +30457,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "글로벌 수자원 INC",
+  "translation_attempted": true
  },
  "NAUT": {
   "name": "NAUTILUS BIOTECHNOLGY INC",
@@ -29957,13 +30481,14 @@
  },
  "CVRX": {
   "name": "CVRX INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 129495408,
   "universe": [
    "Russell 2000"
   ],
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "HRTX": {
   "name": "HERON THERAPEUTICS INC",
@@ -29972,7 +30497,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "헤론 테라퓨틱스 INC",
+  "translation_attempted": true
  },
  "HYPR": {
   "name": "HYPERFINE INC CLASS A",
@@ -30054,14 +30581,15 @@
  },
  "CNTX": {
   "name": "CONTEXT THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 57176412,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "컨텍스트 테라퓨틱스 INC",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "PLBY": {
   "name": "PLAYBOY INC",
@@ -30144,7 +30672,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "하이어퀘스트 주식회사",
+  "translation_attempted": true
  },
  "VHI": {
   "name": "VALHI INC",
@@ -30244,12 +30774,14 @@
  },
  "ELTX": {
   "name": "ELICIO THERAPEUTICS INC",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 78793328,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "metadata_attempted": true,
+  "translation_attempted": true
  },
  "ARMP": {
   "name": "ARMATA PHARMACEUTICALS INC",
@@ -30279,7 +30811,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "첫 번째 보증 BANCSARES INC",
+  "translation_attempted": true
  },
  "LEE": {
   "name": "LEE ENTERPRISES INC",
@@ -30304,14 +30838,15 @@
  },
  "CNTB": {
   "name": "CONNECT BIOPHARMA HOLDINGS LTD",
-  "sector": "기타",
-  "industry": "기타",
-  "mcap": 0,
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 132224080,
   "universe": [
    "Russell 2000"
   ],
   "name_ko": "연결 Biopharma Holdings LTD",
-  "translation_attempted": true
+  "translation_attempted": true,
+  "metadata_attempted": true
  },
  "AFRI": {
   "name": "FORAFRIC GLOBAL PLC",
@@ -30377,7 +30912,9 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "name_ko": "FLYEXCLUSIVE INC 클래스 A",
+  "translation_attempted": true
  },
  "ARL": {
   "name": "AMERICAN REALTY INVESTORS INC",
@@ -30443,7 +30980,8 @@
   "mcap": 0,
   "universe": [
    "Russell 2000"
-  ]
+  ],
+  "translation_attempted": true
  },
  "P5N994": {
   "name": "Petrocorp Inc Escrow",
