@@ -702,6 +702,10 @@ export const LOCKUP_META = {
 
 export interface CompanyNewsItem {
   headline: string;
+  headlineKo?: string;
+  summaryKo?: string;
+  topic?: string;
+  sentiment?: "positive" | "negative" | "neutral";
   source: string;
   url: string;
   datetime: number;
@@ -721,5 +725,7 @@ export const NEWS_META = {
   from: "",
   to: "",
   tickerCount: 0,
+  koreanSummaryCount: 0,
+  summaryMethod: "",
   priority: "",
 };

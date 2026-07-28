@@ -719,6 +719,7 @@ function EmptyState() {
 
 function unlockDateLabel(row: LockupRow) {
   if (row.datePrecision === "conditional-max") return "조건부 최대 예정일";
+  if (row.datePrecision === "estimated") return "추정일";
   return row.daysLeft < 0 ? "해제 기준일" : "해제 예정일";
 }
 

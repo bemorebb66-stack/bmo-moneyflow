@@ -731,7 +731,7 @@ function StockDetail({ stock }: { stock: StockRow }) {
               </h2>
               <p className="text-[11px] text-muted-foreground">
                 {companyNews?.news?.length
-                  ? `${companyNews.news.length}개 헤드라인 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
+                  ? `${companyNews.news.length}개 · 헤드라인 기반 한국어 핵심 정리 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
                   : `BVT 우선 수집 ${NEWS_META.tickerCount || 240}개 종목 · 외부 뉴스로 이어서 확인할 수 있습니다.`}
               </p>
             </div>
@@ -758,9 +758,44 @@ function StockDetail({ stock }: { stock: StockRow }) {
                       <Newspaper className="h-4 w-4" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium leading-5 group-hover:text-brand">
-                        {item.headline}
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {item.topic && (
+                          <span className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                            {item.topic}
+                          </span>
+                        )}
+                        {item.sentiment && (
+                          <span
+                            className={cn(
+                              "rounded px-1.5 py-0.5 text-[10px] font-medium",
+                              item.sentiment === "positive"
+                                ? "bg-success/10 text-success"
+                                : item.sentiment === "negative"
+                                  ? "bg-danger/10 text-danger"
+                                  : "bg-muted text-muted-foreground",
+                            )}
+                          >
+                            {item.sentiment === "positive"
+                              ? "긍정"
+                              : item.sentiment === "negative"
+                                ? "부정"
+                                : "중립"}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-1 text-sm font-semibold leading-5 group-hover:text-brand">
+                        {item.headlineKo || item.headline}
                       </p>
+                      {item.summaryKo && (
+                        <p className="mt-1 text-xs leading-5 text-foreground/80">
+                          {item.summaryKo}
+                        </p>
+                      )}
+                      {item.headlineKo && (
+                        <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-muted-foreground">
+                          원문: {item.headline}
+                        </p>
+                      )}
                       <p className="mt-1 text-[11px] text-muted-foreground">
                         {item.source} · {formatNewsDate(item.datetime)}
                       </p>

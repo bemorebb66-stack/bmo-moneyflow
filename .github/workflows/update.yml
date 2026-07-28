@@ -39,6 +39,9 @@ jobs:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python fetch_news.py
 
+      - name: Add Korean news summaries
+        run: python scripts/enrich_news_summaries.py
+
       - name: Store BVT Replay snapshot
         run: python scripts/build_replay_snapshot.py
 
