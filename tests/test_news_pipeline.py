@@ -24,6 +24,21 @@ class NewsPipelineTests(unittest.TestCase):
         self.assertIn("AAA", result)
         self.assertIn("BBB", result)
 
+    def test_priority_tickers_can_fill_the_configured_collection_limit(self):
+        market = {
+            "stocks": [
+                {
+                    "t": f"T{index:03d}",
+                    "dv": 10000 - index,
+                    "a20": 100 + (index % 7),
+                }
+                for index in range(MODULE.MAX_TICKERS + 40)
+            ]
+        }
+        result = MODULE.priority_tickers(market)
+        self.assertEqual(len(result), MODULE.MAX_TICKERS)
+        self.assertEqual(len(result), len(set(result)))
+
     def test_clean_headline_normalizes_whitespace(self):
         self.assertEqual(
             MODULE.clean_headline("  New   product\nannounced  "),

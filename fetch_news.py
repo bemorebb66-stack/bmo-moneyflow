@@ -48,7 +48,7 @@ def priority_tickers(market):
         reverse=True,
     )
     ordered = []
-    for row in ranked[:80] + surge[:80]:
+    for row in ranked[:MAX_TICKERS] + surge[:MAX_TICKERS]:
         ticker = str(row.get("t") or "").upper()
         if ticker and ticker not in ordered:
             ordered.append(ticker)
