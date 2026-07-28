@@ -271,10 +271,12 @@ function LockupCard({ row }: { row: LockupRow }) {
           label="시가총액"
           value={row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
         />
-        <Metric
-          label="해제 후 거래대금"
-          value={formatPostTradingValue(row)}
-        />
+        <div className="col-span-2">
+          <dt className="text-muted-foreground">해제일 전후 시장 반응</dt>
+          <dd className="mt-0.5">
+            <ReactionBlock row={row} />
+          </dd>
+        </div>
       </dl>
 
       <RuleBlock row={row} />
@@ -294,7 +296,7 @@ function LockupTable({ rows }: { rows: LockupRow[] }) {
           <TableHead>남은 기간</TableHead>
           <TableHead>락업 조건</TableHead>
           <TableHead>해제 물량</TableHead>
-          <TableHead>해제 후 거래대금</TableHead>
+          <TableHead>해제일 전후 시장 반응</TableHead>
           <TableHead>시가총액</TableHead>
           <TableHead>검증 상태·근거</TableHead>
         </tr>
@@ -335,8 +337,8 @@ function LockupTable({ rows }: { rows: LockupRow[] }) {
             <td className="px-4 py-3 tabular">
               <UnlockAmount row={row} />
             </td>
-            <td className="px-4 py-3 tabular">
-              {formatPostTradingValue(row)}
+            <td className="min-w-64 px-4 py-3">
+              <ReactionBlock row={row} />
             </td>
             <td className="px-4 py-3 tabular">
               {row.marketCap > 0 ? fmtMcap(row.marketCap) : "미수집"}
@@ -530,6 +532,90 @@ function UnlockAmount({ row }: { row: LockupRow }) {
           {row.amountSourceNote}
         </p>
       )}
+    </div>
+  );
+}
+
+function ReactionBlock({ row }: { row: LockupRow }) {
+  if (row.datePrecision === "conditional-max") {
+    return (
+      <span className="text-[11px] text-muted-foreground">
+        조건부 일정 · 실제 해제일 확인 필요
+      </span>
+    );
+  }
+
+  if (row.postPriceReturn == null) {
+    return (
+      <span className="text-[11px] text-muted-foreground">
+        {formatPostTradingValue(row)}
+      </span>
+    );
+  }
+
+  const impact = {
+    high: {
+      label: "영향 큼",
+      className: "border-danger/25 bg-danger/10 text-danger",
+    },
+    medium: {
+      label: "영향 중간",
+      className: "border-warning/30 bg-warning/10 text-warning",
+    },
+    limited: {
+      label: "영향 제한적",
+      className: "border-border bg-muted text-muted-foreground",
+    },
+  }[row.reactionImpact || "limited"];
+  const interpretation =
+    row.reactionDirection === "negative"
+      ? "거래대금이 늘며 주가가 하락했습니다."
+      : row.reactionDirection === "positive"
+        ? "해제 기준일 이후 주가가 상승했습니다."
+        : "뚜렷한 한 방향의 반응은 제한적이었습니다.";
+
+  return (
+    <div className="space-y-1">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
+        <span
+          className={cn(
+            "rounded border px-1.5 py-0.5 text-[10px] font-medium",
+            impact.className,
+          )}
+        >
+          {impact.label}
+        </span>
+        <strong
+          className={cn(
+            "tabular",
+            row.postPriceReturn > 0
+              ? "text-success"
+              : row.postPriceReturn < 0
+                ? "text-danger"
+                : "text-foreground",
+          )}
+        >
+          주가 {row.postPriceReturn > 0 ? "+" : ""}
+          {row.postPriceReturn.toFixed(2)}%
+        </strong>
+        {row.postTradingValueRatio != null && (
+          <span className="tabular text-foreground">
+            거래대금 {row.postTradingValueRatio.toFixed(2)}배
+          </span>
+        )}
+      </div>
+      <p className="text-[10px] leading-4 text-muted-foreground">
+        {interpretation}
+      </p>
+      {row.reactionFirstDate && row.reactionLastDate && (
+        <p className="text-[10px] text-muted-foreground">
+          {row.reactionFirstDate}~{row.reactionLastDate} · 최대{" "}
+          {row.postTradingValueSessions || 5}거래일
+        </p>
+      )}
+      <p className="text-[10px] text-muted-foreground">
+        시장 반응이며 락업 해제와의 인과관계를 뜻하지 않습니다.
+      </p>
     </div>
   );
 }

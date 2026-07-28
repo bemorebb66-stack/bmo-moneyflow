@@ -31,6 +31,9 @@ jobs:
       - name: Validate IPO lockup events
         run: python scripts/validate_lockup_data.py
 
+      - name: Build verified post-lockup reactions
+        run: python scripts/build_lockup_reactions.py
+
       - name: Commit synced data
         run: |
           git config user.name "bmo-moneyflow-bot"

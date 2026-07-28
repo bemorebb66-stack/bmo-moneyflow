@@ -678,6 +678,11 @@ export interface LockupRow {
   termsVerified?: boolean;
   postTradingValueRatio?: number;
   postTradingValueSessions?: number;
+  postPriceReturn?: number;
+  reactionImpact?: "high" | "medium" | "limited";
+  reactionDirection?: "negative" | "positive" | "mixed";
+  reactionFirstDate?: string;
+  reactionLastDate?: string;
 }
 
 // Live SEC-derived data replaces this array during hydration. Keep it empty so

@@ -391,6 +391,7 @@ export async function hydrateLiveData() {
       historyResult,
       insiderResult,
       lockupResult,
+      lockupReactionResult,
       earningsResult,
       economicResult,
       newsResult,
@@ -399,6 +400,7 @@ export async function hydrateLiveData() {
       fetchJson("/history.json"),
       fetchJson("/insider/data/insider.json"),
       fetchJson("/ipo-lockup/data/lockup.json"),
+      fetchJson("/ipo-lockup/data/reactions.json"),
       fetchJson("/earnings.json"),
       fetchJson("/economic_events.json"),
       fetchJson("/news.json"),
@@ -417,6 +419,10 @@ export async function hydrateLiveData() {
         : { trades: [] };
     const lockup =
       lockupResult.status === "fulfilled" ? lockupResult.value : { events: [] };
+    const lockupReactions =
+      lockupReactionResult.status === "fulfilled"
+        ? lockupReactionResult.value
+        : { reactions: [] };
     const earnings =
       earningsResult.status === "fulfilled"
         ? earningsResult.value
@@ -563,6 +569,12 @@ export async function hydrateLiveData() {
       ? history.dates
       : [];
     const historyStocks: Record<string, number[]> = history.stocks ?? {};
+    const reactionByEvent = new Map<string, any>(
+      (lockupReactions.reactions ?? []).map((row: any) => [
+        row.eventId,
+        row,
+      ]),
+    );
     const getPostLockupTradingValue = (
       ticker: string,
       eventDate: string,
@@ -603,6 +615,7 @@ export async function hydrateLiveData() {
         row.lockupDate,
         row.datePrecision,
       );
+      const reaction = reactionByEvent.get(row.id);
       return {
         ticker: row.ticker,
         company:
@@ -676,8 +689,28 @@ export async function hydrateLiveData() {
         releaseRuleType: row.releaseRuleType,
         releaseRuleSummary: row.releaseRuleSummary,
         termsVerified: Boolean(row.termsVerified),
-        postTradingValueRatio: postTradingValue?.ratio,
-        postTradingValueSessions: postTradingValue?.sessions,
+        postTradingValueRatio:
+          Number(reaction?.tradingValueRatio) || postTradingValue?.ratio,
+        postTradingValueSessions:
+          Number(reaction?.sessions) || postTradingValue?.sessions,
+        postPriceReturn:
+          reaction?.priceReturn == null
+            ? undefined
+            : Number(reaction.priceReturn),
+        reactionImpact:
+          reaction?.impact === "high" ||
+          reaction?.impact === "medium" ||
+          reaction?.impact === "limited"
+            ? reaction.impact
+            : undefined,
+        reactionDirection:
+          reaction?.direction === "negative" ||
+          reaction?.direction === "positive" ||
+          reaction?.direction === "mixed"
+            ? reaction.direction
+            : undefined,
+        reactionFirstDate: reaction?.firstTradingDate,
+        reactionLastDate: reaction?.lastTradingDate,
         importance:
           row.ticker === "SPCX" ||
           row.majorIpo ||
