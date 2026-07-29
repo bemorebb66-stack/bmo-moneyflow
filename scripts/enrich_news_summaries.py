@@ -4,12 +4,18 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from pathlib import Path
 from typing import Any
+
+import requests
 
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "news.json"
+TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
+TRANSLATE_SEPARATOR = "[BVT_SPLIT]"
+TRANSLATE_BATCH_SIZE = 20
 
 POSITIVE = (
     "beat",
@@ -145,7 +151,11 @@ def classify_sentiment(headline: str) -> str:
     return "neutral"
 
 
-def summarize_headline(headline: str, company: str) -> dict[str, str]:
+def summarize_headline(
+    headline: str,
+    company: str,
+    translated_headline: str = "",
+) -> dict[str, str]:
     normalized = re.sub(r"\s+", " ", headline).strip()
     lowered = normalized.lower()
     topic = "기업 동향"
@@ -164,28 +174,80 @@ def summarize_headline(headline: str, company: str) -> dict[str, str]:
         "negative": "부정",
         "neutral": "중립",
     }[sentiment]
+    translated = re.sub(r"\s+", " ", translated_headline).strip()
     return {
-        "headlineKo": f"{company} {topic} 관련 {sentiment_label} 소식",
-        "summaryKo": summary,
+        "headlineKo": translated or f"{company} {topic} 관련 {sentiment_label} 소식",
+        "summaryKo": translated or summary,
         "topic": topic,
         "sentiment": sentiment,
     }
 
 
-def enrich_payload(payload: dict[str, Any]) -> dict[str, Any]:
+def translate_headlines(headlines: list[str]) -> dict[str, str]:
+    unique = list(dict.fromkeys(headline.strip() for headline in headlines if headline.strip()))
+    translations: dict[str, str] = {}
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    for start in range(0, len(unique), TRANSLATE_BATCH_SIZE):
+        batch = unique[start : start + TRANSLATE_BATCH_SIZE]
+        joined = f"\n{TRANSLATE_SEPARATOR}\n".join(batch)
+        try:
+            response = requests.get(
+                TRANSLATE_URL,
+                params={
+                    "client": "gtx",
+                    "sl": "en",
+                    "tl": "ko",
+                    "dt": "t",
+                    "q": joined,
+                },
+                headers=headers,
+                timeout=25,
+            )
+            response.raise_for_status()
+            translated = "".join(
+                part[0] for part in response.json()[0] if part and part[0]
+            )
+            parts = [part.strip() for part in translated.split(TRANSLATE_SEPARATOR)]
+            if len(parts) != len(batch):
+                raise ValueError("translated batch could not be separated")
+            translations.update(
+                {
+                    headline: re.sub(r"\s+", " ", value).strip()
+                    for headline, value in zip(batch, parts)
+                    if value.strip()
+                }
+            )
+        except (requests.RequestException, ValueError, KeyError, TypeError) as exc:
+            print(f"News translation batch skipped: {exc}")
+        time.sleep(0.08)
+
+    return translations
+
+
+def enrich_payload(
+    payload: dict[str, Any],
+    translations: dict[str, str] | None = None,
+) -> dict[str, Any]:
     companies = payload.get("companies", {})
     enriched = 0
+    translated_count = 0
+    translations = translations or {}
     for company_payload in companies.values():
         company = str(company_payload.get("company") or "해당 기업")
         for item in company_payload.get("news", []):
             headline = str(item.get("headline") or "").strip()
             if not headline:
                 continue
-            item.update(summarize_headline(headline, company))
+            translated = translations.get(headline, "")
+            item.update(summarize_headline(headline, company, translated))
             enriched += 1
+            if translated:
+                translated_count += 1
     meta = dict(payload.get("meta", {}))
     meta["koreanSummaryCount"] = enriched
-    meta["summaryMethod"] = "헤드라인 기반 한국어 주제·핵심 확인사항 분류"
+    meta["translatedSummaryCount"] = translated_count
+    meta["summaryMethod"] = "뉴스 헤드라인 자동 번역 기반 한국어 한 줄 요약"
     payload["meta"] = meta
     return payload
 
@@ -195,13 +257,21 @@ def main() -> None:
         print("news.json does not exist; skipping summaries.")
         return
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
-    enriched = enrich_payload(payload)
+    headlines = [
+        str(item.get("headline") or "").strip()
+        for company in payload.get("companies", {}).values()
+        for item in company.get("news", [])
+        if str(item.get("headline") or "").strip()
+    ]
+    translations = translate_headlines(headlines)
+    enriched = enrich_payload(payload, translations)
     NEWS_PATH.write_text(
         json.dumps(enriched, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
     print(
-        f"Added {enriched['meta'].get('koreanSummaryCount', 0)} Korean news summaries."
+        f"Added {enriched['meta'].get('translatedSummaryCount', 0)} translated "
+        "Korean one-line news summaries."
     )
 
 

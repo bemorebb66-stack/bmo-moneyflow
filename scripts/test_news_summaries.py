@@ -24,18 +24,24 @@ class NewsSummaryTests(unittest.TestCase):
         self.assertEqual(result["sentiment"], "negative")
 
     def test_payload_is_enriched(self) -> None:
+        headline = "Shares fall after revenue warning"
         payload = {
             "companies": {
                 "TEST": {
                     "company": "테스트 기업",
-                    "news": [{"headline": "Shares fall after revenue warning"}],
+                    "news": [{"headline": headline}],
                 }
             }
         }
-        enriched = enrich_payload(payload)
+        enriched = enrich_payload(
+            payload,
+            {headline: "매출 경고 이후 주가가 하락했습니다."},
+        )
         item = enriched["companies"]["TEST"]["news"][0]
-        self.assertIn("summaryKo", item)
+        self.assertEqual(item["summaryKo"], "매출 경고 이후 주가가 하락했습니다.")
+        self.assertEqual(item["headlineKo"], item["summaryKo"])
         self.assertEqual(enriched["meta"]["koreanSummaryCount"], 1)
+        self.assertEqual(enriched["meta"]["translatedSummaryCount"], 1)
 
 
 if __name__ == "__main__":

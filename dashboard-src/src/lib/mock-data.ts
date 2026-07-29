@@ -727,6 +727,7 @@ export const NEWS_META = {
   to: "",
   tickerCount: 0,
   koreanSummaryCount: 0,
+  translatedSummaryCount: 0,
   summaryMethod: "",
   priority: "",
 };

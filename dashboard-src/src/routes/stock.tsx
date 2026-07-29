@@ -745,7 +745,7 @@ function StockDetail({ stock }: { stock: StockRow }) {
               </h2>
               <p className="text-[11px] text-muted-foreground">
                 {companyNews?.news?.length
-                  ? `${companyNews.news.length}개 · 헤드라인 기반 한국어 핵심 정리 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
+                  ? `${companyNews.news.length}개 · 한국어 한 줄 요약 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
                   : `BVT 우선 수집 ${NEWS_META.tickerCount || 240}개 종목 · 외부 뉴스로 이어서 확인할 수 있습니다.`}
               </p>
             </div>
@@ -797,17 +797,15 @@ function StockDetail({ stock }: { stock: StockRow }) {
                           </span>
                         )}
                       </div>
-                      <p className="mt-1 text-sm font-semibold leading-5 group-hover:text-brand">
-                        {item.headlineKo || item.headline}
+                      <p className="mt-1 text-[10px] font-semibold text-brand">
+                        한 줄 요약
                       </p>
-                      {item.summaryKo && (
-                        <p className="mt-1 text-xs leading-5 text-foreground/80">
-                          {item.summaryKo}
-                        </p>
-                      )}
-                      {item.headlineKo && (
+                      <p className="mt-0.5 text-sm font-semibold leading-5 group-hover:text-brand">
+                        {item.summaryKo || item.headlineKo || item.headline}
+                      </p>
+                      {(item.summaryKo || item.headlineKo) && (
                         <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-muted-foreground">
-                          원문: {item.headline}
+                          영문 헤드라인: {item.headline}
                         </p>
                       )}
                       <p className="mt-1 text-[11px] text-muted-foreground">
