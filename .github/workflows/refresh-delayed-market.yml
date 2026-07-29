@@ -1,0 +1,63 @@
+name: Refresh delayed market data
+
+on:
+  schedule:
+    # Yahoo daily candles can occasionally finalize late. Recheck at 15:30 KST.
+    - cron: "30 6 * * 2-6"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch market data
+        run: python fetch_data.py
+
+      - name: Build full US-listed stock search directory
+        run: python scripts/build_stock_directory.py
+
+      - name: Store BVT Replay snapshot
+        run: python scripts/build_replay_snapshot.py
+
+      - name: Build weekly market summary
+        run: python scripts/build_weekly_summary.py
+
+      - name: Test data pipeline
+        run: python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Commit and push
+        run: |
+          git config user.name "bmo-moneyflow-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json sector_map.json history.json replay_data weekly_summary.json stock_directory.json
+          if git diff --cached --quiet; then
+            echo "No market data changes"
+            exit 0
+          fi
+
+          git commit -m "data: delayed market refresh $(date -u +%Y-%m-%d)"
+
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Push attempt ${attempt} failed; retrying after syncing main."
+            sleep $((attempt * 5))
+          done
+
+          echo "Failed to push refreshed market data after 3 attempts."
+          exit 1

@@ -119,6 +119,35 @@ def download_prices(symbols):
         return pd.DataFrame()
     return pd.concat(frames, axis=1)
 
+
+def select_complete_market_date(prices, symbols, minimum_ratio=0.8):
+    """Return the newest session populated for most of the tracked universe."""
+    coverage = {}
+    for symbol in symbols:
+        try:
+            frame = prices[symbol].dropna(subset=["Close", "Volume"])
+        except (KeyError, TypeError):
+            continue
+        for value in frame.index:
+            session = str(value.date())
+            coverage[session] = coverage.get(session, 0) + 1
+
+    if not coverage:
+        return None, {}
+
+    recent_sessions = sorted(coverage)[-10:]
+    peak_coverage = max(coverage[session] for session in recent_sessions)
+    minimum_coverage = max(1, math.ceil(peak_coverage * minimum_ratio))
+    complete_sessions = [
+        session
+        for session in recent_sessions
+        if coverage[session] >= minimum_coverage
+    ]
+    if not complete_sessions:
+        return None, coverage
+    return complete_sessions[-1], coverage
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SECTOR_MAP_PATH = os.path.join(HERE, "sector_map.json")
 CUSTOM_GROUPS_PATH = os.path.join(HERE, "custom_groups.json")
@@ -546,16 +575,34 @@ def main():
     symbols = sorted(tickers.keys())
     print(f"가격 데이터 다운로드: {len(symbols)}종목")
     px = download_prices(symbols + MARKET_INDEX_SYMBOLS)
+    market_date, date_coverage = select_complete_market_date(px, symbols)
+    if not market_date:
+        sys.exit("완전한 시장 거래일을 찾지 못했습니다")
+
+    raw_latest_date = max(date_coverage)
+    if raw_latest_date > market_date:
+        print(
+            "불완전한 최신 거래일 제외: "
+            f"{raw_latest_date} {date_coverage[raw_latest_date]}종목, "
+            f"{market_date} {date_coverage[market_date]}종목 사용"
+        )
+    else:
+        print(
+            f"완전한 시장 거래일: {market_date} "
+            f"({date_coverage[market_date]}종목)"
+        )
 
     stocks = []
-    market_date = None
     dv_map = {}  # 히스토리용: 티커별 일별 거래대금 시리즈
     for t in symbols:
         try:
             df = px[t].dropna(subset=["Close", "Volume"])
         except Exception:
             continue
+        df = df.loc[[str(value.date()) <= market_date for value in df.index]]
         if len(df) < 22:  # 최소 20일 평균 계산 가능해야 포함
+            continue
+        if str(df.index[-1].date()) != market_date:
             continue
         close = df["Close"]
         vol = df["Volume"]
@@ -575,7 +622,6 @@ def main():
         a120 = hist.tail(120).mean() if len(hist) >= 120 else None
 
         pc = (adj.iloc[-1] / adj.iloc[-2] - 1) * 100
-        market_date = str(df.index[-1].date())
         dv_map[t] = dv
 
         meta = cache.get(t, {})
