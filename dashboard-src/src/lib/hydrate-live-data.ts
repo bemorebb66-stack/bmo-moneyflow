@@ -783,6 +783,7 @@ export async function hydrateLiveData() {
         confirmed: row.confirmed === true,
         source: row.source || undefined,
         sourceUrl: row.sourceUrl || undefined,
+        trackingTier: row.trackingTier || undefined,
       }));
     EARNINGS_ROWS.splice(0, EARNINGS_ROWS.length, ...earningsRows);
 

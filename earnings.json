@@ -1,11 +1,12 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-07-28T23:37:08.688134+00:00",
+    "generatedAt": "2026-07-29T05:21:37.280215+00:00",
     "status": "ok",
-    "from": "2026-06-13",
-    "to": "2027-01-24",
-    "count": 513,
+    "from": "2026-07-22",
+    "to": "2027-01-22",
+    "count": 514,
+    "coverage": {},
     "note": "Finnhub data is supplemented with confirmed dates from official company IR pages."
   },
   "events": [
@@ -23,6 +24,22 @@
       "confirmed": true,
       "source": "Tesla Investor Relations",
       "sourceUrl": "https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments"
+    },
+    {
+      "ticker": "STX",
+      "company": "씨게이트 테크놀로지",
+      "date": "2026-07-28",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": 5.71,
+      "epsEstimate": 5.1,
+      "revenueActual": 3630000000,
+      "revenueEstimate": 3490000000,
+      "confirmed": true,
+      "trackingTier": "core-index",
+      "source": "Seagate Investor Relations",
+      "sourceUrl": "https://investors.seagate.com/news/news-details/2026/Seagate-Technology-Reports-Fiscal-Fourth-Quarter-and-Fiscal-Year-2026-Financial-Results/default.aspx"
     },
     {
       "ticker": "V",

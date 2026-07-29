@@ -304,11 +304,12 @@ function StockDetail({ stock }: { stock: StockRow }) {
     (row) => row.ticker === stock.ticker,
   ).sort((a, b) => b.date.localeCompare(a.date));
   const nextEarnings = [...earnings]
-    .filter((row) => row.date >= LIVE_META.asOf)
+    .filter((row) => row.epsActual == null && row.date >= LIVE_META.asOf)
     .sort((a, b) => a.date.localeCompare(b.date))[0];
   const recentEarnings = earnings
-    .filter((row) => row.date <= LIVE_META.asOf && row.epsActual != null)
+    .filter((row) => row.epsActual != null)
     .slice(0, 4);
+  const earningsTier = earnings.find((row) => row.trackingTier)?.trackingTier;
   const sectorRow = LIVE_MARKET_DATA.sector["1d"].find(
     (row) => row.name === stock.sector,
   );
@@ -640,8 +641,13 @@ function StockDetail({ stock }: { stock: StockRow }) {
                 실적 발표와 예상치 비교
               </h2>
               <p className="text-[11px] text-muted-foreground">
-                EPS·매출 실제치와 시장 예상치 · Finnhub 기준
+                EPS·매출 실제치와 시장 예상치 · Finnhub·기업 IR 기준
               </p>
+              {earningsTier && (
+                <p className="mt-1 text-[10px] font-medium text-brand">
+                  {earningsTrackingLabel(earningsTier)}
+                </p>
+              )}
             </div>
             {nextEarnings && (
               <div className="rounded-md border border-success/25 bg-success/5 px-3 py-2 text-xs">
@@ -713,7 +719,15 @@ function StockDetail({ stock }: { stock: StockRow }) {
             </div>
           ) : (
             <div className="px-5 py-8 text-center text-sm text-muted-foreground">
-              아직 수집된 실적 발표 데이터가 없습니다.
+              <p>
+                {nextEarnings
+                  ? "예정된 실적 발표는 있으나 아직 실제치가 공개되지 않았습니다."
+                  : "아직 수집된 실적 발표 데이터가 없습니다."}
+              </p>
+              <p className="mt-1 text-xs">
+                S&P 500·Nasdaq 100과 양자·디지털자산·인기 소형주를 우선
+                추적합니다.
+              </p>
             </div>
           )}
         </CardContent>
@@ -895,6 +909,15 @@ function earningsHourLabel(hour: "bmo" | "amc" | "dmh" | "") {
   if (hour === "amc") return "장후";
   if (hour === "dmh") return "장중";
   return "시간 미정";
+}
+
+function earningsTrackingLabel(
+  tier: "core-index" | "theme" | "popular-small-cap" | "calendar",
+) {
+  if (tier === "core-index") return "S&P 500·Nasdaq 100 우선 추적";
+  if (tier === "theme") return "양자·디지털자산 테마 우선 추적";
+  if (tier === "popular-small-cap") return "인기 소형주 우선 추적";
+  return "실적 캘린더 추적";
 }
 
 function earningsSurprise(actual?: number, estimate?: number) {

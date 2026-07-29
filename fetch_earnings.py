@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -7,6 +8,29 @@ ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "earnings.json"
 MANUAL_INPUT = ROOT / "earnings_manual.json"
 FINNHUB_URL = "https://finnhub.io/api/v1/calendar/earnings"
+CORE_INDICES = {"S&P 500", "Nasdaq 100"}
+THEME_TICKERS = {
+    "IONQ",
+    "RGTI",
+    "QBTS",
+    "QUBT",
+    "ARQQ",
+    "LAES",
+    "COIN",
+    "MSTR",
+    "HOOD",
+    "BMNR",
+    "RIOT",
+    "MARA",
+    "CLSK",
+    "WULF",
+    "IREN",
+    "CIFR",
+    "HUT",
+    "BTDR",
+    "CORZ",
+}
+SUPPLEMENTAL_LIMIT = 160
 
 
 def number_or_none(value):
@@ -39,7 +63,72 @@ def merge_events(api_events, manual_events):
     return sorted(merged.values(), key=lambda row: (row["date"], row["ticker"]))
 
 
-def write_output(events, source, params=None):
+def build_earnings_universe(market):
+    stocks = market.get("stocks", [])
+    universe = {}
+    for row in stocks:
+        ticker = str(row.get("t") or "").upper()
+        indices = set(row.get("uni") or [])
+        if indices & CORE_INDICES:
+            universe[ticker] = "core-index"
+        elif ticker in THEME_TICKERS:
+            universe[ticker] = "theme"
+
+    liquid = sorted(
+        (
+            row
+            for row in stocks
+            if row.get("t") and "Russell 2000" in set(row.get("uni") or [])
+        ),
+        key=lambda row: float(row.get("dv") or 0),
+        reverse=True,
+    )
+    for row in liquid[:80]:
+        universe.setdefault(str(row["t"]).upper(), "popular-small-cap")
+    return universe
+
+
+def select_supplemental_tickers(market, universe, today, limit=SUPPLEMENTAL_LIMIT):
+    stocks = {str(row.get("t") or "").upper(): row for row in market.get("stocks", [])}
+    themes = sorted(ticker for ticker, tier in universe.items() if tier == "theme")
+    ranked = sorted(
+        universe,
+        key=lambda ticker: float(stocks.get(ticker, {}).get("dv") or 0),
+        reverse=True,
+    )
+    liquid = ranked[:90]
+    core = sorted(ticker for ticker, tier in universe.items() if tier == "core-index")
+    rotation_size = max(0, limit - len(set(themes + liquid)))
+    start = (today.toordinal() * max(rotation_size, 1)) % max(len(core), 1)
+    rotated = (core + core)[start : start + rotation_size]
+    selected = list(dict.fromkeys(themes + liquid + rotated))
+    return selected[:limit]
+
+
+def normalize_event(row, companies, universe):
+    ticker = str(row.get("symbol") or row.get("ticker") or "").upper().strip()
+    event_date = str(row.get("date") or "").strip()
+    if ticker not in companies or not event_date:
+        return None
+    hour = str(row.get("hour") or "").lower()
+    return {
+        "ticker": ticker,
+        "company": companies[ticker],
+        "date": event_date,
+        "hour": hour if hour in {"bmo", "amc", "dmh"} else "",
+        "quarter": row.get("quarter"),
+        "year": row.get("year"),
+        "epsActual": number_or_none(row.get("epsActual")),
+        "epsEstimate": number_or_none(row.get("epsEstimate")),
+        "revenueActual": number_or_none(row.get("revenueActual")),
+        "revenueEstimate": number_or_none(row.get("revenueEstimate")),
+        "trackingTier": universe.get(ticker, "calendar"),
+        "source": row.get("source") or "Finnhub Earnings Calendar",
+        "sourceUrl": row.get("sourceUrl"),
+    }
+
+
+def write_output(events, source, params=None, coverage=None):
     dates = [row["date"] for row in events if row.get("date")]
     output = {
         "meta": {
@@ -49,6 +138,7 @@ def write_output(events, source, params=None):
             "from": params["from"] if params else (min(dates) if dates else ""),
             "to": params["to"] if params else (max(dates) if dates else ""),
             "count": len(events),
+            "coverage": coverage or {},
             "note": "Finnhub data is supplemented with confirmed dates from official company IR pages.",
         },
         "events": events,
@@ -80,6 +170,7 @@ def main():
         for row in market.get("stocks", [])
     }
     today = date.today()
+    universe = build_earnings_universe(market)
     params = {
         "from": (today - timedelta(days=45)).isoformat(),
         "to": (today + timedelta(days=180)).isoformat(),
@@ -89,39 +180,48 @@ def main():
     response = requests.get(FINNHUB_URL, params=params, timeout=45)
     response.raise_for_status()
     payload = response.json()
-    rows = payload.get("earningsCalendar", [])
+    rows = list(payload.get("earningsCalendar", []))
+
+    supplemental_tickers = select_supplemental_tickers(market, universe, today)
+    supplemental_hits = 0
+    for ticker in supplemental_tickers:
+        symbol_params = {**params, "symbol": ticker}
+        try:
+            time.sleep(1.02)
+            symbol_response = requests.get(
+                FINNHUB_URL, params=symbol_params, timeout=45
+            )
+            symbol_response.raise_for_status()
+            symbol_rows = symbol_response.json().get("earningsCalendar", [])
+            supplemental_hits += len(symbol_rows)
+            rows.extend(symbol_rows)
+        except Exception as error:
+            print(f"{ticker}: supplemental earnings lookup failed: {error}")
 
     events = []
     seen = set()
     for row in rows:
-        ticker = str(row.get("symbol") or "").upper().strip()
-        event_date = str(row.get("date") or "").strip()
-        if ticker not in companies or not event_date:
+        event = normalize_event(row, companies, universe)
+        if event is None:
             continue
-        key = (ticker, event_date)
+        key = (event["ticker"], event["date"])
         if key in seen:
             continue
         seen.add(key)
-        hour = str(row.get("hour") or "").lower()
-        events.append(
-            {
-                "ticker": ticker,
-                "company": companies[ticker],
-                "date": event_date,
-                "hour": hour if hour in {"bmo", "amc", "dmh"} else "",
-                "quarter": row.get("quarter"),
-                "year": row.get("year"),
-                "epsActual": number_or_none(row.get("epsActual")),
-                "epsEstimate": number_or_none(row.get("epsEstimate")),
-                "revenueActual": number_or_none(row.get("revenueActual")),
-                "revenueEstimate": number_or_none(row.get("revenueEstimate")),
-            }
-        )
+        events.append(event)
 
     write_output(
         merge_events(events, manual_events),
         "Finnhub Earnings Calendar + official company IR pages",
         params,
+        {
+            "coreIndices": sorted(CORE_INDICES),
+            "trackedUniverseCount": len(universe),
+            "supplementalTickerCount": len(supplemental_tickers),
+            "supplementalEventCount": supplemental_hits,
+            "themes": ["양자컴퓨팅", "디지털자산"],
+            "rotation": "거래대금 상위 우선 + 나머지 지수 종목 일별 순환",
+        },
     )
 
 

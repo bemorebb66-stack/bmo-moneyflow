@@ -567,6 +567,7 @@ export interface EarningsRow {
   confirmed?: boolean;
   source?: string;
   sourceUrl?: string;
+  trackingTier?: "core-index" | "theme" | "popular-small-cap" | "calendar";
 }
 
 export type EconomicEventKind = "fomc" | "cpi" | "ppi" | "jobs" | "pce" | "gdp";

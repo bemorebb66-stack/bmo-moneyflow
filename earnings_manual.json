@@ -6,6 +6,22 @@
   },
   "events": [
     {
+      "ticker": "STX",
+      "company": "씨게이트 테크놀로지",
+      "date": "2026-07-28",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": 5.71,
+      "epsEstimate": 5.1,
+      "revenueActual": 3630000000,
+      "revenueEstimate": 3490000000,
+      "confirmed": true,
+      "trackingTier": "core-index",
+      "source": "Seagate Investor Relations",
+      "sourceUrl": "https://investors.seagate.com/news/news-details/2026/Seagate-Technology-Reports-Fiscal-Fourth-Quarter-and-Fiscal-Year-2026-Financial-Results/default.aspx"
+    },
+    {
       "ticker": "TSLA",
       "company": "테슬라",
       "date": "2026-07-22",
