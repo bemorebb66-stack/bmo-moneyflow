@@ -1,17 +1,17 @@
-name: Refresh earnings calendar
+name: Refresh pre-market events and news
 
 on:
   schedule:
-    # After U.S. after-hours releases and again after pre-market releases.
-    - cron: "30 0 * * 2-6"
-    - cron: "30 14 * * 1-5"
+    # 월~금 13:00 UTC = 한국시간 월~금 오후 10:00
+    # 장 시작 전 새 실적 일정·발표 결과·기업 뉴스를 갱신합니다.
+    - cron: "0 13 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: refresh-earnings
+  group: refresh-pre-market
   cancel-in-progress: false
 
 jobs:
@@ -32,20 +32,31 @@ jobs:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python fetch_earnings.py
 
-      - name: Test earnings pipeline
-        run: python -m unittest discover -s tests -p "test_earnings_pipeline.py"
+      - name: Refresh company news
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python fetch_news.py
+
+      - name: Add Korean news summaries
+        run: python scripts/enrich_news_summaries.py
+
+      - name: Test event and news pipelines
+        run: |
+          python -m unittest discover -s tests -p "test_earnings_pipeline.py"
+          python -m unittest discover -s tests -p "test_news_pipeline.py"
+          python scripts/test_news_summaries.py
 
       - name: Commit and push
         run: |
           git config user.name "bmo-moneyflow-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add earnings.json
+          git add earnings.json news.json
           if git diff --cached --quiet; then
-            echo "No earnings changes"
+            echo "No pre-market event or news changes"
             exit 0
           fi
 
-          git commit -m "data: refresh earnings calendar"
+          git commit -m "data: refresh pre-market events and news"
           for attempt in 1 2 3; do
             git pull --rebase origin main
             if git push origin HEAD:main; then
