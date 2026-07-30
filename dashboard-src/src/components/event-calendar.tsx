@@ -57,6 +57,15 @@ function monthStartFromMarketDate() {
 function buildEvents(): CalendarEvent[] {
   const hourLabel = { bmo: "장전", amc: "장후", dmh: "장중", "": "시간 미정" };
   const earningsEvents = EARNINGS_ROWS.filter((row) => row.date).map((row) => {
+    const hasResult = row.epsActual != null || row.revenueActual != null;
+    const status =
+      row.status === "awaiting-results"
+        ? "결과 갱신 대기"
+        : hasResult
+          ? "발표 완료"
+          : row.confirmed
+            ? "공식 일정"
+            : "발표 예정";
     const eps =
       row.epsActual != null
         ? `EPS 실제 $${row.epsActual.toFixed(2)}${row.epsEstimate != null ? ` · 예상 $${row.epsEstimate.toFixed(2)}` : ""}`
@@ -69,7 +78,7 @@ function buildEvents(): CalendarEvent[] {
       kind: "earnings" as const,
       ticker: row.ticker,
       title: `실적 발표 · ${row.ticker}`,
-      detail: `${row.company} · ${hourLabel[row.hour]} · ${eps}${row.confirmed ? " · 공식 확정" : ""}`,
+      detail: `${row.company} · ${hourLabel[row.hour]} · ${status} · ${eps}`,
       href: `/stock/?ticker=${encodeURIComponent(row.ticker)}`,
     };
   });

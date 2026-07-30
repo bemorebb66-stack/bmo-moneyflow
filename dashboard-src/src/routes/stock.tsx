@@ -303,9 +303,21 @@ function StockDetail({ stock }: { stock: StockRow }) {
   const earnings = EARNINGS_ROWS.filter(
     (row) => row.ticker === stock.ticker,
   ).sort((a, b) => b.date.localeCompare(a.date));
+  const earningsReferenceDate = latestReferenceDate();
   const nextEarnings = [...earnings]
-    .filter((row) => row.epsActual == null && row.date >= LIVE_META.asOf)
+    .filter(
+      (row) =>
+        row.epsActual == null &&
+        row.revenueActual == null &&
+        row.date >= earningsReferenceDate,
+    )
     .sort((a, b) => a.date.localeCompare(b.date))[0];
+  const awaitingEarnings = earnings.find(
+    (row) =>
+      row.epsActual == null &&
+      row.revenueActual == null &&
+      row.date < earningsReferenceDate,
+  );
   const recentEarnings = earnings
     .filter((row) => row.epsActual != null)
     .slice(0, 4);
@@ -599,6 +611,8 @@ function StockDetail({ stock }: { stock: StockRow }) {
                   description={
                     nextEarnings
                       ? `${nextEarnings.date} · ${earningsHourLabel(nextEarnings.hour)}`
+                      : awaitingEarnings
+                        ? `${awaitingEarnings.date} 결과 갱신 대기`
                       : recentEarnings.length
                         ? `최근 실적 ${recentEarnings[0].date}`
                         : "수집된 실적 일정 없음"
@@ -655,6 +669,16 @@ function StockDetail({ stock }: { stock: StockRow }) {
                 <strong className="ml-1 tabular">
                   {nextEarnings.date} · {earningsHourLabel(nextEarnings.hour)}
                 </strong>
+                <span className="ml-2 text-success">
+                  {nextEarnings.confirmed ? "공식 일정" : "발표 예정"}
+                </span>
+              </div>
+            )}
+            {!nextEarnings && awaitingEarnings && (
+              <div className="rounded-md border border-warning/25 bg-warning/5 px-3 py-2 text-xs">
+                <span className="text-muted-foreground">최근 발표 </span>
+                <strong className="ml-1 tabular">{awaitingEarnings.date}</strong>
+                <span className="ml-2 text-warning">결과 갱신 대기</span>
               </div>
             )}
           </div>
@@ -722,6 +746,8 @@ function StockDetail({ stock }: { stock: StockRow }) {
               <p>
                 {nextEarnings
                   ? "예정된 실적 발표는 있으나 아직 실제치가 공개되지 않았습니다."
+                  : awaitingEarnings
+                    ? "실적 발표 일정은 확인됐으며 EPS·매출 실제치를 갱신하고 있습니다."
                   : "아직 수집된 실적 발표 데이터가 없습니다."}
               </p>
               <p className="mt-1 text-xs">
@@ -907,6 +933,22 @@ function earningsHourLabel(hour: "bmo" | "amc" | "dmh" | "") {
   if (hour === "amc") return "장후";
   if (hour === "dmh") return "장중";
   return "시간 미정";
+}
+
+function latestReferenceDate() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const value = Object.fromEntries(
+    parts
+      .filter((part) => part.type !== "literal")
+      .map((part) => [part.type, part.value]),
+  );
+  const easternToday = `${value.year}-${value.month}-${value.day}`;
+  return [LIVE_META.asOf, easternToday].sort().at(-1) || LIVE_META.asOf;
 }
 
 function earningsTrackingLabel(

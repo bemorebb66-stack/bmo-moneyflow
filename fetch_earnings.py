@@ -49,18 +49,45 @@ def load_manual_events():
     return payload.get("events", [])
 
 
-def merge_events(api_events, manual_events):
-    merged = {
-        (row["ticker"], row["date"]): row
-        for row in api_events
-        if row.get("ticker") and row.get("date")
-    }
-    for row in manual_events:
+def merge_events(base_events, override_events):
+    merged = {}
+    for row in [*base_events, *override_events]:
         ticker = str(row.get("ticker") or "").upper().strip()
         event_date = str(row.get("date") or "").strip()
         if ticker and event_date:
-            merged[(ticker, event_date)] = {**row, "ticker": ticker}
+            key = (ticker, event_date)
+            current = merged.get(key, {})
+            # A manually confirmed date/source should win, while blank manual
+            # metrics must not erase actual results later supplied by Finnhub.
+            updates = {
+                field: value
+                for field, value in row.items()
+                if value is not None and value != ""
+            }
+            merged[key] = {**current, **updates, "ticker": ticker, "date": event_date}
     return sorted(merged.values(), key=lambda row: (row["date"], row["ticker"]))
+
+
+def merge_with_existing(existing_events, fresh_events, today):
+    fresh_periods = {
+        (
+            str(row.get("ticker") or "").upper(),
+            row.get("year"),
+            row.get("quarter"),
+        )
+        for row in fresh_events
+        if row.get("ticker") and row.get("year") and row.get("quarter")
+    }
+    retained = []
+    for row in existing_events:
+        ticker = str(row.get("ticker") or "").upper()
+        event_date = str(row.get("date") or "")
+        period = (ticker, row.get("year"), row.get("quarter"))
+        has_result = row.get("epsActual") is not None or row.get("revenueActual") is not None
+        is_future = event_date >= today.isoformat()
+        if has_result or (is_future and period not in fresh_periods):
+            retained.append(row)
+    return merge_events(retained, fresh_events)
 
 
 def build_earnings_universe(market):
@@ -88,7 +115,9 @@ def build_earnings_universe(market):
     return universe
 
 
-def select_supplemental_tickers(market, universe, today, limit=SUPPLEMENTAL_LIMIT):
+def select_supplemental_tickers(
+    market, universe, today, limit=SUPPLEMENTAL_LIMIT, priority_tickers=None
+):
     stocks = {str(row.get("t") or "").upper(): row for row in market.get("stocks", [])}
     themes = sorted(ticker for ticker, tier in universe.items() if tier == "theme")
     ranked = sorted(
@@ -101,7 +130,18 @@ def select_supplemental_tickers(market, universe, today, limit=SUPPLEMENTAL_LIMI
     rotation_size = max(0, limit - len(set(themes + liquid)))
     start = (today.toordinal() * max(rotation_size, 1)) % max(len(core), 1)
     rotated = (core + core)[start : start + rotation_size]
-    selected = list(dict.fromkeys(themes + liquid + rotated))
+    selected = list(
+        dict.fromkeys(
+            [
+                ticker
+                for ticker in (priority_tickers or [])
+                if ticker in universe
+            ]
+            + themes
+            + liquid
+            + rotated
+        )
+    )
     return selected[:limit]
 
 
@@ -111,6 +151,8 @@ def normalize_event(row, companies, universe):
     if ticker not in companies or not event_date:
         return None
     hour = str(row.get("hour") or "").lower()
+    eps_actual = number_or_none(row.get("epsActual"))
+    revenue_actual = number_or_none(row.get("revenueActual"))
     return {
         "ticker": ticker,
         "company": companies[ticker],
@@ -118,10 +160,15 @@ def normalize_event(row, companies, universe):
         "hour": hour if hour in {"bmo", "amc", "dmh"} else "",
         "quarter": row.get("quarter"),
         "year": row.get("year"),
-        "epsActual": number_or_none(row.get("epsActual")),
+        "epsActual": eps_actual,
         "epsEstimate": number_or_none(row.get("epsEstimate")),
-        "revenueActual": number_or_none(row.get("revenueActual")),
+        "revenueActual": revenue_actual,
         "revenueEstimate": number_or_none(row.get("revenueEstimate")),
+        "status": (
+            "reported"
+            if eps_actual is not None or revenue_actual is not None
+            else "scheduled"
+        ),
         "trackingTier": universe.get(ticker, "calendar"),
         "source": row.get("source") or "Finnhub Earnings Calendar",
         "sourceUrl": row.get("sourceUrl"),
@@ -152,10 +199,10 @@ def write_output(events, source, params=None, coverage=None):
 def main():
     api_key = os.environ.get("FINNHUB_API_KEY", "").strip()
     manual_events = load_manual_events()
+    existing = []
+    if OUTPUT.exists():
+        existing = json.loads(OUTPUT.read_text(encoding="utf-8")).get("events", [])
     if not api_key:
-        existing = []
-        if OUTPUT.exists():
-            existing = json.loads(OUTPUT.read_text(encoding="utf-8")).get("events", [])
         write_output(
             merge_events(existing, manual_events),
             "Finnhub Earnings Calendar + official company IR pages",
@@ -182,7 +229,20 @@ def main():
     payload = response.json()
     rows = list(payload.get("earningsCalendar", []))
 
-    supplemental_tickers = select_supplemental_tickers(market, universe, today)
+    near_start = today - timedelta(days=7)
+    near_end = today + timedelta(days=21)
+    near_event_tickers = [
+        str(row.get("symbol") or "").upper()
+        for row in rows
+        if str(row.get("date") or "") >= near_start.isoformat()
+        and str(row.get("date") or "") <= near_end.isoformat()
+    ]
+    supplemental_tickers = select_supplemental_tickers(
+        market,
+        universe,
+        today,
+        priority_tickers=near_event_tickers,
+    )
     supplemental_hits = 0
     for ticker in supplemental_tickers:
         symbol_params = {**params, "symbol": ticker}
@@ -210,8 +270,23 @@ def main():
         seen.add(key)
         events.append(event)
 
+    persisted_events = merge_with_existing(existing, events, today)
+    merged_events = merge_events(persisted_events, manual_events)
+    for event in merged_events:
+        has_result = (
+            event.get("epsActual") is not None
+            or event.get("revenueActual") is not None
+        )
+        event["status"] = (
+            "reported"
+            if has_result
+            else "scheduled"
+            if event.get("date", "") >= today.isoformat()
+            else "awaiting-results"
+        )
+
     write_output(
-        merge_events(events, manual_events),
+        merged_events,
         "Finnhub Earnings Calendar + official company IR pages",
         params,
         {

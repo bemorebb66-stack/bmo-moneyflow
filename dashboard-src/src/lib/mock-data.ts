@@ -565,6 +565,7 @@ export interface EarningsRow {
   revenueActual?: number; // USD
   revenueEstimate?: number; // USD
   confirmed?: boolean;
+  status?: "scheduled" | "reported" | "awaiting-results";
   source?: string;
   sourceUrl?: string;
   trackingTier?: "core-index" | "theme" | "popular-small-cap" | "calendar";

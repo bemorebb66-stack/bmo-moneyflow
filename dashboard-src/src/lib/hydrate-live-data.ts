@@ -781,6 +781,7 @@ export async function hydrateLiveData() {
         revenueEstimate:
           row.revenueEstimate == null ? undefined : Number(row.revenueEstimate),
         confirmed: row.confirmed === true,
+        status: row.status || undefined,
         source: row.source || undefined,
         sourceUrl: row.sourceUrl || undefined,
         trackingTier: row.trackingTier || undefined,

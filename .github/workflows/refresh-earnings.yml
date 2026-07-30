@@ -1,0 +1,56 @@
+name: Refresh earnings calendar
+
+on:
+  schedule:
+    # After U.S. after-hours releases and again after pre-market releases.
+    - cron: "30 0 * * 2-6"
+    - cron: "30 14 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-earnings
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Refresh scheduled dates and reported results
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python fetch_earnings.py
+
+      - name: Test earnings pipeline
+        run: python -m unittest discover -s tests -p "test_earnings_pipeline.py"
+
+      - name: Commit and push
+        run: |
+          git config user.name "bmo-moneyflow-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add earnings.json
+          if git diff --cached --quiet; then
+            echo "No earnings changes"
+            exit 0
+          fi
+
+          git commit -m "data: refresh earnings calendar"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 5))
+          done
+          exit 1
