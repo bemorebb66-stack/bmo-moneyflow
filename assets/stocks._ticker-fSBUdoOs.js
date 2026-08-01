@@ -1,1 +1,0 @@
-import{Jt as e}from"./page-shell-BhXY7q2G.js";import{i as t,n,t as r}from"./stocks._ticker-DJbrt6T3.js";var i=e();function a(){let{ticker:e}=r.useParams();return(0,i.jsx)(t,{ticker:n(e)})}export{a as component};
