@@ -26,11 +26,21 @@ import { DataStatusBar } from "@/components/data-status-bar";
 import { SignalBadge } from "@/components/signal-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { AccessibleChart } from "@/components/accessible-chart";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 import {
-  loadStockDirectory,
-  type DirectoryStock,
-} from "@/lib/stock-directory";
+  DataPageFallback,
+  DataSectionState,
+  DataSourcesStatus,
+} from "@/components/data-source-state";
+import {
+  ROUTE_DATA_SOURCES,
+  hasUsableSourceData,
+  useDataSources,
+  type DataSourceState,
+} from "@/lib/data-runtime";
+import { loadStockDirectory, type DirectoryStock } from "@/lib/stock-directory";
+import { SaveStockButton } from "@/components/save-stock-button";
 import {
   EARNINGS_ROWS,
   COMPANY_NEWS,
@@ -63,7 +73,7 @@ export const Route = createFileRoute("/stock")({
     ],
     links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/stock/" }],
   }),
-  component: StockPage,
+  component: LegacyStockPage,
 });
 
 const PERIODS: { id: MarketPeriod; label: string }[] = [
@@ -127,7 +137,7 @@ function companyIrSearchUrl(website: string | undefined, name: string) {
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 }
 
-function StockPage() {
+function LegacyStockPage() {
   const ticker =
     typeof window === "undefined"
       ? ""
@@ -135,23 +145,43 @@ function StockPage() {
           .get("ticker")
           ?.trim()
           .toUpperCase() ?? "");
+  return <StockPage ticker={ticker} />;
+}
+
+export function StockPage({ ticker }: { ticker: string }) {
+  const sourceStates = useDataSources(ROUTE_DATA_SOURCES.stock);
   const stock = LIVE_STOCKS.find((row) => row.ticker.toUpperCase() === ticker);
   const [directoryStock, setDirectoryStock] = useState<
     DirectoryStock | null | undefined
   >(undefined);
 
   useEffect(() => {
+    if (!hasUsableSourceData(sourceStates.market)) return;
     if (stock) return;
     if (!ticker) {
       setDirectoryStock(null);
       return;
     }
-    void loadStockDirectory().then((rows) => {
-      setDirectoryStock(
-        rows.find((row) => row.ticker.toUpperCase() === ticker) ?? null,
-      );
+    const controller = new AbortController();
+    void loadStockDirectory(controller.signal).then((rows) => {
+      if (!controller.signal.aborted) {
+        setDirectoryStock(
+          rows.find((row) => row.ticker.toUpperCase() === ticker) ?? null,
+        );
+      }
     });
-  }, [stock, ticker]);
+    return () => controller.abort();
+  }, [sourceStates.market.data, sourceStates.market.phase, stock, ticker]);
+
+  if (!hasUsableSourceData(sourceStates.market)) {
+    return (
+      <DataPageFallback
+        title="종목 상세"
+        description="종목별 거래대금 변화와 가격 흐름, 주요 이벤트를 확인합니다."
+        state={sourceStates.market}
+      />
+    );
+  }
 
   if (!stock) {
     if (directoryStock) {
@@ -190,6 +220,7 @@ function StockPage() {
                   </p>
                 </div>
                 <div className="mt-5 flex flex-wrap gap-2">
+                  <SaveStockButton ticker={directoryStock.ticker} showLabel />
                   <a
                     href={`/feedback/?type=missing-stock&ticker=${encodeURIComponent(directoryStock.ticker)}`}
                     className="inline-flex min-h-10 items-center rounded-md bg-brand px-4 text-sm font-semibold text-brand-foreground"
@@ -243,7 +274,7 @@ function StockPage() {
     );
   }
 
-  return <StockDetail stock={stock} />;
+  return <StockDetail stock={stock} sourceStates={sourceStates} />;
 }
 
 function CompanyLogo({
@@ -292,10 +323,19 @@ function CompanyLogo({
   );
 }
 
-function StockDetail({ stock }: { stock: StockRow }) {
+function StockDetail({
+  stock,
+  sourceStates,
+}: {
+  stock: StockRow;
+  sourceStates: Record<
+    (typeof ROUTE_DATA_SOURCES.stock)[number],
+    DataSourceState
+  >;
+}) {
   const series = useMemo(
     () => generateSeries(`stock:${stock.ticker}`, 60),
-    [stock.ticker],
+    [stock.ticker, sourceStates.history.lastSuccessAt],
   );
   const insiders = INSIDER_ROWS.filter((row) => row.ticker === stock.ticker);
   const companyNews = COMPANY_NEWS[stock.ticker];
@@ -350,6 +390,17 @@ function StockDetail({ stock }: { stock: StockRow }) {
 
   return (
     <PageShell>
+      <DataSourcesStatus
+        states={[
+          sourceStates.market,
+          sourceStates.history,
+          sourceStates.insider,
+          sourceStates.lockup,
+          sourceStates.earnings,
+          sourceStates.news,
+        ]}
+        className="mb-4"
+      />
       <div className="mb-4 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
         <a
           href="/"
@@ -405,6 +456,7 @@ function StockDetail({ stock }: { stock: StockRow }) {
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
+            <SaveStockButton ticker={stock.ticker} showLabel />
             {companyNews?.website && (
               <a
                 href={companyNews.website}
@@ -454,7 +506,7 @@ function StockDetail({ stock }: { stock: StockRow }) {
 
       <section
         aria-label="종목 핵심 지표"
-        className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6"
+        className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-7"
       >
         <StatCard
           label="현재가"
@@ -493,9 +545,7 @@ function StockDetail({ stock }: { stock: StockRow }) {
               : "border-info/25 bg-info/5",
         )}
       >
-        <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-          FLOW CONTEXT
-        </div>
+        <div className="text-xs font-semibold text-brand">거래 흐름 해석</div>
         <h2 className="mt-1 text-base font-semibold">{context.title}</h2>
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
           {context.description}
@@ -503,83 +553,116 @@ function StockDetail({ stock }: { stock: StockRow }) {
       </section>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1.55fr)_minmax(300px,0.75fr)]">
-        <Card>
-          <CardContent className="p-4 sm:p-5">
-            <div className="flex items-end justify-between gap-3">
-              <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-                  VOLUME TREND
+        <DataSectionState state={sourceStates.history} minHeight="h-[420px]">
+          <Card>
+            <CardContent className="p-4 sm:p-5">
+              <div className="flex items-end justify-between gap-3">
+                <div>
+                  <div className="text-xs font-semibold text-brand">
+                    거래대금 추이
+                  </div>
+                  <h2 className="mt-1 text-base font-semibold sm:text-lg">
+                    60일 거래대금 상대 흐름
+                  </h2>
+                  <p className="text-[11px] text-muted-foreground">
+                    첫 거래일을 100으로 지수화한 상대 변화
+                  </p>
                 </div>
-                <h2 className="mt-1 text-base font-semibold sm:text-lg">
-                  60일 거래대금 상대 흐름
-                </h2>
-                <p className="text-[11px] text-muted-foreground">
-                  첫 거래일을 100으로 지수화한 상대 변화
-                </p>
+                <div className="text-right text-xs text-muted-foreground">
+                  최근값{" "}
+                  <span className="font-semibold text-foreground">
+                    {series.at(-1)?.value.toFixed(1)}
+                  </span>
+                </div>
               </div>
-              <div className="text-right text-xs text-muted-foreground">
-                최근값{" "}
-                <span className="font-semibold text-foreground">
-                  {series.at(-1)?.value.toFixed(1)}
-                </span>
-              </div>
-            </div>
-            <div className="mt-4 h-[300px] w-full sm:h-[360px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={series}
-                  margin={{ top: 8, right: 12, bottom: 4, left: -12 }}
-                >
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="var(--color-border)"
-                    opacity={0.55}
-                  />
-                  <XAxis
-                    dataKey="date"
-                    stroke="var(--color-muted-foreground)"
-                    fontSize={11}
-                    tickLine={false}
-                    axisLine={false}
-                    minTickGap={28}
-                  />
-                  <YAxis
-                    stroke="var(--color-muted-foreground)"
-                    fontSize={11}
-                    tickLine={false}
-                    axisLine={false}
-                    domain={["auto", "auto"]}
-                    width={48}
-                  />
-                  <ReferenceLine
-                    y={100}
-                    stroke="var(--color-muted-foreground)"
-                    strokeDasharray="4 4"
-                    opacity={0.7}
-                  />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "var(--color-popover)",
-                      border: "1px solid var(--color-border)",
-                      borderRadius: 8,
-                      fontSize: 12,
-                    }}
-                    formatter={(value: number) => [value.toFixed(1), "지수"]}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="value"
-                    name={stock.ticker}
-                    stroke="var(--color-brand)"
-                    strokeWidth={2.25}
-                    dot={false}
-                    activeDot={{ r: 4 }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+              <AccessibleChart
+                title={`${stock.name} 60일 거래대금 상대 흐름`}
+                description="첫 거래일을 100으로 두고 날짜별 거래대금 상대 변화를 선으로 표시합니다."
+                table={
+                  <table className="w-full min-w-80 text-sm">
+                    <caption className="sr-only">
+                      {stock.name} 60일 거래대금 상대 지수
+                    </caption>
+                    <thead className="sticky top-0 bg-surface-2 text-muted-foreground">
+                      <tr>
+                        <th className="px-3 py-2 text-left">날짜</th>
+                        <th className="px-3 py-2 text-right">상대 지수</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      {series.map((row) => (
+                        <tr key={row.date}>
+                          <td className="px-3 py-2">{row.date}</td>
+                          <td className="px-3 py-2 text-right tabular">
+                            {row.value.toFixed(1)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                }
+              >
+                <div className="mt-4 h-[300px] w-full sm:h-[360px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={series}
+                      margin={{ top: 8, right: 12, bottom: 4, left: -12 }}
+                    >
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="var(--color-border)"
+                        opacity={0.55}
+                      />
+                      <XAxis
+                        dataKey="date"
+                        stroke="var(--color-muted-foreground)"
+                        fontSize={11}
+                        tickLine={false}
+                        axisLine={false}
+                        minTickGap={28}
+                      />
+                      <YAxis
+                        stroke="var(--color-muted-foreground)"
+                        fontSize={11}
+                        tickLine={false}
+                        axisLine={false}
+                        domain={["auto", "auto"]}
+                        width={48}
+                      />
+                      <ReferenceLine
+                        y={100}
+                        stroke="var(--color-muted-foreground)"
+                        strokeDasharray="4 4"
+                        opacity={0.7}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "var(--color-popover)",
+                          border: "1px solid var(--color-border)",
+                          borderRadius: 8,
+                          fontSize: 12,
+                        }}
+                        formatter={(value: number) => [
+                          value.toFixed(1),
+                          "지수",
+                        ]}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="value"
+                        name={stock.ticker}
+                        stroke="var(--color-brand)"
+                        strokeWidth={2.25}
+                        dot={false}
+                        activeDot={{ r: 4 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </AccessibleChart>
+            </CardContent>
+          </Card>
+        </DataSectionState>
 
         <div className="space-y-5">
           <Card>
@@ -613,9 +696,9 @@ function StockDetail({ stock }: { stock: StockRow }) {
                       ? `${nextEarnings.date} · ${earningsHourLabel(nextEarnings.hour)}`
                       : awaitingEarnings
                         ? `${awaitingEarnings.date} 결과 갱신 대기`
-                      : recentEarnings.length
-                        ? `최근 실적 ${recentEarnings[0].date}`
-                        : "수집된 실적 일정 없음"
+                        : recentEarnings.length
+                          ? `최근 실적 ${recentEarnings[0].date}`
+                          : "수집된 실적 일정 없음"
                   }
                 />
                 <ContextLink
@@ -644,240 +727,248 @@ function StockDetail({ stock }: { stock: StockRow }) {
         </div>
       </div>
 
-      <Card id="earnings" className="mt-5">
-        <CardContent className="p-0">
-          <div className="flex flex-col gap-2 border-b border-border/70 px-4 py-3 sm:flex-row sm:items-end sm:justify-between sm:px-5">
-            <div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-                EARNINGS
-              </div>
-              <h2 className="mt-1 text-base font-semibold sm:text-lg">
-                실적 발표와 예상치 비교
-              </h2>
-              <p className="text-[11px] text-muted-foreground">
-                EPS·매출 실제치와 시장 예상치 · Finnhub·기업 IR 기준
-              </p>
-              {earningsTier && (
-                <p className="mt-1 text-[10px] font-medium text-brand">
-                  {earningsTrackingLabel(earningsTier)}
+      <DataSectionState state={sourceStates.earnings} minHeight="mt-5 h-48">
+        <Card id="earnings" className="mt-5">
+          <CardContent className="p-0">
+            <div className="flex flex-col gap-2 border-b border-border/70 px-4 py-3 sm:flex-row sm:items-end sm:justify-between sm:px-5">
+              <div>
+                <div className="text-xs font-semibold text-brand">실적</div>
+                <h2 className="mt-1 text-base font-semibold sm:text-lg">
+                  실적 발표와 예상치 비교
+                </h2>
+                <p className="text-[11px] text-muted-foreground">
+                  EPS·매출 실제치와 시장 예상치 · Finnhub·기업 IR 기준
                 </p>
+                {earningsTier && (
+                  <p className="mt-1 text-[10px] font-medium text-brand">
+                    {earningsTrackingLabel(earningsTier)}
+                  </p>
+                )}
+              </div>
+              {nextEarnings && (
+                <div className="rounded-md border border-success/25 bg-success/5 px-3 py-2 text-xs">
+                  <span className="text-muted-foreground">다음 발표 </span>
+                  <strong className="ml-1 tabular">
+                    {nextEarnings.date} · {earningsHourLabel(nextEarnings.hour)}
+                  </strong>
+                  <span className="ml-2 text-success">
+                    {nextEarnings.confirmed ? "공식 일정" : "발표 예정"}
+                  </span>
+                </div>
+              )}
+              {!nextEarnings && awaitingEarnings && (
+                <div className="rounded-md border border-warning/25 bg-warning/5 px-3 py-2 text-xs">
+                  <span className="text-muted-foreground">최근 발표 </span>
+                  <strong className="ml-1 tabular">
+                    {awaitingEarnings.date}
+                  </strong>
+                  <span className="ml-2 text-warning">결과 갱신 대기</span>
+                </div>
               )}
             </div>
-            {nextEarnings && (
-              <div className="rounded-md border border-success/25 bg-success/5 px-3 py-2 text-xs">
-                <span className="text-muted-foreground">다음 발표 </span>
-                <strong className="ml-1 tabular">
-                  {nextEarnings.date} · {earningsHourLabel(nextEarnings.hour)}
-                </strong>
-                <span className="ml-2 text-success">
-                  {nextEarnings.confirmed ? "공식 일정" : "발표 예정"}
-                </span>
-              </div>
-            )}
-            {!nextEarnings && awaitingEarnings && (
-              <div className="rounded-md border border-warning/25 bg-warning/5 px-3 py-2 text-xs">
-                <span className="text-muted-foreground">최근 발표 </span>
-                <strong className="ml-1 tabular">{awaitingEarnings.date}</strong>
-                <span className="ml-2 text-warning">결과 갱신 대기</span>
-              </div>
-            )}
-          </div>
-          {recentEarnings.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[680px] text-left text-xs">
-                <thead className="bg-surface-2 text-[10px] text-muted-foreground">
-                  <tr>
-                    <th className="px-4 py-2.5 font-medium sm:px-5">발표일</th>
-                    <th className="px-4 py-2.5 font-medium">EPS 실제</th>
-                    <th className="px-4 py-2.5 font-medium">EPS 예상</th>
-                    <th className="px-4 py-2.5 font-medium">EPS 서프라이즈</th>
-                    <th className="px-4 py-2.5 font-medium">매출 실제</th>
-                    <th className="px-4 py-2.5 font-medium">매출 예상</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/70">
-                  {recentEarnings.map((row) => {
-                    const surprise = earningsSurprise(
-                      row.epsActual,
-                      row.epsEstimate,
-                    );
-                    return (
-                      <tr key={`${row.ticker}-${row.date}`}>
-                        <td className="px-4 py-3 font-medium tabular sm:px-5">
-                          {row.date}
-                        </td>
-                        <td className="px-4 py-3 tabular">
-                          {row.epsActual == null
-                            ? "-"
-                            : `$${row.epsActual.toFixed(2)}`}
-                        </td>
-                        <td className="px-4 py-3 tabular text-muted-foreground">
-                          {row.epsEstimate == null
-                            ? "-"
-                            : `$${row.epsEstimate.toFixed(2)}`}
-                        </td>
-                        <td
-                          className={cn(
-                            "px-4 py-3 font-semibold tabular",
-                            surprise != null && surprise > 0 && "text-success",
-                            surprise != null && surprise < 0 && "text-danger",
-                          )}
-                        >
-                          {surprise == null ? "-" : fmtPct(surprise)}
-                        </td>
-                        <td className="px-4 py-3 tabular">
-                          {row.revenueActual == null
-                            ? "-"
-                            : fmtMoney(row.revenueActual / 1e6)}
-                        </td>
-                        <td className="px-4 py-3 tabular text-muted-foreground">
-                          {row.revenueEstimate == null
-                            ? "-"
-                            : fmtMoney(row.revenueEstimate / 1e6)}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="px-5 py-8 text-center text-sm text-muted-foreground">
-              <p>
-                {nextEarnings
-                  ? "예정된 실적 발표는 있으나 아직 실제치가 공개되지 않았습니다."
-                  : awaitingEarnings
-                    ? "실적 발표 일정은 확인됐으며 EPS·매출 실제치를 갱신하고 있습니다."
-                  : "아직 수집된 실적 발표 데이터가 없습니다."}
-              </p>
-              <p className="mt-1 text-xs">
-                S&P 500·Nasdaq 100과 양자·디지털자산·인기 소형주를 우선
-                추적합니다.
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card id="news" className="mt-5">
-        <CardContent className="p-0">
-          <div className="flex flex-col gap-2 border-b border-border/70 px-4 py-3 sm:flex-row sm:items-end sm:justify-between sm:px-5">
-            <div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-                LATEST NEWS
-              </div>
-              <h2 className="mt-1 text-base font-semibold sm:text-lg">
-                최신 뉴스
-              </h2>
-              <p className="text-[11px] text-muted-foreground">
-                {companyNews?.news?.length
-                  ? `${companyNews.news.length}개 · 한국어 한 줄 요약 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
-                  : `BVT 우선 수집 ${NEWS_META.tickerCount || 240}개 종목 · 외부 뉴스로 이어서 확인할 수 있습니다.`}
-              </p>
-            </div>
-            <a
-              href={`https://finance.yahoo.com/quote/${encodeURIComponent(stock.ticker)}/news/`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
-            >
-              뉴스 전체 보기 <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-          </div>
-          {companyNews?.news?.length ? (
-            <ul className="divide-y divide-border/70">
-              {companyNews.news.map((item) => (
-                <li key={`${item.datetime}-${item.url}`}>
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group flex items-start gap-3 px-4 py-3 hover:bg-secondary/50 sm:px-5"
-                  >
-                    <div className="mt-0.5 rounded-md bg-brand/10 p-2 text-brand">
-                      <Newspaper className="h-4 w-4" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-1.5">
-                        {item.topic && (
-                          <span className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                            {item.topic}
-                          </span>
-                        )}
-                        {item.sentiment && (
-                          <span
+            {recentEarnings.length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[680px] text-left text-xs">
+                  <thead className="bg-surface-2 text-[10px] text-muted-foreground">
+                    <tr>
+                      <th className="px-4 py-2.5 font-medium sm:px-5">
+                        발표일
+                      </th>
+                      <th className="px-4 py-2.5 font-medium">EPS 실제</th>
+                      <th className="px-4 py-2.5 font-medium">EPS 예상</th>
+                      <th className="px-4 py-2.5 font-medium">
+                        EPS 서프라이즈
+                      </th>
+                      <th className="px-4 py-2.5 font-medium">매출 실제</th>
+                      <th className="px-4 py-2.5 font-medium">매출 예상</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/70">
+                    {recentEarnings.map((row) => {
+                      const surprise = earningsSurprise(
+                        row.epsActual,
+                        row.epsEstimate,
+                      );
+                      return (
+                        <tr key={`${row.ticker}-${row.date}`}>
+                          <td className="px-4 py-3 font-medium tabular sm:px-5">
+                            {row.date}
+                          </td>
+                          <td className="px-4 py-3 tabular">
+                            {row.epsActual == null
+                              ? "-"
+                              : `$${row.epsActual.toFixed(2)}`}
+                          </td>
+                          <td className="px-4 py-3 tabular text-muted-foreground">
+                            {row.epsEstimate == null
+                              ? "-"
+                              : `$${row.epsEstimate.toFixed(2)}`}
+                          </td>
+                          <td
                             className={cn(
-                              "rounded px-1.5 py-0.5 text-[10px] font-medium",
-                              item.sentiment === "positive"
-                                ? "bg-success/10 text-success"
-                                : item.sentiment === "negative"
-                                  ? "bg-danger/10 text-danger"
-                                  : "bg-muted text-muted-foreground",
+                              "px-4 py-3 font-semibold tabular",
+                              surprise != null &&
+                                surprise > 0 &&
+                                "text-success",
+                              surprise != null && surprise < 0 && "text-danger",
                             )}
                           >
-                            {item.sentiment === "positive"
-                              ? "긍정"
-                              : item.sentiment === "negative"
-                                ? "부정"
-                                : "중립"}
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-1 text-[10px] font-semibold text-brand">
-                        한 줄 요약
-                      </p>
-                      <p className="mt-0.5 text-sm font-semibold leading-5 group-hover:text-brand">
-                        {item.summaryKo || item.headlineKo || item.headline}
-                      </p>
-                      {(item.summaryKo || item.headlineKo) && (
-                        <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-muted-foreground">
-                          영문 헤드라인: {item.headline}
-                        </p>
-                      )}
-                      <p className="mt-1 text-[11px] text-muted-foreground">
-                        {item.source} · {formatNewsDate(item.datetime)}
-                      </p>
-                    </div>
-                    <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="px-5 py-8 text-center text-sm text-muted-foreground">
-              <p>최근 수집된 뉴스가 없습니다.</p>
-              <p className="mt-1 text-xs">
-                뉴스가 없거나 현재 BVT 우선 수집 대상 밖에 있는 종목입니다.
-              </p>
+                            {surprise == null ? "-" : fmtPct(surprise)}
+                          </td>
+                          <td className="px-4 py-3 tabular">
+                            {row.revenueActual == null
+                              ? "-"
+                              : fmtMoney(row.revenueActual / 1e6)}
+                          </td>
+                          <td className="px-4 py-3 tabular text-muted-foreground">
+                            {row.revenueEstimate == null
+                              ? "-"
+                              : fmtMoney(row.revenueEstimate / 1e6)}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="px-5 py-8 text-center text-sm text-muted-foreground">
+                <p>
+                  {nextEarnings
+                    ? "예정된 실적 발표는 있으나 아직 실제치가 공개되지 않았습니다."
+                    : awaitingEarnings
+                      ? "실적 발표 일정은 확인됐으며 EPS·매출 실제치를 갱신하고 있습니다."
+                      : "아직 수집된 실적 발표 데이터가 없습니다."}
+                </p>
+                <p className="mt-1 text-xs">
+                  S&P 500·Nasdaq 100과 양자·디지털자산·인기 소형주를 우선
+                  추적합니다.
+                </p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </DataSectionState>
+
+      <DataSectionState state={sourceStates.news} minHeight="mt-5 h-48">
+        <Card id="news" className="mt-5">
+          <CardContent className="p-0">
+            <div className="flex flex-col gap-2 border-b border-border/70 px-4 py-3 sm:flex-row sm:items-end sm:justify-between sm:px-5">
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
+                  최신 뉴스
+                </div>
+                <h2 className="mt-1 text-base font-semibold sm:text-lg">
+                  최신 뉴스
+                </h2>
+                <p className="text-[11px] text-muted-foreground">
+                  {companyNews?.news?.length
+                    ? `${companyNews.news.length}개 · 한국어 한 줄 요약 · ${formatNewsGeneratedAt(NEWS_META.generatedAt)} 수집`
+                    : `BVT 우선 수집 ${NEWS_META.tickerCount || 240}개 종목 · 외부 뉴스로 이어서 확인할 수 있습니다.`}
+                </p>
+              </div>
               <a
                 href={`https://finance.yahoo.com/quote/${encodeURIComponent(stock.ticker)}/news/`}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+                className="inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
               >
-                {stock.ticker} 외부 뉴스 확인
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-              <a
-                href={companyXSearchUrl(stock.ticker)}
-                target="_blank"
-                rel="noreferrer"
-                className="ml-4 mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
-              >
-                X 실시간 검색
-                <ExternalLink className="h-3.5 w-3.5" />
+                뉴스 전체 보기 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
-          )}
-        </CardContent>
-      </Card>
+            {companyNews?.news?.length ? (
+              <ul className="divide-y divide-border/70">
+                {companyNews.news.map((item) => (
+                  <li key={`${item.datetime}-${item.url}`}>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex items-start gap-3 px-4 py-3 hover:bg-secondary/50 sm:px-5"
+                    >
+                      <div className="mt-0.5 rounded-md bg-brand/10 p-2 text-brand">
+                        <Newspaper className="h-4 w-4" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          {item.topic && (
+                            <span className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                              {item.topic}
+                            </span>
+                          )}
+                          {item.sentiment && (
+                            <span
+                              className={cn(
+                                "rounded px-1.5 py-0.5 text-[10px] font-medium",
+                                item.sentiment === "positive"
+                                  ? "bg-success/10 text-success"
+                                  : item.sentiment === "negative"
+                                    ? "bg-danger/10 text-danger"
+                                    : "bg-muted text-muted-foreground",
+                              )}
+                            >
+                              {item.sentiment === "positive"
+                                ? "긍정"
+                                : item.sentiment === "negative"
+                                  ? "부정"
+                                  : "중립"}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-1 text-[10px] font-semibold text-brand">
+                          한 줄 요약
+                        </p>
+                        <p className="mt-0.5 text-sm font-semibold leading-5 group-hover:text-brand">
+                          {item.summaryKo || item.headlineKo || item.headline}
+                        </p>
+                        {(item.summaryKo || item.headlineKo) && (
+                          <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-muted-foreground">
+                            영문 헤드라인: {item.headline}
+                          </p>
+                        )}
+                        <p className="mt-1 text-[11px] text-muted-foreground">
+                          {item.source} · {formatNewsDate(item.datetime)}
+                        </p>
+                      </div>
+                      <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="px-5 py-8 text-center text-sm text-muted-foreground">
+                <p>최근 수집된 뉴스가 없습니다.</p>
+                <p className="mt-1 text-xs">
+                  뉴스가 없거나 현재 BVT 우선 수집 대상 밖에 있는 종목입니다.
+                </p>
+                <a
+                  href={`https://finance.yahoo.com/quote/${encodeURIComponent(stock.ticker)}/news/`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+                >
+                  {stock.ticker} 외부 뉴스 확인
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+                <a
+                  href={companyXSearchUrl(stock.ticker)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="ml-4 mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+                >
+                  X 실시간 검색
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </DataSectionState>
 
       <Card className="mt-5">
         <CardContent className="p-0">
           <div className="border-b border-border/70 px-4 py-3 sm:px-5">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-              RELATED STOCKS
-            </div>
+            <div className="text-xs font-semibold text-brand">비교 종목</div>
             <h2 className="mt-1 text-base font-semibold sm:text-lg">
               같이 비교할 종목
             </h2>
@@ -1010,19 +1101,17 @@ function StatCard({
   return (
     <Card>
       <CardContent className="p-3 sm:p-4">
-        <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-          {label}
-        </div>
+        <div className="text-xs font-medium text-muted-foreground">{label}</div>
         <div
           className={cn(
-            "mt-1 text-lg font-semibold tabular",
+            "mt-1 break-words text-base font-semibold leading-tight tabular min-[380px]:text-lg",
             tone !== undefined && tone > 0 && "text-success",
             tone !== undefined && tone < 0 && "text-danger",
           )}
         >
           {value}
         </div>
-        <div className="mt-1 truncate text-[10px] text-muted-foreground">
+        <div className="mt-1 text-xs leading-snug text-muted-foreground">
           {hint}
         </div>
       </CardContent>

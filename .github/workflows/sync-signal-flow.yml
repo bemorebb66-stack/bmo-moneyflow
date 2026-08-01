@@ -15,15 +15,46 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
       - name: Download latest Signal Flow build
         run: git clone --depth 1 https://github.com/bemorebb66-stack/bmo-antman.git /tmp/bmo-antman
 
-      - name: Sync Signal Flow data
+      - name: Test insider validation rules
+        run: python -m unittest tests.test_insider_data_quality -v
+
+      - name: Validate SEC insider transactions
+        run: |
+          mkdir -p /tmp/validated-insider
+          python scripts/validate_insider_data.py \
+            --source /tmp/bmo-antman/docs/data/insider.json \
+            --output /tmp/validated-insider/insider.json \
+            --quarantine /tmp/validated-insider/insider-quarantine.json \
+            --report /tmp/validated-insider/insider-quality.json \
+            --min-market-coverage 0.95 \
+            --max-pending-rate 0.05 \
+            --user-agent "BVTMoneyFlow/1.0 admin@bvtmoneyflow.xyz"
+
+      - name: Stage validated Signal Flow data
+        run: |
+          mkdir -p /tmp/signal-flow-data
+          cp -R /tmp/bmo-antman/docs/data/. /tmp/signal-flow-data/
+          cp /tmp/validated-insider/insider.json /tmp/signal-flow-data/insider.json
+          cp /tmp/validated-insider/insider-quarantine.json /tmp/signal-flow-data/
+          cp /tmp/validated-insider/insider-quality.json /tmp/signal-flow-data/
+
+      - name: Sync validated Signal Flow data
         run: |
           rm -rf insider/data ipo-lockup/data
           mkdir -p insider/data ipo-lockup/data
-          cp -R /tmp/bmo-antman/docs/data/. insider/data/
-          cp -R /tmp/bmo-antman/docs/data/. ipo-lockup/data/
+          cp -R /tmp/signal-flow-data/. insider/data/
+          cp -R /tmp/signal-flow-data/. ipo-lockup/data/
 
       - name: Add SEC-backed major IPO history
         run: python scripts/enrich_major_lockups.py
@@ -36,6 +67,28 @@ jobs:
 
       - name: Build verified post-lockup reactions
         run: python scripts/build_lockup_reactions.py
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: dashboard-src/pnpm-lock.yaml
+
+      - name: Install dashboard dependencies
+        working-directory: dashboard-src
+        run: pnpm install --frozen-lockfile
+
+      - name: Test dashboard insider data boundary
+        working-directory: dashboard-src
+        run: pnpm test
+
+      - name: Build dashboard
+        working-directory: dashboard-src
+        run: pnpm run build
 
       - name: Commit synced data
         run: |

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addContext, combineReplayTrades, parseExecutionTime, selectCompletedTrades, sortReplayExecutions, type CompletedTrade, type ReplayExecution, type ReplaySnapshot } from "./replay";
+import { addContext, calculateSha256, combineReplayTrades, MAX_REPLAY_EXECUTIONS, parseExecutionTime, parseReplayCsv, selectCompletedTrades, selectReplaySnapshot, sortReplayExecutions, validateReplaySnapshot, type CompletedTrade, type ReplayExecution, type ReplaySnapshot } from "./replay";
 import { detectLeveragedProduct } from "./etf-metadata";
 
 const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
@@ -8,6 +8,14 @@ const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
 });
 
 describe("Replay execution ordering", () => {
+  it("rejects CSV input above the execution limit", () => {
+    const header = "ticker,transaction_date,transaction_type,quantity,price,fee,currency";
+    const body = Array.from({ length: MAX_REPLAY_EXECUTIONS + 1 }, () => "TEST,2026-04-01,buy,1,10,0,USD").join("\n");
+    const result = parseReplayCsv(`${header}\n${body}`);
+    expect(result.executions).toEqual([]);
+    expect(result.errors[0]).toContain(MAX_REPLAY_EXECUTIONS.toLocaleString("ko-KR"));
+  });
+
   it("matches a reverse chronological export", () => {
     const result = combineReplayTrades([
       row({ transactionDate: "2026-04-03", side: "sell", price: 12, row: 1 }),
@@ -146,6 +154,125 @@ describe("Replay execution ordering", () => {
     const resolved = combineReplayTrades(executions, { TEST: { quantity: 32, averagePrice: 9 } });
     expect(resolved.openingShortfalls).toEqual({});
     expect(resolved.trades[0].realizedProfit).toBe(96);
+  });
+});
+
+describe("Replay v2 causality and corporate actions", () => {
+  const hashA = "a".repeat(64);
+  const hashB = "b".repeat(64);
+  const manifestVersions = { file_hash: `sha256:${"f".repeat(64)}`, data_contract_version: "bvt-market-data/2.0.0", signal_rule_version: "bvt-signal/2.0.0", replay_rule_version: "bvt-replay/2.0.0", calendar_version: "XNYS-regular/2026.2" } as const;
+  it("matches the standard raw-file SHA-256 fixture", async () => {
+    await expect(calculateSha256("abc")).resolves.toBe("sha256:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+  });
+
+  it("never selects a same-day snapshot for a date-only fill", () => {
+    const manifest = {
+      entries: [
+        { ...manifestVersions, trading_date: "2026-07-02", available_at: "2026-07-02T21:30:00Z", data_grade: "PIT_RECONSTRUCTED" as const, content_hash: `sha256:${hashA}`, path: `revisions/2026-07-02/${hashA}.json` },
+        { ...manifestVersions, trading_date: "2026-07-06", available_at: "2026-07-06T21:30:00Z", data_grade: "PIT_RECONSTRUCTED" as const, content_hash: `sha256:${hashB}`, path: `revisions/2026-07-06/${hashB}.json` },
+      ],
+    };
+    const selected = selectReplaySnapshot(manifest, { entryDate: "2026-07-06", entryTimeStatus: "DATE_ONLY" });
+    expect(selected.entry?.trading_date).toBe("2026-07-02");
+  });
+
+  it("uses the exchange date rather than the UTC date for date-only causality", () => {
+    const manifest = { entries: [
+      { ...manifestVersions, trading_date: "2026-07-02", available_at: "2026-07-06T03:30:00Z", data_grade: "PIT_VERIFIED" as const, content_hash: `sha256:${hashA}`, path: `revisions/2026-07-02/${hashA}.json` },
+    ] };
+    expect(selectReplaySnapshot(manifest, { entryDate: "2026-07-06", entryTimeStatus: "DATE_ONLY" }).status).toBe("SELECTED");
+    manifest.entries[0].available_at = "2026-07-06T04:01:00Z";
+    expect(selectReplaySnapshot(manifest, { entryDate: "2026-07-06", entryTimeStatus: "DATE_ONLY" }).status).toBe("NO_CAUSAL_SNAPSHOT");
+  });
+
+  it("rejects legacy snapshots without a verifiable available_at", () => {
+    const selected = selectReplaySnapshot({ dates: ["2026-07-02"] }, { entryDate: "2026-07-06" });
+    expect(selected.status).toBe("LEGACY_MANIFEST_UNUSABLE");
+  });
+
+  it("uses a same-day revision only when an explicit zoned fill occurred later", () => {
+    const manifest = {
+      entries: [
+        { ...manifestVersions, trading_date: "2026-07-06", available_at: "2026-07-06T13:00:00Z", data_grade: "PIT_VERIFIED" as const, content_hash: `sha256:${hashA}`, path: `revisions/2026-07-06/${hashA}.json` },
+        { ...manifestVersions, trading_date: "2026-07-06", available_at: "2026-07-06T21:30:00Z", data_grade: "PIT_VERIFIED" as const, content_hash: `sha256:${hashB}`, path: `revisions/2026-07-06/${hashB}.json` },
+      ],
+    };
+    const selected = selectReplaySnapshot(manifest, { entryDate: "2026-07-06", entryAt: "2026-07-06T14:30:00Z", entryTimeStatus: "KNOWN" });
+    expect(selected.entry?.content_hash).toBe(`sha256:${hashA}`);
+  });
+
+  it("rejects path traversal and hash/path mismatches in a manifest", () => {
+    const selected = selectReplaySnapshot({ entries: [{ ...manifestVersions, trading_date: "2026-07-02", available_at: "2026-07-02T21:30:00Z", data_grade: "PIT_VERIFIED", content_hash: `sha256:${hashA}`, path: "../data.json" }] }, { entryDate: "2026-07-06" });
+    expect(selected.status).toBe("INVALID_MANIFEST");
+  });
+
+  it("adjusts quantity but preserves cost basis through a split", () => {
+    const executions: ReplayExecution[] = [
+      { ticker: "FIX", transactionDate: "2026-07-06", side: "buy", quantity: 10, price: 12, fee: 1, feeProvided: true, row: 1 },
+      { ticker: "FIX", transactionDate: "2026-07-08", side: "sell", quantity: 20, price: 7, fee: 1, feeProvided: true, row: 2 },
+    ];
+    const result = combineReplayTrades(executions, {}, [{ ticker: "FIX", effectiveDate: "2026-07-07", actionType: "SPLIT", ratio: 2 }]);
+    expect(result.errors).toEqual([]);
+    expect(result.openingShortfalls).toEqual({});
+    expect(result.trades[0].quantity).toBe(20);
+    expect(result.trades[0].averageEntryPrice).toBe(6.05);
+    expect(result.trades[0].averageExitPrice).toBe(7);
+    expect(result.trades[0].realizedProfit).toBe(18);
+    expect(result.trades[0].returnPercent).toBeCloseTo(14.8760330579, 10);
+  });
+
+  it("adjusts a pre-export opening holding through a split", () => {
+    const result = combineReplayTrades(
+      [{ ticker: "FIX", transactionDate: "2026-07-08", side: "sell", quantity: 20, price: 7, fee: 0, feeProvided: true, row: 1 }],
+      { FIX: { quantity: 10, averagePrice: 12 } },
+      [{ ticker: "FIX", effectiveDate: "2026-07-07", actionType: "SPLIT", ratio: 2 }],
+    );
+    expect(result.errors).toEqual([]);
+    expect(result.openingShortfalls).toEqual({});
+    expect(result.trades[0].realizedProfit).toBe(20);
+  });
+
+  it("normalizes quantities sold before a split", () => {
+    const result = combineReplayTrades([
+      { ticker: "FIX", transactionDate: "2026-07-06", side: "buy", quantity: 10, price: 10, fee: 0, feeProvided: true, row: 1 },
+      { ticker: "FIX", transactionDate: "2026-07-06", side: "sell", quantity: 5, price: 12, fee: 0, feeProvided: true, row: 2 },
+      { ticker: "FIX", transactionDate: "2026-07-08", side: "sell", quantity: 10, price: 7, fee: 0, feeProvided: true, row: 3 },
+    ], {}, [{ ticker: "FIX", effectiveDate: "2026-07-07", actionType: "SPLIT", ratio: 2 }]);
+    expect(result.errors).toEqual([]);
+    expect(result.trades[0].quantity).toBe(20);
+    expect(result.trades[0].averageEntryPrice).toBe(5);
+    expect(result.trades[0].averageExitPrice).toBe(6.5);
+    expect(result.trades[0].realizedProfit).toBe(30);
+  });
+
+  it("marks settlement dates and non-trading dates as incomplete inputs", () => {
+    const settlement = combineReplayTrades([
+      { ticker: "FIX", transactionDate: "2026-07-06", side: "buy", quantity: 1, price: 10, fee: 0, dateBasis: "SETTLEMENT_DATE", row: 1 },
+      { ticker: "FIX", transactionDate: "2026-07-07", side: "sell", quantity: 1, price: 11, fee: 0, dateBasis: "SETTLEMENT_DATE", row: 2 },
+    ]);
+    const weekend = combineReplayTrades([
+      { ticker: "FIX", transactionDate: "2026-07-11", side: "buy", quantity: 1, price: 10, fee: 0, row: 1 },
+      { ticker: "FIX", transactionDate: "2026-07-13", side: "sell", quantity: 1, price: 11, fee: 0, row: 2 },
+    ]);
+    expect(settlement.trades[0].dateStatus).toBe("SETTLEMENT_DATE");
+    expect(weekend.trades[0].dateStatus).toBe("NON_TRADING_DATE");
+  });
+
+  it("rejects malformed versioned snapshot data", () => {
+    const invalid = {
+      schema_version: 2,
+      trading_date: "2026-07-06",
+      available_at: "2026-07-06T20:00:00",
+      information_cutoff_at: "2026-07-06T21:00:00Z",
+      content_hash: "bad",
+      data_grade: "CURRENT_PROXY",
+      signal_rule_version: "bvt-signal/2.0.0",
+      replay_rule_version: "bvt-replay/2.0.0",
+      market: { market_regime: "중립", dollar_volume_change_1d: null },
+      groups: { sector: {}, industry: {}, market_cap: {} },
+      tickers: {},
+    } satisfies ReplaySnapshot;
+    expect(validateReplaySnapshot(invalid)).toEqual(expect.arrayContaining(["INVALID_AVAILABLE_AT", "INVALID_CONTENT_HASH"]));
   });
 });
 

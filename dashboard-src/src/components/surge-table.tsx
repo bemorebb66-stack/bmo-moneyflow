@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   LineChart,
   Users,
@@ -29,6 +29,27 @@ import { LIVE_STOCKS, SURGE_STOCKS, type MarketPeriod } from "@/lib/mock-data";
 import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { MetricInfo } from "./metric-info";
+import { ListPagination } from "./list-pagination";
+import { useResponsiveListLayout } from "@/hooks/use-responsive-list-layout";
+import { useUrlSearchState } from "@/hooks/use-url-search-state";
+import { useWatchlist } from "@/lib/user-library";
+import { SaveStockButton } from "./save-stock-button";
+import { SavedScannerControls } from "./saved-scanner-controls";
+import {
+  normalizeScannerCriteria,
+  type SavedScannerCriteria,
+  type ScannerInsight,
+  type ScannerPreset,
+  type ScannerSortKey,
+  type ScannerSortMode,
+} from "@/lib/user-library";
+import {
+  PAGE_SIZE_OPTIONS,
+  pageForResizedPage,
+  pageSlice,
+  parsePageSize,
+  parsePositiveInt,
+} from "@/lib/list-state";
 
 const PERIODS: { id: MarketPeriod; label: string }[] = [
   { id: "1d", label: "1일 대비" },
@@ -37,16 +58,10 @@ const PERIODS: { id: MarketPeriod; label: string }[] = [
   { id: "60d", label: "60일 대비" },
 ];
 
-type SortKey =
-  "price" | "change" | "volume" | MarketPeriod | "marketCap" | "signal";
-type SortMode = "desc" | "asc" | "average";
-type InsightFilter = "all" | "new" | "persistent" | "overheated";
-type PresetId =
-  | "trading-value-surge"
-  | "up-with-volume"
-  | "down-with-volume"
-  | "sector-leader"
-  | "large-cap-interest";
+type SortKey = ScannerSortKey;
+type SortMode = ScannerSortMode;
+type InsightFilter = ScannerInsight;
+type PresetId = ScannerPreset;
 type ExternalFilter = {
   preset?: PresetId;
   priceDirection?: "up" | "down";
@@ -91,6 +106,7 @@ const SIGNAL_RANK = {
   neutral: 2,
   "attention-loss": 1,
   outflow: 0,
+  unavailable: -1,
 } as const;
 const SORT_LABEL: Record<SortKey, string> = {
   price: "가격",
@@ -113,7 +129,9 @@ const sortValue = (stock: (typeof SURGE_STOCKS)[number], key: SortKey) => {
   return stock.volumeVs?.[key] ?? 0;
 };
 
-export function SurgeTable() {
+export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
+  const listLayout = useResponsiveListLayout();
+  const { params: urlParams, update: updateUrl } = useUrlSearchState();
   const [period, setPeriod] = useState<MarketPeriod>(() => {
     if (typeof window === "undefined") return "20d";
     const value = new URLSearchParams(window.location.search).get("period");
@@ -121,9 +139,19 @@ export function SurgeTable() {
       ? (value as MarketPeriod)
       : "20d";
   });
-  const [sort, setSort] = useState<{ key: SortKey; mode: SortMode }>({
-    key: "20d",
-    mode: "desc",
+  const [sort, setSort] = useState<{ key: SortKey; mode: SortMode }>(() => {
+    if (typeof window === "undefined") return { key: "20d", mode: "desc" };
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("sort");
+    const mode = params.get("order");
+    return {
+      key: Object.keys(SORT_LABEL).includes(key ?? "")
+        ? (key as SortKey)
+        : "20d",
+      mode: ["desc", "asc", "average"].includes(mode ?? "")
+        ? (mode as SortMode)
+        : "desc",
+    };
   });
   const [query, setQuery] = useState(() => {
     if (typeof window === "undefined") return "";
@@ -156,17 +184,19 @@ export function SurgeTable() {
           : undefined,
     };
   });
-  const [watch, setWatch] = useState<string[]>(() => {
-    try {
-      return JSON.parse(localStorage.getItem("bmoWatch") || "[]");
-    } catch {
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    localStorage.setItem("bmoWatch", JSON.stringify(watch));
-  }, [watch]);
+  const watchlist = useWatchlist();
+  const watch = watchlist.tickers;
+  const pageSize = parsePageSize(urlParams.get("size"));
+  const requestedPage = parsePositiveInt(urlParams.get("page"), 1);
+  const syncingFromHistory = useRef(false);
+  const filterSignature = JSON.stringify([
+    period,
+    query,
+    insight,
+    externalFilter,
+    sort,
+  ]);
+  const previousFilterSignature = useRef(filterSignature);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -193,22 +223,81 @@ export function SurgeTable() {
           externalFilter.tradingValueDirection,
         )
       : url.searchParams.delete("tradingValueDirection");
+    sort.key !== "20d"
+      ? url.searchParams.set("sort", sort.key)
+      : url.searchParams.delete("sort");
+    sort.mode !== "desc"
+      ? url.searchParams.set("order", sort.mode)
+      : url.searchParams.delete("order");
+    const filtersChanged = previousFilterSignature.current !== filterSignature;
+    previousFilterSignature.current = filterSignature;
+    if (filtersChanged && !syncingFromHistory.current) {
+      url.searchParams.delete("page");
+    }
+    syncingFromHistory.current = false;
     window.history.replaceState({}, "", url);
-  }, [externalFilter, insight, period, query]);
+    window.dispatchEvent(new Event("bvt:url-search-change"));
+  }, [externalFilter, filterSignature, insight, period, query, sort]);
+
+  useEffect(() => {
+    const restore = () => {
+      const params = new URLSearchParams(window.location.search);
+      const nextPeriod = params.get("period");
+      const nextInsight = params.get("insight");
+      const nextSort = params.get("sort");
+      const nextOrder = params.get("order");
+      syncingFromHistory.current = true;
+      setQuery(params.get("q") ?? params.get("ticker") ?? "");
+      setPeriod(
+        ["1d", "5d", "20d", "60d"].includes(nextPeriod ?? "")
+          ? (nextPeriod as MarketPeriod)
+          : "20d",
+      );
+      setInsight(
+        INSIGHT_FILTERS.some((item) => item.id === nextInsight)
+          ? (nextInsight as InsightFilter)
+          : "all",
+      );
+      setExternalFilter({
+        preset: PRESET_IDS.has(params.get("preset") as PresetId)
+          ? (params.get("preset") as PresetId)
+          : undefined,
+        priceDirection:
+          params.get("priceDirection") === "up" ||
+          params.get("priceDirection") === "down"
+            ? (params.get("priceDirection") as "up" | "down")
+            : undefined,
+        tradingValueDirection:
+          params.get("tradingValueDirection") === "up" ||
+          params.get("tradingValueDirection") === "down"
+            ? (params.get("tradingValueDirection") as "up" | "down")
+            : undefined,
+      });
+      setSort({
+        key: Object.keys(SORT_LABEL).includes(nextSort ?? "")
+          ? (nextSort as SortKey)
+          : "20d",
+        mode: ["desc", "asc", "average"].includes(nextOrder ?? "")
+          ? (nextOrder as SortMode)
+          : "desc",
+      });
+    };
+    window.addEventListener("popstate", restore);
+    return () => window.removeEventListener("popstate", restore);
+  }, [dataVersion]);
 
   const sectorLeaderBySector = useMemo(() => {
-    const leaders = new Map<string, string>();
+    const leaders = new Map<string, (typeof LIVE_STOCKS)[number]>();
     for (const stock of LIVE_STOCKS) {
       const current = leaders.get(stock.sector);
-      const currentStock = current
-        ? LIVE_STOCKS.find((row) => row.ticker === current)
-        : undefined;
-      if (!currentStock || stock.volume > currentStock.volume) {
-        leaders.set(stock.sector, stock.ticker);
+      if (!current || stock.volume > current.volume) {
+        leaders.set(stock.sector, stock);
       }
     }
-    return leaders;
-  }, []);
+    return new Map(
+      Array.from(leaders, ([sector, stock]) => [sector, stock.ticker]),
+    );
+  }, [dataVersion]);
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -290,7 +379,50 @@ export function SurgeTable() {
         return Math.abs(av - average) - Math.abs(bv - average);
       return sort.mode === "desc" ? bv - av : av - bv;
     });
-  }, [externalFilter, insight, period, query, sectorLeaderBySector, sort]);
+  }, [
+    dataVersion,
+    externalFilter,
+    insight,
+    period,
+    query,
+    sectorLeaderBySector,
+    sort,
+  ]);
+  const paged = pageSlice(rows, requestedPage, pageSize);
+
+  useEffect(() => {
+    if (!dataVersion) return;
+    if (requestedPage === paged.page) return;
+    updateUrl((params) => {
+      paged.page === 1
+        ? params.delete("page")
+        : params.set("page", String(paged.page));
+    });
+  }, [dataVersion, paged.page, requestedPage, updateUrl]);
+
+  const changePage = (page: number) => {
+    updateUrl(
+      (params) => {
+        page === 1 ? params.delete("page") : params.set("page", String(page));
+      },
+      { replace: false },
+    );
+    requestAnimationFrame(() =>
+      document.getElementById("scanner-results")?.focus(),
+    );
+  };
+
+  const changePageSize = (nextSize: number) => {
+    const nextPage = pageForResizedPage(paged.page, pageSize, nextSize);
+    updateUrl((params) => {
+      nextSize === 25
+        ? params.delete("size")
+        : params.set("size", String(nextSize));
+      nextPage === 1
+        ? params.delete("page")
+        : params.set("page", String(nextPage));
+    });
+  };
 
   const externalParts = [
     externalFilter.priceDirection === "up"
@@ -346,12 +478,18 @@ export function SurgeTable() {
     insight !== "all"
       ? {
           id: "insight",
-          label: INSIGHT_FILTERS.find((item) => item.id === insight)?.label || insight,
+          label:
+            INSIGHT_FILTERS.find((item) => item.id === insight)?.label ||
+            insight,
           clear: () => setInsight("all"),
         }
       : null,
     query.trim()
-      ? { id: "query", label: `검색: ${query.trim()}`, clear: () => setQuery("") }
+      ? {
+          id: "query",
+          label: `검색: ${query.trim()}`,
+          clear: () => setQuery(""),
+        }
       : null,
     period !== "20d"
       ? {
@@ -385,12 +523,39 @@ export function SurgeTable() {
               : "desc",
     }));
 
-  const toggleWatch = (ticker: string) =>
-    setWatch((current) =>
-      current.includes(ticker)
-        ? current.filter((item) => item !== ticker)
-        : [...current, ticker],
+  const toggleWatch = (ticker: string) => {
+    watchlist.toggle(ticker);
+  };
+
+  const savedCriteria = useMemo(
+    () =>
+      normalizeScannerCriteria({
+        query,
+        period,
+        insight,
+        preset: externalFilter.preset ?? null,
+        priceDirection: externalFilter.priceDirection ?? null,
+        tradingValueDirection:
+          externalFilter.tradingValueDirection ?? null,
+        sort,
+      }),
+    [externalFilter, insight, period, query, sort],
+  );
+
+  const applySavedCriteria = (criteria: SavedScannerCriteria) => {
+    setQuery(criteria.query);
+    setPeriod(criteria.period);
+    setInsight(criteria.insight);
+    setExternalFilter({
+      preset: criteria.preset ?? undefined,
+      priceDirection: criteria.priceDirection ?? undefined,
+      tradingValueDirection: criteria.tradingValueDirection ?? undefined,
+    });
+    setSort(criteria.sort);
+    requestAnimationFrame(() =>
+      document.getElementById("scanner-results")?.focus(),
     );
+  };
 
   return (
     <Card>
@@ -398,7 +563,11 @@ export function SurgeTable() {
         <div className="flex flex-col gap-3 border-b border-border/70 px-4 py-3 sm:px-5 lg:flex-row lg:items-end">
           <div>
             <div className="flex items-center gap-1">
-              <h2 className="text-base font-semibold sm:text-lg">
+              <h2
+                id="scanner-results"
+                tabIndex={-1}
+                className="text-base font-semibold outline-none sm:text-lg"
+              >
                 거래대금 급증 종목
               </h2>
               <MetricInfo label="급증 기준">
@@ -408,8 +577,8 @@ export function SurgeTable() {
               </MetricInfo>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              전체 {SURGE_STOCKS.length.toLocaleString("ko-KR")}개 중 {rows.length}개 · 현재{" "}
-              {SORT_LABEL[sort.key]}{" "}
+              전체 {SURGE_STOCKS.length.toLocaleString("ko-KR")}개 중{" "}
+              {rows.length}개 · 현재 {SORT_LABEL[sort.key]}{" "}
               {sort.mode === "desc"
                 ? "높은 순"
                 : sort.mode === "asc"
@@ -456,6 +625,13 @@ export function SurgeTable() {
               className="h-11 pl-9 sm:h-9"
             />
           </div>
+        </div>
+
+        <div className="flex justify-end border-b border-border/70 px-4 py-3 sm:px-5">
+          <SavedScannerControls
+            criteria={savedCriteria}
+            onApply={applySavedCriteria}
+          />
         </div>
 
         <div className="border-b border-border/70 px-4 py-3 sm:px-5">
@@ -535,7 +711,9 @@ export function SurgeTable() {
                   <X className="h-3 w-3 text-muted-foreground" />
                 </button>
               ))}
-              <span className="text-muted-foreground">결과 {rows.length}개</span>
+              <span className="text-muted-foreground">
+                결과 {rows.length}개
+              </span>
               <button
                 type="button"
                 onClick={clearAllFilters}
@@ -553,211 +731,232 @@ export function SurgeTable() {
         )}
 
         <TooltipProvider delayDuration={150}>
-          <MobileStockList
-            rows={rows}
-            period={period}
-            sectorLeaderBySector={sectorLeaderBySector}
-            watch={watch}
-            onToggleWatch={toggleWatch}
-          />
-          <div className="hidden max-h-[680px] overflow-auto md:block">
-            <table className="min-w-[1240px] w-full text-sm">
-              <thead className="sticky top-0 z-10 bg-surface-2/90 text-[11px] uppercase tracking-wide text-muted-foreground backdrop-blur">
-                <tr>
-                  <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
-                    종목
-                  </th>
-                  <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
-                    섹터·산업
-                  </th>
-                  <SortableTh
-                    label="가격"
-                    sortKey="price"
-                    sort={sort}
-                    onSort={cycleSort}
-                  />
-                  <SortableTh
-                    label="등락"
-                    sortKey="change"
-                    sort={sort}
-                    onSort={cycleSort}
-                  />
-                  <SortableTh
-                    label="거래대금"
-                    sortKey="volume"
-                    sort={sort}
-                    onSort={cycleSort}
-                  />
-                  {PERIODS.map((item) => (
+          {listLayout === "mobile" ? (
+            <MobileStockList
+              rows={paged.rows}
+              start={paged.start}
+              period={period}
+              sectorLeaderBySector={sectorLeaderBySector}
+              watch={watch}
+              onToggleWatch={toggleWatch}
+            />
+          ) : (
+            <div className="max-h-[680px] overflow-auto">
+              <table className="min-w-[1240px] w-full text-sm">
+                <caption className="sr-only">
+                  거래대금 급증 종목 {rows.length}건 중 {paged.start + 1}~
+                  {paged.end}번
+                </caption>
+                <thead className="sticky top-0 z-10 bg-surface-2/90 text-[11px] uppercase tracking-wide text-muted-foreground backdrop-blur">
+                  <tr>
+                    <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
+                      종목
+                    </th>
+                    <th className="whitespace-nowrap py-2.5 pr-3 text-left font-medium">
+                      섹터·산업
+                    </th>
                     <SortableTh
-                      key={item.id}
-                      label={`${item.id.toUpperCase()} 대비`}
-                      sortKey={item.id}
+                      label="가격"
+                      sortKey="price"
                       sort={sort}
                       onSort={cycleSort}
-                      active={period === item.id}
                     />
-                  ))}
-                  <SortableTh
-                    label="시총"
-                    sortKey="marketCap"
-                    sort={sort}
-                    onSort={cycleSort}
-                  />
-                  <SortableTh
-                    label="신호"
-                    sortKey="signal"
-                    sort={sort}
-                    onSort={cycleSort}
-                    align="left"
-                  />
-                  <th className="whitespace-nowrap py-2.5 pr-4 text-right font-medium">
-                    액션
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/70">
-                {rows.map((stock) => (
-                  <tr
-                    key={stock.ticker}
-                    className="transition-colors hover:bg-secondary/50"
-                  >
-                    <td className="whitespace-nowrap py-2.5 pl-4 pr-3">
-                      <a
-                        href={`/stock/?ticker=${encodeURIComponent(stock.ticker)}`}
-                        className="flex flex-col leading-tight hover:text-brand"
-                      >
-                        <span className="font-mono text-[13px] font-semibold tabular">
-                          {stock.ticker}
-                        </span>
-                        <span className="text-[11px] text-muted-foreground">
-                          {stock.name}
-                        </span>
-                        <StockReasonBadges
-                          stock={stock}
-                          sectorLeader={
-                            sectorLeaderBySector.get(stock.sector) === stock.ticker
-                          }
-                        />
-                      </a>
-                    </td>
-                    <td className="py-2.5 pr-3 text-xs">
-                      <div>{stock.sector}</div>
-                      <div className="text-[11px] text-muted-foreground">
-                        {stock.industry || "산업 미수집"}
-                      </div>
-                    </td>
-                    <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                      ${fmtPrice(stock.price)}
-                    </td>
-                    <td className="whitespace-nowrap py-2.5 pr-3 text-right">
-                      <DeltaText value={stock.change} />
-                    </td>
-                    <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                      {fmtMoney(stock.volume)}
-                    </td>
-                    {PERIODS.map((item) => {
-                      const value = stock.volumeVs?.[item.id] ?? 0;
-                      return (
-                        <td
-                          key={item.id}
-                          className={cn(
-                            "whitespace-nowrap py-2.5 pr-3 text-right font-medium tabular",
-                            period === item.id && "bg-brand/[0.04]",
-                            value > 0
-                              ? "text-success"
-                              : value < 0
-                                ? "text-danger"
-                                : "text-muted-foreground",
-                          )}
-                        >
-                          <span
-                            title={
-                              Math.abs(value) >= 200
-                                ? "평균 거래대금이 작거나 일시적 거래가 집중되면 변화율이 크게 확대될 수 있습니다."
-                                : undefined
-                            }
-                          >
-                            {fmtPct(value)}
-                            {Math.abs(value) >= 200 && period === item.id && (
-                              <sup className="ml-0.5 text-[8px] text-warning">
-                                주의
-                              </sup>
-                            )}
-                          </span>
-                        </td>
-                      );
-                    })}
-                    <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular text-muted-foreground">
-                      {fmtMcap(stock.marketCap)}
-                    </td>
-                    <td className="whitespace-nowrap py-2.5 pr-3">
-                      <SignalBadge signal={stock.signal} size="xs" />
-                    </td>
-                    <td className="whitespace-nowrap py-2.5 pr-4 text-right">
-                      <div className="inline-flex items-center gap-0.5">
-                        <IconAction
-                          label="가격 차트"
-                          href={`https://finance.yahoo.com/quote/${stock.ticker}/chart/`}
-                          external
-                          icon={<LineChart className="h-3.5 w-3.5" />}
-                        />
-                        <IconAction
-                          label="내부자 거래"
-                          href={`/insider/?ticker=${encodeURIComponent(stock.ticker)}`}
-                          active={stock.hasInsider}
-                          icon={<Users className="h-3.5 w-3.5" />}
-                        />
-                        {stock.isIpo && (
-                          <IconAction
-                            label="IPO 정보"
-                            href={`/ipo-lockup/?ticker=${encodeURIComponent(stock.ticker)}`}
-                            active
-                            icon={<Rocket className="h-3.5 w-3.5" />}
-                          />
-                        )}
-                        <IconAction
-                          label="관련 뉴스"
-                          href={`https://finance.yahoo.com/quote/${stock.ticker}/news/`}
-                          external
-                          active
-                          icon={<Newspaper className="h-3.5 w-3.5" />}
-                        />
-                        <IconAction
-                          label={
-                            watch.includes(stock.ticker)
-                              ? "관심 종목 제거"
-                              : "관심 종목 추가"
-                          }
-                          onClick={() => toggleWatch(stock.ticker)}
-                          active={watch.includes(stock.ticker)}
-                          icon={
-                            <Star
-                              className={cn(
-                                "h-3.5 w-3.5",
-                                watch.includes(stock.ticker) && "fill-current",
-                              )}
-                            />
-                          }
-                        />
-                      </div>
-                    </td>
+                    <SortableTh
+                      label="등락"
+                      sortKey="change"
+                      sort={sort}
+                      onSort={cycleSort}
+                    />
+                    <SortableTh
+                      label="거래대금"
+                      sortKey="volume"
+                      sort={sort}
+                      onSort={cycleSort}
+                    />
+                    {PERIODS.map((item) => (
+                      <SortableTh
+                        key={item.id}
+                        label={`${item.id.toUpperCase()} 대비`}
+                        sortKey={item.id}
+                        sort={sort}
+                        onSort={cycleSort}
+                        active={period === item.id}
+                      />
+                    ))}
+                    <SortableTh
+                      label="시총"
+                      sortKey="marketCap"
+                      sort={sort}
+                      onSort={cycleSort}
+                    />
+                    <SortableTh
+                      label="신호"
+                      sortKey="signal"
+                      sort={sort}
+                      onSort={cycleSort}
+                      align="left"
+                    />
+                    <th className="whitespace-nowrap py-2.5 pr-4 text-right font-medium">
+                      액션
+                    </th>
                   </tr>
-                ))}
-                {rows.length === 0 && (
-                  <tr>
-                    <td
-                      colSpan={12}
-                      className="py-12 text-center text-sm text-muted-foreground"
+                </thead>
+                <tbody className="divide-y divide-border/70">
+                  {paged.rows.map((stock) => (
+                    <tr
+                      key={stock.ticker}
+                      className="transition-colors hover:bg-secondary/50"
                     >
-                      검색 결과가 없습니다.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                      <td className="whitespace-nowrap py-2.5 pl-4 pr-3">
+                        <a
+                          href={`/stocks/${stock.ticker.toLowerCase()}/`}
+                          className="flex flex-col leading-tight hover:text-brand"
+                        >
+                          <span className="font-mono text-[13px] font-semibold tabular">
+                            {stock.ticker}
+                          </span>
+                          <span className="text-[11px] text-muted-foreground">
+                            {stock.name}
+                          </span>
+                          <StockReasonBadges
+                            stock={stock}
+                            sectorLeader={
+                              sectorLeaderBySector.get(stock.sector) ===
+                              stock.ticker
+                            }
+                          />
+                        </a>
+                      </td>
+                      <td className="py-2.5 pr-3 text-xs">
+                        <div>{stock.sector}</div>
+                        <div className="text-[11px] text-muted-foreground">
+                          {stock.industry || "산업 미수집"}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
+                        ${fmtPrice(stock.price)}
+                      </td>
+                      <td className="whitespace-nowrap py-2.5 pr-3 text-right">
+                        <DeltaText value={stock.change} />
+                      </td>
+                      <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
+                        {fmtMoney(stock.volume)}
+                      </td>
+                      {PERIODS.map((item) => {
+                        const value = stock.volumeVs?.[item.id] ?? 0;
+                        return (
+                          <td
+                            key={item.id}
+                            className={cn(
+                              "whitespace-nowrap py-2.5 pr-3 text-right font-medium tabular",
+                              period === item.id && "bg-brand/[0.04]",
+                              value > 0
+                                ? "text-success"
+                                : value < 0
+                                  ? "text-danger"
+                                  : "text-muted-foreground",
+                            )}
+                          >
+                            <span
+                              title={
+                                Math.abs(value) >= 200
+                                  ? "평균 거래대금이 작거나 일시적 거래가 집중되면 변화율이 크게 확대될 수 있습니다."
+                                  : undefined
+                              }
+                            >
+                              {fmtPct(value)}
+                              {Math.abs(value) >= 200 && period === item.id && (
+                                <sup className="ml-0.5 text-[8px] text-warning">
+                                  주의
+                                </sup>
+                              )}
+                            </span>
+                          </td>
+                        );
+                      })}
+                      <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular text-muted-foreground">
+                        {fmtMcap(stock.marketCap)}
+                      </td>
+                      <td className="whitespace-nowrap py-2.5 pr-3">
+                        <SignalBadge signal={stock.signal} size="xs" />
+                      </td>
+                      <td className="whitespace-nowrap py-2.5 pr-4 text-right">
+                        <div className="inline-flex items-center gap-0.5">
+                          <IconAction
+                            label="가격 차트"
+                            href={`https://finance.yahoo.com/quote/${stock.ticker}/chart/`}
+                            external
+                            icon={<LineChart className="h-3.5 w-3.5" />}
+                          />
+                          <IconAction
+                            label="내부자 거래"
+                            href={`/insider/?ticker=${encodeURIComponent(stock.ticker)}`}
+                            active={stock.hasInsider}
+                            icon={<Users className="h-3.5 w-3.5" />}
+                          />
+                          {stock.isIpo && (
+                            <IconAction
+                              label="IPO 정보"
+                              href={`/ipo-lockup/?ticker=${encodeURIComponent(stock.ticker)}`}
+                              active
+                              icon={<Rocket className="h-3.5 w-3.5" />}
+                            />
+                          )}
+                          <IconAction
+                            label="관련 뉴스"
+                            href={`https://finance.yahoo.com/quote/${stock.ticker}/news/`}
+                            external
+                            active
+                            icon={<Newspaper className="h-3.5 w-3.5" />}
+                          />
+                          <SaveStockButton
+                            ticker={stock.ticker}
+                            className="h-8 w-8 border-0 bg-transparent shadow-none"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                  {rows.length === 0 && (
+                    <tr>
+                      <td
+                        colSpan={12}
+                        className="py-12 text-center text-sm text-muted-foreground"
+                      >
+                        검색 결과가 없습니다.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          )}
         </TooltipProvider>
+        <div className="flex items-center justify-end border-t border-border/70 px-4 py-2 sm:px-5">
+          <label className="flex items-center gap-2 text-xs text-muted-foreground">
+            페이지당
+            <select
+              value={pageSize}
+              onChange={(event) => changePageSize(Number(event.target.value))}
+              className="h-9 rounded-md border border-border bg-background px-2 text-foreground"
+            >
+              {PAGE_SIZE_OPTIONS.map((size) => (
+                <option key={size} value={size}>
+                  {size}건
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <ListPagination
+          page={paged.page}
+          pageCount={paged.pageCount}
+          total={rows.length}
+          start={paged.start}
+          end={paged.end}
+          label="Scanner 결과"
+          onPageChange={changePage}
+        />
       </CardContent>
     </Card>
   );
@@ -765,12 +964,14 @@ export function SurgeTable() {
 
 function MobileStockList({
   rows,
+  start,
   period,
   sectorLeaderBySector,
   watch,
   onToggleWatch,
 }: {
   rows: (typeof SURGE_STOCKS)[number][];
+  start: number;
   period: MarketPeriod;
   sectorLeaderBySector: Map<string, string>;
   watch: string[];
@@ -785,96 +986,89 @@ function MobileStockList({
   }
 
   return (
-    <div className="max-h-[680px] divide-y divide-border/70 overflow-y-auto md:hidden">
+    <ol
+      start={start + 1}
+      className="max-h-[680px] divide-y divide-border/70 overflow-y-auto md:hidden"
+    >
       {rows.map((stock) => {
         const periodValue = stock.volumeVs?.[period] ?? 0;
         const watched = watch.includes(stock.ticker);
         return (
-          <article key={stock.ticker} className="px-4 py-4">
-            <div className="flex items-start justify-between gap-3">
-              <div className="min-w-0">
-                <a
-                  href={`/stock/?ticker=${encodeURIComponent(stock.ticker)}`}
-                  className="flex items-baseline gap-2 hover:text-brand"
-                >
-                  <span className="font-mono text-sm font-bold tabular">
-                    {stock.ticker}
-                  </span>
-                  <span className="truncate text-xs font-medium text-muted-foreground">
-                    {stock.name}
-                  </span>
-                </a>
-                <p className="mt-1 truncate text-xs text-muted-foreground">
-                  {stock.sector} · {stock.industry || "산업 미수집"} ·{" "}
-                  {fmtMcap(stock.marketCap)}
-                </p>
-                <StockReasonBadges
-                  stock={stock}
-                  sectorLeader={
-                    sectorLeaderBySector.get(stock.sector) === stock.ticker
+          <li key={stock.ticker}>
+            <article className="px-4 py-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <a
+                    href={`/stocks/${stock.ticker.toLowerCase()}/`}
+                    className="flex min-h-11 min-w-0 items-start gap-2 hover:text-brand"
+                  >
+                    <span className="font-mono text-sm font-bold tabular">
+                      {stock.ticker}
+                    </span>
+                    <span className="line-clamp-2 min-w-0 text-xs font-medium leading-5 text-muted-foreground">
+                      {stock.name}
+                    </span>
+                  </a>
+                  <p className="mt-1 line-clamp-2 text-xs leading-5 text-muted-foreground">
+                    {stock.sector} · {stock.industry || "산업 미수집"} ·{" "}
+                    {fmtMcap(stock.marketCap)}
+                  </p>
+                  <StockReasonBadges
+                    stock={stock}
+                    sectorLeader={
+                      sectorLeaderBySector.get(stock.sector) === stock.ticker
+                    }
+                  />
+                </div>
+                <SignalBadge signal={stock.signal} size="xs" />
+              </div>
+
+              <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg border border-border/70 bg-surface-2/55 p-2.5 min-[520px]:grid-cols-4">
+                <MobileMetric label="거래대금" value={fmtMoney(stock.volume)} />
+                <MobileMetric
+                  label={`${period.toUpperCase()} 대비`}
+                  value={fmtPct(periodValue)}
+                  tone={
+                    periodValue > 0
+                      ? "success"
+                      : periodValue < 0
+                        ? "danger"
+                        : undefined
                   }
+                  emphasized
+                />
+                <MobileMetric
+                  label="가격"
+                  value={`$${fmtPrice(stock.price)}`}
+                />
+                <MobileMetric
+                  label="등락"
+                  value={<DeltaText value={stock.change} />}
                 />
               </div>
-              <SignalBadge signal={stock.signal} size="xs" />
-            </div>
 
-            <div className="mt-3 grid grid-cols-4 gap-1 rounded-lg border border-border/70 bg-surface-2/55 p-2.5">
-              <MobileMetric label="거래대금" value={fmtMoney(stock.volume)} />
-              <MobileMetric
-                label={`${period.toUpperCase()} 대비`}
-                value={fmtPct(periodValue)}
-                tone={
-                  periodValue > 0
-                    ? "success"
-                    : periodValue < 0
-                      ? "danger"
-                      : undefined
-                }
-                emphasized
-              />
-              <MobileMetric label="가격" value={`$${fmtPrice(stock.price)}`} />
-              <MobileMetric
-                label="등락"
-                value={<DeltaText value={stock.change} />}
-              />
-            </div>
-
-            <div className="mt-3 flex items-center gap-2 border-t border-border/60 pt-3">
-              <a
-                href={`https://finance.yahoo.com/quote/${stock.ticker}/chart/`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-border bg-surface text-xs font-semibold transition-colors hover:bg-secondary"
-              >
-                <LineChart className="h-4 w-4" />
-                가격 차트
-              </a>
-              <MobileActionMenu
-                stock={stock}
-                watched={watched}
-                onToggleWatch={onToggleWatch}
-              />
-              <button
-                type="button"
-                onClick={() => onToggleWatch(stock.ticker)}
-                aria-label={
-                  watched
-                    ? `${stock.ticker} 관심 종목 제거`
-                    : `${stock.ticker} 관심 종목 추가`
-                }
-                aria-pressed={watched}
-                className={cn(
-                  "grid h-10 w-10 shrink-0 place-items-center rounded-md border border-border bg-surface text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",
-                  watched && "border-brand/30 bg-brand/10 text-brand",
-                )}
-              >
-                <Star className={cn("h-4 w-4", watched && "fill-current")} />
-              </button>
-            </div>
-          </article>
+              <div className="mt-3 flex items-center gap-2 border-t border-border/60 pt-3">
+                <a
+                  href={`https://finance.yahoo.com/quote/${stock.ticker}/chart/`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-md border border-border bg-surface text-xs font-semibold transition-colors hover:bg-secondary"
+                >
+                  <LineChart className="h-4 w-4" />
+                  가격 차트
+                </a>
+                <MobileActionMenu
+                  stock={stock}
+                  watched={watched}
+                  onToggleWatch={onToggleWatch}
+                />
+                <SaveStockButton ticker={stock.ticker} className="h-11 w-11" />
+              </div>
+            </article>
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
 }
 
@@ -887,7 +1081,9 @@ function StockReasonBadges({
 }) {
   const change20d = stock.volumeVs?.["20d"] ?? 0;
   const reasons = [
-    change20d >= 30 ? `20일 평균 대비 ${(1 + change20d / 100).toFixed(1)}배` : "",
+    change20d >= 30
+      ? `20일 평균 대비 ${(1 + change20d / 100).toFixed(1)}배`
+      : "",
     change20d > 0 && stock.change > 0
       ? "상승 동반 확대"
       : change20d > 0 && stock.change < 0
@@ -927,14 +1123,14 @@ function MobileMetric({
   return (
     <div
       className={cn(
-        "min-w-0 text-center",
-        emphasized && "rounded-md bg-brand/[0.07] py-1",
+        "min-w-0 rounded-md px-1 py-2 text-center",
+        emphasized && "bg-brand/[0.07]",
       )}
     >
-      <div className="truncate text-[10px] text-muted-foreground">{label}</div>
+      <div className="text-xs leading-4 text-muted-foreground">{label}</div>
       <div
         className={cn(
-          "mt-0.5 truncate text-xs font-semibold tabular",
+          "mt-1 break-words text-sm font-semibold leading-tight tabular",
           tone === "success" && "text-success",
           tone === "danger" && "text-danger",
         )}
@@ -959,7 +1155,7 @@ function MobileActionMenu({
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-border bg-surface text-xs font-semibold transition-colors hover:bg-secondary"
+          className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-md border border-border bg-surface text-xs font-semibold transition-colors hover:bg-secondary"
           aria-label={`${stock.ticker} 추가 정보`}
         >
           더보기
@@ -1031,6 +1227,16 @@ function SortableTh({
         : "평균 근접 순";
   return (
     <th
+      scope="col"
+      aria-sort={
+        !selected
+          ? "none"
+          : sort.mode === "desc"
+            ? "descending"
+            : sort.mode === "asc"
+              ? "ascending"
+              : "other"
+      }
       className={cn(
         "whitespace-nowrap py-2.5 pr-3 font-medium",
         align === "right" ? "text-right" : "text-left",

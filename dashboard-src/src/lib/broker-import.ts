@@ -1,5 +1,5 @@
 import * as XLSX from "xlsx";
-import type { ReplayExecution } from "@/lib/replay";
+import { MAX_REPLAY_EXECUTIONS, type ReplayExecution } from "@/lib/replay";
 
 export type ImportField = "ticker" | "transactionDate" | "transactionType" | "quantity" | "price" | "fee" | "currency" | "executionTime" | "executionId" | "orderId";
 export type ColumnMapping = Record<ImportField, number | null>;
@@ -222,6 +222,7 @@ function addExcluded(excluded: Record<string, number>, reason: string) {
 }
 
 export function normalizeBrokerRows(inspection: BrokerInspection, mapping = inspection.mapping, numericSide: "1-buy" | "1-sell" | null = null): BrokerImportResult {
+  if (inspection.rows.length > MAX_REPLAY_EXECUTIONS) return { executions: [], errors: [`체결 내역은 최대 ${MAX_REPLAY_EXECUTIONS.toLocaleString("ko-KR")}행까지 분석할 수 있습니다.`], warnings: [], excluded: {}, totalRows: inspection.rows.length, period: { first: null, last: null }, currencies: [] };
   const missing = requiredFields.filter((field) => mapping[field] === null);
   if (missing.length) return { executions: [], errors: [`필수 열을 연결해주세요: ${missing.map((field) => importFieldLabels[field]).join(", ")}`], warnings: [], excluded: {}, totalRows: inspection.rows.length, period: { first: null, last: null }, currencies: [] };
   const executions: ReplayExecution[] = [];
@@ -244,6 +245,7 @@ export function normalizeBrokerRows(inspection: BrokerInspection, mapping = insp
     const side = numericSide && (rawSide === "1" || rawSide === "2") ? (rawSide === "1" ? (numericSide === "1-buy" ? "buy" : "sell") : (numericSide === "1-buy" ? "sell" : "buy")) : sideValue(rawSide);
     const quantity = numeric(row[mapping.quantity!]);
     const price = numeric(row[mapping.price!]);
+    const rawFee = mapping.fee === null ? "" : String(row[mapping.fee] ?? "").trim();
     const fee = mapping.fee === null ? 0 : Math.abs(numeric(row[mapping.fee]) || 0);
     const currency = mapping.currency === null ? "USD" : String(row[mapping.currency] || "USD").trim().toUpperCase();
     const executionTime = mapping.executionTime === null ? "" : timeValue(row[mapping.executionTime]);
@@ -258,7 +260,7 @@ export function normalizeBrokerRows(inspection: BrokerInspection, mapping = insp
     const signature = [ticker, transactionDate, side, quantity, price, fee].join("|");
     if (seen.has(signature)) duplicateCandidates += 1;
     seen.add(signature);
-    executions.push({ ticker, transactionDate, side, quantity, price, fee, row: inspection.headerRow + index + 1, executionTime, executionId, orderId });
+    executions.push({ ticker, transactionDate, side, quantity, price, fee, feeProvided: Boolean(rawFee), dateBasis: settlementHeader ? "SETTLEMENT_DATE" : "TRADE_DATE", row: inspection.headerRow + index + 1, executionTime, executionId, orderId });
   });
   const sourceRows = [...executions].sort((a, b) => a.row - b.row);
   let ascending = 0;

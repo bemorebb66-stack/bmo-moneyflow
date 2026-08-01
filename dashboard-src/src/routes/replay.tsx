@@ -7,9 +7,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip as ChartTooltip, XAxis, YAxis } from "recharts";
 import { inspectBrokerFile, inspectBrokerText, importFieldLabels, normalizeBrokerRows, type BrokerImportResult, type BrokerInspection, type ColumnMapping, type ImportField } from "@/lib/broker-import";
-import { addContext, combineReplayTrades, confidence, parseReplayCsv, REPLAY_PARSER_VERSION, selectCompletedTrades, type CompletedTrade, type OpenPosition, type ReplaySnapshot, type ReplayTickerDebug } from "@/lib/replay";
+import { addContext, calculateSha256, combineReplayTrades, confidence, parseReplayCsv, REPLAY_PARSER_VERSION, selectCompletedTrades, selectReplaySnapshot, validateReplaySnapshot, type CompletedTrade, type OpenPosition, type ReplayManifest, type ReplaySnapshot, type ReplayTickerDebug } from "@/lib/replay";
 import { cn } from "@/lib/utils";
 import { analyzeReplayPerformance, type PerformanceRow } from "@/lib/replay-analytics";
+import { fetchTextWithPolicy, loadDataSourceOnce } from "@/lib/data-runtime";
+import { BENCHMARK_VERSION, PERFORMANCE_RULE_VERSION, REPLAY_RULE_VERSION, SIGNAL_PERFORMANCE_ASSUMPTIONS, SIGNAL_RULE_VERSION } from "@/lib/signal-rules";
 
 export const Route = createFileRoute("/replay")({
   head: () => ({
@@ -23,9 +25,12 @@ export const Route = createFileRoute("/replay")({
 });
 
 type Stage = "upload" | "ocr" | "mapping" | "review" | "loading" | "result";
+const MAX_REPLAY_FILE_BYTES = 15 * 1024 * 1024;
+const MAX_REPLAY_PASTE_CHARS = 2_000_000;
 
 function ReplayPage() {
   const inputRef = useRef<HTMLInputElement>(null);
+  const requestControllerRef = useRef<AbortController | null>(null);
   const [stage, setStage] = useState<Stage>("upload");
   const [fileName, setFileName] = useState("");
   const [parseErrors, setParseErrors] = useState<string[]>([]);
@@ -49,7 +54,16 @@ function ReplayPage() {
   const [ocrProgress, setOcrProgress] = useState(0);
   const [ocrRunning, setOcrRunning] = useState(false);
 
+  useEffect(
+    () => () => {
+      requestControllerRef.current?.abort();
+    },
+    [],
+  );
+
   const reset = () => {
+    requestControllerRef.current?.abort();
+    requestControllerRef.current = null;
     setStage("upload"); setFileName(""); setParseErrors([]); setTradeErrors([]); setWarnings([]); setTrades([]); setOpeningShortfalls({}); setOpenPositions([]); setTickerDebug([]); setExecutionsCount(0); setUploadError(""); setInspection(null); setImportResult(null); setOcrText(""); setOcrFileName(""); setOcrProgress(0); setOcrRunning(false);
     if (inputRef.current) inputRef.current.value = "";
   };
@@ -92,6 +106,10 @@ function ReplayPage() {
   const onFile = async (file?: File) => {
     if (!file) return;
     setUploadError("");
+    if (file.size > MAX_REPLAY_FILE_BYTES) {
+      setUploadError("파일은 15MB 이하만 처리할 수 있습니다.");
+      return;
+    }
     try {
       const extension = file.name.split(".").pop()?.toLowerCase();
       if (["png", "jpg", "jpeg", "webp"].includes(extension ?? "")) {
@@ -122,6 +140,10 @@ function ReplayPage() {
 
   const onPaste = (text: string, name = "붙여넣은 거래내역") => {
     setUploadError("");
+    if (text.length > MAX_REPLAY_PASTE_CHARS) {
+      setUploadError("붙여넣은 거래내역이 너무 큽니다. 200만 자 이하로 나눠주세요.");
+      return;
+    }
     try {
       const inspected = inspectBrokerText(text, name);
       setInspection(inspected);
@@ -135,41 +157,83 @@ function ReplayPage() {
 
   const loadSample = async () => {
     setUploadError("");
+    requestControllerRef.current?.abort();
+    const controller = new AbortController();
+    requestControllerRef.current = controller;
     try {
-      const response = await fetch("/replay_data/bvt-sample-trades.csv", { cache: "no-store" });
-      if (!response.ok) throw new Error();
-      processCsv(await response.text(), "BVT 샘플 거래.csv");
+      const text = await fetchTextWithPolicy(
+        "/replay_data/bvt-sample-trades.csv",
+        { signal: controller.signal },
+      );
+      processCsv(text, "BVT 샘플 거래.csv");
     } catch {
+      if (controller.signal.aborted) return;
       setUploadError("샘플 파일을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.");
     }
   };
 
   const analyze = async () => {
+    requestControllerRef.current?.abort();
+    const controller = new AbortController();
+    requestControllerRef.current = controller;
     setStage("loading");
     try {
-      const manifestResponse = await fetch("/replay_data/manifest.json", { cache: "no-store" });
-      if (!manifestResponse.ok) throw new Error("Replay 데이터 범위를 불러오지 못했습니다.");
-      const manifest = await manifestResponse.json() as { dates: string[]; first_date: string | null; last_date: string | null };
-      setCoverage({ first: manifest.first_date, last: manifest.last_date });
-      const selected = new Map<string, string | null>();
-      for (const trade of selectedTrades) {
-        const date = [...manifest.dates].reverse().find((value) => value <= trade.entryDate) ?? null;
-        selected.set(trade.entryDate, date);
+      const manifestState = await loadDataSourceOnce<ReplayManifest & {
+        first_selectable_date: string | null;
+        last_selectable_date: string | null;
+      }>("replayManifest", controller.signal);
+      if (!manifestState.data) {
+        throw new Error(
+          manifestState.error?.message ||
+            "Replay 데이터 범위를 불러오지 못했습니다.",
+        );
       }
-      const snapshotDates = [...new Set([...selected.values()].filter((value): value is string => Boolean(value)))];
+      const manifest = manifestState.data;
+      setCoverage({ first: manifest.first_selectable_date, last: manifest.last_selectable_date });
+      const selected = selectedTrades.map((trade) => selectReplaySnapshot(manifest, trade));
+      const snapshotPaths = [...new Set(selected.map((selection) => selection.entry?.path).filter((value): value is string => Boolean(value)))];
       const snapshots = new Map<string, ReplaySnapshot>();
-      await Promise.all(snapshotDates.map(async (date) => {
-        const response = await fetch(`/replay_data/snapshots/${date}.json`, { cache: "no-store" });
-        if (response.ok) snapshots.set(date, await response.json() as ReplaySnapshot);
-      }));
-      setTrades(selectedTrades.map((trade) => {
-        const date = selected.get(trade.entryDate);
-        const snapshot = date ? snapshots.get(date) : undefined;
-        if (!snapshot) return { ...trade, contextStatus: "보관 범위 이전", context: undefined };
-        return addContext(trade, snapshot, date === trade.entryDate ? "정상" : `직전 거래일 ${date}`);
+      const failedPaths = new Map<string, string>();
+      await Promise.allSettled(
+        snapshotPaths.map(async (path) => {
+          try {
+            const snapshotText = await fetchTextWithPolicy(
+              `/replay_data/${path}`,
+              { signal: controller.signal, timeoutMs: 8_000, retries: 2 },
+            );
+            const expectedEntry = manifest.entries?.find((entry) => entry.path === path);
+            if (await calculateSha256(snapshotText) !== expectedEntry?.file_hash) throw new Error("FILE_HASH_MISMATCH");
+            const snapshot = JSON.parse(snapshotText) as ReplaySnapshot;
+            const contractErrors = validateReplaySnapshot(snapshot);
+            if (expectedEntry?.content_hash !== snapshot.content_hash) contractErrors.push("MANIFEST_HASH_MISMATCH");
+            if (expectedEntry?.trading_date !== snapshot.trading_date) contractErrors.push("MANIFEST_DATE_MISMATCH");
+            if (contractErrors.length) throw new Error(contractErrors.join(","));
+            snapshots.set(path, snapshot);
+          } catch (error) {
+            if (!controller.signal.aborted) failedPaths.set(path, error instanceof Error ? error.message : "알 수 없는 데이터 오류");
+          }
+        }),
+      );
+      if (controller.signal.aborted) return;
+      setTrades(selectedTrades.map((trade, index) => {
+        const selection = selected[index];
+        const path = selection.entry?.path;
+        const snapshot = path ? snapshots.get(path) : undefined;
+        if (!snapshot) {
+          return {
+            ...trade,
+            contextStatus:
+              path && failedPaths.has(path)
+                ? `${selection.entry?.trading_date} 시장 데이터 사용 불가: ${failedPaths.get(path)}`
+                : selection.reason,
+            context: undefined,
+          };
+        }
+        return addContext(trade, snapshot, `${selection.reason} · ${selection.entry?.trading_date}`);
       }));
       setStage("result");
     } catch (error) {
+      if (controller.signal.aborted) return;
       setTradeErrors([error instanceof Error ? error.message : "분석 데이터를 불러오지 못했습니다."]);
       setStage("review");
     }
@@ -216,7 +280,7 @@ function UploadPanel({ inputRef, onFile, onPaste, onSample, error }: { inputRef:
       </div>}
     </CardContent></Card>
     <div className="space-y-4">
-      <Card><CardContent className="p-5"><FileSpreadsheet className="h-5 w-5 text-brand" /><h2 className="mt-3 font-semibold">처음 사용한다면</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">표준 양식에 티커, 거래일, 매수·매도, 수량, 가격, 수수료를 입력하세요.</p><div className="mt-4 grid gap-2"><Button asChild variant="outline" className="w-full"><a href="/replay_data/bvt-standard-trades.csv" download><Download className="mr-2 h-4 w-4" />표준 CSV 받기</a></Button><Button variant="ghost" className="w-full" onClick={onSample}>샘플로 체험하기</Button></div>{error && <p className="mt-3 text-xs leading-5 text-danger">{error}</p>}</CardContent></Card>
+      <Card><CardContent className="p-5"><FileSpreadsheet className="h-5 w-5 text-brand" /><h2 className="mt-3 font-semibold">처음 사용한다면</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">표준 양식에 티커, 거래일, 매수·매도, 수량, 가격, 수수료를 입력하세요.</p><div className="mt-4 grid gap-2"><Button asChild variant="outline" className="w-full"><a href="/replay_data/bvt-standard-trades.csv" download><Download className="mr-2 h-4 w-4" />표준 CSV 받기</a></Button><Button variant="ghost" className="w-full" onClick={onSample}>샘플로 체험하기</Button></div>{error && <p role="alert" className="mt-3 text-xs leading-5 text-danger">{error}</p>}</CardContent></Card>
       <Card><CardContent className="p-5 text-sm"><h2 className="font-semibold">현재 지원 범위</h2><ul className="mt-3 space-y-2 text-muted-foreground"><li>CSV·XLSX·XLS·텍스트형 PDF</li><li>PNG·JPG·WEBP 스크린샷 OCR</li><li>HTS·MTS 거래 표 붙여넣기</li><li>신한투자증권 자동 감지</li><li>그 외 형식 자동 추정·직접 연결</li><li>미국주식 · USD · 최근 완결 거래 선택 분석</li></ul><p className="mt-4 text-xs leading-5 text-muted-foreground">스크린샷 인식 결과는 날짜·수량·가격을 확인한 뒤 사용합니다.</p></CardContent></Card>
     </div>
   </div>;
@@ -259,24 +323,24 @@ function ReviewPanel({ fileName, executions, trades, selectedTrades, tradeLimit,
   return <div className="space-y-5">
     <section className="grid gap-3 sm:grid-cols-4"><Metric label="파일" value={fileName} /><Metric label="인식된 체결" value={`${executions}건`} /><Metric label="전체 완결 거래" value={`${trades.length}건`} /><Metric label="파서 버전" value={REPLAY_PARSER_VERSION} /></section>
     {inspection && importResult && <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">업로드 인식 결과</h2><p className="mt-1 text-xs text-muted-foreground">분석 전에 파일 인식 결과와 제외 항목을 확인해주세요.</p></div><CardContent className="grid gap-x-6 gap-y-4 p-5 text-sm sm:grid-cols-2 lg:grid-cols-4"><ImportInfo label="감지된 증권사" value={`${inspection.detectedBroker} · ${inspection.confidence}`} /><ImportInfo label="시트·헤더" value={`${inspection.selectedSheet} · ${inspection.headerRow}행`} /><ImportInfo label="전체 데이터 행" value={`${importResult.totalRows}건`} /><ImportInfo label="제외된 행" value={`${Object.values(importResult.excluded).reduce((sum, count) => sum + count, 0)}건`} /><ImportInfo label="거래 기간" value={importResult.period.first ? `${importResult.period.first} ~ ${importResult.period.last}` : "-"} /><ImportInfo label="통화" value={importResult.currencies.join(", ") || "USD(기본값)"} /><div className="sm:col-span-2"><div className="text-xs text-muted-foreground">제외 사유</div><div className="mt-1 text-foreground">{Object.entries(importResult.excluded).map(([reason, count]) => `${reason} ${count}건`).join(" · ") || "없음"}</div></div></CardContent></Card>}
-    <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">분석 범위</h2><p className="mt-1 text-xs text-muted-foreground">완결 거래를 만든 뒤 최종 매도일 기준으로 선택합니다.</p></div><CardContent className="grid gap-5 p-5 lg:grid-cols-2"><div><div className="mb-2 text-xs font-medium text-muted-foreground">최근 완결 거래</div><div className="flex flex-wrap gap-2">{(["10", "20", "50", "100", "all"] as const).map((value) => <Button key={value} size="sm" variant={tradeLimit === value ? "default" : "outline"} onClick={() => onTradeLimit(value)}>{value === "all" ? "전체" : `${value}건`}</Button>)}</div></div><div><div className="mb-2 text-xs font-medium text-muted-foreground">최종 매도일</div><div className="flex flex-wrap gap-2">{(["all", "30", "90", "180", "custom"] as const).map((value) => <Button key={value} size="sm" variant={datePreset === value ? "default" : "outline"} onClick={() => onDatePreset(value)}>{value === "all" ? "전체 기간" : value === "custom" ? "직접 선택" : `최근 ${value}일`}</Button>)}</div>{datePreset === "custom" && <div className="mt-3 flex gap-2"><input type="date" className="h-9 rounded-md border border-border bg-background px-3 text-sm" value={customFrom} onChange={(event) => onCustomFrom(event.target.value)} /><span className="self-center text-muted-foreground">~</span><input type="date" className="h-9 rounded-md border border-border bg-background px-3 text-sm" value={customTo} onChange={(event) => onCustomTo(event.target.value)} /></div>}</div></CardContent></Card>
+    <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">분석 범위</h2><p className="mt-1 text-xs text-muted-foreground">완결 거래를 만든 뒤 최종 매도일 기준으로 선택합니다.</p></div><CardContent className="grid gap-5 p-5 lg:grid-cols-2"><div><div className="mb-2 text-xs font-medium text-muted-foreground">최근 완결 거래</div><div className="flex flex-wrap gap-2">{(["10", "20", "50", "100", "all"] as const).map((value) => <Button key={value} size="sm" variant={tradeLimit === value ? "default" : "outline"} onClick={() => onTradeLimit(value)}>{value === "all" ? "전체" : `${value}건`}</Button>)}</div></div><div><div className="mb-2 text-xs font-medium text-muted-foreground">최종 매도일</div><div className="flex flex-wrap gap-2">{(["all", "30", "90", "180", "custom"] as const).map((value) => <Button key={value} size="sm" variant={datePreset === value ? "default" : "outline"} onClick={() => onDatePreset(value)}>{value === "all" ? "전체 기간" : value === "custom" ? "직접 선택" : `최근 ${value}일`}</Button>)}</div>{datePreset === "custom" && <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-2"><input type="date" aria-label="최종 매도일 시작 날짜" className="h-9 min-w-0 rounded-md border border-border bg-background px-2 text-sm" value={customFrom} onChange={(event) => onCustomFrom(event.target.value)} /><span aria-hidden="true" className="self-center text-muted-foreground">~</span><input type="date" aria-label="최종 매도일 종료 날짜" className="h-9 min-w-0 rounded-md border border-border bg-background px-2 text-sm" value={customTo} onChange={(event) => onCustomTo(event.target.value)} /></div>}</div></CardContent></Card>
     <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5"><Metric label="분석 대상" value={`${selectedTrades.length}건`} /><Metric label="최종 매도 기간" value={`${firstExit} ~ ${lastExit}`} /><Metric label="전체 체결" value={`${executions}건`} /><Metric label="사용된 체결" value={`${usedExecutions}건`} /><Metric label="제외 종목" value={`${excluded.length}개`} /></section>
     {excluded.length > 0 && <details className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3"><summary className="cursor-pointer text-sm font-medium text-warning">현재 보유 또는 완결 거래를 만들 수 없는 {excluded.length}개 종목은 분석에서 제외되었습니다. 목록 보기</summary><div className="mt-3 flex flex-wrap gap-2">{excluded.map((row) => <span key={row.ticker} className="rounded-md border border-warning/20 bg-background px-2.5 py-1 text-xs"><strong>{row.ticker}</strong> · {row.quantity.toLocaleString("ko-KR")}주</span>)}</div></details>}
     <details><summary className="cursor-pointer text-xs text-muted-foreground">종목별 수량 검증 보기</summary><div className="mt-3"><TickerDebugTable rows={tickerDebug} /></div></details>
     {(errors.length > 0 || displayWarnings.length > 0) && <Card><CardContent className="p-5"><h2 className="flex items-center gap-2 font-semibold"><AlertCircle className="h-5 w-5 text-warning" />확인할 항목</h2><ul className="mt-3 space-y-2 text-sm">{errors.map((message) => <li key={message} className="text-danger">{message}</li>)}{displayWarnings.map((message) => <li key={message} className="text-warning">{message}</li>)}</ul></CardContent></Card>}
-    <Card><div className="flex items-center justify-between border-b border-border px-5 py-4"><div><h2 className="font-semibold">최근 완결 거래 미리보기</h2><p className="text-xs text-muted-foreground">선택한 범위 중 최신 20건을 표시합니다.</p></div><CheckCircle2 className="h-5 w-5 text-success" /></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "최초 매수", "최종 매도", "평균 매수가", "평균 매도가", "수익률", "보유 기간"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{selectedTrades.slice(0, 20).map((trade, index) => <tr key={`${trade.ticker}-${trade.entryDate}-${index}`}><td className="px-4 py-3 font-semibold">{trade.ticker}</td><td className="px-4 py-3 text-right tabular">{trade.entryDate}</td><td className="px-4 py-3 text-right tabular">{trade.exitDate}</td><td className="px-4 py-3 text-right tabular">${trade.averageEntryPrice.toFixed(2)}</td><td className="px-4 py-3 text-right tabular">${trade.averageExitPrice.toFixed(2)}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</td><td className="px-4 py-3 text-right tabular">{trade.holdingDays}일</td></tr>)}</tbody></table></div></Card>
+    <Card><div className="flex items-center justify-between border-b border-border px-5 py-4"><div><h2 className="font-semibold">최근 완결 거래 미리보기</h2><p className="text-xs text-muted-foreground">선택한 범위 중 최신 20건을 표시합니다.</p></div><CheckCircle2 aria-hidden="true" className="h-5 w-5 text-success" /></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] text-sm"><caption className="sr-only">선택한 완결 거래 미리보기</caption><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "최초 매수", "최종 매도", "평균 매수가", "평균 매도가", "수익률", "보유 기간"].map((label) => <th key={label} scope="col" className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{selectedTrades.slice(0, 20).map((trade, index) => <tr key={`${trade.ticker}-${trade.entryDate}-${index}`}><td className="px-4 py-3 font-semibold">{trade.ticker}</td><td className="px-4 py-3 text-right tabular">{trade.entryDate}</td><td className="px-4 py-3 text-right tabular">{trade.exitDate}</td><td className="px-4 py-3 text-right tabular">${trade.averageEntryPrice.toFixed(2)}</td><td className="px-4 py-3 text-right tabular">${trade.averageExitPrice.toFixed(2)}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</td><td className="px-4 py-3 text-right tabular">{trade.holdingDays}일</td></tr>)}</tbody></table></div></Card>
     {selectedTrades.length > 0 && selectedTrades.length < 5 && <p className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3 text-sm text-warning">분석 가능한 완결 거래가 {selectedTrades.length}건입니다. 정확한 패턴 분석을 위해 더 긴 기간의 거래내역을 업로드해주세요.</p>}
     <div className="flex justify-end"><Button size="lg" disabled={Boolean(errors.length) || !selectedTrades.length} onClick={onAnalyze}>선택한 완결 거래 분석하기</Button></div>
   </div>;
 }
 
 function TickerDebugTable({ rows }: { rows: ReplayTickerDebug[] }) {
-  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">종목별 수량 검증</h2><p className="mt-1 text-xs text-muted-foreground">파서 {REPLAY_PARSER_VERSION} · 가격과 개인정보는 표시하지 않습니다.</p></div><div className="max-h-80 overflow-auto"><table className="w-full min-w-[760px] text-sm"><thead className="sticky top-0 bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "총매수", "총매도", "최소 누적수량", "초기 보유 필요", "최종 잔여"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.ticker}><td className="px-4 py-3 font-semibold">{row.ticker}</td><td className="px-4 py-3 text-right tabular">{row.totalBuy.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.totalSell.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.minimumRunningQuantity.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.requiredInitialQuantity.toLocaleString("ko-KR")}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", row.finalRemaining > 0 ? "text-warning" : "text-muted-foreground")}>{row.finalRemaining.toLocaleString("ko-KR")}</td></tr>)}</tbody></table></div></Card>;
+  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">종목별 수량 검증</h2><p className="mt-1 text-xs text-muted-foreground">파서 {REPLAY_PARSER_VERSION} · 가격과 개인정보는 표시하지 않습니다.</p></div><div className="max-h-80 overflow-auto"><table className="w-full min-w-[760px] text-sm"><caption className="sr-only">종목별 매수·매도 수량 검증</caption><thead className="sticky top-0 bg-surface-2 text-xs text-muted-foreground"><tr>{["종목", "총매수", "총매도", "최소 누적수량", "초기 보유 필요", "최종 잔여"].map((label) => <th key={label} scope="col" className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.ticker}><td className="px-4 py-3 font-semibold">{row.ticker}</td><td className="px-4 py-3 text-right tabular">{row.totalBuy.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.totalSell.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.minimumRunningQuantity.toLocaleString("ko-KR")}</td><td className="px-4 py-3 text-right tabular">{row.requiredInitialQuantity.toLocaleString("ko-KR")}</td><td className={cn("px-4 py-3 text-right font-semibold tabular", row.finalRemaining > 0 ? "text-warning" : "text-muted-foreground")}>{row.finalRemaining.toLocaleString("ko-KR")}</td></tr>)}</tbody></table></div></Card>;
 }
 
 function ImportInfo({ label, value }: { label: string; value: string }) { return <div><div className="text-xs text-muted-foreground">{label}</div><div className="mt-1 font-medium text-foreground">{value}</div></div>; }
 
-function LoadingPanel() { return <Card><CardContent className="grid min-h-72 place-items-center text-center"><div><div className="mx-auto h-9 w-9 animate-spin rounded-full border-2 border-brand border-t-transparent" /><h2 className="mt-4 font-semibold">매수 당시 시장환경을 연결하고 있습니다</h2><p className="mt-1 text-sm text-muted-foreground">종목·산업·시장 상태를 날짜별로 확인합니다.</p></div></CardContent></Card>; }
+function LoadingPanel() { return <Card><CardContent role="status" aria-live="polite" className="grid min-h-72 place-items-center text-center"><div><div aria-hidden className="mx-auto h-9 w-9 animate-spin rounded-full border-2 border-brand border-t-transparent" /><h2 className="mt-4 font-semibold">매수 당시 시장환경을 연결하고 있습니다</h2><p className="mt-1 text-sm text-muted-foreground">종목·산업·시장 상태를 날짜별로 확인합니다.</p></div></CardContent></Card>; }
 
 function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[]; warnings: string[]; coverage: { first: string | null; last: string | null } }) {
   const analytics = useMemo(() => analyzeReplayPerformance(trades), [trades]);
@@ -299,12 +363,20 @@ function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[];
   const connectionRate = trades.length ? linked.length / trades.length * 100 : 0;
   const patterns = useMemo(() => patternRows(linked), [linked]);
   const linkedAverage = linked.length ? linked.reduce((sum, trade) => sum + trade.returnPercent, 0) / linked.length : 0;
-  const excludedPatterns = patterns.filter((row) => row.trades < 10).length;
-  const profitable = patterns.filter((row) => row.trades >= 10 && row.averageReturn > 0).sort((a, b) => b.averageReturn - a.averageReturn).slice(0, 5);
-  const losing = patterns.filter((row) => row.trades >= 10 && row.averageReturn < 0).sort((a, b) => a.averageReturn - b.averageReturn).slice(0, 5);
+  const excludedPatterns = patterns.filter((row) => row.trades < 30).length;
+  const profitable = patterns.filter((row) => row.trades >= 30 && row.averageReturn > 0).sort((a, b) => b.averageReturn - a.averageReturn).slice(0, 5);
+  const losing = patterns.filter((row) => row.trades >= 30 && row.averageReturn < 0).sort((a, b) => a.averageReturn - b.averageReturn).slice(0, 5);
   const unlinked = trades.filter((trade) => !linked.includes(trade));
-  return <div className="space-y-5">
-    <section className="grid grid-cols-2 gap-3 lg:grid-cols-6"><Metric label="총 거래" value={`${analytics.totalTrades}건`} /><Metric label="승률" value={`${analytics.winRate.toFixed(1)}%`} /><Metric label="거래당 평균 수익률" value={`${analytics.averageReturn >= 0 ? "+" : ""}${analytics.averageReturn.toFixed(2)}%`} tone={analytics.averageReturn >= 0 ? "positive" : "negative"} /><Metric label="손익비" value={formatPayoffRatio(analytics.payoffRatio, analytics.winningTrades, analytics.losingTrades)} /><Metric label="최대 단일 손실" value={`${analytics.maximumSingleLoss.toFixed(2)}% · ${fmtUsd(analytics.maximumSingleLossAmount)}`} tone="negative" /><Metric label="최대 낙폭" value={`${fmtUsd(analytics.maximumDrawdown)} · 누적 실현손익`} tone="negative" /></section>
+  const currentProxyContexts = linked.filter((trade) => trade.context?.dataGrade === "CURRENT_PROXY").length;
+  const incompleteFees = trades.filter((trade) => trade.feeStatus === "ASSUMED_ZERO").length;
+  const firstTradeDate = [...trades].sort((a, b) => a.entryDate.localeCompare(b.entryDate))[0]?.entryDate ?? "-";
+  const lastTradeDate = [...trades].sort((a, b) => b.exitDate.localeCompare(a.exitDate))[0]?.exitDate ?? "-";
+  const statusLabel = analytics.status === "NO_DATA" ? "계산 불가" : analytics.status === "INCOMPLETE" ? "데이터 불완전" : analytics.status === "INSUFFICIENT_SAMPLE" ? "표본 부족" : "탐색적 통계";
+  return <div className="space-y-5"><p className="sr-only" role="status" aria-live="polite">Replay 계산 완료. 상태: {statusLabel}. 표본 {analytics.sampleCount}건입니다.</p>
+    <p className="rounded-md bg-surface-2 px-3 py-2 text-xs text-muted-foreground">개인 손익은 체결 거래의 실현손익입니다. 배당·현금합병 등 별도 현금흐름은 업로드 내역에 포함된 경우에만 반영됩니다.</p>
+    <Card className={cn("border-warning/30", analytics.status === "EXPLORATORY" && "border-brand/25")}><CardContent className="p-5"><div className="flex flex-wrap items-center justify-between gap-2"><div><div className="text-xs font-semibold text-brand">계산 계약 · {statusLabel}</div><h2 className="mt-1 font-semibold">이 결과는 확정적 성과 평가가 아닌 거래 기록의 기술 통계입니다.</h2></div><span className="rounded-full bg-surface-2 px-3 py-1 text-xs font-semibold">표본 {analytics.sampleCount}/최소 {analytics.minimumSample}건</span></div><div className="mt-4 grid gap-2 text-xs leading-5 text-muted-foreground sm:grid-cols-2 lg:grid-cols-3"><p>거래 기간: {firstTradeDate}~{lastTradeDate}<br />시장환경 보관 범위: {coverage.first ?? "-"}~{coverage.last ?? "-"}</p><p>개인 손익: 실제 체결가·입력 수수료, USD 기준<br />세금·환율 제외 · 별도 슬리피지 미가산</p><p>신호 가상성과 비용: 편도 수수료 {SIGNAL_PERFORMANCE_ASSUMPTIONS.commissionBpPerSide}bp + 슬리피지 {SIGNAL_PERFORMANCE_ASSUMPTIONS.slippageBpPerSide}bp<br />비교 기준: {SIGNAL_PERFORMANCE_ASSUMPTIONS.benchmark}</p><p>신호 기간: {SIGNAL_PERFORMANCE_ASSUMPTIONS.horizons.join("/")} 거래일<br />진입·청산: {SIGNAL_PERFORMANCE_ASSUMPTIONS.entry} / {SIGNAL_PERFORMANCE_ASSUMPTIONS.exit}</p><p>규칙: {SIGNAL_RULE_VERSION} · {REPLAY_RULE_VERSION}<br />성과: {PERFORMANCE_RULE_VERSION} · 기준: {BENCHMARK_VERSION}</p><p>가용시각 없는 구형 자료와 진입 후 공개본은 연결하지 않습니다.<br />분할은 검증된 기업행동 입력이 있을 때만 반영합니다.</p></div><div className="mt-3 rounded-md bg-warning/5 px-3 py-2 text-xs text-warning">공식 신호 성과는 PIT 검증 종목 구성, 상장폐지 포함 가격, 가용 시각과 1·5·20 거래일 청산가가 모두 갖춰질 때만 게시합니다. 현재 Replay 자료로는 확정 집계를 표시하지 않습니다.</div>{analytics.statusReasons.length > 0 && <div className="mt-2 rounded-md bg-warning/5 px-3 py-2 text-xs text-warning">{analytics.statusReasons.join(" ")}</div>}{currentProxyContexts > 0 && <div className="mt-2 rounded-md bg-warning/5 px-3 py-2 text-xs text-warning">시장환경 {currentProxyContexts}건은 CURRENT_PROXY입니다. 현재 종목 목록을 과거에 적용해 생존편향 위험이 있으므로 공식 신호 성과로 집계하지 않습니다.</div>}{incompleteFees > 0 && <div className="mt-2 rounded-md bg-danger/5 px-3 py-2 text-xs text-danger">수수료 미확인 {incompleteFees}건은 0으로 가정했습니다. 손익이 완전하지 않습니다.</div>}</CardContent></Card>
+    <Card><CardContent className="p-5"><div className="text-xs font-semibold text-brand">재현 가능한 신호 정의</div><div className="mt-3 grid gap-3 text-xs leading-5 text-muted-foreground lg:grid-cols-3"><p><strong className="text-foreground">종목</strong><br />20일 평균은 신호일 전 20개 정규 세션의 원시 종가×동시점 거래량입니다. 증가율 &gt;3%이고 수정종가 일수익률 &gt;0.15%면 유입, &lt;-0.15%면 유출, 증가율 &lt;-3%면 관심감소입니다. 경계값은 중립입니다.</p><p><strong className="text-foreground">그룹</strong><br />거래대금 점유율 변화 &gt;10bp와 가격 ≥0%면 유입, &lt;-10bp와 가격 &lt;0%면 유출, 거래대금 변화 &lt;-15%면 관심감소입니다. 앞 조건부터 적용합니다.</p><p><strong className="text-foreground">급증·정보 시점</strong><br />20일 대비 ≥2배이면서 당일 거래대금 ≥$50M일 때만 급증입니다. `available_at` 이후 정보만 쓰며 시각·시간대가 없는 발표는 당일 신호에서 제외합니다.</p></div></CardContent></Card>
+    <section className="grid grid-cols-2 gap-3 lg:grid-cols-6"><Metric label="총 거래" value={`${analytics.totalTrades}건`} /><Metric label="관찰 승률" value={`${analytics.winRate.toFixed(1)}%`} /><Metric label="평균 수익률" value={`${analytics.averageReturn >= 0 ? "+" : ""}${analytics.averageReturn.toFixed(2)}%`} tone={analytics.averageReturn >= 0 ? "positive" : "negative"} /><Metric label="중앙값 수익률" value={`${analytics.medianReturn >= 0 ? "+" : ""}${analytics.medianReturn.toFixed(2)}%`} tone={analytics.medianReturn >= 0 ? "positive" : "negative"} /><Metric label="25~75 백분위" value={`${analytics.p25Return.toFixed(2)}~${analytics.p75Return.toFixed(2)}%`} /><Metric label="최대 낙폭" value={`${fmtUsd(analytics.maximumDrawdown)} · 누적 실현손익`} tone="negative" /></section>
     <Card className="border-brand/20 bg-brand/[0.04]"><CardContent className="p-5"><div className="text-xs font-semibold text-brand">핵심 진단</div><div className="mt-3 space-y-2">{analytics.diagnostics.slice(0, 3).map((line) => <p key={line} className="text-sm font-medium leading-6">{line}</p>)}</div></CardContent></Card>
     <Tabs defaultValue="performance" className="space-y-5">
       <TabsList className="h-auto max-w-full justify-start overflow-x-auto"><TabsTrigger value="performance">내 거래 성과</TabsTrigger><TabsTrigger value="ticker">종목별 분석</TabsTrigger><TabsTrigger value="habit">매매 습관</TabsTrigger><TabsTrigger value="market">시장환경 참고</TabsTrigger><TabsTrigger value="unlinked">미연결 거래 {unlinked.length}</TabsTrigger></TabsList>
@@ -316,19 +388,19 @@ function ResultPanel({ trades, warnings, coverage }: { trades: CompletedTrade[];
       <TabsContent value="ticker" className="space-y-5"><TickerProfitChart rows={analytics.tickerRows} /><PerformanceTable title="종목별 성과" rows={analytics.tickerRows} showHolding /></TabsContent>
       <TabsContent value="habit" className="space-y-5"><div className="grid gap-5 lg:grid-cols-2"><PerformanceTable title="보유기간별 성과" rows={analytics.holdingRows} /><PerformanceTable title="매도 요일별 성과" rows={analytics.weekdayRows} /></div></TabsContent>
       <TabsContent value="market" className="space-y-5">
-        <div className="rounded-lg border border-brand/20 bg-brand/5 px-4 py-3 text-sm"><strong>{linked.length === trades.length ? `${trades.length}건 모두 시장환경과 연결되어 참고용으로 제공합니다.` : `${trades.length}건 중 ${linked.length}건이 시장환경과 연결되어 참고용으로 제공됩니다.`}</strong><div className="mt-1 text-xs text-muted-foreground">시장환경 지원 범위: {coverage.first ?? "-"}~{coverage.last ?? "-"}</div></div>
+        <div className="rounded-lg border border-brand/20 bg-brand/5 px-4 py-3 text-sm"><strong>{linked.length === trades.length ? `${trades.length}건 모두 시장환경과 연결되어 참고용으로 제공합니다.` : `${trades.length}건 중 ${linked.length}건이 시장환경과 연결되어 참고용으로 제공됩니다.`}</strong><div className="mt-1 text-xs text-muted-foreground">인과 검증 가능 범위: {coverage.first ?? "-"}~{coverage.last ?? "-"}</div></div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6"><Metric label="연결률" value={`${connectionRate.toFixed(0)}%`} /><Metric label="전체 연결" value={`${fullLinked}건`} /><Metric label="기초자산 연결" value={`${underlyingLinked}건`} /><Metric label="섹터·지수 연결" value={`${groupLinked}건`} /><Metric label="상품 데이터만" value={`${productOnly}건`} /><Metric label="매핑 필요" value={`${mappingRequired}건`} /></div>
         {connectionRate < 50 && <p className="rounded-md bg-warning/5 px-3 py-2 text-xs text-warning">연결률이 {connectionRate.toFixed(0)}%로 낮아 시장환경 결과는 탐색적 참고자료입니다.</p>}
-        {excludedPatterns > 0 && <p className="text-xs text-muted-foreground">표본 10건 미만 조건 {excludedPatterns}개는 시장환경 카드에서 제외했습니다.</p>}
+        {excludedPatterns > 0 && <p className="text-xs text-muted-foreground">표본 30건 미만 조건 {excludedPatterns}개는 시장환경 패턴 카드에서 제외했습니다.</p>}
         <EnvironmentComparisonTable trades={linked} baseline={linkedAverage} />
         <div className="grid gap-5 lg:grid-cols-2"><PatternCard title="연결된 거래에서 관찰된 조건" icon={TrendingUp} rows={profitable} baseline={linkedAverage} positive /><PatternCard title="손실 거래에서 관찰된 조건" icon={TrendingDown} rows={losing} baseline={linkedAverage} /></div>
         <EnvironmentTradeList trades={linked} linked={linked} baseline={linkedAverage} />
       </TabsContent>
       <TabsContent value="unlinked" className="space-y-4"><div className="grid gap-3 sm:grid-cols-3"><Metric label="상품 매핑 필요" value={`${mappingRequired}건`} /><Metric label="과거 데이터 부족" value={`${historicalMissing}건`} /><Metric label="미연결 전체" value={`${unlinked.length}건`} /></div><details className="rounded-lg border border-border bg-card"><summary className="cursor-pointer px-5 py-4 text-sm font-semibold">미연결 거래 {unlinked.length}건 보기</summary><div className="border-t border-border"><EnvironmentTradeList trades={unlinked} linked={linked} baseline={analytics.averageReturn} /></div></details></TabsContent>
     </Tabs>
-    <PersonalRulePanel trades={trades} analytics={analytics} />
+    {analytics.status === "EXPLORATORY" ? <PersonalRulePanel trades={trades} analytics={analytics} /> : <Card><CardContent className="p-5"><div className="text-xs font-semibold text-warning">개인 규칙 생성 보류</div><p className="mt-2 text-sm leading-6">완결 거래 30건과 확인된 수수료가 확보되기 전에는 우연한 결과를 규칙처럼 표시하지 않습니다.</p></CardContent></Card>}
     {warnings.length > 0 && <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">분석에서 제외된 미청산·확인 거래 안내 보기</summary><div className="mt-3 space-y-1 text-xs text-muted-foreground">{warnings.map((warning) => <p key={warning}>{warning}</p>)}</div></details>}
-    <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">계산 기준 보기</summary><ul className="mt-3 grid gap-1 text-xs leading-5 text-muted-foreground sm:grid-cols-2"><li>손익은 체결 수수료를 반영하며 세금·환율은 반영하지 않은 USD 기준입니다.</li><li>평균 수익률은 완결 거래별 수익률의 단순 평균입니다.</li><li>같은 종목은 보유 수량이 0이 되는 시점마다 거래 한 건으로 닫습니다.</li><li>부분 매도 원가는 평균단가 방식으로 배분합니다.</li><li>최대 낙폭은 최종 매도 완료 순서의 누적 실현손익 기준입니다.</li><li>보유기간 0일은 같은 날짜에 매수와 매도를 마친 당일 거래입니다.</li></ul></details>
+    <details className="rounded-lg border border-border px-4 py-3"><summary className="cursor-pointer text-xs font-medium text-muted-foreground">상세 계산·데이터 한계 보기</summary><ul className="mt-3 grid gap-1 text-xs leading-5 text-muted-foreground sm:grid-cols-2"><li>손익 = 순매도대금 - 평균단가로 배분한 매도수량 원가입니다.</li><li>평균은 완결 거래 수익률의 단순 평균이며 중앙값·10/25/75/90 백분위를 함께 계산합니다.</li><li>같은 종목은 보유 수량이 0이 되는 시점마다 한 거래로 닫습니다.</li><li>최대 낙폭은 최종 매도 완료 순서의 누적 실현손익 기준입니다.</li><li>결측 시세, 진입 전 가용본 부재, 상장폐지 현금가치 미확인은 해당 환경 표본에서 제외합니다.</li><li>발표일만 있고 시각·시간대가 없는 이벤트는 당일 진입 신호에 사용하지 않습니다.</li><li>체결 시각과 시간대가 없으면 같은 날 스냅샷을 사용하지 않습니다. 장전·장후 체결도 이 보수 규칙을 따릅니다.</li><li>XNYS 정규장·공식 휴장·조기 종료를 적용하며, 임시 휴장은 캘린더 규칙 버전 갱신 전까지 한계로 표시합니다.</li></ul></details>
     <p className="text-xs leading-5 text-muted-foreground">이 결과는 과거 거래 복기용이며 매수·매도 추천이 아닙니다. 레버리지·인버스 상품은 일일 재설정, 복리 효과와 추적 오차가 있어 기초자산 수익률과 동일하지 않습니다.</p>
   </div>;
 }
@@ -437,15 +509,15 @@ function formatPayoffRatio(value: number, wins: number, losses: number) {
   return value.toFixed(2);
 }
 
-function SimulationPanel({ rows }: { rows: Array<{ label: string; analytics: ReturnType<typeof analyzeReplayPerformance> }> }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">대형 손실 제외 시뮬레이션</h2><p className="text-xs text-muted-foreground">손실 통제가 전체 성과에 미치는 영향을 비교합니다.</p></div><div className="overflow-x-auto"><table className="w-full min-w-[640px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["조건", "거래", "승률", "평균 수익률", "총 손익", "손익비"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map(({ label, analytics }) => <tr key={label}><td className="px-4 py-3 font-semibold">{label}</td><td className="px-4 py-3 text-right">{analytics.totalTrades}건</td><td className="px-4 py-3 text-right">{analytics.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right", analytics.averageReturn >= 0 ? "text-success" : "text-danger")}>{analytics.averageReturn >= 0 ? "+" : ""}{analytics.averageReturn.toFixed(2)}%</td><td className={cn("px-4 py-3 text-right", analytics.totalProfit >= 0 ? "text-success" : "text-danger")}>{fmtUsd(analytics.totalProfit)}</td><td className="px-4 py-3 text-right">{formatPayoffRatio(analytics.payoffRatio, analytics.winningTrades, analytics.losingTrades)}</td></tr>)}</tbody></table></div></Card>; }
+function SimulationPanel({ rows }: { rows: Array<{ label: string; analytics: ReturnType<typeof analyzeReplayPerformance> }> }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">대형 손실 제외 시뮬레이션</h2><p className="text-xs text-muted-foreground">손실 통제가 전체 성과에 미치는 영향을 비교합니다.</p></div><div className="overflow-x-auto"><table className="w-full min-w-[640px] text-sm"><caption className="sr-only">대형 손실 제외 조건별 기술 통계</caption><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["조건", "거래", "승률", "평균 수익률", "총 손익", "손익비"].map((label) => <th key={label} scope="col" className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map(({ label, analytics }) => <tr key={label}><td className="px-4 py-3 font-semibold">{label}</td><td className="px-4 py-3 text-right">{analytics.totalTrades}건</td><td className="px-4 py-3 text-right">{analytics.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right", analytics.averageReturn >= 0 ? "text-success" : "text-danger")}>{analytics.averageReturn >= 0 ? "+" : ""}{analytics.averageReturn.toFixed(2)}%</td><td className={cn("px-4 py-3 text-right", analytics.totalProfit >= 0 ? "text-success" : "text-danger")}>{fmtUsd(analytics.totalProfit)}</td><td className="px-4 py-3 text-right">{formatPayoffRatio(analytics.payoffRatio, analytics.winningTrades, analytics.losingTrades)}</td></tr>)}</tbody></table></div></Card>; }
 
-function TickerProfitChart({ rows }: { rows: PerformanceRow[] }) { const data = [...rows].sort((a, b) => a.totalProfit - b.totalProfit); const selected = [...data.slice(0, 5), ...data.slice(-5)].filter((row, index, all) => all.findIndex((item) => item.label === row.label) === index).sort((a, b) => a.totalProfit - b.totalProfit); return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">종목별 손익 기여</h2><p className="text-xs text-muted-foreground">손실 상위 5개와 수익 상위 5개</p></div><CardContent className="h-80 p-4"><ResponsiveContainer width="100%" height="100%"><BarChart data={selected} layout="vertical" margin={{ top: 4, right: 18, bottom: 4, left: 12 }}><CartesianGrid strokeDasharray="3 3" horizontal={false} /><XAxis type="number" tickFormatter={(value) => fmtUsd(Number(value)).replace("+", "")} tick={{ fontSize: 10 }} /><YAxis type="category" dataKey="label" width={55} tick={{ fontSize: 11 }} /><ReferenceLine x={0} stroke="currentColor" strokeOpacity={0.4} /><ChartTooltip formatter={(value) => [fmtUsd(Number(value)), "총 실현손익"]} /><Bar dataKey="totalProfit" fill="var(--color-brand, #2563eb)" radius={[0, 3, 3, 0]} /></BarChart></ResponsiveContainer></CardContent></Card>; }
+function TickerProfitChart({ rows }: { rows: PerformanceRow[] }) { const data = [...rows].sort((a, b) => a.totalProfit - b.totalProfit); const selected = [...data.slice(0, 5), ...data.slice(-5)].filter((row, index, all) => all.findIndex((item) => item.label === row.label) === index).sort((a, b) => a.totalProfit - b.totalProfit); return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">종목별 손익 기여</h2><p className="text-xs text-muted-foreground">손실 상위 5개와 수익 상위 5개</p></div><CardContent role="img" aria-label="종목별 총 실현손익 막대 차트" className="h-80 p-4"><ResponsiveContainer width="100%" height="100%"><BarChart data={selected} layout="vertical" margin={{ top: 4, right: 18, bottom: 4, left: 12 }}><CartesianGrid strokeDasharray="3 3" horizontal={false} /><XAxis type="number" tickFormatter={(value) => fmtUsd(Number(value)).replace("+", "")} tick={{ fontSize: 10 }} /><YAxis type="category" dataKey="label" width={55} tick={{ fontSize: 11 }} /><ReferenceLine x={0} stroke="currentColor" strokeOpacity={0.4} /><ChartTooltip formatter={(value) => [fmtUsd(Number(value)), "총 실현손익"]} /><Bar dataKey="totalProfit" fill="var(--color-brand, #2563eb)" radius={[0, 3, 3, 0]} /></BarChart></ResponsiveContainer></CardContent></Card>; }
 
-function EquityCurve({ data }: { data: Array<{ order: number; ticker: string; profit: number }> }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">거래 순서별 누적 손익</h2><p className="text-xs text-muted-foreground">실현 손익 기준</p></div><CardContent className="h-72 p-4"><ResponsiveContainer width="100%" height="100%"><LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: 4 }}><CartesianGrid strokeDasharray="3 3" vertical={false} /><XAxis dataKey="order" tick={{ fontSize: 11 }} /><YAxis tick={{ fontSize: 11 }} width={55} tickFormatter={(value) => `$${value}`} /><ReferenceLine y={0} stroke="currentColor" strokeOpacity={0.35} /><ChartTooltip formatter={(value) => [`$${Number(value).toFixed(0)}`, "누적 손익"]} /><Line type="monotone" dataKey="profit" stroke="var(--color-brand, #2563eb)" strokeWidth={2} dot={false} /></LineChart></ResponsiveContainer></CardContent></Card>; }
+function EquityCurve({ data }: { data: Array<{ order: number; ticker: string; profit: number }> }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">거래 순서별 누적 손익</h2><p className="text-xs text-muted-foreground">실현 손익 기준</p></div><CardContent role="img" aria-label="거래 완료 순서별 누적 실현손익 선 차트" className="h-72 p-4"><ResponsiveContainer width="100%" height="100%"><LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: 4 }}><CartesianGrid strokeDasharray="3 3" vertical={false} /><XAxis dataKey="order" tick={{ fontSize: 11 }} /><YAxis tick={{ fontSize: 11 }} width={55} tickFormatter={(value) => `$${value}`} /><ReferenceLine y={0} stroke="currentColor" strokeOpacity={0.35} /><ChartTooltip formatter={(value) => [`$${Number(value).toFixed(0)}`, "누적 손익"]} /><Line type="monotone" dataKey="profit" stroke="var(--color-brand, #2563eb)" strokeWidth={2} dot={false} /></LineChart></ResponsiveContainer></CardContent></Card>; }
 
-function DistributionChart({ data }: { data: Array<{ label: string; count: number }> }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">수익률 분포</h2><p className="text-xs text-muted-foreground">큰 손실과 수익의 꼬리를 확인합니다.</p></div><CardContent className="h-72 p-4"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{ top: 8, right: 4, bottom: 28, left: -16 }}><CartesianGrid strokeDasharray="3 3" vertical={false} /><XAxis dataKey="label" angle={-25} textAnchor="end" tick={{ fontSize: 10 }} interval={0} /><YAxis allowDecimals={false} tick={{ fontSize: 11 }} /><ChartTooltip formatter={(value) => [`${value}건`, "거래"]} /><Bar dataKey="count" fill="var(--color-brand, #2563eb)" radius={[3, 3, 0, 0]} /></BarChart></ResponsiveContainer></CardContent></Card>; }
+function DistributionChart({ data }: { data: Array<{ label: string; count: number }> }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">수익률 분포</h2><p className="text-xs text-muted-foreground">큰 손실과 수익의 꼬리를 확인합니다.</p></div><CardContent role="img" aria-label="수익률 구간별 완결 거래 수 막대 차트" className="h-72 p-4"><ResponsiveContainer width="100%" height="100%"><BarChart data={data} margin={{ top: 8, right: 4, bottom: 28, left: -16 }}><CartesianGrid strokeDasharray="3 3" vertical={false} /><XAxis dataKey="label" angle={-25} textAnchor="end" tick={{ fontSize: 10 }} interval={0} /><YAxis allowDecimals={false} tick={{ fontSize: 11 }} /><ChartTooltip formatter={(value) => [`${value}건`, "거래"]} /><Bar dataKey="count" fill="var(--color-brand, #2563eb)" radius={[3, 3, 0, 0]} /></BarChart></ResponsiveContainer></CardContent></Card>; }
 
-function PerformanceTable({ title, rows, showHolding = false }: { title: string; rows: PerformanceRow[]; showHolding?: boolean }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">{title}</h2></div><div className="overflow-x-auto"><table className="w-full min-w-[920px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["구분", "거래 수", "승률", "평균 수익률", "총 손익", "평균 이익", "평균 손실", "손익비", ...(showHolding ? ["평균 보유"] : []), "최대 이익", "최대 손실", "표본"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.label} className={row.trades < 5 ? "opacity-60" : ""}><td className="px-4 py-3 font-semibold">{row.label}</td><td className="px-4 py-3 text-right">{row.trades}건</td><td className="px-4 py-3 text-right">{row.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right font-semibold", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{row.averageReturn >= 0 ? "+" : ""}{row.averageReturn.toFixed(2)}%</td><td className={cn("px-4 py-3 text-right", row.totalProfit >= 0 ? "text-success" : "text-danger")}>{fmtUsd(row.totalProfit)}</td><td className="px-4 py-3 text-right text-success">{row.wins ? `+${row.averageWin.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-danger">{row.losses ? `${row.averageLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right">{formatPayoffRatio(row.payoffRatio, row.wins, row.losses)}</td>{showHolding && <td className="px-4 py-3 text-right">{row.averageHoldingDays.toFixed(1)}일</td>}<td className="px-4 py-3 text-right text-success">{row.wins ? `+${row.maximumGain.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-danger">{row.losses ? `${row.maximumLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-xs text-muted-foreground">{row.trades < 5 ? "표본 부족" : row.trades < 10 ? "참고" : "분석 가능"}</td></tr>)}</tbody></table></div></Card>; }
+function PerformanceTable({ title, rows, showHolding = false }: { title: string; rows: PerformanceRow[]; showHolding?: boolean }) { return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">{title}</h2></div><div className="overflow-x-auto"><table className="w-full min-w-[920px] text-sm"><caption className="sr-only">{title}</caption><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["구분", "거래 수", "승률", "평균 수익률", "총 손익", "평균 이익", "평균 손실", "손익비", ...(showHolding ? ["평균 보유"] : []), "최대 이익", "최대 손실", "표본"].map((label) => <th key={label} scope="col" className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.label} className={row.trades < 30 ? "opacity-60" : ""}><td className="px-4 py-3 font-semibold">{row.label}</td><td className="px-4 py-3 text-right">{row.trades}건</td><td className="px-4 py-3 text-right">{row.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right font-semibold", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{row.averageReturn >= 0 ? "+" : ""}{row.averageReturn.toFixed(2)}%</td><td className={cn("px-4 py-3 text-right", row.totalProfit >= 0 ? "text-success" : "text-danger")}>{fmtUsd(row.totalProfit)}</td><td className="px-4 py-3 text-right text-success">{row.wins ? `+${row.averageWin.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-danger">{row.losses ? `${row.averageLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right">{formatPayoffRatio(row.payoffRatio, row.wins, row.losses)}</td>{showHolding && <td className="px-4 py-3 text-right">{row.averageHoldingDays.toFixed(1)}일</td>}<td className="px-4 py-3 text-right text-success">{row.wins ? `+${row.maximumGain.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-danger">{row.losses ? `${row.maximumLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right text-xs text-muted-foreground">{confidence(row.trades)}</td></tr>)}</tbody></table></div></Card>; }
 
 function EnvironmentTradeList({ trades, linked, baseline }: { trades: CompletedTrade[]; linked: CompletedTrade[]; baseline: number }) { return <Card><div className="divide-y divide-border">{trades.map((trade, index) => <article key={`${trade.ticker}-${trade.entryDate}-${index}`} className="grid gap-3 px-5 py-5 md:grid-cols-[140px_1fr] md:gap-5"><div><div className="flex items-center gap-2"><span className="font-semibold">{trade.ticker}</span><span className={cn("font-semibold tabular", trade.returnPercent >= 0 ? "text-success" : "text-danger")}>{trade.returnPercent >= 0 ? "+" : ""}{trade.returnPercent.toFixed(2)}%</span></div><div className="mt-1 text-xs text-muted-foreground">{trade.entryDate} 진입</div><div className="mt-2 inline-flex rounded-full bg-secondary px-2 py-1 text-[11px] font-medium">{coverageLabel(trade.context?.supportLevel)}</div></div><div>{trade.context && linked.includes(trade) ? <TradeReviewNarrative trade={trade} baseline={baseline} /> : <p className="text-sm text-muted-foreground">{trade.contextStatus}</p>}</div></article>)}</div></Card>; }
 
@@ -485,7 +557,7 @@ function environmentPerformanceRows(trades: CompletedTrade[], baseline: number):
 
 function EnvironmentComparisonTable({ trades, baseline }: { trades: CompletedTrade[]; baseline: number }) {
   const rows = environmentPerformanceRows(trades, baseline);
-  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">진입 환경별 실제 성과</h2><p className="mt-1 text-xs text-muted-foreground">같은 환경에서 내 거래 결과가 전체 연결 거래 평균보다 나았는지 비교합니다.</p></div><div className="overflow-x-auto"><table className="w-full min-w-[760px] text-sm"><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["진입 당시 환경", "거래", "승률", "평균 수익률", "평균 손실", "손익비", "전체 평균 대비"].map((label) => <th key={label} className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.label}><td className="px-4 py-3 font-semibold">{row.label}</td><td className="px-4 py-3 text-right">{row.trades}건</td><td className="px-4 py-3 text-right">{row.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right font-semibold", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{signedPercent(row.averageReturn)}</td><td className="px-4 py-3 text-right text-danger">{row.averageLoss ? `${row.averageLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right">{row.payoffRatio ? row.payoffRatio.toFixed(2) : "—"}</td><td className={cn("px-4 py-3 text-right", row.difference >= 0 ? "text-success" : "text-danger")}>{signedPercent(row.difference, "p")}</td></tr>)}</tbody></table></div></Card>;
+  return <Card><div className="border-b border-border px-5 py-4"><h2 className="font-semibold">진입 환경별 실제 성과</h2><p className="mt-1 text-xs text-muted-foreground">같은 환경에서 내 거래 결과가 전체 연결 거래 평균보다 나았는지 비교합니다.</p></div><div className="overflow-x-auto"><table className="w-full min-w-[760px] text-sm"><caption className="sr-only">진입 당시 시장환경별 기술 통계</caption><thead className="bg-surface-2 text-xs text-muted-foreground"><tr>{["진입 당시 환경", "거래", "승률", "평균 수익률", "평균 손실", "손익비", "전체 평균 대비"].map((label) => <th key={label} scope="col" className="px-4 py-3 text-right first:text-left">{label}</th>)}</tr></thead><tbody className="divide-y divide-border">{rows.map((row) => <tr key={row.label}><td className="px-4 py-3 font-semibold">{row.label}</td><td className="px-4 py-3 text-right">{row.trades}건</td><td className="px-4 py-3 text-right">{row.winRate.toFixed(1)}%</td><td className={cn("px-4 py-3 text-right font-semibold", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{signedPercent(row.averageReturn)}</td><td className="px-4 py-3 text-right text-danger">{row.averageLoss ? `${row.averageLoss.toFixed(2)}%` : "—"}</td><td className="px-4 py-3 text-right">{row.payoffRatio ? row.payoffRatio.toFixed(2) : "—"}</td><td className={cn("px-4 py-3 text-right", row.difference >= 0 ? "text-success" : "text-danger")}>{signedPercent(row.difference, "p")}</td></tr>)}</tbody></table></div></Card>;
 }
 
 function signedPercent(value: number, suffix = "") {
@@ -537,6 +609,6 @@ function coverageLabel(status?: NonNullable<CompletedTrade["context"]>["supportL
   return status ? labels[status] : "시장환경 미연결";
 }
 
-function PatternCard({ title, icon: Icon, rows, baseline, positive = false }: { title: string; icon: typeof TrendingUp; rows: Pattern[]; baseline: number; positive?: boolean }) { return <Card><div className="flex items-center gap-2 border-b border-border px-5 py-4"><Icon className={cn("h-5 w-5", positive ? "text-success" : "text-danger")} /><h2 className="font-semibold">{title}</h2></div><CardContent className="p-0">{rows.length ? <div className="divide-y divide-border">{rows.map((row) => { const difference = row.averageReturn - baseline; return <div key={row.label} className="grid grid-cols-[1fr_auto] gap-3 px-5 py-4"><div><div className="text-sm font-medium">{row.label}</div><div className="mt-1 text-xs text-muted-foreground">{row.trades}건 · 승률 {row.winRate.toFixed(1)}% · {confidence(row.trades)}</div><div className="mt-1 text-xs text-muted-foreground">연결 거래 평균 대비 {difference >= 0 ? "+" : ""}{difference.toFixed(2)}%p</div></div><div className={cn("font-semibold tabular", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{row.averageReturn >= 0 ? "+" : ""}{row.averageReturn.toFixed(2)}%</div></div>; })}</div> : <div className="px-5 py-10 text-center text-sm text-muted-foreground">표본 10건 이상인 조건이 아직 없습니다.</div>}</CardContent></Card>; }
+function PatternCard({ title, icon: Icon, rows, baseline, positive = false }: { title: string; icon: typeof TrendingUp; rows: Pattern[]; baseline: number; positive?: boolean }) { return <Card><div className="flex items-center gap-2 border-b border-border px-5 py-4"><Icon aria-hidden className={cn("h-5 w-5", positive ? "text-success" : "text-danger")} /><h2 className="font-semibold">{title}</h2></div><CardContent className="p-0">{rows.length ? <div className="divide-y divide-border">{rows.map((row) => { const difference = row.averageReturn - baseline; return <div key={row.label} className="grid grid-cols-[1fr_auto] gap-3 px-5 py-4"><div><div className="text-sm font-medium">{row.label}</div><div className="mt-1 text-xs text-muted-foreground">{row.trades}건 · 승률 {row.winRate.toFixed(1)}% · {confidence(row.trades)}</div><div className="mt-1 text-xs text-muted-foreground">연결 거래 평균 대비 {difference >= 0 ? "+" : ""}{difference.toFixed(2)}%p</div></div><div className={cn("font-semibold tabular", row.averageReturn >= 0 ? "text-success" : "text-danger")}>{row.averageReturn >= 0 ? "+" : ""}{row.averageReturn.toFixed(2)}%</div></div>; })}</div> : <div className="px-5 py-10 text-center text-sm text-muted-foreground">표본 30건 이상인 조건이 아직 없습니다.</div>}</CardContent></Card>; }
 
 function Metric({ label, value, tone }: { label: string; value: string; tone?: "positive" | "negative" }) { return <Card><CardContent className="p-4"><div className="text-xs text-muted-foreground">{label}</div><div className={cn("mt-1 truncate text-lg font-bold tabular", tone === "positive" && "text-success", tone === "negative" && "text-danger")}>{value}</div></CardContent></Card>; }

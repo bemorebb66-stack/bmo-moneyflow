@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CalendarDays,
   ChartNoAxesCombined,
@@ -18,6 +18,9 @@ import {
   LOCKUP_ROWS,
 } from "@/lib/mock-data";
 import { fmtMoney } from "@/lib/format";
+import { ListPagination } from "./list-pagination";
+import { useUrlSearchState } from "@/hooks/use-url-search-state";
+import { pageSlice, parsePositiveInt } from "@/lib/list-state";
 
 type EventKind = "earnings" | "economic" | "insider" | "lockup";
 type EventFilter = "all" | EventKind;
@@ -45,6 +48,31 @@ function dateKey(date: Date) {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+}
+
+function isValidDateKey(value: string | null): value is string {
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  return dateKey(parseDate(value)) === value;
+}
+
+function isValidMonthKey(value: string | null): value is string {
+  return Boolean(
+    value && /^\d{4}-\d{2}$/.test(value) && isValidDateKey(`${value}-01`),
+  );
+}
+
+function insiderEventKey(row: (typeof INSIDER_ROWS)[number]) {
+  return [
+    row.accession,
+    row.ticker,
+    row.insider,
+    row.tradeDate,
+    row.filedDate,
+    row.type,
+    row.shares,
+    row.price ?? "",
+    row.amount,
+  ].join("|");
 }
 
 function monthStartFromMarketDate() {
@@ -93,8 +121,8 @@ function buildEvents(): CalendarEvent[] {
     external: true,
   }));
   const insiderEvents = INSIDER_ROWS.filter((row) => row.filedDate).map(
-    (row, index) => ({
-      id: `insider-${row.ticker}-${row.filedDate}-${index}`,
+    (row) => ({
+      id: `insider-${insiderEventKey(row)}`,
       date: row.filedDate,
       kind: "insider" as const,
       ticker: row.ticker,
@@ -143,15 +171,50 @@ function EventIcon({ kind }: { kind: EventKind }) {
   return <LockKeyhole className="h-4 w-4" />;
 }
 
-export function EventCalendar() {
-  const [month, setMonth] = useState(monthStartFromMarketDate);
-  const [filter, setFilter] = useState<EventFilter>("all");
-  const [selectedDate, setSelectedDate] = useState(
-    /^\d{4}-\d{2}-\d{2}$/.test(LIVE_META.asOf)
-      ? LIVE_META.asOf
-      : dateKey(new Date()),
-  );
-  const events = useMemo(buildEvents, []);
+export function EventCalendar({
+  dataVersion = "",
+  dataReady = false,
+}: {
+  dataVersion?: string;
+  dataReady?: boolean;
+}) {
+  const { params: urlParams, update: updateUrl } = useUrlSearchState();
+  const [month, setMonth] = useState(() => {
+    const value =
+      typeof window === "undefined"
+        ? null
+        : new URLSearchParams(window.location.search).get("month");
+    return isValidMonthKey(value)
+      ? parseDate(`${value}-01`)
+      : monthStartFromMarketDate();
+  });
+  const [filter, setFilter] = useState<EventFilter>(() => {
+    const value =
+      typeof window === "undefined"
+        ? null
+        : new URLSearchParams(window.location.search).get("eventType");
+    return ["all", "earnings", "economic", "insider", "lockup"].includes(
+      value ?? "",
+    )
+      ? (value as EventFilter)
+      : "all";
+  });
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const value =
+      typeof window === "undefined"
+        ? null
+        : new URLSearchParams(window.location.search).get("date");
+    return isValidDateKey(value)
+      ? value
+      : /^\d{4}-\d{2}-\d{2}$/.test(LIVE_META.asOf)
+        ? LIVE_META.asOf
+        : dateKey(new Date());
+  });
+  const requestedPage = parsePositiveInt(urlParams.get("eventPage"), 1);
+  const syncingFromHistory = useRef(false);
+  const viewSignature = `${month.getFullYear()}-${month.getMonth()}|${filter}|${selectedDate}`;
+  const previousViewSignature = useRef(viewSignature);
+  const events = useMemo(buildEvents, [dataVersion]);
   const filteredEvents = useMemo(
     () => events.filter((event) => filter === "all" || event.kind === filter),
     [events, filter],
@@ -175,6 +238,7 @@ export function EventCalendar() {
     return day;
   });
   const selectedEvents = eventMap.get(selectedDate) ?? [];
+  const pagedEvents = pageSlice(selectedEvents, requestedPage, 10);
   const monthEvents = filteredEvents.filter((event) => {
     const date = parseDate(event.date);
     return (
@@ -195,6 +259,79 @@ export function EventCalendar() {
       /^\d{4}-\d{2}-\d{2}$/.test(LIVE_META.asOf)
         ? LIVE_META.asOf
         : dateKey(new Date()),
+    );
+  };
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const latestMonth = monthStartFromMarketDate();
+    const monthValue = `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, "0")}`;
+    const latestMonthValue = `${latestMonth.getFullYear()}-${String(latestMonth.getMonth() + 1).padStart(2, "0")}`;
+    monthValue !== latestMonthValue
+      ? url.searchParams.set("month", monthValue)
+      : url.searchParams.delete("month");
+    filter !== "all"
+      ? url.searchParams.set("eventType", filter)
+      : url.searchParams.delete("eventType");
+    selectedDate !== LIVE_META.asOf
+      ? url.searchParams.set("date", selectedDate)
+      : url.searchParams.delete("date");
+    const viewChanged = previousViewSignature.current !== viewSignature;
+    previousViewSignature.current = viewSignature;
+    if (viewChanged && !syncingFromHistory.current) {
+      url.searchParams.delete("eventPage");
+    }
+    syncingFromHistory.current = false;
+    window.history.replaceState({}, "", url);
+    window.dispatchEvent(new Event("bvt:url-search-change"));
+  }, [filter, month, selectedDate, viewSignature]);
+
+  useEffect(() => {
+    const restore = () => {
+      const params = new URLSearchParams(window.location.search);
+      const nextMonth = params.get("month");
+      const nextFilter = params.get("eventType");
+      const nextDate = params.get("date");
+      syncingFromHistory.current = true;
+      setMonth(
+        isValidMonthKey(nextMonth)
+          ? parseDate(`${nextMonth}-01`)
+          : monthStartFromMarketDate(),
+      );
+      setFilter(
+        ["all", "earnings", "economic", "insider", "lockup"].includes(
+          nextFilter ?? "",
+        )
+          ? (nextFilter as EventFilter)
+          : "all",
+      );
+      setSelectedDate(isValidDateKey(nextDate) ? nextDate : LIVE_META.asOf);
+    };
+    window.addEventListener("popstate", restore);
+    return () => window.removeEventListener("popstate", restore);
+  }, []);
+
+  useEffect(() => {
+    if (!dataReady) return;
+    if (requestedPage === pagedEvents.page) return;
+    updateUrl((params) => {
+      pagedEvents.page === 1
+        ? params.delete("eventPage")
+        : params.set("eventPage", String(pagedEvents.page));
+    });
+  }, [dataVersion, dataReady, pagedEvents.page, requestedPage, updateUrl]);
+
+  const changeEventPage = (page: number) => {
+    updateUrl(
+      (params) => {
+        page === 1
+          ? params.delete("eventPage")
+          : params.set("eventPage", String(page));
+      },
+      { replace: false },
+    );
+    requestAnimationFrame(() =>
+      document.getElementById("selected-events-title")?.focus(),
     );
   };
 
@@ -341,11 +478,15 @@ export function EventCalendar() {
           </div>
 
           <div className="mt-4 rounded-lg border border-border/70 bg-surface-2/35">
-            <div className="border-b border-border/70 px-3 py-2.5 text-xs font-semibold tabular sm:px-4">
+            <div
+              id="selected-events-title"
+              tabIndex={-1}
+              className="border-b border-border/70 px-3 py-2.5 text-xs font-semibold tabular outline-none sm:px-4"
+            >
               {selectedDate.replace(/-/g, ".")} · {selectedEvents.length}건
             </div>
             <div className="divide-y divide-border/60">
-              {selectedEvents.map((event) => (
+              {pagedEvents.rows.map((event) => (
                 <a
                   key={event.id}
                   href={event.href}
@@ -378,6 +519,16 @@ export function EventCalendar() {
                 </div>
               )}
             </div>
+            <ListPagination
+              page={pagedEvents.page}
+              pageCount={pagedEvents.pageCount}
+              total={selectedEvents.length}
+              start={pagedEvents.start}
+              end={pagedEvents.end}
+              label={`${selectedDate} 이벤트`}
+              onPageChange={changeEventPage}
+              className="bg-background/70"
+            />
           </div>
 
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-muted-foreground">

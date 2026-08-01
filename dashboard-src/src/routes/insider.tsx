@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Bar,
@@ -23,11 +23,31 @@ import { Input } from "@/components/ui/input";
 import { MetricInfo } from "@/components/metric-info";
 import { cn } from "@/lib/utils";
 import {
+  INSIDER_PENDING_ROWS,
   INSIDER_ROWS,
   generateInsiderTrend,
   type InsiderRow,
 } from "@/lib/mock-data";
 import { fmtMoney } from "@/lib/format";
+import { ListPagination } from "@/components/list-pagination";
+import { useResponsiveListLayout } from "@/hooks/use-responsive-list-layout";
+import { useUrlSearchState } from "@/hooks/use-url-search-state";
+import {
+  PAGE_SIZE_OPTIONS,
+  pageForResizedPage,
+  pageSlice,
+  parsePageSize,
+  parsePositiveInt,
+} from "@/lib/list-state";
+import {
+  DataPageFallback,
+  DataSourcesStatus,
+} from "@/components/data-source-state";
+import {
+  ROUTE_DATA_SOURCES,
+  hasUsableSourceData,
+  useDataSources,
+} from "@/lib/data-runtime";
 
 export const Route = createFileRoute("/insider")({
   head: () => ({
@@ -55,13 +75,35 @@ type FilterType = "all" | "buy" | "sell";
 type Range = "7d" | "30d" | "90d";
 
 function InsiderPage() {
-  const [range, setRange] = useState<Range>("30d");
-  const [type, setType] = useState<FilterType>("all");
+  const sourceStates = useDataSources(ROUTE_DATA_SOURCES.insider);
+  const listLayout = useResponsiveListLayout();
+  const { params: urlParams, update: updateUrl } = useUrlSearchState();
+  const [range, setRange] = useState<Range>(() => {
+    if (typeof window === "undefined") return "30d";
+    const value = new URLSearchParams(window.location.search).get("range");
+    return ["7d", "30d", "90d"].includes(value ?? "")
+      ? (value as Range)
+      : "30d";
+  });
+  const [type, setType] = useState<FilterType>(() => {
+    if (typeof window === "undefined") return "all";
+    const value = new URLSearchParams(window.location.search).get("type");
+    return ["all", "buy", "sell"].includes(value ?? "")
+      ? (value as FilterType)
+      : "all";
+  });
   const [query, setQuery] = useState(() =>
     typeof window === "undefined"
       ? ""
-      : (new URLSearchParams(window.location.search).get("ticker") ?? ""),
+      : (new URLSearchParams(window.location.search).get("q") ??
+        new URLSearchParams(window.location.search).get("ticker") ??
+        ""),
   );
+  const pageSize = parsePageSize(urlParams.get("size"));
+  const requestedPage = parsePositiveInt(urlParams.get("page"), 1);
+  const syncingFromHistory = useRef(false);
+  const filterSignature = `${range}|${type}|${query}`;
+  const previousFilterSignature = useRef(filterSignature);
   const days = range === "7d" ? 7 : range === "30d" ? 30 : 90;
   const normalizedQuery = query.trim().toUpperCase();
   const secSearchUrl = normalizedQuery
@@ -72,7 +114,7 @@ function InsiderPage() {
       [...INSIDER_ROWS].sort((a, b) =>
         b.filedDate.localeCompare(a.filedDate),
       )[0]?.filedDate ?? "",
-    [],
+    [sourceStates.insider.lastSuccessAt],
   );
 
   const rows = useMemo(() => {
@@ -90,8 +132,95 @@ function InsiderPage() {
           r.insider.toLowerCase().includes(q)),
     );
   }, [type, query, days, latestFiling]);
+  const paged = pageSlice(rows, requestedPage, pageSize);
 
-  const trend = useMemo(() => generateInsiderTrend(days), [days]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("ticker");
+    query.trim()
+      ? url.searchParams.set("q", query.trim())
+      : url.searchParams.delete("q");
+    range !== "30d"
+      ? url.searchParams.set("range", range)
+      : url.searchParams.delete("range");
+    type !== "all"
+      ? url.searchParams.set("type", type)
+      : url.searchParams.delete("type");
+    const filtersChanged = previousFilterSignature.current !== filterSignature;
+    previousFilterSignature.current = filterSignature;
+    if (filtersChanged && !syncingFromHistory.current) {
+      url.searchParams.delete("page");
+    }
+    syncingFromHistory.current = false;
+    window.history.replaceState({}, "", url);
+    window.dispatchEvent(new Event("bvt:url-search-change"));
+  }, [filterSignature, query, range, type]);
+
+  useEffect(() => {
+    const restore = () => {
+      const params = new URLSearchParams(window.location.search);
+      const nextRange = params.get("range");
+      const nextType = params.get("type");
+      syncingFromHistory.current = true;
+      setQuery(params.get("q") ?? params.get("ticker") ?? "");
+      setRange(
+        ["7d", "30d", "90d"].includes(nextRange ?? "")
+          ? (nextRange as Range)
+          : "30d",
+      );
+      setType(
+        ["all", "buy", "sell"].includes(nextType ?? "")
+          ? (nextType as FilterType)
+          : "all",
+      );
+    };
+    window.addEventListener("popstate", restore);
+    return () => window.removeEventListener("popstate", restore);
+  }, []);
+
+  useEffect(() => {
+    if (!sourceStates.insider.lastSuccessAt) return;
+    if (requestedPage === paged.page) return;
+    updateUrl((params) => {
+      paged.page === 1
+        ? params.delete("page")
+        : params.set("page", String(paged.page));
+    });
+  }, [
+    paged.page,
+    requestedPage,
+    sourceStates.insider.lastSuccessAt,
+    updateUrl,
+  ]);
+
+  const changePage = (page: number) => {
+    updateUrl(
+      (params) => {
+        page === 1 ? params.delete("page") : params.set("page", String(page));
+      },
+      { replace: false },
+    );
+    requestAnimationFrame(() =>
+      document.getElementById("insider-detail-results")?.focus(),
+    );
+  };
+
+  const changePageSize = (nextSize: number) => {
+    const nextPage = pageForResizedPage(paged.page, pageSize, nextSize);
+    updateUrl((params) => {
+      nextSize === 25
+        ? params.delete("size")
+        : params.set("size", String(nextSize));
+      nextPage === 1
+        ? params.delete("page")
+        : params.set("page", String(nextPage));
+    });
+  };
+
+  const trend = useMemo(
+    () => generateInsiderTrend(days),
+    [days, sourceStates.insider.lastSuccessAt],
+  );
 
   const buyTotal = INSIDER_ROWS.filter((r) => r.type === "buy").reduce(
     (s, r) => s + r.amount,
@@ -105,11 +234,25 @@ function InsiderPage() {
     INSIDER_ROWS.filter((r) => r.cluster).map((r) => r.ticker),
   ).size;
 
+  if (!hasUsableSourceData(sourceStates.insider)) {
+    return (
+      <DataPageFallback
+        title="내부자 거래"
+        description="미국 상장기업 내부자의 매수·매도 공시와 클러스터 거래 신호를 추적합니다."
+        state={sourceStates.insider}
+      />
+    );
+  }
+
   return (
     <PageShell>
       <PageHeading
         title="내부자 거래"
         description="미국 상장기업 임원·이사회의 매수·매도 공시와 클러스터 거래 신호를 추적합니다."
+      />
+      <DataSourcesStatus
+        states={[sourceStates.insider, sourceStates.market]}
+        className="mb-4"
       />
 
       <div className="space-y-4 sm:space-y-5">
@@ -122,6 +265,33 @@ function InsiderPage() {
           </span>
         </aside>
 
+        {INSIDER_PENDING_ROWS.length > 0 && (
+          <aside className="rounded-lg border border-warning/30 bg-warning/5 px-4 py-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <strong className="text-sm text-warning">
+                검증 대기 {INSIDER_PENDING_ROWS.length}건
+              </strong>
+              <span className="text-[11px] text-muted-foreground">
+                합계·차트·클러스터 계산에서 제외
+              </span>
+            </div>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {INSIDER_PENDING_ROWS.slice(0, 6).map((row) => (
+                <li
+                  key={insiderRowKey(row)}
+                  className="rounded-md border border-warning/20 bg-background px-2.5 py-1.5 text-xs"
+                >
+                  <strong className="font-mono">{row.ticker}</strong>
+                  <span className="ml-1.5 text-muted-foreground">
+                    {row.tradeDate || row.filedDate} ·{" "}
+                    {pendingReasonLabel(row.validationReasons?.[0])}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
         <section
           aria-label="내부자 거래 요약"
           className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4"
@@ -129,7 +299,11 @@ function InsiderPage() {
           <SummaryCard
             label="유효 공시"
             value={`${INSIDER_ROWS.length}건`}
-            hint="거래일·공시일 검증 통과"
+            hint={
+              INSIDER_PENDING_ROWS.length
+                ? `검증 대기 ${INSIDER_PENDING_ROWS.length}건 제외`
+                : "가격·금액 검증 통과"
+            }
           />
           <SummaryCard
             label="매수 합계"
@@ -207,7 +381,11 @@ function InsiderPage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-4 h-[300px] w-full sm:h-[340px]">
+              <div
+                className="mt-4 h-[300px] w-full sm:h-[340px]"
+                role="img"
+                aria-label="최근 내부자 거래의 일별 매수와 매도 금액 막대 차트. 아래 거래 목록에서 같은 데이터를 확인할 수 있습니다."
+              >
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={trend}
@@ -324,7 +502,8 @@ function InsiderPage() {
                 {rows.length === 0 && (
                   <li className="flex flex-col items-center gap-3 p-10 text-center text-sm text-muted-foreground">
                     <span>
-                      선택한 기간과 조건에 맞는 공개시장 매수·매도 공시가 없습니다.
+                      선택한 기간과 조건에 맞는 공개시장 매수·매도 공시가
+                      없습니다.
                     </span>
                     <a
                       href={secSearchUrl}
@@ -342,22 +521,97 @@ function InsiderPage() {
           </Card>
         </div>
 
-        <InsiderDetailTable
-          rows={rows}
-          secSearchUrl={secSearchUrl}
-          query={normalizedQuery}
-        />
+        {listLayout === "desktop" ? (
+          <InsiderDetailTable
+            rows={paged.rows}
+            total={rows.length}
+            start={paged.start}
+            secSearchUrl={secSearchUrl}
+            query={normalizedQuery}
+          />
+        ) : (
+          <InsiderDetailCards
+            rows={paged.rows}
+            total={rows.length}
+            start={paged.start}
+            secSearchUrl={secSearchUrl}
+            query={normalizedQuery}
+          />
+        )}
+        <Card>
+          <CardContent className="p-0">
+            <div className="flex items-center justify-end px-4 py-2 sm:px-5">
+              <label className="flex items-center gap-2 text-xs text-muted-foreground">
+                페이지당
+                <select
+                  value={pageSize}
+                  onChange={(event) =>
+                    changePageSize(Number(event.target.value))
+                  }
+                  className="h-9 rounded-md border border-border bg-background px-2 text-foreground"
+                >
+                  {PAGE_SIZE_OPTIONS.map((size) => (
+                    <option key={size} value={size}>
+                      {size}건
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <ListPagination
+              page={paged.page}
+              pageCount={paged.pageCount}
+              total={rows.length}
+              start={paged.start}
+              end={paged.end}
+              label="내부자 거래 상세"
+              onPageChange={changePage}
+            />
+          </CardContent>
+        </Card>
       </div>
     </PageShell>
   );
 }
 
+function pendingReasonLabel(code?: string) {
+  const labels: Record<string, string> = {
+    SEC_FOOTNOTE_PRICE_CONFLICT: "SEC 각주 가격 불일치",
+    MARKET_PRICE_EXTREME: "시장가격 대비 이상치",
+    MARKET_PRICE_REVIEW: "시장가격 재확인",
+    SHARES_PRICE_VALUE_MISMATCH: "수량·가격·금액 불일치",
+    AMENDMENT_TRANSACTION_NOT_FOUND: "수정 신고 연결 확인",
+    AMENDMENT_TRANSACTION_AMBIGUOUS: "수정 신고 중복 확인",
+    VALIDATION_NOT_CONFIRMED: "검증 정보 없음",
+    SOURCE_REFETCH_FAILED: "SEC 원문 확인 지연",
+  };
+  return labels[code || ""] || "원문 재확인";
+}
+
+function insiderRowKey(row: InsiderRow) {
+  return [
+    row.accession,
+    row.ticker,
+    row.insider,
+    row.tradeDate,
+    row.filedDate,
+    row.type,
+    row.shares,
+    row.price ?? "",
+    row.amount,
+  ].join("|");
+}
+
 function InsiderDetailTable({
   rows,
+  total,
+  start,
   secSearchUrl,
   query,
 }: {
   rows: InsiderRow[];
+  total: number;
+  start: number;
   secSearchUrl: string;
   query: string;
 }) {
@@ -365,13 +619,22 @@ function InsiderDetailTable({
     <Card>
       <CardContent className="p-0">
         <div className="border-b border-border/70 px-4 py-3 sm:px-5">
-          <h2 className="text-base font-semibold sm:text-lg">상세 데이터</h2>
+          <h2
+            id="insider-detail-results"
+            tabIndex={-1}
+            className="text-base font-semibold outline-none sm:text-lg"
+          >
+            상세 데이터
+          </h2>
           <p className="text-[11px] text-muted-foreground">
-            {rows.length}건 · 티커·거래유형·시간별로 정렬
+            {total}건 · 종목·거래유형·시간 조건 적용
           </p>
         </div>
         <div className="overflow-auto">
           <table className="min-w-[1000px] w-full text-sm">
+            <caption className="sr-only">
+              내부자 거래 {total}건 중 {start + 1}~{start + rows.length}번
+            </caption>
             <thead className="sticky top-0 bg-surface-2/60 text-[11px] uppercase tracking-wide text-muted-foreground">
               <tr>
                 <th className="whitespace-nowrap py-2.5 pl-4 pr-3 text-left font-medium">
@@ -404,8 +667,8 @@ function InsiderDetailTable({
               </tr>
             </thead>
             <tbody className="divide-y divide-border/70">
-              {rows.map((r, i) => (
-                <tr key={i} className="hover:bg-secondary/40">
+              {rows.map((r) => (
+                <tr key={insiderRowKey(r)} className="hover:bg-secondary/40">
                   <td className="whitespace-nowrap py-2.5 pl-4 pr-3">
                     <div className="flex flex-col leading-tight">
                       <a
@@ -485,6 +748,111 @@ function InsiderDetailTable({
             </tbody>
           </table>
         </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function InsiderDetailCards({
+  rows,
+  total,
+  start,
+  secSearchUrl,
+  query,
+}: {
+  rows: InsiderRow[];
+  total: number;
+  start: number;
+  secSearchUrl: string;
+  query: string;
+}) {
+  return (
+    <Card>
+      <CardContent className="p-0">
+        <div className="border-b border-border/70 px-4 py-3">
+          <h2
+            id="insider-detail-results"
+            tabIndex={-1}
+            className="text-base font-semibold outline-none"
+          >
+            상세 데이터
+          </h2>
+          <p className="text-[11px] text-muted-foreground">
+            {total}건 · 종목·거래유형·시간 조건 적용
+          </p>
+        </div>
+        {rows.length === 0 ? (
+          <div className="flex flex-col items-center gap-3 px-4 py-10 text-center text-sm text-muted-foreground">
+            <span>조건에 맞는 데이터가 없습니다.</span>
+            <a
+              href={secSearchUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-2 text-xs font-medium text-brand hover:bg-secondary"
+            >
+              {query || "전체 종목"} SEC Form 4 원문 확인
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        ) : (
+          <ol start={start + 1} className="divide-y divide-border/70">
+            {rows.map((row) => (
+              <li key={insiderRowKey(row)} className="px-4 py-4">
+                <article>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <a
+                        href={`/stock/?ticker=${encodeURIComponent(row.ticker)}`}
+                        className="font-mono text-sm font-bold hover:text-brand"
+                      >
+                        {row.ticker}
+                      </a>
+                      <p className="truncate text-xs text-muted-foreground">
+                        {row.company}
+                      </p>
+                    </div>
+                    <span
+                      className={cn(
+                        "rounded-md border px-2 py-1 text-xs font-semibold",
+                        row.type === "buy"
+                          ? "border-success/25 bg-success/10 text-success"
+                          : "border-danger/25 bg-danger/10 text-danger",
+                      )}
+                    >
+                      {row.type === "buy" ? "매수" : "매도"}
+                    </span>
+                  </div>
+                  <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 rounded-lg border border-border/70 bg-surface-2/45 p-3 text-xs">
+                    <div>
+                      <dt className="text-muted-foreground">내부자·직책</dt>
+                      <dd className="mt-0.5 font-medium">
+                        {row.insider} · {row.role}
+                      </dd>
+                    </div>
+                    <div className="text-right">
+                      <dt className="text-muted-foreground">거래 금액</dt>
+                      <dd className="mt-0.5 font-semibold tabular">
+                        {fmtMoney(row.amount)}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-muted-foreground">주식 수</dt>
+                      <dd className="mt-0.5 tabular">
+                        {row.shares.toLocaleString("en-US")}
+                      </dd>
+                    </div>
+                    <div className="text-right">
+                      <dt className="text-muted-foreground">거래일·공시일</dt>
+                      <dd className="mt-0.5 tabular">
+                        {row.tradeDate} · {row.filedDate}
+                      </dd>
+                    </div>
+                  </dl>
+                </article>
+              </li>
+            ))}
+          </ol>
+        )}
       </CardContent>
     </Card>
   );

@@ -67,7 +67,7 @@ export function SectorTable({
         <div className="flex items-center justify-between border-b border-border/70 px-4 py-3 sm:px-5">
           <div>
             <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-              SECTOR MAP
+              섹터 흐름표
             </div>
             <div className="flex items-center gap-1">
               <h2 className="text-base font-semibold sm:text-lg">
@@ -623,6 +623,8 @@ function describe(s: Sector) {
     return `${prefix}거래대금 증가와 함께 가격이 하락했습니다. 실제 순매도액을 뜻하지는 않습니다.`;
   if (s.signal === "attention-loss")
     return `${prefix}거래대금이 평균을 크게 하회해 시장의 거래 관심이 감소한 구간입니다.`;
+  if (s.signal === "unavailable")
+    return `${prefix}필요한 기준 데이터가 부족해 이 그룹의 신호를 계산하지 않았습니다.`;
   return `${prefix}거래대금과 가격 방향이 중립적이며 뚜렷한 변화가 없습니다.`;
 }
 

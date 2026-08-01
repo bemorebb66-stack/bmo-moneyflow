@@ -17,6 +17,15 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { LOCKUP_META, LOCKUP_ROWS, type LockupRow } from "@/lib/mock-data";
 import { fmtMcap } from "@/lib/format";
+import {
+  DataPageFallback,
+  DataSourcesStatus,
+} from "@/components/data-source-state";
+import {
+  ROUTE_DATA_SOURCES,
+  hasUsableSourceData,
+  useDataSources,
+} from "@/lib/data-runtime";
 
 export const Route = createFileRoute("/ipo-lockup")({
   head: () => ({
@@ -48,6 +57,7 @@ type ViewFilter = "upcoming" | "past" | "major" | "all";
 type WindowFilter = "all" | "14" | "30" | "90";
 
 function LockupPage() {
+  const sourceStates = useDataSources(ROUTE_DATA_SOURCES.lockup);
   const [view, setView] = useState<ViewFilter>("upcoming");
   const [win, setWin] = useState<WindowFilter>("all");
   const [query, setQuery] = useState(() =>
@@ -78,7 +88,15 @@ function LockupPage() {
         ? b.unlockDate.localeCompare(a.unlockDate)
         : a.unlockDate.localeCompare(b.unlockDate),
     );
-  }, [query, view, win]);
+  }, [
+    query,
+    view,
+    win,
+    sourceStates.lockup.lastSuccessAt,
+    sourceStates.lockupReactions.lastSuccessAt,
+    sourceStates.history.lastSuccessAt,
+    sourceStates.market.lastSuccessAt,
+  ]);
 
   const upcoming = LOCKUP_ROWS.filter((row) => row.daysLeft >= 0);
   const past = LOCKUP_ROWS.filter((row) => row.daysLeft < 0);
@@ -89,11 +107,30 @@ function LockupPage() {
     LOCKUP_META.directSecSourceCount ||
     LOCKUP_ROWS.filter((row) => row.sourceUrl?.includes("/Archives/")).length;
 
+  if (!hasUsableSourceData(sourceStates.lockup)) {
+    return (
+      <DataPageFallback
+        title="IPO 락업"
+        description="락업 해제 예정 일정과 과거 이력을 SEC 공시 근거와 함께 확인합니다."
+        state={sourceStates.lockup}
+      />
+    );
+  }
+
   return (
     <PageShell>
       <PageHeading
         title="IPO 락업"
         description="락업 해제 예정 일정과 과거 이력을 SEC 공시 근거와 함께 확인하세요."
+      />
+      <DataSourcesStatus
+        states={[
+          sourceStates.lockup,
+          sourceStates.lockupReactions,
+          sourceStates.market,
+          sourceStates.history,
+        ]}
+        className="mb-4"
       />
 
       <div className="space-y-4 sm:space-y-5">

@@ -13,7 +13,12 @@ import { X } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { generateSeries, LIVE_COMPANIES_BY_ID, type Sector } from "@/lib/mock-data";
+import { AccessibleChart } from "./accessible-chart";
+import {
+  generateSeries,
+  LIVE_COMPANIES_BY_ID,
+  type Sector,
+} from "@/lib/mock-data";
 import { MetricInfo } from "./metric-info";
 
 export type Metric = "index" | "share" | "change";
@@ -33,9 +38,15 @@ const CHART_COLORS = [
 ];
 
 const PRESETS: { label: string; ids: string[] }[] = [
-  { label: "성장 3인방", ids: ["technology", "communication", "consumer-discretionary"] },
+  {
+    label: "성장 3인방",
+    ids: ["technology", "communication", "consumer-discretionary"],
+  },
   { label: "방어주", ids: ["healthcare", "consumer-staples", "utilities"] },
-  { label: "경기민감", ids: ["financial", "industrials", "materials", "energy"] },
+  {
+    label: "경기민감",
+    ids: ["financial", "industrials", "materials", "energy"],
+  },
 ];
 
 interface Props {
@@ -48,10 +59,21 @@ interface Props {
   onRange: (range: Range) => void;
 }
 
-export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, range, onRange }: Props) {
+export function ComparisonChart({
+  rows,
+  selected,
+  onSelected,
+  metric,
+  onMetric,
+  range,
+  onRange,
+}: Props) {
   const [yScale, setYScale] = useState<YScale>("auto");
   const rowMap = useMemo(() => {
-    const items = new Map<string, { id: string; name: string; share: number }>();
+    const items = new Map<
+      string,
+      { id: string; name: string; share: number }
+    >();
     rows.forEach((row) => items.set(row.id, row));
     selected.forEach((id) => {
       const company = LIVE_COMPANIES_BY_ID[id];
@@ -85,7 +107,8 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
     });
   }, [selected, range, metric, rowMap]);
 
-  const removeSel = (id: string) => onSelected(selected.filter((s) => s !== id));
+  const removeSel = (id: string) =>
+    onSelected(selected.filter((s) => s !== id));
   const applyPreset = (ids: string[]) =>
     onSelected(Array.from(new Set(ids)).slice(0, 8));
 
@@ -97,16 +120,21 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
         <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div className="min-w-0">
             <div className="mb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-              GROUP COMPARISON
+              그룹 비교
             </div>
             <div className="flex items-center gap-1">
-              <h2 className="text-base font-semibold sm:text-lg">그룹 비교 차트</h2>
+              <h2 className="text-base font-semibold sm:text-lg">
+                그룹 비교 차트
+              </h2>
               <MetricInfo label="비교 지표 안내">
-                지수화는 시작값을 100으로 맞춰 상대 흐름을 비교합니다. 시장 점유율은 전체 추적 종목 거래대금에서 차지하는 비중이며, 변화율은 선택 범위의 시작점 대비 변화입니다.
+                지수화는 시작값을 100으로 맞춰 상대 흐름을 비교합니다. 시장
+                점유율은 전체 추적 종목 거래대금에서 차지하는 비중이며, 변화율은
+                선택 범위의 시작점 대비 변화입니다.
               </MetricInfo>
             </div>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              지수화·시장 점유율·변화율 기준으로 선택 그룹의 상대 흐름을 비교합니다.
+              지수화·시장 점유율·변화율 기준으로 선택 그룹의 상대 흐름을
+              비교합니다.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -146,16 +174,20 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
           <span className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
             프리셋
           </span>
-          {PRESETS.filter((p) => p.ids.every((id) => rowMap.has(id))).map((p) => (
-            <button
-              key={p.label}
-              onClick={() => applyPreset(p.ids)}
-              className="min-h-10 rounded-md border border-dashed border-border/80 px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:bg-secondary hover:text-foreground sm:min-h-0 sm:px-2.5"
-            >
-              {p.label}
-            </button>
-          ))}
-          <span className="ml-auto text-[11px] text-muted-foreground">프리셋 선택 후 기업을 추가해 세부 비교할 수 있어요.</span>
+          {PRESETS.filter((p) => p.ids.every((id) => rowMap.has(id))).map(
+            (p) => (
+              <button
+                key={p.label}
+                onClick={() => applyPreset(p.ids)}
+                className="min-h-10 rounded-md border border-dashed border-border/80 px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:bg-secondary hover:text-foreground sm:min-h-0 sm:px-2.5"
+              >
+                {p.label}
+              </button>
+            ),
+          )}
+          <span className="ml-auto text-[11px] text-muted-foreground">
+            프리셋 선택 후 기업을 추가해 세부 비교할 수 있어요.
+          </span>
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
@@ -169,115 +201,162 @@ export function ComparisonChart({ rows, selected, onSelected, metric, onMetric, 
               >
                 <span
                   className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: CHART_COLORS[idx % CHART_COLORS.length] }}
+                  style={{
+                    backgroundColor: CHART_COLORS[idx % CHART_COLORS.length],
+                  }}
                   aria-hidden
                 />
                 <span className="pl-0.5">{s.name}</span>
                 <button
                   onClick={() => removeSel(id)}
                   aria-label={`${s.name} 삭제`}
-                className="grid h-8 w-8 place-items-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground sm:h-5 sm:w-5"
+                  className="grid h-8 w-8 place-items-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground sm:h-5 sm:w-5"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </span>
             );
           })}
-          {canAdd && <AddButton rows={rows} selected={selected} onAdd={(id) => onSelected([...selected, id])} />}
+          {canAdd && (
+            <AddButton
+              rows={rows}
+              selected={selected}
+              onAdd={(id) => onSelected([...selected, id])}
+            />
+          )}
           <span className="ml-auto text-[11px] text-muted-foreground">
             최대 8개까지 비교할 수 있어요 · 현재 {selected.length}/8
           </span>
         </div>
 
-        <div className="mt-4 h-[340px] w-full sm:h-[500px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data} margin={{ top: 8, right: 28, bottom: 4, left: -4 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.5} />
-              <XAxis
-                dataKey="date"
-                stroke="var(--color-muted-foreground)"
-                fontSize={11}
-                tickLine={false}
-                axisLine={false}
-                minTickGap={24}
-                padding={{ left: 4, right: 16 }}
-              />
-              <YAxis
-                stroke="var(--color-muted-foreground)"
-                fontSize={11}
-                tickLine={false}
-                axisLine={false}
-                domain={
-                  yScale === "auto"
-                    ? ["auto", "auto"]
-                    : metric === "index"
-                      ? [80, 120]
-                      : metric === "share"
-                        ? [0, 30]
-                        : [-25, 25]
-                }
-                tickFormatter={(v: number) =>
-                  metric === "share"
-                    ? `${v.toFixed(1)}%`
-                    : metric === "change"
-                      ? `${v > 0 ? "+" : ""}${v.toFixed(0)}%`
-                      : v.toFixed(0)
-                }
-                width={52}
-              />
-              <Tooltip
-                cursor={{ stroke: "var(--color-border)" }}
-                contentStyle={{
-                  backgroundColor: "var(--color-popover)",
-                  border: "1px solid var(--color-border)",
-                  borderRadius: 8,
-                  fontSize: 12,
-                }}
-                labelStyle={{ color: "var(--color-muted-foreground)" }}
-                formatter={(value: number, name: string) => {
-                  const s = rowMap.get(name);
-                  const suffix =
-                    metric === "share" || metric === "change" ? "%" : "";
-                  return [`${value.toFixed(2)}${suffix}`, s?.name ?? name];
-                }}
-              />
-              {metric === "index" && (
-                <ReferenceLine
-                  y={100}
+        <AccessibleChart
+          title="선택 그룹 상대 흐름 비교"
+          description="선택한 그룹의 날짜별 지수, 시장 점유율 또는 변화율을 비교합니다."
+          table={
+            <table className="w-full min-w-[560px] text-sm">
+              <caption className="sr-only">선택 그룹 상대 흐름 데이터</caption>
+              <thead className="sticky top-0 bg-surface-2">
+                <tr>
+                  <th className="px-3 py-2 text-left">날짜</th>
+                  {selected.map((id) => (
+                    <th key={id} className="px-3 py-2 text-right">
+                      {rowMap.get(id)?.name ?? id}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {data.map((row) => (
+                  <tr key={String(row.date)}>
+                    <td className="px-3 py-2">{row.date}</td>
+                    {selected.map((id) => (
+                      <td key={id} className="px-3 py-2 text-right tabular">
+                        {Number(row[id]).toFixed(2)}
+                        {metric === "index" ? "" : "%"}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          }
+        >
+          <div className="mt-4 h-[340px] w-full sm:h-[500px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={data}
+                margin={{ top: 8, right: 28, bottom: 4, left: -4 }}
+              >
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--color-border)"
+                  opacity={0.5}
+                />
+                <XAxis
+                  dataKey="date"
                   stroke="var(--color-muted-foreground)"
-                  strokeDasharray="4 4"
-                  strokeOpacity={0.6}
-                  label={{
-                    value: "기준 100",
-                    position: "right",
-                    fill: "var(--color-muted-foreground)",
-                    fontSize: 10,
+                  fontSize={11}
+                  tickLine={false}
+                  axisLine={false}
+                  minTickGap={24}
+                  padding={{ left: 4, right: 16 }}
+                />
+                <YAxis
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={11}
+                  tickLine={false}
+                  axisLine={false}
+                  domain={
+                    yScale === "auto"
+                      ? ["auto", "auto"]
+                      : metric === "index"
+                        ? [80, 120]
+                        : metric === "share"
+                          ? [0, 30]
+                          : [-25, 25]
+                  }
+                  tickFormatter={(v: number) =>
+                    metric === "share"
+                      ? `${v.toFixed(1)}%`
+                      : metric === "change"
+                        ? `${v > 0 ? "+" : ""}${v.toFixed(0)}%`
+                        : v.toFixed(0)
+                  }
+                  width={52}
+                />
+                <Tooltip
+                  cursor={{ stroke: "var(--color-border)" }}
+                  contentStyle={{
+                    backgroundColor: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: 8,
+                    fontSize: 12,
+                  }}
+                  labelStyle={{ color: "var(--color-muted-foreground)" }}
+                  formatter={(value: number, name: string) => {
+                    const s = rowMap.get(name);
+                    const suffix =
+                      metric === "share" || metric === "change" ? "%" : "";
+                    return [`${value.toFixed(2)}${suffix}`, s?.name ?? name];
                   }}
                 />
-              )}
-              {metric === "change" && (
-                <ReferenceLine
-                  y={0}
-                  stroke="var(--color-muted-foreground)"
-                  strokeDasharray="4 4"
-                  strokeOpacity={0.6}
-                />
-              )}
-              {selected.map((id, idx) => (
-                <Line
-                  key={id}
-                  type="monotone"
-                  dataKey={id}
-                  stroke={CHART_COLORS[idx % CHART_COLORS.length]}
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={{ r: 4 }}
-                />
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
+                {metric === "index" && (
+                  <ReferenceLine
+                    y={100}
+                    stroke="var(--color-muted-foreground)"
+                    strokeDasharray="4 4"
+                    strokeOpacity={0.6}
+                    label={{
+                      value: "기준 100",
+                      position: "right",
+                      fill: "var(--color-muted-foreground)",
+                      fontSize: 10,
+                    }}
+                  />
+                )}
+                {metric === "change" && (
+                  <ReferenceLine
+                    y={0}
+                    stroke="var(--color-muted-foreground)"
+                    strokeDasharray="4 4"
+                    strokeOpacity={0.6}
+                  />
+                )}
+                {selected.map((id, idx) => (
+                  <Line
+                    key={id}
+                    type="monotone"
+                    dataKey={id}
+                    stroke={CHART_COLORS[idx % CHART_COLORS.length]}
+                    strokeWidth={2}
+                    dot={false}
+                    activeDot={{ r: 4 }}
+                  />
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </AccessibleChart>
       </CardContent>
     </Card>
   );
@@ -334,7 +413,11 @@ function AddButton({
   if (available.length === 0) return null;
   return (
     <div className="group relative">
-      <Button variant="outline" size="sm" className="h-10 rounded-full px-3 text-xs sm:h-7">
+      <Button
+        variant="outline"
+        size="sm"
+        className="h-10 rounded-full px-3 text-xs sm:h-7"
+      >
         + 그룹 추가
       </Button>
       <div className="invisible absolute left-0 top-full z-20 mt-1 w-56 rounded-lg border border-border bg-popover p-1 opacity-0 shadow-md transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
@@ -345,7 +428,9 @@ function AddButton({
             className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs hover:bg-secondary"
           >
             <span>{s.name}</span>
-            <span className="text-muted-foreground tabular">{s.share.toFixed(1)}%</span>
+            <span className="text-muted-foreground tabular">
+              {s.share.toFixed(1)}%
+            </span>
           </button>
         ))}
       </div>

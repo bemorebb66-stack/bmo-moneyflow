@@ -11,6 +11,16 @@ import { ComparisonChart, type Metric, type Range } from "@/components/compariso
 import { SectorTable } from "@/components/sector-table";
 import { ReadingGuide } from "@/components/reading-guide";
 import { FocusStocks } from "@/components/focus-stocks";
+import {
+  DataPageFallback,
+  DataSectionState,
+  DataSourcesStatus,
+} from "@/components/data-source-state";
+import {
+  ROUTE_DATA_SOURCES,
+  hasUsableSourceData,
+  useDataSources,
+} from "@/lib/data-runtime";
 import { LIVE_COMPANIES_BY_ID, LIVE_MARKET_DATA, SECTORS, type Sector } from "@/lib/mock-data";
 
 const INITIAL_GROUPS = ["technology", "communication", "financial"];
@@ -76,6 +86,8 @@ export const Route = createFileRoute("/")({
 });
 
 function MarketFlowPage() {
+  const sourceStates = useDataSources(ROUTE_DATA_SOURCES.home);
+  const marketState = sourceStates.market;
   const [initial] = useState(readUrlState);
   const [category, setCategory] = useState<Category>(initial.category);
   const [period, setPeriod] = useState<Period>(initial.period);
@@ -138,11 +150,25 @@ function MarketFlowPage() {
           : [...cur, id],
     );
 
+  if (!hasUsableSourceData(marketState)) {
+    return (
+      <DataPageFallback
+        title="시장 흐름"
+        description="미국 주식 시장의 거래대금 흐름을 섹터·산업·시가총액별로 비교합니다."
+        state={marketState}
+      />
+    );
+  }
+
   return (
     <PageShell>
       <PageHeading
         title="시장 흐름"
         description="거래대금 점유율 변화로 미국 시장의 관심 이동을 30초 안에 확인하세요."
+      />
+      <DataSourcesStatus
+        states={[sourceStates.market, sourceStates.history]}
+        className="mb-4"
       />
       <p className="-mt-2 mb-5 max-w-4xl text-xs leading-relaxed text-muted-foreground">
         BVT Money Flow는 미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 거래대금 점유율 변화를 분석하는 금융 데이터 서비스입니다.
@@ -162,15 +188,17 @@ function MarketFlowPage() {
           현재 조건 · {CATEGORY_LABELS[category]} · {PERIOD_LABELS[period]} 기준 · {rows.length}개 그룹
         </p>
         <div className="grid gap-5">
-          <ComparisonChart
-            rows={rows}
-            selected={selected}
-            onSelected={setSelected}
-            metric={metric}
-            onMetric={setMetric}
-            range={range}
-            onRange={setRange}
-          />
+          <DataSectionState state={sourceStates.history} minHeight="h-72">
+            <ComparisonChart
+              rows={rows}
+              selected={selected}
+              onSelected={setSelected}
+              metric={metric}
+              onMetric={setMetric}
+              range={range}
+              onRange={setRange}
+            />
+          </DataSectionState>
           <SectorTable
             data={rows}
             selectedIds={selected}

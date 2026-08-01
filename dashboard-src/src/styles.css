@@ -57,11 +57,11 @@
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(0.985 0.004 250);
-  --foreground: oklch(0.19 0.03 250);
+  --background: #f3f7fa;
+  --foreground: #0b1728;
 
   --surface: oklch(1 0 0);
-  --surface-2: oklch(0.965 0.008 250);
+  --surface-2: #e8eef3;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.19 0.03 250);
@@ -75,7 +75,7 @@
   --secondary-foreground: oklch(0.24 0.06 260);
 
   --muted: oklch(0.955 0.01 250);
-  --muted-foreground: oklch(0.47 0.02 255);
+  --muted-foreground: #526274;
 
   --accent: oklch(0.94 0.015 255);
   --accent-foreground: oklch(0.24 0.06 260);
@@ -83,18 +83,18 @@
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.985 0.004 250);
 
-  --border: oklch(0.9 0.012 255);
-  --input: oklch(0.9 0.012 255);
-  --ring: oklch(0.61 0.2 260);
+  --border: #c7d2df;
+  --input: #b8c5d3;
+  --ring: #006e66;
 
-  --brand: oklch(0.58 0.22 260);
+  --brand: #006e66;
   --brand-foreground: oklch(0.985 0.004 250);
 
-  --success: oklch(0.58 0.16 150);
+  --success: #147a45;
   --success-foreground: oklch(0.985 0.004 250);
-  --danger: oklch(0.58 0.21 25);
+  --danger: #b42318;
   --danger-foreground: oklch(0.985 0.004 250);
-  --warning: oklch(0.72 0.16 75);
+  --warning: #795100;
   --warning-foreground: oklch(0.2 0.03 250);
   --info: oklch(0.55 0.05 240);
   --info-foreground: oklch(0.985 0.004 250);
@@ -110,13 +110,13 @@
 }
 
 .dark {
-  --background: oklch(0.16 0.02 260);
-  --foreground: oklch(0.96 0.005 250);
+  --background: #07111f;
+  --foreground: #f3f7fa;
 
-  --surface: oklch(0.21 0.03 260);
-  --surface-2: oklch(0.25 0.035 260);
+  --surface: #0c1828;
+  --surface-2: #17263a;
 
-  --card: oklch(0.21 0.03 260);
+  --card: #111d2e;
   --card-foreground: oklch(0.96 0.005 250);
   --popover: oklch(0.21 0.03 260);
   --popover-foreground: oklch(0.96 0.005 250);
@@ -128,7 +128,7 @@
   --secondary-foreground: oklch(0.96 0.005 250);
 
   --muted: oklch(0.28 0.035 260);
-  --muted-foreground: oklch(0.76 0.02 255);
+  --muted-foreground: #a8b6c8;
 
   --accent: oklch(0.3 0.04 260);
   --accent-foreground: oklch(0.96 0.005 250);
@@ -136,11 +136,11 @@
   --destructive: oklch(0.65 0.21 25);
   --destructive-foreground: oklch(0.98 0.004 250);
 
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.65 0.14 260);
+  --border: #2a3a50;
+  --input: #3a4b61;
+  --ring: #7ce6d5;
 
-  --brand: oklch(0.7 0.14 260);
+  --brand: #47d7c7;
   --brand-foreground: oklch(0.16 0.02 260);
 
   --success: oklch(0.72 0.17 150);
@@ -179,9 +179,50 @@
     font-feature-settings: "ss01", "cv11";
   }
 
+  button,
+  [role="button"],
+  [role="tab"] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  a[href] {
+    min-height: 44px !important;
+  }
+
+  button[aria-label],
+  a[aria-label] {
+    min-width: 44px !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
   .tabular {
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
+  }
+}
+
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"],
+  [role="tab"] {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -195,6 +236,28 @@
   -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 정보성 글자는 12px 아래로 내려가지 않는다. 기존 유틸리티 호출도 공통으로 보정한다. */
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"] {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+
+.today-secondary > summary {
+  list-style: none;
+}
+
+.today-secondary > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .today-secondary > summary {
     display: none;
   }
 }

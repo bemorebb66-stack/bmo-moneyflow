@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, Minus, EyeOff } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Minus, EyeOff, CircleHelp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIGNAL_META, type Signal } from "@/lib/mock-data";
 
@@ -17,6 +17,7 @@ const ICONS: Record<Signal, React.ComponentType<{ className?: string }>> = {
   outflow: ArrowDownRight,
   "attention-loss": EyeOff,
   neutral: Minus,
+  unavailable: CircleHelp,
 };
 
 export function SignalBadge({

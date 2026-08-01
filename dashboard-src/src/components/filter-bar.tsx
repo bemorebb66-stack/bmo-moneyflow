@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { ChevronRight, Search, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 
@@ -96,15 +96,15 @@ function FilterGroup({
 }) {
   return (
     <div className="flex min-w-0 flex-col gap-1.5">
-      <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-        {label}
-      </span>
-      <div className="relative min-w-0">
-        {children}
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex w-9 items-center justify-end bg-gradient-to-l from-background via-background/85 to-transparent pr-0.5 lg:hidden" aria-hidden>
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
-        </div>
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-xs font-medium text-muted-foreground">
+          {label}
+        </span>
+        <span className="text-xs text-muted-foreground lg:hidden">
+          좌우로 밀어 더 보기
+        </span>
       </div>
+      <div className="relative min-w-0">{children}</div>
     </div>
   );
 }
@@ -119,36 +119,94 @@ function Segmented<T extends string>({
   options: { id: T; label: string }[];
 }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ left: true, right: false });
+
+  const updateEdges = () => {
+    const node = scrollerRef.current;
+    if (!node) return;
+    setEdges({
+      left: node.scrollLeft <= 2,
+      right: node.scrollLeft + node.clientWidth >= node.scrollWidth - 2,
+    });
+  };
 
   useEffect(() => {
-    const selected = scrollerRef.current?.querySelector<HTMLElement>("[aria-selected='true']");
-    selected?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    updateEdges();
+    const node = scrollerRef.current;
+    if (!node) return;
+    const observer = new ResizeObserver(updateEdges);
+    observer.observe(node);
+    node.addEventListener("scroll", updateEdges, { passive: true });
+    return () => {
+      observer.disconnect();
+      node.removeEventListener("scroll", updateEdges);
+    };
+  }, []);
+
+  useEffect(() => {
+    const selected = scrollerRef.current?.querySelector<HTMLElement>(
+      "[aria-selected='true']",
+    );
+    selected?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+    requestAnimationFrame(updateEdges);
   }, [value]);
 
   return (
-    <div ref={scrollerRef} className="no-scrollbar overflow-x-auto pr-7 lg:pr-0">
-      <div role="tablist" className="inline-flex h-11 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 lg:h-9">
-        {options.map((opt) => {
-          const active = opt.id === value;
-          return (
-            <button
-              key={opt.id}
-              role="tab"
-              aria-selected={active}
-              onClick={() => onValueChange(opt.id)}
-              className={cn(
-                "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-colors lg:min-h-0",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-                active
-                  ? "bg-brand text-brand-foreground shadow-sm"
-                  : "text-muted-foreground hover:bg-secondary hover:text-foreground",
-              )}
-            >
-              {opt.label}
-            </button>
-          );
-        })}
+    <div className="relative">
+      <div
+        ref={scrollerRef}
+        className="no-scrollbar overflow-x-auto"
+        tabIndex={0}
+        aria-label="가로 스크롤 필터"
+      >
+        <div
+          role="tablist"
+          className="inline-flex h-11 items-center gap-0.5 rounded-lg border border-border bg-surface p-0.5 lg:h-10"
+        >
+          {options.map((opt) => {
+            const active = opt.id === value;
+            return (
+              <button
+                key={opt.id}
+                role="tab"
+                aria-selected={active}
+                onClick={() => onValueChange(opt.id)}
+                className={cn(
+                  "min-h-10 whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-colors lg:min-h-9",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+                  active
+                    ? "bg-brand text-brand-foreground shadow-sm"
+                    : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+                )}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
+      {!edges.left && (
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 flex w-10 items-center bg-gradient-to-r from-background via-background/90 to-transparent lg:hidden"
+          aria-hidden
+        >
+          <ChevronLeft className="h-4 w-4 text-foreground" />
+        </div>
+      )}
+      {!edges.right && (
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-end bg-gradient-to-l from-background via-background/90 to-transparent lg:hidden"
+          aria-hidden
+        >
+          <ChevronRight className="h-4 w-4 text-foreground" />
+        </div>
+      )}
     </div>
   );
 }

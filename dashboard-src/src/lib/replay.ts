@@ -1,4 +1,7 @@
 import { getEtfMetadata, type EtfMetadata } from "./etf-metadata";
+import type { DataGrade } from "./signal-rules";
+import { DATA_CONTRACT_VERSION, REPLAY_RULE_VERSION, SIGNAL_RULE_VERSION } from "./signal-rules";
+import { isTradingDate, TRADING_CALENDAR_VERSION } from "./trading-calendar";
 
 export type ReplayExecution = {
   ticker: string;
@@ -12,6 +15,9 @@ export type ReplayExecution = {
   executionId?: string;
   orderId?: string;
   sourceOrderHint?: "chronological" | "reverse-chronological";
+  executionTimestamp?: string;
+  feeProvided?: boolean;
+  dateBasis?: "TRADE_DATE" | "SETTLEMENT_DATE";
 };
 
 export type CompletedTrade = {
@@ -26,12 +32,26 @@ export type CompletedTrade = {
   holdingDays: number;
   buyCount: number;
   sellCount: number;
+  entryAt?: string;
+  entryTimeStatus?: "KNOWN" | "DATE_ONLY";
+  feeStatus?: "COMPLETE" | "ASSUMED_ZERO";
+  dateStatus?: "VALID" | "NON_TRADING_DATE" | "SETTLEMENT_DATE";
   context?: TradeContext;
   contextStatus?: string;
 };
 
 export type ReplaySnapshot = {
+  schema_version?: number;
   trading_date: string;
+  available_at?: string;
+  information_cutoff_at?: string;
+  content_hash?: string;
+  signal_rule_version?: string;
+  replay_rule_version?: string;
+  calendar_version?: string;
+  data_contract_version?: string;
+  data_grade?: DataGrade;
+  data_grade_reasons?: string[];
   market: {
     market_regime: string;
     dollar_volume_change_1d: number | null;
@@ -83,7 +103,131 @@ export type TradeContext = {
   sector?: GroupContext;
   marketCap?: GroupContext;
   market: ReplaySnapshot["market"];
+  dataGrade: DataGrade;
+  dataGradeReasons: string[];
+  signalRuleVersion: string;
+  replayRuleVersion: string;
+  snapshotHash?: string;
+  snapshotAvailableAt?: string;
 };
+
+export type ReplayManifestEntry = {
+  trading_date: string;
+  available_at?: string;
+  data_grade?: DataGrade;
+  content_hash?: string;
+  file_hash?: string;
+  signal_rule_version?: string;
+  replay_rule_version?: string;
+  calendar_version?: string;
+  data_contract_version?: string;
+  path: string;
+  selectable?: boolean;
+};
+
+export type ReplayManifest = {
+  schema_version?: number;
+  dates?: string[];
+  entries?: ReplayManifestEntry[];
+  data_contract_version?: string;
+  signal_rule_version?: string;
+  replay_rule_version?: string;
+  calendar_version?: string;
+};
+
+export type SnapshotSelection = {
+  entry?: ReplayManifestEntry;
+  status: "SELECTED" | "NO_CAUSAL_SNAPSHOT" | "LEGACY_MANIFEST_UNUSABLE" | "INVALID_MANIFEST";
+  reason: string;
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isFiniteOrNull(value: unknown) {
+  return value === null || (typeof value === "number" && Number.isFinite(value));
+}
+
+function exchangeDate(timestamp: string) {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date(timestamp));
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function isValidManifestEntry(entry: ReplayManifestEntry) {
+  const path = /^revisions\/(\d{4}-\d{2}-\d{2})\/([0-9a-f]{64})\.json$/.exec(entry.path);
+  return Boolean(
+    path
+    && path[1] === entry.trading_date
+    && entry.content_hash === `sha256:${path[2]}`
+    && /^sha256:[0-9a-f]{64}$/.test(entry.file_hash ?? "")
+    && entry.available_at
+    && /(Z|[+-]\d{2}:\d{2})$/.test(entry.available_at)
+    && Number.isFinite(Date.parse(entry.available_at))
+    && entry.data_grade
+    && ["PIT_VERIFIED", "PIT_RECONSTRUCTED", "CURRENT_PROXY"].includes(entry.data_grade)
+    && entry.signal_rule_version === SIGNAL_RULE_VERSION
+    && entry.replay_rule_version === REPLAY_RULE_VERSION
+    && entry.calendar_version === TRADING_CALENDAR_VERSION
+    && entry.data_contract_version === DATA_CONTRACT_VERSION,
+  );
+}
+
+export function validateReplaySnapshot(snapshot: ReplaySnapshot) {
+  const reasons: string[] = [];
+  if (snapshot.schema_version !== 2) reasons.push("UNSUPPORTED_SCHEMA_VERSION");
+  if (snapshot.signal_rule_version !== SIGNAL_RULE_VERSION) reasons.push("SIGNAL_RULE_VERSION_MISMATCH");
+  if (snapshot.replay_rule_version !== REPLAY_RULE_VERSION) reasons.push("REPLAY_RULE_VERSION_MISMATCH");
+  if (snapshot.calendar_version !== TRADING_CALENDAR_VERSION) reasons.push("CALENDAR_VERSION_MISMATCH");
+  if (snapshot.data_contract_version !== DATA_CONTRACT_VERSION) reasons.push("DATA_CONTRACT_VERSION_MISMATCH");
+  if (!snapshot.data_grade || !["PIT_VERIFIED", "PIT_RECONSTRUCTED", "CURRENT_PROXY"].includes(snapshot.data_grade)) reasons.push("INVALID_DATA_GRADE");
+  if (!snapshot.available_at || !/(Z|[+-]\d{2}:\d{2})$/.test(snapshot.available_at) || !Number.isFinite(Date.parse(snapshot.available_at))) reasons.push("INVALID_AVAILABLE_AT");
+  if (!snapshot.information_cutoff_at || !/(Z|[+-]\d{2}:\d{2})$/.test(snapshot.information_cutoff_at) || !Number.isFinite(Date.parse(snapshot.information_cutoff_at))) reasons.push("INVALID_INFORMATION_CUTOFF_AT");
+  if (snapshot.available_at && snapshot.information_cutoff_at && Date.parse(snapshot.available_at) < Date.parse(snapshot.information_cutoff_at)) reasons.push("AVAILABLE_BEFORE_INFORMATION_CUTOFF");
+  if (!snapshot.content_hash || !/^sha256:[0-9a-f]{64}$/.test(snapshot.content_hash)) reasons.push("INVALID_CONTENT_HASH");
+  if (!isTradingDate(snapshot.trading_date)) reasons.push("INVALID_TRADING_DATE");
+  if (!isRecord(snapshot.market) || typeof snapshot.market.market_regime !== "string" || !isFiniteOrNull(snapshot.market.dollar_volume_change_1d)) reasons.push("INVALID_MARKET");
+  if (!isRecord(snapshot.groups) || !isRecord(snapshot.groups.sector) || !isRecord(snapshot.groups.industry) || !isRecord(snapshot.groups.market_cap)) reasons.push("INVALID_GROUPS");
+  if (!snapshot.tickers || typeof snapshot.tickers !== "object" || Array.isArray(snapshot.tickers)) reasons.push("INVALID_TICKERS");
+  else if (Object.entries(snapshot.tickers).some(([ticker, row]) => !ticker || !isRecord(row) || typeof row.name !== "string" || typeof row.volume_state !== "string" || typeof row.sector !== "string" || typeof row.industry !== "string" || typeof row.market_cap_group !== "string" || !isFiniteOrNull(row.dollar_volume_change_1d) || !isFiniteOrNull(row.dollar_volume_ratio_5d) || !isFiniteOrNull(row.dollar_volume_ratio_20d))) reasons.push("INVALID_TICKER_ROW");
+  return reasons;
+}
+
+export async function calculateSha256(text: string) {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+  return `sha256:${Array.from(new Uint8Array(digest), (value) => value.toString(16).padStart(2, "0")).join("")}`;
+}
+
+export function selectReplaySnapshot(manifest: ReplayManifest, trade: Pick<CompletedTrade, "entryDate" | "entryAt" | "entryTimeStatus">): SnapshotSelection {
+  const entries = manifest.entries ?? [];
+  if (!entries.length) {
+    return {
+      status: "LEGACY_MANIFEST_UNUSABLE",
+      reason: "가용 시각이 없는 구형 스냅샷은 미래 데이터 참조 여부를 검증할 수 없어 사용하지 않습니다.",
+    };
+  }
+  const validEntries = entries.filter(isValidManifestEntry);
+  if (!validEntries.length) {
+    return { status: "INVALID_MANIFEST", reason: "스냅샷 목록의 경로·해시·가용 시각 계약이 올바르지 않아 사용하지 않습니다." };
+  }
+  const eligible = validEntries.filter((entry) => {
+    if (entry.selectable === false || !entry.available_at) return false;
+    if (trade.entryAt && trade.entryTimeStatus === "KNOWN" && /(Z|[+-]\d{2}:\d{2})$/.test(trade.entryAt)) {
+      const entryAt = Date.parse(trade.entryAt);
+      const availableAt = Date.parse(entry.available_at);
+      return entry.trading_date <= trade.entryDate && Number.isFinite(entryAt) && Number.isFinite(availableAt) && availableAt <= entryAt;
+    }
+    // Date-only fills use a deliberately stricter rule: prior session and a
+    // revision available before the entry's New York calendar date.
+    return entry.trading_date < trade.entryDate && exchangeDate(entry.available_at) < trade.entryDate;
+  });
+  const entry = eligible.sort((a, b) => b.trading_date.localeCompare(a.trading_date) || String(b.available_at).localeCompare(String(a.available_at)))[0];
+  return entry
+    ? { entry, status: "SELECTED", reason: trade.entryAt ? "체결 시각 이전 공개본" : "날짜만 있어 보수적으로 선택한 직전 공개본" }
+    : { status: "NO_CAUSAL_SNAPSHOT", reason: "진입 시점 전에 공개됐음을 입증할 수 있는 스냅샷이 없습니다." };
+}
 
 export type ReplayAssetType =
   | "STOCK"
@@ -114,7 +258,8 @@ const required = ["ticker", "transaction_date", "transaction_type", "quantity", 
 const buys = new Set(["buy", "b", "매수"]);
 const sells = new Set(["sell", "s", "매도"]);
 const EPSILON = 1e-8;
-export const REPLAY_PARSER_VERSION = "2026.07.19-2";
+export const MAX_REPLAY_EXECUTIONS = 50_000;
+export const REPLAY_PARSER_VERSION = "bvt-parser/2.0.0";
 
 export function parseExecutionTime(value?: string) {
   if (!value?.trim()) return Number.MAX_SAFE_INTEGER;
@@ -125,7 +270,7 @@ export function parseExecutionTime(value?: string) {
   return hour * 3600 + minute * 60 + second;
 }
 
-function csvRows(text: string) {
+function csvRows(text: string, maxRows = Number.POSITIVE_INFINITY) {
   const rows: string[][] = [];
   let row: string[] = [];
   let field = "";
@@ -146,6 +291,7 @@ function csvRows(text: string) {
       if (char === "\r" && text[index + 1] === "\n") index += 1;
       row.push(field.trim());
       if (row.some(Boolean)) rows.push(row);
+      if (rows.length >= maxRows) return rows;
       row = [];
       field = "";
     } else {
@@ -164,8 +310,10 @@ function validIsoDate(value: string) {
 }
 
 export function parseReplayCsv(text: string): ParseResult {
-  const rows = csvRows(text.replace(/^\uFEFF/, ""));
+  const normalized = text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
+  const rows = csvRows(normalized, MAX_REPLAY_EXECUTIONS + 2);
   if (!rows.length) return { executions: [], errors: ["CSV 파일이 비어 있습니다."] };
+  if (rows.length - 1 > MAX_REPLAY_EXECUTIONS) return { executions: [], errors: [`체결 내역은 최대 ${MAX_REPLAY_EXECUTIONS.toLocaleString("ko-KR")}행까지 분석할 수 있습니다.`] };
   const headers = rows[0].map((value) => value.toLowerCase());
   const missing = required.filter((name) => !headers.includes(name));
   if (missing.length) return { executions: [], errors: [`필수 열이 없습니다: ${missing.join(", ")}`] };
@@ -190,7 +338,7 @@ export function parseReplayCsv(text: string): ParseResult {
     if (!(fee >= 0)) errors.push(`${row}행: 수수료를 확인하세요.`);
     if (currency !== "USD") errors.push(`${row}행: 현재는 USD 거래만 지원합니다.`);
     if (ticker && side && quantity > 0 && price > 0 && fee >= 0 && currency === "USD" && validIsoDate(transactionDate)) {
-      executions.push({ ticker, transactionDate, side, quantity, price, fee, row });
+      executions.push({ ticker, transactionDate, side, quantity, price, fee, row, feeProvided: Boolean(values[column.fee]?.trim()), dateBasis: "TRADE_DATE" });
     }
   });
   return { executions, errors };
@@ -200,6 +348,15 @@ type Position = {
   quantity: number; cost: number; entryDate: string; buyCount: number; sellCount: number;
   proceeds: number; soldQuantity: number; sellFees: number; totalBought: number;
   buyCost: number; realizedCost: number;
+  entryAt?: string; feeComplete: boolean;
+  dateStatus: "VALID" | "NON_TRADING_DATE" | "SETTLEMENT_DATE";
+};
+
+export type ReplayCorporateAction = {
+  ticker: string;
+  effectiveDate: string;
+  actionType: "SPLIT";
+  ratio: number;
 };
 
 export function sortReplayExecutions(executions: ReplayExecution[]) {
@@ -247,12 +404,30 @@ export function selectCompletedTrades(trades: CompletedTrade[], selection: Compl
   return selection.limit === null ? filtered : filtered.slice(0, selection.limit);
 }
 
-export function combineReplayTrades(executions: ReplayExecution[], openingHoldings: Record<string, OpeningHolding> = {}) {
+export function combineReplayTrades(
+  executions: ReplayExecution[],
+  openingHoldings: Record<string, OpeningHolding> = {},
+  corporateActions: ReplayCorporateAction[] = [],
+) {
   const ordered = sortReplayExecutions(executions).executions;
+  const sortedActions = [...corporateActions].sort((a, b) => a.effectiveDate.localeCompare(b.effectiveDate));
   const openingShortfalls: Record<string, number> = {};
   const balances = new Map(Object.entries(openingHoldings).map(([ticker, holding]) => [ticker, Math.max(0, Number(holding.quantity || 0))]));
   const debugByTicker = new Map<string, ReplayTickerDebug>();
+  const debugAppliedActions = new Set<number>();
   for (const item of ordered) {
+    sortedActions.forEach((action, index) => {
+      if (debugAppliedActions.has(index) || action.effectiveDate > item.transactionDate || !(action.ratio > 0)) return;
+      debugAppliedActions.add(index);
+      if (balances.has(action.ticker)) balances.set(action.ticker, (balances.get(action.ticker) ?? 0) * action.ratio);
+      if (openingShortfalls[action.ticker]) openingShortfalls[action.ticker] *= action.ratio;
+      const priorDebug = debugByTicker.get(action.ticker);
+      if (priorDebug) {
+        priorDebug.totalBuy *= action.ratio;
+        priorDebug.totalSell *= action.ratio;
+        priorDebug.minimumRunningQuantity *= action.ratio;
+      }
+    });
     const debug = debugByTicker.get(item.ticker) ?? { ticker: item.ticker, totalBuy: 0, totalSell: 0, minimumRunningQuantity: 0, requiredInitialQuantity: 0, finalRemaining: 0, actualRemaining: 0 };
     if (item.side === "buy") debug.totalBuy += item.quantity;
     else debug.totalSell += item.quantity;
@@ -265,24 +440,49 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
   const positions = new Map<string, Position>();
   const trades: CompletedTrade[] = [];
   const errors: string[] = [];
-  const emptyPosition = (entryDate: string): Position => ({ quantity: 0, cost: 0, entryDate, buyCount: 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: 0, buyCost: 0, realizedCost: 0 });
+  const emptyPosition = (entryDate: string): Position => ({ quantity: 0, cost: 0, entryDate, buyCount: 0, sellCount: 0, proceeds: 0, soldQuantity: 0, sellFees: 0, totalBought: 0, buyCost: 0, realizedCost: 0, feeComplete: true, dateStatus: "VALID" });
+  const appliedActions = new Set<number>();
+  const pendingOpeningFactors = new Map<string, number>();
   for (const item of ordered) {
+    sortedActions.forEach((action, index) => {
+      if (appliedActions.has(index) || action.effectiveDate > item.transactionDate) return;
+      appliedActions.add(index);
+      if (!(action.ratio > 0)) {
+        errors.push(`${action.ticker}: 분할 비율이 올바르지 않습니다.`);
+        return;
+      }
+      const actionPosition = positions.get(action.ticker);
+      if (actionPosition && actionPosition.quantity > EPSILON) {
+        actionPosition.quantity *= action.ratio;
+        actionPosition.totalBought *= action.ratio;
+        actionPosition.soldQuantity *= action.ratio;
+      } else if (openingHoldings[action.ticker]?.quantity) {
+        pendingOpeningFactors.set(action.ticker, (pendingOpeningFactors.get(action.ticker) ?? 1) * action.ratio);
+      }
+    });
     let position = positions.get(item.ticker);
     if (!position) {
       const opening = openingHoldings[item.ticker];
-      const openingQuantity = Math.max(0, Number(opening?.quantity || 0));
+      const openingFactor = pendingOpeningFactors.get(item.ticker) ?? 1;
+      const originalOpeningQuantity = Math.max(0, Number(opening?.quantity || 0));
+      const openingQuantity = originalOpeningQuantity * openingFactor;
       const openingPrice = Math.max(0, Number(opening?.averagePrice || 0));
-      position = { ...emptyPosition(item.transactionDate), quantity: openingQuantity, cost: openingQuantity * openingPrice, buyCount: openingQuantity ? 1 : 0, totalBought: openingQuantity, buyCost: openingQuantity * openingPrice };
+      const openingCost = originalOpeningQuantity * openingPrice;
+      position = { ...emptyPosition(item.transactionDate), quantity: openingQuantity, cost: openingCost, buyCount: openingQuantity ? 1 : 0, totalBought: openingQuantity, buyCost: openingCost };
       positions.set(item.ticker, position);
     }
     if (item.side === "buy") {
       if (Math.abs(position.quantity) < EPSILON) Object.assign(position, emptyPosition(item.transactionDate));
+      if (!isTradingDate(item.transactionDate)) position.dateStatus = "NON_TRADING_DATE";
+      else if (item.dateBasis === "SETTLEMENT_DATE" && position.dateStatus === "VALID") position.dateStatus = "SETTLEMENT_DATE";
       const purchaseCost = item.quantity * item.price + item.fee;
+      if (position.buyCount === 0) position.entryAt = item.executionTimestamp && /(Z|[+-]\d{2}:\d{2})$/.test(item.executionTimestamp) && Number.isFinite(Date.parse(item.executionTimestamp)) ? item.executionTimestamp : undefined;
       position.quantity += item.quantity;
       position.cost += purchaseCost;
       position.buyCost += purchaseCost;
       position.totalBought += item.quantity;
       position.buyCount += 1;
+      position.feeComplete = position.feeComplete && item.feeProvided !== false;
       continue;
     }
     if (item.quantity > position.quantity + EPSILON) {
@@ -290,6 +490,8 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
       // The caller receives one consolidated shortfall per ticker below.
       continue;
     }
+    if (!isTradingDate(item.transactionDate)) position.dateStatus = "NON_TRADING_DATE";
+    else if (item.dateBasis === "SETTLEMENT_DATE" && position.dateStatus === "VALID") position.dateStatus = "SETTLEMENT_DATE";
     const averageCost = position.cost / position.quantity;
     position.quantity -= item.quantity;
     position.cost -= averageCost * item.quantity;
@@ -298,15 +500,15 @@ export function combineReplayTrades(executions: ReplayExecution[], openingHoldin
     position.soldQuantity += item.quantity;
     position.sellFees += item.fee;
     position.sellCount += 1;
+    position.feeComplete = position.feeComplete && item.feeProvided !== false;
     if (Math.abs(position.quantity) < EPSILON) {
       const profit = position.proceeds - position.sellFees - position.realizedCost;
       const holdingDays = Math.round((Date.parse(`${item.transactionDate}T00:00:00Z`) - Date.parse(`${position.entryDate}T00:00:00Z`)) / 86400000);
-      trades.push({ ticker: item.ticker, entryDate: position.entryDate, exitDate: item.transactionDate, averageEntryPrice: position.buyCost / position.totalBought, averageExitPrice: position.proceeds / position.soldQuantity, quantity: position.soldQuantity, realizedProfit: profit, returnPercent: position.realizedCost ? profit / position.realizedCost * 100 : 0, holdingDays, buyCount: position.buyCount, sellCount: position.sellCount });
+      trades.push({ ticker: item.ticker, entryDate: position.entryDate, exitDate: item.transactionDate, averageEntryPrice: position.buyCost / position.totalBought, averageExitPrice: position.proceeds / position.soldQuantity, quantity: position.soldQuantity, realizedProfit: profit, returnPercent: position.realizedCost ? profit / position.realizedCost * 100 : 0, holdingDays, buyCount: position.buyCount, sellCount: position.sellCount, entryAt: position.entryAt, entryTimeStatus: position.entryAt ? "KNOWN" : "DATE_ONLY", feeStatus: position.feeComplete ? "COMPLETE" : "ASSUMED_ZERO", dateStatus: position.dateStatus });
       Object.assign(position, emptyPosition(item.transactionDate));
     }
   }
-  const expectedRemaining = new Map(Object.entries(openingHoldings).map(([ticker, holding]) => [ticker, Math.max(0, Number(holding.quantity || 0))]));
-  for (const item of ordered) expectedRemaining.set(item.ticker, (expectedRemaining.get(item.ticker) ?? 0) + (item.side === "buy" ? item.quantity : -item.quantity));
+  const expectedRemaining = balances;
   for (const [ticker, expected] of expectedRemaining) {
     const actual = positions.get(ticker)?.quantity ?? 0;
     const debug = debugByTicker.get(ticker);
@@ -348,6 +550,12 @@ export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, cont
         missingReasons: ["종목이 BVT 추적 유니버스에 없거나 과거 가격·거래대금 데이터가 없습니다."],
         supportLevel: "HISTORICAL_DATA_MISSING",
         market: snapshot.market,
+        dataGrade: snapshot.data_grade ?? "CURRENT_PROXY",
+        dataGradeReasons: snapshot.data_grade_reasons ?? ["LEGACY_SNAPSHOT_WITHOUT_DATA_GRADE"],
+        signalRuleVersion: snapshot.signal_rule_version ?? SIGNAL_RULE_VERSION,
+        replayRuleVersion: snapshot.replay_rule_version ?? REPLAY_RULE_VERSION,
+        snapshotHash: snapshot.content_hash,
+        snapshotAvailableAt: snapshot.available_at,
       },
     };
   }
@@ -404,12 +612,12 @@ export function addContext(trade: CompletedTrade, snapshot: ReplaySnapshot, cont
             : asset?.underlyingType === "VOLATILITY"
               ? `${trade.ticker}는 VIX 선물 기반 상품으로 일반 주식 섹터와 직접 비교하지 않습니다. 변동성 환경 데이터가 필요합니다.`
               : `${trade.ticker}는 매핑됐지만 기초자산 과거 데이터가 없어 시장환경 분석에서 제외됐습니다.`;
-  return { ...trade, contextStatus: status, context: { tradingDate: snapshot.trading_date, ticker, asset, underlyingTicker, underlyingGroup, underlyingIndex, assetType, productDataAvailable: Boolean(ticker), underlyingMappingAvailable, underlyingDataAvailable: hasUnderlying, sectorDataAvailable: Boolean(underlyingGroup || (ticker && snapshot.groups.sector[ticker.sector])), marketDataAvailable, missingReasons, supportLevel, industry: ticker ? snapshot.groups.industry[ticker.industry] : undefined, sector: ticker ? snapshot.groups.sector[ticker.sector] : undefined, marketCap: ticker ? snapshot.groups.market_cap[ticker.market_cap_group] : undefined, market: snapshot.market } };
+  return { ...trade, contextStatus: status, context: { tradingDate: snapshot.trading_date, ticker, asset, underlyingTicker, underlyingGroup, underlyingIndex, assetType, productDataAvailable: Boolean(ticker), underlyingMappingAvailable, underlyingDataAvailable: hasUnderlying, sectorDataAvailable: Boolean(underlyingGroup || (ticker && snapshot.groups.sector[ticker.sector])), marketDataAvailable, missingReasons, supportLevel, industry: ticker ? snapshot.groups.industry[ticker.industry] : undefined, sector: ticker ? snapshot.groups.sector[ticker.sector] : undefined, marketCap: ticker ? snapshot.groups.market_cap[ticker.market_cap_group] : undefined, market: snapshot.market, dataGrade: snapshot.data_grade ?? "CURRENT_PROXY", dataGradeReasons: snapshot.data_grade_reasons ?? ["LEGACY_SNAPSHOT_WITHOUT_DATA_GRADE"], signalRuleVersion: snapshot.signal_rule_version ?? SIGNAL_RULE_VERSION, replayRuleVersion: snapshot.replay_rule_version ?? REPLAY_RULE_VERSION, snapshotHash: snapshot.content_hash, snapshotAvailableAt: snapshot.available_at } };
 }
 
 export function confidence(count: number) {
   if (count < 5) return "표본 부족";
   if (count < 15) return "신뢰도 낮음";
   if (count < 30) return "참고";
-  return "분석 가능";
+  return "탐색적 통계";
 }

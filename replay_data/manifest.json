@@ -1,9 +1,13 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-07-29T23:45:28+00:00",
+  "schema_version": 2,
+  "updated_at": "2026-08-01T18:11:46+00:00",
   "first_date": "2026-03-10",
   "last_date": "2026-07-29",
   "snapshot_count": 98,
+  "revision_count": 2,
+  "selectable_revision_count": 1,
+  "first_selectable_date": "2026-07-29",
+  "last_selectable_date": "2026-07-29",
   "dates": [
     "2026-03-10",
     "2026-03-11",
@@ -104,10 +108,37 @@
     "2026-07-28",
     "2026-07-29"
   ],
-  "missing_weekdays": [
-    "2026-04-03",
-    "2026-05-25",
-    "2026-06-19",
-    "2026-07-03"
-  ]
+  "missing_trading_days": [],
+  "entries": [
+    {
+      "trading_date": "2026-07-29",
+      "available_at": "2026-08-01T18:11:46+00:00",
+      "data_grade": "CURRENT_PROXY",
+      "content_hash": "sha256:2f17dd3316b5c66d97c77cbb317fda505f2b6b411aa2515db5cbfcc51d982f4b",
+      "file_hash": "sha256:2e927e10a843c3ba51ffc5ce3e172921f67b88e8aeb240a15e532c17eea91d15",
+      "data_contract_version": "bvt-market-data/2.0.0",
+      "signal_rule_version": "bvt-signal/2.0.0",
+      "replay_rule_version": "bvt-replay/2.0.0",
+      "calendar_version": "XNYS-regular/2026.2",
+      "path": "revisions/2026-07-29/2f17dd3316b5c66d97c77cbb317fda505f2b6b411aa2515db5cbfcc51d982f4b.json",
+      "selectable": true
+    },
+    {
+      "trading_date": "2026-07-29",
+      "available_at": "2026-08-01T17:36:56+00:00",
+      "data_grade": "CURRENT_PROXY",
+      "content_hash": "sha256:629bcc37962ddcb425f4ebffc68b0b903bc01f8c47d295bd9aeb66b7d4c860e3",
+      "file_hash": "sha256:4800cbbb8d707c769b7ee9e6fa6bf4a84c7bec61f1650a6ced31b417d3449a82",
+      "data_contract_version": "bvt-market-data/2.0.0",
+      "signal_rule_version": "bvt-signal/2.0.0",
+      "replay_rule_version": "bvt-replay/2.0.0",
+      "calendar_version": "XNYS-regular/2026.1",
+      "path": "revisions/2026-07-29/629bcc37962ddcb425f4ebffc68b0b903bc01f8c47d295bd9aeb66b7d4c860e3.json",
+      "selectable": true
+    }
+  ],
+  "data_contract_version": "bvt-market-data/2.0.0",
+  "signal_rule_version": "bvt-signal/2.0.0",
+  "replay_rule_version": "bvt-replay/2.0.0",
+  "calendar_version": "XNYS-regular/2026.2"
 }

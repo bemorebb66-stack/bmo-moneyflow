@@ -14,6 +14,12 @@ export function PageShell({ children }: Props) {
   return (
     <ThemeProvider>
       <div className="min-h-dvh w-full min-w-0 overflow-x-clip bg-background text-foreground">
+        <a
+          href="#main-content"
+          className="fixed left-3 top-3 z-[100] -translate-y-24 rounded-md bg-brand px-4 py-2 text-sm font-semibold text-brand-foreground shadow-lg transition-transform focus:translate-y-0"
+        >
+          본문으로 바로가기
+        </a>
         <SiteHeader
           asOf={LIVE_META.asOf}
           updatedAt={LIVE_META.updatedAt}
@@ -21,7 +27,11 @@ export function PageShell({ children }: Props) {
           status={LIVE_META.status}
           delayTradingDays={LIVE_META.delayTradingDays}
         />
-        <main className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 lg:px-6 lg:py-7">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 outline-none lg:px-6 lg:py-7"
+        >
           {children}
         </main>
         <MarketIndexPanel />

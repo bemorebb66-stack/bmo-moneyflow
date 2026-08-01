@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
   TrendingUp,
@@ -20,10 +21,20 @@ import {
   LIVE_STOCKS,
 } from "@/lib/mock-data";
 import { fmtBp, fmtMoney, fmtPct } from "@/lib/format";
-import { ShareMenu } from "@/components/share-menu";
+import { LatestDailyBriefing } from "@/components/briefing-view";
 import { DailyMarketAnalysis } from "@/components/daily-market-analysis";
 import { EventCalendar } from "@/components/event-calendar";
 import { WeeklyMarketSummary } from "@/components/weekly-market-summary";
+import {
+  DataPageFallback,
+  DataSectionState,
+  DataSourcesStatus,
+} from "@/components/data-source-state";
+import {
+  ROUTE_DATA_SOURCES,
+  hasUsableSourceData,
+  useDataSources,
+} from "@/lib/data-runtime";
 
 export const Route = createFileRoute("/today")({
   head: () => ({
@@ -46,6 +57,9 @@ export const Route = createFileRoute("/today")({
 });
 
 function TodayPage() {
+  const [secondaryOpen, setSecondaryOpen] = useState(false);
+  const [desktopSecondary, setDesktopSecondary] = useState(false);
+  const sourceStates = useDataSources(ROUTE_DATA_SOURCES.today);
   const topSector = [...SECTORS].sort((a, b) => b.shareDelta - a.shareDelta)[0];
   const bottomSector = [...SECTORS].sort(
     (a, b) => a.shareDelta - b.shareDelta,
@@ -55,19 +69,6 @@ function TodayPage() {
     .filter((s) => (s.volumeVs?.["1d"] ?? 0) > 0)
     .sort((a, b) => (b.volumeVs?.["1d"] ?? 0) - (a.volumeVs?.["1d"] ?? 0))
     .slice(0, 3);
-  const dailyVolumeGainers = todayStocks.filter(
-    (s) => (s.volumeVs?.["1d"] ?? 0) > 0,
-  ).length;
-  const totalVolume = todayStocks.reduce((sum, stock) => sum + stock.volume, 0);
-  const previousTotalVolume = todayStocks.reduce((sum, stock) => {
-    const change = stock.volumeVs?.["1d"];
-    return change == null || change <= -100
-      ? sum
-      : sum + stock.volume / (1 + change / 100);
-  }, 0);
-  const totalVolumeChange = previousTotalVolume
-    ? (totalVolume / previousTotalVolume - 1) * 100
-    : 0;
   const insiderTop = INSIDER_ROWS.filter(
     (row) => row.tradeDate === LIVE_META.asOf,
   )
@@ -78,42 +79,46 @@ function TodayPage() {
     .sort((a, b) => a.daysLeft - b.daysLeft)
     .slice(0, 3);
 
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const sync = () => {
+      setDesktopSecondary(media.matches);
+      setSecondaryOpen(media.matches);
+    };
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
+
+  if (!hasUsableSourceData(sourceStates.market)) {
+    return (
+      <DataPageFallback
+        title="오늘의 요약"
+        description="오늘 미국 시장의 거래대금 집중과 주요 이벤트를 한눈에 확인합니다."
+        state={sourceStates.market}
+      />
+    );
+  }
+
   return (
     <PageShell>
       <PageHeading
         title="오늘의 요약"
         description="장 마감 기준 네 가지 데이터의 핵심을 한 화면에서 확인하세요."
       />
-      <div className="-mt-2 mb-4 flex justify-end">
-        <ShareMenu label="오늘의 요약 공유" />
+      <DataSourcesStatus
+        states={[
+          sourceStates.market,
+          sourceStates.insider,
+          sourceStates.lockup,
+          sourceStates.earnings,
+          sourceStates.economic,
+        ]}
+        className="mb-4"
+      />
+      <div className="mb-5">
+        <LatestDailyBriefing marketData={sourceStates.market.data} />
       </div>
-
-      <section
-        aria-label="핵심 결론"
-        data-nosnippet
-        className="mb-5 rounded-xl border border-border/70 bg-surface p-4 sm:p-5"
-      >
-        <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-          오늘의 한 줄
-        </div>
-        <p className="mt-1.5 text-base font-semibold sm:text-lg">
-          전일 대비 거래대금 점유율은{" "}
-          <span className="text-success">
-            {topSector.name} {fmtBp(topSector.shareDelta)}
-          </span>
-          ,{" "}
-          <span className="text-danger">
-            {bottomSector.name} {fmtBp(bottomSector.shareDelta)}
-          </span>
-          로 변했습니다.
-        </p>
-        <p className="mt-1 text-sm text-muted-foreground">
-          전체 거래대금 {fmtMoney(totalVolume)} · 전일 대비{" "}
-          {fmtPct(totalVolumeChange, 1)} · 거래대금 증가 종목{" "}
-          {dailyVolumeGainers}개 · 기준일 내부자 거래 {insiderTop.length}건 ·
-          7일 내 락업 해제 {lockupSoon.length}건이 예정되어 있습니다.
-        </p>
-      </section>
 
       <div>
         <SectionCard
@@ -143,8 +148,6 @@ function TodayPage() {
       </div>
 
       <DailyMarketAnalysis />
-
-      <WeeklyMarketSummary />
 
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <SectionCard
@@ -187,41 +190,49 @@ function TodayPage() {
           to="/insider"
           linkLabel="내부자 거래로"
         >
-          <ul className="divide-y divide-border/70">
-            {insiderTop.map((r, i) => (
-              <li
-                key={i}
-                className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-[13px] font-semibold tabular">
-                      {r.ticker}
-                    </span>
-                    <span className="truncate text-xs text-muted-foreground">
-                      {r.insider} ({r.role})
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-muted-foreground tabular">
-                    거래일 {r.tradeDate}
-                  </div>
-                </div>
-                <span
-                  className={cn(
-                    "text-xs font-medium tabular",
-                    r.type === "buy" ? "text-success" : "text-danger",
-                  )}
+          <DataSectionState
+            state={sourceStates.insider}
+            empty={
+              sourceStates.insider.phase === "success" &&
+              INSIDER_ROWS.length === 0
+            }
+          >
+            <ul className="divide-y divide-border/70">
+              {insiderTop.map((r, i) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
                 >
-                  {r.type === "buy" ? "매수" : "매도"} {fmtMoney(r.amount)}
-                </span>
-              </li>
-            ))}
-            {insiderTop.length === 0 && (
-              <li className="py-5 text-center text-sm text-muted-foreground">
-                기준일에 확인된 내부자 거래가 없습니다.
-              </li>
-            )}
-          </ul>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-mono text-[13px] font-semibold tabular">
+                        {r.ticker}
+                      </span>
+                      <span className="line-clamp-2 min-w-0 text-xs leading-5 text-muted-foreground">
+                        {r.insider} ({r.role})
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground tabular">
+                      거래일 {r.tradeDate}
+                    </div>
+                  </div>
+                  <span
+                    className={cn(
+                      "text-xs font-medium tabular",
+                      r.type === "buy" ? "text-success" : "text-danger",
+                    )}
+                  >
+                    {r.type === "buy" ? "매수" : "매도"} {fmtMoney(r.amount)}
+                  </span>
+                </li>
+              ))}
+              {insiderTop.length === 0 && (
+                <li className="py-5 text-center text-sm text-muted-foreground">
+                  기준일에 확인된 내부자 거래가 없습니다.
+                </li>
+              )}
+            </ul>
+          </DataSectionState>
         </SectionCard>
 
         <SectionCard
@@ -231,48 +242,88 @@ function TodayPage() {
           to="/ipo-lockup"
           linkLabel="IPO 락업으로"
         >
-          <ul className="divide-y divide-border/70">
-            {lockupSoon.map((r) => (
-              <li
-                key={r.ticker}
-                className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-[13px] font-semibold tabular">
-                      {r.ticker}
-                    </span>
-                    <span className="truncate text-xs text-muted-foreground">
-                      {r.company}
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-muted-foreground tabular">
-                    해제일 {r.unlockDate} ·{" "}
-                    {r.estValue > 0 ? fmtMoney(r.estValue) : "가치 미수집"}
-                  </div>
-                </div>
-                <span
-                  className={cn(
-                    "rounded-md border px-2 py-0.5 font-mono text-xs font-semibold tabular",
-                    r.daysLeft <= 7
-                      ? "border-danger/25 bg-danger/10 text-danger"
-                      : "border-info/25 bg-info/10 text-info",
-                  )}
+          <DataSectionState
+            state={sourceStates.lockup}
+            empty={
+              sourceStates.lockup.phase === "success" &&
+              LOCKUP_ROWS.length === 0
+            }
+          >
+            <ul className="divide-y divide-border/70">
+              {lockupSoon.map((r) => (
+                <li
+                  key={r.ticker}
+                  className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
                 >
-                  D-{r.daysLeft}
-                </span>
-              </li>
-            ))}
-            {lockupSoon.length === 0 && (
-              <li className="py-5 text-center text-sm text-muted-foreground">
-                7일 내 예정된 락업 해제가 없습니다.
-              </li>
-            )}
-          </ul>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-mono text-[13px] font-semibold tabular">
+                        {r.ticker}
+                      </span>
+                      <span className="line-clamp-2 min-w-0 text-xs leading-5 text-muted-foreground">
+                        {r.company}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground tabular">
+                      해제일 {r.unlockDate} ·{" "}
+                      {r.estValue > 0 ? fmtMoney(r.estValue) : "가치 미수집"}
+                    </div>
+                  </div>
+                  <span
+                    className={cn(
+                      "rounded-md border px-2 py-0.5 font-mono text-xs font-semibold tabular",
+                      r.daysLeft <= 7
+                        ? "border-danger/25 bg-danger/10 text-danger"
+                        : "border-info/25 bg-info/10 text-info",
+                    )}
+                  >
+                    D-{r.daysLeft}
+                  </span>
+                </li>
+              ))}
+              {lockupSoon.length === 0 && (
+                <li className="py-5 text-center text-sm text-muted-foreground">
+                  7일 내 예정된 락업 해제가 없습니다.
+                </li>
+              )}
+            </ul>
+          </DataSectionState>
         </SectionCard>
       </div>
 
-      <EventCalendar />
+      <details
+        open={secondaryOpen}
+        onToggle={(event) => {
+          if (!desktopSecondary) setSecondaryOpen(event.currentTarget.open);
+        }}
+        className="today-secondary mt-5 rounded-xl border border-border/80 bg-surface px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0"
+      >
+        <summary className="flex min-h-11 cursor-pointer items-center justify-between text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          주간 요약과 주요 일정 보기
+          <span aria-hidden className="text-brand">
+            ＋
+          </span>
+        </summary>
+        <div className="today-secondary-content gap-5 lg:grid lg:grid-cols-2">
+          <WeeklyMarketSummary />
+          <EventCalendar
+            dataVersion={[
+              sourceStates.insider.lastSuccessAt,
+              sourceStates.lockup.lastSuccessAt,
+              sourceStates.earnings.lastSuccessAt,
+              sourceStates.economic.lastSuccessAt,
+            ].join(":")}
+            dataReady={[
+              sourceStates.insider,
+              sourceStates.lockup,
+              sourceStates.earnings,
+              sourceStates.economic,
+            ].every(
+              (state) => state.phase === "success" || state.phase === "error",
+            )}
+          />
+        </div>
+      </details>
 
       <p className="mt-5 text-[11px] text-muted-foreground">
         장 마감 데이터와 SEC 공시를 기준으로 정리했습니다. 실제 투자 판단은 원본
@@ -309,11 +360,13 @@ function SectionCard({
           </div>
           <div className="min-w-0 flex-1">
             <div className="text-sm font-semibold">{title}</div>
-            <div className="text-[11px] text-muted-foreground">{subtitle}</div>
+            <div className="text-xs leading-5 text-muted-foreground">
+              {subtitle}
+            </div>
           </div>
           <Link
             to={to}
-            className="inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1 text-xs font-medium text-brand hover:underline"
           >
             {linkLabel}
             <ArrowUpRight className="h-3 w-3" />

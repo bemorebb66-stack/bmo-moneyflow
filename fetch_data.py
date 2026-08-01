@@ -17,6 +17,14 @@ import yfinance as yf
 from io import StringIO
 from lxml import etree
 
+from scripts.signal_engine import (
+    CURRENT_PROXY,
+    DATA_CONTRACT_VERSION,
+    SIGNAL_RULE_VERSION,
+    PriceBar,
+    compute_stock_observation,
+)
+
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"}
 
 
@@ -109,7 +117,7 @@ def download_prices(symbols):
         chunk = symbols[i:i + YF_CHUNK_SIZE]
         print(f"  가격 데이터 묶음 {i//YF_CHUNK_SIZE + 1}: {len(chunk)}종목")
         df = yf.download(chunk, period="200d", interval="1d",
-                         auto_adjust=False, group_by="ticker",
+                         auto_adjust=False, actions=True, repair=True, group_by="ticker",
                          threads=True, progress=False)
         if len(chunk) == 1 and not isinstance(df.columns, pd.MultiIndex):
             df.columns = pd.MultiIndex.from_product([chunk, df.columns])
@@ -624,6 +632,23 @@ def main():
         pc = (adj.iloc[-1] / adj.iloc[-2] - 1) * 100
         dv_map[t] = dv
 
+        def to_bar(position):
+            item = df.iloc[position]
+            return PriceBar(
+                session_date=df.index[position].date(),
+                open=float(item["Open"]),
+                high=float(item["High"]),
+                low=float(item["Low"]),
+                close=float(item["Close"]),
+                adj_close=float(item.get("Adj Close", item["Close"])),
+                volume=float(item["Volume"]),
+            )
+
+        observation = compute_stock_observation(
+            to_bar(-1),
+            [to_bar(position) for position in range(max(0, len(df) - 21), len(df) - 1)],
+        )
+
         meta = cache.get(t, {})
         row = {
             "t": t,
@@ -640,6 +665,10 @@ def main():
             "a20": safe(a20, 0),
             "a60": safe(a60, 0),
             "a120": safe(a120, 0),
+            "sig": observation.get("signal"),
+            "sig_status": observation["status"],
+            "sig_reasons": observation["reasons"],
+            "sig_ver": SIGNAL_RULE_VERSION,
         }
         row["mc"] = int(meta.get("mcap") or 0)
         row["cap"] = cap_bucket(meta.get("mcap"))
@@ -654,8 +683,9 @@ def main():
     for symbol in MARKET_INDEX_SYMBOLS:
         try:
             index_df = px[symbol].dropna(subset=["Close"])
+            index_df = index_df.loc[[str(value.date()) <= market_date for value in index_df.index]]
             close = index_df["Close"]
-            if len(close) < 2:
+            if len(close) < 2 or str(index_df.index[-1].date()) != market_date:
                 continue
             indices.append({
                 "symbol": symbol,
@@ -669,6 +699,23 @@ def main():
     out = {
         "updated": pd.Timestamp.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
         "market_date": market_date,
+        "data_contract_version": DATA_CONTRACT_VERSION,
+        "signal_rule_version": SIGNAL_RULE_VERSION,
+        "data_grade": CURRENT_PROXY,
+        "data_grade_reasons": [
+            "UNIVERSE_MEMBERSHIP_NOT_POINT_IN_TIME_VERSIONED",
+            "SOURCE_REVISIONS_NOT_VENDOR_TIMESTAMPED",
+        ],
+        "price_policy": {
+            "dollar_volume": "raw_close_x_contemporaneous_volume",
+            "returns": "adjusted_close_total_return",
+            "rolling_baseline": "20_prior_sessions_excluding_signal_session",
+        },
+        "runtime_versions": {
+            "python": sys.version.split()[0],
+            "pandas": pd.__version__,
+            "yfinance": yf.__version__,
+        },
         "count": len(stocks),
         "indices": indices,
         "stocks": stocks,

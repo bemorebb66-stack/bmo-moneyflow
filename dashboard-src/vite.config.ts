@@ -18,6 +18,10 @@ const ROUTE_META = {
     description:
       "종목별 거래대금 변화, 가격 흐름, 섹터 내 점유율과 내부자 거래·실적 일정을 함께 확인하세요.",
   },
+  watchlist: {
+    title: "관심종목 | BVT Money Flow",
+    description: "이 브라우저에 저장한 관심종목을 한곳에서 확인합니다.",
+  },
   insider: {
     title: "미국 주식 내부자 매수·매도 조회 | BVT Money Flow",
     description:
@@ -72,7 +76,7 @@ function replaceMeta(html: string, route: string, title: string, description: st
       url: "https://www.bvtmoneyflow.xyz/",
     },
   }).replaceAll("<", "\\u003c");
-  return html
+  const routeHtml = html
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${description}" />`)
     .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
@@ -85,6 +89,9 @@ function replaceMeta(html: string, route: string, title: string, description: st
       /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
       `<script type="application/ld+json">${schema}</script>`,
     );
+  return route === "watchlist"
+    ? routeHtml.replace("</head>", '  <meta name="robots" content="noindex,nofollow" />\n</head>')
+    : routeHtml;
 }
 
 const routeShells = () => ({

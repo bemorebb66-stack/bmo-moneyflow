@@ -1,0 +1,57 @@
+{
+  "contract": {
+    "signal_rule_version": "bvt-signal/2.0.0",
+    "replay_rule_version": "bvt-replay/2.0.0",
+    "performance_rule_version": "bvt-performance/2.0.0",
+    "calendar_version": "XNYS-regular/2026.2"
+  },
+  "stock_signal_boundaries": [
+    {"volume_change_percent": 10.000001, "price_change_percent": 1.0, "expected": "inflow"},
+    {"volume_change_percent": 8.0, "price_change_percent": -1.0, "expected": "outflow"},
+    {"volume_change_percent": -20.0, "price_change_percent": 0.0, "expected": "attention-loss"},
+    {"volume_change_percent": 3.0, "price_change_percent": 0.15, "expected": "neutral"},
+    {"volume_change_percent": 3.000001, "price_change_percent": 0.150001, "expected": "inflow"}
+  ],
+  "group_signal_boundaries": [
+    {"share_delta_bp": 10.0, "price_change_percent": 1.0, "volume_change_percent": 20.0, "expected": "neutral"},
+    {"share_delta_bp": 10.000001, "price_change_percent": 0.0, "volume_change_percent": 20.0, "expected": "inflow"},
+    {"share_delta_bp": -10.000001, "price_change_percent": -0.01, "volume_change_percent": 20.0, "expected": "outflow"},
+    {"share_delta_bp": 0.0, "price_change_percent": 0.0, "volume_change_percent": -15.000001, "expected": "attention-loss"}
+  ],
+  "surge": {"ratio_20": 2.0, "dollar_volume": 50000000, "expected": true},
+  "holiday_entry": {
+    "signal_session": "2026-07-02",
+    "available_at": "2026-07-02T23:45:00+00:00",
+    "holiday": "2026-07-03",
+    "expected_entry_session": "2026-07-06"
+  },
+  "costed_return": {
+    "entry_adjusted_open": 12.0,
+    "exit_adjusted_close": 12.6,
+    "benchmark_return": 0.01,
+    "commission_bp_per_side": 5,
+    "slippage_bp_per_side": 10,
+    "expected_entry_execution_price": 12.018,
+    "expected_exit_execution_price": 12.5811,
+    "expected_net_return": 0.04685471792311535,
+    "expected_excess_return": 0.03648981972585674
+  },
+  "split_trade": {
+    "actions": [{"ticker": "FIX", "effective_date": "2026-07-07", "action_type": "SPLIT", "ratio": 2.0}],
+    "executions": [
+      {"ticker": "FIX", "date": "2026-07-06", "side": "buy", "quantity": 10, "price": 12, "fee": 1},
+      {"ticker": "FIX", "date": "2026-07-08", "side": "sell", "quantity": 20, "price": 7, "fee": 1}
+    ],
+    "expected_basis": 121,
+    "expected_net_proceeds": 139,
+    "expected_profit": 18,
+    "expected_return_percent": 14.87603305785124
+  },
+  "delisting": {
+    "entry_price": 10,
+    "cash_value": 8,
+    "expected_return": -0.2,
+    "missing_cash_value_status": "INCOMPLETE",
+    "missing_cash_value_reason": "DELISTING_VALUE_UNKNOWN"
+  }
+}

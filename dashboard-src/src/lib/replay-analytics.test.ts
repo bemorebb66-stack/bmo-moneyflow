@@ -28,4 +28,14 @@ describe("Replay performance analytics", () => {
     expect(result.holdingRows.map((row) => row.label)).toEqual(["당일", "4~7일"]);
     expect(result.distribution.find((row) => row.label === "-20% 이하")?.count).toBe(1);
   });
+
+  it("does not present settlement or non-trading dates as complete performance", () => {
+    const result = analyzeReplayPerformance([
+      { ...trade("AAA", 10, 100), dateStatus: "SETTLEMENT_DATE" },
+      { ...trade("BBB", -5, -50), dateStatus: "NON_TRADING_DATE" },
+    ]);
+    expect(result.status).toBe("INCOMPLETE");
+    expect(result.settlementDateTrades).toBe(1);
+    expect(result.invalidDateTrades).toBe(1);
+  });
 });

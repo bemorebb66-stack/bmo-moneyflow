@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { LIVE_META, type DataStatus } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
+import { formatKstTimestamp, formatMarketDate } from "@/lib/date-time";
 
 const STATUS: Record<DataStatus, { label: string; className: string }> = {
   loading: { label: "업데이트 확인 중", className: "text-info" },
@@ -15,39 +16,6 @@ const STATUS: Record<DataStatus, { label: string; className: string }> = {
   partial: { label: "일부 데이터 지연", className: "text-warning" },
   failed: { label: "업데이트 실패", className: "text-danger" },
 };
-
-function formatMarketDate(value: string) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(value)
-    ? value.replaceAll("-", ".")
-    : "확인 중";
-}
-
-function formatUpdatedAt(value: string) {
-  const match = value.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}) UTC$/);
-  if (!match) return value === "-" ? "확인 중" : value;
-  const [, year, month, day, hour, minute] = match;
-  const date = new Date(
-    Date.UTC(
-      Number(year),
-      Number(month) - 1,
-      Number(day),
-      Number(hour),
-      Number(minute),
-    ),
-  );
-  const parts = new Intl.DateTimeFormat("ko-KR", {
-    timeZone: "Asia/Seoul",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).formatToParts(date);
-  const part = (type: Intl.DateTimeFormatPartTypes) =>
-    parts.find((item) => item.type === type)?.value ?? "";
-  return `${part("year")}.${part("month")}.${part("day")} ${part("hour")}:${part("minute")} KST`;
-}
 
 export function DataStatusBar() {
   const status = STATUS[LIVE_META.status];
@@ -89,7 +57,7 @@ export function DataStatusBar() {
           <Clock3 className="h-3.5 w-3.5" />
           최종 업데이트{" "}
           <strong className="font-semibold text-foreground">
-            {formatUpdatedAt(LIVE_META.updatedAt)}
+            {formatKstTimestamp(LIVE_META.updatedAt)}
           </strong>
         </span>
         <span

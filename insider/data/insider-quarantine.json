@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-30T11:14:54.972439+00:00",
+    "count": 21
+  },
+  "pendingTrades": [
+    {
+      "ticker": "NMM",
+      "company": "Navios Maritime Partners L.P.",
+      "filer": "Frangou Angeliki",
+      "role": "See Remarks",
+      "txType": "매수",
+      "shares": 1131,
+      "price": 748119,
+      "txDate": "2026-07-23",
+      "filedDate": "2026-07-27",
+      "accession": "0001193125-26-318541",
+      "sourceAccessions": [
+        "0001193125-26-318541"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1310495/000119312526318541/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "748119",
+          "expectedLow": "73.73",
+          "expectedHigh": "76.34"
+        },
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "73.31999969482422",
+          "marketHigh": "77.08000183105469"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TYG",
+      "company": "TORTOISE ENERGY INFRASTRUCTURE CORP",
+      "filer": "PRUDENTIAL FINANCIAL INC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 3000000,
+      "price": 10,
+      "txDate": "2026-07-15",
+      "filedDate": "2026-07-17",
+      "accession": "0001137774-26-000159",
+      "sourceAccessions": [
+        "0001137774-26-000159"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000159/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "43.400001525878906",
+          "marketHigh": "44.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "TYG",
+      "company": "TORTOISE ENERGY INFRASTRUCTURE CORP",
+      "filer": "PRUDENTIAL FINANCIAL INC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 3000000,
+      "price": 10,
+      "txDate": "2026-07-15",
+      "filedDate": "2026-07-17",
+      "accession": "0001137774-26-000159",
+      "sourceAccessions": [
+        "0001137774-26-000159"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000159/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "43.400001525878906",
+          "marketHigh": "44.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "ZSTK",
+      "company": "ZeroStack Corp.",
+      "filer": "Heinrich Michael",
+      "role": "Executive Chairman",
+      "txType": "매수",
+      "shares": 4608575,
+      "price": 0.7549,
+      "txDate": "2026-07-20",
+      "filedDate": "2026-07-20",
+      "accession": "0000912282-26-000998",
+      "sourceAccessions": [
+        "0000912282-26-000998"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2093136/000091228226000998/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.6440000534057617",
+          "marketHigh": "1.690000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "STFS",
+      "company": "Star Fashion Culture Holdings Ltd",
+      "filer": "ZHANG PINGTING",
+      "role": "Chief Financial Officer",
+      "txType": "매수",
+      "shares": 2000000,
+      "price": 1.3,
+      "txDate": "2026-07-22",
+      "filedDate": "2026-07-28",
+      "accession": "0001213900-26-082081",
+      "sourceAccessions": [
+        "0001213900-26-082081"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2003061/000121390026082081/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "3.7799999713897705",
+          "marketHigh": "7.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "ASX",
+      "company": "ASE Technology Holding Co., Ltd.",
+      "filer": "Uang Du-Tsuen",
+      "role": "Chief Administration Officer",
+      "txType": "매도",
+      "shares": 3000,
+      "price": 665,
+      "txDate": "2026-07-22",
+      "filedDate": "2026-07-24",
+      "accession": "0000950103-26-011125",
+      "sourceAccessions": [
+        "0000950103-26-011125"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1122411/000095010326011125/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "39.099998474121094",
+          "marketHigh": "40.810001373291016"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TM",
+      "company": "TOYOTA MOTOR CORP/",
+      "filer": "Sato Koji",
+      "role": "Vice Chairman",
+      "txType": "매도",
+      "shares": 88600,
+      "price": 17.83,
+      "txDate": "2026-06-17",
+      "filedDate": "2026-07-20",
+      "accession": "0000947871-26-000712",
+      "sourceAccessions": [
+        "0000947871-26-000712"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119473/000094787126000712/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "172.72000122070312",
+          "marketHigh": "176.67999267578125"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Tien Bor-Zen",
+      "role": "VP",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 74.13,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-23",
+      "accession": "0001046179-26-000457",
+      "sourceAccessions": [
+        "0001046179-26-000457"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "413.55999755859375",
+          "marketHigh": "425.3999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Tien Bor-Zen",
+      "role": "VP",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 73.98,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-23",
+      "accession": "0001046179-26-000457",
+      "sourceAccessions": [
+        "0001046179-26-000457"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "413.55999755859375",
+          "marketHigh": "425.3999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Tien Bor-Zen",
+      "role": "VP",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 74.44,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-23",
+      "accession": "0001046179-26-000457",
+      "sourceAccessions": [
+        "0001046179-26-000457"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "413.55999755859375",
+          "marketHigh": "425.3999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Tien Bor-Zen",
+      "role": "VP",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 74.75,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-23",
+      "accession": "0001046179-26-000457",
+      "sourceAccessions": [
+        "0001046179-26-000457"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "413.55999755859375",
+          "marketHigh": "425.3999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "KC",
+      "company": "Kingsoft Cloud Holdings Ltd",
+      "filer": "Zou Tao",
+      "role": "Acting Chief Executive Officer",
+      "txType": "매도",
+      "shares": 26000,
+      "price": 0.6459,
+      "txDate": "2026-07-17",
+      "filedDate": "2026-07-21",
+      "accession": "0001104659-26-085199",
+      "sourceAccessions": [
+        "0001104659-26-085199"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1795589/000110465926085199/tm2620958-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "9.289999961853027",
+          "marketHigh": "9.654999732971191"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "KC",
+      "company": "Kingsoft Cloud Holdings Ltd",
+      "filer": "Zou Tao",
+      "role": "Acting Chief Executive Officer",
+      "txType": "매도",
+      "shares": 274000,
+      "price": 0.637,
+      "txDate": "2026-07-17",
+      "filedDate": "2026-07-21",
+      "accession": "0001104659-26-085199",
+      "sourceAccessions": [
+        "0001104659-26-085199"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1795589/000110465926085199/tm2620958-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "9.289999961853027",
+          "marketHigh": "9.654999732971191"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Lin Shyue-Shyh",
+      "role": "VP",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 72.65,
+      "txDate": "2026-07-20",
+      "filedDate": "2026-07-22",
+      "accession": "0001046179-26-000455",
+      "sourceAccessions": [
+        "0001046179-26-000455"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114025/000104617926000455/wk-form4_1784715422.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "400.0799865722656",
+          "marketHigh": "409.8900146484375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Lin Shyue-Shyh",
+      "role": "VP",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 74.13,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-22",
+      "accession": "0001046179-26-000455",
+      "sourceAccessions": [
+        "0001046179-26-000455"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114025/000104617926000455/wk-form4_1784715422.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "413.55999755859375",
+          "marketHigh": "425.3999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "DEL CASTILLO CACHO GUILLERMO",
+      "role": "ENERGY MANAGER",
+      "txType": "매도",
+      "shares": 8500,
+      "price": 3.41,
+      "txDate": "2026-05-22",
+      "filedDate": "2026-07-24",
+      "accession": "0002121472-26-000001",
+      "sourceAccessions": [
+        "0002121472-26-000001"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2121472/000212147226000001/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "33.81999969482422",
+          "marketHigh": "34.380001068115234"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "DEL CASTILLO CACHO GUILLERMO",
+      "role": "ENERGY MANAGER",
+      "txType": "매도",
+      "shares": 3400,
+      "price": 3.37,
+      "txDate": "2026-06-23",
+      "filedDate": "2026-07-24",
+      "accession": "0002121472-26-000001",
+      "sourceAccessions": [
+        "0002121472-26-000001"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2121472/000212147226000001/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "33.0099983215332",
+          "marketHigh": "33.630001068115234"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "DEL CASTILLO CACHO GUILLERMO",
+      "role": "ENERGY MANAGER",
+      "txType": "매도",
+      "shares": 3400,
+      "price": 3.37,
+      "txDate": "2026-06-26",
+      "filedDate": "2026-07-24",
+      "accession": "0002121472-26-000001",
+      "sourceAccessions": [
+        "0002121472-26-000001"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2121472/000212147226000001/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "33.349998474121094",
+          "marketHigh": "33.95899963378906"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ACGL",
+      "company": "ARCH CAPITAL GROUP LTD.",
+      "filer": "Posner Brian S",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 3000,
+      "price": 19.66,
+      "txDate": "2026-06-03",
+      "filedDate": "2026-06-04",
+      "accession": "0001372455-26-000008",
+      "sourceAccessions": [
+        "0001372455-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/947484/000137245526000008/wk-form4_1780611787.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "87.05000305175781",
+          "marketHigh": "88.66000366210938"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "ZNB",
+      "company": "Zeta Network Group",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 21929,
+      "price": 0.265,
+      "txDate": "2026-07-24",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000171",
+      "sourceAccessions": [
+        "0001475597-26-000171"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000171/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.0",
+          "marketHigh": "2.319999933242798"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZNB",
+      "company": "Zeta Network Group",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 53030,
+      "price": 0.4,
+      "txDate": "2026-07-20",
+      "filedDate": "2026-07-22",
+      "accession": "0001475597-26-000164",
+      "sourceAccessions": [
+        "0001475597-26-000164"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000164/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.9600000381469727",
+          "marketHigh": "3.440000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    }
+  ]
+}

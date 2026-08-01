@@ -13,9 +13,13 @@ from typing import Any
 import pandas as pd
 
 try:
-    from scripts.build_replay_snapshot import build_snapshot, write_snapshot
+    from scripts.build_replay_snapshot import build_snapshot, content_hash, write_snapshot
+    from scripts.market_calendar import is_trading_day
+    from scripts.signal_engine import CURRENT_PROXY, DATA_CONTRACT_VERSION, SIGNAL_RULE_VERSION, classify_stock_signal
 except ModuleNotFoundError:
-    from build_replay_snapshot import build_snapshot, write_snapshot
+    from build_replay_snapshot import build_snapshot, content_hash, write_snapshot
+    from market_calendar import is_trading_day
+    from signal_engine import CURRENT_PROXY, DATA_CONTRACT_VERSION, SIGNAL_RULE_VERSION, classify_stock_signal
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_SYMBOLS = {
@@ -59,7 +63,8 @@ def download_history(
                     start=start,
                     end=end,
                     auto_adjust=False,
-                    actions=False,
+                    actions=True,
+                    repair=True,
                     group_by="ticker",
                     threads=True,
                     progress=False,
@@ -77,7 +82,10 @@ def download_history(
             if frame.empty or "Close" not in frame or "Volume" not in frame:
                 failed.append(ticker)
                 continue
-            clean = frame[["Close", "Volume"]].copy()
+            columns = [name for name in ("Open", "High", "Low", "Close", "Adj Close", "Volume") if name in frame]
+            clean = frame[columns].copy()
+            if "Adj Close" not in clean:
+                clean["Adj Close"] = clean["Close"]
             clean.index = pd.to_datetime(clean.index).tz_localize(None).normalize()
             clean = clean.dropna(subset=["Close", "Volume"])
             if clean.empty:
@@ -89,14 +97,17 @@ def download_history(
     for ticker in failed:
         try:
             result = yf.download(
-                ticker, start=start, end=end, auto_adjust=False, actions=False,
+                ticker, start=start, end=end, auto_adjust=False, actions=True, repair=True,
                 group_by="ticker", threads=False, progress=False, timeout=30,
             )
             frame = ticker_frame(result, ticker)
             if frame.empty or "Close" not in frame or "Volume" not in frame:
                 unresolved.append(ticker)
                 continue
-            clean = frame[["Close", "Volume"]].copy()
+            columns = [name for name in ("Open", "High", "Low", "Close", "Adj Close", "Volume") if name in frame]
+            clean = frame[columns].copy()
+            if "Adj Close" not in clean:
+                clean["Adj Close"] = clean["Close"]
             clean.index = pd.to_datetime(clean.index).tz_localize(None).normalize()
             clean = clean.dropna(subset=["Close", "Volume"])
             if clean.empty:
@@ -132,7 +143,7 @@ def build_historical_snapshots(
 ) -> tuple[list[dict[str, Any]], list[str]]:
     metadata = {str(row.get("t") or "").upper(): row for row in source.get("stocks", []) if row.get("t")}
     all_dates = sorted({day for frame in history.values() for day in frame.index})
-    target_dates = all_dates[-days:]
+    target_dates = [day for day in all_dates if is_trading_day(day.date())][-days:]
     snapshots = []
     skipped_dates = []
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
@@ -142,7 +153,7 @@ def build_historical_snapshots(
             if ticker not in metadata or trading_day not in frame.index:
                 continue
             position = frame.index.get_loc(trading_day)
-            if not isinstance(position, int) or position < 1:
+            if not isinstance(position, int) or position < 20:
                 continue
             current = frame.iloc[position]
             previous = frame.iloc[position - 1]
@@ -150,21 +161,31 @@ def build_historical_snapshots(
             volume = float(current["Volume"])
             dollar_volume = close * volume
             previous_dollar_volume = float(previous["Close"]) * float(previous["Volume"])
-            recent5 = frame.iloc[max(0, position - 4):position + 1]
-            recent20 = frame.iloc[max(0, position - 19):position + 1]
+            # The signal-session row is deliberately excluded from both baselines.
+            recent5 = frame.iloc[position - 5:position]
+            recent20 = frame.iloc[position - 20:position]
             average5 = float((recent5["Close"] * recent5["Volume"]).mean())
             average20 = float((recent20["Close"] * recent20["Volume"]).mean())
+            ratio20 = dollar_volume / average20 if average20 > 0 else None
+            volume_change = (ratio20 - 1) * 100 if ratio20 is not None else None
+            current_adjusted = float(current.get("Adj Close", current["Close"]))
+            previous_adjusted = float(previous.get("Adj Close", previous["Close"]))
+            price_change = (current_adjusted / previous_adjusted - 1) * 100 if previous_adjusted > 0 else None
             meta = metadata[ticker]
             stocks.append({
                 "t": ticker,
                 "n": meta.get("n") or ticker,
                 "nko": meta.get("nko") or "",
                 "c": round(close, 4),
-                "pc": round((close / float(previous["Close"]) - 1) * 100, 2) if previous["Close"] else 0,
+                "pc": round(price_change, 2) if price_change is not None else None,
                 "dv": dollar_volume,
                 "dvp": previous_dollar_volume,
                 "a5": average5,
                 "a20": average20,
+                "sig": classify_stock_signal(volume_change, price_change) if volume_change is not None and price_change is not None else None,
+                "sig_status": "COMPLETE" if volume_change is not None and price_change is not None else "INCOMPLETE",
+                "sig_reasons": [] if volume_change is not None and price_change is not None else ["MISSING_PRICE_OR_BASELINE"],
+                "sig_ver": SIGNAL_RULE_VERSION,
                 "sec": meta.get("sec"),
                 "ind": meta.get("ind"),
                 "cap": meta.get("cap"),
@@ -186,6 +207,14 @@ def build_historical_snapshots(
         payload = {
             "market_date": trading_day.date().isoformat(),
             "updated": f"historical:{trading_day.date().isoformat()}",
+            "data_contract_version": DATA_CONTRACT_VERSION,
+            "signal_rule_version": SIGNAL_RULE_VERSION,
+            "data_grade": CURRENT_PROXY,
+            "data_grade_reasons": [
+                "CURRENT_UNIVERSE_APPLIED_TO_HISTORY",
+                "DELISTED_SECURITIES_NOT_RECOVERED",
+                "HISTORICAL_SOURCE_REVISION_TIME_UNKNOWN",
+            ],
             "indices": index_rows(index_history or {}, trading_day),
             "stocks": stocks,
         }
@@ -195,6 +224,7 @@ def build_historical_snapshots(
             "classification_basis": source.get("market_date"),
             "classification_mode": "current-proxy",
         }
+        snapshot["content_hash"] = content_hash(snapshot)
         snapshots.append(snapshot)
     return snapshots, skipped_dates
 

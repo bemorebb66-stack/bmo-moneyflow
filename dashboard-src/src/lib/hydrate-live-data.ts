@@ -2,6 +2,7 @@ import {
   ECONOMIC_EVENTS,
   EARNINGS_ROWS,
   COMPANY_NEWS,
+  INSIDER_PENDING_ROWS,
   INSIDER_ROWS,
   LIVE_COMPANIES_BY_ID,
   LIVE_GROUP_COMPANIES,
@@ -28,6 +29,7 @@ import {
   type StockRow,
 } from "./mock-data";
 import { INDUSTRY_KO } from "./industry-copy";
+import { classifyGroupSignal, classifyStockSignal, isSurge, type CalculationStatus } from "./signal-rules";
 
 type MarketStock = {
   t: string;
@@ -46,6 +48,10 @@ type MarketStock = {
   a20: number;
   a60: number;
   mc: number;
+  sig?: Signal | null;
+  sig_status?: CalculationStatus;
+  sig_reasons?: string[];
+  sig_ver?: string;
 };
 
 const SECTOR_KO: Record<string, string> = {
@@ -160,17 +166,11 @@ const signalFor = (
   volumeChange: number,
   priceChange: number,
 ): Signal => {
-  if (shareDelta > 10 && priceChange >= 0) return "inflow";
-  if (shareDelta < -10 && priceChange < 0) return "outflow";
-  if (volumeChange < -15) return "attention-loss";
-  return "neutral";
+  return classifyGroupSignal(shareDelta, priceChange, volumeChange);
 };
 
 const stockSignalFor = (volumeChange: number, priceChange: number): Signal => {
-  if (volumeChange > 3 && priceChange > 0.15) return "inflow";
-  if (volumeChange > 3 && priceChange < -0.15) return "outflow";
-  if (volumeChange < -3) return "attention-loss";
-  return "neutral";
+  return classifyStockSignal(volumeChange, priceChange);
 };
 
 function aggregateMarket(
@@ -222,7 +222,7 @@ function aggregateMarket(
         priceChange,
         shareDelta,
         share,
-        signal: signalFor(shareDelta, volumeChange, priceChange),
+        signal: reference > 0 && totalRef > 0 ? signalFor(shareDelta, volumeChange, priceChange) : "unavailable",
         leaders: [...rows]
           .sort((a, b) => b.dv - a.dv)
           .slice(0, 3)
@@ -375,12 +375,160 @@ function translateInsiderRole(rawRole = "") {
   return role;
 }
 
-export async function hydrateLiveData() {
+type RawInsiderPayload = {
+  trades?: any[];
+  pendingTrades?: any[];
+};
+
+function validationReasonLabels(row: any): string[] {
+  const reasons = Array.isArray(row.validationReasons)
+    ? row.validationReasons
+    : row.reasonCode
+      ? [row.reasonCode]
+      : [];
+  return reasons
+    .map((reason: any) =>
+      typeof reason === "string"
+        ? reason
+        : String(reason?.code || reason?.reasonCode || ""),
+    )
+    .filter(Boolean);
+}
+
+function toInsiderRow(
+  row: any,
+  stockByTicker: Map<string, MarketStock>,
+  qualityStatus: "accepted" | "pending",
+  extraReasons: string[] = [],
+): InsiderRow {
+  const marketStock = stockByTicker.get(row.ticker);
+  return {
+    ticker: String(row.ticker || "").toUpperCase(),
+    company: marketStock?.nko || decodeHtml(row.company),
+    insider: decodeHtml(row.filer),
+    role: translateInsiderRole(row.role),
+    type: row.txType === "매수" ? "buy" : "sell",
+    shares: Number(row.shares) || 0,
+    price: Number(row.price) || undefined,
+    amount: qualityStatus === "accepted" ? (Number(row.value) || 0) / 1e6 : 0,
+    tradeDate: row.txDate || "",
+    filedDate: row.filedDate || "",
+    signal: row.txType === "매수" ? "inflow" : "outflow",
+    cluster: qualityStatus === "accepted" && Number(row.clusterCount) >= 2,
+    qualityStatus,
+    accession: row.accession || String(row.id || "").replace(/^f4-/, ""),
+    sourceUrl: row.secUrl || undefined,
+    validationReasons: [
+      ...validationReasonLabels(row),
+      ...extraReasons,
+    ],
+  };
+}
+
+export function normalizeInsiderPayload(
+  insider: RawInsiderPayload,
+  stockByTicker: Map<string, MarketStock> = new Map(),
+): { accepted: InsiderRow[]; pending: InsiderRow[] } {
+  const accepted: InsiderRow[] = [];
+  const pending: InsiderRow[] = [];
+
+  for (const row of insider.trades ?? []) {
+    const shares = Number(row.shares);
+    const rowPrice = Number(row.price);
+    const value = Number(row.value);
+    const tolerance = Math.max(1, Math.abs(shares) * 0.005 + 0.5);
+    const reasons: string[] = [];
+    if (row.qualityStatus !== "accepted") reasons.push("VALIDATION_NOT_CONFIRMED");
+    if (!(Number.isFinite(shares) && shares > 0)) reasons.push("INVALID_SHARES");
+    if (!(Number.isFinite(rowPrice) && rowPrice > 0)) reasons.push("INVALID_PRICE");
+    if (!(Number.isFinite(value) && value > 0)) reasons.push("INVALID_VALUE");
+    if (
+      Number.isFinite(shares) &&
+      Number.isFinite(rowPrice) &&
+      Number.isFinite(value) &&
+      Math.abs(value - shares * rowPrice) > tolerance
+    ) {
+      reasons.push("SHARES_PRICE_VALUE_MISMATCH");
+    }
+    if (row.txDate && row.filedDate && row.txDate > row.filedDate) {
+      reasons.push("TRANSACTION_AFTER_FILING");
+    }
+    if (reasons.length) {
+      pending.push(toInsiderRow(row, stockByTicker, "pending", reasons));
+    } else {
+      accepted.push(toInsiderRow(row, stockByTicker, "accepted"));
+    }
+  }
+
+  for (const row of insider.pendingTrades ?? []) {
+    pending.push(toInsiderRow(row, stockByTicker, "pending"));
+  }
+
+  const pendingKeys = new Set<string>();
+  return {
+    accepted,
+    pending: pending.filter((row) => {
+      const key = `${row.accession}|${row.tradeDate}|${row.ticker}|${row.validationReasons?.join(",")}`;
+      if (pendingKeys.has(key)) return false;
+      pendingKeys.add(key);
+      return true;
+    }),
+  };
+}
+
+export type HydrationPayloads = Partial<
+  Record<
+    | "/data.json"
+    | "/history.json"
+    | "/insider/data/insider.json"
+    | "/ipo-lockup/data/lockup.json"
+    | "/ipo-lockup/data/reactions.json"
+    | "/earnings.json"
+    | "/economic_events.json"
+    | "/news.json",
+    any
+  >
+>;
+
+const hydrationPayloadCache: HydrationPayloads = {};
+const EMPTY_PAYLOADS: Required<HydrationPayloads> = {
+  "/data.json": {
+    updated: "-",
+    market_date: "-",
+    count: 0,
+    indices: [],
+    stocks: [],
+  },
+  "/history.json": {
+    dates: [],
+    sector: {},
+    industry: {},
+    universe: {},
+    custom: {},
+    cap: {},
+    stocks: {},
+  },
+  "/insider/data/insider.json": { trades: [], pendingTrades: [] },
+  "/ipo-lockup/data/lockup.json": { events: [], excludedEvents: [], meta: {} },
+  "/ipo-lockup/data/reactions.json": { reactions: [], failures: [], meta: {} },
+  "/earnings.json": { events: [], meta: {} },
+  "/economic_events.json": { events: [], meta: {} },
+  "/news.json": { companies: {}, meta: {} },
+};
+
+export async function hydrateLiveData(provided?: HydrationPayloads) {
   LIVE_META.status = "loading";
   LIVE_META.delayTradingDays = 0;
   LIVE_META.error = undefined;
   try {
+    if (provided) Object.assign(hydrationPayloadCache, provided);
     const fetchJson = async (path: string) => {
+      if (provided) {
+        return (
+          hydrationPayloadCache[path as keyof HydrationPayloads] ??
+          EMPTY_PAYLOADS[path as keyof HydrationPayloads]
+        );
+      }
       const response = await fetch(path);
       if (!response.ok)
         throw new Error(`${path} 응답 오류 (${response.status})`);
@@ -462,10 +610,13 @@ export async function hydrateLiveData() {
         },
         marketCap: stock.mc / 1e9,
         share: totalMarketVolume ? (stock.dv / totalMarketVolume) * 100 : 0,
-        signal: stockSignalFor(
-          stock.a20 ? (stock.dv / stock.a20 - 1) * 100 : 0,
-          stock.pc,
-        ),
+        signal: stock.sig_status === "INCOMPLETE"
+          ? "unavailable"
+          : stock.sig_status === "COMPLETE" && stock.sig
+            ? stock.sig
+            : stock.a20 > 0 && Number.isFinite(stock.dv) && Number.isFinite(stock.pc)
+              ? stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc)
+              : "unavailable",
       };
       LIVE_COMPANIES_BY_ID[company.id] = company;
       for (const category of CATEGORIES) {
@@ -506,13 +657,17 @@ export async function hydrateLiveData() {
         "60d": stock.a60 ? (stock.dv / stock.a60 - 1) * 100 : 0,
       },
       industry: INDUSTRY_KO[stock.ind || ""] || stock.ind,
-      signal: stockSignalFor(
-        stock.a20 ? (stock.dv / stock.a20 - 1) * 100 : 0,
-        stock.pc,
-      ),
+      signal: stock.sig_status === "INCOMPLETE"
+        ? "unavailable"
+        : stock.sig_status === "COMPLETE" && stock.sig
+          ? stock.sig
+          : stock.a20 > 0 && Number.isFinite(stock.dv) && Number.isFinite(stock.pc)
+            ? stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc)
+            : "unavailable",
     }));
     LIVE_STOCKS.splice(0, LIVE_STOCKS.length, ...stockRows);
     const surge = [...stockRows]
+      .filter((stock) => isSurge(stock.volumeRatio, stock.volume * 1e6))
       .sort((a, b) => b.volumeRatio - a.volumeRatio)
       .slice(0, 100);
     SURGE_STOCKS.splice(0, SURGE_STOCKS.length, ...surge);
@@ -542,28 +697,14 @@ export async function hydrateLiveData() {
     }
 
     const stockByTicker = new Map(stocks.map((stock) => [stock.t, stock]));
-    const insiderRows: InsiderRow[] = (insider.trades ?? [])
-      .filter(
-        (row: any) =>
-          !row.txDate || !row.filedDate || row.filedDate >= row.txDate,
-      )
-      .map((row: any) => {
-        const marketStock = stockByTicker.get(row.ticker);
-        return {
-          ticker: row.ticker,
-          company: marketStock?.nko || decodeHtml(row.company),
-          insider: decodeHtml(row.filer),
-          role: translateInsiderRole(row.role),
-          type: row.txType === "매수" ? "buy" : "sell",
-          shares: Number(row.shares) || 0,
-          amount: (Number(row.value) || 0) / 1e6,
-          tradeDate: row.txDate,
-          filedDate: row.filedDate,
-          signal: row.txType === "매수" ? "inflow" : "outflow",
-          cluster: Number(row.clusterCount) >= 2,
-        };
-      });
+    const normalizedInsider = normalizeInsiderPayload(insider, stockByTicker);
+    const insiderRows = normalizedInsider.accepted;
     INSIDER_ROWS.splice(0, INSIDER_ROWS.length, ...insiderRows);
+    INSIDER_PENDING_ROWS.splice(
+      0,
+      INSIDER_PENDING_ROWS.length,
+      ...normalizedInsider.pending,
+    );
 
     const historyDates: string[] = Array.isArray(history.dates)
       ? history.dates
@@ -827,7 +968,11 @@ export async function hydrateLiveData() {
       LIVE_META.error = "내부자 거래 또는 IPO 락업 데이터가 지연되고 있습니다.";
     }
   } catch (error) {
-    console.error("Live data hydration failed", error);
+    if (import.meta.env.DEV) {
+      console.error("Live data hydration failed", {
+        errorKind: error instanceof Error ? error.name : "UnknownError",
+      });
+    }
     LIVE_META.status = "failed";
     LIVE_META.error =
       error instanceof Error ? error.message : "알 수 없는 데이터 오류";

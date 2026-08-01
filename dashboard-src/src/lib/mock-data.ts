@@ -1,6 +1,6 @@
 // 미국 주식 섹터 자금 흐름 데모용 샘플 데이터 (한국어)
 
-export type Signal = "inflow" | "outflow" | "attention-loss" | "neutral";
+export type Signal = "inflow" | "outflow" | "attention-loss" | "neutral" | "unavailable";
 export type MarketCategory =
   "sector" | "industry" | "universe" | "custom" | "mcap";
 export type MarketPeriod = "1d" | "5d" | "20d" | "60d";
@@ -406,6 +406,7 @@ export const SIGNAL_META: Record<
   outflow: { label: "거래 증가·하락", tone: "danger" },
   "attention-loss": { label: "거래 관심 감소", tone: "info" },
   neutral: { label: "중립", tone: "muted" },
+  unavailable: { label: "계산 불가", tone: "muted" },
 };
 
 // ---------- Insider trading mock ----------
@@ -418,11 +419,16 @@ export interface InsiderRow {
   role: string;
   type: InsiderType;
   shares: number;
+  price?: number;
   amount: number; // USD millions
   tradeDate: string; // YYYY-MM-DD
   filedDate: string;
   signal: Signal;
   cluster?: boolean;
+  qualityStatus?: "accepted" | "pending";
+  accession?: string;
+  sourceUrl?: string;
+  validationReasons?: string[];
 }
 
 export const INSIDER_ROWS: InsiderRow[] = [
@@ -549,6 +555,8 @@ export const INSIDER_ROWS: InsiderRow[] = [
     signal: "outflow",
   },
 ];
+
+export const INSIDER_PENDING_ROWS: InsiderRow[] = [];
 
 // ---------- Earnings and macro calendar ----------
 export type EarningsHour = "bmo" | "amc" | "dmh" | "";

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+  <documentType>4/A</documentType>
+  <periodOfReport>2026-07-21</periodOfReport>
+  <dateOfOriginalSubmission>2026-07-21</dateOfOriginalSubmission>
+  <issuer>
+    <issuerCik>0001534701</issuerCik>
+    <issuerName>Phillips 66</issuerName>
+    <issuerTradingSymbol>PSX</issuerTradingSymbol>
+  </issuer>
+  <reportingOwner>
+    <reportingOwnerId>
+      <rptOwnerCik>0001772603</rptOwnerCik>
+      <rptOwnerName>Sutherland Vanessa Allen</rptOwnerName>
+    </reportingOwnerId>
+    <reportingOwnerRelationship>
+      <isOfficer>1</isOfficer>
+      <officerTitle>EVP, GC and Secretary</officerTitle>
+    </reportingOwnerRelationship>
+  </reportingOwner>
+  <nonDerivativeTable>
+    <nonDerivativeTransaction>
+      <securityTitle><value>Common Stock</value></securityTitle>
+      <transactionDate><value>2026-07-21</value></transactionDate>
+      <transactionCoding><transactionCode>S</transactionCode></transactionCoding>
+      <transactionAmounts>
+        <transactionShares><value>3523</value></transactionShares>
+        <transactionPricePerShare><value>211.0482</value><footnoteId id="F2"/><footnoteId id="F3"/></transactionPricePerShare>
+        <transactionAcquiredDisposedCode><value>D</value></transactionAcquiredDisposedCode>
+      </transactionAmounts>
+      <postTransactionAmounts><sharesOwnedFollowingTransaction><value>27537</value></sharesOwnedFollowingTransaction></postTransactionAmounts>
+      <ownershipNature><directOrIndirectOwnership><value>D</value></directOrIndirectOwnership></ownershipNature>
+    </nonDerivativeTransaction>
+  </nonDerivativeTable>
+  <footnotes>
+    <footnote id="F2">These shares were sold at prices ranging from $211.00 to $211.05.</footnote>
+    <footnote id="F3">This amendment corrects $2,110,482 to $211.0482.</footnote>
+  </footnotes>
+</ownershipDocument>

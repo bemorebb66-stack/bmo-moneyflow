@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
 import { Route as TodayRouteImport } from './routes/today'
 import { Route as StockRouteImport } from './routes/stock'
 import { Route as ScannerRouteImport } from './routes/scanner'
@@ -20,7 +21,15 @@ import { Route as InsiderRouteImport } from './routes/insider'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StocksTickerRouteImport } from './routes/stocks.$ticker'
+import { Route as BriefingsDateRouteImport } from './routes/briefings.$date'
+import { Route as BriefingsWeeksWeekIdRouteImport } from './routes/briefings.weeks.$weekId'
 
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TodayRoute = TodayRouteImport.update({
   id: '/today',
   path: '/today',
@@ -76,6 +85,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StocksTickerRoute = StocksTickerRouteImport.update({
+  id: '/stocks/$ticker',
+  path: '/stocks/$ticker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BriefingsDateRoute = BriefingsDateRouteImport.update({
+  id: '/briefings/$date',
+  path: '/briefings/$date',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BriefingsWeeksWeekIdRoute = BriefingsWeeksWeekIdRouteImport.update({
+  id: '/briefings/weeks/$weekId',
+  path: '/briefings/weeks/$weekId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +113,10 @@ export interface FileRoutesByFullPath {
   '/scanner': typeof ScannerRoute
   '/stock': typeof StockRoute
   '/today': typeof TodayRoute
+  '/watchlist': typeof WatchlistRoute
+  '/briefings/$date': typeof BriefingsDateRoute
+  '/stocks/$ticker': typeof StocksTickerRoute
+  '/briefings/weeks/$weekId': typeof BriefingsWeeksWeekIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +130,10 @@ export interface FileRoutesByTo {
   '/scanner': typeof ScannerRoute
   '/stock': typeof StockRoute
   '/today': typeof TodayRoute
+  '/watchlist': typeof WatchlistRoute
+  '/briefings/$date': typeof BriefingsDateRoute
+  '/stocks/$ticker': typeof StocksTickerRoute
+  '/briefings/weeks/$weekId': typeof BriefingsWeeksWeekIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +148,10 @@ export interface FileRoutesById {
   '/scanner': typeof ScannerRoute
   '/stock': typeof StockRoute
   '/today': typeof TodayRoute
+  '/watchlist': typeof WatchlistRoute
+  '/briefings/$date': typeof BriefingsDateRoute
+  '/stocks/$ticker': typeof StocksTickerRoute
+  '/briefings/weeks/$weekId': typeof BriefingsWeeksWeekIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +167,10 @@ export interface FileRouteTypes {
     | '/scanner'
     | '/stock'
     | '/today'
+    | '/watchlist'
+    | '/briefings/$date'
+    | '/stocks/$ticker'
+    | '/briefings/weeks/$weekId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +184,10 @@ export interface FileRouteTypes {
     | '/scanner'
     | '/stock'
     | '/today'
+    | '/watchlist'
+    | '/briefings/$date'
+    | '/stocks/$ticker'
+    | '/briefings/weeks/$weekId'
   id:
     | '__root__'
     | '/'
@@ -157,6 +201,10 @@ export interface FileRouteTypes {
     | '/scanner'
     | '/stock'
     | '/today'
+    | '/watchlist'
+    | '/briefings/$date'
+    | '/stocks/$ticker'
+    | '/briefings/weeks/$weekId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,10 +219,21 @@ export interface RootRouteChildren {
   ScannerRoute: typeof ScannerRoute
   StockRoute: typeof StockRoute
   TodayRoute: typeof TodayRoute
+  WatchlistRoute: typeof WatchlistRoute
+  BriefingsDateRoute: typeof BriefingsDateRoute
+  StocksTickerRoute: typeof StocksTickerRoute
+  BriefingsWeeksWeekIdRoute: typeof BriefingsWeeksWeekIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/today': {
       id: '/today'
       path: '/today'
@@ -252,6 +311,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stocks/$ticker': {
+      id: '/stocks/$ticker'
+      path: '/stocks/$ticker'
+      fullPath: '/stocks/$ticker'
+      preLoaderRoute: typeof StocksTickerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/briefings/$date': {
+      id: '/briefings/$date'
+      path: '/briefings/$date'
+      fullPath: '/briefings/$date'
+      preLoaderRoute: typeof BriefingsDateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/briefings/weeks/$weekId': {
+      id: '/briefings/weeks/$weekId'
+      path: '/briefings/weeks/$weekId'
+      fullPath: '/briefings/weeks/$weekId'
+      preLoaderRoute: typeof BriefingsWeeksWeekIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +347,10 @@ const rootRouteChildren: RootRouteChildren = {
   ScannerRoute: ScannerRoute,
   StockRoute: StockRoute,
   TodayRoute: TodayRoute,
+  WatchlistRoute: WatchlistRoute,
+  BriefingsDateRoute: BriefingsDateRoute,
+  StocksTickerRoute: StocksTickerRoute,
+  BriefingsWeeksWeekIdRoute: BriefingsWeeksWeekIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
