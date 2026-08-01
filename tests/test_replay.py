@@ -6,12 +6,29 @@ from pathlib import Path
 
 import pandas as pd
 
-from scripts.build_replay_snapshot import build_snapshot, content_hash, write_snapshot
+from scripts.build_replay_snapshot import build_manifest, build_snapshot, content_hash, write_snapshot
 from scripts.backfill_replay_snapshots import build_historical_snapshots
 from scripts.replay_analyzer import analyze, combine_completed_trades, parse_executions
 
 
 class ReplayTests(unittest.TestCase):
+    def test_operating_manifest_matches_snapshot_files_and_market_date(self):
+        root = Path(__file__).resolve().parents[1]
+        replay_root = root / "replay_data"
+        manifest = build_manifest(replay_root)
+        stored_manifest = json.loads((replay_root / "manifest.json").read_text(encoding="utf-8"))
+        snapshot_dates = sorted(
+            path.stem for path in (root / "replay_data" / "snapshots").glob("????-??-??.json")
+        )
+        market_date = json.loads((root / "data.json").read_text(encoding="utf-8"))["market_date"]
+
+        self.assertEqual(manifest["dates"], snapshot_dates)
+        self.assertEqual(manifest["snapshot_count"], len(snapshot_dates))
+        self.assertEqual(manifest["last_date"], snapshot_dates[-1])
+        self.assertEqual(manifest["last_date"], market_date)
+        for field in ("snapshot_count", "dates", "last_date"):
+            self.assertEqual(stored_manifest[field], manifest[field])
+
     def test_backfill_builds_requested_dates_with_rolling_context(self):
         dates = pd.bdate_range(end="2026-07-17", periods=22)
         closes = [100] * 20 + [101, 105]

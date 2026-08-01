@@ -204,6 +204,8 @@ class InsiderDataQualityTests(unittest.TestCase):
         self.assertTrue(
             all(row["qualityStatus"] == "pending" for row in result["pendingTrades"])
         )
+        self.assertIn("pendingTrades", result)
+        self.assertIsInstance(result["pendingTrades"], list)
         json.dumps(result, ensure_ascii=False)
 
 

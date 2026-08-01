@@ -495,6 +495,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
+export function normalizeDataSourcePayload(id: DataSourceId, data: unknown) {
+  if (
+    id === "insider" &&
+    isRecord(data) &&
+    Array.isArray(data.trades) &&
+    data.pendingTrades === undefined
+  ) {
+    return { ...data, pendingTrades: [] };
+  }
+  return data;
+}
+
 export function assertValidDataSourcePayload(
   id: DataSourceId,
   data: unknown,
@@ -587,14 +599,15 @@ async function startRequest(id: DataSourceId, force = false) {
     },
   })
     .then(async (data) => {
-      assertValidDataSourcePayload(id, data);
+      const normalizedData = normalizeDataSourcePayload(id, data);
+      assertValidDataSourcePayload(id, normalizedData);
       if (!isCurrent()) return undefined;
-      await applyHydrationPayload(id, data, isCurrent);
+      await applyHydrationPayload(id, normalizedData, isCurrent);
       if (!isCurrent()) return undefined;
-      const updatedAt = getSourceUpdatedAt(data);
-      const health = assessSourceHealth(id, data, updatedAt);
+      const updatedAt = getSourceUpdatedAt(normalizedData);
+      const health = assessSourceHealth(id, normalizedData, updatedAt);
       setState(id, {
-        data,
+        data: normalizedData,
         phase: "success",
         health,
         fromCache: false,
@@ -614,7 +627,7 @@ async function startRequest(id: DataSourceId, force = false) {
           });
         }
       }
-      void writeLastGood(id, data, updatedAt);
+      void writeLastGood(id, normalizedData, updatedAt);
       trackTelemetry("data_load_result", {
         source: id,
         result: "success",
@@ -622,7 +635,7 @@ async function startRequest(id: DataSourceId, force = false) {
         from_cache: false,
         attempt: getDataSourceState(id).attempt,
       });
-      return data;
+      return normalizedData;
     })
     .catch((error: unknown) => {
       const detail = normalizeError(error);
@@ -661,10 +674,11 @@ async function restoreThenLoad(id: DataSourceId, onlyIfObserved = false) {
       (!current.lastSuccessAt || cached.savedAt > current.lastSuccessAt)
     ) {
       try {
-        assertValidDataSourcePayload(id, cached.data);
-        await applyHydrationPayload(id, cached.data);
+        const normalizedData = normalizeDataSourcePayload(id, cached.data);
+        assertValidDataSourcePayload(id, normalizedData);
+        await applyHydrationPayload(id, normalizedData);
         setState(id, {
-          data: cached.data,
+          data: normalizedData,
           fromCache: true,
           lastSuccessAt: cached.savedAt,
           sourceUpdatedAt: cached.sourceUpdatedAt,

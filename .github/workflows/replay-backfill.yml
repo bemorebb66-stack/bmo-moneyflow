@@ -24,6 +24,8 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build historical Replay snapshots
         run: python scripts/backfill_replay_snapshots.py --days "${{ inputs.trading_days }}"
+      - name: Rebuild Replay manifest from stored snapshots
+        run: python scripts/build_replay_snapshot.py --manifest-only
       - name: Rebuild weekly market summary
         run: python scripts/build_weekly_summary.py
       - name: Test Replay data pipeline

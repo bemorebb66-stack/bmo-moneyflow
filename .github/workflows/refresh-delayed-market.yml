@@ -31,6 +31,9 @@ jobs:
       - name: Store BVT Replay snapshot
         run: python scripts/build_replay_snapshot.py
 
+      - name: Rebuild Replay manifest from stored snapshots
+        run: python scripts/build_replay_snapshot.py --manifest-only
+
       - name: Build weekly market summary
         run: python scripts/build_weekly_summary.py
 

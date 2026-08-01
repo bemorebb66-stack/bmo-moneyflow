@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   ROUTE_DATA_SOURCES,
@@ -7,6 +8,7 @@ import {
   getDataSourceState,
   getSourceUpdatedAt,
   loadDataSourceOnce,
+  normalizeDataSourcePayload,
   resetDataRuntimeForTests,
   retryDataSource,
   seedLastGoodForTests,
@@ -231,5 +233,31 @@ describe("route source boundaries", () => {
     expect(() =>
       assertValidDataSourcePayload("history", { dates: [] }),
     ).toThrow(/데이터 구조/);
+  });
+
+  it("accepts the current operating insider format without pendingTrades", async () => {
+    const operatingPayload = JSON.parse(
+      readFileSync(
+        new URL("../../../insider/data/insider.json", import.meta.url),
+        "utf8",
+      ),
+    );
+    expect(operatingPayload.trades.length).toBeGreaterThan(0);
+    expect(operatingPayload).not.toHaveProperty("pendingTrades");
+
+    const normalized = normalizeDataSourcePayload("insider", operatingPayload);
+    expect(normalized).toMatchObject({
+      trades: operatingPayload.trades,
+      pendingTrades: [],
+    });
+
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(response(operatingPayload)));
+    const state = await loadDataSourceOnce<{
+      trades: unknown[];
+      pendingTrades: unknown[];
+    }>("insider");
+    expect(state.phase).toBe("success");
+    expect(state.data?.trades).toHaveLength(operatingPayload.trades.length);
+    expect(state.data?.pendingTrades).toEqual([]);
   });
 });

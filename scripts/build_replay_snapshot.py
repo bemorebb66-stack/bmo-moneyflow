@@ -7,6 +7,8 @@ import argparse
 import hashlib
 import json
 import math
+import os
+import tempfile
 from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -41,6 +43,30 @@ except ModuleNotFoundError:
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def atomic_write_json(path: Path, payload: dict[str, Any], *, indent: int | None = None) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            json.dump(payload, handle, ensure_ascii=False, indent=indent, separators=None if indent else (",", ":"))
+            handle.write("\n" if indent else "")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_name, path)
+        temporary_name = None
+    finally:
+        if temporary_name:
+            Path(temporary_name).unlink(missing_ok=True)
 
 
 def ratio(value: float, baseline: float) -> float | None:
@@ -255,40 +281,13 @@ def build_snapshot(data: dict[str, Any]) -> dict[str, Any]:
     return snapshot
 
 
-def write_snapshot(snapshot: dict[str, Any], output: Path) -> Path:
-    contract_errors = validate_snapshot_contract(snapshot)
-    if contract_errors:
-        raise ValueError(f"invalid snapshot contract: {', '.join(contract_errors)}")
-    if snapshot.get("content_hash") != content_hash(snapshot):
-        raise ValueError("snapshot content_hash mismatch")
+def build_manifest(output: Path) -> dict[str, Any]:
     snapshots = output / "snapshots"
-    logs = output / "logs"
-    snapshots.mkdir(parents=True, exist_ok=True)
-    logs.mkdir(parents=True, exist_ok=True)
-    target = snapshots / f"{snapshot['trading_date']}.json"
-    stored = True
-    active_snapshot = snapshot
-    if target.exists():
-        existing = read_json(target)
-        same_source_contract = (
-            existing.get("schema_version") == 2
-            and existing.get("source_content_hash") == snapshot.get("source_content_hash")
-            and existing.get("data_contract_version") == snapshot.get("data_contract_version")
-            and existing.get("signal_rule_version") == snapshot.get("signal_rule_version")
-            and existing.get("replay_rule_version") == snapshot.get("replay_rule_version")
-            and existing.get("calendar_version") == snapshot.get("calendar_version")
-            and existing.get("data_grade") == snapshot.get("data_grade")
-        )
-        if same_source_contract or existing.get("content_hash") == snapshot.get("content_hash"):
-            stored = False
-            active_snapshot = existing
-    if stored:
-        revision = output / "revisions" / snapshot["trading_date"] / snapshot["content_hash"].removeprefix("sha256:")
-        revision = revision.with_suffix(".json")
-        revision.parent.mkdir(parents=True, exist_ok=True)
-        revision.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        target.write_text(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     dates = sorted(path.stem for path in snapshots.glob("????-??-??.json"))
+    for value in dates:
+        snapshot = read_json(snapshots / f"{value}.json")
+        if snapshot.get("trading_date") != value:
+            raise ValueError(f"snapshot trading_date differs from filename: {value}")
     available = {date.fromisoformat(value) for value in dates}
     missing_trading_days = []
     if available:
@@ -324,9 +323,10 @@ def write_snapshot(snapshot: dict[str, Any], output: Path) -> Path:
         and entry["data_grade"] in VALID_DATA_GRADES
     ]
     selectable_dates = sorted({entry["trading_date"] for entry in selectable_entries})
-    manifest = {
+    latest_snapshot = read_json(snapshots / f"{dates[-1]}.json") if dates else {}
+    return {
         "schema_version": 2,
-        "updated_at": active_snapshot["generated_at"],
+        "updated_at": latest_snapshot.get("generated_at"),
         "first_date": dates[0] if dates else None,
         "last_date": dates[-1] if dates else None,
         "snapshot_count": len(dates),
@@ -342,7 +342,47 @@ def write_snapshot(snapshot: dict[str, Any], output: Path) -> Path:
         "replay_rule_version": REPLAY_RULE_VERSION,
         "calendar_version": CALENDAR_VERSION,
     }
-    (output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def write_manifest(output: Path) -> dict[str, Any]:
+    manifest = build_manifest(output)
+    atomic_write_json(output / "manifest.json", manifest, indent=2)
+    return manifest
+
+
+def write_snapshot(snapshot: dict[str, Any], output: Path) -> Path:
+    contract_errors = validate_snapshot_contract(snapshot)
+    if contract_errors:
+        raise ValueError(f"invalid snapshot contract: {', '.join(contract_errors)}")
+    if snapshot.get("content_hash") != content_hash(snapshot):
+        raise ValueError("snapshot content_hash mismatch")
+    snapshots = output / "snapshots"
+    logs = output / "logs"
+    snapshots.mkdir(parents=True, exist_ok=True)
+    logs.mkdir(parents=True, exist_ok=True)
+    target = snapshots / f"{snapshot['trading_date']}.json"
+    stored = True
+    active_snapshot = snapshot
+    if target.exists():
+        existing = read_json(target)
+        same_source_contract = (
+            existing.get("schema_version") == 2
+            and existing.get("source_content_hash") == snapshot.get("source_content_hash")
+            and existing.get("data_contract_version") == snapshot.get("data_contract_version")
+            and existing.get("signal_rule_version") == snapshot.get("signal_rule_version")
+            and existing.get("replay_rule_version") == snapshot.get("replay_rule_version")
+            and existing.get("calendar_version") == snapshot.get("calendar_version")
+            and existing.get("data_grade") == snapshot.get("data_grade")
+        )
+        if same_source_contract or existing.get("content_hash") == snapshot.get("content_hash"):
+            stored = False
+            active_snapshot = existing
+    if stored:
+        revision = output / "revisions" / snapshot["trading_date"] / snapshot["content_hash"].removeprefix("sha256:")
+        revision = revision.with_suffix(".json")
+        atomic_write_json(revision, snapshot)
+        atomic_write_json(target, snapshot)
+    write_manifest(output)
     if stored:
         entry = {
             "timestamp": snapshot["generated_at"],
@@ -365,7 +405,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", type=Path, default=ROOT / "data.json")
     parser.add_argument("--output", type=Path, default=ROOT / "replay_data")
+    parser.add_argument("--manifest-only", action="store_true")
     args = parser.parse_args()
+    if args.manifest_only:
+        manifest = write_manifest(args.output)
+        print(f"Replay manifest: {manifest['snapshot_count']} snapshots through {manifest['last_date']}")
+        return
     snapshot = build_snapshot(read_json(args.data))
     target = write_snapshot(snapshot, args.output)
     print(f"Replay snapshot: {target} ({len(snapshot['tickers'])} tickers)")
