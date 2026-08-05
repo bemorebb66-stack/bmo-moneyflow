@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-05T01:04:25.880482+00:00",
+    "generatedAt": "2026-08-05T15:10:59.438979+00:00",
     "status": "ok",
     "from": "2026-06-21",
     "to": "2027-02-01",
-    "count": 1728,
+    "count": 1730,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 602,
-      "supplementalTickerCount": 147,
-      "supplementalEventCount": 343,
+      "supplementalTickerCount": 148,
+      "supplementalEventCount": 348,
       "themes": [
         "양자컴퓨팅",
         "디지털자산"
@@ -3916,6 +3916,21 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
+      "ticker": "MRK",
+      "company": "머크 앤 코",
+      "date": "2026-08-04",
+      "hour": "bmo",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": -0.13,
+      "epsEstimate": -0.2733,
+      "revenueActual": 16607000000.0,
+      "revenueEstimate": 16528301075.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
       "ticker": "NRG",
       "company": "NRG 에너지",
       "date": "2026-08-04",
@@ -4086,9 +4101,11 @@
       "hour": "bmo",
       "quarter": 3,
       "year": 2026,
+      "epsActual": 4.48,
       "epsEstimate": 4.3924,
+      "revenueActual": 84754840000.0,
       "revenueEstimate": 85157696691.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -4112,9 +4129,11 @@
       "hour": "bmo",
       "quarter": 2,
       "year": 2026,
+      "epsActual": 3.02,
       "epsEstimate": 2.7609,
+      "revenueActual": 1004080000.0,
       "revenueEstimate": 984472068.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -4125,9 +4144,11 @@
       "hour": "bmo",
       "quarter": 2,
       "year": 2026,
+      "epsActual": 2.58,
       "epsEstimate": 1.8702,
+      "revenueActual": 106096000000.0,
       "revenueEstimate": 101115104650.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -4151,9 +4172,11 @@
       "hour": "bmo",
       "quarter": 3,
       "year": 2026,
+      "epsActual": 2.06,
       "epsEstimate": 1.879,
+      "revenueActual": 25248000000.0,
       "revenueEstimate": 25658241808.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -4241,9 +4264,11 @@
       "hour": "bmo",
       "quarter": 2,
       "year": 2026,
+      "epsActual": 8.38,
       "epsEstimate": 6.0661,
+      "revenueActual": 22974000000.0,
       "revenueEstimate": 20932741920.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -4396,9 +4421,11 @@
       "hour": "bmo",
       "quarter": 2,
       "year": 2026,
+      "epsActual": 0.42,
       "epsEstimate": 0.4107,
+      "revenueActual": 3583000000.0,
       "revenueEstimate": 3513364398.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -4474,9 +4501,11 @@
       "hour": "bmo",
       "quarter": 2,
       "year": 2026,
+      "epsActual": -0.37,
       "epsEstimate": -0.2299,
+      "revenueActual": 44770000.0,
       "revenueEstimate": 47319840.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "theme",
       "source": "Finnhub Earnings Calendar"
     },
@@ -5282,6 +5311,18 @@
       "year": 2027,
       "epsEstimate": 3.3057,
       "revenueEstimate": 11432284970.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "CRWD",
+      "company": "크라우드 스트라이크 홀딩스",
+      "date": "2026-08-26",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 0.2984,
+      "revenueEstimate": 1468832374.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -12748,7 +12789,7 @@
       "epsEstimate": 3.03,
       "revenueEstimate": 339952264.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
