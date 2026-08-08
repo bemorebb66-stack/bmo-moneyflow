@@ -235,21 +235,38 @@ describe("route source boundaries", () => {
     ).toThrow(/데이터 구조/);
   });
 
-  it("accepts the current operating insider format without pendingTrades", async () => {
+  it("keeps the current validated operating insider structure intact", async () => {
     const operatingPayload = JSON.parse(
       readFileSync(
         new URL("../../../insider/data/insider.json", import.meta.url),
         "utf8",
       ),
     );
+    const qualityReport = JSON.parse(
+      readFileSync(
+        new URL("../../../insider/data/insider-quality.json", import.meta.url),
+        "utf8",
+      ),
+    );
     expect(operatingPayload.trades.length).toBeGreaterThan(0);
-    expect(operatingPayload).not.toHaveProperty("pendingTrades");
+    expect(operatingPayload).toHaveProperty("pendingTrades");
+    expect(operatingPayload.trades).toHaveLength(qualityReport.acceptedCount);
+    expect(operatingPayload.pendingTrades).toHaveLength(
+      qualityReport.pendingCount,
+    );
+    expect(
+      operatingPayload.trades.every(
+        (row: { qualityStatus?: string }) => row.qualityStatus === "accepted",
+      ),
+    ).toBe(true);
+    expect(
+      operatingPayload.pendingTrades.every(
+        (row: { qualityStatus?: string }) => row.qualityStatus === "pending",
+      ),
+    ).toBe(true);
 
     const normalized = normalizeDataSourcePayload("insider", operatingPayload);
-    expect(normalized).toMatchObject({
-      trades: operatingPayload.trades,
-      pendingTrades: [],
-    });
+    expect(normalized).toEqual(operatingPayload);
 
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(response(operatingPayload)));
     const state = await loadDataSourceOnce<{
@@ -258,6 +275,8 @@ describe("route source boundaries", () => {
     }>("insider");
     expect(state.phase).toBe("success");
     expect(state.data?.trades).toHaveLength(operatingPayload.trades.length);
-    expect(state.data?.pendingTrades).toEqual([]);
+    expect(state.data?.pendingTrades).toHaveLength(
+      operatingPayload.pendingTrades.length,
+    );
   });
 });
