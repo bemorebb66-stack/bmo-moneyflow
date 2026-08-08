@@ -4,7 +4,7 @@ import { Card, CardContent } from "./ui/card";
 import { SignalBadge, DeltaText } from "./signal-badge";
 import { cn } from "@/lib/utils";
 import { LIVE_GROUP_COMPANIES, type Sector } from "@/lib/mock-data";
-import { fmtBp, fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
+import { fmtBp, fmtMcap, fmtMoney, fmtPct, fmtQuote } from "@/lib/format";
 import { MetricInfo } from "./metric-info";
 import { describeIndustry } from "@/lib/industry-copy";
 
@@ -370,7 +370,7 @@ function MobileExpandedCompanies({
               <div className="mt-2 grid grid-cols-4 gap-2 text-center text-[11px] tabular">
                 <MobileCompanyMetric
                   label="가격"
-                  value={`$${fmtPrice(company.price)}`}
+                  value={fmtQuote(company.price)}
                 />
                 <MobileCompanyMetric
                   label="등락"
@@ -547,7 +547,7 @@ function ExpandedRow({
                       {company.industry || "미수집"}
                     </td>
                     <td className="px-3 py-2 text-right tabular">
-                      ${fmtPrice(company.price)}
+                      {fmtQuote(company.price)}
                     </td>
                     <td
                       className={cn(

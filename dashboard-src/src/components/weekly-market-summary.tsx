@@ -265,13 +265,13 @@ export function WeeklyMarketSummary() {
             </ul>
           </section>
 
-          <aside className="mt-5 rounded-lg border border-warning/30 bg-warning/5 p-4" aria-labelledby="weekly-limitations">
-            <div className="text-[11px] font-semibold text-warning-foreground">주의사항</div>
-            <h3 id="weekly-limitations" className="mt-1 text-sm font-semibold">데이터 한계</h3>
-            <p className="mt-2 text-xs leading-5 text-muted-foreground">
+          <footer className="mt-6 border-t border-border/70 pt-3" aria-labelledby="weekly-limitations">
+            <div className="text-[11px] font-semibold text-muted-foreground">데이터 안내</div>
+            <h3 id="weekly-limitations" className="mt-1 text-xs font-semibold">데이터 한계</h3>
+            <p className="mt-1 text-[11px] leading-5 text-muted-foreground">
               기준일 {current.endDate} · 출처: Yahoo Finance에서 수집한 미국 시장 장마감 일봉. 주간 수익률은 직전 주 마지막 거래일 종가 대비이며 첫 제공 주는 비교 자료가 없습니다. 거래대금은 매수와 매도를 함께 포함해 실제 순매수나 자금 유입을 뜻하지 않습니다. 공개 시장 데이터 요약이며 투자 추천이 아닙니다.
             </p>
-          </aside>
+          </footer>
         </CardContent>
       </Card>
     </section>

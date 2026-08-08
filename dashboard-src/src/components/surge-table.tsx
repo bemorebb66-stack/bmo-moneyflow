@@ -26,7 +26,7 @@ import {
 } from "./ui/dropdown-menu";
 import { SignalBadge, DeltaText } from "./signal-badge";
 import { LIVE_STOCKS, SURGE_STOCKS, type MarketPeriod } from "@/lib/mock-data";
-import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
+import { fmtMcap, fmtMoney, fmtPct, fmtQuote } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { MetricInfo } from "./metric-info";
 import { ListPagination } from "./list-pagination";
@@ -158,6 +158,11 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     const params = new URLSearchParams(window.location.search);
     return params.get("ticker") ?? params.get("q") ?? "";
   });
+  const [minMarketCap, setMinMarketCap] = useState(() => {
+    if (typeof window === "undefined") return 1;
+    const value = Number(new URLSearchParams(window.location.search).get("minMcap") ?? 1);
+    return [0, 0.3, 1, 10].includes(value) ? value : 1;
+  });
   const [insight, setInsight] = useState<InsightFilter>(() => {
     if (typeof window === "undefined") return "all";
     const value = new URLSearchParams(window.location.search).get("insight");
@@ -194,6 +199,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     query,
     insight,
     externalFilter,
+    minMarketCap,
     sort,
   ]);
   const previousFilterSignature = useRef(filterSignature);
@@ -223,6 +229,9 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
           externalFilter.tradingValueDirection,
         )
       : url.searchParams.delete("tradingValueDirection");
+    minMarketCap !== 1
+      ? url.searchParams.set("minMcap", String(minMarketCap))
+      : url.searchParams.delete("minMcap");
     sort.key !== "20d"
       ? url.searchParams.set("sort", sort.key)
       : url.searchParams.delete("sort");
@@ -237,7 +246,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     syncingFromHistory.current = false;
     window.history.replaceState({}, "", url);
     window.dispatchEvent(new Event("bvt:url-search-change"));
-  }, [externalFilter, filterSignature, insight, period, query, sort]);
+  }, [externalFilter, filterSignature, insight, minMarketCap, period, query, sort]);
 
   useEffect(() => {
     const restore = () => {
@@ -248,6 +257,8 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
       const nextOrder = params.get("order");
       syncingFromHistory.current = true;
       setQuery(params.get("q") ?? params.get("ticker") ?? "");
+      const nextMinMcap = Number(params.get("minMcap") ?? 1);
+      setMinMarketCap([0, 0.3, 1, 10].includes(nextMinMcap) ? nextMinMcap : 1);
       setPeriod(
         ["1d", "5d", "20d", "60d"].includes(nextPeriod ?? "")
           ? (nextPeriod as MarketPeriod)
@@ -362,6 +373,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
           : ratio20d < 0);
       return (
         matchesQuery &&
+        (Boolean(q) || stock.marketCap >= minMarketCap) &&
         matchesInsight &&
         matchesPreset &&
         matchesPrice &&
@@ -383,6 +395,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     dataVersion,
     externalFilter,
     insight,
+    minMarketCap,
     period,
     query,
     sectorLeaderBySector,
@@ -465,6 +478,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     setExternalFilter({});
     setPeriod("20d");
     setSort({ key: "20d", mode: "desc" });
+    setMinMarketCap(1);
   };
 
   const appliedConditions = [
@@ -499,6 +513,13 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
             setPeriod("20d");
             setSort({ key: "20d", mode: "desc" });
           },
+        }
+      : null,
+    minMarketCap !== 1
+      ? {
+          id: "min-market-cap",
+          label: minMarketCap === 0 ? "저시총 포함" : `시총 $${minMarketCap}B 이상`,
+          clear: () => setMinMarketCap(1),
         }
       : null,
     externalParts.length && !activePreset
@@ -537,15 +558,17 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
         priceDirection: externalFilter.priceDirection ?? null,
         tradingValueDirection:
           externalFilter.tradingValueDirection ?? null,
+        minMarketCap,
         sort,
       }),
-    [externalFilter, insight, period, query, sort],
+    [externalFilter, insight, minMarketCap, period, query, sort],
   );
 
   const applySavedCriteria = (criteria: SavedScannerCriteria) => {
     setQuery(criteria.query);
     setPeriod(criteria.period);
     setInsight(criteria.insight);
+    setMinMarketCap(criteria.minMarketCap);
     setExternalFilter({
       preset: criteria.preset ?? undefined,
       priceDirection: criteria.priceDirection ?? undefined,
@@ -628,10 +651,19 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
         </div>
 
         <div className="flex justify-end border-b border-border/70 px-4 py-3 sm:px-5">
-          <SavedScannerControls
-            criteria={savedCriteria}
-            onApply={applySavedCriteria}
-          />
+          <div className="flex w-full flex-wrap items-center justify-between gap-3">
+            <label className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+              최소 시가총액
+              <select value={minMarketCap} onChange={(event) => setMinMarketCap(Number(event.target.value))} className="h-10 rounded-md border bg-surface px-2 text-sm text-foreground sm:h-9" aria-label="최소 시가총액">
+                <option value={1}>10억 달러 (기본)</option>
+                <option value={0.3}>3억 달러</option>
+                <option value={10}>100억 달러</option>
+                <option value={0}>전체 포함</option>
+              </select>
+              <span className="hidden text-[11px] sm:inline">종목명 검색 시에는 하한을 적용하지 않습니다.</span>
+            </label>
+            <SavedScannerControls criteria={savedCriteria} onApply={applySavedCriteria} />
+          </div>
         </div>
 
         <div className="border-b border-border/70 px-4 py-3 sm:px-5">
@@ -834,7 +866,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
                         </div>
                       </td>
                       <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular">
-                        ${fmtPrice(stock.price)}
+                        {fmtQuote(stock.price)}
                       </td>
                       <td className="whitespace-nowrap py-2.5 pr-3 text-right">
                         <DeltaText value={stock.change} />
@@ -1039,7 +1071,7 @@ function MobileStockList({
                 />
                 <MobileMetric
                   label="가격"
-                  value={`$${fmtPrice(stock.price)}`}
+                  value={fmtQuote(stock.price)}
                 />
                 <MobileMetric
                   label="등락"

@@ -6,7 +6,7 @@ import { SaveStockButton } from "@/components/save-stock-button";
 import { SignalBadge, DeltaText } from "@/components/signal-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { DataSourcesStatus } from "@/components/data-source-state";
-import { fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
+import { fmtMoney, fmtPct, fmtQuote } from "@/lib/format";
 import { LIVE_STOCKS, type StockRow } from "@/lib/mock-data";
 import { useDataSources } from "@/lib/data-runtime";
 import { loadStockDirectory, type DirectoryStock } from "@/lib/stock-directory";
@@ -130,7 +130,7 @@ export function WatchlistView({
                 </div>
                 {stock ? (
                   <div className="mt-4 grid grid-cols-2 gap-2 rounded-md bg-surface-2 p-3 text-xs">
-                    <Metric label="가격" value={`$${fmtPrice(stock.price)}`} />
+                    <Metric label="가격" value={fmtQuote(stock.price)} />
                     <Metric label="등락" value={<DeltaText value={stock.change} />} />
                     <Metric label="거래대금" value={fmtMoney(stock.volume)} />
                     <Metric

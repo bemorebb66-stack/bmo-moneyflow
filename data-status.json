@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-08T12:48:19.301Z",
+  "status": "ok",
+  "freshness": "delayed",
+  "delayedSources": [
+    "insider",
+    "lockup"
+  ],
+  "unknownFreshnessSources": [
+    "history",
+    "stockDirectory"
+  ],
+  "marketDate": "2026-08-07",
+  "lastGood": {
+    "marketDate": "2026-08-07",
+    "marketSha256": "feadfd3d9b3c83577322a5bc815108b12f953c5cc02b54fce6cda09e8e82a137",
+    "replayLastDate": "2026-08-07"
+  },
+  "sources": {
+    "market": {
+      "path": "data.json",
+      "updatedAt": "2026-08-08 07:30 UTC",
+      "freshness": "normal",
+      "sha256": "feadfd3d9b3c83577322a5bc815108b12f953c5cc02b54fce6cda09e8e82a137",
+      "tradingDaysBehind": 0
+    },
+    "history": {
+      "path": "history.json",
+      "updatedAt": null,
+      "freshness": "unknown",
+      "sha256": "a21381022aed52b28c5b6406a7273ef5e6f8a34796221d8007a2ffab45ea899a"
+    },
+    "insider": {
+      "path": "insider/data/insider.json",
+      "updatedAt": "2026-07-30T05:48:02.793Z",
+      "freshness": "delayed",
+      "sha256": "a6e7a55aed75109524d1c1a47be87408fe2b2f67fd9b1f15d2f08ba8076bf0aa"
+    },
+    "lockup": {
+      "path": "ipo-lockup/data/lockup.json",
+      "updatedAt": "2026-07-31T06:19:06.746Z",
+      "freshness": "delayed",
+      "sha256": "f0667301c67ef70bfd1c2cf581c552dc7a59da2199bfd720b6f3767d45fc8a4c"
+    },
+    "earnings": {
+      "path": "earnings.json",
+      "updatedAt": "2026-08-08T00:09:02.927090+00:00",
+      "freshness": "normal",
+      "sha256": "5f4dfce8dcf169e01398222e86384aead832905ca3db213007f7d9ce0a312882"
+    },
+    "economic": {
+      "path": "economic_events.json",
+      "updatedAt": "2026-08-08 12:45 UTC",
+      "freshness": "normal",
+      "sha256": "250e1c94e4951545d9cc38427677aac98323835ee693df3d564b363f53e4c186"
+    },
+    "news": {
+      "path": "news.json",
+      "updatedAt": "2026-08-08T00:14:45.194773+00:00",
+      "freshness": "normal",
+      "sha256": "45f0fd27017e5113bb1bcd630fbc7ec62866317f4fa8ddf0c3e8c5af21426ffc"
+    },
+    "weekly": {
+      "path": "weekly_summary.json",
+      "updatedAt": "2026-08-08T07:30:16+00:00",
+      "freshness": "normal",
+      "sha256": "e6178ba85b5df80bbdef3ab5a89508c0b00e0a290ac89c37b9bef637e595d66b"
+    },
+    "stockDirectory": {
+      "path": "stock_directory.json",
+      "updatedAt": null,
+      "freshness": "unknown",
+      "sha256": "605a9774d428a401732407a4e8500de3b40e3e2863685e86c8669c2e60c53daa"
+    },
+    "replayManifest": {
+      "path": "replay_data/manifest.json",
+      "updatedAt": "2026-08-08T07:30:10+00:00",
+      "freshness": "normal",
+      "sha256": "e5c2ec21d79202f08d1553bc0370382350c4e2ba31dc30eaf48d70bc83aaa894",
+      "tradingDaysBehind": 0
+    }
+  },
+  "checks": {
+    "sourceCount": 10,
+    "stockCount": 2422,
+    "historyLastDate": "2026-08-07",
+    "replaySnapshotCount": 105
+  }
+}

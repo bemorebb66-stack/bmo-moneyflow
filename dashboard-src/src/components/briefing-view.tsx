@@ -267,13 +267,10 @@ export function DailyBriefingView({
             </>
           )}
 
-          <aside className="mt-5 rounded-lg border border-warning/30 bg-warning/5 p-4">
-            <div className="text-[11px] font-semibold text-warning-foreground">주의사항</div>
-            <p className="mt-1 text-[11px] leading-5 text-muted-foreground">{BRIEFING_DISCLAIMER}</p>
-          </aside>
           {compact && (
             <a href={`/briefings/${briefing.date}/`} className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-brand underline">전체 브리핑과 관심종목 보기</a>
           )}
+          <footer className="mt-6 border-t border-border/70 pt-3 text-[11px] leading-5 text-muted-foreground">데이터 안내 · 기준일 {briefing.date} · {BRIEFING_DISCLAIMER}</footer>
         </CardContent>
       </Card>
     </section>
@@ -340,10 +337,7 @@ export function WeeklyBriefingView({
               </ul>
             </section>
           </div>
-          <aside className="mt-5 rounded-lg border border-warning/30 bg-warning/5 p-4">
-            <div className="text-[11px] font-semibold text-warning-foreground">주의사항</div>
-            <p className="mt-1 text-[11px] leading-5 text-muted-foreground">기준일 {week.endDate} · {BRIEFING_DISCLAIMER}</p>
-          </aside>
+          <footer className="mt-6 border-t border-border/70 pt-3 text-[11px] leading-5 text-muted-foreground">데이터 안내 · 기준일 {week.endDate} · {BRIEFING_DISCLAIMER}</footer>
         </CardContent>
       </Card>
     </section>

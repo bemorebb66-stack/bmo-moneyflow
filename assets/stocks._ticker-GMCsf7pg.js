@@ -1,0 +1,1 @@
+import{Yt as e}from"./page-shell-CmwUI-4A.js";import{i as t,n,t as r}from"./stocks._ticker-ITWB11to.js";var i=e();function a(){let{ticker:e}=r.useParams();return(0,i.jsx)(t,{ticker:n(e)})}export{a as component};

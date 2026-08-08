@@ -195,6 +195,7 @@ export function getSourceUpdatedAt(payload: any): string | undefined {
     payload?.market_date ??
     payload?.generatedAt ??
     payload?.updated_at ??
+    payload?.meta?.checkedAt ??
     payload?.meta?.updated ??
     payload?.meta?.generatedAt ??
     payload?.meta?.validatedAt

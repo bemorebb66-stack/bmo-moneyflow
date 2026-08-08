@@ -39,7 +39,7 @@ describe("BVT Money Flow brand, briefing, and SEO", () => {
     const positions = headings.map((heading) => weekly.indexOf(heading));
     expect(positions.every((position) => position >= 0)).toBe(true);
     expect(positions).toEqual([...positions].sort((a, b) => a - b));
-    for (const label of ["사실", "데이터 해석", "주의사항", "기준일", "출처:", "투자 추천이 아닙니다"]) expect(weekly).toContain(label);
+    for (const label of ["사실", "데이터 해석", "데이터 안내", "기준일", "출처:", "투자 추천이 아닙니다"]) expect(weekly).toContain(label);
   });
 
   it("keeps the three-line brand assets and verified SEO generation rules", async () => {

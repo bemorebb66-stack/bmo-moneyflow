@@ -5,12 +5,14 @@ import { ThemeProvider } from "./theme-provider";
 import { LIVE_META } from "@/lib/mock-data";
 import { DataStatusBar } from "./data-status-bar";
 import { MarketIndexPanel } from "./market-index-panel";
+import { useCurrencyPreference } from "@/lib/currency";
 
 interface Props {
   children: ReactNode;
 }
 
 export function PageShell({ children }: Props) {
+  const currency = useCurrencyPreference();
   return (
     <ThemeProvider>
       <div className="min-h-dvh w-full min-w-0 overflow-x-clip bg-background text-foreground">
@@ -26,13 +28,14 @@ export function PageShell({ children }: Props) {
           universeCount={LIVE_META.universeCount}
           status={LIVE_META.status}
           delayTradingDays={LIVE_META.delayTradingDays}
+          currency={currency}
         />
         <main
           id="main-content"
           tabIndex={-1}
           className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 outline-none lg:px-6 lg:py-7"
         >
-          {children}
+          <div key={currency.currency}>{children}</div>
         </main>
         <MarketIndexPanel />
         <SiteFooter />

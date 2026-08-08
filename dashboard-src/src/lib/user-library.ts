@@ -31,6 +31,7 @@ export type SavedScannerCriteria = {
   preset: ScannerPreset | null;
   priceDirection: "up" | "down" | null;
   tradingValueDirection: "up" | "down" | null;
+  minMarketCap: number;
   sort: { key: ScannerSortKey; mode: ScannerSortMode };
 };
 
@@ -153,6 +154,9 @@ export function normalizeScannerCriteria(
   const mode = SORT_MODES.has(value?.sort?.mode as ScannerSortMode)
     ? (value?.sort?.mode as ScannerSortMode)
     : "desc";
+  const minMarketCap = [0, 0.3, 1, 10].includes(Number(value?.minMarketCap))
+    ? Number(value?.minMarketCap)
+    : 1;
   return {
     query:
       typeof value?.query === "string" ? value.query.trim().slice(0, 100) : "",
@@ -161,6 +165,7 @@ export function normalizeScannerCriteria(
     preset,
     priceDirection,
     tradingValueDirection,
+    minMarketCap,
     sort: { key, mode },
   };
 }

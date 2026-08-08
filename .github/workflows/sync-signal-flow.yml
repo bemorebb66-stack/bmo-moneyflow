@@ -2,6 +2,9 @@ name: Sync Signal Flow
 
 on:
   workflow_dispatch: {}
+  workflow_run:
+    workflows: ["Update market data"]
+    types: [completed]
   schedule:
     # 12:10 KST, Tue-Sat. Runs after the SEC data workflow finishes.
     - cron: "10 3 * * 2-6"
@@ -11,6 +14,7 @@ permissions:
 
 jobs:
   sync:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

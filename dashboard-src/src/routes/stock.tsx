@@ -27,7 +27,7 @@ import { SignalBadge } from "@/components/signal-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { AccessibleChart } from "@/components/accessible-chart";
-import { fmtMcap, fmtMoney, fmtPct, fmtPrice } from "@/lib/format";
+import { fmtMcap, fmtMoney, fmtPct, fmtQuote } from "@/lib/format";
 import {
   DataPageFallback,
   DataSectionState,
@@ -510,7 +510,7 @@ function StockDetail({
       >
         <StatCard
           label="현재가"
-          value={`$${fmtPrice(stock.price)}`}
+          value={fmtQuote(stock.price)}
           tone={stock.change}
           hint={fmtPct(stock.change)}
         />

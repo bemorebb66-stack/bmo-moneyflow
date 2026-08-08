@@ -119,6 +119,7 @@ for (const [id, relativePath] of Object.entries(sourceFiles)) {
       data.market_date ??
       data.generatedAt ??
       data.updated_at ??
+      data.meta?.checkedAt ??
       data.meta?.updated ??
       data.meta?.generatedAt ??
       data.meta?.validatedAt ??

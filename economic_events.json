@@ -3,7 +3,9 @@
     "year": 2026,
     "updated": "2026-07-18",
     "timezone": "America/New_York",
-    "note": "Federal Reserve, BLS, BEA official release schedules. Dates may be revised by each agency."
+    "note": "Federal Reserve, BLS, BEA official release schedules. Dates may be revised by each agency.",
+    "checkedAt": "2026-08-08 12:45 UTC",
+    "check": "Official-source URLs and event schema verified; schedule dates remain source-controlled."
   },
   "events": [
     {
@@ -94,7 +96,6 @@
       "source": "Federal Reserve",
       "sourceUrl": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
     },
-
     {
       "id": "cpi-2026-01-13",
       "date": "2026-01-13",
@@ -227,7 +228,6 @@
       "source": "BLS",
       "sourceUrl": "https://www.bls.gov/schedule/news_release/cpi.htm"
     },
-
     {
       "id": "ppi-2026-01-14",
       "date": "2026-01-14",
@@ -371,7 +371,6 @@
       "source": "BLS",
       "sourceUrl": "https://www.bls.gov/schedule/news_release/ppi.htm"
     },
-
     {
       "id": "jobs-2026-01-09",
       "date": "2026-01-09",
@@ -504,7 +503,6 @@
       "source": "BLS",
       "sourceUrl": "https://www.bls.gov/schedule/news_release/empsit.htm"
     },
-
     {
       "id": "pce-2026-01-22",
       "date": "2026-01-22",
@@ -648,7 +646,6 @@
       "source": "BEA",
       "sourceUrl": "https://www.bea.gov/news/schedule"
     },
-
     {
       "id": "gdp-2026-02-20",
       "date": "2026-02-20",
