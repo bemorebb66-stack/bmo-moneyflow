@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useSyncExternalStore } from "react";
-import { hydrateLiveData, type HydrationPayloads } from "./hydrate-live-data";
+import {
+  hydrateLiveData,
+  normalizeLatestMarketStocks,
+  type HydrationPayloads,
+  type MarketStock,
+} from "./hydrate-live-data";
 import { LIVE_META } from "./mock-data";
 import { trackTelemetry } from "./telemetry";
 
@@ -771,7 +776,10 @@ export function useDataSources<const T extends readonly DataSourceId[]>(
 
 export function sourceRecordCount(id: DataSourceId, data: any): number | null {
   if (!data) return null;
-  if (id === "market") return Array.isArray(data.stocks) ? data.stocks.length : 0;
+  if (id === "market")
+    return Array.isArray(data.stocks)
+      ? normalizeLatestMarketStocks(data.stocks as MarketStock[]).length
+      : 0;
   if (id === "history") return Array.isArray(data.dates) ? data.dates.length : 0;
   if (id === "insider")
     return (data.trades?.length ?? 0) + (data.pendingTrades?.length ?? 0);

@@ -12,6 +12,7 @@ import {
   resetDataRuntimeForTests,
   retryDataSource,
   seedLastGoodForTests,
+  sourceRecordCount,
 } from "./data-runtime";
 
 function response(body: unknown, status = 200) {
@@ -131,6 +132,17 @@ describe("route source boundaries", () => {
     expect(getSourceUpdatedAt({})).toBeUndefined();
     expect(assessSourceHealth("stockDirectory", {}, undefined)).toBe("unknown");
   });
+  it("marks an old economic calendar as delayed", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-08-08T12:00:00Z"));
+
+    expect(
+      assessSourceHealth("economic", {}, "2026-07-18T00:00:00Z"),
+    ).toBe("delayed");
+    expect(
+      assessSourceHealth("economic", {}, "2026-08-07T00:00:00Z"),
+    ).toBe("normal");
+  });
   it("keeps static and replay entry routes free of market requests", () => {
     expect(ROUTE_DATA_SOURCES.static).toEqual([]);
     expect(ROUTE_DATA_SOURCES.replay).toEqual([]);
@@ -141,6 +153,26 @@ describe("route source boundaries", () => {
     expect(ROUTE_DATA_SOURCES.home).toEqual(["market", "history"]);
     expect(ROUTE_DATA_SOURCES.today).not.toContain("news");
     expect(ROUTE_DATA_SOURCES.stock).not.toContain("economic");
+  });
+
+  it("counts current market companies by canonical ticker", () => {
+    const base = {
+      n: "Company",
+      sec: "Technology",
+      c: 10,
+      pc: 1,
+      dv: 100,
+      dvp: 90,
+      a5: 90,
+      a20: 90,
+      a60: 90,
+      mc: 1_000,
+    };
+    expect(
+      sourceRecordCount("market", {
+        stocks: [{ ...base, t: " be " }, { ...base, t: "BE" }],
+      }),
+    ).toBe(1);
   });
 
   it("serves the last good record when a refresh fails", async () => {

@@ -1,5 +1,6 @@
 import { cp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { limitRouteModulePreloads } from "./route-preloads.mjs";
 
 const projectRoot = resolve(import.meta.dirname, "..", "..");
 const outputRoot = resolve(import.meta.dirname, "..", "dist");
@@ -88,7 +89,7 @@ function stripRouteHead(html) {
 }
 
 function withPage(html, { title, description, canonical, body, schema, redirectScript = "" }) {
-  const clean = stripRouteHead(html);
+  const clean = limitRouteModulePreloads(stripRouteHead(html), canonical);
   const jsonLd = JSON.stringify(schema).replaceAll("<", "\\u003c");
   const head = `
     <title data-route-head>${escapeHtml(title)}</title>

@@ -93,7 +93,7 @@ export function DataSourcesStatus({
           : empty
             ? "빈 데이터"
             : delayed
-              ? "마지막 정상 데이터"
+              ? "지연"
               : loading
                 ? state.data
                   ? "갱신 중"
@@ -110,7 +110,11 @@ export function DataSourcesStatus({
                   ? "border-warning/25 bg-warning/5 text-warning"
                   : "border-border bg-background text-muted-foreground",
             )}
-            title={state.error?.message}
+            title={
+              state.id === "economic" && delayed
+                ? "경제 일정 원본 갱신이 지연되었습니다. 기준일을 확인하세요."
+                : state.error?.message
+            }
           >
             <Icon className="h-3.5 w-3.5" />
             <strong className="text-foreground">{LABELS[state.id]}</strong>
@@ -119,7 +123,10 @@ export function DataSourcesStatus({
               <span>· {formatTime(state.lastSuccessAt)}</span>
             )}
             {!loading && state.sourceUpdatedAt && (
-              <span>· 갱신 {formatSourceTime(state.sourceUpdatedAt)}</span>
+              <span>
+                · {state.id === "economic" ? "기준일" : "갱신"}{" "}
+                {formatSourceTime(state.sourceUpdatedAt)}
+              </span>
             )}
             {state.phase === "error" && (
               <button

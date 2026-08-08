@@ -31,7 +31,7 @@ import {
 import { INDUSTRY_KO } from "./industry-copy";
 import { classifyGroupSignal, classifyStockSignal, isSurge, type CalculationStatus } from "./signal-rules";
 
-type MarketStock = {
+export type MarketStock = {
   t: string;
   n: string;
   nko?: string;
@@ -134,6 +134,32 @@ const CATEGORIES: MarketCategory[] = [
   "mcap",
 ];
 const PERIODS: MarketPeriod[] = ["1d", "5d", "20d", "60d"];
+
+const normalizeMarketTicker = (value: unknown) =>
+  String(value ?? "").trim().toUpperCase().replaceAll(".", "-");
+
+const isValidMarketStock = (stock: MarketStock) =>
+  Boolean(stock.t) &&
+  [stock.c, stock.pc, stock.dv, stock.dvp, stock.a5, stock.a20, stock.a60, stock.mc]
+    .every((value) => Number.isFinite(Number(value))) &&
+  Number(stock.dv) >= 0 &&
+  Number(stock.mc) >= 0;
+
+/**
+ * Keep one current market record per canonical ticker. Historical observations
+ * are intentionally not accepted here; they belong in LIVE_GROUP_SERIES only.
+ * When a payload contains revisions, the last valid record wins.
+ */
+export function normalizeLatestMarketStocks(rows: MarketStock[]) {
+  const latestByTicker = new Map<string, MarketStock>();
+  for (const source of rows) {
+    const ticker = normalizeMarketTicker(source?.t);
+    const stock = { ...source, t: ticker };
+    if (!isValidMarketStock(stock)) continue;
+    latestByTicker.set(ticker, stock);
+  }
+  return [...latestByTicker.values()];
+}
 
 const rawGroupNames = (stock: MarketStock, category: MarketCategory) => {
   if (category === "sector") return [stock.sec || "기타"];
@@ -586,7 +612,19 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
     const secondaryDataDelayed =
       insiderResult.status === "rejected" || lockupResult.status === "rejected";
 
-    const stocks = market.stocks as MarketStock[];
+    const stocks = normalizeLatestMarketStocks(market.stocks as MarketStock[]);
+    for (const key of Object.keys(LIVE_COMPANIES_BY_ID)) {
+      delete LIVE_COMPANIES_BY_ID[key];
+    }
+    for (const key of Object.keys(LIVE_GROUP_COMPANIES)) {
+      delete LIVE_GROUP_COMPANIES[key];
+    }
+    for (const key of Object.keys(LIVE_GROUP_SERIES)) {
+      delete LIVE_GROUP_SERIES[key];
+    }
+    for (const key of Object.keys(LIVE_SECTOR_SERIES)) {
+      delete LIVE_SECTOR_SERIES[key];
+    }
     const totalMarketVolume = stocks.reduce(
       (sum, stock) => sum + (Number(stock.dv) || 0),
       0,

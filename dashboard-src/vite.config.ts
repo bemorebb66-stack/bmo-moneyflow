@@ -6,6 +6,7 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { limitRouteModulePreloads } from "./scripts/route-preloads.mjs";
 
 const ROUTE_META = {
   scanner: {
@@ -89,9 +90,10 @@ function replaceMeta(html: string, route: string, title: string, description: st
       /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
       `<script type="application/ld+json">${schema}</script>`,
     );
+  const scopedHtml = limitRouteModulePreloads(routeHtml, route);
   return route === "watchlist"
-    ? routeHtml.replace("</head>", '  <meta name="robots" content="noindex,nofollow" />\n</head>')
-    : routeHtml;
+    ? scopedHtml.replace("</head>", '  <meta name="robots" content="noindex,nofollow" />\n</head>')
+    : scopedHtml;
 }
 
 const routeShells = () => ({

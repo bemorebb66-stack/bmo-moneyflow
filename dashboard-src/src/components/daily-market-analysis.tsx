@@ -9,12 +9,9 @@ import {
   PieChart,
   ReferenceLine,
   ResponsiveContainer,
-  Scatter,
-  ScatterChart,
   Tooltip,
   XAxis,
   YAxis,
-  ZAxis,
 } from "recharts";
 import { ArrowUpRight } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
@@ -27,6 +24,7 @@ import {
 } from "@/lib/mock-data";
 import { fmtMoney, fmtPct } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { QuadrantCanvas } from "./quadrant-canvas";
 
 type QuadrantPoint = StockRow & { x: number; y: number; z: number };
 type Analysis = {
@@ -444,28 +442,6 @@ function QuadrantCard({
     ["상승·거래대금 축소", analysis.upPriceDownValue.length, "text-success"],
     ["하락·거래대금 축소", analysis.downPriceDownValue.length, "text-danger"],
   ] as const;
-  const pointGroups = [
-    {
-      key: "up-up",
-      data: analysis.points.filter((point) => point.y > 0 && point.x >= 0),
-      color: "var(--color-success)",
-    },
-    {
-      key: "down-up",
-      data: analysis.points.filter((point) => point.y <= 0 && point.x >= 0),
-      color: "var(--color-danger)",
-    },
-    {
-      key: "up-down",
-      data: analysis.points.filter((point) => point.y > 0 && point.x < 0),
-      color: "var(--color-info)",
-    },
-    {
-      key: "down-down",
-      data: analysis.points.filter((point) => point.y <= 0 && point.x < 0),
-      color: "var(--color-muted-foreground)",
-    },
-  ];
   const openStock = (point: QuadrantPoint) => {
     track("quadrant_point_click", {
       ticker: point.ticker,
@@ -487,56 +463,7 @@ function QuadrantCard({
           role="img"
           aria-label={`가격과 거래대금 4분면. 상승하며 거래대금이 확대한 종목 ${analysis.upPriceUpValue.length}개, 하락하며 거래대금이 확대한 종목 ${analysis.downPriceUpValue.length}개`}
         >
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart margin={{ top: 10, right: 8, bottom: 10, left: -8 }}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="var(--color-border)"
-                opacity={0.55}
-              />
-              <XAxis
-                type="number"
-                dataKey="x"
-                domain={[-100, 500]}
-                tickFormatter={(value) => `${value}%`}
-                fontSize={12}
-                tickLine={false}
-              />
-              <YAxis
-                type="number"
-                dataKey="y"
-                domain={["auto", "auto"]}
-                tickFormatter={(value) => `${value}%`}
-                fontSize={12}
-                tickLine={false}
-                width={42}
-              />
-              <ZAxis type="number" dataKey="z" range={[22, 280]} />
-              <ReferenceLine
-                x={0}
-                stroke="var(--color-muted-foreground)"
-                strokeOpacity={0.7}
-              />
-              <ReferenceLine
-                y={0}
-                stroke="var(--color-muted-foreground)"
-                strokeOpacity={0.7}
-              />
-              <Tooltip
-                content={<QuadrantTooltip />}
-                cursor={{ strokeDasharray: "3 3" }}
-              />
-              {pointGroups.map((group) => (
-                <Scatter
-                  key={group.key}
-                  data={group.data}
-                  fill={group.color}
-                  fillOpacity={0.55}
-                  onClick={openStock}
-                />
-              ))}
-            </ScatterChart>
-          </ResponsiveContainer>
+          <QuadrantCanvas points={analysis.points} onPointClick={openStock} />
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 border-t border-border/70 pt-3 text-[11px]">
           {groups.map(([label, count, tone]) => (
@@ -554,7 +481,7 @@ function QuadrantCard({
           onClick={() =>
             track("quadrant_point_click", { section_name: "quadrant_more" })
           }
-          className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+          className="mt-3 inline-flex min-h-11 items-center gap-1 text-xs font-medium text-brand hover:underline"
         >
           4분면 종목 전체 보기 <ArrowUpRight className="h-3 w-3" />
         </Link>
@@ -642,7 +569,7 @@ function SurgeCard({
                           section_name: "trading_value_surge",
                         })
                       }
-                      className="font-mono font-semibold hover:text-brand"
+                      className="inline-flex min-h-11 items-center font-mono font-semibold hover:text-brand"
                     >
                       {stock.ticker}
                     </Link>
@@ -689,7 +616,7 @@ function SurgeCard({
                 section_name: "trading_value_surge",
               })
             }
-            className="inline-flex items-center gap-1 text-xs font-medium text-brand hover:underline"
+            className="inline-flex min-h-11 items-center gap-1 text-xs font-medium text-brand hover:underline"
           >
             급증 종목 전체 보기 <ArrowUpRight className="h-3 w-3" />
           </Link>

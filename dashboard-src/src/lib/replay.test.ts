@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { addContext, calculateSha256, combineReplayTrades, MAX_REPLAY_EXECUTIONS, parseExecutionTime, parseReplayCsv, selectCompletedTrades, selectReplaySnapshot, sortReplayExecutions, validateReplaySnapshot, type CompletedTrade, type ReplayExecution, type ReplaySnapshot } from "./replay";
+import { readFile } from "node:fs/promises";
+import { addContext, calculateSha256, combineReplayTrades, MAX_REPLAY_EXECUTIONS, parseExecutionTime, parseReplayCsv, selectCompletedTrades, selectReplaySnapshot, sortReplayExecutions, validateReplaySnapshot, type CompletedTrade, type ReplayExecution, type ReplayManifest, type ReplaySnapshot } from "./replay";
 import { detectLeveragedProduct } from "./etf-metadata";
 
 const row = (overrides: Partial<ReplayExecution>): ReplayExecution => ({
@@ -161,6 +162,23 @@ describe("Replay v2 causality and corporate actions", () => {
   const hashA = "a".repeat(64);
   const hashB = "b".repeat(64);
   const manifestVersions = { file_hash: `sha256:${"f".repeat(64)}`, data_contract_version: "bvt-market-data/2.0.0", signal_rule_version: "bvt-signal/2.0.0", replay_rule_version: "bvt-replay/2.0.0", calendar_version: "XNYS-regular/2026.2" } as const;
+  it("keeps the bundled sample inside the selectable archive range", async () => {
+    const [sampleText, manifestText] = await Promise.all([
+      readFile(new URL("../../../replay_data/bvt-sample-trades.csv", import.meta.url), "utf8"),
+      readFile(new URL("../../../replay_data/manifest.json", import.meta.url), "utf8"),
+    ]);
+    const parsed = parseReplayCsv(sampleText);
+    const combined = combineReplayTrades(parsed.executions);
+    const manifest = JSON.parse(manifestText) as ReplayManifest;
+
+    expect(parsed.errors).toEqual([]);
+    expect(combined.trades.length).toBeGreaterThan(0);
+    expect(
+      combined.trades.every(
+        (trade) => selectReplaySnapshot(manifest, trade).status === "SELECTED",
+      ),
+    ).toBe(true);
+  });
   it("matches the standard raw-file SHA-256 fixture", async () => {
     await expect(calculateSha256("abc")).resolves.toBe("sha256:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
   });
