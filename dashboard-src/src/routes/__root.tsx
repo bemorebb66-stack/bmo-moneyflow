@@ -92,17 +92,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         {
           name: "description",
           content:
-            "미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 시장 흐름을 분석합니다. 거래대금 급증 종목, 내부자 거래, IPO 락업 일정과 오늘의 시장 요약을 확인하세요.",
+            "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다. 거래대금과 점유율 변화를 바탕으로 시장의 관심 이동을 확인하세요.",
         },
         { name: "author", content: "BVT Money Flow" },
         {
           property: "og:title",
-          content: "미국 주식 거래대금·시장 흐름 분석 | BVT Money Flow",
+          content: "미국 주식의 돈이 어디로 움직였는지 | BVT Money Flow",
         },
         {
           property: "og:description",
           content:
-            "미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 시장 흐름을 확인하세요.",
+            "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다.",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "BVT Money Flow" },
@@ -114,12 +114,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { name: "twitter:card", content: "summary_large_image" },
         {
           name: "twitter:title",
-          content: "미국 주식 거래대금·시장 흐름 분석 | BVT Money Flow",
+          content: "미국 주식의 돈이 어디로 움직였는지 | BVT Money Flow",
         },
         {
           name: "twitter:description",
           content:
-            "미국 주식의 종목별 거래대금과 섹터·산업별 시장 흐름을 확인하세요.",
+            "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다.",
         },
         {
           name: "twitter:image",

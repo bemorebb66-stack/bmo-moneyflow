@@ -16,7 +16,7 @@ import { BENCHMARK_VERSION, PERFORMANCE_RULE_VERSION, REPLAY_RULE_VERSION, SIGNA
 export const Route = createFileRoute("/replay")({
   head: () => ({
     meta: [
-      { title: "미국 주식 매매 복기·시장환경 분석 | BVT Replay" },
+      { title: "미국 주식 매매 복기·시장환경 분석 | BVT Money Flow" },
       { name: "description", content: "거래내역 CSV와 당시 거래대금·산업·시장 흐름을 연결해 반복되는 수익·손실 환경을 확인하세요." },
     ],
     links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/replay/" }],
@@ -242,7 +242,7 @@ function ReplayPage() {
   return (
     <PageShell>
       <div className="mx-auto max-w-6xl">
-        <PageHeading title="BVT Replay" description="내 매매와 당시 거래대금·산업·시장 흐름을 연결해 반복되는 투자 환경을 복기합니다." showDataStatus={false} />
+        <PageHeading title="매매 복기" description="내 매매와 당시 거래대금·산업·시장 흐름을 연결해 반복되는 투자 환경을 복기합니다." showDataStatus={false} />
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-success/20 bg-success/5 px-4 py-3 text-xs">
           <span className="inline-flex items-center gap-2 font-medium"><ShieldCheck className="h-4 w-4 text-success" />원본 파일과 붙여넣은 내용은 서버로 전송되지 않고 이 브라우저에서만 처리됩니다.</span>
           {stage !== "upload" && <Button variant="ghost" size="sm" onClick={reset}><RotateCcw className="mr-1.5 h-4 w-4" />처음부터</Button>}

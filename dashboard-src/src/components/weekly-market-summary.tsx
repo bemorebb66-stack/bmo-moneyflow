@@ -175,72 +175,25 @@ export function WeeklyMarketSummary() {
             </span>
           </div>
 
-          <p className="py-4 text-base font-semibold leading-7">
-            {deterministicSummary.sectorSentence}
-          </p>
-          <div className="grid gap-3 sm:grid-cols-3">
-            <Metric
-              label="주간 일평균 거래대금"
-              value={fmtMoney(current.market.averageDollarVolume / 1_000_000)}
-            />
-            <Metric
-              label="직전 주 마지막 거래일 대비"
-              value={
-                current.market.lastDayVolumeChange == null
-                  ? "비교 자료 없음"
-                  : `${fmtPct(current.market.lastDayVolumeChange, 1)} 전일 대비`
-              }
-              tone={current.market.lastDayVolumeChange ?? 0}
-            />
-            <Metric
-              label="상승 종목 비중"
-              value={
-                current.market.advancingShare == null
-                  ? "-"
-                  : `${current.market.advancingShare.toFixed(1)}%`
-              }
-            />
-          </div>
+          <section className="mt-4 rounded-lg border border-brand/25 bg-brand/5 p-4" aria-labelledby="weekly-one-line">
+            <div className="text-[11px] font-semibold text-brand">데이터 해석</div>
+            <h3 id="weekly-one-line" className="mt-1 text-sm font-semibold">이번 주 한 줄 요약</h3>
+            <p className="mt-2 text-base font-semibold leading-7">{deterministicSummary.sectorSentence}</p>
+          </section>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-[1.15fr_1fr_1fr]">
-            <div>
-              <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold">
-                <BarChart3 className="h-4 w-4 text-brand" />
-                미국 주요 지수
-              </h3>
-              <div className="divide-y divide-border/70 rounded-lg border">
-                {current.indices.map((row) => (
-                  <div
-                    key={row.symbol}
-                    className="grid grid-cols-[1fr_auto_auto] items-center gap-3 px-3 py-2.5 text-sm"
-                  >
-                    <span className="font-medium">{row.name}</span>
-                    <span className="text-xs tabular text-muted-foreground">
-                      {number.format(row.close)}
-                    </span>
-                    <span
-                      className={cn(
-                        "min-w-16 text-right font-semibold tabular",
-                        (row.change ?? 0) > 0
-                          ? "text-success"
-                          : (row.change ?? 0) < 0
-                            ? "text-danger"
-                            : "text-muted-foreground",
-                      )}
-                    >
-                      {row.change == null ? "-" : fmtPct(row.change, 2)}
-                    </span>
-                  </div>
-                ))}
-              </div>
+          <section className="mt-5" aria-labelledby="weekly-sector-focus">
+            <div className="text-[11px] font-semibold text-muted-foreground">사실</div>
+            <h3 id="weekly-sector-focus" className="mt-1 text-sm font-semibold">거래가 집중된 섹터</h3>
+            <div className="mt-2 grid gap-4 sm:grid-cols-2">
+              <SectorList title="점유율 확대" rows={current.sectorGainers} />
+              <SectorList title="점유율 축소" rows={current.sectorLosers} />
             </div>
-            <SectorList title="점유율 확대" rows={current.sectorGainers} />
-            <SectorList title="점유율 축소" rows={current.sectorLosers} />
-          </div>
+          </section>
 
-          <div className="mt-5 border-t border-border/70 pt-4">
-            <h3 className="mb-2 text-sm font-semibold">
-              주간 거래대금 집중 종목
+          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-active-stocks">
+            <div className="text-[11px] font-semibold text-muted-foreground">사실</div>
+            <h3 id="weekly-active-stocks" className="mt-1 mb-2 text-sm font-semibold">
+              거래대금 증가 종목
             </h3>
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
               {current.activeStocks.map((stock) => (
@@ -261,11 +214,64 @@ export function WeeklyMarketSummary() {
                 </a>
               ))}
             </div>
-          </div>
-          <p className="mt-4 text-[11px] text-muted-foreground">
-            주간 수익률은 직전 주 마지막 거래일 종가 대비입니다. 첫 제공 주는
-            비교 기준이 없어 수익률을 표시하지 않습니다.
-          </p>
+          </section>
+
+          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-evidence">
+            <div className="text-[11px] font-semibold text-muted-foreground">사실</div>
+            <h3 id="weekly-evidence" className="mt-1 text-sm font-semibold">변화의 근거</h3>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <Metric label="주간 일평균 거래대금" value={fmtMoney(current.market.averageDollarVolume / 1_000_000)} />
+              <Metric
+                label="직전 주 마지막 거래일 대비"
+                value={current.market.lastDayVolumeChange == null ? "비교 자료 없음" : `${fmtPct(current.market.lastDayVolumeChange, 1)} 전일 대비`}
+                tone={current.market.lastDayVolumeChange ?? 0}
+              />
+              <Metric label="상승 종목 비중" value={current.market.advancingShare == null ? "-" : `${current.market.advancingShare.toFixed(1)}%`} />
+            </div>
+            <div className="mt-4">
+              <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold">
+                <BarChart3 className="h-4 w-4 text-brand" />
+                미국 주요 지수
+              </h4>
+              <div className="divide-y divide-border/70 rounded-lg border">
+                {current.indices.map((row) => (
+                  <div key={row.symbol} className="grid grid-cols-[1fr_auto_auto] items-center gap-3 px-3 py-2.5 text-sm">
+                    <span className="font-medium">{row.name}</span>
+                    <span className="text-xs tabular text-muted-foreground">{number.format(row.close)}</span>
+                    <span className={cn("min-w-16 text-right font-semibold tabular", (row.change ?? 0) > 0 ? "text-success" : (row.change ?? 0) < 0 ? "text-danger" : "text-muted-foreground")}>
+                      {row.change == null ? "-" : fmtPct(row.change, 2)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-more-checks">
+            <h3 id="weekly-more-checks" className="text-sm font-semibold">필요한 경우 내부자·실적·IPO 확인</h3>
+            <div className="mt-2 flex flex-wrap gap-2">
+              <a href="/insider/" className="inline-flex min-h-11 items-center rounded-md border px-3 text-sm font-semibold hover:border-brand/40">내부자 거래</a>
+              <a href="/today/" className="inline-flex min-h-11 items-center rounded-md border px-3 text-sm font-semibold hover:border-brand/40">실적·주요 일정</a>
+              <a href="/ipo-lockup/" className="inline-flex min-h-11 items-center rounded-md border px-3 text-sm font-semibold hover:border-brand/40">IPO 락업</a>
+            </div>
+          </section>
+
+          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-next-indicators">
+            <h3 id="weekly-next-indicators" className="text-sm font-semibold">다음 주 확인할 지표</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+              <li>확대·축소 섹터의 거래대금 점유율이 이어지는지</li>
+              <li>거래대금 집중 종목의 증가세가 유지되는지</li>
+              <li>상승 종목 비중과 주요 지수 변화가 같은 방향인지</li>
+            </ul>
+          </section>
+
+          <aside className="mt-5 rounded-lg border border-warning/30 bg-warning/5 p-4" aria-labelledby="weekly-limitations">
+            <div className="text-[11px] font-semibold text-warning-foreground">주의사항</div>
+            <h3 id="weekly-limitations" className="mt-1 text-sm font-semibold">데이터 한계</h3>
+            <p className="mt-2 text-xs leading-5 text-muted-foreground">
+              기준일 {current.endDate} · 출처: Yahoo Finance에서 수집한 미국 시장 장마감 일봉. 주간 수익률은 직전 주 마지막 거래일 종가 대비이며 첫 제공 주는 비교 자료가 없습니다. 거래대금은 매수와 매도를 함께 포함해 실제 순매수나 자금 유입을 뜻하지 않습니다. 공개 시장 데이터 요약이며 투자 추천이 아닙니다.
+            </p>
+          </aside>
         </CardContent>
       </Card>
     </section>

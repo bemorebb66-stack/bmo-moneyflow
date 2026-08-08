@@ -194,7 +194,8 @@ export function DailyBriefingView({
             />
           </div>
 
-          <div className="mt-5 space-y-3" data-briefing-sentences>
+          <div className="mt-5 space-y-3 rounded-lg border border-brand/20 bg-brand/5 p-4" data-briefing-sentences>
+            <div className="text-[11px] font-semibold text-brand">데이터 해석</div>
             {briefing.sentences.slice(0, compact ? 2 : 3).map((sentence, index) => (
               <p key={sentence.id} className={cn(index === 0 ? "text-base font-semibold leading-7" : "text-sm leading-6 text-muted-foreground")}>
                 {sentence.text}
@@ -202,7 +203,8 @@ export function DailyBriefingView({
             ))}
           </div>
 
-          <dl className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 text-[11px] font-semibold text-muted-foreground">사실</div>
+          <dl className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             <Metric label="전체 거래대금" value={formatBriefingMoney(briefing.market.totalDollarVolume)} />
             <Metric label="전일 대비" value={briefing.market.changePercent == null ? "비교 자료 없음" : `${briefing.market.changePercent > 0 ? "+" : ""}${briefing.market.changePercent.toFixed(1)}%`} />
             <Metric label="상승 · 하락" value={`${briefing.market.advancing.toLocaleString("ko-KR")} · ${briefing.market.declining.toLocaleString("ko-KR")}`} />
@@ -265,7 +267,10 @@ export function DailyBriefingView({
             </>
           )}
 
-          <p className="mt-5 border-t pt-4 text-[11px] leading-5 text-muted-foreground">{BRIEFING_DISCLAIMER}</p>
+          <aside className="mt-5 rounded-lg border border-warning/30 bg-warning/5 p-4">
+            <div className="text-[11px] font-semibold text-warning-foreground">주의사항</div>
+            <p className="mt-1 text-[11px] leading-5 text-muted-foreground">{BRIEFING_DISCLAIMER}</p>
+          </aside>
           {compact && (
             <a href={`/briefings/${briefing.date}/`} className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-brand underline">전체 브리핑과 관심종목 보기</a>
           )}
@@ -310,11 +315,13 @@ export function WeeklyBriefingView({
               briefingStatus={week.status}
             />
           </div>
-          <div className="mt-5 space-y-3">
+          <div className="mt-5 space-y-3 rounded-lg border border-brand/20 bg-brand/5 p-4">
+            <div className="text-[11px] font-semibold text-brand">데이터 해석</div>
             <p className="text-base font-semibold leading-7">{sentences.marketSentence}</p>
             <p className="text-sm leading-6 text-muted-foreground">{sentences.sectorSentence}</p>
           </div>
-          <dl className="mt-5 grid gap-2 sm:grid-cols-3">
+          <div className="mt-5 text-[11px] font-semibold text-muted-foreground">사실</div>
+          <dl className="mt-2 grid gap-2 sm:grid-cols-3">
             <Metric label="주간 일평균 거래대금" value={formatBriefingMoney(week.market.averageDollarVolume)} />
             <Metric label="상승 종목 비중" value={week.market.advancingShare == null ? "자료 없음" : `${week.market.advancingShare.toFixed(1)}%`} />
             <Metric label="거래일" value={`${week.tradingDays}일`} />
@@ -333,7 +340,10 @@ export function WeeklyBriefingView({
               </ul>
             </section>
           </div>
-          <p className="mt-5 border-t pt-4 text-[11px] leading-5 text-muted-foreground">{BRIEFING_DISCLAIMER}</p>
+          <aside className="mt-5 rounded-lg border border-warning/30 bg-warning/5 p-4">
+            <div className="text-[11px] font-semibold text-warning-foreground">주의사항</div>
+            <p className="mt-1 text-[11px] leading-5 text-muted-foreground">기준일 {week.endDate} · {BRIEFING_DISCLAIMER}</p>
+          </aside>
         </CardContent>
       </Card>
     </section>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { RotationSummary } from "@/components/rotation-summary";
 import {
@@ -68,16 +68,16 @@ function initialSelection(groups: string[], rows: Sector[]) {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "미국 주식 거래대금·시장 흐름 분석 | BVT Money Flow" },
+      { title: "미국 주식의 돈이 어디로 움직였는지 | BVT Money Flow" },
       {
         name: "description",
         content:
-          "미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 시장 흐름을 분석합니다. 거래대금 급증 종목, 내부자 거래, IPO 락업 일정과 오늘의 시장 요약을 확인하세요.",
+          "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다. 거래대금과 점유율 변화를 바탕으로 시장의 관심 이동을 확인하세요.",
       },
-      { property: "og:title", content: "미국 주식 거래대금·시장 흐름 분석 | BVT Money Flow" },
+      { property: "og:title", content: "미국 주식의 돈이 어디로 움직였는지 | BVT Money Flow" },
       {
         property: "og:description",
-        content: "미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 시장 흐름을 확인하세요.",
+        content: "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다.",
       },
     ],
     links: [{ rel: "canonical", href: "https://www.bvtmoneyflow.xyz/" }],
@@ -163,16 +163,27 @@ function MarketFlowPage() {
   return (
     <PageShell>
       <PageHeading
-        title="시장 흐름"
-        description="거래대금 점유율 변화로 미국 시장의 관심 이동을 30초 안에 확인하세요."
+        title="미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다."
+        description="거래대금과 점유율 변화로 미국 시장의 관심 이동을 확인하세요."
       />
       <DataSourcesStatus
         states={[sourceStates.market, sourceStates.history]}
         className="mb-4"
       />
       <p className="-mt-2 mb-5 max-w-4xl text-xs leading-relaxed text-muted-foreground">
-        BVT Money Flow는 미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 거래대금 점유율 변화를 분석하는 금융 데이터 서비스입니다.
+        BVT Money Flow는 미국 주식의 종목별 거래대금과 섹터·산업·시가총액별 거래대금 점유율 변화를 분석합니다. 거래대금은 매수와 매도를 함께 포함하며 실제 순매수나 자금 유입을 뜻하지 않습니다.
       </p>
+      <nav aria-label="주요 기능 바로가기" className="mb-5 grid gap-2 sm:grid-cols-3">
+        <Link to="/today" className="inline-flex min-h-11 items-center justify-center rounded-lg border border-brand/25 bg-brand/5 px-4 text-sm font-semibold text-brand hover:border-brand/50 hover:bg-brand/10">
+          주간 브리핑 보기
+        </Link>
+        <Link to="/watchlist" className="inline-flex min-h-11 items-center justify-center rounded-lg border px-4 text-sm font-semibold hover:border-brand/40 hover:bg-brand/5">
+          관심종목 확인
+        </Link>
+        <Link to="/scanner" className="inline-flex min-h-11 items-center justify-center rounded-lg border px-4 text-sm font-semibold hover:border-brand/40 hover:bg-brand/5">
+          스캐너 열기
+        </Link>
+      </nav>
       <div className="space-y-5">
         <RotationSummary rows={rows} categoryLabel={CATEGORY_LABELS[category]} periodLabel={PERIOD_LABELS[period]} />
         <FocusStocks />

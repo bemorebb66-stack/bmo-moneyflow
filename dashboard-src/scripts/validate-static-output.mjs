@@ -40,10 +40,12 @@ for (const weekId of weeklyBriefingDirs) await validatePage(`briefings/weeks/${w
 for (const date of briefingDirs) {
   const html = await readFile(resolve(outputRoot, "briefings", date, "index.html"), "utf8");
   if (!html.includes(`데이터 기준일 ${date}`)) errors.push(`일간 브리핑 기준일 누락: ${date}`);
+  for (const required of ["출처:", "투자 추천이 아닙니다"]) if (!html.includes(required)) errors.push(`일간 브리핑 안내 누락: ${date} ${required}`);
 }
 for (const weekId of weeklyBriefingDirs) {
   const html = await readFile(resolve(outputRoot, "briefings", "weeks", weekId, "index.html"), "utf8");
   if (!html.includes("데이터 기준일")) errors.push(`주간 브리핑 기준일 누락: ${weekId}`);
+  for (const required of ["출처:", "투자 추천이 아닙니다"]) if (!html.includes(required)) errors.push(`주간 브리핑 안내 누락: ${weekId} ${required}`);
 }
 for (const required of ["nvda", "aapl", "msft", "brk-b"]) if (!stockDirs.includes(required)) errors.push(`대표 종목 누락: ${required}`);
 const legacy = await readFile(resolve(outputRoot, "stock", "index.html"), "utf8");
@@ -65,6 +67,19 @@ for (const path of ["/", "/today/", "/insider/", "/stocks/nvda/"]) {
   const entry = `<loc>https://www.bvtmoneyflow.xyz${path}</loc><lastmod>${latestDataDate}</lastmod>`;
   if (!sitemap.includes(entry)) errors.push(`latest data lastmod mismatch: ${path}`);
 }
+const home = await readFile(resolve(outputRoot, "index.html"), "utf8");
+for (const required of [
+  "BVT Money Flow",
+  "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다.",
+  'rel="canonical" href="https://www.bvtmoneyflow.xyz/"',
+  'href="/favicon.svg"',
+  'href="/favicon.ico"',
+  'href="/apple-touch-icon.png"',
+  'content="https://www.bvtmoneyflow.xyz/og-bvt-money-flow.png"',
+]) if (!home.includes(required)) errors.push(`home brand/SEO missing: ${required}`);
+if (home.includes("BVT Replay")) errors.push("legacy BVT Replay brand remains on home");
+const robots = await readFile(resolve(outputRoot, "robots.txt"), "utf8");
+if (robots !== "User-agent: *\nAllow: /\nSitemap: https://www.bvtmoneyflow.xyz/sitemap.xml\n") errors.push("robots.txt mismatch");
 for (const slug of stockDirs) {
   const html = await readFile(resolve(outputRoot, "stocks", slug, "index.html"), "utf8");
   for (const match of html.matchAll(/href="(\/stocks\/[^"#?]+\/)"/g)) {

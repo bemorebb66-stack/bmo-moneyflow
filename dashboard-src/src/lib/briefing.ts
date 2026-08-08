@@ -468,4 +468,4 @@ export function buildWeeklySentences(week: WeeklySource) {
 }
 
 export const BRIEFING_DISCLAIMER =
-  "거래대금은 매수와 매도를 함께 포함하며 실제 순매수나 자금 유입을 뜻하지 않습니다. 공개 시장 데이터 요약이며 투자 권유가 아닙니다.";
+  "출처: Yahoo Finance에서 수집한 미국 시장 장마감 일봉. 거래대금은 매수와 매도를 함께 포함하며 실제 순매수나 자금 유입을 뜻하지 않습니다. 공개 시장 데이터 요약이며 투자 추천이 아닙니다.";
