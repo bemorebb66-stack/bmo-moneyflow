@@ -33,17 +33,17 @@ $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
 $graphics.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
 $graphics.Clear([System.Drawing.ColorTranslator]::FromHtml("#F7F9FD"))
 
-$brand = New-ColorBrush "#2F6BFF"
+$brand = New-ColorBrush "#006E66"
 $ink = New-ColorBrush "#0F1F36"
 $muted = New-ColorBrush "#5D6B7D"
 $white = New-ColorBrush "#FFFFFF"
-$softBlue = New-ColorBrush "#EAF1FF"
+$softBlue = New-ColorBrush "#E4F4F1"
 $border = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#D9E2EF"), 2)
 $gridPen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#DCE5F1"), 1)
 $gridPen.DashStyle = [System.Drawing.Drawing2D.DashStyle]::Dash
-$bluePen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#2F6BFF"), 5)
-$tealPen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#00A6A6"), 5)
-$greenPen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#00A85A"), 5)
+$bluePen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#006E66"), 5)
+$tealPen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#18A999"), 5)
+$greenPen = [System.Drawing.Pen]::new([System.Drawing.ColorTranslator]::FromHtml("#74C7B8"), 5)
 $iconPen = [System.Drawing.Pen]::new([System.Drawing.Color]::White, 4)
 $iconPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
 $iconPen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
@@ -61,14 +61,27 @@ $fontChart = [System.Drawing.Font]::new("Malgun Gothic", 21, [System.Drawing.Fon
 $graphics.FillRectangle($brand, 0, 0, $width, 10)
 
 Fill-RoundedRect $graphics $brand 72 58 54 54 12
-$graphics.DrawLines($iconPen, [System.Drawing.PointF[]]@(
-  [System.Drawing.PointF]::new(86, 96),
-  [System.Drawing.PointF]::new(97, 84),
-  [System.Drawing.PointF]::new(105, 91),
-  [System.Drawing.PointF]::new(115, 76)
+$markPath = [System.Drawing.Drawing2D.GraphicsPath]::new()
+$markPath.StartFigure()
+$markPath.AddLine(80.1, 76, 93.6, 76)
+$markPath.AddBezier(93.6, 76, 98.1, 76, 99.9, 81.4, 95.4, 83.2)
+$markPath.AddLine(95.4, 83.2, 82.8, 83.2)
+$markPath.StartFigure()
+$markPath.AddLines([System.Drawing.PointF[]]@(
+  [System.Drawing.PointF]::new(81, 85.9),
+  [System.Drawing.PointF]::new(90, 94.9),
+  [System.Drawing.PointF]::new(99, 81.4),
+  [System.Drawing.PointF]::new(106.2, 90.4)
 ))
-$graphics.DrawLine($iconPen, 106, 76, 115, 76)
-$graphics.DrawLine($iconPen, 115, 76, 115, 85)
+$markPath.StartFigure()
+$markPath.AddLines([System.Drawing.PointF[]]@(
+  [System.Drawing.PointF]::new(97.2, 76.9),
+  [System.Drawing.PointF]::new(117, 76.9),
+  [System.Drawing.PointF]::new(105.3, 94.9),
+  [System.Drawing.PointF]::new(95.4, 85)
+))
+$graphics.DrawPath($iconPen, $markPath)
+$markPath.Dispose()
 $graphics.DrawString("BVT MONEY FLOW", $fontBrand, $ink, 143, 68)
 $graphics.DrawString("US MARKET DATA", $fontEyebrow, $brand, 143, 94)
 
@@ -106,8 +119,8 @@ $graphics.DrawBezier($greenPen, 758, 358, 820, 310, 866, 365, 928, 326)
 $graphics.DrawBezier($greenPen, 928, 326, 980, 292, 1035, 356, 1094, 321)
 
 $graphics.FillEllipse($brand, 1088, 182, 12, 12)
-$graphics.FillEllipse((New-ColorBrush "#00A6A6"), 1088, 272, 12, 12)
-$graphics.FillEllipse((New-ColorBrush "#00A85A"), 1088, 315, 12, 12)
+$graphics.FillEllipse((New-ColorBrush "#18A999"), 1088, 272, 12, 12)
+$graphics.FillEllipse((New-ColorBrush "#74C7B8"), 1088, 315, 12, 12)
 
 $graphics.DrawString("장 마감 기준 · 매일 자동 갱신", $fontSmall, $muted, 72, 523)
 $graphics.DrawString("bvtmoneyflow.xyz", $fontBrand, $brand, 72, 554)

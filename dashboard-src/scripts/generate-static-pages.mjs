@@ -1,6 +1,5 @@
 import { cp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import { execFileSync } from "node:child_process";
 
 const projectRoot = resolve(import.meta.dirname, "..", "..");
 const outputRoot = resolve(import.meta.dirname, "..", "dist");
@@ -114,6 +113,8 @@ async function write(path, contents) {
 const data = JSON.parse(await readFile(resolve(projectRoot, "data.json"), "utf8"));
 const baseHtml = await readFile(resolve(outputRoot, "index.html"), "utf8");
 const marketDate = data.market_date;
+const updatedDate = String(data.updated ?? "").match(/^\d{4}-\d{2}-\d{2}/)?.[0];
+const latestDataDate = updatedDate ?? marketDate;
 const candidates = data.stocks
   .filter((stock) => Number(stock.mc ?? 0) >= 50_000_000_000 || alwaysInclude.has(stock.t))
   .sort((a, b) => Number(b.mc ?? 0) - Number(a.mc ?? 0))
@@ -125,17 +126,6 @@ for (const stock of candidates) {
 const selectedSlugs = candidates.map((stock) => slugForTicker(stock.t));
 if (new Set(selectedSlugs).size !== selectedSlugs.length) throw new Error("Duplicate static stock slug");
 const selectedTickers = new Set(candidates.map((stock) => stock.t));
-const gitLastmod = (path) => {
-  try {
-    return execFileSync("git", ["log", "-1", "--format=%cs", "--", path], {
-      cwd: projectRoot,
-      encoding: "utf8",
-    }).trim() || null;
-  } catch {
-    return null;
-  }
-};
-
 for (const stock of candidates) {
   const ticker = stock.t;
   const slug = slugForTicker(ticker);
@@ -242,14 +232,9 @@ const redirectScript = `\n    <script type="module" src="/legacy-stock-redirect.
 await write(legacyPath, legacy.replace("</head>", `${redirectScript}\n  </head>`));
 
 const staticUrls = ["/", "/scanner/", "/today/", "/replay/", "/insider/", "/ipo-lockup/", "/methodology/", "/disclaimer/", "/privacy-policy/"];
-const staticLastmod = {
-  "/methodology/": gitLastmod("dashboard-src/src/routes/methodology.tsx"),
-  "/disclaimer/": gitLastmod("dashboard-src/src/routes/disclaimer.tsx"),
-  "/privacy-policy/": gitLastmod("dashboard-src/src/routes/privacy-policy.tsx"),
-};
 const urls = [
-  ...staticUrls.map((path) => ({ path, lastmod: staticLastmod[path] ?? marketDate })),
-  ...candidates.map((stock) => ({ path: `/stocks/${slugForTicker(stock.t)}/`, lastmod: marketDate })),
+  ...staticUrls.map((path) => ({ path, lastmod: latestDataDate })),
+  ...candidates.map((stock) => ({ path: `/stocks/${slugForTicker(stock.t)}/`, lastmod: latestDataDate })),
   ...briefingEntries.map(({ date, lastmod }) => ({ path: `/briefings/${date}/`, lastmod })),
   ...weeklyEntries.map(({ weekId, lastmod }) => ({ path: `/briefings/weeks/${weekId}/`, lastmod })),
 ];
@@ -264,6 +249,7 @@ const publicFiles = [
   "CNAME", ".nojekyll", "data.json", "history.json", "sector_map.json",
   "stock_directory.json", "earnings.json", "news.json", "economic_events.json",
   "weekly_summary.json", "custom_groups.json", "og.png", "og-bvt-money-flow.png",
+  "favicon.svg", "favicon.ico", "apple-touch-icon.png",
 ];
 for (const name of publicFiles) {
   await cp(resolve(projectRoot, name), resolve(outputRoot, name), { force: true });

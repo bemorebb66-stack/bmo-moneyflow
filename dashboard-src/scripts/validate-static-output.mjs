@@ -59,6 +59,12 @@ for (const date of briefingDirs) {
   const entry = `<loc>https://www.bvtmoneyflow.xyz/briefings/${date}/</loc><lastmod>${expectedLastmod}</lastmod>`;
   if (!sitemap.includes(entry)) errors.push(`브리핑 lastmod 불일치: ${date}`);
 }
+const marketData = JSON.parse(await readFile(resolve(outputRoot, "data.json"), "utf8"));
+const latestDataDate = String(marketData.updated ?? "").match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? marketData.market_date;
+for (const path of ["/", "/today/", "/insider/", "/stocks/nvda/"]) {
+  const entry = `<loc>https://www.bvtmoneyflow.xyz${path}</loc><lastmod>${latestDataDate}</lastmod>`;
+  if (!sitemap.includes(entry)) errors.push(`latest data lastmod mismatch: ${path}`);
+}
 for (const slug of stockDirs) {
   const html = await readFile(resolve(outputRoot, "stocks", slug, "index.html"), "utf8");
   for (const match of html.matchAll(/href="(\/stocks\/[^"#?]+\/)"/g)) {
@@ -66,8 +72,18 @@ for (const slug of stockDirs) {
     try { if (!(await stat(target)).isFile()) errors.push(`깨진 내부 링크: ${match[1]}`); } catch { errors.push(`깨진 내부 링크: ${match[1]}`); }
   }
 }
-for (const required of ["data.json", "history.json", "data-status.json", "_headers", "CNAME", ".nojekyll", "replay_data/manifest.json"]) {
+for (const required of ["data.json", "history.json", "data-status.json", "_headers", "CNAME", ".nojekyll", "replay_data/manifest.json", "favicon.svg", "favicon.ico", "apple-touch-icon.png", "og-bvt-money-flow.png"]) {
   try { await stat(resolve(outputRoot, required)); } catch { errors.push(`배포 데이터 누락: ${required}`); }
+}
+const pngDimensions = async (name) => {
+  const bytes = await readFile(resolve(outputRoot, name));
+  return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
+};
+if (String(await pngDimensions("og-bvt-money-flow.png")) !== "1200,630") errors.push("OG image must be 1200x630");
+if (String(await pngDimensions("apple-touch-icon.png")) !== "180,180") errors.push("apple touch icon must be 180x180");
+const faviconSvg = await readFile(resolve(outputRoot, "favicon.svg"), "utf8");
+for (const path of ["M3 6h12c5 0 7 6 2 8H6", "M4 17l10 10 10-15 8 10", "M22 7h22L31 27 20 16"]) {
+  if (!faviconSvg.includes(path)) errors.push(`favicon BrandMark path missing: ${path}`);
 }
 const headers = await readFile(resolve(outputRoot, "_headers"), "utf8");
 for (const required of ["Content-Security-Policy", "frame-ancestors 'none'", "X-Content-Type-Options: nosniff", "Referrer-Policy: same-origin", "Permissions-Policy:", "max-age=31536000, immutable"]) {
