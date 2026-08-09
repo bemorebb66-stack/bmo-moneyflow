@@ -57,6 +57,7 @@ interface Props {
   onMetric: (metric: Metric) => void;
   range: Range;
   onRange: (range: Range) => void;
+  addableRows: Sector[];
 }
 
 export function ComparisonChart({
@@ -67,6 +68,7 @@ export function ComparisonChart({
   onMetric,
   range,
   onRange,
+  addableRows,
 }: Props) {
   const [yScale, setYScale] = useState<YScale>("auto");
   const rowMap = useMemo(() => {
@@ -219,7 +221,7 @@ export function ComparisonChart({
           })}
           {canAdd && (
             <AddButton
-              rows={rows}
+              rows={addableRows}
               selected={selected}
               onAdd={(id) => onSelected([...selected, id])}
             />
@@ -418,7 +420,7 @@ function AddButton({
         size="sm"
         className="h-10 rounded-full px-3 text-xs sm:h-7"
       >
-        + 그룹 추가
+        + 관심종목 추가
       </Button>
       <div className="invisible absolute left-0 top-full z-20 mt-1 w-56 rounded-lg border border-border bg-popover p-1 opacity-0 shadow-md transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         {available.map((s) => (

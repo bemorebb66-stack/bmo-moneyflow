@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 
-export type Category = "sector" | "industry" | "universe" | "custom" | "mcap";
+export type Category = "sector" | "industry" | "universe" | "custom" | "mcap" | "watchlist";
 export type Period = "1d" | "5d" | "20d" | "60d";
 
 const CATEGORIES: { id: Category; label: string }[] = [
@@ -12,6 +12,7 @@ const CATEGORIES: { id: Category; label: string }[] = [
   { id: "custom", label: "커스텀 그룹" },
   { id: "mcap", label: "시가총액" },
   { id: "universe", label: "편입 지수" },
+  { id: "watchlist", label: "관심종목" },
 ];
 
 const PERIODS: { id: Period; label: string }[] = [

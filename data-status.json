@@ -1,12 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-08T12:48:19.301Z",
+  "generatedAt": "2026-08-09T04:43:20.253Z",
   "status": "ok",
-  "freshness": "delayed",
-  "delayedSources": [
-    "insider",
-    "lockup"
-  ],
+  "freshness": "unknown",
+  "delayedSources": [],
   "unknownFreshnessSources": [
     "history",
     "stockDirectory"
@@ -33,15 +30,15 @@
     },
     "insider": {
       "path": "insider/data/insider.json",
-      "updatedAt": "2026-07-30T05:48:02.793Z",
-      "freshness": "delayed",
-      "sha256": "a6e7a55aed75109524d1c1a47be87408fe2b2f67fd9b1f15d2f08ba8076bf0aa"
+      "updatedAt": "2026-08-08T04:29:44.507Z",
+      "freshness": "normal",
+      "sha256": "aaa8c21ed437d129e90b8a457e0035b6dd04769a079d1b232177e79e779c56a5"
     },
     "lockup": {
       "path": "ipo-lockup/data/lockup.json",
-      "updatedAt": "2026-07-31T06:19:06.746Z",
-      "freshness": "delayed",
-      "sha256": "f0667301c67ef70bfd1c2cf581c552dc7a59da2199bfd720b6f3767d45fc8a4c"
+      "updatedAt": "2026-08-08T04:30:25.406Z",
+      "freshness": "normal",
+      "sha256": "31c0ed1863b5130e4908f6566497e14a39cfe578847dc9113cf589a0e2136745"
     },
     "earnings": {
       "path": "earnings.json",

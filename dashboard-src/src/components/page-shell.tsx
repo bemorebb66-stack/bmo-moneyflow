@@ -28,8 +28,8 @@ export function PageShell({ children }: Props) {
           universeCount={LIVE_META.universeCount}
           status={LIVE_META.status}
           delayTradingDays={LIVE_META.delayTradingDays}
-          currency={currency}
         />
+        <MarketIndexPanel currency={currency} />
         <main
           id="main-content"
           tabIndex={-1}
@@ -37,7 +37,6 @@ export function PageShell({ children }: Props) {
         >
           <div key={currency.currency}>{children}</div>
         </main>
-        <MarketIndexPanel />
         <SiteFooter />
       </div>
     </ThemeProvider>

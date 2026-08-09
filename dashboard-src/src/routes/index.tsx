@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeading } from "@/components/page-shell";
 import { RotationSummary } from "@/components/rotation-summary";
@@ -22,11 +22,13 @@ import {
   useDataSources,
 } from "@/lib/data-runtime";
 import { LIVE_COMPANIES_BY_ID, LIVE_MARKET_DATA, SECTORS, type Sector } from "@/lib/mock-data";
+import { useWatchlist } from "@/lib/user-library";
 
 const INITIAL_GROUPS = ["technology", "communication", "financial"];
 const CATEGORY_LABELS: Record<Category, string> = {
   sector: "대분류 섹터", industry: "세부 산업", universe: "편입 지수",
   custom: "커스텀 그룹", mcap: "시가총액",
+  watchlist: "관심종목",
 };
 const PERIOD_LABELS: Record<Period, string> = {
   "1d": "전일", "5d": "최근 5일", "20d": "최근 20일", "60d": "최근 60일",
@@ -50,7 +52,7 @@ function readUrlState() {
   const period = params.get("p") as Period | null;
   const metric = params.get("mt");
   const range = params.get("r");
-  if (["sector", "industry", "universe", "custom", "mcap"].includes(mode ?? "")) defaults.category = mode!;
+  if (["sector", "industry", "universe", "custom", "mcap", "watchlist"].includes(mode ?? "")) defaults.category = mode!;
   if (["1d", "5d", "20d", "60d"].includes(period ?? "")) defaults.period = period!;
   if (metric === "share" || metric === "change") defaults.metric = metric;
   if (range === "5" || range === "20" || range === "60") defaults.range = `${range}d` as Range;
@@ -94,9 +96,27 @@ function MarketFlowPage() {
   const [metric, setMetric] = useState<Metric>(initial.metric);
   const [range, setRange] = useState<Range>(initial.range);
   const [query, setQuery] = useState("");
-  const rows = LIVE_MARKET_DATA[category]?.[period]?.length
-    ? LIVE_MARKET_DATA[category][period]
-    : SECTORS;
+  const watchlist = useWatchlist();
+  const watchlistRows = useMemo<Sector[]>(() =>
+    watchlist.tickers.flatMap((ticker) => {
+      const company = LIVE_COMPANIES_BY_ID[`stock:${ticker}`];
+      return company ? [{
+        id: company.id,
+        name: `${company.ticker} · ${company.name}`,
+        group: "sector",
+        volume: company.volume,
+        volumeChange: company.volumeVs?.[period] ?? 0,
+        priceChange: company.change,
+        shareDelta: 0,
+        share: company.share,
+        signal: company.signal,
+        leaders: [company.ticker],
+      }] : [];
+    }), [period, watchlist.tickers.join("|")]);
+  const marketRows = category === "watchlist" ? [] : LIVE_MARKET_DATA[category]?.[period] ?? [];
+  const rows = category === "watchlist"
+    ? watchlistRows
+    : marketRows.length ? marketRows : SECTORS;
   const [selected, setSelected] = useState<string[]>(() =>
     initialSelection(initial.groups.length ? initial.groups : INITIAL_GROUPS, rows),
   );
@@ -104,9 +124,10 @@ function MarketFlowPage() {
   useEffect(() => {
     const syncFromHash = () => {
       const next = readUrlState();
-      const nextRows = LIVE_MARKET_DATA[next.category]?.[next.period]?.length
-        ? LIVE_MARKET_DATA[next.category][next.period]
-        : SECTORS;
+      const nextMarketRows = next.category === "watchlist" ? [] : LIVE_MARKET_DATA[next.category]?.[next.period] ?? [];
+      const nextRows = next.category === "watchlist"
+        ? watchlistRows
+        : nextMarketRows.length ? nextMarketRows : SECTORS;
       setCategory(next.category);
       setPeriod(next.period);
       setMetric(next.metric);
@@ -115,7 +136,7 @@ function MarketFlowPage() {
     };
     window.addEventListener("hashchange", syncFromHash);
     return () => window.removeEventListener("hashchange", syncFromHash);
-  }, []);
+  }, [watchlistRows]);
 
   useEffect(() => {
     setSelected((current) => {
@@ -137,7 +158,7 @@ function MarketFlowPage() {
   const changeCategory = (next: Category) => {
     setCategory(next);
     setQuery("");
-    const nextRows = LIVE_MARKET_DATA[next]?.[period] ?? [];
+    const nextRows = next === "watchlist" ? watchlistRows : LIVE_MARKET_DATA[next]?.[period] ?? [];
     setSelected(nextRows.slice(0, 3).map((row) => row.id));
   };
 
@@ -208,6 +229,7 @@ function MarketFlowPage() {
               onMetric={setMetric}
               range={range}
               onRange={setRange}
+              addableRows={watchlistRows}
             />
           </DataSectionState>
           <SectorTable

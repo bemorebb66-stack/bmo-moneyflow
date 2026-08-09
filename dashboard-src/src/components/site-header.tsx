@@ -12,15 +12,12 @@ import {
 } from "./ui/sheet";
 import { cn } from "@/lib/utils";
 import type { DataStatus } from "@/lib/mock-data";
-import { GlobalSearch } from "./global-search";
 import { BrandMark } from "./brand-mark";
 import { formatKstTimestamp } from "@/lib/date-time";
-import type { useCurrencyPreference } from "@/lib/currency";
 
 const NAV = [
   { label: "시장 흐름", to: "/" },
   { label: "종목 스캐너", to: "/scanner" },
-  { label: "관심종목", to: "/watchlist" },
   { label: "내부자 거래", to: "/insider" },
   { label: "IPO 락업", to: "/ipo-lockup" },
   { label: "오늘의 요약", to: "/today" },
@@ -33,7 +30,6 @@ interface Props {
   universeCount: number;
   status: DataStatus;
   delayTradingDays: number;
-  currency: ReturnType<typeof useCurrencyPreference>;
 }
 
 export function SiteHeader({
@@ -42,7 +38,6 @@ export function SiteHeader({
   universeCount,
   status,
   delayTradingDays,
-  currency,
 }: Props) {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
@@ -91,14 +86,6 @@ export function SiteHeader({
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <div className="hidden items-center rounded-md border border-border bg-surface p-0.5 sm:flex" role="group" aria-label="표시 통화">
-            {(["USD", "KRW"] as const).map((unit) => (
-              <button key={unit} type="button" onClick={() => currency.setCurrency(unit)} disabled={unit === "KRW" && !currency.exchange} aria-pressed={currency.currency === unit} title={unit === "KRW" && currency.exchange ? `1달러 = ${currency.exchange.rate.toLocaleString("ko-KR")}원 · ${currency.exchange.marketDate}` : undefined} className={cn("min-h-9 rounded px-2 text-xs font-semibold", currency.currency === unit ? "bg-brand text-brand-foreground" : "text-muted-foreground", unit === "KRW" && !currency.exchange && "opacity-40")}>
-                {unit}
-              </button>
-            ))}
-          </div>
-          <GlobalSearch />
           <StatusStrip
             asOf={asOf}
             universeCount={universeCount}
@@ -142,12 +129,6 @@ export function SiteHeader({
               <SheetHeader>
                 <SheetTitle>메뉴</SheetTitle>
               </SheetHeader>
-              <div className="mt-5 border-b border-border pb-5">
-                <GlobalSearch
-                  variant="menu"
-                  onNavigate={() => setOpen(false)}
-                />
-              </div>
               <nav
                 aria-label="모바일 메뉴"
                 className="mt-5 flex flex-col gap-1"
@@ -173,14 +154,6 @@ export function SiteHeader({
                 })}
               </nav>
               <div className="mt-6 border-t border-border pt-4">
-                <div className="mb-3 grid grid-cols-2 gap-2" role="group" aria-label="표시 통화">
-                  {(["USD", "KRW"] as const).map((unit) => (
-                    <Button key={unit} type="button" variant={currency.currency === unit ? "default" : "outline"} disabled={unit === "KRW" && !currency.exchange} onClick={() => currency.setCurrency(unit)} aria-pressed={currency.currency === unit}>
-                      {unit === "USD" ? "달러 USD" : "원화 KRW"}
-                    </Button>
-                  ))}
-                </div>
-                {currency.exchange && <p className="mb-3 text-xs text-muted-foreground">1달러 = {currency.exchange.rate.toLocaleString("ko-KR")}원 · 기준일 {currency.exchange.marketDate}</p>}
                 <Button
                   variant="outline"
                   onClick={toggle}
