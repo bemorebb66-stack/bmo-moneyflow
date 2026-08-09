@@ -13,23 +13,23 @@ export function MarketIndexPanel({ currency }: { currency: ReturnType<typeof use
   const asOf = rows[0]?.asOf;
 
   return (
-    <aside className="border-b border-border/70 bg-surface/70" aria-label="검색·환율·주요지수">
-      <div className="mx-auto flex min-h-12 max-w-[1400px] items-center gap-2 overflow-visible px-3 py-1.5 sm:px-4 lg:px-6">
+    <aside className="fixed left-[calc(50%+716px)] top-[76px] z-30 hidden w-[176px] min-[1760px]:block" aria-label="검색·환율·주요지수">
+      <div className="flex flex-col gap-2 border-l border-border/70 pl-4">
         <GlobalSearch />
-        <div className="inline-flex h-10 items-center rounded-md border border-border bg-background p-0.5" role="group" aria-label="표시 통화">
+        <div className="inline-flex h-10 w-full items-center rounded-md border border-border bg-background p-0.5" role="group" aria-label="표시 통화">
           {(["USD", "KRW"] as const).map((unit) => (
-            <button key={unit} type="button" onClick={() => currency.setCurrency(unit)} disabled={unit === "KRW" && !currency.exchange} aria-pressed={currency.currency === unit} className={cn("min-h-9 rounded px-3 text-xs font-semibold", currency.currency === unit ? "bg-brand text-brand-foreground" : "text-muted-foreground hover:bg-secondary", unit === "KRW" && !currency.exchange && "opacity-40")}>
+            <button key={unit} type="button" onClick={() => currency.setCurrency(unit)} disabled={unit === "KRW" && !currency.exchange} aria-pressed={currency.currency === unit} className={cn("min-h-9 flex-1 rounded px-2 text-xs font-semibold", currency.currency === unit ? "bg-brand text-brand-foreground" : "text-muted-foreground hover:bg-secondary", unit === "KRW" && !currency.exchange && "opacity-40")}>
               {unit}
             </button>
           ))}
         </div>
         <details className="group relative">
-          <summary className="flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-md border border-border bg-background px-3 text-xs font-semibold hover:bg-secondary">
+          <summary className="flex min-h-10 w-full cursor-pointer list-none items-center gap-2 rounded-md border border-border bg-background px-3 text-xs font-semibold hover:bg-secondary">
             <BarChart3 className="h-4 w-4 text-brand" />
             주요지수
             <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" />
           </summary>
-          <div className="absolute right-0 top-full z-50 mt-1 w-[280px] rounded-xl border border-border bg-popover p-3 shadow-lg sm:left-0 sm:right-auto">
+          <div className="absolute right-full top-0 z-50 mr-2 w-[280px] rounded-xl border border-border bg-popover p-3 shadow-lg">
             <div className="flex items-center justify-between gap-2">
               <h2 className="text-xs font-semibold">미국 주요 지수</h2>
               <span className="text-[10px] text-muted-foreground">정규장 종가 기준</span>
@@ -80,7 +80,7 @@ export function MarketIndexPanel({ currency }: { currency: ReturnType<typeof use
         </p>
           </div>
         </details>
-        {currency.exchange && <span className="hidden text-[11px] text-muted-foreground md:inline">1달러 {currency.exchange.rate.toLocaleString("ko-KR")}원 · {currency.exchange.marketDate}</span>}
+        {currency.exchange && <span className="text-[10px] leading-4 text-muted-foreground">1달러 {currency.exchange.rate.toLocaleString("ko-KR")}원<br />{currency.exchange.marketDate}</span>}
       </div>
     </aside>
   );

@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useState } from "react";
-import { ArrowUpDown, ChevronRight } from "lucide-react";
+import { ArrowUpDown, ChevronRight, Star } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { SignalBadge, DeltaText } from "./signal-badge";
 import { cn } from "@/lib/utils";
@@ -7,6 +7,8 @@ import { LIVE_GROUP_COMPANIES, type Sector } from "@/lib/mock-data";
 import { fmtBp, fmtMcap, fmtMoney, fmtPct, fmtQuote } from "@/lib/format";
 import { MetricInfo } from "./metric-info";
 import { describeIndustry } from "@/lib/industry-copy";
+import { useWatchlist } from "@/lib/user-library";
+import { useGroupFavorites } from "@/lib/group-favorites";
 
 type SortKey = "volume" | "volumeChange" | "priceChange" | "shareDelta";
 
@@ -32,6 +34,8 @@ export function SectorTable({
   const [sortKey, setSortKey] = useState<SortKey>("volume");
   const [dir, setDir] = useState<"desc" | "asc">("desc");
   const [expanded, setExpanded] = useState<string | null>(null);
+  const watchlist = useWatchlist();
+  const groupFavorites = useGroupFavorites();
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -182,7 +186,14 @@ export function SectorTable({
                         </span>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <SignalBadge signal={s.signal} />
+                        <div className="flex items-center gap-2">
+                          <SignalBadge signal={s.signal} />
+                          <FavoriteStar
+                            active={groupFavorites.has(s.id)}
+                            label={`${s.name} 그룹 즐겨찾기`}
+                            onToggle={() => groupFavorites.toggle(s.id)}
+                          />
+                        </div>
                       </td>
                     </tr>
                     {isOpen && (
@@ -191,6 +202,8 @@ export function SectorTable({
                         periodLabel={periodLabel}
                         selectedIds={selectedIds}
                         onAddCompany={onAddCompany}
+                        watchedTickers={watchlist.tickers}
+                        onToggleWatch={watchlist.toggle}
                       />
                     )}
                   </Fragment>
@@ -243,6 +256,11 @@ export function SectorTable({
                       {s.leaders.slice(0, 2).join(", ")}
                     </div>
                   </button>
+                  <FavoriteStar
+                    active={groupFavorites.has(s.id)}
+                    label={`${s.name} 그룹 즐겨찾기`}
+                    onToggle={() => groupFavorites.toggle(s.id)}
+                  />
                   <label className="flex min-h-10 shrink-0 items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 text-xs text-muted-foreground">
                     <input
                       type="checkbox"
@@ -296,6 +314,8 @@ export function SectorTable({
                     companies={companies}
                     selectedIds={selectedIds}
                     onAddCompany={onAddCompany}
+                    watchedTickers={watchlist.tickers}
+                    onToggleWatch={watchlist.toggle}
                   />
                 )}
               </div>
@@ -318,12 +338,16 @@ function MobileExpandedCompanies({
   companies,
   selectedIds,
   onAddCompany,
+  watchedTickers,
+  onToggleWatch,
 }: {
   id: string;
   sector: Sector;
   companies: (typeof LIVE_GROUP_COMPANIES)[string];
   selectedIds: string[];
   onAddCompany: (id: string) => void;
+  watchedTickers: string[];
+  onToggleWatch: (ticker: string) => unknown;
 }) {
   return (
     <div id={id} className="mt-3 border-t border-border/70 pt-3">
@@ -353,6 +377,11 @@ function MobileExpandedCompanies({
                     {fmtMcap(company.marketCap)}
                   </div>
                 </a>
+                <FavoriteStar
+                  active={watchedTickers.includes(company.ticker)}
+                  label={`${company.ticker} 관심종목`}
+                  onToggle={() => onToggleWatch(company.ticker)}
+                />
                 <button
                   type="button"
                   onClick={() => onAddCompany(company.id)}
@@ -484,11 +513,15 @@ function ExpandedRow({
   periodLabel,
   selectedIds,
   onAddCompany,
+  watchedTickers,
+  onToggleWatch,
 }: {
   sector: Sector;
   periodLabel: string;
   selectedIds: string[];
   onAddCompany: (id: string) => void;
+  watchedTickers: string[];
+  onToggleWatch: (ticker: string) => unknown;
 }) {
   const companies = LIVE_GROUP_COMPANIES[sector.id] ?? [];
   return (
@@ -586,7 +619,13 @@ function ExpandedRow({
                       {fmtMcap(company.marketCap)}
                     </td>
                     <td className="px-3 py-2 text-right">
-                      <button
+                      <div className="flex items-center justify-end gap-1.5">
+                        <FavoriteStar
+                          active={watchedTickers.includes(company.ticker)}
+                          label={`${company.ticker} 관심종목`}
+                          onToggle={() => onToggleWatch(company.ticker)}
+                        />
+                        <button
                         type="button"
                         onClick={() => onAddCompany(company.id)}
                         aria-pressed={selected}
@@ -598,7 +637,8 @@ function ExpandedRow({
                         )}
                       >
                         {selected ? "비교 중" : "차트 추가"}
-                      </button>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -608,6 +648,36 @@ function ExpandedRow({
         </div>
       </td>
     </tr>
+  );
+}
+
+function FavoriteStar({
+  active,
+  label,
+  onToggle,
+}: {
+  active: boolean;
+  label: string;
+  onToggle: () => unknown;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={active ? `${label}에서 제거` : `${label}에 추가`}
+      aria-pressed={active}
+      onClick={(event) => {
+        event.stopPropagation();
+        onToggle();
+      }}
+      className={cn(
+        "grid h-9 w-9 shrink-0 place-items-center rounded-md border transition-colors",
+        active
+          ? "border-warning/40 bg-warning/10 text-warning"
+          : "border-border bg-surface text-muted-foreground hover:border-warning/40 hover:text-warning",
+      )}
+    >
+      <Star className={cn("h-4 w-4", active && "fill-current")} />
+    </button>
   );
 }
 
