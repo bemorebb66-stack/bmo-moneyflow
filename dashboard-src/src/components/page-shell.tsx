@@ -29,13 +29,15 @@ export function PageShell({ children }: Props) {
           status={LIVE_META.status}
           delayTradingDays={LIVE_META.delayTradingDays}
         />
-        <MarketIndexPanel currency={currency} />
         <main
           id="main-content"
           tabIndex={-1}
-          className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-5 outline-none lg:px-6 lg:py-7"
+          className="mx-auto w-full min-w-0 max-w-[1680px] px-4 py-5 outline-none lg:px-6 lg:py-7"
         >
-          <div key={currency.currency}>{children}</div>
+          <div className="mx-auto grid min-w-0 max-w-[1400px] gap-5 2xl:max-w-none 2xl:grid-cols-[minmax(0,1fr)_220px]">
+            <div key={currency.currency} className="min-w-0">{children}</div>
+            <MarketIndexPanel currency={currency} />
+          </div>
         </main>
         <SiteFooter />
       </div>

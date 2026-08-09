@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, BarChart3, ChevronDown } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, BarChart3 } from "lucide-react";
 import { MARKET_INDEXES } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import { GlobalSearch } from "./global-search";
@@ -13,8 +13,8 @@ export function MarketIndexPanel({ currency }: { currency: ReturnType<typeof use
   const asOf = rows[0]?.asOf;
 
   return (
-    <aside className="fixed left-[calc(50%+716px)] top-[76px] z-30 hidden w-[176px] min-[1760px]:block" aria-label="검색·환율·주요지수">
-      <div className="flex flex-col gap-2 border-l border-border/70 pl-4">
+    <aside className="hidden min-w-0 2xl:block" aria-label="검색·환율·주요지수">
+      <div className="sticky top-[76px] flex flex-col gap-3 border-l border-border/70 pl-5">
         <GlobalSearch />
         <div className="inline-flex h-10 w-full items-center rounded-md border border-border bg-background p-0.5" role="group" aria-label="표시 통화">
           {(["USD", "KRW"] as const).map((unit) => (
@@ -23,25 +23,22 @@ export function MarketIndexPanel({ currency }: { currency: ReturnType<typeof use
             </button>
           ))}
         </div>
-        <details className="group relative">
-          <summary className="flex min-h-10 w-full cursor-pointer list-none items-center gap-2 rounded-md border border-border bg-background px-3 text-xs font-semibold hover:bg-secondary">
+        <section className="rounded-lg border border-border/70 bg-background p-3" aria-labelledby="market-index-title">
+          <div className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4 text-brand" />
-            주요지수
-            <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" />
-          </summary>
-          <div className="absolute right-full top-0 z-50 mr-2 w-[280px] rounded-xl border border-border bg-popover p-3 shadow-lg">
-            <div className="flex items-center justify-between gap-2">
-              <h2 className="text-xs font-semibold">미국 주요 지수</h2>
-              <span className="text-[10px] text-muted-foreground">정규장 종가 기준</span>
+            <div>
+              <h2 id="market-index-title" className="text-xs font-semibold">미국 주요 지수</h2>
+              <p className="text-[10px] text-muted-foreground">정규장 종가 기준</p>
             </div>
+          </div>
 
         {rows.length ? (
-          <ul className="mt-2 grid grid-cols-2 gap-2">
+          <ul className="mt-3 divide-y divide-border/60">
             {rows.map((row) => {
               const positive = row.change > 0;
               const Icon = positive ? ArrowUpRight : ArrowDownRight;
               return (
-                <li key={row.id} className="rounded-lg border border-border/70 bg-background p-2.5">
+                <li key={row.id} className="py-2.5 first:pt-0">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-medium">{row.name}</span>
                     <span
@@ -75,12 +72,11 @@ export function MarketIndexPanel({ currency }: { currency: ReturnType<typeof use
           </p>
         )}
 
-        <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-[10px] leading-relaxed text-muted-foreground">
           {asOf ? `${asOf} · ` : ""}Yahoo Finance 장마감 일봉
         </p>
-          </div>
-        </details>
-        {currency.exchange && <span className="text-[10px] leading-4 text-muted-foreground">1달러 {currency.exchange.rate.toLocaleString("ko-KR")}원<br />{currency.exchange.marketDate}</span>}
+        </section>
+        {currency.exchange && <span className="text-[10px] leading-4 text-muted-foreground">1달러 {currency.exchange.rate.toLocaleString("ko-KR")}원<br />환율 기준일 {currency.exchange.marketDate}</span>}
       </div>
     </aside>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "bvt-favorite-groups";
+const CHANGE_EVENT = "bvt-group-favorites-change";
 
 function readFavorites() {
   if (typeof window === "undefined") return [] as string[];
@@ -19,14 +20,19 @@ export function useGroupFavorites() {
   useEffect(() => {
     const sync = () => setIds(readFavorites());
     window.addEventListener("storage", sync);
-    return () => window.removeEventListener("storage", sync);
+    window.addEventListener(CHANGE_EVENT, sync);
+    return () => {
+      window.removeEventListener("storage", sync);
+      window.removeEventListener(CHANGE_EVENT, sync);
+    };
   }, []);
-  const toggle = (id: string) => setIds((current) => {
+  const toggle = (id: string) => {
+    const current = readFavorites();
     const next = current.includes(id)
       ? current.filter((value) => value !== id)
       : [...current, id];
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    return next;
-  });
+    window.dispatchEvent(new Event(CHANGE_EVENT));
+  };
   return { ids, has: (id: string) => ids.includes(id), toggle };
 }

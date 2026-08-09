@@ -670,7 +670,7 @@ function FavoriteStar({
         onToggle();
       }}
       className={cn(
-        "grid h-9 w-9 shrink-0 place-items-center rounded-md border transition-colors",
+        "grid h-11 w-11 shrink-0 place-items-center rounded-md border transition-colors md:h-9 md:w-9",
         active
           ? "border-warning/40 bg-warning/10 text-warning"
           : "border-border bg-surface text-muted-foreground hover:border-warning/40 hover:text-warning",

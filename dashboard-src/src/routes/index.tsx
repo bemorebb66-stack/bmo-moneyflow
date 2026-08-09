@@ -23,6 +23,7 @@ import {
 } from "@/lib/data-runtime";
 import { LIVE_COMPANIES_BY_ID, LIVE_MARKET_DATA, SECTORS, type Sector } from "@/lib/mock-data";
 import { useWatchlist } from "@/lib/user-library";
+import { useGroupFavorites } from "@/lib/group-favorites";
 
 const INITIAL_GROUPS = ["technology", "communication", "financial"];
 const CATEGORY_LABELS: Record<Category, string> = {
@@ -97,7 +98,16 @@ function MarketFlowPage() {
   const [range, setRange] = useState<Range>(initial.range);
   const [query, setQuery] = useState("");
   const watchlist = useWatchlist();
-  const watchlistRows = useMemo<Sector[]>(() =>
+  const groupFavorites = useGroupFavorites();
+  const favoriteGroupRows = useMemo<Sector[]>(() =>
+    groupFavorites.ids.flatMap((id) => {
+      for (const group of ["sector", "industry", "universe", "custom", "mcap"] as const) {
+        const row = LIVE_MARKET_DATA[group][period].find((candidate) => candidate.id === id);
+        if (row) return [row];
+      }
+      return [];
+    }), [period, groupFavorites.ids.join("|")]);
+  const favoriteStockRows = useMemo<Sector[]>(() =>
     watchlist.tickers.flatMap((ticker) => {
       const company = LIVE_COMPANIES_BY_ID[`stock:${ticker}`];
       return company ? [{
@@ -113,6 +123,10 @@ function MarketFlowPage() {
         leaders: [company.ticker],
       }] : [];
     }), [period, watchlist.tickers.join("|")]);
+  const watchlistRows = useMemo(
+    () => [...favoriteGroupRows, ...favoriteStockRows],
+    [favoriteGroupRows, favoriteStockRows],
+  );
   const marketRows = category === "watchlist" ? [] : LIVE_MARKET_DATA[category]?.[period] ?? [];
   const rows = category === "watchlist"
     ? watchlistRows
