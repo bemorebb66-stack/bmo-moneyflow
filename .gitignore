@@ -1,6 +1,55 @@
-dashboard-src/node_modules/
-dashboard-src/dist/
-dashboard-src/*.tsbuildinfo
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials*.json
+service-account*.json
+
+# JavaScript / TypeScript dependencies and build output
+node_modules/
+.pnpm-store/
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vite/
+*.tsbuildinfo
+
+# Python caches and local environments
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Test, coverage, and runtime output
+coverage/
+.coverage
+htmlcov/
+*.log
+*.tmp
+*.temp
 replay_data/sample-analysis.json
+
+# Editors and operating systems (macOS / Windows compatible)
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
