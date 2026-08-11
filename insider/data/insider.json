@@ -14,15 +14,15 @@
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-08-08T16:24:04.421970+00:00",
+    "validatedAt": "2026-08-11T04:45:21.840306+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
     "acceptedCount": 2652,
     "pendingCount": 46,
     "uniqueAccessionCount": 2134,
-    "marketCoverage": 0.992346,
+    "marketCoverage": 0.992537,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "5ed73ab8ba98faadc90f551cab30ffe56f2764840dbdd3e5505b8c3e910a40be"
+    "dataSha256": "b8d9a6752be4aa07dc5151f28795b91bb572d3869289e9cff3b5f88c4fd352f5"
   },
   "trades": [
     {
@@ -4345,7 +4345,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2058707/000123191926000838/form4-08062026_090845.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -5983,7 +5983,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2058707/000110465926092867/tm2622627-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -7510,7 +7510,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2058707/000119312526340173/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -10723,7 +10723,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2058707/000110465926092867/tm2622627-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -14129,7 +14129,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1520262/000152026226000111/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -35891,7 +35891,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1520262/000152026226000110/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -57881,7 +57881,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1520262/000152026226000109/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
