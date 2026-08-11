@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import {
   BRIEFING_DISCLAIMER,
   buildDailyBriefing,
@@ -8,6 +8,9 @@ import {
   type ReplaySnapshot,
   type WeeklySource,
 } from "./briefing";
+import { configureCurrency } from "./currency";
+
+afterEach(() => configureCurrency("USD", 0));
 
 const representativeSnapshot: ReplaySnapshot = {
   schema_version: 1,
@@ -94,6 +97,15 @@ describe("deterministic daily briefing", () => {
       "전체 거래대금은 $740.1B로 전일 대비 6.6% 감소했고 상승 종목 비중은 31.2%로 하락 종목이 우세했습니다.",
     );
     expect(first.shareText).toContain("2026-07-29 미국 장 마감 브리핑");
+  });
+
+  it("converts the daily briefing total trading value to KRW", () => {
+    configureCurrency("KRW", 1400);
+
+    const briefing = buildDailyBriefing(representativeSnapshot);
+
+    expect(briefing.sentences[0].text).toContain("전체 거래대금은 1036.14조원");
+    expect(briefing.shareText).toContain("전체 거래대금은 1036.14조원");
   });
 
   it("uses stable watchlist ranking and reports unavailable rows", () => {

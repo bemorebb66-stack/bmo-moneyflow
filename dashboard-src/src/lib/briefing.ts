@@ -1,3 +1,5 @@
+import { currencySnapshot } from "./currency";
+
 export type SnapshotTicker = {
   name?: string;
   name_ko?: string;
@@ -254,6 +256,15 @@ export function buildReplaySnapshotFromMarketData(
 }
 
 export function formatBriefingMoney(value: number) {
+  const { currency, rate } = currencySnapshot();
+  if (currency === "KRW" && rate > 0) {
+    const won = value * rate;
+    if (Math.abs(won) >= 1_000_000_000_000)
+      return `${(won / 1_000_000_000_000).toFixed(2)}조원`;
+    if (Math.abs(won) >= 100_000_000)
+      return `${Math.round(won / 100_000_000).toLocaleString("ko-KR")}억원`;
+    return `${Math.round(won).toLocaleString("ko-KR")}원`;
+  }
   if (Math.abs(value) >= 1_000_000_000_000)
     return `$${(value / 1_000_000_000_000).toFixed(2)}T`;
   return `$${(value / 1_000_000_000).toFixed(1)}B`;
