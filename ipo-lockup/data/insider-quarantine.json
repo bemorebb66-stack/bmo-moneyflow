@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-12T05:06:41.597478+00:00",
-    "count": 49
+    "generatedAt": "2026-08-13T00:34:57.209480+00:00",
+    "count": 48
   },
   "pendingTrades": [
     {
@@ -450,33 +450,6 @@
           "severity": "critical",
           "marketLow": "185.2899932861328",
           "marketHigh": "186.9499969482422"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "MGTI",
-      "company": "MGT CAPITAL INVESTMENTS, INC.",
-      "filer": "Kittrell Grady",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 3250000,
-      "price": 0.1,
-      "txDate": "2026-07-31",
-      "filedDate": "2026-08-04",
-      "accession": "0001493152-26-036046",
-      "sourceAccessions": [
-        "0001493152-26-036046"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2044627/000149315226036046/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "0.0019000000320374966",
-          "marketHigh": "0.003000000026077032"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
