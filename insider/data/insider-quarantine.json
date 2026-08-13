@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-13T05:10:42.154704+00:00",
-    "count": 43
+    "generatedAt": "2026-08-13T13:19:19.056171+00:00",
+    "count": 49
   },
   "pendingTrades": [
     {
@@ -450,6 +450,33 @@
           "severity": "critical",
           "marketLow": "185.2899932861328",
           "marketHigh": "186.9499969482422"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "MGTI",
+      "company": "MGT CAPITAL INVESTMENTS, INC.",
+      "filer": "Kittrell Grady",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 3250000,
+      "price": 0.1,
+      "txDate": "2026-07-31",
+      "filedDate": "2026-08-04",
+      "accession": "0001493152-26-036046",
+      "sourceAccessions": [
+        "0001493152-26-036046"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2044627/000149315226036046/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.0019000000320374966",
+          "marketHigh": "0.003000000026077032"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -942,6 +969,87 @@
       "severity": "critical"
     },
     {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Fernando Adrian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 15000,
+      "price": 1.13,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-30",
+      "accession": "0001654954-26-007030",
+      "sourceAccessions": [
+        "0001654954-26-007030"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000165495426007030/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "10.609999656677246",
+          "marketHigh": "11.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Fernando Adrian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 20000,
+      "price": 1.17,
+      "txDate": "2026-07-22",
+      "filedDate": "2026-07-30",
+      "accession": "0001654954-26-007030",
+      "sourceAccessions": [
+        "0001654954-26-007030"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000165495426007030/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.180000305175781",
+          "marketHigh": "11.779999732971191"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1086186,
+      "price": 0.028,
+      "txDate": "2026-07-28",
+      "filedDate": "2026-07-30",
+      "accession": "0001475597-26-000179",
+      "sourceAccessions": [
+        "0001475597-26-000179"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000179/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.599999904632568",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ACGL",
       "company": "ARCH CAPITAL GROUP LTD.",
       "filer": "Posner Brian S",
@@ -1018,6 +1126,60 @@
           "severity": "critical",
           "marketLow": "2.0",
           "marketHigh": "2.319999933242798"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 391577,
+      "price": 0.029,
+      "txDate": "2026-07-24",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000172",
+      "sourceAccessions": [
+        "0001475597-26-000172"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.400000095367432",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1068671,
+      "price": 0.026,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000172",
+      "sourceAccessions": [
+        "0001475597-26-000172"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.599999904632568",
+          "marketHigh": "5.800000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
