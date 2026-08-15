@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-15T00:16:56.568065+00:00",
-    "count": 51
+    "generatedAt": "2026-08-15T04:03:52.093966+00:00",
+    "count": 53
   },
   "pendingTrades": [
     {
@@ -1238,6 +1238,60 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "APHP",
+      "company": "American Picture House Corp",
+      "filer": "MacGregor Bannor Michael",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 1000000,
+      "price": 0.05,
+      "txDate": "2026-08-06",
+      "filedDate": "2026-08-12",
+      "accession": "0001493152-26-037399",
+      "sourceAccessions": [
+        "0001493152-26-037399"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1771995/000149315226037399/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.11999999731779099",
+          "marketHigh": "0.11999999731779099"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "APHP",
+      "company": "American Picture House Corp",
+      "filer": "MacGregor Bannor Michael",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 100000,
+      "price": 0.05,
+      "txDate": "2026-08-06",
+      "filedDate": "2026-08-12",
+      "accession": "0001493152-26-037399",
+      "sourceAccessions": [
+        "0001493152-26-037399"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1771995/000149315226037399/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.11999999731779099",
+          "marketHigh": "0.11999999731779099"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "CAMP",
