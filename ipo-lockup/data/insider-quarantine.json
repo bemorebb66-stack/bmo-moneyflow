@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-14T05:07:23.985716+00:00",
-    "count": 49
+    "generatedAt": "2026-08-15T00:16:56.568065+00:00",
+    "count": 51
   },
   "pendingTrades": [
     {
@@ -348,6 +348,60 @@
       "severity": "review"
     },
     {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 73455,
+      "price": 20.4195,
+      "txDate": "2026-08-07",
+      "filedDate": "2026-08-11",
+      "accession": "0000937797-26-000019",
+      "sourceAccessions": [
+        "0000937797-26-000019"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000019/wk-form4_1786480060.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.460000038146973",
+          "marketHigh": "8.680000305175781"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 15749,
+      "price": 20.4035,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-11",
+      "accession": "0000937797-26-000019",
+      "sourceAccessions": [
+        "0000937797-26-000019"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000019/wk-form4_1786480060.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.265000343322754",
+          "marketHigh": "8.65999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "STFS",
       "company": "Star Fashion Culture Holdings Ltd",
       "filer": "ZHANG PINGTING",
@@ -456,27 +510,27 @@
       "severity": "critical"
     },
     {
-      "ticker": "MGTI",
-      "company": "MGT CAPITAL INVESTMENTS, INC.",
-      "filer": "Kittrell Grady",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 3250000,
-      "price": 0.1,
-      "txDate": "2026-07-31",
-      "filedDate": "2026-08-04",
-      "accession": "0001493152-26-036046",
+      "ticker": "LITB",
+      "company": "LightInTheBox Holding Co., Ltd.",
+      "filer": "He Jian",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 4254553,
+      "price": 0.2567,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-11",
+      "accession": "0001104659-26-094063",
       "sourceAccessions": [
-        "0001493152-26-036046"
+        "0001104659-26-094063"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2044627/000149315226036046/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2124627/000110465926094063/tm2622889-1_4seq1.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "0.0019000000320374966",
-          "marketHigh": "0.003000000026077032"
+          "marketLow": "2.8299999237060547",
+          "marketHigh": "3.119999885559082"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
