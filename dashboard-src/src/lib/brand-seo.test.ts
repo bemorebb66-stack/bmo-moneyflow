@@ -3,7 +3,6 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const dashboardRoot = resolve(import.meta.dirname, "..", "..");
-const projectRoot = resolve(dashboardRoot, "..");
 const coreMessage = "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다.";
 
 describe("BVT Money Flow brand, briefing, and SEO", () => {
@@ -42,9 +41,14 @@ describe("BVT Money Flow brand, briefing, and SEO", () => {
     for (const label of ["사실", "데이터 해석", "데이터 안내", "기준일", "출처:", "투자 추천이 아닙니다"]) expect(weekly).toContain(label);
   });
 
-  it("keeps the three-line brand assets and verified SEO generation rules", async () => {
-    const favicon = await readFile(resolve(projectRoot, "favicon.svg"), "utf8");
-    for (const path of ["M3 6h12c5 0 7 6 2 8H6", "M4 17l10 10 10-15 8 10", "M22 7h22L31 27 20 16"]) expect(favicon).toContain(path);
+  it("keeps the symbol-only favicon and verified SEO generation rules", async () => {
+    const [html, favicon] = await Promise.all([
+      readFile(resolve(dashboardRoot, "index.html"), "utf8"),
+      readFile(resolve(dashboardRoot, "public/favicon-symbol.png")),
+    ]);
+    expect(html).toContain('href="/favicon-symbol.png"');
+    expect(html).not.toContain('href="/favicon.ico"');
+    expect(favicon.byteLength).toBeGreaterThan(100_000);
 
     const generator = await readFile(resolve(dashboardRoot, "scripts/generate-static-pages.mjs"), "utf8");
     expect(generator).toContain('String(data.updated ?? "").match');

@@ -72,9 +72,7 @@ for (const required of [
   "BVT Money Flow",
   "미국 주식의 돈이 어디로 움직였는지 데이터로 읽어드립니다.",
   'rel="canonical" href="https://www.bvtmoneyflow.xyz/"',
-  'href="/favicon.svg"',
-  'href="/favicon.ico"',
-  'href="/apple-touch-icon.png"',
+  'href="/favicon-symbol.png"',
   'content="https://www.bvtmoneyflow.xyz/og-bvt-money-flow.png"',
 ]) if (!home.includes(required)) errors.push(`home brand/SEO missing: ${required}`);
 if (home.includes("BVT Replay")) errors.push("legacy BVT Replay brand remains on home");
@@ -87,7 +85,7 @@ for (const slug of stockDirs) {
     try { if (!(await stat(target)).isFile()) errors.push(`깨진 내부 링크: ${match[1]}`); } catch { errors.push(`깨진 내부 링크: ${match[1]}`); }
   }
 }
-for (const required of ["data.json", "history.json", "data-status.json", "_headers", "CNAME", ".nojekyll", "replay_data/manifest.json", "favicon.svg", "favicon.ico", "apple-touch-icon.png", "og-bvt-money-flow.png"]) {
+for (const required of ["data.json", "history.json", "data-status.json", "_headers", "CNAME", ".nojekyll", "replay_data/manifest.json", "favicon-symbol.png", "og-bvt-money-flow.png"]) {
   try { await stat(resolve(outputRoot, required)); } catch { errors.push(`배포 데이터 누락: ${required}`); }
 }
 const pngDimensions = async (name) => {
@@ -95,11 +93,8 @@ const pngDimensions = async (name) => {
   return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
 };
 if (String(await pngDimensions("og-bvt-money-flow.png")) !== "1200,630") errors.push("OG image must be 1200x630");
-if (String(await pngDimensions("apple-touch-icon.png")) !== "180,180") errors.push("apple touch icon must be 180x180");
-const faviconSvg = await readFile(resolve(outputRoot, "favicon.svg"), "utf8");
-for (const path of ["M3 6h12c5 0 7 6 2 8H6", "M4 17l10 10 10-15 8 10", "M22 7h22L31 27 20 16"]) {
-  if (!faviconSvg.includes(path)) errors.push(`favicon BrandMark path missing: ${path}`);
-}
+const faviconDimensions = await pngDimensions("favicon-symbol.png");
+if (faviconDimensions[0] !== faviconDimensions[1]) errors.push("favicon symbol must be square");
 const headers = await readFile(resolve(outputRoot, "_headers"), "utf8");
 for (const required of ["Content-Security-Policy", "frame-ancestors 'none'", "X-Content-Type-Options: nosniff", "Referrer-Policy: same-origin", "Permissions-Policy:", "max-age=31536000, immutable"]) {
   if (!headers.includes(required)) errors.push(`security headers missing: ${required}`);

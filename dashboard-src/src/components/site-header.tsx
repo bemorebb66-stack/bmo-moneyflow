@@ -54,7 +54,7 @@ export function SiteHeader({
           aria-label="BVT Money Flow 홈"
           className="flex shrink-0 items-center"
         >
-          <BrandMark className="h-10 w-32 rounded-md bg-white px-1.5 sm:h-12 sm:w-44 sm:px-2" />
+          <BrandMark className="h-10 w-32 sm:h-12 sm:w-44 dark:brightness-0 dark:invert" />
         </Link>
 
         <nav
