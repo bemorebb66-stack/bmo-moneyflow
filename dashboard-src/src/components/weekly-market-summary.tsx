@@ -181,7 +181,8 @@ export function WeeklyMarketSummary() {
             <p className="mt-2 text-base font-semibold leading-7">{deterministicSummary.sectorSentence}</p>
           </section>
 
-          <section className="mt-5" aria-labelledby="weekly-sector-focus">
+          <div className="mt-5 grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+          <section aria-labelledby="weekly-sector-focus">
             <div className="text-[11px] font-semibold text-muted-foreground">사실</div>
             <h3 id="weekly-sector-focus" className="mt-1 text-sm font-semibold">거래가 집중된 섹터</h3>
             <div className="mt-2 grid gap-4 sm:grid-cols-2">
@@ -190,7 +191,7 @@ export function WeeklyMarketSummary() {
             </div>
           </section>
 
-          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-active-stocks">
+          <section aria-labelledby="weekly-active-stocks">
             <div className="text-[11px] font-semibold text-muted-foreground">사실</div>
             <h3 id="weekly-active-stocks" className="mt-1 mb-2 text-sm font-semibold">
               거래대금 증가 종목
@@ -215,20 +216,22 @@ export function WeeklyMarketSummary() {
               ))}
             </div>
           </section>
+          </div>
 
           <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-evidence">
             <div className="text-[11px] font-semibold text-muted-foreground">사실</div>
             <h3 id="weekly-evidence" className="mt-1 text-sm font-semibold">변화의 근거</h3>
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              <Metric label="주간 일평균 거래대금" value={fmtMoney(current.market.averageDollarVolume / 1_000_000)} />
-              <Metric
-                label="직전 주 마지막 거래일 대비"
-                value={current.market.lastDayVolumeChange == null ? "비교 자료 없음" : `${fmtPct(current.market.lastDayVolumeChange, 1)} 전일 대비`}
-                tone={current.market.lastDayVolumeChange ?? 0}
-              />
-              <Metric label="상승 종목 비중" value={current.market.advancingShare == null ? "-" : `${current.market.advancingShare.toFixed(1)}%`} />
-            </div>
-            <div className="mt-4">
+            <div className="mt-3 grid items-start gap-4 lg:grid-cols-[minmax(220px,0.7fr)_minmax(0,1.3fr)]">
+              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <Metric label="주간 일평균 거래대금" value={fmtMoney(current.market.averageDollarVolume / 1_000_000)} />
+                <Metric
+                  label="직전 주 마지막 거래일 대비"
+                  value={current.market.lastDayVolumeChange == null ? "비교 자료 없음" : `${fmtPct(current.market.lastDayVolumeChange, 1)} 전일 대비`}
+                  tone={current.market.lastDayVolumeChange ?? 0}
+                />
+                <Metric label="상승 종목 비중" value={current.market.advancingShare == null ? "-" : `${current.market.advancingShare.toFixed(1)}%`} />
+              </div>
+              <div>
               <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold">
                 <BarChart3 className="h-4 w-4 text-brand" />
                 미국 주요 지수
@@ -245,9 +248,11 @@ export function WeeklyMarketSummary() {
                 ))}
               </div>
             </div>
+            </div>
           </section>
 
-          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-more-checks">
+          <div className="mt-5 grid items-start gap-5 border-t border-border/70 pt-4 lg:grid-cols-2">
+          <section aria-labelledby="weekly-more-checks">
             <h3 id="weekly-more-checks" className="text-sm font-semibold">필요한 경우 내부자·실적·IPO 확인</h3>
             <div className="mt-2 flex flex-wrap gap-2">
               <a href="/insider/" className="inline-flex min-h-11 items-center rounded-md border px-3 text-sm font-semibold hover:border-brand/40">내부자 거래</a>
@@ -256,7 +261,7 @@ export function WeeklyMarketSummary() {
             </div>
           </section>
 
-          <section className="mt-5 border-t border-border/70 pt-4" aria-labelledby="weekly-next-indicators">
+          <section aria-labelledby="weekly-next-indicators">
             <h3 id="weekly-next-indicators" className="text-sm font-semibold">다음 주 확인할 지표</h3>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
               <li>확대·축소 섹터의 거래대금 점유율이 이어지는지</li>
@@ -264,6 +269,7 @@ export function WeeklyMarketSummary() {
               <li>상승 종목 비중과 주요 지수 변화가 같은 방향인지</li>
             </ul>
           </section>
+          </div>
 
           <footer className="mt-6 border-t border-border/70 pt-3" aria-labelledby="weekly-limitations">
             <div className="text-[11px] font-semibold text-muted-foreground">데이터 안내</div>

@@ -304,7 +304,7 @@ function TodayPage() {
             ＋
           </span>
         </summary>
-        <div className="today-secondary-content gap-5 lg:grid lg:grid-cols-2">
+        <div className="today-secondary-content gap-5 xl:grid xl:grid-cols-[minmax(0,1.45fr)_minmax(360px,0.55fr)]">
           <WeeklyMarketSummary />
           <EventCalendar
             dataVersion={[
