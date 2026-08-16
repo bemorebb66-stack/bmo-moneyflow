@@ -52,13 +52,9 @@ export function SiteHeader({
         <Link
           to="/"
           aria-label="BVT Money Flow 홈"
-          className="flex shrink-0 items-center gap-1.5 text-brand sm:gap-2"
+          className="flex shrink-0 items-center"
         >
-          <BrandMark className="h-7 w-10 sm:h-8 sm:w-12" />
-          <span className="whitespace-nowrap text-sm font-semibold tracking-tight text-foreground">
-            <span className="sm:hidden">BVT</span>
-            <span className="hidden sm:inline">BVT Money Flow</span>
-          </span>
+          <BrandMark className="h-10 w-32 rounded-md bg-white px-1.5 sm:h-12 sm:w-44 sm:px-2" />
         </Link>
 
         <nav

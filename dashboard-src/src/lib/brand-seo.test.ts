@@ -52,6 +52,16 @@ describe("BVT Money Flow brand, briefing, and SEO", () => {
     expect(generator).toContain('const siteUrl = "https://www.bvtmoneyflow.xyz"');
   });
 
+  it("uses the supplied BVT Money Flow logo in the site header", async () => {
+    const [brandMark, logo] = await Promise.all([
+      readFile(resolve(dashboardRoot, "src/components/brand-mark.tsx"), "utf8"),
+      readFile(resolve(dashboardRoot, "public/bvt-money-flow-logo.png")),
+    ]);
+
+    expect(brandMark).toContain('src="/bvt-money-flow-logo.png"');
+    expect(logo.byteLength).toBeGreaterThan(100_000);
+  });
+
   it("does not enable telemetry without a manually configured endpoint", async () => {
     const env = await readFile(resolve(dashboardRoot, ".env.example"), "utf8");
     expect(env).toContain("VITE_TELEMETRY_ENABLED=false");
