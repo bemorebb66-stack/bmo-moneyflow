@@ -299,12 +299,12 @@ function TodayPage() {
         className="today-secondary mt-5 rounded-xl border border-border/80 bg-surface px-4 py-3 lg:border-0 lg:bg-transparent lg:p-0"
       >
         <summary className="flex min-h-11 cursor-pointer items-center justify-between text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          주간 요약과 주요 일정 보기
+          주간 요약·이벤트 캘린더 보기
           <span aria-hidden className="text-brand">
             ＋
           </span>
         </summary>
-        <div className="today-secondary-content gap-5 xl:grid xl:grid-cols-[minmax(0,1.45fr)_minmax(360px,0.55fr)]">
+        <div className="today-secondary-content space-y-5">
           <WeeklyMarketSummary />
           <EventCalendar
             dataVersion={[
