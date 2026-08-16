@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-11T04:45:21.840306+00:00",
-    "count": 46
+    "generatedAt": "2026-08-15T04:03:52.093966+00:00",
+    "count": 53
   },
   "pendingTrades": [
     {
@@ -98,6 +98,33 @@
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
+    },
+    {
+      "ticker": "TISI",
+      "company": "TEAM INC",
+      "filer": "Corre Partners Management, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1604326,
+      "price": 35.5,
+      "txDate": "2026-08-06",
+      "filedDate": "2026-08-10",
+      "accession": "0000899140-26-000795",
+      "sourceAccessions": [
+        "0000899140-26-000795"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1751529/000089914026000795/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "16.920000076293945",
+          "marketHigh": "17.110000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "TYG",
@@ -321,6 +348,60 @@
       "severity": "review"
     },
     {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 73455,
+      "price": 20.4195,
+      "txDate": "2026-08-07",
+      "filedDate": "2026-08-11",
+      "accession": "0000937797-26-000019",
+      "sourceAccessions": [
+        "0000937797-26-000019"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000019/wk-form4_1786480060.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.460000038146973",
+          "marketHigh": "8.680000305175781"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 15749,
+      "price": 20.4035,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-11",
+      "accession": "0000937797-26-000019",
+      "sourceAccessions": [
+        "0000937797-26-000019"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000019/wk-form4_1786480060.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.265000343322754",
+          "marketHigh": "8.65999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "STFS",
       "company": "Star Fashion Culture Holdings Ltd",
       "filer": "ZHANG PINGTING",
@@ -423,6 +504,33 @@
           "severity": "critical",
           "marketLow": "185.2899932861328",
           "marketHigh": "186.9499969482422"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LITB",
+      "company": "LightInTheBox Holding Co., Ltd.",
+      "filer": "He Jian",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 4254553,
+      "price": 0.2567,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-11",
+      "accession": "0001104659-26-094063",
+      "sourceAccessions": [
+        "0001104659-26-094063"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2124627/000110465926094063/tm2622889-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.8299999237060547",
+          "marketHigh": "3.119999885559082"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1132,6 +1240,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "APHP",
+      "company": "American Picture House Corp",
+      "filer": "MacGregor Bannor Michael",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 1000000,
+      "price": 0.05,
+      "txDate": "2026-08-06",
+      "filedDate": "2026-08-12",
+      "accession": "0001493152-26-037399",
+      "sourceAccessions": [
+        "0001493152-26-037399"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1771995/000149315226037399/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.11999999731779099",
+          "marketHigh": "0.11999999731779099"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "APHP",
+      "company": "American Picture House Corp",
+      "filer": "MacGregor Bannor Michael",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 100000,
+      "price": 0.05,
+      "txDate": "2026-08-06",
+      "filedDate": "2026-08-12",
+      "accession": "0001493152-26-037399",
+      "sourceAccessions": [
+        "0001493152-26-037399"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1771995/000149315226037399/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.11999999731779099",
+          "marketHigh": "0.11999999731779099"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "CAMP",
       "company": "Camp4 Therapeutics Corp",
       "filer": "Young Richard A",
@@ -1180,6 +1342,33 @@
           "severity": "critical",
           "marketLow": "2.9600000381469727",
           "marketHigh": "3.440000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Wei Che-Chia",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 152,
+      "price": 73.31,
+      "txDate": "2026-08-07",
+      "filedDate": "2026-08-10",
+      "accession": "0001046179-26-000521",
+      "sourceAccessions": [
+        "0001046179-26-000521"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000521/wk-form4_1786363133.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "413.1000061035156",
+          "marketHigh": "424.7900085449219"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",

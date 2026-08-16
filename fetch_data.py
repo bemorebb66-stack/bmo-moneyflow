@@ -679,6 +679,17 @@ def main():
     if not stocks:
         sys.exit("수집된 종목이 없습니다")
 
+    # A transient Yahoo chunk failure must never replace a healthy universe with
+    # a much smaller payload during the afternoon delayed refresh.
+    previous_payload = load_json(DATA_PATH, {})
+    previous_count = int(previous_payload.get("count") or len(previous_payload.get("stocks", [])))
+    minimum_safe_count = math.floor(previous_count * 0.95)
+    if previous_count >= 1000 and len(stocks) < minimum_safe_count:
+        sys.exit(
+            "종목 수 급감으로 기존 데이터를 보호합니다: "
+            f"{previous_count}개 -> {len(stocks)}개 (최소 {minimum_safe_count}개 필요)"
+        )
+
     indices = []
     for symbol in MARKET_INDEX_SYMBOLS:
         try:
