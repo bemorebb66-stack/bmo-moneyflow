@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-15T04:03:52.093966+00:00",
-    "count": 53
+    "generatedAt": "2026-08-18T04:06:07.726499+00:00",
+    "count": 52
   },
   "pendingTrades": [
     {
@@ -537,6 +537,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "MGTI",
+      "company": "MGT CAPITAL INVESTMENTS, INC.",
+      "filer": "Kittrell Grady",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 3250000,
+      "price": 0.1,
+      "txDate": "2026-07-31",
+      "filedDate": "2026-08-04",
+      "accession": "0001493152-26-036046",
+      "sourceAccessions": [
+        "0001493152-26-036046"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2044627/000149315226036046/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.0019000000320374966",
+          "marketHigh": "0.003000000026077032"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Tien Bor-Zen",
@@ -1017,60 +1044,6 @@
           "severity": "critical",
           "marketLow": "10.899999618530273",
           "marketHigh": "11.270000457763672"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "CRESY",
-      "company": "CRESUD INC",
-      "filer": "Elsztain Fernando Adrian",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 15000,
-      "price": 1.13,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-30",
-      "accession": "0001654954-26-007030",
-      "sourceAccessions": [
-        "0001654954-26-007030"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000165495426007030/section16.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "10.609999656677246",
-          "marketHigh": "11.369999885559082"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "CRESY",
-      "company": "CRESUD INC",
-      "filer": "Elsztain Fernando Adrian",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 20000,
-      "price": 1.17,
-      "txDate": "2026-07-22",
-      "filedDate": "2026-07-30",
-      "accession": "0001654954-26-007030",
-      "sourceAccessions": [
-        "0001654954-26-007030"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000165495426007030/section16.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "11.180000305175781",
-          "marketHigh": "11.779999732971191"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
