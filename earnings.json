@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-17T23:56:55.883534+00:00",
+    "generatedAt": "2026-08-18T13:37:45.224480+00:00",
     "status": "ok",
-    "from": "2026-07-03",
-    "to": "2027-02-13",
-    "count": 2509,
+    "from": "2026-07-04",
+    "to": "2027-02-14",
+    "count": 2508,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 584,
-      "supplementalTickerCount": 153,
-      "supplementalEventCount": 379,
+      "supplementalTickerCount": 150,
+      "supplementalEventCount": 376,
       "themes": [
         "양자컴퓨팅",
         "디지털자산"
@@ -5449,18 +5449,6 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
-      "ticker": "FDXF",
-      "company": "페덱스 프레이트 홀딩 컴퍼니",
-      "date": "2026-08-05",
-      "quarter": 1,
-      "year": 2027,
-      "epsEstimate": 1.1416,
-      "revenueEstimate": 2364375810.0,
-      "status": "awaiting-results",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
       "ticker": "GPN",
       "company": "글로벌 페이먼츠",
       "date": "2026-08-05",
@@ -6574,9 +6562,11 @@
       "hour": "bmo",
       "quarter": 2,
       "year": 2027,
+      "epsActual": 4.92,
       "epsEstimate": 4.8762,
+      "revenueActual": 47861000000.0,
       "revenueEstimate": 48694759166.0,
-      "status": "scheduled",
+      "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
@@ -7089,18 +7079,6 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
-      "ticker": "ORCL",
-      "company": "오라클",
-      "date": "2026-09-07",
-      "quarter": 1,
-      "year": 2027,
-      "epsEstimate": 1.7745,
-      "revenueEstimate": 19522037203.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
       "ticker": "COO",
       "company": "쿠퍼 컴퍼니스",
       "date": "2026-09-09",
@@ -7146,6 +7124,18 @@
       "year": 2026,
       "epsEstimate": 6.1999,
       "revenueEstimate": 6822313594.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "ORCL",
+      "company": "오라클",
+      "date": "2026-09-14",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.7745,
+      "revenueEstimate": 19522037203.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -7202,7 +7192,7 @@
     {
       "ticker": "LEN",
       "company": "레나 Class A",
-      "date": "2026-09-16",
+      "date": "2026-09-17",
       "hour": "amc",
       "quarter": 3,
       "year": 2026,
@@ -8184,8 +8174,8 @@
       "hour": "bmo",
       "quarter": 3,
       "year": 2026,
-      "epsEstimate": 2.415,
-      "revenueEstimate": 3403134218.0,
+      "epsEstimate": 2.3728,
+      "revenueEstimate": 3396862047.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
