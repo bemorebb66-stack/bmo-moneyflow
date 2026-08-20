@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-19T04:12:48.905471+00:00",
-    "count": 75
+    "generatedAt": "2026-08-20T04:09:34.743249+00:00",
+    "count": 69
   },
   "pendingTrades": [
     {
@@ -1492,60 +1492,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "CRESY",
-      "company": "CRESUD INC",
-      "filer": "Elsztain Fernando Adrian",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 15000,
-      "price": 1.13,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-30",
-      "accession": "0001654954-26-007030",
-      "sourceAccessions": [
-        "0001654954-26-007030"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000165495426007030/section16.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "10.609999656677246",
-          "marketHigh": "11.369999885559082"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "CRESY",
-      "company": "CRESUD INC",
-      "filer": "Elsztain Fernando Adrian",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 20000,
-      "price": 1.17,
-      "txDate": "2026-07-22",
-      "filedDate": "2026-07-30",
-      "accession": "0001654954-26-007030",
-      "sourceAccessions": [
-        "0001654954-26-007030"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000165495426007030/section16.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "11.180000305175781",
-          "marketHigh": "11.779999732971191"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "DEL CASTILLO CACHO GUILLERMO",
@@ -1621,33 +1567,6 @@
           "severity": "critical",
           "marketLow": "4.599999904632568",
           "marketHigh": "6.400000095367432"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Bagga Atul Madan Mohan",
-      "role": "Chief Financial Officer",
-      "txType": "매도",
-      "shares": 36426,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048918",
-      "sourceAccessions": [
-        "0001628280-26-048918"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2129766/000162828026048918/wk-form4_1784596580.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999008178711",
-          "marketHigh": "13.106999397277832"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1817,33 +1736,6 @@
       "severity": "review"
     },
     {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Paszterko John Andrew",
-      "role": "Chief Operating Officer",
-      "txType": "매도",
-      "shares": 31034,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048911",
-      "sourceAccessions": [
-        "0001628280-26-048911"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1819404/000162828026048911/wk-form4_1784596182.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999008178711",
-          "marketHigh": "13.106999397277832"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "ZNB",
       "company": "Zeta Network Group",
       "filer": "HRT FINANCIAL LP",
@@ -1871,33 +1763,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Swenson Christopher C.",
-      "role": "Chief Legal Officer",
-      "txType": "매도",
-      "shares": 22707,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048909",
-      "sourceAccessions": [
-        "0001628280-26-048909"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1819404/000162828026048909/wk-form4_1784596131.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999008178711",
-          "marketHigh": "13.106999397277832"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Wei Che-Chia",
@@ -1919,33 +1784,6 @@
           "severity": "critical",
           "marketLow": "413.1000061035156",
           "marketHigh": "424.7900085449219"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Callaway Kyle",
-      "role": "Chief Accounting Officer",
-      "txType": "매도",
-      "shares": 13377,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048910",
-      "sourceAccessions": [
-        "0001628280-26-048910"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2145476/000162828026048910/wk-form4_1784596159.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999008178711",
-          "marketHigh": "13.106999397277832"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
