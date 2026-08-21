@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-21T00:05:34.223255+00:00",
+    "generatedAt": "2026-08-21T13:40:27.224124+00:00",
     "status": "ok",
     "from": "2026-07-07",
     "to": "2027-02-17",
@@ -11,9 +11,9 @@
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 602,
-      "supplementalTickerCount": 147,
-      "supplementalEventCount": 382,
+      "trackedUniverseCount": 603,
+      "supplementalTickerCount": 154,
+      "supplementalEventCount": 395,
       "themes": [
         "양자컴퓨팅",
         "디지털자산"
@@ -6918,6 +6918,7 @@
       "ticker": "DG",
       "company": "달러 제너럴",
       "date": "2026-08-27",
+      "hour": "bmo",
       "quarter": 2,
       "year": 2027,
       "epsEstimate": 2.0559,
@@ -7190,18 +7191,6 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
-      "ticker": "DRI",
-      "company": "다든 레스토랑",
-      "date": "2026-09-16",
-      "quarter": 1,
-      "year": 2027,
-      "epsEstimate": 2.074,
-      "revenueEstimate": 3238847173.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
       "ticker": "FDS",
       "company": "팩트셋 리서치 시스템즈",
       "date": "2026-09-16",
@@ -7222,6 +7211,18 @@
       "year": 2027,
       "epsEstimate": 4.0486,
       "revenueEstimate": 22592632531.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "DRI",
+      "company": "다든 레스토랑",
+      "date": "2026-09-17",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 2.074,
+      "revenueEstimate": 3238847173.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
