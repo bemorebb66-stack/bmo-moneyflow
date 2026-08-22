@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-21T13:40:27.224124+00:00",
+    "generatedAt": "2026-08-21T23:57:28.486335+00:00",
     "status": "ok",
     "from": "2026-07-07",
     "to": "2027-02-17",
-    "count": 2770,
+    "count": 2771,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
-      "supplementalTickerCount": 154,
-      "supplementalEventCount": 395,
+      "trackedUniverseCount": 591,
+      "supplementalTickerCount": 152,
+      "supplementalEventCount": 386,
       "themes": [
         "양자컴퓨팅",
         "디지털자산"
@@ -6451,6 +6451,19 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
+      "ticker": "TECH",
+      "company": "바이오-테크네",
+      "date": "2026-08-11",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.5295,
+      "revenueEstimate": 320972855.0,
+      "status": "awaiting-results",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
       "ticker": "COHR",
       "company": "코히런트",
       "date": "2026-08-12",
@@ -6869,6 +6882,7 @@
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2026-08-26",
+      "hour": "amc",
       "quarter": 3,
       "year": 2026,
       "epsEstimate": 3.7394,
@@ -6970,6 +6984,7 @@
       "ticker": "ULTA",
       "company": "울타 뷰티",
       "date": "2026-08-27",
+      "hour": "amc",
       "quarter": 2,
       "year": 2027,
       "epsEstimate": 6.2909,
@@ -23996,7 +24011,7 @@
       "epsEstimate": 0.3381,
       "revenueEstimate": 257956806.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -24799,7 +24814,7 @@
       "epsEstimate": 3.4924,
       "revenueEstimate": 835786276.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -26111,7 +26126,7 @@
       "epsEstimate": -2.2746,
       "revenueEstimate": 157488000.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -31446,7 +31461,7 @@
       "epsEstimate": 0.1483,
       "revenueEstimate": 1158087614.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -31483,7 +31498,7 @@
       "epsEstimate": 0.3468,
       "revenueEstimate": 794609925.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -32043,7 +32058,7 @@
       "epsEstimate": 0.1894,
       "revenueEstimate": 391484731.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -32788,7 +32803,7 @@
       "epsEstimate": 0.942,
       "revenueEstimate": 4417228768.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -33000,7 +33015,7 @@
       "epsEstimate": 1.9867,
       "revenueEstimate": 138802620.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -35119,7 +35134,7 @@
       "epsEstimate": 1.855,
       "revenueEstimate": 476645796.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -35635,7 +35650,7 @@
       "epsEstimate": 1.9444,
       "revenueEstimate": 640818740.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
