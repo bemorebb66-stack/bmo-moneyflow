@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T09:31:35.746Z",
+  "generatedAt": "2026-08-25T13:11:40.041Z",
   "status": "ok",
-  "freshness": "unknown",
-  "delayedSources": [],
+  "freshness": "delayed",
+  "delayedSources": [
+    "market",
+    "insider",
+    "lockup",
+    "earnings",
+    "economic",
+    "news",
+    "weekly",
+    "replayManifest"
+  ],
   "unknownFreshnessSources": [
     "history",
     "stockDirectory"
@@ -18,9 +27,9 @@
     "market": {
       "path": "data.json",
       "updatedAt": "2026-08-14 23:54 UTC",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "f5e56bf5b25167cd622b41ddec6d11f1b214c9b714f7dd7656c809f56fa65677",
-      "tradingDaysBehind": 0
+      "tradingDaysBehind": 6
     },
     "history": {
       "path": "history.json",
@@ -31,37 +40,37 @@
     "insider": {
       "path": "insider/data/insider.json",
       "updatedAt": "2026-08-15T03:44:53.550Z",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "a29177e7d04d5d04c9cf4759ccabead771ea199d54b547eaab8ac3c29fcc0b2e"
     },
     "lockup": {
       "path": "ipo-lockup/data/lockup.json",
       "updatedAt": "2026-08-15T03:48:21.970Z",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "cacf4931d17f01e060277115fd68c442e46915fe9e22b8b06e10ec90fb72f6cf"
     },
     "earnings": {
       "path": "earnings.json",
       "updatedAt": "2026-08-14T23:56:56.466069+00:00",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "b105d60022025105ce5bd931db19a1204418a397f96b63a174f18ea4323b6a6a"
     },
     "economic": {
       "path": "economic_events.json",
       "updatedAt": "2026-08-14 23:54 UTC",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "c82ec488c8a32e2dc6c93d0eef3e16e4102808f806676bee777d3c90440ba912"
     },
     "news": {
       "path": "news.json",
       "updatedAt": "2026-08-15T00:02:07.850635+00:00",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "506e305dd473dcda42a9f371c715187f41e7b9122d07eeedd2f578835184628f"
     },
     "weekly": {
       "path": "weekly_summary.json",
       "updatedAt": "2026-08-15T00:03:22+00:00",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "78988a1ee7c49e6b8c90c51173fa85b45afc02519770d049e89628b5e7787b06"
     },
     "stockDirectory": {
@@ -73,9 +82,9 @@
     "replayManifest": {
       "path": "replay_data/manifest.json",
       "updatedAt": "2026-08-15T00:03:15+00:00",
-      "freshness": "normal",
+      "freshness": "delayed",
       "sha256": "e05d5a93a6e90c79706f517180ef82996160d54cd784a4e324b0ef3600510744",
-      "tradingDaysBehind": 0
+      "tradingDaysBehind": 6
     }
   },
   "checks": {
