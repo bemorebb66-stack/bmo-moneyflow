@@ -10,6 +10,7 @@ MANUAL_INPUT = ROOT / "earnings_manual.json"
 FINNHUB_URL = "https://finnhub.io/api/v1/calendar/earnings"
 FINNHUB_REPORTED_FINANCIALS_URL = "https://finnhub.io/api/v1/stock/financials-reported"
 FINNHUB_COMPANY_EARNINGS_URL = "https://finnhub.io/api/v1/stock/earnings"
+YAHOO_FINANCIALS_URL = "https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/{ticker}"
 CORE_INDICES = {"S&P 500", "Nasdaq 100"}
 THEME_TICKERS = {
     "IONQ",
@@ -286,6 +287,59 @@ def normalize_company_earnings(rows, ticker, companies, universe, cutoff):
     return events
 
 
+def normalize_yahoo_financials(payload, ticker, companies, universe, cutoff):
+    values_by_date = {}
+    metric_fields = {
+        "quarterlyTotalRevenue": "revenueActual",
+        "quarterlyNetIncome": "netIncomeActual",
+    }
+    result = payload.get("timeseries", {}).get("result", []) if isinstance(payload, dict) else []
+    for series in result:
+        for source_field, target_field in metric_fields.items():
+            for point in series.get(source_field, []) or []:
+                event_date = str(point.get("asOfDate") or "")[:10]
+                value = number_or_none((point.get("reportedValue") or {}).get("raw"))
+                if event_date and event_date >= cutoff.isoformat() and value is not None:
+                    values_by_date.setdefault(event_date, {})[target_field] = value
+    events = []
+    for event_date, values in values_by_date.items():
+        month = int(event_date[5:7])
+        events.append(
+            {
+                "ticker": ticker,
+                "company": companies[ticker],
+                "date": event_date,
+                "hour": "",
+                "quarter": ((month - 1) // 3) + 1,
+                "year": int(event_date[:4]),
+                **values,
+                "status": "reported",
+                "trackingTier": universe.get(ticker, "calendar"),
+                "source": "Yahoo Finance quarterly fundamentals",
+            }
+        )
+    return sorted(events, key=lambda row: row["date"])
+
+
+def merge_company_financial_history(earnings_rows, financial_rows):
+    earnings = sorted(earnings_rows, key=lambda row: row["date"], reverse=True)
+    financials = sorted(financial_rows, key=lambda row: row["date"], reverse=True)
+    merged = []
+    for index, row in enumerate(earnings):
+        if index < len(financials):
+            actuals = {
+                key: value
+                for key, value in financials[index].items()
+                if key in {"revenueActual", "netIncomeActual"} and value is not None
+            }
+            merged.append({**row, **actuals})
+        else:
+            merged.append(row)
+    if not earnings:
+        merged.extend(financials)
+    return sorted(merged, key=lambda row: row["date"])
+
+
 def merge_reported_history(calendar_events, reported_events):
     reported_by_period = {
         (row.get("ticker"), row.get("year"), row.get("quarter")): row
@@ -391,30 +445,36 @@ def main():
         symbol_rows = []
         try:
             time.sleep(1.02)
-            symbol_response = requests.get(
-                FINNHUB_REPORTED_FINANCIALS_URL,
-                params={"symbol": ticker, "freq": "quarterly", "token": api_key},
+            earnings_response = requests.get(
+                FINNHUB_COMPANY_EARNINGS_URL,
+                params={"symbol": ticker, "limit": MAX_REPORTED_QUARTERS, "token": api_key},
                 timeout=45,
             )
-            symbol_response.raise_for_status()
-            symbol_rows = normalize_reported_financials(
-                symbol_response.json(), ticker, companies, universe, history_cutoff
+            earnings_response.raise_for_status()
+            symbol_rows = normalize_company_earnings(
+                earnings_response.json(), ticker, companies, universe, history_cutoff
             )
         except Exception as error:
-            print(f"{ticker}: reported financials lookup failed: {error}")
-        if not symbol_rows:
-            try:
-                fallback_response = requests.get(
-                    FINNHUB_COMPANY_EARNINGS_URL,
-                    params={"symbol": ticker, "limit": MAX_REPORTED_QUARTERS, "token": api_key},
-                    timeout=45,
-                )
-                fallback_response.raise_for_status()
-                symbol_rows = normalize_company_earnings(
-                    fallback_response.json(), ticker, companies, universe, history_cutoff
-                )
-            except Exception as error:
-                print(f"{ticker}: company earnings fallback failed: {error}")
+            print(f"{ticker}: company earnings lookup failed: {error}")
+        try:
+            financial_response = requests.get(
+                YAHOO_FINANCIALS_URL.format(ticker=ticker),
+                params={
+                    "symbol": ticker,
+                    "type": "quarterlyTotalRevenue,quarterlyNetIncome",
+                    "period1": int(datetime.combine(history_cutoff, datetime.min.time(), tzinfo=timezone.utc).timestamp()),
+                    "period2": int(datetime.combine(today + timedelta(days=1), datetime.min.time(), tzinfo=timezone.utc).timestamp()),
+                },
+                headers={"User-Agent": "Mozilla/5.0"},
+                timeout=45,
+            )
+            financial_response.raise_for_status()
+            financial_rows = normalize_yahoo_financials(
+                financial_response.json(), ticker, companies, universe, history_cutoff
+            )
+            symbol_rows = merge_company_financial_history(symbol_rows, financial_rows)
+        except Exception as error:
+            print(f"{ticker}: quarterly financials lookup failed: {error}")
         supplemental_hits += len(symbol_rows)
         reported_rows.extend(symbol_rows)
 

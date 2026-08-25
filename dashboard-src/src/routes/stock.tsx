@@ -844,7 +844,7 @@ function StockDetail({
                   발표된 분기 실적 추이
                 </h2>
                 <p className="text-[11px] text-muted-foreground">
-                  최근 발표된 실제 매출·순이익·순이익률 · Finnhub·기업 IR 기준
+                  최근 발표된 실제 매출·순이익·순이익률 · Yahoo Finance·Finnhub·기업 IR 기준
                 </p>
                 {earningsTier && (
                   <p className="mt-1 text-[10px] font-medium text-brand">

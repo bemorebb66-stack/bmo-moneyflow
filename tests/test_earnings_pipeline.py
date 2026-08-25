@@ -9,8 +9,10 @@ from fetch_earnings import (
     merge_with_existing,
     limit_reported_history,
     merge_reported_history,
+    merge_company_financial_history,
     normalize_event,
     normalize_reported_financials,
+    normalize_yahoo_financials,
     select_supplemental_tickers,
 )
 
@@ -187,6 +189,36 @@ class EarningsPipelineTests(unittest.TestCase):
         self.assertEqual(len(merged), 1)
         self.assertEqual(merged[0]["date"], "2026-08-26")
         self.assertEqual(merged[0]["revenueActual"], 13_900_000_000)
+
+    def test_yahoo_quarterly_financials_are_normalized_and_aligned_by_recency(self) -> None:
+        payload = {
+            "timeseries": {
+                "result": [
+                    {
+                        "quarterlyTotalRevenue": [
+                            {"asOfDate": "2026-04-30", "reportedValue": {"raw": 13_900_000_000}}
+                        ]
+                    },
+                    {
+                        "quarterlyNetIncome": [
+                            {"asOfDate": "2026-04-30", "reportedValue": {"raw": 10_700_000_000}}
+                        ]
+                    },
+                ]
+            }
+        }
+        financials = normalize_yahoo_financials(
+            payload,
+            "NVDA",
+            {"NVDA": "엔비디아"},
+            {"NVDA": "core-index"},
+            date(2025, 1, 1),
+        )
+        earnings = [{"ticker": "NVDA", "date": "2026-06-30", "year": 2026, "quarter": 2, "epsActual": 1.23}]
+        merged = merge_company_financial_history(earnings, financials)
+        self.assertEqual(merged[0]["date"], "2026-06-30")
+        self.assertEqual(merged[0]["revenueActual"], 13_900_000_000)
+        self.assertEqual(merged[0]["netIncomeActual"], 10_700_000_000)
 
 
 if __name__ == "__main__":
