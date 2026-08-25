@@ -7,6 +7,7 @@ from fetch_earnings import (
     build_earnings_universe,
     merge_events,
     merge_with_existing,
+    limit_reported_history,
     normalize_event,
     select_supplemental_tickers,
 )
@@ -131,6 +132,22 @@ class EarningsPipelineTests(unittest.TestCase):
         ]
         merged = merge_with_existing(existing, fresh, date(2026, 7, 30))
         self.assertEqual([row["date"] for row in merged], ["2026-08-04"])
+
+    def test_reported_history_is_limited_per_ticker_without_dropping_schedule(self) -> None:
+        events = [
+            {
+                "ticker": "AAA",
+                "date": f"2025-{month:02d}-01",
+                "epsActual": float(month),
+            }
+            for month in range(1, 7)
+        ] + [{"ticker": "AAA", "date": "2026-09-01", "status": "scheduled"}]
+        limited = limit_reported_history(events, max_quarters=4)
+        self.assertEqual(
+            len([row for row in limited if row.get("epsActual") is not None]),
+            4,
+        )
+        self.assertTrue(any(row.get("status") == "scheduled" for row in limited))
 
 
 if __name__ == "__main__":

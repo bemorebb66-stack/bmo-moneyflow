@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import {
   Bar,
-  BarChart,
   CartesianGrid,
   ComposedChart,
   Legend,
@@ -377,8 +376,8 @@ function StockDetail({
       row.date < earningsReferenceDate,
   );
   const recentEarnings = earnings
-    .filter((row) => row.epsActual != null)
-    .slice(0, 4);
+    .filter((row) => row.epsActual != null || row.revenueActual != null)
+    .slice(0, 8);
   const earningsTier = earnings.find((row) => row.trackingTier)?.trackingTier;
   const sectorRow = LIVE_MARKET_DATA.sector["1d"].find(
     (row) => row.name === stock.sector,
@@ -837,10 +836,10 @@ function StockDetail({
               <div>
                 <div className="text-xs font-semibold text-brand">실적</div>
                 <h2 className="mt-1 text-base font-semibold sm:text-lg">
-                  실적 발표와 예상치 비교
+                  발표된 분기 실적 추이
                 </h2>
                 <p className="text-[11px] text-muted-foreground">
-                  EPS·매출 실제치와 시장 예상치 · Finnhub·기업 IR 기준
+                  최근 발표된 실제 매출과 EPS · Finnhub·기업 IR 기준
                 </p>
                 {earningsTier && (
                   <p className="mt-1 text-[10px] font-medium text-brand">
@@ -871,7 +870,7 @@ function StockDetail({
             </div>
             {recentEarnings.length > 0 ? (
               <div>
-                <EarningsComparisonCharts
+                <ReportedEarningsChart
                   ticker={stock.ticker}
                   rows={recentEarnings}
                 />
@@ -1162,7 +1161,7 @@ function earningsTrackingLabel(
   return "실적 캘린더 추적";
 }
 
-function EarningsComparisonCharts({
+function ReportedEarningsChart({
   ticker,
   rows,
 }: {
@@ -1170,101 +1169,37 @@ function EarningsComparisonCharts({
   rows: typeof EARNINGS_ROWS;
 }) {
   const chartRows = [...rows].reverse().map((row) => ({
-    period: `${row.year ?? ""} Q${row.quarter ?? "-"}`.trim(),
+    period:
+      row.year && row.quarter
+        ? `${String(row.year).slice(-2)}년 ${row.quarter}Q`
+        : row.date.slice(2, 7).replace("-", "."),
     epsActual: row.epsActual,
-    epsEstimate: row.epsEstimate,
     revenueActual:
       row.revenueActual == null ? undefined : row.revenueActual / 1e9,
-    revenueEstimate:
-      row.revenueEstimate == null ? undefined : row.revenueEstimate / 1e9,
   }));
-  const chart = (
-    dataKeyActual: "epsActual" | "revenueActual",
-    dataKeyEstimate: "epsEstimate" | "revenueEstimate",
-    actualLabel: string,
-    estimateLabel: string,
-    formatter: (value: number) => string,
-  ) => (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={chartRows}
-        margin={{ top: 8, right: 8, bottom: 4, left: -12 }}
-      >
-        <CartesianGrid
-          strokeDasharray="3 3"
-          stroke="var(--color-border)"
-          opacity={0.55}
-        />
-        <XAxis
-          dataKey="period"
-          stroke="var(--color-muted-foreground)"
-          fontSize={10}
-          tickLine={false}
-          axisLine={false}
-        />
-        <YAxis
-          stroke="var(--color-muted-foreground)"
-          fontSize={10}
-          tickLine={false}
-          axisLine={false}
-          width={48}
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: "var(--color-popover)",
-            border: "1px solid var(--color-border)",
-            borderRadius: 8,
-            fontSize: 12,
-          }}
-          formatter={(value: number, name: string) => [formatter(value), name]}
-        />
-        <Legend wrapperStyle={{ fontSize: 10 }} />
-        <Bar
-          dataKey={dataKeyEstimate}
-          name={estimateLabel}
-          fill="var(--color-muted-foreground)"
-          fillOpacity={0.35}
-          radius={[2, 2, 0, 0]}
-        />
-        <Bar
-          dataKey={dataKeyActual}
-          name={actualLabel}
-          fill="var(--color-brand)"
-          fillOpacity={0.8}
-          radius={[2, 2, 0, 0]}
-        />
-      </BarChart>
-    </ResponsiveContainer>
-  );
   return (
     <div
-      className="grid gap-4 p-4 sm:p-5 lg:grid-cols-2"
+      className="p-4 sm:p-5"
       role="group"
-      aria-label={`${ticker} 최근 실적 실제치와 예상치 그래프`}
+      aria-label={`${ticker} 발표된 분기별 실제 매출과 EPS 그래프`}
     >
-      <div>
-        <h3 className="text-xs font-semibold">EPS 실제치 vs 예상치</h3>
-        <div className="mt-2 h-52">
-          {chart(
-            "epsActual",
-            "epsEstimate",
-            "EPS 실제",
-            "EPS 예상",
-            (value) => `$${value.toFixed(2)}`,
-          )}
-        </div>
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-xs font-semibold">분기별 발표 실적</h3>
+        <span className="text-[10px] text-muted-foreground">막대: 매출 · 선: EPS</span>
       </div>
-      <div>
-        <h3 className="text-xs font-semibold">매출 실제치 vs 예상치</h3>
-        <div className="mt-2 h-52">
-          {chart(
-            "revenueActual",
-            "revenueEstimate",
-            "매출 실제",
-            "매출 예상",
-            (value) => `$${value.toFixed(2)}B`,
-          )}
-        </div>
+      <div className="mt-3 h-[280px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart data={chartRows} margin={{ top: 8, right: 2, bottom: 4, left: -8 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.55} />
+            <XAxis dataKey="period" stroke="var(--color-muted-foreground)" fontSize={10} tickLine={false} axisLine={false} />
+            <YAxis yAxisId="revenue" stroke="var(--color-muted-foreground)" fontSize={10} tickLine={false} axisLine={false} width={46} tickFormatter={(value) => `$${value.toFixed(0)}B`} />
+            <YAxis yAxisId="eps" orientation="right" stroke="var(--color-warning)" fontSize={10} tickLine={false} axisLine={false} width={42} tickFormatter={(value) => `$${value.toFixed(1)}`} />
+            <Tooltip contentStyle={{ backgroundColor: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(value: number, name: string) => [name === "매출" ? `$${value.toFixed(2)}B` : `$${value.toFixed(2)}`, name]} />
+            <Legend wrapperStyle={{ fontSize: 10 }} />
+            <Bar yAxisId="revenue" dataKey="revenueActual" name="매출" fill="var(--color-brand)" fillOpacity={0.82} radius={[3, 3, 0, 0]} maxBarSize={42} />
+            <Line yAxisId="eps" type="monotone" dataKey="epsActual" name="EPS" stroke="var(--color-warning)" strokeWidth={2.25} dot={{ r: 3, fill: "var(--color-background)" }} connectNulls={false} />
+          </ComposedChart>
+        </ResponsiveContainer>
       </div>
       <p className="sr-only">
         그래프의 정확한 수치는 아래 실적 표에서 확인할 수 있습니다.

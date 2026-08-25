@@ -31,6 +31,8 @@ THEME_TICKERS = {
     "CORZ",
 }
 SUPPLEMENTAL_LIMIT = 160
+HISTORICAL_LOOKBACK_DAYS = 550
+MAX_REPORTED_QUARTERS = 8
 
 
 def number_or_none(value):
@@ -88,6 +90,22 @@ def merge_with_existing(existing_events, fresh_events, today):
         if has_result or (is_future and period not in fresh_periods):
             retained.append(row)
     return merge_events(retained, fresh_events)
+
+
+def limit_reported_history(events, max_quarters=MAX_REPORTED_QUARTERS):
+    reported_by_ticker = {}
+    retained = []
+    for row in sorted(events, key=lambda item: (item.get("date", ""), item.get("ticker", "")), reverse=True):
+        has_result = row.get("epsActual") is not None or row.get("revenueActual") is not None
+        if not has_result:
+            retained.append(row)
+            continue
+        ticker = str(row.get("ticker") or "").upper()
+        count = reported_by_ticker.get(ticker, 0)
+        if count < max_quarters:
+            retained.append(row)
+            reported_by_ticker[ticker] = count + 1
+    return sorted(retained, key=lambda row: (row.get("date", ""), row.get("ticker", "")))
 
 
 def build_earnings_universe(market):
@@ -245,7 +263,11 @@ def main():
     )
     supplemental_hits = 0
     for ticker in supplemental_tickers:
-        symbol_params = {**params, "symbol": ticker}
+        symbol_params = {
+            **params,
+            "from": (today - timedelta(days=HISTORICAL_LOOKBACK_DAYS)).isoformat(),
+            "symbol": ticker,
+        }
         try:
             time.sleep(1.02)
             symbol_response = requests.get(
@@ -271,7 +293,9 @@ def main():
         events.append(event)
 
     persisted_events = merge_with_existing(existing, events, today)
-    merged_events = merge_events(persisted_events, manual_events)
+    merged_events = limit_reported_history(
+        merge_events(persisted_events, manual_events)
+    )
     for event in merged_events:
         has_result = (
             event.get("epsActual") is not None
@@ -294,6 +318,8 @@ def main():
             "trackedUniverseCount": len(universe),
             "supplementalTickerCount": len(supplemental_tickers),
             "supplementalEventCount": supplemental_hits,
+            "reportedHistoryQuarters": MAX_REPORTED_QUARTERS,
+            "reportedHistoryLookbackDays": HISTORICAL_LOOKBACK_DAYS,
             "themes": ["양자컴퓨팅", "디지털자산"],
             "rotation": "거래대금 상위 우선 + 나머지 지수 종목 일별 순환",
         },

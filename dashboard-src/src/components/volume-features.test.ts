@@ -10,7 +10,9 @@ describe("volume trend product surfaces", () => {
     expect(stock).toContain('useState<"bar" | "line">("bar")');
     expect(stock).toContain('dataKey="ma5"');
     expect(stock).toContain('dataKey="ma20"');
-    expect(stock).toContain("EarningsComparisonCharts");
+    expect(stock).toContain("ReportedEarningsChart");
+    expect(stock).toContain('name="매출"');
+    expect(stock).toContain('name="EPS"');
   });
 
   it("exposes momentum and latest 20-day breakout in the scanner", async () => {
