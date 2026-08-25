@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A queued manual run must start from the latest data commit, not the
+          # older dispatch SHA, or earnings.json/news.json can conflict on push.
+          ref: main
 
       - uses: actions/setup-python@v5
         with:
