@@ -1009,6 +1009,8 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
           row.revenueActual == null ? undefined : Number(row.revenueActual),
         revenueEstimate:
           row.revenueEstimate == null ? undefined : Number(row.revenueEstimate),
+        netIncomeActual:
+          row.netIncomeActual == null ? undefined : Number(row.netIncomeActual),
         confirmed: row.confirmed === true,
         status: row.status || undefined,
         source: row.source || undefined,

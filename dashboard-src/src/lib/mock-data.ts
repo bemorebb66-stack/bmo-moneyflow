@@ -579,6 +579,7 @@ export interface EarningsRow {
   epsEstimate?: number;
   revenueActual?: number; // USD
   revenueEstimate?: number; // USD
+  netIncomeActual?: number; // USD
   confirmed?: boolean;
   status?: "scheduled" | "reported" | "awaiting-results";
   source?: string;

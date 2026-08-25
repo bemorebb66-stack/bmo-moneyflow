@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "earnings.json"
 MANUAL_INPUT = ROOT / "earnings_manual.json"
 FINNHUB_URL = "https://finnhub.io/api/v1/calendar/earnings"
+FINNHUB_REPORTED_FINANCIALS_URL = "https://finnhub.io/api/v1/stock/financials-reported"
+FINNHUB_COMPANY_EARNINGS_URL = "https://finnhub.io/api/v1/stock/earnings"
 CORE_INDICES = {"S&P 500", "Nasdaq 100"}
 THEME_TICKERS = {
     "IONQ",
@@ -33,6 +35,22 @@ THEME_TICKERS = {
 SUPPLEMENTAL_LIMIT = 160
 HISTORICAL_LOOKBACK_DAYS = 550
 MAX_REPORTED_QUARTERS = 8
+REVENUE_CONCEPTS = (
+    "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "Revenues",
+    "SalesRevenueNet",
+    "SalesRevenueGoodsNet",
+)
+NET_INCOME_CONCEPTS = (
+    "NetIncomeLoss",
+    "ProfitLoss",
+    "NetIncomeLossAvailableToCommonStockholdersBasic",
+)
+EPS_CONCEPTS = (
+    "EarningsPerShareDiluted",
+    "EarningsPerShareBasicAndDiluted",
+    "EarningsPerShareBasic",
+)
 
 
 def number_or_none(value):
@@ -193,6 +211,111 @@ def normalize_event(row, companies, universe):
     }
 
 
+def reported_metric(report, concepts):
+    rows = report.get("ic", []) if isinstance(report, dict) else []
+    by_concept = {
+        str(row.get("concept") or ""): row
+        for row in rows
+        if isinstance(row, dict)
+    }
+    for concept in concepts:
+        row = by_concept.get(concept)
+        value = number_or_none(row.get("value")) if row else None
+        if value is not None:
+            return value
+    return None
+
+
+def normalize_reported_financials(payload, ticker, companies, universe, cutoff):
+    events = []
+    for row in payload.get("data", []) if isinstance(payload, dict) else []:
+        year = row.get("year")
+        quarter = row.get("quarter")
+        event_date = str(
+            row.get("filedDate") or row.get("acceptedDate") or row.get("endDate") or ""
+        )[:10]
+        if not year or not quarter or not event_date or event_date < cutoff.isoformat():
+            continue
+        report = row.get("report") or {}
+        revenue = reported_metric(report, REVENUE_CONCEPTS)
+        net_income = reported_metric(report, NET_INCOME_CONCEPTS)
+        eps = reported_metric(report, EPS_CONCEPTS)
+        if revenue is None and net_income is None and eps is None:
+            continue
+        events.append(
+            {
+                "ticker": ticker,
+                "company": companies[ticker],
+                "date": event_date,
+                "hour": "",
+                "quarter": quarter,
+                "year": year,
+                "epsActual": eps,
+                "revenueActual": revenue,
+                "netIncomeActual": net_income,
+                "status": "reported",
+                "trackingTier": universe.get(ticker, "calendar"),
+                "source": "Finnhub Financials as Reported",
+            }
+        )
+    return events
+
+
+def normalize_company_earnings(rows, ticker, companies, universe, cutoff):
+    events = []
+    for row in rows if isinstance(rows, list) else []:
+        event_date = str(row.get("period") or "")[:10]
+        actual = number_or_none(row.get("actual"))
+        if not event_date or event_date < cutoff.isoformat() or actual is None:
+            continue
+        events.append(
+            {
+                "ticker": ticker,
+                "company": companies[ticker],
+                "date": event_date,
+                "hour": "",
+                "quarter": row.get("quarter"),
+                "year": row.get("year"),
+                "epsActual": actual,
+                "epsEstimate": number_or_none(row.get("estimate")),
+                "status": "reported",
+                "trackingTier": universe.get(ticker, "calendar"),
+                "source": "Finnhub Company Earnings",
+            }
+        )
+    return events
+
+
+def merge_reported_history(calendar_events, reported_events):
+    reported_by_period = {
+        (row.get("ticker"), row.get("year"), row.get("quarter")): row
+        for row in reported_events
+        if row.get("ticker") and row.get("year") and row.get("quarter")
+    }
+    merged = []
+    used_periods = set()
+    for row in calendar_events:
+        period = (row.get("ticker"), row.get("year"), row.get("quarter"))
+        reported = reported_by_period.get(period)
+        if reported:
+            actuals = {
+                key: value
+                for key, value in reported.items()
+                if key in {"epsActual", "revenueActual", "netIncomeActual"}
+                and value is not None
+            }
+            merged.append({**reported, **row, **actuals, "status": "reported"})
+            used_periods.add(period)
+        else:
+            merged.append(row)
+    merged.extend(
+        row
+        for row in reported_events
+        if (row.get("ticker"), row.get("year"), row.get("quarter")) not in used_periods
+    )
+    return merge_events([], merged)
+
+
 def write_output(events, source, params=None, coverage=None):
     dates = [row["date"] for row in events if row.get("date")]
     output = {
@@ -262,23 +385,38 @@ def main():
         priority_tickers=near_event_tickers,
     )
     supplemental_hits = 0
+    reported_rows = []
+    history_cutoff = today - timedelta(days=HISTORICAL_LOOKBACK_DAYS)
     for ticker in supplemental_tickers:
-        symbol_params = {
-            **params,
-            "from": (today - timedelta(days=HISTORICAL_LOOKBACK_DAYS)).isoformat(),
-            "symbol": ticker,
-        }
+        symbol_rows = []
         try:
             time.sleep(1.02)
             symbol_response = requests.get(
-                FINNHUB_URL, params=symbol_params, timeout=45
+                FINNHUB_REPORTED_FINANCIALS_URL,
+                params={"symbol": ticker, "freq": "quarterly", "token": api_key},
+                timeout=45,
             )
             symbol_response.raise_for_status()
-            symbol_rows = symbol_response.json().get("earningsCalendar", [])
-            supplemental_hits += len(symbol_rows)
-            rows.extend(symbol_rows)
+            symbol_rows = normalize_reported_financials(
+                symbol_response.json(), ticker, companies, universe, history_cutoff
+            )
         except Exception as error:
-            print(f"{ticker}: supplemental earnings lookup failed: {error}")
+            print(f"{ticker}: reported financials lookup failed: {error}")
+        if not symbol_rows:
+            try:
+                fallback_response = requests.get(
+                    FINNHUB_COMPANY_EARNINGS_URL,
+                    params={"symbol": ticker, "limit": MAX_REPORTED_QUARTERS, "token": api_key},
+                    timeout=45,
+                )
+                fallback_response.raise_for_status()
+                symbol_rows = normalize_company_earnings(
+                    fallback_response.json(), ticker, companies, universe, history_cutoff
+                )
+            except Exception as error:
+                print(f"{ticker}: company earnings fallback failed: {error}")
+        supplemental_hits += len(symbol_rows)
+        reported_rows.extend(symbol_rows)
 
     events = []
     seen = set()
@@ -292,6 +430,7 @@ def main():
         seen.add(key)
         events.append(event)
 
+    events = merge_reported_history(events, reported_rows)
     persisted_events = merge_with_existing(existing, events, today)
     merged_events = limit_reported_history(
         merge_events(persisted_events, manual_events)

@@ -376,7 +376,12 @@ function StockDetail({
       row.date < earningsReferenceDate,
   );
   const recentEarnings = earnings
-    .filter((row) => row.epsActual != null || row.revenueActual != null)
+    .filter(
+      (row) =>
+        row.epsActual != null ||
+        row.revenueActual != null ||
+        row.netIncomeActual != null,
+    )
     .slice(0, 8);
   const earningsTier = earnings.find((row) => row.trackingTier)?.trackingTier;
   const sectorRow = LIVE_MARKET_DATA.sector["1d"].find(
@@ -839,7 +844,7 @@ function StockDetail({
                   발표된 분기 실적 추이
                 </h2>
                 <p className="text-[11px] text-muted-foreground">
-                  최근 발표된 실제 매출과 EPS · Finnhub·기업 IR 기준
+                  최근 발표된 실제 매출·순이익·순이익률 · Finnhub·기업 IR 기준
                 </p>
                 {earningsTier && (
                   <p className="mt-1 text-[10px] font-medium text-brand">
@@ -1176,16 +1181,22 @@ function ReportedEarningsChart({
     epsActual: row.epsActual,
     revenueActual:
       row.revenueActual == null ? undefined : row.revenueActual / 1e9,
+    netIncomeActual:
+      row.netIncomeActual == null ? undefined : row.netIncomeActual / 1e9,
+    netMargin:
+      row.netIncomeActual == null || row.revenueActual == null || row.revenueActual === 0
+        ? undefined
+        : (row.netIncomeActual / row.revenueActual) * 100,
   }));
   return (
     <div
       className="p-4 sm:p-5"
       role="group"
-      aria-label={`${ticker} 발표된 분기별 실제 매출과 EPS 그래프`}
+      aria-label={`${ticker} 발표된 분기별 실제 매출, 순이익과 순이익률 그래프`}
     >
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-xs font-semibold">분기별 발표 실적</h3>
-        <span className="text-[10px] text-muted-foreground">막대: 매출 · 선: EPS</span>
+        <span className="text-[10px] text-muted-foreground">막대: 매출·순이익 · 선: 순이익률</span>
       </div>
       <div className="mt-3 h-[280px] w-full">
         <ResponsiveContainer width="100%" height="100%">
@@ -1193,11 +1204,12 @@ function ReportedEarningsChart({
             <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.55} />
             <XAxis dataKey="period" stroke="var(--color-muted-foreground)" fontSize={10} tickLine={false} axisLine={false} />
             <YAxis yAxisId="revenue" stroke="var(--color-muted-foreground)" fontSize={10} tickLine={false} axisLine={false} width={46} tickFormatter={(value) => `$${value.toFixed(0)}B`} />
-            <YAxis yAxisId="eps" orientation="right" stroke="var(--color-warning)" fontSize={10} tickLine={false} axisLine={false} width={42} tickFormatter={(value) => `$${value.toFixed(1)}`} />
-            <Tooltip contentStyle={{ backgroundColor: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(value: number, name: string) => [name === "매출" ? `$${value.toFixed(2)}B` : `$${value.toFixed(2)}`, name]} />
+            <YAxis yAxisId="margin" orientation="right" stroke="var(--color-warning)" fontSize={10} tickLine={false} axisLine={false} width={42} tickFormatter={(value) => `${value.toFixed(0)}%`} />
+            <Tooltip contentStyle={{ backgroundColor: "var(--color-popover)", border: "1px solid var(--color-border)", borderRadius: 8, fontSize: 12 }} formatter={(value: number, name: string) => [name === "순이익률" ? `${value.toFixed(2)}%` : `$${value.toFixed(2)}B`, name]} />
             <Legend wrapperStyle={{ fontSize: 10 }} />
             <Bar yAxisId="revenue" dataKey="revenueActual" name="매출" fill="var(--color-brand)" fillOpacity={0.82} radius={[3, 3, 0, 0]} maxBarSize={42} />
-            <Line yAxisId="eps" type="monotone" dataKey="epsActual" name="EPS" stroke="var(--color-warning)" strokeWidth={2.25} dot={{ r: 3, fill: "var(--color-background)" }} connectNulls={false} />
+            <Bar yAxisId="revenue" dataKey="netIncomeActual" name="순이익" fill="var(--color-success)" fillOpacity={0.72} radius={[3, 3, 0, 0]} maxBarSize={42} />
+            <Line yAxisId="margin" type="monotone" dataKey="netMargin" name="순이익률" stroke="var(--color-warning)" strokeWidth={2.25} dot={{ r: 3, fill: "var(--color-background)" }} connectNulls={false} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>

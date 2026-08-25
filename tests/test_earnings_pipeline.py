@@ -8,7 +8,9 @@ from fetch_earnings import (
     merge_events,
     merge_with_existing,
     limit_reported_history,
+    merge_reported_history,
     normalize_event,
+    normalize_reported_financials,
     select_supplemental_tickers,
 )
 
@@ -148,6 +150,43 @@ class EarningsPipelineTests(unittest.TestCase):
             4,
         )
         self.assertTrue(any(row.get("status") == "scheduled" for row in limited))
+
+    def test_reported_financials_become_quarterly_actual_history(self) -> None:
+        payload = {
+            "data": [
+                {
+                    "year": 2026,
+                    "quarter": 2,
+                    "filedDate": "2026-08-20 16:10:00",
+                    "report": {
+                        "ic": [
+                            {"concept": "Revenues", "value": 13_900_000_000},
+                            {"concept": "NetIncomeLoss", "value": 10_700_000_000},
+                            {"concept": "EarningsPerShareDiluted", "value": 1.23},
+                        ]
+                    },
+                }
+            ]
+        }
+        rows = normalize_reported_financials(
+            payload,
+            "NVDA",
+            {"NVDA": "엔비디아"},
+            {"NVDA": "core-index"},
+            date(2025, 1, 1),
+        )
+        self.assertEqual(rows[0]["date"], "2026-08-20")
+        self.assertEqual(rows[0]["revenueActual"], 13_900_000_000)
+        self.assertEqual(rows[0]["netIncomeActual"], 10_700_000_000)
+        self.assertEqual(rows[0]["epsActual"], 1.23)
+
+    def test_reported_history_enriches_matching_calendar_period(self) -> None:
+        calendar = [{"ticker": "NVDA", "date": "2026-08-26", "year": 2026, "quarter": 2, "epsEstimate": 1.2}]
+        reported = [{"ticker": "NVDA", "date": "2026-08-20", "year": 2026, "quarter": 2, "revenueActual": 13_900_000_000}]
+        merged = merge_reported_history(calendar, reported)
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["date"], "2026-08-26")
+        self.assertEqual(merged[0]["revenueActual"], 13_900_000_000)
 
 
 if __name__ == "__main__":
