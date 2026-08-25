@@ -1,6 +1,7 @@
 // 미국 주식 섹터 자금 흐름 데모용 샘플 데이터 (한국어)
 
-export type Signal = "inflow" | "outflow" | "attention-loss" | "neutral" | "unavailable";
+export type Signal =
+  "inflow" | "outflow" | "attention-loss" | "neutral" | "unavailable";
 export type MarketCategory =
   "sector" | "industry" | "universe" | "custom" | "mcap";
 export type MarketPeriod = "1d" | "5d" | "20d" | "60d";
@@ -34,6 +35,8 @@ export interface StockRow {
   hasInsider?: boolean;
   isIpo?: boolean;
   hasNews?: boolean;
+  volumeMomentum?: number | null;
+  volumeBreakout20?: boolean;
 }
 
 export interface MarketCompany extends StockRow {
@@ -213,6 +216,10 @@ export const LIVE_GROUP_SERIES: Record<
   { date: string; value: number }[]
 > = {};
 export const LIVE_GROUP_COMPANIES: Record<string, MarketCompany[]> = {};
+export const LIVE_STOCK_VOLUME_SERIES: Record<
+  string,
+  { date: string; value: number }[]
+> = {};
 export const LIVE_COMPANIES_BY_ID: Record<string, MarketCompany> = {};
 export const LIVE_STOCKS: StockRow[] = [];
 export const LIVE_MARKET_DATA: Record<
@@ -663,11 +670,7 @@ export interface LockupRow {
   priceChange?: number;
   floatRatio?: number;
   dataState?:
-    | "confirmed"
-    | "conditional"
-    | "estimated"
-    | "review-needed"
-    | "uncollected";
+    "confirmed" | "conditional" | "estimated" | "review-needed" | "uncollected";
   listingStatus?: "listed" | "not-found";
   sourceLabel?: string;
   sourceUrl?: string;
@@ -680,10 +683,7 @@ export interface LockupRow {
   maxLockupDate?: string;
   datePrecision?: "fixed" | "conditional-max" | "estimated";
   releaseRuleType?:
-    | "fixed-days"
-    | "earnings-or-days"
-    | "conditional"
-    | "review-needed";
+    "fixed-days" | "earnings-or-days" | "conditional" | "review-needed";
   releaseRuleSummary?: string;
   termsVerified?: boolean;
   postTradingValueRatio?: number;

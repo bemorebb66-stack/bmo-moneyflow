@@ -100,6 +100,7 @@ const INSIGHT_FILTERS: { id: InsightFilter; label: string }[] = [
   { id: "new", label: "신규 급증" },
   { id: "persistent", label: "지속 증가·상승" },
   { id: "overheated", label: "과열 가능성" },
+  { id: "ma20-breakout", label: "20일선 돌파" },
 ];
 const SIGNAL_RANK = {
   inflow: 3,
@@ -117,6 +118,7 @@ const SORT_LABEL: Record<SortKey, string> = {
   "20d": "20D",
   "60d": "60D",
   marketCap: "시총",
+  momentum: "모멘텀",
   signal: "신호",
 };
 
@@ -125,6 +127,7 @@ const sortValue = (stock: (typeof SURGE_STOCKS)[number], key: SortKey) => {
   if (key === "change") return stock.change;
   if (key === "volume") return stock.volume;
   if (key === "marketCap") return stock.marketCap;
+  if (key === "momentum") return stock.volumeMomentum ?? -1;
   if (key === "signal") return SIGNAL_RANK[stock.signal];
   return stock.volumeVs?.[key] ?? 0;
 };
@@ -160,7 +163,9 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
   });
   const [minMarketCap, setMinMarketCap] = useState(() => {
     if (typeof window === "undefined") return 1;
-    const value = Number(new URLSearchParams(window.location.search).get("minMcap") ?? 1);
+    const value = Number(
+      new URLSearchParams(window.location.search).get("minMcap") ?? 1,
+    );
     return [0, 0.3, 1, 10].includes(value) ? value : 1;
   });
   const [insight, setInsight] = useState<InsightFilter>(() => {
@@ -246,7 +251,15 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     syncingFromHistory.current = false;
     window.history.replaceState({}, "", url);
     window.dispatchEvent(new Event("bvt:url-search-change"));
-  }, [externalFilter, filterSignature, insight, minMarketCap, period, query, sort]);
+  }, [
+    externalFilter,
+    filterSignature,
+    insight,
+    minMarketCap,
+    period,
+    query,
+    sort,
+  ]);
 
   useEffect(() => {
     const restore = () => {
@@ -342,7 +355,8 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
           fiveDay >= 15 &&
           twentyDay >= 15 &&
           stock.change > 0) ||
-        (insight === "overheated" && current >= 100);
+        (insight === "overheated" && current >= 100) ||
+        (insight === "ma20-breakout" && stock.volumeBreakout20 === true);
       const isSectorLeader =
         sectorLeaderBySector.get(stock.sector) === stock.ticker;
       const matchesPreset =
@@ -518,7 +532,8 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
     minMarketCap !== 1
       ? {
           id: "min-market-cap",
-          label: minMarketCap === 0 ? "저시총 포함" : `시총 $${minMarketCap}B 이상`,
+          label:
+            minMarketCap === 0 ? "저시총 포함" : `시총 $${minMarketCap}B 이상`,
           clear: () => setMinMarketCap(1),
         }
       : null,
@@ -556,8 +571,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
         insight,
         preset: externalFilter.preset ?? null,
         priceDirection: externalFilter.priceDirection ?? null,
-        tradingValueDirection:
-          externalFilter.tradingValueDirection ?? null,
+        tradingValueDirection: externalFilter.tradingValueDirection ?? null,
         minMarketCap,
         sort,
       }),
@@ -654,15 +668,27 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
           <div className="flex w-full flex-wrap items-center justify-between gap-3">
             <label className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
               최소 시가총액
-              <select value={minMarketCap} onChange={(event) => setMinMarketCap(Number(event.target.value))} className="h-10 rounded-md border bg-surface px-2 text-sm text-foreground sm:h-9" aria-label="최소 시가총액">
+              <select
+                value={minMarketCap}
+                onChange={(event) =>
+                  setMinMarketCap(Number(event.target.value))
+                }
+                className="h-10 rounded-md border bg-surface px-2 text-sm text-foreground sm:h-9"
+                aria-label="최소 시가총액"
+              >
                 <option value={1}>10억 달러 (기본)</option>
                 <option value={0.3}>3억 달러</option>
                 <option value={10}>100억 달러</option>
                 <option value={0}>전체 포함</option>
               </select>
-              <span className="hidden text-[11px] sm:inline">종목명 검색 시에는 하한을 적용하지 않습니다.</span>
+              <span className="hidden text-[11px] sm:inline">
+                종목명 검색 시에는 하한을 적용하지 않습니다.
+              </span>
             </label>
-            <SavedScannerControls criteria={savedCriteria} onApply={applySavedCriteria} />
+            <SavedScannerControls
+              criteria={savedCriteria}
+              onApply={applySavedCriteria}
+            />
           </div>
         </div>
 
@@ -822,6 +848,12 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
                       onSort={cycleSort}
                     />
                     <SortableTh
+                      label="모멘텀"
+                      sortKey="momentum"
+                      sort={sort}
+                      onSort={cycleSort}
+                    />
+                    <SortableTh
                       label="신호"
                       sortKey="signal"
                       sort={sort}
@@ -909,6 +941,11 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
                       <td className="whitespace-nowrap py-2.5 pr-3 text-right tabular text-muted-foreground">
                         {fmtMcap(stock.marketCap)}
                       </td>
+                      <td className="whitespace-nowrap py-2.5 pr-3 text-right font-semibold tabular">
+                        {stock.volumeMomentum == null
+                          ? "-"
+                          : `${stock.volumeMomentum}점`}
+                      </td>
                       <td className="whitespace-nowrap py-2.5 pr-3">
                         <SignalBadge signal={stock.signal} size="xs" />
                       </td>
@@ -952,7 +989,7 @@ export function SurgeTable({ dataVersion = 0 }: { dataVersion?: number }) {
                   {rows.length === 0 && (
                     <tr>
                       <td
-                        colSpan={12}
+                        colSpan={13}
                         className="py-12 text-center text-sm text-muted-foreground"
                       >
                         검색 결과가 없습니다.
@@ -1055,7 +1092,7 @@ function MobileStockList({
                 <SignalBadge signal={stock.signal} size="xs" />
               </div>
 
-              <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg border border-border/70 bg-surface-2/55 p-2.5 min-[520px]:grid-cols-4">
+              <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg border border-border/70 bg-surface-2/55 p-2.5 min-[520px]:grid-cols-5">
                 <MobileMetric label="거래대금" value={fmtMoney(stock.volume)} />
                 <MobileMetric
                   label={`${period.toUpperCase()} 대비`}
@@ -1069,13 +1106,19 @@ function MobileStockList({
                   }
                   emphasized
                 />
-                <MobileMetric
-                  label="가격"
-                  value={fmtQuote(stock.price)}
-                />
+                <MobileMetric label="가격" value={fmtQuote(stock.price)} />
                 <MobileMetric
                   label="등락"
                   value={<DeltaText value={stock.change} />}
+                />
+                <MobileMetric
+                  label="모멘텀"
+                  value={
+                    stock.volumeMomentum == null
+                      ? "-"
+                      : `${stock.volumeMomentum}점`
+                  }
+                  emphasized={stock.volumeBreakout20}
                 />
               </div>
 
@@ -1113,6 +1156,7 @@ function StockReasonBadges({
 }) {
   const change20d = stock.volumeVs?.["20d"] ?? 0;
   const reasons = [
+    stock.volumeBreakout20 ? "20일 거래대금선 돌파" : "",
     change20d >= 30
       ? `20일 평균 대비 ${(1 + change20d / 100).toFixed(1)}배`
       : "",
@@ -1124,7 +1168,7 @@ function StockReasonBadges({
     sectorLeader ? `${stock.sector} 거래대금 1위` : "",
   ]
     .filter(Boolean)
-    .slice(0, 2);
+    .slice(0, 3);
 
   if (!reasons.length) return null;
   return (

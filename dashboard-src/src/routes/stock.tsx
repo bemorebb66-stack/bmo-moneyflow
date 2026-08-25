@@ -12,10 +12,12 @@ import {
   Users,
 } from "lucide-react";
 import {
+  Bar,
+  BarChart,
   CartesianGrid,
+  ComposedChart,
+  Legend,
   Line,
-  LineChart,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -44,16 +46,22 @@ import { SaveStockButton } from "@/components/save-stock-button";
 import {
   EARNINGS_ROWS,
   COMPANY_NEWS,
-  generateSeries,
   INSIDER_ROWS,
   LIVE_MARKET_DATA,
   LIVE_META,
   LIVE_STOCKS,
+  LIVE_STOCK_VOLUME_SERIES,
   LOCKUP_ROWS,
   NEWS_META,
   type MarketPeriod,
   type StockRow,
 } from "@/lib/mock-data";
+import {
+  buildVolumeTrend,
+  calculateVolumeMomentum,
+  isLatestVolumeBreakout20,
+  volumeMomentumLabel,
+} from "@/lib/volume-analysis";
 
 export const Route = createFileRoute("/stock")({
   head: () => ({
@@ -333,9 +341,19 @@ function StockDetail({
     DataSourceState
   >;
 }) {
-  const series = useMemo(
-    () => generateSeries(`stock:${stock.ticker}`, 60),
+  const volumeTrend = useMemo(
+    () =>
+      buildVolumeTrend(
+        (LIVE_STOCK_VOLUME_SERIES[stock.ticker] ?? []).slice(-60),
+      ),
     [stock.ticker, sourceStates.history.lastSuccessAt],
+  );
+  const [volumeChartMode, setVolumeChartMode] = useState<"bar" | "line">("bar");
+  const volumeMomentum = calculateVolumeMomentum(
+    LIVE_STOCK_VOLUME_SERIES[stock.ticker] ?? [],
+  );
+  const volumeBreakout20 = isLatestVolumeBreakout20(
+    LIVE_STOCK_VOLUME_SERIES[stock.ticker] ?? [],
   );
   const insiders = INSIDER_ROWS.filter((row) => row.ticker === stock.ticker);
   const companyNews = COMPANY_NEWS[stock.ticker];
@@ -556,110 +574,195 @@ function StockDetail({
         <DataSectionState state={sourceStates.history} minHeight="h-[420px]">
           <Card>
             <CardContent className="p-4 sm:p-5">
-              <div className="flex items-end justify-between gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <div className="text-xs font-semibold text-brand">
                     거래대금 추이
                   </div>
                   <h2 className="mt-1 text-base font-semibold sm:text-lg">
-                    60일 거래대금 상대 흐름
+                    60일 거래대금과 이동평균
                   </h2>
                   <p className="text-[11px] text-muted-foreground">
-                    첫 거래일을 100으로 지수화한 상대 변화
+                    일별 가격×거래량 · 5일·20일 단순이동평균
                   </p>
                 </div>
-                <div className="text-right text-xs text-muted-foreground">
-                  최근값{" "}
-                  <span className="font-semibold text-foreground">
-                    {series.at(-1)?.value.toFixed(1)}
+                <div className="flex flex-wrap items-center gap-2">
+                  <span
+                    className={cn(
+                      "rounded-md border px-2.5 py-1.5 text-xs font-semibold",
+                      volumeMomentum != null && volumeMomentum >= 65
+                        ? "border-success/30 bg-success/5 text-success"
+                        : "border-border text-muted-foreground",
+                    )}
+                  >
+                    모멘텀{" "}
+                    {volumeMomentum == null
+                      ? "-"
+                      : `${volumeMomentum}점 · ${volumeMomentumLabel(volumeMomentum)}`}
                   </span>
+                  {volumeBreakout20 && (
+                    <span className="rounded-md border border-warning/35 bg-warning/10 px-2.5 py-1.5 text-xs font-semibold text-warning">
+                      최신 20일선 상향 돌파
+                    </span>
+                  )}
+                  <div
+                    className="inline-flex rounded-md border border-border bg-background p-0.5"
+                    role="group"
+                    aria-label="거래대금 차트 표시 방식"
+                  >
+                    {(
+                      [
+                        ["bar", "막대"],
+                        ["line", "선"],
+                      ] as const
+                    ).map(([mode, label]) => (
+                      <button
+                        key={mode}
+                        type="button"
+                        aria-pressed={volumeChartMode === mode}
+                        onClick={() => setVolumeChartMode(mode)}
+                        className={cn(
+                          "min-h-9 rounded px-3 text-xs font-semibold",
+                          volumeChartMode === mode
+                            ? "bg-brand text-brand-foreground"
+                            : "text-muted-foreground hover:bg-secondary",
+                        )}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <AccessibleChart
-                title={`${stock.name} 60일 거래대금 상대 흐름`}
-                description="첫 거래일을 100으로 두고 날짜별 거래대금 상대 변화를 선으로 표시합니다."
-                table={
-                  <table className="w-full min-w-80 text-sm">
-                    <caption className="sr-only">
-                      {stock.name} 60일 거래대금 상대 지수
-                    </caption>
-                    <thead className="sticky top-0 bg-surface-2 text-muted-foreground">
-                      <tr>
-                        <th className="px-3 py-2 text-left">날짜</th>
-                        <th className="px-3 py-2 text-right">상대 지수</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                      {series.map((row) => (
-                        <tr key={row.date}>
-                          <td className="px-3 py-2">{row.date}</td>
-                          <td className="px-3 py-2 text-right tabular">
-                            {row.value.toFixed(1)}
-                          </td>
+              {volumeTrend.length >= 20 ? (
+                <AccessibleChart
+                  title={`${stock.name} 60일 거래대금과 이동평균`}
+                  description="날짜별 거래대금과 5일·20일 단순이동평균을 표시합니다. 가격 추세나 매수·매도 신호가 아닙니다."
+                  table={
+                    <table className="w-full min-w-80 text-sm">
+                      <caption className="sr-only">
+                        {stock.name} 60일 거래대금과 이동평균
+                      </caption>
+                      <thead className="sticky top-0 bg-surface-2 text-muted-foreground">
+                        <tr>
+                          <th className="px-3 py-2 text-left">날짜</th>
+                          <th className="px-3 py-2 text-right">거래대금</th>
+                          <th className="px-3 py-2 text-right">5일 평균</th>
+                          <th className="px-3 py-2 text-right">20일 평균</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                }
-              >
-                <div className="mt-4 h-[300px] w-full sm:h-[360px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                      data={series}
-                      margin={{ top: 8, right: 12, bottom: 4, left: -12 }}
-                    >
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke="var(--color-border)"
-                        opacity={0.55}
-                      />
-                      <XAxis
-                        dataKey="date"
-                        stroke="var(--color-muted-foreground)"
-                        fontSize={11}
-                        tickLine={false}
-                        axisLine={false}
-                        minTickGap={28}
-                      />
-                      <YAxis
-                        stroke="var(--color-muted-foreground)"
-                        fontSize={11}
-                        tickLine={false}
-                        axisLine={false}
-                        domain={["auto", "auto"]}
-                        width={48}
-                      />
-                      <ReferenceLine
-                        y={100}
-                        stroke="var(--color-muted-foreground)"
-                        strokeDasharray="4 4"
-                        opacity={0.7}
-                      />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: "var(--color-popover)",
-                          border: "1px solid var(--color-border)",
-                          borderRadius: 8,
-                          fontSize: 12,
-                        }}
-                        formatter={(value: number) => [
-                          value.toFixed(1),
-                          "지수",
-                        ]}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="value"
-                        name={stock.ticker}
-                        stroke="var(--color-brand)"
-                        strokeWidth={2.25}
-                        dot={false}
-                        activeDot={{ r: 4 }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
+                      </thead>
+                      <tbody className="divide-y divide-border">
+                        {volumeTrend.map((row) => (
+                          <tr key={row.date}>
+                            <td className="px-3 py-2">{row.date}</td>
+                            <td className="px-3 py-2 text-right tabular">
+                              {fmtMoney(row.value)}
+                            </td>
+                            <td className="px-3 py-2 text-right tabular">
+                              {row.ma5 == null ? "-" : fmtMoney(row.ma5)}
+                            </td>
+                            <td className="px-3 py-2 text-right tabular">
+                              {row.ma20 == null ? "-" : fmtMoney(row.ma20)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  }
+                >
+                  <div className="mt-4 h-[300px] w-full sm:h-[360px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <ComposedChart
+                        data={volumeTrend}
+                        margin={{ top: 8, right: 12, bottom: 4, left: -12 }}
+                      >
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          stroke="var(--color-border)"
+                          opacity={0.55}
+                        />
+                        <XAxis
+                          dataKey="date"
+                          stroke="var(--color-muted-foreground)"
+                          fontSize={11}
+                          tickLine={false}
+                          axisLine={false}
+                          minTickGap={28}
+                        />
+                        <YAxis
+                          stroke="var(--color-muted-foreground)"
+                          fontSize={11}
+                          tickLine={false}
+                          axisLine={false}
+                          width={48}
+                          tickFormatter={(value) =>
+                            value >= 1000
+                              ? `${(value / 1000).toFixed(0)}B`
+                              : `${value.toFixed(0)}M`
+                          }
+                        />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "var(--color-popover)",
+                            border: "1px solid var(--color-border)",
+                            borderRadius: 8,
+                            fontSize: 12,
+                          }}
+                          formatter={(value: number, name: string) => [
+                            fmtMoney(value),
+                            name,
+                          ]}
+                        />
+                        <Legend wrapperStyle={{ fontSize: 11 }} />
+                        {volumeChartMode === "bar" ? (
+                          <Bar
+                            dataKey="value"
+                            name="일별 거래대금"
+                            fill="var(--color-brand)"
+                            fillOpacity={0.42}
+                            radius={[2, 2, 0, 0]}
+                          />
+                        ) : (
+                          <Line
+                            type="monotone"
+                            dataKey="value"
+                            name="일별 거래대금"
+                            stroke="var(--color-brand)"
+                            strokeWidth={1.5}
+                            dot={false}
+                          />
+                        )}
+                        <Line
+                          type="monotone"
+                          dataKey="ma5"
+                          name="5일 평균"
+                          stroke="var(--color-chart-2)"
+                          strokeWidth={2}
+                          dot={false}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="ma20"
+                          name="20일 평균"
+                          stroke="var(--color-warning)"
+                          strokeWidth={2.25}
+                          dot={false}
+                        />
+                      </ComposedChart>
+                    </ResponsiveContainer>
+                  </div>
+                </AccessibleChart>
+              ) : (
+                <div className="mt-4 rounded-lg border border-dashed border-border px-4 py-10 text-center text-sm text-muted-foreground">
+                  20거래일 이상의 거래대금 이력이 없어 이동평균을 계산할 수
+                  없습니다.
                 </div>
-              </AccessibleChart>
+              )}
+              <p className="mt-3 text-[11px] leading-5 text-muted-foreground">
+                모멘텀 점수는 최신 거래대금의 20일 평균 대비 강도(50점), 5일
+                평균의 20일 평균 대비 추세(30점), 최근 5일 지속성(20점)을
+                합산합니다. 화면 알림이며 투자 추천이 아닙니다.
+              </p>
             </CardContent>
           </Card>
         </DataSectionState>
@@ -767,69 +870,77 @@ function StockDetail({
               )}
             </div>
             {recentEarnings.length > 0 ? (
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[680px] text-left text-xs">
-                  <thead className="bg-surface-2 text-[10px] text-muted-foreground">
-                    <tr>
-                      <th className="px-4 py-2.5 font-medium sm:px-5">
-                        발표일
-                      </th>
-                      <th className="px-4 py-2.5 font-medium">EPS 실제</th>
-                      <th className="px-4 py-2.5 font-medium">EPS 예상</th>
-                      <th className="px-4 py-2.5 font-medium">
-                        EPS 서프라이즈
-                      </th>
-                      <th className="px-4 py-2.5 font-medium">매출 실제</th>
-                      <th className="px-4 py-2.5 font-medium">매출 예상</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/70">
-                    {recentEarnings.map((row) => {
-                      const surprise = earningsSurprise(
-                        row.epsActual,
-                        row.epsEstimate,
-                      );
-                      return (
-                        <tr key={`${row.ticker}-${row.date}`}>
-                          <td className="px-4 py-3 font-medium tabular sm:px-5">
-                            {row.date}
-                          </td>
-                          <td className="px-4 py-3 tabular">
-                            {row.epsActual == null
-                              ? "-"
-                              : `$${row.epsActual.toFixed(2)}`}
-                          </td>
-                          <td className="px-4 py-3 tabular text-muted-foreground">
-                            {row.epsEstimate == null
-                              ? "-"
-                              : `$${row.epsEstimate.toFixed(2)}`}
-                          </td>
-                          <td
-                            className={cn(
-                              "px-4 py-3 font-semibold tabular",
-                              surprise != null &&
-                                surprise > 0 &&
-                                "text-success",
-                              surprise != null && surprise < 0 && "text-danger",
-                            )}
-                          >
-                            {surprise == null ? "-" : fmtPct(surprise)}
-                          </td>
-                          <td className="px-4 py-3 tabular">
-                            {row.revenueActual == null
-                              ? "-"
-                              : fmtMoney(row.revenueActual / 1e6)}
-                          </td>
-                          <td className="px-4 py-3 tabular text-muted-foreground">
-                            {row.revenueEstimate == null
-                              ? "-"
-                              : fmtMoney(row.revenueEstimate / 1e6)}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+              <div>
+                <EarningsComparisonCharts
+                  ticker={stock.ticker}
+                  rows={recentEarnings}
+                />
+                <div className="overflow-x-auto border-t border-border/70">
+                  <table className="w-full min-w-[680px] text-left text-xs">
+                    <thead className="bg-surface-2 text-[10px] text-muted-foreground">
+                      <tr>
+                        <th className="px-4 py-2.5 font-medium sm:px-5">
+                          발표일
+                        </th>
+                        <th className="px-4 py-2.5 font-medium">EPS 실제</th>
+                        <th className="px-4 py-2.5 font-medium">EPS 예상</th>
+                        <th className="px-4 py-2.5 font-medium">
+                          EPS 서프라이즈
+                        </th>
+                        <th className="px-4 py-2.5 font-medium">매출 실제</th>
+                        <th className="px-4 py-2.5 font-medium">매출 예상</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/70">
+                      {recentEarnings.map((row) => {
+                        const surprise = earningsSurprise(
+                          row.epsActual,
+                          row.epsEstimate,
+                        );
+                        return (
+                          <tr key={`${row.ticker}-${row.date}`}>
+                            <td className="px-4 py-3 font-medium tabular sm:px-5">
+                              {row.date}
+                            </td>
+                            <td className="px-4 py-3 tabular">
+                              {row.epsActual == null
+                                ? "-"
+                                : `$${row.epsActual.toFixed(2)}`}
+                            </td>
+                            <td className="px-4 py-3 tabular text-muted-foreground">
+                              {row.epsEstimate == null
+                                ? "-"
+                                : `$${row.epsEstimate.toFixed(2)}`}
+                            </td>
+                            <td
+                              className={cn(
+                                "px-4 py-3 font-semibold tabular",
+                                surprise != null &&
+                                  surprise > 0 &&
+                                  "text-success",
+                                surprise != null &&
+                                  surprise < 0 &&
+                                  "text-danger",
+                              )}
+                            >
+                              {surprise == null ? "-" : fmtPct(surprise)}
+                            </td>
+                            <td className="px-4 py-3 tabular">
+                              {row.revenueActual == null
+                                ? "-"
+                                : fmtMoney(row.revenueActual / 1e6)}
+                            </td>
+                            <td className="px-4 py-3 tabular text-muted-foreground">
+                              {row.revenueEstimate == null
+                                ? "-"
+                                : fmtMoney(row.revenueEstimate / 1e6)}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             ) : (
               <div className="px-5 py-8 text-center text-sm text-muted-foreground">
@@ -1049,6 +1160,117 @@ function earningsTrackingLabel(
   if (tier === "theme") return "양자·디지털자산 테마 우선 추적";
   if (tier === "popular-small-cap") return "인기 소형주 우선 추적";
   return "실적 캘린더 추적";
+}
+
+function EarningsComparisonCharts({
+  ticker,
+  rows,
+}: {
+  ticker: string;
+  rows: typeof EARNINGS_ROWS;
+}) {
+  const chartRows = [...rows].reverse().map((row) => ({
+    period: `${row.year ?? ""} Q${row.quarter ?? "-"}`.trim(),
+    epsActual: row.epsActual,
+    epsEstimate: row.epsEstimate,
+    revenueActual:
+      row.revenueActual == null ? undefined : row.revenueActual / 1e9,
+    revenueEstimate:
+      row.revenueEstimate == null ? undefined : row.revenueEstimate / 1e9,
+  }));
+  const chart = (
+    dataKeyActual: "epsActual" | "revenueActual",
+    dataKeyEstimate: "epsEstimate" | "revenueEstimate",
+    actualLabel: string,
+    estimateLabel: string,
+    formatter: (value: number) => string,
+  ) => (
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={chartRows}
+        margin={{ top: 8, right: 8, bottom: 4, left: -12 }}
+      >
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="var(--color-border)"
+          opacity={0.55}
+        />
+        <XAxis
+          dataKey="period"
+          stroke="var(--color-muted-foreground)"
+          fontSize={10}
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis
+          stroke="var(--color-muted-foreground)"
+          fontSize={10}
+          tickLine={false}
+          axisLine={false}
+          width={48}
+        />
+        <Tooltip
+          contentStyle={{
+            backgroundColor: "var(--color-popover)",
+            border: "1px solid var(--color-border)",
+            borderRadius: 8,
+            fontSize: 12,
+          }}
+          formatter={(value: number, name: string) => [formatter(value), name]}
+        />
+        <Legend wrapperStyle={{ fontSize: 10 }} />
+        <Bar
+          dataKey={dataKeyEstimate}
+          name={estimateLabel}
+          fill="var(--color-muted-foreground)"
+          fillOpacity={0.35}
+          radius={[2, 2, 0, 0]}
+        />
+        <Bar
+          dataKey={dataKeyActual}
+          name={actualLabel}
+          fill="var(--color-brand)"
+          fillOpacity={0.8}
+          radius={[2, 2, 0, 0]}
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+  return (
+    <div
+      className="grid gap-4 p-4 sm:p-5 lg:grid-cols-2"
+      role="group"
+      aria-label={`${ticker} 최근 실적 실제치와 예상치 그래프`}
+    >
+      <div>
+        <h3 className="text-xs font-semibold">EPS 실제치 vs 예상치</h3>
+        <div className="mt-2 h-52">
+          {chart(
+            "epsActual",
+            "epsEstimate",
+            "EPS 실제",
+            "EPS 예상",
+            (value) => `$${value.toFixed(2)}`,
+          )}
+        </div>
+      </div>
+      <div>
+        <h3 className="text-xs font-semibold">매출 실제치 vs 예상치</h3>
+        <div className="mt-2 h-52">
+          {chart(
+            "revenueActual",
+            "revenueEstimate",
+            "매출 실제",
+            "매출 예상",
+            (value) => `$${value.toFixed(2)}B`,
+          )}
+        </div>
+      </div>
+      <p className="sr-only">
+        그래프의 정확한 수치는 아래 실적 표에서 확인할 수 있습니다.
+      </p>
+    </div>
+  );
 }
 
 function earningsSurprise(actual?: number, estimate?: number) {

@@ -8,7 +8,8 @@ export const MAX_WATCHLIST_ITEMS = 500;
 export const MAX_SAVED_SCANNERS = 100;
 
 export type ScannerPeriod = "1d" | "5d" | "20d" | "60d";
-export type ScannerInsight = "all" | "new" | "persistent" | "overheated";
+export type ScannerInsight =
+  "all" | "new" | "persistent" | "overheated" | "ma20-breakout";
 export type ScannerPreset =
   | "trading-value-surge"
   | "up-with-volume"
@@ -21,6 +22,7 @@ export type ScannerSortKey =
   | "volume"
   | ScannerPeriod
   | "marketCap"
+  | "momentum"
   | "signal";
 export type ScannerSortMode = "desc" | "asc" | "average";
 
@@ -85,6 +87,7 @@ const INSIGHTS = new Set<ScannerInsight>([
   "new",
   "persistent",
   "overheated",
+  "ma20-breakout",
 ]);
 const PRESETS = new Set<ScannerPreset>([
   "trading-value-surge",
@@ -102,6 +105,7 @@ const SORT_KEYS = new Set<ScannerSortKey>([
   "20d",
   "60d",
   "marketCap",
+  "momentum",
   "signal",
 ]);
 const SORT_MODES = new Set<ScannerSortMode>(["desc", "asc", "average"]);
@@ -138,9 +142,7 @@ export function normalizeScannerCriteria(
   const preset = PRESETS.has(value?.preset as ScannerPreset)
     ? (value?.preset as ScannerPreset)
     : null;
-  const priceDirection = DIRECTIONS.has(
-    value?.priceDirection as "up" | "down",
-  )
+  const priceDirection = DIRECTIONS.has(value?.priceDirection as "up" | "down")
     ? (value?.priceDirection as "up" | "down")
     : null;
   const tradingValueDirection = DIRECTIONS.has(
@@ -174,8 +176,10 @@ export function scannerCriteriaEqual(
   left: SavedScannerCriteria,
   right: SavedScannerCriteria,
 ) {
-  return JSON.stringify(normalizeScannerCriteria(left)) ===
-    JSON.stringify(normalizeScannerCriteria(right));
+  return (
+    JSON.stringify(normalizeScannerCriteria(left)) ===
+    JSON.stringify(normalizeScannerCriteria(right))
+  );
 }
 
 function emptyData(now: string): UserLibraryData {
@@ -230,7 +234,8 @@ function normalizeSavedScanners(value: unknown, fallbackDate: string) {
   const byId = new Map<string, SavedScanner>();
   for (const entry of value) {
     if (!isRecord(entry)) continue;
-    const id = typeof entry.id === "string" ? entry.id.trim().slice(0, 100) : "";
+    const id =
+      typeof entry.id === "string" ? entry.id.trim().slice(0, 100) : "";
     const name =
       typeof entry.name === "string" ? normalizeScannerName(entry.name) : "";
     if (
@@ -291,19 +296,34 @@ export function decodeUserLibrary(
   try {
     parsed = JSON.parse(raw);
   } catch {
-    return { data: emptyData(fallbackDate), recovered: true, futureVersion: false };
+    return {
+      data: emptyData(fallbackDate),
+      recovered: true,
+      futureVersion: false,
+    };
   }
   if (!isRecord(parsed)) {
-    return { data: emptyData(fallbackDate), recovered: true, futureVersion: false };
+    return {
+      data: emptyData(fallbackDate),
+      recovered: true,
+      futureVersion: false,
+    };
   }
   if (
     typeof parsed.schemaVersion === "number" &&
     parsed.schemaVersion > USER_LIBRARY_VERSION
   ) {
-    return { data: emptyData(fallbackDate), recovered: false, futureVersion: true };
+    return {
+      data: emptyData(fallbackDate),
+      recovered: false,
+      futureVersion: true,
+    };
   }
   const watchlist = normalizeWatchlist(parsed.watchlist, fallbackDate);
-  const savedScanners = normalizeSavedScanners(parsed.savedScanners, fallbackDate);
+  const savedScanners = normalizeSavedScanners(
+    parsed.savedScanners,
+    fallbackDate,
+  );
   const data: UserLibraryData = {
     schemaVersion: 1,
     storeRevision:
@@ -420,8 +440,7 @@ export class UserLibraryStore {
     } catch {
       this.snapshot = {
         ...this.snapshot,
-        notice:
-          "브라우저 저장 공간을 읽을 수 없어 이번 세션에서만 저장합니다.",
+        notice: "브라우저 저장 공간을 읽을 수 없어 이번 세션에서만 저장합니다.",
       };
       return;
     }
@@ -616,7 +635,8 @@ export class UserLibraryStore {
       return { ok: false, persistent: false, reason: "limit" };
     }
     const duplicateName = this.snapshot.data.savedScanners.find(
-      (item) => item.id !== id && comparableName(item.name) === comparableName(name),
+      (item) =>
+        item.id !== id && comparableName(item.name) === comparableName(name),
     );
     if (duplicateName) {
       return {

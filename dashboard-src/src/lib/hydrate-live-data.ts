@@ -13,6 +13,7 @@ import {
   NEWS_META,
   LIVE_SECTOR_SERIES,
   LIVE_STOCKS,
+  LIVE_STOCK_VOLUME_SERIES,
   LOCKUP_META,
   LOCKUP_ROWS,
   SECTORS,
@@ -29,7 +30,16 @@ import {
   type StockRow,
 } from "./mock-data";
 import { INDUSTRY_KO } from "./industry-copy";
-import { classifyGroupSignal, classifyStockSignal, isSurge, type CalculationStatus } from "./signal-rules";
+import {
+  classifyGroupSignal,
+  classifyStockSignal,
+  isSurge,
+  type CalculationStatus,
+} from "./signal-rules";
+import {
+  calculateVolumeMomentum,
+  isLatestVolumeBreakout20,
+} from "./volume-analysis";
 
 export type MarketStock = {
   t: string;
@@ -136,12 +146,23 @@ const CATEGORIES: MarketCategory[] = [
 const PERIODS: MarketPeriod[] = ["1d", "5d", "20d", "60d"];
 
 const normalizeMarketTicker = (value: unknown) =>
-  String(value ?? "").trim().toUpperCase().replaceAll(".", "-");
+  String(value ?? "")
+    .trim()
+    .toUpperCase()
+    .replaceAll(".", "-");
 
 const isValidMarketStock = (stock: MarketStock) =>
   Boolean(stock.t) &&
-  [stock.c, stock.pc, stock.dv, stock.dvp, stock.a5, stock.a20, stock.a60, stock.mc]
-    .every((value) => Number.isFinite(Number(value))) &&
+  [
+    stock.c,
+    stock.pc,
+    stock.dv,
+    stock.dvp,
+    stock.a5,
+    stock.a20,
+    stock.a60,
+    stock.mc,
+  ].every((value) => Number.isFinite(Number(value))) &&
   Number(stock.dv) >= 0 &&
   Number(stock.mc) >= 0;
 
@@ -248,7 +269,10 @@ function aggregateMarket(
         priceChange,
         shareDelta,
         share,
-        signal: reference > 0 && totalRef > 0 ? signalFor(shareDelta, volumeChange, priceChange) : "unavailable",
+        signal:
+          reference > 0 && totalRef > 0
+            ? signalFor(shareDelta, volumeChange, priceChange)
+            : "unavailable",
         leaders: [...rows]
           .sort((a, b) => b.dv - a.dv)
           .slice(0, 3)
@@ -444,10 +468,7 @@ function toInsiderRow(
     qualityStatus,
     accession: row.accession || String(row.id || "").replace(/^f4-/, ""),
     sourceUrl: row.secUrl || undefined,
-    validationReasons: [
-      ...validationReasonLabels(row),
-      ...extraReasons,
-    ],
+    validationReasons: [...validationReasonLabels(row), ...extraReasons],
   };
 }
 
@@ -464,9 +485,12 @@ export function normalizeInsiderPayload(
     const value = Number(row.value);
     const tolerance = Math.max(1, Math.abs(shares) * 0.005 + 0.5);
     const reasons: string[] = [];
-    if (row.qualityStatus !== "accepted") reasons.push("VALIDATION_NOT_CONFIRMED");
-    if (!(Number.isFinite(shares) && shares > 0)) reasons.push("INVALID_SHARES");
-    if (!(Number.isFinite(rowPrice) && rowPrice > 0)) reasons.push("INVALID_PRICE");
+    if (row.qualityStatus !== "accepted")
+      reasons.push("VALIDATION_NOT_CONFIRMED");
+    if (!(Number.isFinite(shares) && shares > 0))
+      reasons.push("INVALID_SHARES");
+    if (!(Number.isFinite(rowPrice) && rowPrice > 0))
+      reasons.push("INVALID_PRICE");
     if (!(Number.isFinite(value) && value > 0)) reasons.push("INVALID_VALUE");
     if (
       Number.isFinite(shares) &&
@@ -625,6 +649,9 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
     for (const key of Object.keys(LIVE_SECTOR_SERIES)) {
       delete LIVE_SECTOR_SERIES[key];
     }
+    for (const key of Object.keys(LIVE_STOCK_VOLUME_SERIES)) {
+      delete LIVE_STOCK_VOLUME_SERIES[key];
+    }
     const totalMarketVolume = stocks.reduce(
       (sum, stock) => sum + (Number(stock.dv) || 0),
       0,
@@ -648,13 +675,16 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
         },
         marketCap: stock.mc / 1e9,
         share: totalMarketVolume ? (stock.dv / totalMarketVolume) * 100 : 0,
-        signal: stock.sig_status === "INCOMPLETE"
-          ? "unavailable"
-          : stock.sig_status === "COMPLETE" && stock.sig
-            ? stock.sig
-            : stock.a20 > 0 && Number.isFinite(stock.dv) && Number.isFinite(stock.pc)
-              ? stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc)
-              : "unavailable",
+        signal:
+          stock.sig_status === "INCOMPLETE"
+            ? "unavailable"
+            : stock.sig_status === "COMPLETE" && stock.sig
+              ? stock.sig
+              : stock.a20 > 0 &&
+                  Number.isFinite(stock.dv) &&
+                  Number.isFinite(stock.pc)
+                ? stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc)
+                : "unavailable",
       };
       LIVE_COMPANIES_BY_ID[company.id] = company;
       for (const category of CATEGORIES) {
@@ -695,13 +725,16 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
         "60d": stock.a60 ? (stock.dv / stock.a60 - 1) * 100 : 0,
       },
       industry: INDUSTRY_KO[stock.ind || ""] || stock.ind,
-      signal: stock.sig_status === "INCOMPLETE"
-        ? "unavailable"
-        : stock.sig_status === "COMPLETE" && stock.sig
-          ? stock.sig
-          : stock.a20 > 0 && Number.isFinite(stock.dv) && Number.isFinite(stock.pc)
-            ? stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc)
-            : "unavailable",
+      signal:
+        stock.sig_status === "INCOMPLETE"
+          ? "unavailable"
+          : stock.sig_status === "COMPLETE" && stock.sig
+            ? stock.sig
+            : stock.a20 > 0 &&
+                Number.isFinite(stock.dv) &&
+                Number.isFinite(stock.pc)
+              ? stockSignalFor((stock.dv / stock.a20 - 1) * 100, stock.pc)
+              : "unavailable",
     }));
     LIVE_STOCKS.splice(0, LIVE_STOCKS.length, ...stockRows);
     const surge = [...stockRows]
@@ -728,10 +761,20 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
     for (const [ticker, values] of Object.entries(history.stocks ?? {})) {
       if (!Array.isArray(values) || !values.length) continue;
       const first = Number(values[0]) || 1;
+      const rawSeries = values.map((value, index) => ({
+        date: `${Number(dates[index].slice(5, 7))}/${Number(dates[index].slice(8, 10))}`,
+        value: Number(value),
+      }));
+      LIVE_STOCK_VOLUME_SERIES[ticker] = rawSeries;
       LIVE_GROUP_SERIES[`stock:${ticker}`] = values.map((value, index) => ({
         date: `${Number(dates[index].slice(5, 7))}/${Number(dates[index].slice(8, 10))}`,
         value: Number(((Number(value) / first) * 100).toFixed(2)),
       }));
+    }
+    for (const stock of LIVE_STOCKS) {
+      const rawSeries = LIVE_STOCK_VOLUME_SERIES[stock.ticker] ?? [];
+      stock.volumeMomentum = calculateVolumeMomentum(rawSeries);
+      stock.volumeBreakout20 = isLatestVolumeBreakout20(rawSeries);
     }
 
     const stockByTicker = new Map(stocks.map((stock) => [stock.t, stock]));
@@ -749,10 +792,7 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
       : [];
     const historyStocks: Record<string, number[]> = history.stocks ?? {};
     const reactionByEvent = new Map<string, any>(
-      (lockupReactions.reactions ?? []).map((row: any) => [
-        row.eventId,
-        row,
-      ]),
+      (lockupReactions.reactions ?? []).map((row: any) => [row.eventId, row]),
     );
     const getPostLockupTradingValue = (
       ticker: string,
@@ -764,7 +804,8 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
       if (!Array.isArray(series) || !eventDate || historyDates.length === 0)
         return undefined;
       const eventIndex = historyDates.findIndex((value) => value >= eventDate);
-      if (eventIndex < 10 || eventIndex >= historyDates.length) return undefined;
+      if (eventIndex < 10 || eventIndex >= historyDates.length)
+        return undefined;
       const before = series
         .slice(Math.max(0, eventIndex - 20), eventIndex)
         .map(Number)
@@ -823,23 +864,26 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
         marketCap: marketStock?.mc ? marketStock.mc / 1e9 : 0,
         ipoPrice: Number(row.ipoPrice) || undefined,
         tradingValue: marketStock?.dv ? marketStock.dv / 1e6 : undefined,
-        priceChange: marketStock?.pc == null ? undefined : Number(marketStock.pc),
+        priceChange:
+          marketStock?.pc == null ? undefined : Number(marketStock.pc),
         floatRatio: Number(row.floatRatio) || undefined,
         dataState:
           row.verificationStatus === "confirmed"
             ? "confirmed"
             : row.verificationStatus === "conditional"
               ? "conditional"
-            : row.verificationStatus === "review-needed"
-              ? "review-needed"
-              : row.lockupDate && row.ipoDate
-                ? "estimated"
-                : "uncollected",
+              : row.verificationStatus === "review-needed"
+                ? "review-needed"
+                : row.lockupDate && row.ipoDate
+                  ? "estimated"
+                  : "uncollected",
         listingStatus: row.listingStatus,
         sourceLabel: String(row.sourceUrl || "").includes("/Archives/")
           ? "SEC 424B4 원문"
           : "SEC 투자설명서 검색",
-        sourceUrl: row.sourceUrl || `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent(row.ticker)}&category=custom&forms=424B4`,
+        sourceUrl:
+          row.sourceUrl ||
+          `https://www.sec.gov/edgar/search/#/q=${encodeURIComponent(row.ticker)}&category=custom&forms=424B4`,
         filingId: row.id,
         verificationNote:
           row.verificationNote ||
@@ -911,19 +955,25 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
         lockupRows.filter((row) => row.majorIpo).length,
       directSecSourceCount:
         Number(lockup.meta?.directSecSourceCount) ||
-        lockupRows.filter((row) => row.sourceUrl?.includes("/Archives/")).length,
+        lockupRows.filter((row) => row.sourceUrl?.includes("/Archives/"))
+          .length,
       conditionalCount:
         Number(lockup.meta?.conditionalCount) ||
         lockupRows.filter((row) => row.dataState === "conditional").length,
       excludedCount:
         Number(lockup.meta?.excludedCount) ||
-        (Array.isArray(lockup.excludedEvents) ? lockup.excludedEvents.length : 0),
+        (Array.isArray(lockup.excludedEvents)
+          ? lockup.excludedEvents.length
+          : 0),
       validationRule:
         lockup.meta?.validationRule ||
         "미국 상장 종목 일치와 락업 날짜 계산을 확인합니다.",
     });
 
-    const indexNames: Record<string, { id: "sp500" | "russell2000" | "dow" | "nasdaq"; name: string }> = {
+    const indexNames: Record<
+      string,
+      { id: "sp500" | "russell2000" | "dow" | "nasdaq"; name: string }
+    > = {
       "^GSPC": { id: "sp500", name: "S&P 500" },
       "^RUT": { id: "russell2000", name: "Russell 2000" },
       "^DJI": { id: "dow", name: "Dow Jones" },
