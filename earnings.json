@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-25T14:02:54.892181+00:00",
+    "generatedAt": "2026-08-25T14:16:14.754015+00:00",
     "status": "ok",
     "from": "2026-07-11",
     "to": "2027-02-21",
-    "count": 3381,
+    "count": 3386,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 603,
       "supplementalTickerCount": 152,
-      "supplementalEventCount": 599,
+      "supplementalEventCount": 604,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -35,7 +35,21 @@
       "epsEstimate": 7744.8172,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 12370000000.0,
+      "revenueActual": 98879000000.0
+    },
+    {
+      "ticker": "HUT",
+      "company": "헛 8",
+      "date": "2025-06-30",
+      "quarter": 2,
+      "year": 2025,
+      "revenueActual": 41299000.0,
+      "netIncomeActual": 137312000.0,
+      "status": "reported",
+      "trackingTier": "theme",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "IREN",
@@ -47,7 +61,9 @@
       "epsEstimate": 0.1572,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 187292000.0,
+      "netIncomeActual": 95546000.0
     },
     {
       "ticker": "RIOT",
@@ -59,7 +75,9 @@
       "epsEstimate": 0.1069,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 219454000.0,
+      "revenueActual": 152988000.0
     },
     {
       "ticker": "AAPL",
@@ -71,7 +89,9 @@
       "epsEstimate": 1.8075,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 102466000000.0,
+      "netIncomeActual": 27466000000.0
     },
     {
       "ticker": "ABBV",
@@ -83,7 +103,9 @@
       "epsEstimate": 1.8103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 186000000.0,
+      "revenueActual": 15776000000.0
     },
     {
       "ticker": "ABNB",
@@ -95,7 +117,9 @@
       "epsEstimate": 2.3883,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1374000000.0,
+      "revenueActual": 4095000000.0
     },
     {
       "ticker": "ACN",
@@ -107,7 +131,9 @@
       "epsEstimate": 2.9926,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1413963000.0,
+      "revenueActual": 17596260000.0
     },
     {
       "ticker": "ADBE",
@@ -119,7 +145,9 @@
       "epsEstimate": 5.2812,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1772000000.0,
+      "revenueActual": 5988000000.0
     },
     {
       "ticker": "ALAB",
@@ -131,7 +159,9 @@
       "epsEstimate": 0.3973,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 230575000.0,
+      "netIncomeActual": 91114000.0
     },
     {
       "ticker": "AMD",
@@ -143,7 +173,9 @@
       "epsEstimate": 1.175,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1243000000.0,
+      "revenueActual": 9246000000.0
     },
     {
       "ticker": "AMGN",
@@ -155,7 +187,9 @@
       "epsEstimate": 5.1144,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9557000000.0,
+      "netIncomeActual": 3216000000.0
     },
     {
       "ticker": "AMZN",
@@ -167,7 +201,9 @@
       "epsEstimate": 1.605,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 18164000000.0,
+      "revenueActual": 167702000000.0
     },
     {
       "ticker": "ANET",
@@ -179,7 +215,9 @@
       "epsEstimate": 0.7282,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2308300000.0,
+      "netIncomeActual": 853000000.0
     },
     {
       "ticker": "APP",
@@ -191,7 +229,9 @@
       "epsEstimate": 2.4247,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 835545000.0,
+      "revenueActual": 1405045000.0
     },
     {
       "ticker": "ASML",
@@ -203,7 +243,9 @@
       "epsEstimate": 5.56,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7516000000.0,
+      "netIncomeActual": 2124500000.0
     },
     {
       "ticker": "AVGO",
@@ -215,7 +257,9 @@
       "epsEstimate": 1.6816,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 15952000000.0,
+      "netIncomeActual": 4140000000.0
     },
     {
       "ticker": "BA",
@@ -227,7 +271,9 @@
       "epsEstimate": -4.73,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -611000000.0,
+      "revenueActual": 22749000000.0
     },
     {
       "ticker": "BAC",
@@ -239,7 +285,9 @@
       "epsEstimate": 0.961,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 7116000000.0,
+      "revenueActual": 26463000000.0
     },
     {
       "ticker": "BKNG",
@@ -251,7 +299,9 @@
       "epsEstimate": 3.9028,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9008000000.0,
+      "netIncomeActual": 2748000000.0
     },
     {
       "ticker": "BMNR",
@@ -263,7 +313,9 @@
       "epsEstimate": -0.102,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 351331391.0,
+      "revenueActual": 1324891.0
     },
     {
       "ticker": "BRK-B",
@@ -275,7 +327,9 @@
       "epsEstimate": 8945.8442,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 19199000000.0,
+      "revenueActual": 111442000000.0
     },
     {
       "ticker": "BSX",
@@ -287,7 +341,9 @@
       "epsEstimate": 0.7207,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5065000000.0,
+      "netIncomeActual": 755000000.0
     },
     {
       "ticker": "BTDR",
@@ -299,7 +355,9 @@
       "epsEstimate": -0.1377,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -147733000.0,
+      "revenueActual": 155582000.0
     },
     {
       "ticker": "C",
@@ -311,7 +369,9 @@
       "epsEstimate": 1.9381,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22095000000.0,
+      "netIncomeActual": 3752000000.0
     },
     {
       "ticker": "CAT",
@@ -323,7 +383,9 @@
       "epsEstimate": 4.5687,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 17638000000.0,
+      "netIncomeActual": 2300000000.0
     },
     {
       "ticker": "CIFR",
@@ -335,7 +397,9 @@
       "epsEstimate": -0.0239,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 71707000.0,
+      "netIncomeActual": -3283000.0
     },
     {
       "ticker": "CLSK",
@@ -347,7 +411,9 @@
       "epsEstimate": 0.3289,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -925000.0,
+      "revenueActual": 223652000.0
     },
     {
       "ticker": "COHR",
@@ -359,7 +425,9 @@
       "epsEstimate": 1.0623,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -95619000.0,
+      "revenueActual": 1529436000.0
     },
     {
       "ticker": "COIN",
@@ -371,7 +439,9 @@
       "epsEstimate": 1.0786,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 432552000.0,
+      "revenueActual": 1868693000.0
     },
     {
       "ticker": "CORZ",
@@ -383,7 +453,9 @@
       "epsEstimate": -0.0596,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -144027000.0,
+      "revenueActual": 81103000.0
     },
     {
       "ticker": "COST",
@@ -395,7 +467,9 @@
       "epsEstimate": 5.9183,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 86156000000.0,
+      "netIncomeActual": 2610000000.0
     },
     {
       "ticker": "CRM",
@@ -407,7 +481,9 @@
       "epsEstimate": 2.8056,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1887000000.0,
+      "revenueActual": 10236000000.0
     },
     {
       "ticker": "CRWD",
@@ -419,7 +495,9 @@
       "epsEstimate": 0.2115,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1168952000.0,
+      "netIncomeActual": -77675000.0
     },
     {
       "ticker": "CRWV",
@@ -431,7 +509,9 @@
       "epsEstimate": -0.376,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -290509000.0,
+      "revenueActual": 1212788000.0
     },
     {
       "ticker": "CVX",
@@ -443,7 +523,9 @@
       "epsEstimate": 1.6984,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3539000000.0,
+      "revenueActual": 48169000000.0
     },
     {
       "ticker": "DELL",
@@ -455,7 +537,9 @@
       "epsEstimate": 2.3476,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1164000000.0,
+      "revenueActual": 29776000000.0
     },
     {
       "ticker": "DIS",
@@ -467,7 +551,9 @@
       "epsEstimate": 1.0556,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1313000000.0,
+      "revenueActual": 22464000000.0
     },
     {
       "ticker": "FCX",
@@ -479,7 +565,9 @@
       "epsEstimate": 0.4117,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6972000000.0,
+      "netIncomeActual": 674000000.0
     },
     {
       "ticker": "GEV",
@@ -491,7 +579,9 @@
       "epsEstimate": 1.6694,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 452000000.0,
+      "revenueActual": 9969000000.0
     },
     {
       "ticker": "GLW",
@@ -503,7 +593,9 @@
       "epsEstimate": 0.6702,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 430000000.0,
+      "revenueActual": 4100000000.0
     },
     {
       "ticker": "GOOG",
@@ -515,7 +607,9 @@
       "epsEstimate": 2.3954,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 34979000000.0,
+      "revenueActual": 102346000000.0
     },
     {
       "ticker": "GOOGL",
@@ -527,7 +621,9 @@
       "epsEstimate": 2.3954,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 34979000000.0,
+      "revenueActual": 102346000000.0
     },
     {
       "ticker": "GS",
@@ -539,7 +635,9 @@
       "epsEstimate": 11.3279,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 15184000000.0,
+      "netIncomeActual": 4098000000.0
     },
     {
       "ticker": "HOOD",
@@ -551,7 +649,21 @@
       "epsEstimate": 0.5446,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1274000000.0,
+      "netIncomeActual": 556000000.0
+    },
+    {
+      "ticker": "HUT",
+      "company": "헛 8",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "revenueActual": 83510000.0,
+      "netIncomeActual": 50109000.0,
+      "status": "reported",
+      "trackingTier": "theme",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "INTC",
@@ -563,7 +675,9 @@
       "epsEstimate": 0.01,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4063000000.0,
+      "revenueActual": 13653000000.0
     },
     {
       "ticker": "INTU",
@@ -575,7 +689,9 @@
       "epsEstimate": 2.7134,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 381000000.0,
+      "revenueActual": 3831000000.0
     },
     {
       "ticker": "IONQ",
@@ -587,7 +703,9 @@
       "epsEstimate": -0.3353,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 20694000.0,
+      "netIncomeActual": -176838000.0
     },
     {
       "ticker": "IREN",
@@ -599,7 +717,9 @@
       "epsEstimate": 0.1632,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 240295000.0,
+      "netIncomeActual": 384611000.0
     },
     {
       "ticker": "JNJ",
@@ -611,7 +731,9 @@
       "epsEstimate": 2.7848,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5152000000.0,
+      "revenueActual": 23993000000.0
     },
     {
       "ticker": "JPM",
@@ -623,7 +745,9 @@
       "epsEstimate": 4.8839,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 14393000000.0,
+      "revenueActual": 46430000000.0
     },
     {
       "ticker": "KLAC",
@@ -635,7 +759,9 @@
       "epsEstimate": 0.878,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1121040000.0,
+      "revenueActual": 3209696000.0
     },
     {
       "ticker": "KO",
@@ -647,7 +773,9 @@
       "epsEstimate": 0.8011,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3696000000.0,
+      "revenueActual": 12455000000.0
     },
     {
       "ticker": "LIN",
@@ -659,7 +787,9 @@
       "epsEstimate": 4.2194,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1929000000.0,
+      "revenueActual": 8615000000.0
     },
     {
       "ticker": "LITE",
@@ -671,7 +801,9 @@
       "epsEstimate": 1.0486,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 480700000.0,
+      "netIncomeActual": 213300000.0
     },
     {
       "ticker": "LLY",
@@ -683,7 +815,9 @@
       "epsEstimate": 5.7519,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5582500000.0,
+      "revenueActual": 17600800000.0
     },
     {
       "ticker": "LRCX",
@@ -695,7 +829,9 @@
       "epsEstimate": 1.2464,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5324173000.0,
+      "netIncomeActual": 1568660000.0
     },
     {
       "ticker": "MA",
@@ -707,7 +843,9 @@
       "epsEstimate": 4.4492,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3927000000.0,
+      "revenueActual": 8602000000.0
     },
     {
       "ticker": "MARA",
@@ -719,7 +857,9 @@
       "epsEstimate": 0.4526,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 252410000.0,
+      "netIncomeActual": 123134000.0
     },
     {
       "ticker": "MCD",
@@ -731,7 +871,9 @@
       "epsEstimate": 3.3597,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7077000000.0,
+      "netIncomeActual": 2278000000.0
     },
     {
       "ticker": "META",
@@ -743,7 +885,9 @@
       "epsEstimate": 6.8245,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 51242000000.0,
+      "netIncomeActual": 2709000000.0
     },
     {
       "ticker": "MPWR",
@@ -755,7 +899,9 @@
       "epsEstimate": 4.7302,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 737176000.0,
+      "netIncomeActual": 178274000.0
     },
     {
       "ticker": "MRK",
@@ -767,7 +913,9 @@
       "epsEstimate": 2.3705,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 17276000000.0,
+      "netIncomeActual": 5785000000.0
     },
     {
       "ticker": "MRNA",
@@ -779,7 +927,9 @@
       "epsEstimate": -2.1494,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -200000000.0,
+      "revenueActual": 1002000000.0
     },
     {
       "ticker": "MRVL",
@@ -791,7 +941,9 @@
       "epsEstimate": 0.6682,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 194800000.0,
+      "revenueActual": 2006100000.0
     },
     {
       "ticker": "MSFT",
@@ -803,7 +955,9 @@
       "epsEstimate": 3.7391,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 27747000000.0,
+      "revenueActual": 77673000000.0
     },
     {
       "ticker": "MSTR",
@@ -815,7 +969,9 @@
       "epsEstimate": 8.3144,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 128691000.0,
+      "netIncomeActual": 2785024000.0
     },
     {
       "ticker": "MU",
@@ -827,7 +983,9 @@
       "epsEstimate": 2.9461,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 11315000000.0,
+      "netIncomeActual": 3201000000.0
     },
     {
       "ticker": "NBIS",
@@ -839,7 +997,9 @@
       "epsEstimate": -0.5406,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 584500000.0,
+      "revenueActual": 100700000.0
     },
     {
       "ticker": "NFLX",
@@ -851,7 +1011,9 @@
       "epsEstimate": 0.7106,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 11510307000.0,
+      "netIncomeActual": 2546916000.0
     },
     {
       "ticker": "NOW",
@@ -863,7 +1025,9 @@
       "epsEstimate": 0.8619,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3407000000.0,
+      "netIncomeActual": 502000000.0
     },
     {
       "ticker": "NVDA",
@@ -875,7 +1039,9 @@
       "epsEstimate": 1.0281,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 26422000000.0,
+      "revenueActual": 46743000000.0
     },
     {
       "ticker": "O",
@@ -887,7 +1053,9 @@
       "epsEstimate": 0.3638,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1387631000.0,
+      "netIncomeActual": 315771000.0
     },
     {
       "ticker": "ODFL",
@@ -899,7 +1067,9 @@
       "epsEstimate": 1.2412,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 270947000.0,
+      "revenueActual": 1406511000.0
     },
     {
       "ticker": "OKE",
@@ -911,7 +1081,9 @@
       "epsEstimate": 1.4623,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 8634000000.0,
+      "netIncomeActual": 939000000.0
     },
     {
       "ticker": "OMC",
@@ -923,7 +1095,9 @@
       "epsEstimate": 2.1833,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4037100000.0,
+      "netIncomeActual": 341300000.0
     },
     {
       "ticker": "ON",
@@ -935,7 +1109,9 @@
       "epsEstimate": 0.6076,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 255000000.0,
+      "revenueActual": 1550900000.0
     },
     {
       "ticker": "ORCL",
@@ -947,7 +1123,9 @@
       "epsEstimate": 1.5099,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2927000000.0,
+      "revenueActual": 14926000000.0
     },
     {
       "ticker": "ORLY",
@@ -959,7 +1137,9 @@
       "epsEstimate": 0.8498,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4705696000.0,
+      "netIncomeActual": 725896000.0
     },
     {
       "ticker": "OTIS",
@@ -971,7 +1151,9 @@
       "epsEstimate": 1.0197,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3690000000.0,
+      "netIncomeActual": 374000000.0
     },
     {
       "ticker": "OXY",
@@ -983,7 +1165,9 @@
       "epsEstimate": 0.5204,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6624000000.0,
+      "netIncomeActual": 830000000.0
     },
     {
       "ticker": "PANW",
@@ -995,7 +1179,9 @@
       "epsEstimate": 0.9021,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2536300000.0,
+      "netIncomeActual": 253800000.0
     },
     {
       "ticker": "PAYX",
@@ -1007,7 +1193,9 @@
       "epsEstimate": 1.2304,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1540000000.0,
+      "netIncomeActual": 383800000.0
     },
     {
       "ticker": "PCAR",
@@ -1019,7 +1207,9 @@
       "epsEstimate": 1.1892,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 590000000.0,
+      "revenueActual": 6671800000.0
     },
     {
       "ticker": "PCG",
@@ -1031,7 +1221,9 @@
       "epsEstimate": 0.4214,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6250000000.0,
+      "netIncomeActual": 850000000.0
     },
     {
       "ticker": "PDD",
@@ -1043,7 +1235,9 @@
       "epsEstimate": 17.0124,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 103984832000.0,
+      "netIncomeActual": 30753457000.0
     },
     {
       "ticker": "PEG",
@@ -1055,7 +1249,9 @@
       "epsEstimate": 1.0265,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3226000000.0,
+      "netIncomeActual": 622000000.0
     },
     {
       "ticker": "PEP",
@@ -1067,7 +1263,9 @@
       "epsEstimate": 2.2803,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 23937000000.0,
+      "netIncomeActual": 2603000000.0
     },
     {
       "ticker": "PFE",
@@ -1079,7 +1277,9 @@
       "epsEstimate": 0.6397,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 16654000000.0,
+      "netIncomeActual": 3541000000.0
     },
     {
       "ticker": "PFG",
@@ -1091,7 +1291,9 @@
       "epsEstimate": 2.2193,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 213800000.0,
+      "revenueActual": 3681600000.0
     },
     {
       "ticker": "PG",
@@ -1103,7 +1305,9 @@
       "epsEstimate": 1.952,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22386000000.0,
+      "netIncomeActual": 4750000000.0
     },
     {
       "ticker": "PGR",
@@ -1115,7 +1319,9 @@
       "epsEstimate": 5.0878,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2615000000.0,
+      "revenueActual": 22502000000.0
     },
     {
       "ticker": "PH",
@@ -1127,7 +1333,9 @@
       "epsEstimate": 6.8247,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 923172000.0,
+      "revenueActual": 5243074000.0
     },
     {
       "ticker": "PHM",
@@ -1139,7 +1347,9 @@
       "epsEstimate": 2.918,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 585834000.0,
+      "revenueActual": 4404799000.0
     },
     {
       "ticker": "PKG",
@@ -1151,7 +1361,9 @@
       "epsEstimate": 2.8388,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2313400000.0,
+      "netIncomeActual": 226900000.0
     },
     {
       "ticker": "PLD",
@@ -1163,7 +1375,9 @@
       "epsEstimate": 0.6686,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2213881000.0,
+      "netIncomeActual": 764266000.0
     },
     {
       "ticker": "PLTR",
@@ -1175,7 +1389,9 @@
       "epsEstimate": 0.1718,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 475599000.0,
+      "revenueActual": 1181092000.0
     },
     {
       "ticker": "PM",
@@ -1187,7 +1403,9 @@
       "epsEstimate": 2.1573,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10845000000.0,
+      "netIncomeActual": 3478000000.0
     },
     {
       "ticker": "PNC",
@@ -1199,7 +1417,9 @@
       "epsEstimate": 4.0901,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1808000000.0,
+      "revenueActual": 5900000000.0
     },
     {
       "ticker": "PNR",
@@ -1211,7 +1431,9 @@
       "epsEstimate": 1.1929,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1022000000.0,
+      "netIncomeActual": 184300000.0
     },
     {
       "ticker": "PNW",
@@ -1223,7 +1445,9 @@
       "epsEstimate": 3.1472,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 413208000.0,
+      "revenueActual": 1820741000.0
     },
     {
       "ticker": "PODD",
@@ -1235,7 +1459,9 @@
       "epsEstimate": 1.1643,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 87600000.0,
+      "revenueActual": 706300000.0
     },
     {
       "ticker": "PPG",
@@ -1247,7 +1473,9 @@
       "epsEstimate": 2.1104,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 453000000.0,
+      "revenueActual": 4082000000.0
     },
     {
       "ticker": "PPL",
@@ -1259,7 +1487,9 @@
       "epsEstimate": 0.4643,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 183000000.0,
+      "revenueActual": 2025000000.0
     },
     {
       "ticker": "PRU",
@@ -1271,7 +1501,9 @@
       "epsEstimate": 3.7323,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1431000000.0,
+      "revenueActual": 17950000000.0
     },
     {
       "ticker": "PSA",
@@ -1283,7 +1515,9 @@
       "epsEstimate": 2.5566,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 511063000.0,
+      "revenueActual": 1224043000.0
     },
     {
       "ticker": "PSKY",
@@ -1295,7 +1529,9 @@
       "epsEstimate": 0.3853,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7192000000.0,
+      "netIncomeActual": 152000000.0
     },
     {
       "ticker": "PSX",
@@ -1307,7 +1543,9 @@
       "epsEstimate": 2.1881,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 133000000.0,
+      "revenueActual": 34515000000.0
     },
     {
       "ticker": "PTC",
@@ -1319,7 +1557,9 @@
       "epsEstimate": 2.2935,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 893795000.0,
+      "netIncomeActual": 347793000.0
     },
     {
       "ticker": "PWR",
@@ -1331,7 +1571,9 @@
       "epsEstimate": 3.2901,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 339420000.0,
+      "revenueActual": 7631408000.0
     },
     {
       "ticker": "PYPL",
@@ -1343,7 +1585,9 @@
       "epsEstimate": 1.2251,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1248000000.0,
+      "revenueActual": 8417000000.0
     },
     {
       "ticker": "Q",
@@ -1355,7 +1599,9 @@
       "epsEstimate": 0.6715,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 211000000.0,
+      "revenueActual": 1276000000.0
     },
     {
       "ticker": "QBTS",
@@ -1367,7 +1613,9 @@
       "epsEstimate": -0.0687,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3739000.0,
+      "netIncomeActual": -139986000.0
     },
     {
       "ticker": "QCOM",
@@ -1379,7 +1627,9 @@
       "epsEstimate": 2.9335,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 11271000000.0,
+      "netIncomeActual": -3117000000.0
     },
     {
       "ticker": "QUBT",
@@ -1391,7 +1641,9 @@
       "epsEstimate": -0.0578,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -36482000.0,
+      "revenueActual": 61000.0
     },
     {
       "ticker": "RCL",
@@ -1403,7 +1655,9 @@
       "epsEstimate": 5.7287,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1575000000.0,
+      "revenueActual": 5139000000.0
     },
     {
       "ticker": "RDDT",
@@ -1415,7 +1669,9 @@
       "epsEstimate": 0.5196,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 584911000.0,
+      "netIncomeActual": 162663000.0
     },
     {
       "ticker": "REG",
@@ -1427,7 +1683,9 @@
       "epsEstimate": 0.5656,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 380848000.0,
+      "netIncomeActual": 106021000.0
     },
     {
       "ticker": "REGN",
@@ -1439,7 +1697,9 @@
       "epsEstimate": 9.78,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3754300000.0,
+      "netIncomeActual": 1460000000.0
     },
     {
       "ticker": "RF",
@@ -1451,7 +1711,9 @@
       "epsEstimate": 0.6153,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 569000000.0,
+      "revenueActual": 1916000000.0
     },
     {
       "ticker": "RGTI",
@@ -1463,7 +1725,9 @@
       "epsEstimate": -0.0437,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1947000.0,
+      "netIncomeActual": -200968000.0
     },
     {
       "ticker": "RIOT",
@@ -1475,7 +1739,9 @@
       "epsEstimate": 0.0683,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 104480000.0,
+      "revenueActual": 180229000.0
     },
     {
       "ticker": "RJF",
@@ -1487,7 +1753,9 @@
       "epsEstimate": 2.851,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3667000000.0,
+      "netIncomeActual": 604000000.0
     },
     {
       "ticker": "RKLB",
@@ -1499,7 +1767,9 @@
       "epsEstimate": -0.1064,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -66414000.0,
+      "revenueActual": 144498000.0
     },
     {
       "ticker": "RL",
@@ -1511,7 +1781,9 @@
       "epsEstimate": 3.5431,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 207500000.0,
+      "revenueActual": 2010700000.0
     },
     {
       "ticker": "RMD",
@@ -1523,7 +1795,9 @@
       "epsEstimate": 2.5799,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1347993000.0,
+      "netIncomeActual": 379705000.0
     },
     {
       "ticker": "ROK",
@@ -1535,7 +1809,9 @@
       "epsEstimate": 2.9641,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 138000000.0,
+      "revenueActual": 2316000000.0
     },
     {
       "ticker": "ROST",
@@ -1547,7 +1823,9 @@
       "epsEstimate": 1.5661,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5529152000.0,
+      "netIncomeActual": 507995000.0
     },
     {
       "ticker": "RSG",
@@ -1559,7 +1837,9 @@
       "epsEstimate": 1.7993,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4212000000.0,
+      "netIncomeActual": 550000000.0
     },
     {
       "ticker": "RTX",
@@ -1571,7 +1851,9 @@
       "epsEstimate": 1.423,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22478000000.0,
+      "netIncomeActual": 1918000000.0
     },
     {
       "ticker": "RVTY",
@@ -1583,7 +1865,9 @@
       "epsEstimate": 1.1599,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 720284000.0,
+      "netIncomeActual": 53948000.0
     },
     {
       "ticker": "SBAC",
@@ -1595,7 +1879,9 @@
       "epsEstimate": 2.2408,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 732327000.0,
+      "netIncomeActual": 236816000.0
     },
     {
       "ticker": "SMCI",
@@ -1607,7 +1893,9 @@
       "epsEstimate": 0.4112,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 195154000.0,
+      "revenueActual": 5756911000.0
     },
     {
       "ticker": "SNDK",
@@ -1619,7 +1907,9 @@
       "epsEstimate": 0.9543,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -23000000.0,
+      "revenueActual": 1901000000.0
     },
     {
       "ticker": "STX",
@@ -1631,7 +1921,9 @@
       "epsEstimate": 2.3972,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2629000000.0,
+      "netIncomeActual": 549000000.0
     },
     {
       "ticker": "TGT",
@@ -1642,7 +1934,9 @@
       "epsActual": 2.46,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 935000000.0,
+      "revenueActual": 25211000000.0
     },
     {
       "ticker": "TMO",
@@ -1654,7 +1948,9 @@
       "epsEstimate": 5.5478,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1616000000.0,
+      "revenueActual": 11122000000.0
     },
     {
       "ticker": "TSLA",
@@ -1666,7 +1962,9 @@
       "epsEstimate": 0.5586,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1373000000.0,
+      "revenueActual": 28095000000.0
     },
     {
       "ticker": "TXN",
@@ -1678,7 +1976,9 @@
       "epsEstimate": 1.5043,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1364000000.0,
+      "revenueActual": 4742000000.0
     },
     {
       "ticker": "UNH",
@@ -1690,7 +1990,9 @@
       "epsEstimate": 2.8218,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3406000000.0,
+      "revenueActual": 111616000000.0
     },
     {
       "ticker": "V",
@@ -1702,7 +2004,9 @@
       "epsEstimate": 3.0257,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5090000000.0,
+      "revenueActual": 10724000000.0
     },
     {
       "ticker": "VRT",
@@ -1714,7 +2018,9 @@
       "epsEstimate": 0.9974,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2675800000.0,
+      "netIncomeActual": 398500000.0
     },
     {
       "ticker": "VZ",
@@ -1726,7 +2032,9 @@
       "epsEstimate": 1.2247,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 33821000000.0,
+      "netIncomeActual": 4950000000.0
     },
     {
       "ticker": "WDC",
@@ -1738,7 +2046,9 @@
       "epsEstimate": 1.5952,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 257000000.0,
+      "revenueActual": 2605000000.0
     },
     {
       "ticker": "WULF",
@@ -1750,7 +2060,9 @@
       "epsEstimate": -0.0575,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 50578000.0,
+      "netIncomeActual": -455050000.0
     },
     {
       "ticker": "XOM",
@@ -1762,7 +2074,9 @@
       "epsEstimate": 1.8352,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 7548000000.0,
+      "revenueActual": 83331000000.0
     },
     {
       "ticker": "AAPL",
@@ -1774,7 +2088,9 @@
       "epsEstimate": 2.7257,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 143756000000.0,
+      "netIncomeActual": 42097000000.0
     },
     {
       "ticker": "ABBV",
@@ -1786,7 +2102,9 @@
       "epsEstimate": 2.7053,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1816000000.0,
+      "revenueActual": 16618000000.0
     },
     {
       "ticker": "ABNB",
@@ -1798,7 +2116,9 @@
       "epsEstimate": 0.6702,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 341000000.0,
+      "revenueActual": 2778000000.0
     },
     {
       "ticker": "ACN",
@@ -1810,7 +2130,9 @@
       "epsEstimate": 3.7767,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2211561000.0,
+      "revenueActual": 18742125000.0
     },
     {
       "ticker": "ADBE",
@@ -1822,7 +2144,9 @@
       "epsEstimate": 5.5024,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1856000000.0,
+      "revenueActual": 6194000000.0
     },
     {
       "ticker": "ADI",
@@ -1834,7 +2158,9 @@
       "epsEstimate": 2.2432,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2880348000.0,
+      "netIncomeActual": 518518000.0
     },
     {
       "ticker": "ALAB",
@@ -1846,7 +2172,9 @@
       "epsEstimate": 0.5245,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 270583000.0,
+      "netIncomeActual": 44982000.0
     },
     {
       "ticker": "AMAT",
@@ -1858,7 +2186,9 @@
       "epsEstimate": 2.1352,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1779000000.0,
+      "revenueActual": 7302000000.0
     },
     {
       "ticker": "AMD",
@@ -1870,7 +2200,9 @@
       "epsEstimate": 1.3324,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1511000000.0,
+      "revenueActual": 10270000000.0
     },
     {
       "ticker": "AMGN",
@@ -1882,7 +2214,9 @@
       "epsEstimate": 4.8283,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9866000000.0,
+      "netIncomeActual": 1333000000.0
     },
     {
       "ticker": "AMZN",
@@ -1894,7 +2228,9 @@
       "epsEstimate": 1.6703,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 21187000000.0,
+      "revenueActual": 180169000000.0
     },
     {
       "ticker": "ANET",
@@ -1906,7 +2242,9 @@
       "epsEstimate": 0.7719,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2487800000.0,
+      "netIncomeActual": 955800000.0
     },
     {
       "ticker": "APP",
@@ -1918,7 +2256,9 @@
       "epsEstimate": 2.9597,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1102269000.0,
+      "revenueActual": 1657944000.0
     },
     {
       "ticker": "ASML",
@@ -1930,7 +2270,9 @@
       "epsEstimate": 7.7108,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9718100000.0,
+      "netIncomeActual": 2839600000.0
     },
     {
       "ticker": "AVGO",
@@ -1942,7 +2284,9 @@
       "epsEstimate": 1.8996,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 18015000000.0,
+      "netIncomeActual": 8518000000.0
     },
     {
       "ticker": "BA",
@@ -1954,7 +2298,9 @@
       "epsEstimate": -0.4013,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -5337000000.0,
+      "revenueActual": 23270000000.0
     },
     {
       "ticker": "BAC",
@@ -1966,7 +2312,9 @@
       "epsEstimate": 0.9676,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 8469000000.0,
+      "revenueActual": 28088000000.0
     },
     {
       "ticker": "BKNG",
@@ -1978,7 +2326,9 @@
       "epsEstimate": 1.9774,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6349000000.0,
+      "netIncomeActual": 1428000000.0
     },
     {
       "ticker": "BMNR",
@@ -1990,7 +2340,9 @@
       "epsEstimate": 0.153,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -5204095000.0,
+      "revenueActual": 2293000.0
     },
     {
       "ticker": "BRK-B",
@@ -2002,7 +2354,9 @@
       "epsEstimate": 8431.7647,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 10106000000.0,
+      "revenueActual": 92070000000.0
     },
     {
       "ticker": "BSX",
@@ -2014,7 +2368,9 @@
       "epsEstimate": 0.7873,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5286000000.0,
+      "netIncomeActual": 672000000.0
     },
     {
       "ticker": "BTDR",
@@ -2026,7 +2382,9 @@
       "epsEstimate": -0.0831,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -266685000.0,
+      "revenueActual": 169708000.0
     },
     {
       "ticker": "C",
@@ -2038,7 +2396,9 @@
       "epsEstimate": 1.7082,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 19670000000.0,
+      "netIncomeActual": 2471000000.0
     },
     {
       "ticker": "CAT",
@@ -2050,7 +2410,9 @@
       "epsEstimate": 4.7223,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 19133000000.0,
+      "netIncomeActual": 2402000000.0
     },
     {
       "ticker": "CIFR",
@@ -2062,7 +2424,9 @@
       "epsEstimate": -0.1007,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 59711000.0,
+      "netIncomeActual": -734205000.0
     },
     {
       "ticker": "CLSK",
@@ -2074,7 +2438,9 @@
       "epsEstimate": -0.2318,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -378711000.0,
+      "revenueActual": 181180000.0
     },
     {
       "ticker": "COHR",
@@ -2086,7 +2452,9 @@
       "epsEstimate": 1.2318,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 226349000.0,
+      "revenueActual": 1581378000.0
     },
     {
       "ticker": "COIN",
@@ -2098,7 +2466,9 @@
       "epsEstimate": 0.5931,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -666733000.0,
+      "revenueActual": 1781129000.0
     },
     {
       "ticker": "CORZ",
@@ -2110,7 +2480,9 @@
       "epsEstimate": -0.0861,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 214150000.0,
+      "revenueActual": 79763000.0
     },
     {
       "ticker": "COST",
@@ -2122,7 +2494,9 @@
       "epsEstimate": 4.3571,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 67307000000.0,
+      "netIncomeActual": 2001000000.0
     },
     {
       "ticker": "CRM",
@@ -2134,7 +2508,9 @@
       "epsEstimate": 2.8867,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2086000000.0,
+      "revenueActual": 10259000000.0
     },
     {
       "ticker": "CRWD",
@@ -2146,7 +2522,9 @@
       "epsEstimate": 0.2399,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1234244000.0,
+      "netIncomeActual": -33997000.0
     },
     {
       "ticker": "CRWV",
@@ -2158,7 +2536,9 @@
       "epsEstimate": -0.5036,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -110124000.0,
+      "revenueActual": 1364676000.0
     },
     {
       "ticker": "CSCO",
@@ -2170,7 +2550,9 @@
       "epsEstimate": 1.0013,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2550000000.0,
+      "revenueActual": 14673000000.0
     },
     {
       "ticker": "CVX",
@@ -2182,7 +2564,9 @@
       "epsEstimate": 1.4628,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2770000000.0,
+      "revenueActual": 45787000000.0
     },
     {
       "ticker": "DELL",
@@ -2194,7 +2578,9 @@
       "epsEstimate": 2.5215,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1548000000.0,
+      "revenueActual": 27005000000.0
     },
     {
       "ticker": "DIS",
@@ -2206,7 +2592,9 @@
       "epsEstimate": 1.5862,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2402000000.0,
+      "revenueActual": 25981000000.0
     },
     {
       "ticker": "FCX",
@@ -2218,7 +2606,9 @@
       "epsEstimate": 0.2902,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5633000000.0,
+      "netIncomeActual": 406000000.0
     },
     {
       "ticker": "GEV",
@@ -2230,7 +2620,9 @@
       "epsEstimate": 3.0007,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3664000000.0,
+      "revenueActual": 10956000000.0
     },
     {
       "ticker": "GLW",
@@ -2242,7 +2634,9 @@
       "epsEstimate": 0.7125,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 540000000.0,
+      "revenueActual": 4215000000.0
     },
     {
       "ticker": "GOOG",
@@ -2254,7 +2648,9 @@
       "epsEstimate": 2.7063,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 34455000000.0,
+      "revenueActual": 113829000000.0
     },
     {
       "ticker": "GOOGL",
@@ -2266,7 +2662,9 @@
       "epsEstimate": 2.7063,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 34455000000.0,
+      "revenueActual": 113829000000.0
     },
     {
       "ticker": "GS",
@@ -2278,7 +2676,9 @@
       "epsEstimate": 12.0225,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 13454000000.0,
+      "netIncomeActual": 4617000000.0
     },
     {
       "ticker": "HD",
@@ -2290,7 +2690,9 @@
       "epsEstimate": 3.9535,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 45277000000.0,
+      "netIncomeActual": 4551000000.0
     },
     {
       "ticker": "HOOD",
@@ -2302,7 +2704,21 @@
       "epsEstimate": 0.6398,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1283000000.0,
+      "netIncomeActual": 605000000.0
+    },
+    {
+      "ticker": "HUT",
+      "company": "헛 8",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "revenueActual": 88494000.0,
+      "netIncomeActual": -279681000.0,
+      "status": "reported",
+      "trackingTier": "theme",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "INTC",
@@ -2314,7 +2730,9 @@
       "epsEstimate": 0.0829,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -591000000.0,
+      "revenueActual": 13674000000.0
     },
     {
       "ticker": "INTU",
@@ -2326,7 +2744,9 @@
       "epsEstimate": 3.1558,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 446000000.0,
+      "revenueActual": 3885000000.0
     },
     {
       "ticker": "IONQ",
@@ -2338,7 +2758,9 @@
       "epsEstimate": -0.333,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 39866000.0,
+      "netIncomeActual": -1054955000.0
     },
     {
       "ticker": "IREN",
@@ -2350,7 +2772,9 @@
       "epsEstimate": -0.1107,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 184692000.0,
+      "netIncomeActual": -155407000.0
     },
     {
       "ticker": "JNJ",
@@ -2362,7 +2786,9 @@
       "epsEstimate": 2.4633,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5116000000.0,
+      "revenueActual": 24564000000.0
     },
     {
       "ticker": "JPM",
@@ -2374,7 +2800,9 @@
       "epsEstimate": 5.0539,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 13025000000.0,
+      "revenueActual": 45796000000.0
     },
     {
       "ticker": "KLAC",
@@ -2386,7 +2814,9 @@
       "epsEstimate": 0.898,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1145682000.0,
+      "revenueActual": 3297146000.0
     },
     {
       "ticker": "KO",
@@ -2398,7 +2828,9 @@
       "epsEstimate": 0.5803,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2271000000.0,
+      "revenueActual": 11822000000.0
     },
     {
       "ticker": "LIN",
@@ -2410,7 +2842,9 @@
       "epsEstimate": 4.2183,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1530000000.0,
+      "revenueActual": 8764000000.0
     },
     {
       "ticker": "LITE",
@@ -2422,7 +2856,9 @@
       "epsEstimate": 1.4224,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 533800000.0,
+      "netIncomeActual": 4200000.0
     },
     {
       "ticker": "LLY",
@@ -2434,7 +2870,9 @@
       "epsEstimate": 6.7372,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 6637700000.0,
+      "revenueActual": 19292000000.0
     },
     {
       "ticker": "LRCX",
@@ -2446,7 +2884,9 @@
       "epsEstimate": 1.1935,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5344791000.0,
+      "netIncomeActual": 1593994000.0
     },
     {
       "ticker": "MA",
@@ -2458,7 +2898,9 @@
       "epsEstimate": 4.3756,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4060000000.0,
+      "revenueActual": 8806000000.0
     },
     {
       "ticker": "MARA",
@@ -2470,7 +2912,9 @@
       "epsEstimate": -0.1282,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 202314000.0,
+      "netIncomeActual": -1709376000.0
     },
     {
       "ticker": "MCD",
@@ -2482,7 +2926,9 @@
       "epsEstimate": 3.0757,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7008000000.0,
+      "netIncomeActual": 2164000000.0
     },
     {
       "ticker": "META",
@@ -2494,7 +2940,9 @@
       "epsEstimate": 8.3992,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 59893000000.0,
+      "netIncomeActual": 22768000000.0
     },
     {
       "ticker": "MPWR",
@@ -2506,7 +2954,9 @@
       "epsEstimate": 4.8187,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 751155000.0,
+      "netIncomeActual": 175692000.0
     },
     {
       "ticker": "MRK",
@@ -2518,7 +2968,9 @@
       "epsEstimate": 2.0295,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 16400000000.0,
+      "netIncomeActual": 2963000000.0
     },
     {
       "ticker": "MRNA",
@@ -2530,7 +2982,9 @@
       "epsEstimate": -2.6953,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -826000000.0,
+      "revenueActual": 676000000.0
     },
     {
       "ticker": "MRVL",
@@ -2542,7 +2996,9 @@
       "epsEstimate": 0.7495,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1901300000.0,
+      "revenueActual": 2074500000.0
     },
     {
       "ticker": "MSFT",
@@ -2554,7 +3010,9 @@
       "epsEstimate": 4.0345,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 38458000000.0,
+      "revenueActual": 81273000000.0
     },
     {
       "ticker": "MSTR",
@@ -2566,7 +3024,9 @@
       "epsEstimate": 3.0277,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 122988000.0,
+      "netIncomeActual": -12436652000.0
     },
     {
       "ticker": "MU",
@@ -2578,7 +3038,9 @@
       "epsEstimate": 4.072,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 13643000000.0,
+      "netIncomeActual": 5240000000.0
     },
     {
       "ticker": "NBIS",
@@ -2590,7 +3052,9 @@
       "epsEstimate": -1.1648,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -119600000.0,
+      "revenueActual": 146100000.0
     },
     {
       "ticker": "NFLX",
@@ -2602,7 +3066,9 @@
       "epsEstimate": 0.5628,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 12050762000.0,
+      "netIncomeActual": 2418521000.0
     },
     {
       "ticker": "NOW",
@@ -2614,7 +3080,9 @@
       "epsEstimate": 0.8917,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3568000000.0,
+      "netIncomeActual": 401000000.0
     },
     {
       "ticker": "NVDA",
@@ -2626,7 +3094,9 @@
       "epsEstimate": 1.2746,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 31910000000.0,
+      "revenueActual": 57006000000.0
     },
     {
       "ticker": "O",
@@ -2638,7 +3108,9 @@
       "epsEstimate": 0.3993,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1708836000.0,
+      "netIncomeActual": 296085000.0
     },
     {
       "ticker": "ODFL",
@@ -2650,7 +3122,9 @@
       "epsEstimate": 1.0811,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 229470000.0,
+      "revenueActual": 1307296000.0
     },
     {
       "ticker": "OKE",
@@ -2662,7 +3136,9 @@
       "epsEstimate": 1.5341,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9065000000.0,
+      "netIncomeActual": 977000000.0
     },
     {
       "ticker": "OMC",
@@ -2674,7 +3150,9 @@
       "epsEstimate": 2.6374,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5528800000.0,
+      "netIncomeActual": -941100000.0
     },
     {
       "ticker": "ON",
@@ -2686,7 +3164,9 @@
       "epsEstimate": 0.6414,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 181800000.0,
+      "revenueActual": 1530100000.0
     },
     {
       "ticker": "ORCL",
@@ -2698,7 +3178,9 @@
       "epsEstimate": 1.6711,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 6135000000.0,
+      "revenueActual": 16058000000.0
     },
     {
       "ticker": "ORLY",
@@ -2710,7 +3192,9 @@
       "epsEstimate": 0.7398,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4414314000.0,
+      "netIncomeActual": 605233000.0
     },
     {
       "ticker": "OTIS",
@@ -2722,7 +3206,9 @@
       "epsEstimate": 1.0559,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3796000000.0,
+      "netIncomeActual": 374000000.0
     },
     {
       "ticker": "OXY",
@@ -2734,7 +3220,9 @@
       "epsEstimate": 0.1843,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1752000000.0,
+      "netIncomeActual": 102000000.0
     },
     {
       "ticker": "PANW",
@@ -2746,7 +3234,9 @@
       "epsEstimate": 0.9081,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2474000000.0,
+      "netIncomeActual": 334000000.0
     },
     {
       "ticker": "PAYX",
@@ -2758,7 +3248,9 @@
       "epsEstimate": 1.2532,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1557600000.0,
+      "netIncomeActual": 395400000.0
     },
     {
       "ticker": "PCAR",
@@ -2770,7 +3262,9 @@
       "epsEstimate": 1.0822,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 556900000.0,
+      "revenueActual": 6820800000.0
     },
     {
       "ticker": "PCG",
@@ -2782,7 +3276,9 @@
       "epsEstimate": 0.369,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6804000000.0,
+      "netIncomeActual": 670000000.0
     },
     {
       "ticker": "PDD",
@@ -2794,7 +3290,9 @@
       "epsEstimate": 20.9706,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 108276512000.0,
+      "netIncomeActual": 29328184000.0
     },
     {
       "ticker": "PEG",
@@ -2806,7 +3304,9 @@
       "epsEstimate": 0.718,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2915000000.0,
+      "netIncomeActual": 315000000.0
     },
     {
       "ticker": "PEP",
@@ -2818,7 +3318,9 @@
       "epsEstimate": 2.2597,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 29343000000.0,
+      "netIncomeActual": 2540000000.0
     },
     {
       "ticker": "PFE",
@@ -2830,7 +3332,9 @@
       "epsEstimate": 0.5775,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 17557000000.0,
+      "netIncomeActual": -1648000000.0
     },
     {
       "ticker": "PFG",
@@ -2842,7 +3346,9 @@
       "epsEstimate": 2.2471,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 517000000.0,
+      "revenueActual": 4576700000.0
     },
     {
       "ticker": "PG",
@@ -2854,7 +3360,9 @@
       "epsEstimate": 1.9111,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22208000000.0,
+      "netIncomeActual": 4319000000.0
     },
     {
       "ticker": "PGR",
@@ -2866,7 +3374,9 @@
       "epsEstimate": 4.4569,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2951000000.0,
+      "revenueActual": 22738000000.0
     },
     {
       "ticker": "PH",
@@ -2878,7 +3388,9 @@
       "epsEstimate": 7.3862,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 808000000.0,
+      "revenueActual": 5084000000.0
     },
     {
       "ticker": "PHM",
@@ -2890,7 +3402,9 @@
       "epsEstimate": 2.8434,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 501615000.0,
+      "revenueActual": 4610748000.0
     },
     {
       "ticker": "PKG",
@@ -2902,7 +3416,9 @@
       "epsEstimate": 2.4295,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2363600000.0,
+      "netIncomeActual": 101800000.0
     },
     {
       "ticker": "PLD",
@@ -2914,7 +3430,9 @@
       "epsEstimate": 0.6848,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2252712000.0,
+      "netIncomeActual": 1399783000.0
     },
     {
       "ticker": "PLTR",
@@ -2926,7 +3444,9 @@
       "epsEstimate": 0.2348,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 608676000.0,
+      "revenueActual": 1406802000.0
     },
     {
       "ticker": "PM",
@@ -2938,7 +3458,9 @@
       "epsEstimate": 1.7501,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10362000000.0,
+      "netIncomeActual": 2141000000.0
     },
     {
       "ticker": "PNC",
@@ -2950,7 +3472,9 @@
       "epsEstimate": 4.2594,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2020000000.0,
+      "revenueActual": 6068000000.0
     },
     {
       "ticker": "PNR",
@@ -2962,7 +3486,9 @@
       "epsEstimate": 1.1706,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1020500000.0,
+      "netIncomeActual": 166100000.0
     },
     {
       "ticker": "PNW",
@@ -2974,7 +3500,9 @@
       "epsEstimate": 0.041,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 15403000.0,
+      "revenueActual": 1128167000.0
     },
     {
       "ticker": "PODD",
@@ -2986,7 +3514,9 @@
       "epsEstimate": 1.4832,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 101600000.0,
+      "revenueActual": 783800000.0
     },
     {
       "ticker": "PPG",
@@ -2998,7 +3528,9 @@
       "epsEstimate": 1.5978,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 300000000.0,
+      "revenueActual": 3914000000.0
     },
     {
       "ticker": "PPL",
@@ -3010,7 +3542,9 @@
       "epsEstimate": 0.4188,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 318000000.0,
+      "revenueActual": 2239000000.0
     },
     {
       "ticker": "PRU",
@@ -3022,7 +3556,9 @@
       "epsEstimate": 3.4027,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 905000000.0,
+      "revenueActual": 15676000000.0
     },
     {
       "ticker": "PSA",
@@ -3034,7 +3570,9 @@
       "epsEstimate": 2.525,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 507075000.0,
+      "revenueActual": 1215792000.0
     },
     {
       "ticker": "PSKY",
@@ -3046,7 +3584,9 @@
       "epsEstimate": -0.0087,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6849000000.0,
+      "netIncomeActual": 57000000.0
     },
     {
       "ticker": "PSX",
@@ -3058,7 +3598,9 @@
       "epsEstimate": 2.186,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2906000000.0,
+      "revenueActual": 34108000000.0
     },
     {
       "ticker": "PTC",
@@ -3070,7 +3612,9 @@
       "epsEstimate": 1.5794,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 685825000.0,
+      "netIncomeActual": 166518000.0
     },
     {
       "ticker": "PWR",
@@ -3082,7 +3626,9 @@
       "epsEstimate": 3.0544,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 315450000.0,
+      "revenueActual": 7841948000.0
     },
     {
       "ticker": "PYPL",
@@ -3094,7 +3640,9 @@
       "epsEstimate": 1.3103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1437000000.0,
+      "revenueActual": 8676000000.0
     },
     {
       "ticker": "Q",
@@ -3106,7 +3654,9 @@
       "epsEstimate": 0.642,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 100000000.0,
+      "revenueActual": 1190000000.0
     },
     {
       "ticker": "QBTS",
@@ -3118,7 +3668,9 @@
       "epsEstimate": -0.0676,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2752000.0,
+      "netIncomeActual": -42326000.0
     },
     {
       "ticker": "QCOM",
@@ -3130,7 +3682,9 @@
       "epsEstimate": 3.48,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 12252000000.0,
+      "netIncomeActual": 3004000000.0
     },
     {
       "ticker": "QUBT",
@@ -3142,7 +3696,9 @@
       "epsEstimate": -0.0332,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2382000.0,
+      "revenueActual": 384000.0
     },
     {
       "ticker": "RCL",
@@ -3154,7 +3710,9 @@
       "epsEstimate": 2.8266,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 754000000.0,
+      "revenueActual": 4258000000.0
     },
     {
       "ticker": "RDDT",
@@ -3166,7 +3724,9 @@
       "epsEstimate": 0.9599,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 725607000.0,
+      "netIncomeActual": 251603000.0
     },
     {
       "ticker": "REG",
@@ -3178,7 +3738,9 @@
       "epsEstimate": 0.5896,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 387570000.0,
+      "netIncomeActual": 109373000.0
     },
     {
       "ticker": "REGN",
@@ -3190,7 +3752,9 @@
       "epsEstimate": 10.8277,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3884300000.0,
+      "netIncomeActual": 844600000.0
     },
     {
       "ticker": "RF",
@@ -3202,7 +3766,9 @@
       "epsEstimate": 0.6316,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 534000000.0,
+      "revenueActual": 1921000000.0
     },
     {
       "ticker": "RGTI",
@@ -3214,7 +3780,9 @@
       "epsEstimate": -0.0332,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1868000.0,
+      "netIncomeActual": -18207000.0
     },
     {
       "ticker": "RIOT",
@@ -3226,7 +3794,9 @@
       "epsEstimate": -0.2912,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -690748000.0,
+      "revenueActual": 152831000.0
     },
     {
       "ticker": "RJF",
@@ -3238,7 +3808,9 @@
       "epsEstimate": 2.9052,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3672000000.0,
+      "netIncomeActual": 563000000.0
     },
     {
       "ticker": "RKLB",
@@ -3250,7 +3822,9 @@
       "epsEstimate": -0.0942,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -18257000.0,
+      "revenueActual": 155080000.0
     },
     {
       "ticker": "RL",
@@ -3262,7 +3836,9 @@
       "epsEstimate": 5.9849,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 361600000.0,
+      "revenueActual": 2406000000.0
     },
     {
       "ticker": "RMD",
@@ -3274,7 +3850,9 @@
       "epsEstimate": 2.7509,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1335582000.0,
+      "netIncomeActual": 348536000.0
     },
     {
       "ticker": "ROK",
@@ -3286,7 +3864,9 @@
       "epsEstimate": 2.488,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 305000000.0,
+      "revenueActual": 2105000000.0
     },
     {
       "ticker": "ROL",
@@ -3298,7 +3878,9 @@
       "epsEstimate": 0.2698,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 116441000.0,
+      "revenueActual": 912913000.0
     },
     {
       "ticker": "ROP",
@@ -3310,7 +3892,9 @@
       "epsEstimate": 5.1911,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2058600000.0,
+      "netIncomeActual": 428400000.0
     },
     {
       "ticker": "ROST",
@@ -3322,7 +3906,9 @@
       "epsEstimate": 1.4355,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5600946000.0,
+      "netIncomeActual": 511935000.0
     },
     {
       "ticker": "RSG",
@@ -3334,7 +3920,9 @@
       "epsEstimate": 1.639,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4135000000.0,
+      "netIncomeActual": 544000000.0
     },
     {
       "ticker": "RTX",
@@ -3346,7 +3934,9 @@
       "epsEstimate": 1.4821,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 24238000000.0,
+      "netIncomeActual": 1622000000.0
     },
     {
       "ticker": "RVTY",
@@ -3358,7 +3948,9 @@
       "epsEstimate": 1.5822,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 698949000.0,
+      "netIncomeActual": 46652000.0
     },
     {
       "ticker": "SBAC",
@@ -3370,7 +3962,9 @@
       "epsEstimate": 3.8682,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 719583000.0,
+      "netIncomeActual": 370290000.0
     },
     {
       "ticker": "SMCI",
@@ -3382,7 +3976,9 @@
       "epsEstimate": 0.4976,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 168285000.0,
+      "revenueActual": 5017790000.0
     },
     {
       "ticker": "SNDK",
@@ -3394,7 +3990,9 @@
       "epsEstimate": 3.5172,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 112000000.0,
+      "revenueActual": 2308000000.0
     },
     {
       "ticker": "STX",
@@ -3406,7 +4004,9 @@
       "epsEstimate": 2.8425,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2825000000.0,
+      "netIncomeActual": 593000000.0
     },
     {
       "ticker": "TJX",
@@ -3418,7 +4018,9 @@
       "epsEstimate": 1.2343,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1243000000.0,
+      "revenueActual": 14401000000.0
     },
     {
       "ticker": "TMO",
@@ -3430,7 +4032,9 @@
       "epsEstimate": 6.5106,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1964000000.0,
+      "revenueActual": 12215000000.0
     },
     {
       "ticker": "TSLA",
@@ -3442,7 +4046,9 @@
       "epsEstimate": 0.4541,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 840000000.0,
+      "revenueActual": 24901000000.0
     },
     {
       "ticker": "TXN",
@@ -3454,7 +4060,9 @@
       "epsEstimate": 1.3062,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1163000000.0,
+      "revenueActual": 4423000000.0
     },
     {
       "ticker": "UNH",
@@ -3466,7 +4074,9 @@
       "epsEstimate": 2.1222,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2348000000.0,
+      "revenueActual": 113161000000.0
     },
     {
       "ticker": "V",
@@ -3478,7 +4088,9 @@
       "epsEstimate": 3.2026,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5853000000.0,
+      "revenueActual": 10901000000.0
     },
     {
       "ticker": "VRT",
@@ -3490,7 +4102,9 @@
       "epsEstimate": 1.2943,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2880000000.0,
+      "netIncomeActual": 445600000.0
     },
     {
       "ticker": "VZ",
@@ -3502,7 +4116,9 @@
       "epsEstimate": 1.0853,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 36381000000.0,
+      "netIncomeActual": 2342000000.0
     },
     {
       "ticker": "WDC",
@@ -3514,7 +4130,9 @@
       "epsEstimate": 1.9372,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1182000000.0,
+      "revenueActual": 2818000000.0
     },
     {
       "ticker": "WMT",
@@ -3526,7 +4144,9 @@
       "epsEstimate": 0.6068,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 177402000000.0,
+      "netIncomeActual": 7026000000.0
     },
     {
       "ticker": "WULF",
@@ -3538,7 +4158,9 @@
       "epsEstimate": -0.1392,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 35836000.0,
+      "netIncomeActual": -126578000.0
     },
     {
       "ticker": "XOM",
@@ -3550,7 +4172,9 @@
       "epsEstimate": 1.7016,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 6501000000.0,
+      "revenueActual": 80039000000.0
     },
     {
       "ticker": "AAPL",
@@ -3562,7 +4186,9 @@
       "epsEstimate": 1.9884,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 111184000000.0,
+      "netIncomeActual": 29578000000.0
     },
     {
       "ticker": "ABBV",
@@ -3574,7 +4200,9 @@
       "epsEstimate": 2.6452,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 695000000.0,
+      "revenueActual": 15002000000.0
     },
     {
       "ticker": "ABNB",
@@ -3586,7 +4214,9 @@
       "epsEstimate": 0.2951,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 160000000.0,
+      "revenueActual": 2678000000.0
     },
     {
       "ticker": "ACN",
@@ -3598,7 +4228,9 @@
       "epsEstimate": 2.869,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1825239000.0,
+      "revenueActual": 18044066000.0
     },
     {
       "ticker": "ADBE",
@@ -3610,7 +4242,9 @@
       "epsEstimate": 5.9899,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1889000000.0,
+      "revenueActual": 6398000000.0
     },
     {
       "ticker": "ADI",
@@ -3622,7 +4256,9 @@
       "epsEstimate": 2.3344,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3076117000.0,
+      "netIncomeActual": 787738000.0
     },
     {
       "ticker": "ALAB",
@@ -3634,7 +4270,9 @@
       "epsEstimate": 0.5464,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 308361000.0,
+      "netIncomeActual": 80310000.0
     },
     {
       "ticker": "AMAT",
@@ -3646,7 +4284,9 @@
       "epsEstimate": 2.2482,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1897000000.0,
+      "revenueActual": 6800000000.0
     },
     {
       "ticker": "AMD",
@@ -3658,7 +4298,9 @@
       "epsEstimate": 1.3074,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1383000000.0,
+      "revenueActual": 10253000000.0
     },
     {
       "ticker": "AMGN",
@@ -3670,7 +4312,9 @@
       "epsEstimate": 4.8522,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 8618000000.0,
+      "netIncomeActual": 1819000000.0
     },
     {
       "ticker": "AMZN",
@@ -3682,7 +4326,9 @@
       "epsEstimate": 1.6679,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 21192000000.0,
+      "revenueActual": 213386000000.0
     },
     {
       "ticker": "ANET",
@@ -3694,7 +4340,9 @@
       "epsEstimate": 0.8224,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2709000000.0,
+      "netIncomeActual": 1022900000.0
     },
     {
       "ticker": "APP",
@@ -3706,7 +4354,9 @@
       "epsEstimate": 3.4379,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1205613000.0,
+      "revenueActual": 1842449000.0
     },
     {
       "ticker": "ASML",
@@ -3718,7 +4368,9 @@
       "epsEstimate": 6.6744,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 8766900000.0,
+      "netIncomeActual": 2756700000.0
     },
     {
       "ticker": "AVGO",
@@ -3730,7 +4382,9 @@
       "epsEstimate": 2.068,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 19311000000.0,
+      "netIncomeActual": 7349000000.0
     },
     {
       "ticker": "BA",
@@ -3742,7 +4396,9 @@
       "epsEstimate": -0.8587,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 8220000000.0,
+      "revenueActual": 23948000000.0
     },
     {
       "ticker": "BAC",
@@ -3754,7 +4410,9 @@
       "epsEstimate": 1.0219,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 7528000000.0,
+      "revenueActual": 31180000000.0
     },
     {
       "ticker": "BKNG",
@@ -3766,7 +4424,9 @@
       "epsEstimate": 1.0999,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5532000000.0,
+      "netIncomeActual": 1083000000.0
     },
     {
       "ticker": "BMNR",
@@ -3778,7 +4438,9 @@
       "epsEstimate": 0.0,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -3818413000.0,
+      "revenueActual": 11041000.0
     },
     {
       "ticker": "BRK-B",
@@ -3790,7 +4452,9 @@
       "epsEstimate": 8078.5176,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 25667000000.0,
+      "revenueActual": 117885000000.0
     },
     {
       "ticker": "BSX",
@@ -3802,7 +4466,9 @@
       "epsEstimate": 0.7945,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5203000000.0,
+      "netIncomeActual": 1341000000.0
     },
     {
       "ticker": "BTDR",
@@ -3814,7 +4480,9 @@
       "epsEstimate": -0.4325,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 70542000.0,
+      "revenueActual": 224835000.0
     },
     {
       "ticker": "C",
@@ -3826,7 +4494,9 @@
       "epsEstimate": 2.7008,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 24663000000.0,
+      "netIncomeActual": 5785000000.0
     },
     {
       "ticker": "CAT",
@@ -3838,7 +4508,9 @@
       "epsEstimate": 4.6619,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 17415000000.0,
+      "netIncomeActual": 2549000000.0
     },
     {
       "ticker": "CIFR",
@@ -3850,7 +4522,9 @@
       "epsEstimate": -0.2392,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 34838000.0,
+      "netIncomeActual": -114316000.0
     },
     {
       "ticker": "CLSK",
@@ -3862,7 +4536,9 @@
       "epsEstimate": -0.5757,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -378343000.0,
+      "revenueActual": 136408000.0
     },
     {
       "ticker": "COHR",
@@ -3874,7 +4550,9 @@
       "epsEstimate": 1.4251,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 146717000.0,
+      "revenueActual": 1685629000.0
     },
     {
       "ticker": "COIN",
@@ -3886,7 +4564,9 @@
       "epsEstimate": 0.3241,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -394117000.0,
+      "revenueActual": 1412982000.0
     },
     {
       "ticker": "CORZ",
@@ -3898,7 +4578,9 @@
       "epsEstimate": -0.0716,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -347188000.0,
+      "revenueActual": 115244000.0
     },
     {
       "ticker": "COST",
@@ -3910,7 +4592,9 @@
       "epsEstimate": 4.6516,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 69597000000.0,
+      "netIncomeActual": 2035000000.0
     },
     {
       "ticker": "CRM",
@@ -3922,7 +4606,9 @@
       "epsEstimate": 3.0752,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1943000000.0,
+      "revenueActual": 11201000000.0
     },
     {
       "ticker": "CRWD",
@@ -3934,7 +4620,9 @@
       "epsEstimate": 0.281,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1305375000.0,
+      "netIncomeActual": 59377000.0
     },
     {
       "ticker": "CRWV",
@@ -3946,7 +4634,9 @@
       "epsEstimate": -0.9157,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -451726000.0,
+      "revenueActual": 1571904000.0
     },
     {
       "ticker": "CSCO",
@@ -3958,7 +4648,9 @@
       "epsEstimate": 1.0422,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2860000000.0,
+      "revenueActual": 14883000000.0
     },
     {
       "ticker": "CVX",
@@ -3970,7 +4662,9 @@
       "epsEstimate": 0.9623,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2210000000.0,
+      "revenueActual": 47556000000.0
     },
     {
       "ticker": "DELL",
@@ -3982,7 +4676,9 @@
       "epsEstimate": 3.5982,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2259000000.0,
+      "revenueActual": 33379000000.0
     },
     {
       "ticker": "DIS",
@@ -3994,7 +4690,9 @@
       "epsEstimate": 1.5042,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2247000000.0,
+      "revenueActual": 25168000000.0
     },
     {
       "ticker": "FCX",
@@ -4006,7 +4704,9 @@
       "epsEstimate": 0.4632,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6234000000.0,
+      "netIncomeActual": 881000000.0
     },
     {
       "ticker": "GEV",
@@ -4018,7 +4718,9 @@
       "epsEstimate": 1.8385,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4745000000.0,
+      "revenueActual": 9338000000.0
     },
     {
       "ticker": "GLW",
@@ -4030,7 +4732,9 @@
       "epsEstimate": 0.6968,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 371000000.0,
+      "revenueActual": 4144000000.0
     },
     {
       "ticker": "GOOG",
@@ -4042,7 +4746,9 @@
       "epsEstimate": 2.7051,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 62578000000.0,
+      "revenueActual": 109896000000.0
     },
     {
       "ticker": "GOOGL",
@@ -4054,7 +4760,9 @@
       "epsEstimate": 2.7051,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 62578000000.0,
+      "revenueActual": 109896000000.0
     },
     {
       "ticker": "GS",
@@ -4066,7 +4774,9 @@
       "epsEstimate": 16.9874,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 17227000000.0,
+      "netIncomeActual": 5630000000.0
     },
     {
       "ticker": "HD",
@@ -4078,7 +4788,9 @@
       "epsEstimate": 2.6164,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 41352000000.0,
+      "netIncomeActual": 3601000000.0
     },
     {
       "ticker": "HOOD",
@@ -4090,7 +4802,21 @@
       "epsEstimate": 0.4343,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1067000000.0,
+      "netIncomeActual": 350000000.0
+    },
+    {
+      "ticker": "HUT",
+      "company": "헛 8",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "revenueActual": 71017000.0,
+      "netIncomeActual": -219849000.0,
+      "status": "reported",
+      "trackingTier": "theme",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "INTC",
@@ -4102,7 +4828,9 @@
       "epsEstimate": 0.014,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -3728000000.0,
+      "revenueActual": 13577000000.0
     },
     {
       "ticker": "INTU",
@@ -4114,7 +4842,9 @@
       "epsEstimate": 3.7385,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 693000000.0,
+      "revenueActual": 4651000000.0
     },
     {
       "ticker": "IONQ",
@@ -4126,7 +4856,9 @@
       "epsEstimate": -0.3593,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 61890000.0,
+      "netIncomeActual": 753667000.0
     },
     {
       "ticker": "IREN",
@@ -4138,7 +4870,9 @@
       "epsEstimate": -0.1932,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 144795000.0,
+      "netIncomeActual": -247827000.0
     },
     {
       "ticker": "JNJ",
@@ -4150,7 +4884,9 @@
       "epsEstimate": 2.6914,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5235000000.0,
+      "revenueActual": 24062000000.0
     },
     {
       "ticker": "JPM",
@@ -4162,7 +4898,9 @@
       "epsEstimate": 5.5024,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 16494000000.0,
+      "revenueActual": 49833000000.0
     },
     {
       "ticker": "KLAC",
@@ -4174,7 +4912,9 @@
       "epsEstimate": 0.9324,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1200990000.0,
+      "revenueActual": 3415078000.0
     },
     {
       "ticker": "KO",
@@ -4186,7 +4926,9 @@
       "epsEstimate": 0.8358,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3924000000.0,
+      "revenueActual": 12472000000.0
     },
     {
       "ticker": "LIN",
@@ -4198,7 +4940,9 @@
       "epsEstimate": 4.3073,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1857000000.0,
+      "revenueActual": 8781000000.0
     },
     {
       "ticker": "LITE",
@@ -4210,7 +4954,9 @@
       "epsEstimate": 2.3335,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 665500000.0,
+      "netIncomeActual": 78200000.0
     },
     {
       "ticker": "LLY",
@@ -4222,7 +4968,9 @@
       "epsEstimate": 6.73,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 7396000000.0,
+      "revenueActual": 19799000000.0
     },
     {
       "ticker": "LRCX",
@@ -4234,7 +4982,9 @@
       "epsEstimate": 1.3914,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5841488000.0,
+      "netIncomeActual": 1825460000.0
     },
     {
       "ticker": "MA",
@@ -4246,7 +4996,9 @@
       "epsEstimate": 4.5329,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3882000000.0,
+      "revenueActual": 8398000000.0
     },
     {
       "ticker": "MARA",
@@ -4258,7 +5010,9 @@
       "epsEstimate": -2.1963,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 174614000.0,
+      "netIncomeActual": -1259619000.0
     },
     {
       "ticker": "MCD",
@@ -4270,7 +5024,9 @@
       "epsEstimate": 2.7701,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6517000000.0,
+      "netIncomeActual": 1983000000.0
     },
     {
       "ticker": "META",
@@ -4282,7 +5038,9 @@
       "epsEstimate": 6.923,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 56311000000.0,
+      "netIncomeActual": 26773000000.0
     },
     {
       "ticker": "MPWR",
@@ -4294,7 +5052,9 @@
       "epsEstimate": 4.9932,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 804185000.0,
+      "netIncomeActual": 193226000.0
     },
     {
       "ticker": "MRK",
@@ -4306,7 +5066,9 @@
       "epsEstimate": -1.5238,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 16286000000.0,
+      "netIncomeActual": -4240000000.0
     },
     {
       "ticker": "MRNA",
@@ -4318,7 +5080,9 @@
       "epsEstimate": -4.0402,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -1343000000.0,
+      "revenueActual": 389000000.0
     },
     {
       "ticker": "MRVL",
@@ -4330,7 +5094,9 @@
       "epsEstimate": 0.8033,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 396100000.0,
+      "revenueActual": 2218700000.0
     },
     {
       "ticker": "MSFT",
@@ -4342,7 +5108,9 @@
       "epsEstimate": 4.1432,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 31778000000.0,
+      "revenueActual": 82886000000.0
     },
     {
       "ticker": "MSTR",
@@ -4354,7 +5122,9 @@
       "epsEstimate": -4.3945,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 124300000.0,
+      "netIncomeActual": -12542670000.0
     },
     {
       "ticker": "MU",
@@ -4366,7 +5136,9 @@
       "epsEstimate": 9.5849,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 23860000000.0,
+      "netIncomeActual": 13785000000.0
     },
     {
       "ticker": "NBIS",
@@ -4378,7 +5150,9 @@
       "epsEstimate": -0.7831,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -268800000.0,
+      "revenueActual": 227700000.0
     },
     {
       "ticker": "NFLX",
@@ -4390,7 +5164,9 @@
       "epsEstimate": 0.7791,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 12249757000.0,
+      "netIncomeActual": 5282791000.0
     },
     {
       "ticker": "NOW",
@@ -4402,7 +5178,9 @@
       "epsEstimate": 0.9733,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3770000000.0,
+      "netIncomeActual": 469000000.0
     },
     {
       "ticker": "NVDA",
@@ -4414,7 +5192,9 @@
       "epsEstimate": 1.5634,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 42960000000.0,
+      "revenueActual": 68127000000.0
     },
     {
       "ticker": "O",
@@ -4426,7 +5206,9 @@
       "epsEstimate": 0.4114,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1446487000.0,
+      "netIncomeActual": 311766000.0
     },
     {
       "ticker": "ODFL",
@@ -4438,7 +5220,9 @@
       "epsEstimate": 1.0708,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 238258000.0,
+      "revenueActual": 1334696000.0
     },
     {
       "ticker": "OKE",
@@ -4450,7 +5234,9 @@
       "epsEstimate": 1.3155,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9618000000.0,
+      "netIncomeActual": 774000000.0
     },
     {
       "ticker": "OMC",
@@ -4462,7 +5248,9 @@
       "epsEstimate": 1.8665,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6242900000.0,
+      "netIncomeActual": 405200000.0
     },
     {
       "ticker": "ON",
@@ -4474,7 +5262,9 @@
       "epsEstimate": 0.6198,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -33400000.0,
+      "revenueActual": 1513300000.0
     },
     {
       "ticker": "ORCL",
@@ -4486,7 +5276,9 @@
       "epsEstimate": 1.7365,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3721000000.0,
+      "revenueActual": 17190000000.0
     },
     {
       "ticker": "ORLY",
@@ -4498,7 +5290,9 @@
       "epsEstimate": 0.7077,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4560539000.0,
+      "netIncomeActual": 604181000.0
     },
     {
       "ticker": "OTIS",
@@ -4510,7 +5304,9 @@
       "epsEstimate": 0.9068,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3566000000.0,
+      "netIncomeActual": 340000000.0
     },
     {
       "ticker": "OXY",
@@ -4522,7 +5318,9 @@
       "epsEstimate": 0.5971,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5230000000.0,
+      "netIncomeActual": 3345000000.0
     },
     {
       "ticker": "PANW",
@@ -4534,7 +5332,9 @@
       "epsEstimate": 0.9605,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2594000000.0,
+      "netIncomeActual": 432000000.0
     },
     {
       "ticker": "PAYX",
@@ -4546,7 +5346,9 @@
       "epsEstimate": 1.7056,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1808900000.0,
+      "netIncomeActual": 560300000.0
     },
     {
       "ticker": "PCAR",
@@ -4558,7 +5360,9 @@
       "epsEstimate": 1.1693,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 605300000.0,
+      "revenueActual": 6776500000.0
     },
     {
       "ticker": "PCG",
@@ -4570,7 +5374,9 @@
       "epsEstimate": 0.4045,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6881000000.0,
+      "netIncomeActual": 885000000.0
     },
     {
       "ticker": "PDD",
@@ -4582,7 +5388,9 @@
       "epsEstimate": 16.7989,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 123912194000.0,
+      "netIncomeActual": 23019069000.0
     },
     {
       "ticker": "PEG",
@@ -4594,7 +5402,9 @@
       "epsEstimate": 1.4502,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3848000000.0,
+      "netIncomeActual": 741000000.0
     },
     {
       "ticker": "PEP",
@@ -4606,7 +5416,9 @@
       "epsEstimate": 1.566,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 19443000000.0,
+      "netIncomeActual": 2327000000.0
     },
     {
       "ticker": "PFE",
@@ -4618,7 +5430,9 @@
       "epsEstimate": 0.7243,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 14450000000.0,
+      "netIncomeActual": 2687000000.0
     },
     {
       "ticker": "PFG",
@@ -4630,7 +5444,9 @@
       "epsEstimate": 2.0242,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 424600000.0,
+      "revenueActual": 3529100000.0
     },
     {
       "ticker": "PG",
@@ -4642,7 +5458,9 @@
       "epsEstimate": 1.6023,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 21235000000.0,
+      "netIncomeActual": 3932000000.0
     },
     {
       "ticker": "PGR",
@@ -4654,7 +5472,9 @@
       "epsEstimate": 4.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2818000000.0,
+      "revenueActual": 22180000000.0
     },
     {
       "ticker": "PH",
@@ -4666,7 +5486,9 @@
       "epsEstimate": 8.0662,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 845000000.0,
+      "revenueActual": 5174000000.0
     },
     {
       "ticker": "PHM",
@@ -4678,7 +5500,9 @@
       "epsEstimate": 1.8418,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 346996000.0,
+      "revenueActual": 3408572000.0
     },
     {
       "ticker": "PKG",
@@ -4690,7 +5514,9 @@
       "epsEstimate": 2.1545,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2367800000.0,
+      "netIncomeActual": 170900000.0
     },
     {
       "ticker": "PLD",
@@ -4702,7 +5528,9 @@
       "epsEstimate": 0.8181,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2297723000.0,
+      "netIncomeActual": 981976000.0
     },
     {
       "ticker": "PLTR",
@@ -4714,7 +5542,9 @@
       "epsEstimate": 0.2849,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 870527000.0,
+      "revenueActual": 1632583000.0
     },
     {
       "ticker": "PM",
@@ -4726,7 +5556,9 @@
       "epsEstimate": 1.8821,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10146000000.0,
+      "netIncomeActual": 2438000000.0
     },
     {
       "ticker": "PNC",
@@ -4738,7 +5570,9 @@
       "epsEstimate": 4.0958,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1760000000.0,
+      "revenueActual": 6157000000.0
     },
     {
       "ticker": "PNR",
@@ -4750,7 +5584,9 @@
       "epsEstimate": 1.1811,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1036700000.0,
+      "netIncomeActual": 172400000.0
     },
     {
       "ticker": "PNW",
@@ -4762,7 +5598,9 @@
       "epsEstimate": -0.0121,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 32920000.0,
+      "revenueActual": 1149597000.0
     },
     {
       "ticker": "PODD",
@@ -4774,7 +5612,9 @@
       "epsEstimate": 1.2221,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 91100000.0,
+      "revenueActual": 761700000.0
     },
     {
       "ticker": "PPG",
@@ -4786,7 +5626,9 @@
       "epsEstimate": 1.7874,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 382000000.0,
+      "revenueActual": 3930000000.0
     },
     {
       "ticker": "PPL",
@@ -4798,7 +5640,9 @@
       "epsEstimate": 0.6226,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 266000000.0,
+      "revenueActual": 2274000000.0
     },
     {
       "ticker": "PRU",
@@ -4810,7 +5654,9 @@
       "epsEstimate": 3.1286,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 597000000.0,
+      "revenueActual": 15546000000.0
     },
     {
       "ticker": "PSA",
@@ -4822,7 +5668,9 @@
       "epsEstimate": 2.411,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 526273000.0,
+      "revenueActual": 1217741000.0
     },
     {
       "ticker": "PSKY",
@@ -4834,7 +5682,9 @@
       "epsEstimate": 0.1515,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7347000000.0,
+      "netIncomeActual": 168000000.0
     },
     {
       "ticker": "PSX",
@@ -4846,7 +5696,9 @@
       "epsEstimate": -0.404,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 207000000.0,
+      "revenueActual": 32540000000.0
     },
     {
       "ticker": "PTC",
@@ -4858,7 +5710,9 @@
       "epsEstimate": 2.1278,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 774303000.0,
+      "netIncomeActual": 590723000.0
     },
     {
       "ticker": "PWR",
@@ -4870,7 +5724,9 @@
       "epsEstimate": 2.082,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 220625000.0,
+      "revenueActual": 7874787000.0
     },
     {
       "ticker": "PYPL",
@@ -4882,7 +5738,9 @@
       "epsEstimate": 1.2929,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1113000000.0,
+      "revenueActual": 8353000000.0
     },
     {
       "ticker": "Q",
@@ -4894,7 +5752,9 @@
       "epsEstimate": 0.9411,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 151000000.0,
+      "revenueActual": 1315000000.0
     },
     {
       "ticker": "QBTS",
@@ -4906,7 +5766,9 @@
       "epsEstimate": -0.0781,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2858000.0,
+      "netIncomeActual": -18357000.0
     },
     {
       "ticker": "QCOM",
@@ -4918,7 +5780,9 @@
       "epsEstimate": 2.6128,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10599000000.0,
+      "netIncomeActual": 7370000000.0
     },
     {
       "ticker": "QUBT",
@@ -4930,7 +5794,9 @@
       "epsEstimate": -0.0495,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -1556000.0,
+      "revenueActual": 198000.0
     },
     {
       "ticker": "RCL",
@@ -4942,7 +5808,9 @@
       "epsEstimate": 3.2191,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 941000000.0,
+      "revenueActual": 4452000000.0
     },
     {
       "ticker": "RDDT",
@@ -4954,7 +5822,9 @@
       "epsEstimate": 0.5892,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 663411000.0,
+      "netIncomeActual": 203981000.0
     },
     {
       "ticker": "REG",
@@ -4966,7 +5836,9 @@
       "epsEstimate": 0.6334,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 404194000.0,
+      "netIncomeActual": 202479000.0
     },
     {
       "ticker": "REGN",
@@ -4978,7 +5850,9 @@
       "epsEstimate": 9.116,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3605400000.0,
+      "netIncomeActual": 727200000.0
     },
     {
       "ticker": "RF",
@@ -4990,7 +5864,9 @@
       "epsEstimate": 0.6172,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 559000000.0,
+      "revenueActual": 1873000000.0
     },
     {
       "ticker": "RGTI",
@@ -5002,7 +5878,9 @@
       "epsEstimate": -0.0417,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4400000.0,
+      "netIncomeActual": 33109000.0
     },
     {
       "ticker": "RIOT",
@@ -5014,7 +5892,9 @@
       "epsEstimate": -0.6045,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -500477000.0,
+      "revenueActual": 167219000.0
     },
     {
       "ticker": "RJF",
@@ -5026,7 +5906,9 @@
       "epsEstimate": 2.8031,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3796000000.0,
+      "netIncomeActual": 544000000.0
     },
     {
       "ticker": "RKLB",
@@ -5038,7 +5920,9 @@
       "epsEstimate": -0.0815,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -52922000.0,
+      "revenueActual": 179652000.0
     },
     {
       "ticker": "RL",
@@ -5050,7 +5934,9 @@
       "epsEstimate": 2.6257,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 151600000.0,
+      "revenueActual": 1978700000.0
     },
     {
       "ticker": "RMD",
@@ -5062,7 +5948,9 @@
       "epsEstimate": 2.8238,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1422808000.0,
+      "netIncomeActual": 392593000.0
     },
     {
       "ticker": "ROK",
@@ -5074,7 +5962,9 @@
       "epsEstimate": 2.9168,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 351000000.0,
+      "revenueActual": 2239000000.0
     },
     {
       "ticker": "ROL",
@@ -5086,7 +5976,9 @@
       "epsEstimate": 0.238,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 107838000.0,
+      "revenueActual": 906424000.0
     },
     {
       "ticker": "ROP",
@@ -5098,7 +5990,9 @@
       "epsEstimate": 5.0304,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2095300000.0,
+      "netIncomeActual": 508900000.0
     },
     {
       "ticker": "ROST",
@@ -5110,7 +6004,9 @@
       "epsEstimate": 1.9413,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6635490000.0,
+      "netIncomeActual": 645865000.0
     },
     {
       "ticker": "RSG",
@@ -5122,7 +6018,9 @@
       "epsEstimate": 1.6531,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4113000000.0,
+      "netIncomeActual": 525000000.0
     },
     {
       "ticker": "RTX",
@@ -5134,7 +6032,9 @@
       "epsEstimate": 1.5331,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22076000000.0,
+      "netIncomeActual": 2059000000.0
     },
     {
       "ticker": "RVTY",
@@ -5146,7 +6046,9 @@
       "epsEstimate": 1.0365,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 772056000.0,
+      "netIncomeActual": 98364000.0
     },
     {
       "ticker": "SBAC",
@@ -5158,7 +6060,9 @@
       "epsEstimate": 1.815,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 703438000.0,
+      "netIncomeActual": 184830000.0
     },
     {
       "ticker": "SMCI",
@@ -5170,7 +6074,9 @@
       "epsEstimate": 0.6349,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 400564000.0,
+      "revenueActual": 12682491000.0
     },
     {
       "ticker": "SNDK",
@@ -5182,7 +6088,9 @@
       "epsEstimate": 14.8274,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 803000000.0,
+      "revenueActual": 3025000000.0
     },
     {
       "ticker": "STX",
@@ -5194,7 +6102,9 @@
       "epsEstimate": 3.544,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3112000000.0,
+      "netIncomeActual": 748000000.0
     },
     {
       "ticker": "TGT",
@@ -5206,7 +6116,9 @@
       "epsEstimate": 2.177,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 689000000.0,
+      "revenueActual": 25270000000.0
     },
     {
       "ticker": "TJX",
@@ -5218,7 +6130,9 @@
       "epsEstimate": 1.4035,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1442000000.0,
+      "revenueActual": 15117000000.0
     },
     {
       "ticker": "TMO",
@@ -5230,7 +6144,9 @@
       "epsEstimate": 5.2896,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1651000000.0,
+      "revenueActual": 11005000000.0
     },
     {
       "ticker": "TSLA",
@@ -5242,7 +6158,9 @@
       "epsEstimate": 0.3773,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 477000000.0,
+      "revenueActual": 22387000000.0
     },
     {
       "ticker": "TXN",
@@ -5254,7 +6172,9 @@
       "epsEstimate": 1.3815,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1545000000.0,
+      "revenueActual": 4825000000.0
     },
     {
       "ticker": "UNH",
@@ -5266,7 +6186,9 @@
       "epsEstimate": 6.6406,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 10000000.0,
+      "revenueActual": 113215000000.0
     },
     {
       "ticker": "V",
@@ -5278,7 +6200,9 @@
       "epsEstimate": 3.1579,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 6021000000.0,
+      "revenueActual": 11230000000.0
     },
     {
       "ticker": "VRT",
@@ -5290,7 +6214,9 @@
       "epsEstimate": 1.0086,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2649500000.0,
+      "netIncomeActual": 390100000.0
     },
     {
       "ticker": "VZ",
@@ -5302,7 +6228,9 @@
       "epsEstimate": 1.233,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 34440000000.0,
+      "netIncomeActual": 5045000000.0
     },
     {
       "ticker": "WDC",
@@ -5314,7 +6242,9 @@
       "epsEstimate": 2.4132,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1842000000.0,
+      "revenueActual": 3017000000.0
     },
     {
       "ticker": "WMT",
@@ -5326,7 +6256,9 @@
       "epsEstimate": 0.7334,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 179496000000.0,
+      "netIncomeActual": 6143000000.0
     },
     {
       "ticker": "WULF",
@@ -5338,7 +6270,9 @@
       "epsEstimate": -0.1825,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 34012000.0,
+      "netIncomeActual": -427634000.0
     },
     {
       "ticker": "XOM",
@@ -5350,7 +6284,9 @@
       "epsEstimate": 1.015,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4183000000.0,
+      "revenueActual": 83161000000.0
     },
     {
       "ticker": "AAPL",
@@ -5362,7 +6298,9 @@
       "epsEstimate": 1.9271,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 109417000000.0,
+      "netIncomeActual": 29789000000.0
     },
     {
       "ticker": "ABBV",
@@ -5374,7 +6312,9 @@
       "epsEstimate": 3.6761,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3613000000.0,
+      "revenueActual": 16990000000.0
     },
     {
       "ticker": "ABNB",
@@ -5386,7 +6326,9 @@
       "epsEstimate": 1.2769,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 816000000.0,
+      "revenueActual": 3608000000.0
     },
     {
       "ticker": "ACN",
@@ -5398,7 +6340,9 @@
       "epsEstimate": 3.7466,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2338989000.0,
+      "revenueActual": 18718144000.0
     },
     {
       "ticker": "ADBE",
@@ -5410,7 +6354,9 @@
       "epsEstimate": 5.9385,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1712000000.0,
+      "revenueActual": 6618000000.0
     },
     {
       "ticker": "ADI",
@@ -5422,7 +6368,9 @@
       "epsEstimate": 2.9337,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3160263000.0,
+      "netIncomeActual": 830826000.0
     },
     {
       "ticker": "ALAB",
@@ -5434,7 +6382,9 @@
       "epsEstimate": 0.7054,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 392400000.0,
+      "netIncomeActual": 153088000.0
     },
     {
       "ticker": "AMAT",
@@ -5446,7 +6396,9 @@
       "epsEstimate": 2.7176,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2026000000.0,
+      "revenueActual": 7012000000.0
     },
     {
       "ticker": "AMD",
@@ -5458,7 +6410,9 @@
       "epsEstimate": 1.6313,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2297000000.0,
+      "revenueActual": 11536000000.0
     },
     {
       "ticker": "AMGN",
@@ -5470,7 +6424,9 @@
       "epsEstimate": 5.7281,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10054000000.0,
+      "netIncomeActual": 2375000000.0
     },
     {
       "ticker": "AMZN",
@@ -5482,7 +6438,9 @@
       "epsEstimate": 1.8563,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 30255000000.0,
+      "revenueActual": 181519000000.0
     },
     {
       "ticker": "ANET",
@@ -5494,7 +6452,9 @@
       "epsEstimate": 0.9026,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3035700000.0,
+      "netIncomeActual": 1212900000.0
     },
     {
       "ticker": "APP",
@@ -5506,7 +6466,9 @@
       "epsEstimate": 3.7574,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1266538000.0,
+      "revenueActual": 1923686000.0
     },
     {
       "ticker": "ASML",
@@ -5518,7 +6480,9 @@
       "epsEstimate": 6.9263,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9326500000.0,
+      "netIncomeActual": 2917600000.0
     },
     {
       "ticker": "AVGO",
@@ -5530,7 +6494,9 @@
       "epsEstimate": 2.4458,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22187000000.0,
+      "netIncomeActual": 9310000000.0
     },
     {
       "ticker": "BA",
@@ -5542,7 +6508,9 @@
       "epsEstimate": -0.3139,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -4000000.0,
+      "revenueActual": 22217000000.0
     },
     {
       "ticker": "BAC",
@@ -5554,7 +6522,9 @@
       "epsEstimate": 1.1428,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 8584000000.0,
+      "revenueActual": 30272000000.0
     },
     {
       "ticker": "BKNG",
@@ -5566,7 +6536,9 @@
       "epsEstimate": 2.4982,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7352000000.0,
+      "netIncomeActual": 1950000000.0
     },
     {
       "ticker": "BMNR",
@@ -5578,7 +6550,9 @@
       "epsEstimate": 0.1275,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -83576000.0,
+      "revenueActual": 46535000.0
     },
     {
       "ticker": "BSX",
@@ -5590,7 +6564,9 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5442000000.0,
+      "netIncomeActual": 907000000.0
     },
     {
       "ticker": "BTDR",
@@ -5602,7 +6578,9 @@
       "epsEstimate": -0.3701,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -159527000.0,
+      "revenueActual": 188930000.0
     },
     {
       "ticker": "C",
@@ -5614,7 +6592,9 @@
       "epsEstimate": 2.7952,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 24765000000.0,
+      "netIncomeActual": 5831000000.0
     },
     {
       "ticker": "CAT",
@@ -5626,7 +6606,9 @@
       "epsEstimate": 6.2595,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 20543000000.0,
+      "netIncomeActual": 3593000000.0
     },
     {
       "ticker": "CIFR",
@@ -5638,7 +6620,9 @@
       "epsEstimate": -0.2388,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 24837000.0,
+      "netIncomeActual": -267529000.0
     },
     {
       "ticker": "CLSK",
@@ -5650,7 +6634,9 @@
       "epsEstimate": -0.3159,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -239842000.0,
+      "revenueActual": 138006000.0
     },
     {
       "ticker": "COHR",
@@ -5662,7 +6648,9 @@
       "epsEstimate": 1.6474,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 191402000.0,
+      "revenueActual": 1805641000.0
     },
     {
       "ticker": "COIN",
@@ -5674,7 +6662,9 @@
       "epsEstimate": -0.1735,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -359468000.0,
+      "revenueActual": 1220068000.0
     },
     {
       "ticker": "CORZ",
@@ -5686,7 +6676,9 @@
       "epsEstimate": -0.0718,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -1155310000.0,
+      "revenueActual": 164201000.0
     },
     {
       "ticker": "COST",
@@ -5698,7 +6690,9 @@
       "epsEstimate": 5.0254,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 70527000000.0,
+      "netIncomeActual": 2192000000.0
     },
     {
       "ticker": "CRM",
@@ -5710,7 +6704,9 @@
       "epsEstimate": 3.1482,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2107000000.0,
+      "revenueActual": 11133000000.0
     },
     {
       "ticker": "CRWD",
@@ -5722,7 +6718,9 @@
       "epsEstimate": 0.2722,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1385629000.0,
+      "netIncomeActual": 27774000.0
     },
     {
       "ticker": "CRWV",
@@ -5734,7 +6732,9 @@
       "epsEstimate": -1.24,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -740000000.0,
+      "revenueActual": 2078000000.0
     },
     {
       "ticker": "CSCO",
@@ -5746,7 +6746,9 @@
       "epsEstimate": 1.0559,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3175000000.0,
+      "revenueActual": 15349000000.0
     },
     {
       "ticker": "CVX",
@@ -5758,7 +6760,9 @@
       "epsEstimate": 5.615,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 12072000000.0,
+      "revenueActual": 67199000000.0
     },
     {
       "ticker": "DELL",
@@ -5770,7 +6774,9 @@
       "epsEstimate": 2.9985,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3438000000.0,
+      "revenueActual": 43842000000.0
     },
     {
       "ticker": "DIS",
@@ -5782,7 +6788,9 @@
       "epsEstimate": 1.8763,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2638000000.0,
+      "revenueActual": 25248000000.0
     },
     {
       "ticker": "FCX",
@@ -5794,7 +6802,9 @@
       "epsEstimate": 0.596,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7029000000.0,
+      "netIncomeActual": 984000000.0
     },
     {
       "ticker": "GEV",
@@ -5806,7 +6816,9 @@
       "epsEstimate": 3.0446,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 668000000.0,
+      "revenueActual": 11104000000.0
     },
     {
       "ticker": "GLW",
@@ -5818,7 +6830,9 @@
       "epsEstimate": 0.7631,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 559000000.0,
+      "revenueActual": 4505000000.0
     },
     {
       "ticker": "GOOG",
@@ -5830,7 +6844,9 @@
       "epsEstimate": 2.9798,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 112193000000.0,
+      "revenueActual": 119796000000.0
     },
     {
       "ticker": "GOOGL",
@@ -5842,7 +6858,9 @@
       "epsEstimate": 2.9798,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 112193000000.0,
+      "revenueActual": 119796000000.0
     },
     {
       "ticker": "GS",
@@ -5854,7 +6872,9 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "HD",
@@ -5866,7 +6886,9 @@
       "epsEstimate": 3.5072,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 38198000000.0,
+      "netIncomeActual": 2571000000.0
     },
     {
       "ticker": "HOOD",
@@ -5878,7 +6900,21 @@
       "epsEstimate": 0.4499,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1308000000.0,
+      "netIncomeActual": 561000000.0
+    },
+    {
+      "ticker": "HUT",
+      "company": "헛 8",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "revenueActual": 74932000.0,
+      "netIncomeActual": -150191000.0,
+      "status": "reported",
+      "trackingTier": "theme",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "INTC",
@@ -5890,7 +6926,9 @@
       "epsEstimate": 0.2177,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -11033000000.0,
+      "revenueActual": 16128000000.0
     },
     {
       "ticker": "INTU",
@@ -5902,7 +6940,9 @@
       "epsEstimate": 12.8224,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3064000000.0,
+      "revenueActual": 8558000000.0
     },
     {
       "ticker": "IONQ",
@@ -5914,7 +6954,9 @@
       "epsEstimate": -0.2912,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 64668000.0,
+      "netIncomeActual": 805360000.0
     },
     {
       "ticker": "JNJ",
@@ -5926,7 +6968,9 @@
       "epsEstimate": 2.8745,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5534000000.0,
+      "revenueActual": 25310000000.0
     },
     {
       "ticker": "JPM",
@@ -5938,7 +6982,9 @@
       "epsEstimate": 5.906,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 21155000000.0,
+      "revenueActual": 52852000000.0
     },
     {
       "ticker": "KLAC",
@@ -5950,7 +6996,9 @@
       "epsEstimate": 1.0163,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1363059000.0,
+      "revenueActual": 3657556000.0
     },
     {
       "ticker": "KO",
@@ -5962,7 +7010,9 @@
       "epsEstimate": 0.9603,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4425000000.0,
+      "revenueActual": 13380000000.0
     },
     {
       "ticker": "LIN",
@@ -5974,7 +7024,9 @@
       "epsEstimate": 4.5288,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1928000000.0,
+      "revenueActual": 9289000000.0
     },
     {
       "ticker": "LITE",
@@ -5986,7 +7038,9 @@
       "epsEstimate": 3.0312,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 808400000.0,
+      "netIncomeActual": 144200000.0
     },
     {
       "ticker": "LLY",
@@ -5998,7 +7052,9 @@
       "epsEstimate": 6.0661,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 7095000000.0,
+      "revenueActual": 22974000000.0
     },
     {
       "ticker": "LRCX",
@@ -6010,7 +7066,9 @@
       "epsEstimate": 1.7172,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6722238000.0,
+      "netIncomeActual": 2277282000.0
     },
     {
       "ticker": "MA",
@@ -6022,7 +7080,9 @@
       "epsEstimate": 4.9086,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4388000000.0,
+      "revenueActual": 9277000000.0
     },
     {
       "ticker": "MARA",
@@ -6034,7 +7094,9 @@
       "epsEstimate": 0.1924,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 174881000.0,
+      "netIncomeActual": -609685000.0
     },
     {
       "ticker": "MCD",
@@ -6046,7 +7108,9 @@
       "epsEstimate": 3.3487,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7100000000.0,
+      "netIncomeActual": 2362000000.0
     },
     {
       "ticker": "META",
@@ -6058,7 +7122,9 @@
       "epsEstimate": 7.3594,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 60801000000.0,
+      "netIncomeActual": 15848000000.0
     },
     {
       "ticker": "MPWR",
@@ -6070,7 +7136,9 @@
       "epsEstimate": 5.9836,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 980642000.0,
+      "netIncomeActual": 257298000.0
     },
     {
       "ticker": "MRK",
@@ -6082,7 +7150,9 @@
       "epsEstimate": -0.2727,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 16607000000.0,
+      "netIncomeActual": -1335000000.0
     },
     {
       "ticker": "MRNA",
@@ -6094,7 +7164,9 @@
       "epsEstimate": -2.1247,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -782000000.0,
+      "revenueActual": 143000000.0
     },
     {
       "ticker": "MRVL",
@@ -6106,7 +7178,9 @@
       "epsEstimate": 0.8076,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 34500000.0,
+      "revenueActual": 2417800000.0
     },
     {
       "ticker": "MSFT",
@@ -6118,7 +7192,9 @@
       "epsEstimate": 4.3274,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 35766000000.0,
+      "revenueActual": 90007000000.0
     },
     {
       "ticker": "MSTR",
@@ -6130,7 +7206,9 @@
       "epsEstimate": -7.6698,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 122368000.0,
+      "netIncomeActual": -8219628000.0
     },
     {
       "ticker": "MU",
@@ -6142,7 +7220,9 @@
       "epsEstimate": 21.4019,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 41456000000.0,
+      "netIncomeActual": 28243000000.0
     },
     {
       "ticker": "NBIS",
@@ -6154,7 +7234,9 @@
       "epsEstimate": -0.693,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 621200000.0,
+      "revenueActual": 399000000.0
     },
     {
       "ticker": "NFLX",
@@ -6166,7 +7248,9 @@
       "epsEstimate": 0.8042,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 12559938000.0,
+      "netIncomeActual": 3401414000.0
     },
     {
       "ticker": "NOW",
@@ -6178,7 +7262,9 @@
       "epsEstimate": 0.8625,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3987000000.0,
+      "netIncomeActual": 298000000.0
     },
     {
       "ticker": "NVDA",
@@ -6190,7 +7276,9 @@
       "epsEstimate": 1.7922,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 58321000000.0,
+      "revenueActual": 81615000000.0
     },
     {
       "ticker": "O",
@@ -6202,7 +7290,9 @@
       "epsEstimate": 0.4157,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1427170000.0,
+      "netIncomeActual": 343955000.0
     },
     {
       "ticker": "ODFL",
@@ -6214,7 +7304,9 @@
       "epsEstimate": 1.5409,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 350601000.0,
+      "revenueActual": 1554004000.0
     },
     {
       "ticker": "OKE",
@@ -6226,7 +7318,9 @@
       "epsEstimate": 1.4722,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 12049000000.0,
+      "netIncomeActual": 966000000.0
     },
     {
       "ticker": "OMC",
@@ -6238,7 +7332,9 @@
       "epsEstimate": 2.6062,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6562500000.0,
+      "netIncomeActual": 584800000.0
     },
     {
       "ticker": "ON",
@@ -6250,7 +7346,9 @@
       "epsEstimate": 0.7363,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 226800000.0,
+      "revenueActual": 1603500000.0
     },
     {
       "ticker": "ORCL",
@@ -6262,7 +7360,9 @@
       "epsEstimate": 2.0018,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 4304000000.0,
+      "revenueActual": 19184000000.0
     },
     {
       "ticker": "ORLY",
@@ -6274,7 +7374,9 @@
       "epsEstimate": 0.8798,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4892013000.0,
+      "netIncomeActual": 715064000.0
     },
     {
       "ticker": "OTIS",
@@ -6286,7 +7388,9 @@
       "epsEstimate": 1.0268,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3859000000.0,
+      "netIncomeActual": 428000000.0
     },
     {
       "ticker": "OXY",
@@ -6298,7 +7402,9 @@
       "epsEstimate": 1.8577,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 8065000000.0,
+      "netIncomeActual": 2977000000.0
     },
     {
       "ticker": "PANW",
@@ -6310,7 +7416,9 @@
       "epsEstimate": 0.8112,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3002000000.0,
+      "netIncomeActual": -177000000.0
     },
     {
       "ticker": "PAYX",
@@ -6322,7 +7430,9 @@
       "epsEstimate": 1.3301,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1605500000.0,
+      "netIncomeActual": 420600000.0
     },
     {
       "ticker": "PCAR",
@@ -6334,7 +7444,9 @@
       "epsEstimate": 1.3812,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 752000000.0,
+      "revenueActual": 7546700000.0
     },
     {
       "ticker": "PCG",
@@ -6346,7 +7458,9 @@
       "epsEstimate": 0.368,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5902000000.0,
+      "netIncomeActual": 761000000.0
     },
     {
       "ticker": "PDD",
@@ -6358,7 +7472,9 @@
       "epsEstimate": 18.3978,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 106229000000.0,
+      "netIncomeActual": 12547000000.0
     },
     {
       "ticker": "PEG",
@@ -6370,7 +7486,9 @@
       "epsEstimate": 0.8074,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2554000000.0,
+      "netIncomeActual": 334000000.0
     },
     {
       "ticker": "PEP",
@@ -6382,7 +7500,9 @@
       "epsEstimate": 2.2293,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 24181000000.0,
+      "netIncomeActual": 2981000000.0
     },
     {
       "ticker": "PFE",
@@ -6394,7 +7514,9 @@
       "epsEstimate": 0.6914,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 15034000000.0,
+      "netIncomeActual": -248000000.0
     },
     {
       "ticker": "PFG",
@@ -6406,7 +7528,9 @@
       "epsEstimate": 2.3606,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 403400000.0,
+      "revenueActual": 3905800000.0
     },
     {
       "ticker": "PG",
@@ -6418,7 +7542,9 @@
       "epsEstimate": 1.4514,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 21204000000.0,
+      "netIncomeActual": 3044000000.0
     },
     {
       "ticker": "PGR",
@@ -6430,7 +7556,9 @@
       "epsEstimate": 4.8721,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3311000000.0,
+      "revenueActual": 23599000000.0
     },
     {
       "ticker": "PH",
@@ -6442,7 +7570,9 @@
       "epsEstimate": 8.5133,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 904000000.0,
+      "revenueActual": 5486000000.0
     },
     {
       "ticker": "PHM",
@@ -6454,7 +7584,9 @@
       "epsEstimate": 2.3858,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 472003000.0,
+      "revenueActual": 3982957000.0
     },
     {
       "ticker": "PKG",
@@ -6466,7 +7598,9 @@
       "epsEstimate": 2.3373,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2489900000.0,
+      "netIncomeActual": 192100000.0
     },
     {
       "ticker": "PLD",
@@ -6478,7 +7612,9 @@
       "epsEstimate": 0.7979,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2425452000.0,
+      "netIncomeActual": 1062191000.0
     },
     {
       "ticker": "PLTR",
@@ -6490,7 +7626,9 @@
       "epsEstimate": 0.3544,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1061890000.0,
+      "revenueActual": 1935464000.0
     },
     {
       "ticker": "PM",
@@ -6502,7 +7640,9 @@
       "epsEstimate": 2.1077,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 11192000000.0,
+      "netIncomeActual": 2817000000.0
     },
     {
       "ticker": "PNC",
@@ -6514,7 +7654,9 @@
       "epsEstimate": 4.4592,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2040000000.0,
+      "revenueActual": 6429000000.0
     },
     {
       "ticker": "PNR",
@@ -6526,7 +7668,9 @@
       "epsEstimate": 1.2074,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 932600000.0,
+      "netIncomeActual": 128600000.0
     },
     {
       "ticker": "PNW",
@@ -6538,7 +7682,9 @@
       "epsEstimate": 1.48,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 178574000.0,
+      "revenueActual": 1455749000.0
     },
     {
       "ticker": "PODD",
@@ -6550,7 +7696,9 @@
       "epsEstimate": 1.4795,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 95000000.0,
+      "revenueActual": 801700000.0
     },
     {
       "ticker": "PPG",
@@ -6562,7 +7710,9 @@
       "epsEstimate": 2.2777,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 437000000.0,
+      "revenueActual": 4495000000.0
     },
     {
       "ticker": "PPL",
@@ -6574,7 +7724,9 @@
       "epsEstimate": 0.3473,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 452000000.0,
+      "revenueActual": 2774000000.0
     },
     {
       "ticker": "PRU",
@@ -6586,7 +7738,9 @@
       "epsEstimate": 3.5647,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 985000000.0,
+      "revenueActual": 15692000000.0
     },
     {
       "ticker": "PSA",
@@ -6598,7 +7752,9 @@
       "epsEstimate": 2.6134,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 499960000.0,
+      "revenueActual": 1232881000.0
     },
     {
       "ticker": "PSKY",
@@ -6610,7 +7766,9 @@
       "epsEstimate": 0.1548,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6913000000.0,
+      "netIncomeActual": 41000000.0
     },
     {
       "ticker": "PSX",
@@ -6622,7 +7780,9 @@
       "epsEstimate": 7.5136,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3847000000.0,
+      "revenueActual": 51004000000.0
     },
     {
       "ticker": "PTC",
@@ -6634,7 +7794,9 @@
       "epsEstimate": 1.5825,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 600049000.0,
+      "netIncomeActual": 118780000.0
     },
     {
       "ticker": "PWR",
@@ -6646,7 +7808,9 @@
       "epsEstimate": 3.3328,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 451381000.0,
+      "revenueActual": 9556997000.0
     },
     {
       "ticker": "PYPL",
@@ -6658,7 +7822,9 @@
       "epsEstimate": 1.3029,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1104000000.0,
+      "revenueActual": 8682000000.0
     },
     {
       "ticker": "Q",
@@ -6670,7 +7836,9 @@
       "epsEstimate": 1.0829,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 124000000.0,
+      "revenueActual": 1429000000.0
     },
     {
       "ticker": "QBTS",
@@ -6682,7 +7850,9 @@
       "epsEstimate": -0.0867,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3076000.0,
+      "netIncomeActual": -48028000.0
     },
     {
       "ticker": "QCOM",
@@ -6694,7 +7864,9 @@
       "epsEstimate": 2.2724,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 9947000000.0,
+      "netIncomeActual": 2002000000.0
     },
     {
       "ticker": "QUBT",
@@ -6706,7 +7878,9 @@
       "epsEstimate": -0.0388,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -4050000.0,
+      "revenueActual": 3691000.0
     },
     {
       "ticker": "RCL",
@@ -6718,7 +7892,9 @@
       "epsEstimate": 4.0239,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1128000000.0,
+      "revenueActual": 4832000000.0
     },
     {
       "ticker": "RDDT",
@@ -6730,7 +7906,9 @@
       "epsEstimate": 0.97,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 804905000.0,
+      "netIncomeActual": 252848000.0
     },
     {
       "ticker": "REG",
@@ -6742,7 +7920,9 @@
       "epsEstimate": 0.6035,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 412453000.0,
+      "netIncomeActual": 128549000.0
     },
     {
       "ticker": "REGN",
@@ -6754,7 +7934,9 @@
       "epsEstimate": 10.4682,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4290700000.0,
+      "netIncomeActual": 1296900000.0
     },
     {
       "ticker": "RF",
@@ -6766,7 +7948,9 @@
       "epsEstimate": 0.646,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 570000000.0,
+      "revenueActual": 1907000000.0
     },
     {
       "ticker": "RGTI",
@@ -6778,7 +7962,9 @@
       "epsEstimate": -0.0495,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5138000.0,
+      "netIncomeActual": -52606000.0
     },
     {
       "ticker": "RJF",
@@ -6790,7 +7976,9 @@
       "epsEstimate": 2.9426,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3865000000.0,
+      "netIncomeActual": 595000000.0
     },
     {
       "ticker": "RKLB",
@@ -6802,7 +7990,9 @@
       "epsEstimate": -0.0765,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": -45022000.0,
+      "revenueActual": 200348000.0
     },
     {
       "ticker": "RL",
@@ -6814,7 +8004,9 @@
       "epsEstimate": 4.4517,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 262200000.0,
+      "revenueActual": 1959800000.0
     },
     {
       "ticker": "RMD",
@@ -6826,7 +8018,9 @@
       "epsEstimate": 2.9183,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1431406000.0,
+      "netIncomeActual": 398732000.0
     },
     {
       "ticker": "ROK",
@@ -6838,7 +8032,9 @@
       "epsEstimate": 3.4169,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 408000000.0,
+      "revenueActual": 2313000000.0
     },
     {
       "ticker": "ROL",
@@ -6850,7 +8046,9 @@
       "epsEstimate": 0.344,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 143910000.0,
+      "revenueActual": 1078576000.0
     },
     {
       "ticker": "ROP",
@@ -6862,7 +8060,9 @@
       "epsEstimate": 5.337,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2108900000.0,
+      "netIncomeActual": 1168500000.0
     },
     {
       "ticker": "ROST",
@@ -6874,7 +8074,9 @@
       "epsEstimate": 1.7647,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 6010476000.0,
+      "netIncomeActual": 649964000.0
     },
     {
       "ticker": "RSG",
@@ -6886,7 +8088,9 @@
       "epsEstimate": 1.8315,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4430000000.0,
+      "netIncomeActual": 566000000.0
     },
     {
       "ticker": "RTX",
@@ -6898,7 +8102,9 @@
       "epsEstimate": 1.6781,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 24708000000.0,
+      "netIncomeActual": 2139000000.0
     },
     {
       "ticker": "RVTY",
@@ -6910,7 +8116,9 @@
       "epsEstimate": 1.2468,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 711118000.0,
+      "netIncomeActual": 40718000.0
     },
     {
       "ticker": "SBAC",
@@ -6922,7 +8130,9 @@
       "epsEstimate": 1.9156,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 715274000.0,
+      "netIncomeActual": 198777000.0
     },
     {
       "ticker": "SMCI",
@@ -6934,7 +8144,9 @@
       "epsEstimate": 0.9767,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 483387000.0,
+      "revenueActual": 10243014000.0
     },
     {
       "ticker": "SNDK",
@@ -6946,7 +8158,9 @@
       "epsEstimate": 35.1395,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3615000000.0,
+      "revenueActual": 5950000000.0
     },
     {
       "ticker": "SPCX",
@@ -6958,7 +8172,9 @@
       "epsEstimate": -0.2635,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7814000000.0,
+      "netIncomeActual": -541000000.0
     },
     {
       "ticker": "STX",
@@ -6970,7 +8186,9 @@
       "epsEstimate": 5.1389,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3629000000.0,
+      "netIncomeActual": 1294000000.0
     },
     {
       "ticker": "TGT",
@@ -6982,7 +8200,9 @@
       "epsEstimate": 1.477,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1045000000.0,
+      "revenueActual": 30453000000.0
     },
     {
       "ticker": "TJX",
@@ -6994,7 +8214,9 @@
       "epsEstimate": 1.0264,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1773000000.0,
+      "revenueActual": 17743000000.0
     },
     {
       "ticker": "TMO",
@@ -7006,7 +8228,9 @@
       "epsEstimate": 5.7684,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1736000000.0,
+      "revenueActual": 11994000000.0
     },
     {
       "ticker": "TSLA",
@@ -7018,7 +8242,9 @@
       "epsEstimate": 0.5191,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1114000000.0,
+      "revenueActual": 28236000000.0
     },
     {
       "ticker": "TXN",
@@ -7030,7 +8256,9 @@
       "epsEstimate": 1.9543,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1980000000.0,
+      "revenueActual": 5463000000.0
     },
     {
       "ticker": "UNH",
@@ -7042,7 +8270,9 @@
       "epsEstimate": 4.9533,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 6280000000.0,
+      "revenueActual": 111721000000.0
     },
     {
       "ticker": "V",
@@ -7054,7 +8284,9 @@
       "epsEstimate": 3.2923,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 5628000000.0,
+      "revenueActual": 11633000000.0
     },
     {
       "ticker": "VRT",
@@ -7066,7 +8298,9 @@
       "epsEstimate": 1.438,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3274300000.0,
+      "netIncomeActual": 497800000.0
     },
     {
       "ticker": "VZ",
@@ -7078,7 +8312,9 @@
       "epsEstimate": 1.3029,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 34253000000.0,
+      "netIncomeActual": 3835000000.0
     },
     {
       "ticker": "WDC",
@@ -7090,7 +8326,9 @@
       "epsEstimate": 3.3281,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3205000000.0,
+      "revenueActual": 3337000000.0
     },
     {
       "ticker": "WMT",
@@ -7102,7 +8340,9 @@
       "epsEstimate": 0.6638,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 190656000000.0,
+      "netIncomeActual": 4237000000.0
     },
     {
       "ticker": "WULF",
@@ -7114,7 +8354,9 @@
       "epsEstimate": -0.2299,
       "status": "reported",
       "trackingTier": "theme",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 44767000.0,
+      "netIncomeActual": -939917000.0
     },
     {
       "ticker": "XOM",
@@ -7126,7 +8368,9 @@
       "epsEstimate": 3.5866,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 14525000000.0,
+      "revenueActual": 114529000000.0
     },
     {
       "ticker": "PEP",
@@ -14448,7 +15692,9 @@
       "epsEstimate": 3.3681,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3623465000.0,
+      "netIncomeActual": 1176350000.0
     },
     {
       "ticker": "AMAT",
@@ -14460,7 +15706,9 @@
       "epsEstimate": 3.4544,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2806000000.0,
+      "revenueActual": 7910000000.0
     },
     {
       "ticker": "CSCO",
@@ -14472,7 +15720,9 @@
       "epsEstimate": 1.1937,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3373000000.0,
+      "revenueActual": 15841000000.0
     },
     {
       "ticker": "HD",
@@ -14484,7 +15734,9 @@
       "epsEstimate": 4.8762,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 41765000000.0,
+      "netIncomeActual": 3289000000.0
     },
     {
       "ticker": "TGT",
@@ -14496,7 +15748,9 @@
       "epsEstimate": 2.3095,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 781000000.0,
+      "revenueActual": 25443000000.0
     },
     {
       "ticker": "TJX",
@@ -14508,7 +15762,9 @@
       "epsEstimate": 1.2036,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1332000000.0,
+      "revenueActual": 14323000000.0
     },
     {
       "ticker": "WMT",
@@ -14520,7 +15776,9 @@
       "epsEstimate": 0.7493,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 177751000000.0,
+      "netIncomeActual": 5330000000.0
     },
     {
       "ticker": "MKC",
