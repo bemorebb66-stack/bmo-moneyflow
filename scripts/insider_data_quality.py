@@ -413,6 +413,7 @@ def reconcile_amendments(
         for leg in filing.get("transactions", [])
     ]
     pending = list(conflicts)
+    blocked_source_accessions: set[str] = set()
 
     for amendment in amendments:
         candidates = amendment_candidates(amendment, originals)
@@ -506,6 +507,11 @@ def reconcile_amendments(
                         "severity": "critical",
                     }
                 )
+                blocked_source_accessions.update(
+                    str(accession)
+                    for accession in candidate_accessions
+                    if accession
+                )
                 continue
             index, original_leg = matches[0]
             replacement = dict(amended_leg)
@@ -519,6 +525,28 @@ def reconcile_amendments(
             )
             replacement["supersedesTransactionId"] = original_leg.get("transactionId")
             canonical[index] = replacement
+
+    if blocked_source_accessions:
+        safe_canonical: list[dict[str, Any]] = []
+        for leg in canonical:
+            source_accessions = {
+                str(accession)
+                for accession in leg.get(
+                    "sourceAccessions", [leg.get("accession")]
+                )
+                if accession
+            }
+            if source_accessions.intersection(blocked_source_accessions):
+                pending.append(
+                    {
+                        **public_pending_row(leg),
+                        "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+                        "severity": "critical",
+                    }
+                )
+                continue
+            safe_canonical.append(leg)
+        canonical = safe_canonical
 
     seen_ids: set[str] = set()
     deduped: list[dict[str, Any]] = []
@@ -864,14 +892,14 @@ def build_dataset(
     public_errors = validate_public_dataset(trades, pending_public)
     total_candidates = len(canonical) + len(amendment_pending)
     pending_rate = len(pending_public) / total_candidates if total_candidates else 0.0
-    fatal_errors = [
-        *public_errors,
-        *[
+    fatal_errors = list(public_errors)
+    review_warnings = sorted(
+        {
             str(row.get("reasonCode"))
-            for row in amendment_pending
-            if row.get("severity") == "critical"
-        ],
-    ]
+            for row in pending_public
+            if row.get("severity") == "critical" and row.get("reasonCode")
+        }
+    )
     if pending_rate > max_pending_rate:
         fatal_errors.append(
             f"pending rate {pending_rate:.2%} exceeds {max_pending_rate:.2%}"
@@ -914,6 +942,7 @@ def build_dataset(
     report = {
         "status": "passed" if not fatal_errors else "failed",
         "fatalErrors": fatal_errors,
+        "reviewWarnings": review_warnings,
         "acceptedCount": len(trades),
         "pendingCount": len(pending_public),
         "pendingRate": round(pending_rate, 6),
@@ -1273,15 +1302,13 @@ def cli(argv: list[str] | None = None) -> int:
                 f"pending rate {pending_rate:.2%} exceeds "
                 f"{args.max_pending_rate:.2%}"
             )
-        amendment_fetch_failures = sum(
-            row.get("reasonCode") == "AMENDMENT_REFETCH_FAILED"
-            for row in fetch_failures
+        report["reviewWarnings"] = sorted(
+            {
+                str(row.get("reasonCode"))
+                for row in result["pendingTrades"]
+                if row.get("severity") == "critical" and row.get("reasonCode")
+            }
         )
-        if amendment_fetch_failures:
-            report["fatalErrors"].append(
-                f"{amendment_fetch_failures} relevant Form 4/A filings "
-                "could not be verified"
-            )
         report["status"] = "failed" if report["fatalErrors"] else "passed"
         result["meta"]["validationStatus"] = report["status"]
     write_json(args.output, result)

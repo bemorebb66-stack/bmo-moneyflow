@@ -134,6 +134,29 @@ class InsiderDataQualityTests(unittest.TestCase):
             legs[1]["sourceAccessions"],
         )
 
+    def test_unresolved_amendment_quarantines_original_without_failing_dataset(self) -> None:
+        amendment = deepcopy(self.psx_amendment)
+        amendment["transactions"] = [deepcopy(amendment["transactions"][0])]
+        amendment["transactions"][0]["txDate"] = "2099-01-01"
+
+        result, quarantine, report = build_dataset(
+            [self.psx_original, amendment],
+            source_meta={"source": "fixture"},
+            market_quotes=self.market,
+            max_pending_rate=1.0,
+        )
+
+        self.assertEqual("passed", report["status"])
+        self.assertEqual([], report["fatalErrors"])
+        self.assertIn("AMENDMENT_TRANSACTION_NOT_FOUND", report["reviewWarnings"])
+        self.assertIn("AMENDMENT_UNRESOLVED_ORIGINAL", report["reviewWarnings"])
+        self.assertEqual([], result["trades"])
+        self.assertEqual(3, result["meta"]["pendingCount"])
+        self.assertEqual(3, quarantine["meta"]["count"])
+        self.assertTrue(
+            all(row["qualityStatus"] == "pending" for row in result["pendingTrades"])
+        )
+
     def test_same_day_separate_accessions_are_not_deduplicated(self) -> None:
         second = parse_form4_xml(
             fixture("psx-original.xml"),
