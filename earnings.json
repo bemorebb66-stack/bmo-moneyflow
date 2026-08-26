@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-25T14:16:14.754015+00:00",
+    "generatedAt": "2026-08-25T23:58:46.547892+00:00",
     "status": "ok",
     "from": "2026-07-11",
     "to": "2027-02-21",
-    "count": 3386,
+    "count": 3426,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 603,
-      "supplementalTickerCount": 152,
-      "supplementalEventCount": 604,
+      "supplementalTickerCount": 151,
+      "supplementalEventCount": 600,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -120,6 +120,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 1374000000.0,
       "revenueActual": 4095000000.0
+    },
+    {
+      "ticker": "ABT",
+      "company": "애보트 래보라토리",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 1.3,
+      "epsEstimate": 1.3139,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1779000000.0,
+      "revenueActual": 11142000000.0
     },
     {
       "ticker": "ACN",
@@ -342,8 +356,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 5065000000.0,
-      "netIncomeActual": 755000000.0
+      "revenueActual": 5061000000.0,
+      "netIncomeActual": 797000000.0
     },
     {
       "ticker": "BTDR",
@@ -386,6 +400,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 17638000000.0,
       "netIncomeActual": 2300000000.0
+    },
+    {
+      "ticker": "CDNS",
+      "company": "케이던스 디자인 시스템즈",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 1.93,
+      "epsEstimate": 1.8232,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1338838000.0,
+      "netIncomeActual": 287122000.0
     },
     {
       "ticker": "CIFR",
@@ -528,6 +556,20 @@
       "revenueActual": 48169000000.0
     },
     {
+      "ticker": "DASH",
+      "company": "도어대시",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 0.55,
+      "epsEstimate": 0.7048,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3446000000.0,
+      "netIncomeActual": 244000000.0
+    },
+    {
       "ticker": "DELL",
       "company": "델테크놀로지",
       "date": "2025-09-30",
@@ -568,6 +610,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 6972000000.0,
       "netIncomeActual": 674000000.0
+    },
+    {
+      "ticker": "GE",
+      "company": "GE 에어로스페이스",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 1.66,
+      "epsEstimate": 1.4967,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2157000000.0,
+      "revenueActual": 12181000000.0
     },
     {
       "ticker": "GEV",
@@ -636,8 +692,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 15184000000.0,
-      "netIncomeActual": 4098000000.0
+      "revenueActual": 14583000000.0,
+      "netIncomeActual": 3723000000.0
     },
     {
       "ticker": "HOOD",
@@ -876,6 +932,20 @@
       "netIncomeActual": 2278000000.0
     },
     {
+      "ticker": "MELI",
+      "company": "메르카도리브레",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 8.32,
+      "epsEstimate": 9.5236,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 7409000000.0,
+      "netIncomeActual": 421000000.0
+    },
+    {
       "ticker": "META",
       "company": "메타",
       "date": "2025-09-30",
@@ -1002,6 +1072,20 @@
       "revenueActual": 100700000.0
     },
     {
+      "ticker": "NEM",
+      "company": "뉴몬트",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 1.71,
+      "epsEstimate": 1.4454,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1832000000.0,
+      "revenueActual": 5524000000.0
+    },
+    {
       "ticker": "NFLX",
       "company": "넷플릭스",
       "date": "2025-09-30",
@@ -1014,6 +1098,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 11510307000.0,
       "netIncomeActual": 2546916000.0
+    },
+    {
+      "ticker": "NKE",
+      "company": "나이키",
+      "date": "2025-09-30",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 0.49,
+      "epsEstimate": 0.2752,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 11720000000.0,
+      "netIncomeActual": 727000000.0
     },
     {
       "ticker": "NOW",
@@ -1884,6 +1982,20 @@
       "netIncomeActual": 236816000.0
     },
     {
+      "ticker": "SHOP",
+      "company": "쇼피파이",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 0.34,
+      "epsEstimate": 0.3423,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2844000000.0,
+      "netIncomeActual": 264000000.0
+    },
+    {
       "ticker": "SMCI",
       "company": "슈퍼 마이크로 컴퓨터",
       "date": "2025-09-30",
@@ -1910,6 +2022,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": -23000000.0,
       "revenueActual": 1901000000.0
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 3.39,
+      "epsEstimate": 3.8047,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1739737000.0,
+      "netIncomeActual": 242509000.0
     },
     {
       "ticker": "STX",
@@ -1979,6 +2105,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 1364000000.0,
       "revenueActual": 4742000000.0
+    },
+    {
+      "ticker": "UBER",
+      "company": "우버",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 3.11,
+      "epsEstimate": 0.6986,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 6626000000.0,
+      "revenueActual": 13467000000.0
     },
     {
       "ticker": "UNH",
@@ -2119,6 +2259,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 341000000.0,
       "revenueActual": 2778000000.0
+    },
+    {
+      "ticker": "ABT",
+      "company": "애보트 래보라토리",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 1.5,
+      "epsEstimate": 1.5113,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1644000000.0,
+      "revenueActual": 11369000000.0
     },
     {
       "ticker": "ACN",
@@ -2369,8 +2523,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 5286000000.0,
-      "netIncomeActual": 672000000.0
+      "revenueActual": 5065000000.0,
+      "netIncomeActual": 755000000.0
     },
     {
       "ticker": "BTDR",
@@ -2413,6 +2567,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 19133000000.0,
       "netIncomeActual": 2402000000.0
+    },
+    {
+      "ticker": "CDNS",
+      "company": "케이던스 디자인 시스템즈",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 1.99,
+      "epsEstimate": 1.9513,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1440114000.0,
+      "netIncomeActual": 388136000.0
     },
     {
       "ticker": "CIFR",
@@ -2569,6 +2737,20 @@
       "revenueActual": 45787000000.0
     },
     {
+      "ticker": "DASH",
+      "company": "도어대시",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 0.48,
+      "epsEstimate": 0.5978,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3955000000.0,
+      "netIncomeActual": 213000000.0
+    },
+    {
       "ticker": "DELL",
       "company": "델테크놀로지",
       "date": "2025-12-31",
@@ -2609,6 +2791,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 5633000000.0,
       "netIncomeActual": 406000000.0
+    },
+    {
+      "ticker": "GE",
+      "company": "GE 에어로스페이스",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 1.57,
+      "epsEstimate": 1.4695,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2541000000.0,
+      "revenueActual": 12717000000.0
     },
     {
       "ticker": "GEV",
@@ -2677,8 +2873,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 13454000000.0,
-      "netIncomeActual": 4617000000.0
+      "revenueActual": 15184000000.0,
+      "netIncomeActual": 4098000000.0
     },
     {
       "ticker": "HD",
@@ -2931,6 +3127,20 @@
       "netIncomeActual": 2164000000.0
     },
     {
+      "ticker": "MELI",
+      "company": "메르카도리브레",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 11.03,
+      "epsEstimate": 11.6967,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 8759000000.0,
+      "netIncomeActual": 559000000.0
+    },
+    {
       "ticker": "META",
       "company": "메타",
       "date": "2025-12-31",
@@ -3057,6 +3267,20 @@
       "revenueActual": 146100000.0
     },
     {
+      "ticker": "NEM",
+      "company": "뉴몬트",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 2.52,
+      "epsEstimate": 2.0209,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1301000000.0,
+      "revenueActual": 6818000000.0
+    },
+    {
       "ticker": "NFLX",
       "company": "넷플릭스",
       "date": "2025-12-31",
@@ -3069,6 +3293,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 12050762000.0,
       "netIncomeActual": 2418521000.0
+    },
+    {
+      "ticker": "NKE",
+      "company": "나이키",
+      "date": "2025-12-31",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 0.53,
+      "epsEstimate": 0.3807,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 12427000000.0,
+      "netIncomeActual": 792000000.0
     },
     {
       "ticker": "NOW",
@@ -3967,6 +4205,20 @@
       "netIncomeActual": 370290000.0
     },
     {
+      "ticker": "SHOP",
+      "company": "쇼피파이",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 0.48,
+      "epsEstimate": 0.5165,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3672000000.0,
+      "netIncomeActual": 743000000.0
+    },
+    {
       "ticker": "SMCI",
       "company": "슈퍼 마이크로 컴퓨터",
       "date": "2025-12-31",
@@ -3993,6 +4245,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 112000000.0,
       "revenueActual": 2308000000.0
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 2.9,
+      "epsEstimate": 2.8331,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2254860000.0,
+      "netIncomeActual": 448696000.0
     },
     {
       "ticker": "STX",
@@ -4063,6 +4329,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 1163000000.0,
       "revenueActual": 4423000000.0
+    },
+    {
+      "ticker": "UBER",
+      "company": "우버",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 0.14,
+      "epsEstimate": 0.8146,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 296000000.0,
+      "revenueActual": 14366000000.0
     },
     {
       "ticker": "UNH",
@@ -4217,6 +4497,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 160000000.0,
       "revenueActual": 2678000000.0
+    },
+    {
+      "ticker": "ABT",
+      "company": "애보트 래보라토리",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.15,
+      "epsEstimate": 1.1552,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1776000000.0,
+      "revenueActual": 11459000000.0
     },
     {
       "ticker": "ACN",
@@ -4467,8 +4761,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 5203000000.0,
-      "netIncomeActual": 1341000000.0
+      "revenueActual": 5286000000.0,
+      "netIncomeActual": 672000000.0
     },
     {
       "ticker": "BTDR",
@@ -4511,6 +4805,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 17415000000.0,
       "netIncomeActual": 2549000000.0
+    },
+    {
+      "ticker": "CDNS",
+      "company": "케이던스 디자인 시스템즈",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.96,
+      "epsEstimate": 1.9363,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1474220000.0,
+      "netIncomeActual": 335660000.0
     },
     {
       "ticker": "CIFR",
@@ -4667,6 +4975,20 @@
       "revenueActual": 47556000000.0
     },
     {
+      "ticker": "DASH",
+      "company": "도어대시",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 0.42,
+      "epsEstimate": 0.3718,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4036000000.0,
+      "netIncomeActual": 184000000.0
+    },
+    {
       "ticker": "DELL",
       "company": "델테크놀로지",
       "date": "2026-03-31",
@@ -4707,6 +5029,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 6234000000.0,
       "netIncomeActual": 881000000.0
+    },
+    {
+      "ticker": "GE",
+      "company": "GE 에어로스페이스",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.86,
+      "epsEstimate": 1.6467,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1904000000.0,
+      "revenueActual": 12392000000.0
     },
     {
       "ticker": "GEV",
@@ -4775,8 +5111,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 17227000000.0,
-      "netIncomeActual": 5630000000.0
+      "revenueActual": 13454000000.0,
+      "netIncomeActual": 4617000000.0
     },
     {
       "ticker": "HD",
@@ -5029,6 +5365,20 @@
       "netIncomeActual": 1983000000.0
     },
     {
+      "ticker": "MELI",
+      "company": "메르카도리브레",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 8.23,
+      "epsEstimate": 8.834,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 8845000000.0,
+      "netIncomeActual": 417000000.0
+    },
+    {
       "ticker": "META",
       "company": "메타",
       "date": "2026-03-31",
@@ -5155,6 +5505,20 @@
       "revenueActual": 227700000.0
     },
     {
+      "ticker": "NEM",
+      "company": "뉴몬트",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 2.9,
+      "epsEstimate": 2.2019,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 3262000000.0,
+      "revenueActual": 7307000000.0
+    },
+    {
       "ticker": "NFLX",
       "company": "넷플릭스",
       "date": "2026-03-31",
@@ -5167,6 +5531,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 12249757000.0,
       "netIncomeActual": 5282791000.0
+    },
+    {
+      "ticker": "NKE",
+      "company": "나이키",
+      "date": "2026-03-31",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": 0.35,
+      "epsEstimate": 0.2848,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 11279000000.0,
+      "netIncomeActual": 520000000.0
     },
     {
       "ticker": "NOW",
@@ -6065,6 +6443,20 @@
       "netIncomeActual": 184830000.0
     },
     {
+      "ticker": "SHOP",
+      "company": "쇼피파이",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 0.36,
+      "epsEstimate": 0.3372,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3170000000.0,
+      "netIncomeActual": -581000000.0
+    },
+    {
       "ticker": "SMCI",
       "company": "슈퍼 마이크로 컴퓨터",
       "date": "2026-03-31",
@@ -6091,6 +6483,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 803000000.0,
       "revenueActual": 3025000000.0
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 3.77,
+      "epsEstimate": 3.6279,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2408798000.0,
+      "netIncomeActual": 64958000.0
     },
     {
       "ticker": "STX",
@@ -6175,6 +6581,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 1545000000.0,
       "revenueActual": 4825000000.0
+    },
+    {
+      "ticker": "UBER",
+      "company": "우버",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 0.13,
+      "epsEstimate": 0.6958,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 263000000.0,
+      "revenueActual": 13203000000.0
     },
     {
       "ticker": "UNH",
@@ -6329,6 +6749,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 816000000.0,
       "revenueActual": 3608000000.0
+    },
+    {
+      "ticker": "ABT",
+      "company": "애보트 래보라토리",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.31,
+      "epsEstimate": 1.2922,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 1077000000.0,
+      "revenueActual": 11164000000.0
     },
     {
       "ticker": "ACN",
@@ -6565,8 +6999,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 5442000000.0,
-      "netIncomeActual": 907000000.0
+      "revenueActual": 5203000000.0,
+      "netIncomeActual": 1341000000.0
     },
     {
       "ticker": "BTDR",
@@ -6609,6 +7043,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 20543000000.0,
       "netIncomeActual": 3593000000.0
+    },
+    {
+      "ticker": "CDNS",
+      "company": "케이던스 디자인 시스템즈",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 2.11,
+      "epsEstimate": 2.0959,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1584451000.0,
+      "netIncomeActual": 367076000.0
     },
     {
       "ticker": "CIFR",
@@ -6765,6 +7213,20 @@
       "revenueActual": 67199000000.0
     },
     {
+      "ticker": "DASH",
+      "company": "도어대시",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 0.46,
+      "epsEstimate": 0.4656,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4454000000.0,
+      "netIncomeActual": 200000000.0
+    },
+    {
       "ticker": "DELL",
       "company": "델테크놀로지",
       "date": "2026-06-30",
@@ -6805,6 +7267,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 7029000000.0,
       "netIncomeActual": 984000000.0
+    },
+    {
+      "ticker": "GE",
+      "company": "GE 에어로스페이스",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 2.02,
+      "epsEstimate": 1.9151,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2370000000.0,
+      "revenueActual": 13348000000.0
     },
     {
       "ticker": "GEV",
@@ -6873,8 +7349,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "revenueActual": 17227000000.0,
+      "netIncomeActual": 5630000000.0
     },
     {
       "ticker": "HD",
@@ -7113,6 +7589,20 @@
       "netIncomeActual": 2362000000.0
     },
     {
+      "ticker": "MELI",
+      "company": "메르카도리브레",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 9.19,
+      "epsEstimate": 8.8292,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10169000000.0,
+      "netIncomeActual": 466000000.0
+    },
+    {
       "ticker": "META",
       "company": "메타",
       "date": "2026-06-30",
@@ -7239,6 +7729,20 @@
       "revenueActual": 399000000.0
     },
     {
+      "ticker": "NEM",
+      "company": "뉴몬트",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 2.1,
+      "epsEstimate": 2.0092,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2202000000.0,
+      "revenueActual": 6118000000.0
+    },
+    {
       "ticker": "NFLX",
       "company": "넷플릭스",
       "date": "2026-06-30",
@@ -7251,6 +7755,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 12559938000.0,
       "netIncomeActual": 3401414000.0
+    },
+    {
+      "ticker": "NKE",
+      "company": "나이키",
+      "date": "2026-06-30",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": 0.2,
+      "epsEstimate": 0.1332,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 10972000000.0,
+      "netIncomeActual": 1069000000.0
     },
     {
       "ticker": "NOW",
@@ -8135,6 +8653,20 @@
       "netIncomeActual": 198777000.0
     },
     {
+      "ticker": "SHOP",
+      "company": "쇼피파이",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 0.42,
+      "epsEstimate": 0.4099,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 3583000000.0,
+      "netIncomeActual": 1502000000.0
+    },
+    {
       "ticker": "SMCI",
       "company": "슈퍼 마이크로 컴퓨터",
       "date": "2026-06-30",
@@ -8161,6 +8693,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 3615000000.0,
       "revenueActual": 5950000000.0
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 3.35,
+      "epsEstimate": 3.2167,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2275985000.0,
+      "netIncomeActual": 17105000.0
     },
     {
       "ticker": "SPCX",
@@ -8259,6 +8805,20 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 1980000000.0,
       "revenueActual": 5463000000.0
+    },
+    {
+      "ticker": "UBER",
+      "company": "우버",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.17,
+      "epsEstimate": 0.8177,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 2394000000.0,
+      "revenueActual": 14191000000.0
     },
     {
       "ticker": "UNH",
@@ -32422,7 +32982,7 @@
       "epsEstimate": 0.3381,
       "revenueEstimate": 257956806.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -32739,7 +33299,7 @@
       "epsEstimate": 0.9343,
       "revenueEstimate": 701983663.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -34098,7 +34658,7 @@
       "epsEstimate": 0.0146,
       "revenueEstimate": 1253450184.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -35477,7 +36037,7 @@
       "epsEstimate": 0.7687,
       "revenueEstimate": 531220761.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -36132,7 +36692,7 @@
       "epsEstimate": -0.4814,
       "revenueEstimate": 1257161220.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -37447,7 +38007,7 @@
       "epsEstimate": 1.2564,
       "revenueEstimate": 156560978.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -39704,7 +40264,7 @@
       "epsEstimate": -1.1668,
       "revenueEstimate": 7479027.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -40383,7 +40943,7 @@
       "epsEstimate": -0.7106,
       "revenueEstimate": 238927350.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -40726,7 +41286,7 @@
       "epsEstimate": 0.5409,
       "revenueEstimate": 1886807866.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -41214,7 +41774,7 @@
       "epsEstimate": 0.942,
       "revenueEstimate": 4417228768.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -41739,7 +42299,7 @@
       "epsEstimate": 1.6065,
       "revenueEstimate": 695109600.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -41866,7 +42426,7 @@
       "epsEstimate": 0.4241,
       "revenueEstimate": 332245852.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -42108,7 +42668,7 @@
       "epsEstimate": 0.4957,
       "revenueEstimate": 886611249.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -42709,7 +43269,7 @@
       "epsEstimate": 0.1772,
       "revenueEstimate": 542421006.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -43828,7 +44388,7 @@
       "epsEstimate": -4.2667,
       "revenueEstimate": 1399919.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
