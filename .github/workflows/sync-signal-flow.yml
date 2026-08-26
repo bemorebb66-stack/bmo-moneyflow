@@ -36,6 +36,7 @@ jobs:
       - name: Validate SEC insider transactions
         run: |
           mkdir -p /tmp/validated-insider
+          set +e
           python scripts/validate_insider_data.py \
             --source /tmp/bmo-antman/docs/data/insider.json \
             --output /tmp/validated-insider/insider.json \
@@ -44,6 +45,9 @@ jobs:
             --min-market-coverage 0.95 \
             --max-pending-rate 0.05 \
             --user-agent "BVTMoneyFlow/1.0 admin@bvtmoneyflow.xyz"
+          validation_exit=$?
+          cat /tmp/validated-insider/insider-quality.json
+          exit "$validation_exit"
 
       - name: Stage validated Signal Flow data
         run: |
