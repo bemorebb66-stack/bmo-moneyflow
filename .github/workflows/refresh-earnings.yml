@@ -5,6 +5,10 @@ on:
     # 월~금 13:00 UTC = 한국시간 월~금 오후 10:00
     # 장 시작 전 새 실적 일정·발표 결과·기업 뉴스를 갱신합니다.
     - cron: "0 13 * * 1-5"
+  workflow_run:
+    # 오전 거래 갱신의 성공 여부와 무관하게 발표 완료 실적을 다시 확인합니다.
+    workflows: ["Update market data"]
+    types: [completed]
   workflow_dispatch: {}
 
 permissions:
