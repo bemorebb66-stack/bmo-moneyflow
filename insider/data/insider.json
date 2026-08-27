@@ -3,26 +3,26 @@
     "source": "SEC EDGAR daily form index + Form 4 XML",
     "universe": "All SEC Form 4 issuers",
     "universeSize": null,
-    "filedDate": "2026-08-25",
+    "filedDate": "2026-08-26",
     "dateRange": {
-      "from": "2026-08-16",
-      "to": "2026-08-26"
+      "from": "2026-08-17",
+      "to": "2026-08-27"
     },
-    "generatedAt": "2026-08-26T04:06:11.583Z",
-    "filingsScanned": 7029,
+    "generatedAt": "2026-08-27T13:34:39.041Z",
+    "filingsScanned": 7032,
     "monthlyRowCap": 3000,
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-08-26T05:55:23.074553+00:00",
+    "validatedAt": "2026-08-27T14:27:13.531781+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 6071,
-    "pendingCount": 103,
-    "uniqueAccessionCount": 4874,
-    "marketCoverage": 0.988299,
+    "acceptedCount": 6068,
+    "pendingCount": 105,
+    "uniqueAccessionCount": 4873,
+    "marketCoverage": 0.987952,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "dd4fa3325d3276e555df4d684561c425b55c61e204148386236c551ad486f4f0"
+    "dataSha256": "437b2dffe429e889c5fc083de03cb615f8f993cce31b3e47ba3108eacba6712f"
   },
   "trades": [
     {
@@ -1525,7 +1525,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 2,
-      "clusterCount": 3
+      "clusterCount": 2
     },
     {
       "ticker": "MDLN",
@@ -28695,34 +28695,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 3,
       "clusterCount": 1
-    },
-    {
-      "ticker": "GWRE",
-      "company": "Guidewire Software, Inc.",
-      "filer": "Mullen John P",
-      "role": "President",
-      "txType": "매도",
-      "shares": 14400,
-      "price": 185,
-      "value": 2664000,
-      "ownBefore": 131115,
-      "filedDate": "2026-08-20",
-      "txDate": "2026-08-19",
-      "ownAfter": 116715,
-      "ownChangePct": -11.0,
-      "id": "f4-0001917389-26-000010-8ae4f97fe5",
-      "accession": "0001917389-26-000010",
-      "sourceAccessions": [
-        "0001917389-26-000010"
-      ],
-      "transactionIds": [
-        "0001917389-26-000010:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000010/wk-form4_1787256951.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 2
     },
     {
       "ticker": "THC",
@@ -79951,7 +79923,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 2
     },
     {
       "ticker": "AAPL",
@@ -79979,7 +79951,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 2
     },
     {
       "ticker": "LIFE",
@@ -81455,34 +81427,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 9
-    },
-    {
-      "ticker": "AAPL",
-      "company": "Apple Inc.",
-      "filer": "Parekh Kevan",
-      "role": "Senior Vice President, CFO",
-      "txType": "매도",
-      "shares": 1534,
-      "price": 275,
-      "value": 421850,
-      "ownBefore": 14900,
-      "filedDate": "2026-04-27",
-      "txDate": "2026-04-23",
-      "ownAfter": 13366,
-      "ownChangePct": -10.3,
-      "id": "f4-0001140361-26-017175-6eedf14e75",
-      "accession": "0001140361-26-017175",
-      "sourceAccessions": [
-        "0001140361-26-017175"
-      ],
-      "transactionIds": [
-        "0001140361-26-017175:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/320193/000114036126017175/form4.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 3
     },
     {
       "ticker": "APPF",
@@ -106554,7 +106498,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 1
     },
     {
       "ticker": "MASS",
@@ -107256,7 +107200,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 1
     },
     {
       "ticker": "THRM",
@@ -107568,34 +107512,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 9
-    },
-    {
-      "ticker": "ABT",
-      "company": "ABBOTT LABORATORIES",
-      "filer": "Boudreau Philip P",
-      "role": "EVP AND CFO",
-      "txType": "매수",
-      "shares": 2200,
-      "price": 91.5,
-      "value": 201300,
-      "ownBefore": 0,
-      "filedDate": "2026-04-27",
-      "txDate": "2026-04-23",
-      "ownAfter": 2200,
-      "ownChangePct": 0.0,
-      "id": "f4-0001805099-26-000006-317549e038",
-      "accession": "0001805099-26-000006",
-      "sourceAccessions": [
-        "0001805099-26-000006"
-      ],
-      "transactionIds": [
-        "0001805099-26-000006:nonDerivative:1"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1800/000180509926000006/form4-04272026_090443.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
     },
     {
       "ticker": "APTV",
@@ -110472,7 +110388,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 1
     },
     {
       "ticker": "AVR",
@@ -112208,7 +112124,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 1
     },
     {
       "ticker": "SE",
@@ -113317,7 +113233,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 1
     },
     {
       "ticker": "RUSHA",
@@ -151604,7 +151520,7 @@
       "transactionIds": [
         "0001713730-26-000009:nonDerivative:0"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713730/000171373026000009/wk-form4_1787070875.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1043337/000171373026000009/wk-form4_1787070875.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -159723,7 +159639,7 @@
       "transactionIds": [
         "0001628280-26-057772:nonDerivative:3"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1666071/000162828026057772/wk-form4_1787088440.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1961238/000162828026057772/wk-form4_1787088440.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -159751,7 +159667,7 @@
       "transactionIds": [
         "0001628280-26-057772:nonDerivative:2"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1666071/000162828026057772/wk-form4_1787088440.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1961238/000162828026057772/wk-form4_1787088440.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -165742,7 +165658,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1759546/000149315226039526/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -174181,7 +174097,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1759546/000149315226039526/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 2,
       "clusterCount": 1
     },
@@ -175089,7 +175005,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1759546/000149315226039526/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -175523,6 +175439,45 @@
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1998682/000121390026092276/marketforms-73820.xml",
       "qualityStatus": "pending",
       "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GWRE",
+      "company": "Guidewire Software, Inc.",
+      "filer": "Mullen John P",
+      "role": "President",
+      "txType": "매도",
+      "shares": 1800,
+      "price": 188.46,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-26",
+      "accession": "0001917389-26-000012",
+      "sourceAccessions": [
+        "0001917389-26-000012"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000012/wk-form4a_1787780481.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GWRE",
+      "company": "Guidewire Software, Inc.",
+      "filer": "Mullen John P",
+      "role": "President",
+      "txType": "매도",
+      "shares": 16200,
+      "price": 185,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-26",
+      "accession": "0001917389-26-000012",
+      "sourceAccessions": [
+        "0001917389-26-000010",
+        "0001917389-26-000012"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000012/wk-form4a_1787780481.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
       "severity": "critical"
     },
     {

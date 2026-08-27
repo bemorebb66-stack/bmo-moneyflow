@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-26T05:55:23.074553+00:00",
-    "count": 103
+    "generatedAt": "2026-08-27T14:27:13.531781+00:00",
+    "count": 105
   },
   "pendingTrades": [
     {
@@ -40,6 +40,45 @@
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1998682/000121390026092276/marketforms-73820.xml",
       "qualityStatus": "pending",
       "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GWRE",
+      "company": "Guidewire Software, Inc.",
+      "filer": "Mullen John P",
+      "role": "President",
+      "txType": "매도",
+      "shares": 1800,
+      "price": 188.46,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-26",
+      "accession": "0001917389-26-000012",
+      "sourceAccessions": [
+        "0001917389-26-000012"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000012/wk-form4a_1787780481.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GWRE",
+      "company": "Guidewire Software, Inc.",
+      "filer": "Mullen John P",
+      "role": "President",
+      "txType": "매도",
+      "shares": 16200,
+      "price": 185,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-26",
+      "accession": "0001917389-26-000012",
+      "sourceAccessions": [
+        "0001917389-26-000010",
+        "0001917389-26-000012"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000012/wk-form4a_1787780481.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
       "severity": "critical"
     },
     {
