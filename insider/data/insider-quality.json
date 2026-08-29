@@ -2,21 +2,21 @@
   "status": "passed",
   "fatalErrors": [],
   "reviewWarnings": [
-    "AMENDMENT_REFETCH_FAILED",
     "AMENDMENT_TRANSACTION_NOT_FOUND",
     "AMENDMENT_UNRESOLVED_ORIGINAL",
     "INVALID_PRICE",
     "INVALID_SHARES",
     "MARKET_PRICE_EXTREME",
-    "SEC_FOOTNOTE_PRICE_CONFLICT"
+    "SEC_FOOTNOTE_PRICE_CONFLICT",
+    "SOURCE_REFETCH_FAILED"
   ],
-  "acceptedCount": 6068,
-  "pendingCount": 105,
-  "pendingRate": 0.009027,
-  "candidateCount": 11632,
-  "uniqueAccessionCount": 4873,
-  "marketEligibleCount": 11620,
-  "marketVerifiedCount": 11480,
-  "marketCoverage": 0.9879518072289156,
-  "dataSha256": "437b2dffe429e889c5fc083de03cb615f8f993cce31b3e47ba3108eacba6712f"
+  "acceptedCount": 6432,
+  "pendingCount": 106,
+  "pendingRate": 0.008649,
+  "candidateCount": 12256,
+  "uniqueAccessionCount": 5180,
+  "marketEligibleCount": 12249,
+  "marketVerifiedCount": 12105,
+  "marketCoverage": 0.988243938280676,
+  "dataSha256": "88698368a4ae3221e6b17cf49fd3a6d083df04cfe05ad2f6e3abee32ebe07d56"
 }

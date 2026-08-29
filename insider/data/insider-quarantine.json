@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-27T14:27:13.531781+00:00",
-    "count": 105
+    "generatedAt": "2026-08-29T10:22:31.257029+00:00",
+    "count": 106
   },
   "pendingTrades": [
     {
@@ -183,6 +183,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "IHT",
+      "company": "INNSUITES HOSPITALITY TRUST",
+      "filer": "WIRTH JAMES F",
+      "role": "President & CEO",
+      "txType": "매도",
+      "shares": 34800,
+      "price": 52316.7,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-24",
+      "accession": "0001493152-26-039933",
+      "sourceAccessions": [
+        "0001493152-26-039933"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/82473/000149315226039933/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.4700000286102295",
+          "marketHigh": "1.600000023841858"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "NMM",
       "company": "Navios Maritime Partners L.P.",
       "filer": "Frangou Angeliki",
@@ -299,6 +326,33 @@
           "severity": "critical",
           "marketLow": "0.27000001072883606",
           "marketHigh": "0.33500000834465027"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SCTH",
+      "company": "Securetech Innovations, Inc.",
+      "filer": "SITRA J SCOTT",
+      "role": "President & CEO",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 100000,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-24",
+      "accession": "0001335253-26-000006",
+      "sourceAccessions": [
+        "0001335253-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1335253/000133525326000006/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "21.0",
+          "marketHigh": "21.375"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -583,6 +637,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Tsai Joseph C",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 720000,
+      "price": 14.29,
+      "txDate": "2026-08-24",
+      "filedDate": "2026-08-24",
+      "accession": "0001193125-26-361902",
+      "sourceAccessions": [
+        "0001193125-26-361902"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526361902/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "116.4000015258789",
+          "marketHigh": "120.47000122070312"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "AEIS",
       "company": "ADVANCED ENERGY INDUSTRIES INC",
       "filer": "Acebedo Eduardo Bernal",
@@ -757,14 +838,41 @@
       "role": "이사",
       "txType": "매수",
       "shares": 720000,
-      "price": 14.29,
+      "price": 14.47,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-25",
+      "accession": "0001193125-26-364044",
+      "sourceAccessions": [
+        "0001193125-26-364044"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526364044/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "117.30999755859375",
+          "marketHigh": "119.4800033569336"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Wu Yongming",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 350000,
+      "price": 14.24,
       "txDate": "2026-08-24",
       "filedDate": "2026-08-24",
-      "accession": "0001193125-26-361902",
+      "accession": "0001193125-26-361711",
       "sourceAccessions": [
-        "0001193125-26-361902"
+        "0001193125-26-361711"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526361902/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526361711/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -938,33 +1046,6 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
-    },
-    {
-      "ticker": "BABA",
-      "company": "Alibaba Group Holding Ltd",
-      "filer": "Wu Yongming",
-      "role": "Chief Executive Officer",
-      "txType": "매수",
-      "shares": 350000,
-      "price": 14.24,
-      "txDate": "2026-08-24",
-      "filedDate": "2026-08-24",
-      "accession": "0001193125-26-361711",
-      "sourceAccessions": [
-        "0001193125-26-361711"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526361711/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "116.4000015258789",
-          "marketHigh": "120.47000122070312"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
     },
     {
       "ticker": "ASX",
@@ -1617,6 +1698,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BHP",
+      "company": "BHP Group Ltd",
+      "filer": "Stone Emma Kate",
+      "role": "Group Financial Controller",
+      "txType": "매도",
+      "shares": 6774,
+      "price": 46.57,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0001193125-26-365617",
+      "sourceAccessions": [
+        "0001193125-26-365617"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/811809/000119312526365617/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "95.44000244140625",
+          "marketHigh": "97.2699966430664"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Lin Shyue-Shyh",
@@ -1825,6 +1933,60 @@
         }
       ],
       "reasonCode": "INVALID_PRICE",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 3.58,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0002116974-26-000004",
+      "sourceAccessions": [
+        "0002116974-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "34.400001525878906",
+          "marketHigh": "36.04999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 3.59,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0002116974-26-000004",
+      "sourceAccessions": [
+        "0002116974-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "34.400001525878906",
+          "marketHigh": "36.04999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -2693,58 +2855,24 @@
       "severity": "review"
     },
     {
-      "accession": "0001628280-26-058608",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
-      "severity": "critical",
+      "ticker": "RELL",
+      "company": "RICHARDSON ELECTRONICS, LTD.",
+      "filer": "Ben Robert J",
+      "role": "CFO",
+      "txType": "매도",
+      "shares": 15000,
+      "price": 20,
+      "txDate": "2026-07-28",
+      "filedDate": "2026-07-30",
+      "accession": "0001193125-26-325359",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1512170/000119312526325359/ownership.xml",
       "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058608"
-    },
-    {
-      "accession": "0001628280-26-058610",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
-      "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058610"
-    },
-    {
-      "accession": "0001628280-26-058613",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
-      "severity": "critical",
-      "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058613"
-    },
-    {
-      "accession": "0001628280-26-058616",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
-      "severity": "critical",
-      "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058616"
-    },
-    {
-      "accession": "0001628280-26-058617",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
-      "severity": "critical",
-      "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058617"
-    },
-    {
-      "accession": "0001628280-26-058621",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
-      "severity": "critical",
-      "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058621"
+      "error": "HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out. (read timeout=30)"
     }
   ]
 }
