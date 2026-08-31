@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-29T04:30:55.794192+00:00",
+    "generatedAt": "2026-08-31T19:22:26.348598+00:00",
     "status": "ok",
-    "from": "2026-07-15",
-    "to": "2027-02-25",
-    "count": 4710,
+    "from": "2026-07-17",
+    "to": "2027-02-27",
+    "count": 4711,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 603,
-      "supplementalTickerCount": 152,
-      "supplementalEventCount": 602,
+      "supplementalTickerCount": 151,
+      "supplementalEventCount": 601,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -1531,8 +1531,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 14583000000.0,
-      "netIncomeActual": 3723000000.0
+      "revenueActual": 15184000000.0,
+      "netIncomeActual": 4098000000.0
     },
     {
       "ticker": "GWW",
@@ -6019,8 +6019,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 15184000000.0,
-      "netIncomeActual": 4098000000.0
+      "revenueActual": 13454000000.0,
+      "netIncomeActual": 4617000000.0
     },
     {
       "ticker": "GWW",
@@ -10720,8 +10720,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 13454000000.0,
-      "netIncomeActual": 4617000000.0
+      "revenueActual": 17227000000.0,
+      "netIncomeActual": 5630000000.0
     },
     {
       "ticker": "GWW",
@@ -15435,8 +15435,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 17227000000.0,
-      "netIncomeActual": 5630000000.0
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -62037,6 +62037,18 @@
       "revenueEstimate": 597599640.0,
       "status": "scheduled",
       "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "CRWV",
+      "company": "코어위브",
+      "date": "2027-02-26",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.5114,
+      "revenueEstimate": 4781407926.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
     {
