@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-08-31T19:22:26.348598+00:00",
+    "generatedAt": "2026-09-01T02:07:21.613377+00:00",
     "status": "ok",
-    "from": "2026-07-17",
-    "to": "2027-02-27",
-    "count": 4711,
+    "from": "2026-07-18",
+    "to": "2027-02-28",
+    "count": 4713,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 603,
       "supplementalTickerCount": 151,
-      "supplementalEventCount": 601,
+      "supplementalEventCount": 594,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -1531,8 +1531,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 15184000000.0,
-      "netIncomeActual": 4098000000.0
+      "revenueActual": 14583000000.0,
+      "netIncomeActual": 3723000000.0
     },
     {
       "ticker": "GWW",
@@ -4104,8 +4104,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "netIncomeActual": 38185000.0,
-      "revenueActual": 286555000.0
+      "netIncomeActual": -17678000.0,
+      "revenueActual": 316964000.0
     },
     {
       "ticker": "TER",
@@ -6019,8 +6019,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 13454000000.0,
-      "netIncomeActual": 4617000000.0
+      "revenueActual": 15184000000.0,
+      "netIncomeActual": 4098000000.0
     },
     {
       "ticker": "GWW",
@@ -8774,8 +8774,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "netIncomeActual": 38009000.0,
-      "revenueActual": 295877000.0
+      "netIncomeActual": 38185000.0,
+      "revenueActual": 286555000.0
     },
     {
       "ticker": "TEL",
@@ -8818,6 +8818,20 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 5187000000.0,
       "netIncomeActual": 1452000000.0
+    },
+    {
+      "ticker": "TGT",
+      "company": "타겟",
+      "date": "2025-12-31",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": 1.78,
+      "epsEstimate": 1.7357,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 935000000.0,
+      "revenueActual": 25211000000.0
     },
     {
       "ticker": "TJX",
@@ -10720,8 +10734,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 17227000000.0,
-      "netIncomeActual": 5630000000.0
+      "revenueActual": 13454000000.0,
+      "netIncomeActual": 4617000000.0
     },
     {
       "ticker": "GWW",
@@ -13475,8 +13489,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "netIncomeActual": 51047000.0,
-      "revenueActual": 311415000.0
+      "netIncomeActual": 38009000.0,
+      "revenueActual": 295877000.0
     },
     {
       "ticker": "TEL",
@@ -15435,8 +15449,8 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "revenueActual": 17227000000.0,
+      "netIncomeActual": 5630000000.0
     },
     {
       "ticker": "GWW",
@@ -18209,6 +18223,20 @@
       "netIncomeActual": 251700000.0
     },
     {
+      "ticker": "TECH",
+      "company": "바이오-테크네",
+      "date": "2026-06-30",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": 0.52,
+      "epsEstimate": 0.5295,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 51047000.0,
+      "revenueActual": 311415000.0
+    },
+    {
       "ticker": "TEL",
       "company": "티이 커넥티비티",
       "date": "2026-06-30",
@@ -18369,7 +18397,7 @@
       "quarter": 2,
       "year": 2026,
       "epsActual": 0.99,
-      "epsEstimate": 0.9651,
+      "epsEstimate": 0.9662,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
@@ -26074,7 +26102,7 @@
       "quarter": 2,
       "year": 2027,
       "epsActual": 2.46,
-      "epsEstimate": 2.3095,
+      "epsEstimate": 2.3534,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
