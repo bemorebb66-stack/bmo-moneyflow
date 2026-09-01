@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-08-29T10:22:31.257029+00:00",
-    "count": 106
+    "generatedAt": "2026-09-01T08:59:47.684738+00:00",
+    "count": 117
   },
   "pendingTrades": [
     {
@@ -643,6 +643,33 @@
       "role": "이사",
       "txType": "매수",
       "shares": 720000,
+      "price": 14.47,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-25",
+      "accession": "0001193125-26-364044",
+      "sourceAccessions": [
+        "0001193125-26-364044"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526364044/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "117.30999755859375",
+          "marketHigh": "119.4800033569336"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Tsai Joseph C",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 720000,
       "price": 14.29,
       "txDate": "2026-08-24",
       "filedDate": "2026-08-24",
@@ -832,31 +859,139 @@
       "severity": "critical"
     },
     {
-      "ticker": "BABA",
-      "company": "Alibaba Group Holding Ltd",
-      "filer": "Tsai Joseph C",
-      "role": "이사",
+      "ticker": "CHW",
+      "company": "Calamos Global Dynamic Income Fund",
+      "filer": "MetLife Investment Management, LLC",
+      "role": "10%대주주",
       "txType": "매수",
-      "shares": 720000,
-      "price": 14.47,
-      "txDate": "2026-08-25",
-      "filedDate": "2026-08-25",
-      "accession": "0001193125-26-364044",
+      "shares": 134400,
+      "price": 25,
+      "txDate": "2026-08-26",
+      "filedDate": "2026-08-26",
+      "accession": "0000905148-26-003939",
       "sourceAccessions": [
-        "0001193125-26-364044"
+        "0000905148-26-003939"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526364044/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1396277/000090514826003939/form4.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "117.30999755859375",
-          "marketHigh": "119.4800033569336"
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.510000228881836",
+          "marketHigh": "8.569999694824219"
         }
       ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "CHW",
+      "company": "Calamos Global Dynamic Income Fund",
+      "filer": "MetLife Investment Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 157600,
+      "price": 25,
+      "txDate": "2026-08-26",
+      "filedDate": "2026-08-26",
+      "accession": "0000905148-26-003939",
+      "sourceAccessions": [
+        "0000905148-26-003939"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1396277/000090514826003939/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.510000228881836",
+          "marketHigh": "8.569999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "CHW",
+      "company": "Calamos Global Dynamic Income Fund",
+      "filer": "MetLife Investment Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 72000,
+      "price": 25,
+      "txDate": "2026-08-26",
+      "filedDate": "2026-08-26",
+      "accession": "0000905148-26-003939",
+      "sourceAccessions": [
+        "0000905148-26-003939"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1396277/000090514826003939/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.510000228881836",
+          "marketHigh": "8.569999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "CHW",
+      "company": "Calamos Global Dynamic Income Fund",
+      "filer": "MetLife Investment Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 25,
+      "txDate": "2026-08-26",
+      "filedDate": "2026-08-26",
+      "accession": "0000905148-26-003939",
+      "sourceAccessions": [
+        "0000905148-26-003939"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1396277/000090514826003939/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.510000228881836",
+          "marketHigh": "8.569999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "CHW",
+      "company": "Calamos Global Dynamic Income Fund",
+      "filer": "MetLife Investment Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 56000,
+      "price": 25,
+      "txDate": "2026-08-26",
+      "filedDate": "2026-08-26",
+      "accession": "0000905148-26-003939",
+      "sourceAccessions": [
+        "0000905148-26-003939"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1396277/000090514826003939/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.510000228881836",
+          "marketHigh": "8.569999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "BABA",
@@ -1046,6 +1181,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "PAM",
+      "company": "Pampa Energy Inc.",
+      "filer": "Mindlin Marcos Marcelo",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 675000,
+      "price": 3.376,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0002022936-26-000013",
+      "sourceAccessions": [
+        "0002022936-26-000013"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2022936/000202293626000013/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "78.5999984741211",
+          "marketHigh": "81.0999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "ASX",
@@ -1319,6 +1481,33 @@
       "severity": "review"
     },
     {
+      "ticker": "BHP",
+      "company": "BHP Group Ltd",
+      "filer": "Stone Emma Kate",
+      "role": "Group Financial Controller",
+      "txType": "매도",
+      "shares": 6774,
+      "price": 46.57,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0001193125-26-365617",
+      "sourceAccessions": [
+        "0001193125-26-365617"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/811809/000119312526365617/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "95.44000244140625",
+          "marketHigh": "97.2699966430664"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Tien Bor-Zen",
@@ -1481,29 +1670,84 @@
       "severity": "critical"
     },
     {
-      "ticker": "BHRB",
-      "company": "Burke & Herbert Financial Services Corp.",
-      "filer": "Geary James P II",
+      "ticker": "TEO",
+      "company": "TELECOM ARGENTINA SA",
+      "filer": "Gonzalez Baruki Luis Alberto",
       "role": "이사",
       "txType": "매도",
-      "shares": 0,
-      "price": 73.93,
-      "txDate": "2026-08-03",
-      "filedDate": "2026-08-18",
-      "accession": "0001400427-26-000007",
+      "shares": 188500,
+      "price": 2.7798,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-26",
+      "accession": "0001104659-26-101782",
       "sourceAccessions": [
-        "0001400427-26-000005",
-        "0001400427-26-000007"
+        "0001104659-26-101782"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1964333/000140042726000007/wk-form4a_1787079899.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119437/000110465926101782/tm2624136-1_4seq1.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "INVALID_SHARES",
-          "severity": "critical"
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "13.0",
+          "marketHigh": "13.369999885559082"
         }
       ],
-      "reasonCode": "INVALID_SHARES",
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 3.58,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0002116974-26-000004",
+      "sourceAccessions": [
+        "0002116974-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "34.400001525878906",
+          "marketHigh": "36.04999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 3.59,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0002116974-26-000004",
+      "sourceAccessions": [
+        "0002116974-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "34.400001525878906",
+          "marketHigh": "36.04999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -1696,33 +1940,6 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
-    },
-    {
-      "ticker": "BHP",
-      "company": "BHP Group Ltd",
-      "filer": "Stone Emma Kate",
-      "role": "Group Financial Controller",
-      "txType": "매도",
-      "shares": 6774,
-      "price": 46.57,
-      "txDate": "2026-08-21",
-      "filedDate": "2026-08-25",
-      "accession": "0001193125-26-365617",
-      "sourceAccessions": [
-        "0001193125-26-365617"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/811809/000119312526365617/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "95.44000244140625",
-          "marketHigh": "97.2699966430664"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
     },
     {
       "ticker": "TSM",
@@ -1936,60 +2153,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "VTMX",
-      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
-      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
-      "role": "Chief Executive Officer",
-      "txType": "매도",
-      "shares": 30000,
-      "price": 3.58,
-      "txDate": "2026-08-21",
-      "filedDate": "2026-08-25",
-      "accession": "0002116974-26-000004",
-      "sourceAccessions": [
-        "0002116974-26-000004"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000004/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "34.400001525878906",
-          "marketHigh": "36.04999923706055"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "VTMX",
-      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
-      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
-      "role": "Chief Executive Officer",
-      "txType": "매도",
-      "shares": 30000,
-      "price": 3.59,
-      "txDate": "2026-08-21",
-      "filedDate": "2026-08-25",
-      "accession": "0002116974-26-000004",
-      "sourceAccessions": [
-        "0002116974-26-000004"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000004/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "34.400001525878906",
-          "marketHigh": "36.04999923706055"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Tien Bor-Zen",
@@ -2177,6 +2340,60 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Ramalho Miranda Jose Augusto",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 6300,
+      "price": 16.61,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-26",
+      "accession": "0001292814-26-004354",
+      "sourceAccessions": [
+        "0001292814-26-004354"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004354/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.119999885559082",
+          "marketHigh": "3.2699999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Ramalho Miranda Jose Augusto",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 77,
+      "price": 16.61,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-26",
+      "accession": "0001292814-26-004354",
+      "sourceAccessions": [
+        "0001292814-26-004354"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004354/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.119999885559082",
+          "marketHigh": "3.2699999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "VTMX",
@@ -2476,6 +2693,33 @@
       "severity": "review"
     },
     {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1086186,
+      "price": 0.028,
+      "txDate": "2026-07-28",
+      "filedDate": "2026-07-30",
+      "accession": "0001475597-26-000179",
+      "sourceAccessions": [
+        "0001475597-26-000179"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000179/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.599999904632568",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ACGL",
       "company": "ARCH CAPITAL GROUP LTD.",
       "filer": "Posner Brian S",
@@ -2552,6 +2796,60 @@
           "severity": "critical",
           "marketLow": "2.0",
           "marketHigh": "2.319999933242798"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 391577,
+      "price": 0.029,
+      "txDate": "2026-07-24",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000172",
+      "sourceAccessions": [
+        "0001475597-26-000172"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.400000095367432",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1068671,
+      "price": 0.026,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000172",
+      "sourceAccessions": [
+        "0001475597-26-000172"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.599999904632568",
+          "marketHigh": "5.800000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2828,6 +3126,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Fernando Adrian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 10000,
+      "price": 1.05,
+      "txDate": "2026-08-24",
+      "filedDate": "2026-08-26",
+      "accession": "0001034957-26-000055",
+      "sourceAccessions": [
+        "0001034957-26-000055"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000103495726000055/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.09000015258789",
+          "marketHigh": "11.470000267028809"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PFSA",
       "company": "Profusa, Inc.",
       "filer": "HRT FINANCIAL LP",
@@ -2853,26 +3178,6 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
-    },
-    {
-      "ticker": "RELL",
-      "company": "RICHARDSON ELECTRONICS, LTD.",
-      "filer": "Ben Robert J",
-      "role": "CFO",
-      "txType": "매도",
-      "shares": 15000,
-      "price": 20,
-      "txDate": "2026-07-28",
-      "filedDate": "2026-07-30",
-      "accession": "0001193125-26-325359",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1512170/000119312526325359/ownership.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out. (read timeout=30)"
     }
   ]
 }
