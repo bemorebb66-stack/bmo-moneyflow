@@ -14,15 +14,15 @@
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-09-01T08:59:47.684738+00:00",
+    "validatedAt": "2026-09-02T08:15:24.407029+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 6839,
-    "pendingCount": 117,
+    "acceptedCount": 6833,
+    "pendingCount": 123,
     "uniqueAccessionCount": 5494,
-    "marketCoverage": 0.988392,
+    "marketCoverage": 0.987777,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "33c9b0a8636b674f73483014cdbe587e25702ec7bbe32122b52e6659a471e474"
+    "dataSha256": "a32bf284824d9f27e3e5a90cf3b7972b3ac65bf5a424a37a2643f70ba103259e"
   },
   "trades": [
     {
@@ -1465,7 +1465,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/820313/000110465926089782/tm2622042-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -3798,7 +3798,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/820313/000110465926091064/tm2622188-2_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -4107,7 +4107,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/820313/000110465926089782/tm2622042-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -5108,7 +5108,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/820313/000110465926091189/tm2622188-3_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -13012,7 +13012,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/820313/000110465926091062/tm2622188-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -13041,7 +13041,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/820313/000110465926091062/tm2622188-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 2,
       "clusterCount": 4
     },
@@ -73321,7 +73321,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/109563/000171601826000006/wk-form4_1787257391.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -162254,34 +162254,6 @@
       "clusterCount": 10
     },
     {
-      "ticker": "FGL",
-      "company": "Founder Group Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 232055,
-      "price": 0.23,
-      "value": 52212.38,
-      "ownBefore": 46085,
-      "filedDate": "2026-08-26",
-      "txDate": "2026-08-25",
-      "ownAfter": 278140,
-      "ownChangePct": 503.5,
-      "id": "f4-0001475597-26-000217-7e59b338cc",
-      "accession": "0001475597-26-000217",
-      "sourceAccessions": [
-        "0001475597-26-000217"
-      ],
-      "transactionIds": [
-        "0001475597-26-000217:nonDerivative:1"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000217/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
-    },
-    {
       "ticker": "COUR",
       "company": "Coursera, Inc.",
       "filer": "Cardenas Alan B",
@@ -165179,34 +165151,6 @@
         "0001628280-26-057911:nonDerivative:0"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1707925/000162828026057911/wk-form4_1787166202.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
-    },
-    {
-      "ticker": "FGL",
-      "company": "Founder Group Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 146713,
-      "price": 0.33,
-      "value": 47828.44,
-      "ownBefore": 188074,
-      "filedDate": "2026-08-24",
-      "txDate": "2026-08-20",
-      "ownAfter": 41361,
-      "ownChangePct": -78.0,
-      "id": "f4-0001475597-26-000211-d90375035d",
-      "accession": "0001475597-26-000211",
-      "sourceAccessions": [
-        "0001475597-26-000211"
-      ],
-      "transactionIds": [
-        "0001475597-26-000211:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000211/primary_doc.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -180892,34 +180836,6 @@
       "clusterCount": 1
     },
     {
-      "ticker": "FGL",
-      "company": "Founder Group Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 61617,
-      "price": 0.38,
-      "value": 23476.08,
-      "ownBefore": 111128,
-      "filedDate": "2026-08-19",
-      "txDate": "2026-08-18",
-      "ownAfter": 172745,
-      "ownChangePct": 55.4,
-      "id": "f4-0001475597-26-000208-8e0684c75a",
-      "accession": "0001475597-26-000208",
-      "sourceAccessions": [
-        "0001475597-26-000208"
-      ],
-      "transactionIds": [
-        "0001475597-26-000208:nonDerivative:1"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000208/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
-    },
-    {
       "ticker": "VEL",
       "company": "Velocity Financial, Inc.",
       "filer": "Tam Fiona",
@@ -183275,34 +183191,6 @@
       "clusterCount": 1
     },
     {
-      "ticker": "FGL",
-      "company": "Founder Group Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 76711,
-      "price": 0.27,
-      "value": 20328.42,
-      "ownBefore": 41361,
-      "filedDate": "2026-08-24",
-      "txDate": "2026-08-21",
-      "ownAfter": 118072,
-      "ownChangePct": 185.5,
-      "id": "f4-0001475597-26-000211-a2e10b2867",
-      "accession": "0001475597-26-000211",
-      "sourceAccessions": [
-        "0001475597-26-000211"
-      ],
-      "transactionIds": [
-        "0001475597-26-000211:nonDerivative:1"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000211/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
-    },
-    {
       "ticker": "ANIK",
       "company": "Anika Therapeutics, Inc.",
       "filer": "Fischetti Gary P",
@@ -183497,34 +183385,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
-    },
-    {
-      "ticker": "FGL",
-      "company": "Founder Group Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 71987,
-      "price": 0.28,
-      "value": 20012.39,
-      "ownBefore": 118072,
-      "filedDate": "2026-08-26",
-      "txDate": "2026-08-24",
-      "ownAfter": 46085,
-      "ownChangePct": -61.0,
-      "id": "f4-0001475597-26-000217-bf2eff1f3d",
-      "accession": "0001475597-26-000217",
-      "sourceAccessions": [
-        "0001475597-26-000217"
-      ],
-      "transactionIds": [
-        "0001475597-26-000217:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000217/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
     },
     {
       "ticker": "GTM",
@@ -190324,34 +190184,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
-    },
-    {
-      "ticker": "FGL",
-      "company": "Founder Group Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 31427,
-      "price": 0.39,
-      "value": 12382.24,
-      "ownBefore": 142555,
-      "filedDate": "2026-08-19",
-      "txDate": "2026-08-17",
-      "ownAfter": 111128,
-      "ownChangePct": -22.0,
-      "id": "f4-0001475597-26-000208-e59ca29757",
-      "accession": "0001475597-26-000208",
-      "sourceAccessions": [
-        "0001475597-26-000208"
-      ],
-      "transactionIds": [
-        "0001475597-26-000208:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000208/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 1
     },
     {
       "ticker": "GEN",
@@ -199987,6 +199819,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "FGL",
+      "company": "Founder Group Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 71987,
+      "price": 0.278,
+      "txDate": "2026-08-24",
+      "filedDate": "2026-08-26",
+      "accession": "0001475597-26-000217",
+      "sourceAccessions": [
+        "0001475597-26-000217"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000217/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.600000381469727",
+          "marketHigh": "32.79999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGL",
+      "company": "Founder Group Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 232055,
+      "price": 0.225,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-08-26",
+      "accession": "0001475597-26-000217",
+      "sourceAccessions": [
+        "0001475597-26-000217"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000217/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.100000381469727",
+          "marketHigh": "25.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "DEL CASTILLO CACHO GUILLERMO",
@@ -200062,6 +199948,60 @@
           "severity": "critical",
           "marketLow": "33.349998474121094",
           "marketHigh": "33.95899963378906"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGL",
+      "company": "Founder Group Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 146713,
+      "price": 0.326,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-24",
+      "accession": "0001475597-26-000211",
+      "sourceAccessions": [
+        "0001475597-26-000211"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000211/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "23.799999237060547",
+          "marketHigh": "32.70000076293945"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGL",
+      "company": "Founder Group Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 76711,
+      "price": 0.265,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-24",
+      "accession": "0001475597-26-000211",
+      "sourceAccessions": [
+        "0001475597-26-000211"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000211/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "25.299999237060547",
+          "marketHigh": "27.799999237060547"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -200495,6 +200435,60 @@
           "severity": "critical",
           "marketLow": "0.019999999552965164",
           "marketHigh": "0.029999999329447746"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGL",
+      "company": "Founder Group Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 31427,
+      "price": 0.394,
+      "txDate": "2026-08-17",
+      "filedDate": "2026-08-19",
+      "accession": "0001475597-26-000208",
+      "sourceAccessions": [
+        "0001475597-26-000208"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000208/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.0",
+          "marketHigh": "42.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGL",
+      "company": "Founder Group Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 61617,
+      "price": 0.381,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-19",
+      "accession": "0001475597-26-000208",
+      "sourceAccessions": [
+        "0001475597-26-000208"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989930/000147559726000208/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.29999923706055",
+          "marketHigh": "41.0"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
