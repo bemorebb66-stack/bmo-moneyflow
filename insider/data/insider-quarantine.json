@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-03T08:30:11.570993+00:00",
-    "count": 134
+    "generatedAt": "2026-09-04T08:23:24.174840+00:00",
+    "count": 131
   },
   "pendingTrades": [
     {
@@ -3029,33 +3029,6 @@
       "severity": "review"
     },
     {
-      "ticker": "LBGJ",
-      "company": "Li Bang International Corp Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 1086186,
-      "price": 0.028,
-      "txDate": "2026-07-28",
-      "filedDate": "2026-07-30",
-      "accession": "0001475597-26-000179",
-      "sourceAccessions": [
-        "0001475597-26-000179"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000179/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "4.599999904632568",
-          "marketHigh": "6.400000095367432"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "ACGL",
       "company": "ARCH CAPITAL GROUP LTD.",
       "filer": "Posner Brian S",
@@ -3132,60 +3105,6 @@
           "severity": "critical",
           "marketLow": "2.0",
           "marketHigh": "2.319999933242798"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "LBGJ",
-      "company": "Li Bang International Corp Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 391577,
-      "price": 0.029,
-      "txDate": "2026-07-24",
-      "filedDate": "2026-07-28",
-      "accession": "0001475597-26-000172",
-      "sourceAccessions": [
-        "0001475597-26-000172"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "5.400000095367432",
-          "marketHigh": "6.400000095367432"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "LBGJ",
-      "company": "Li Bang International Corp Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1068671,
-      "price": 0.026,
-      "txDate": "2026-07-27",
-      "filedDate": "2026-07-28",
-      "accession": "0001475597-26-000172",
-      "sourceAccessions": [
-        "0001475597-26-000172"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "4.599999904632568",
-          "marketHigh": "5.800000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
