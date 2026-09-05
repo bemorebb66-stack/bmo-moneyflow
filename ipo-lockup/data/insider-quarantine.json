@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-04T08:23:24.174840+00:00",
-    "count": 131
+    "generatedAt": "2026-09-05T08:08:14.092920+00:00",
+    "count": 171
   },
   "pendingTrades": [
     {
@@ -1078,6 +1078,114 @@
       "severity": "critical"
     },
     {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 222223,
+      "price": 1.5,
+      "txDate": "2026-05-28",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "7.829999923706055",
+          "marketHigh": "10.800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 1.33,
+      "txDate": "2026-06-02",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.081999778747559",
+          "marketHigh": "8.90999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 1.33,
+      "txDate": "2026-06-18",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "6.389999866485596",
+          "marketHigh": "7.551000118255615"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 2500000,
+      "price": 1,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "3.0299999713897705",
+          "marketHigh": "3.299999952316284"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "ZSTK",
       "company": "ZeroStack Corp.",
       "filer": "Heinrich Michael",
@@ -1234,6 +1342,33 @@
           "severity": "critical",
           "marketLow": "39.099998474121094",
           "marketHigh": "40.810001373291016"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "PAM",
+      "company": "Pampa Energy Inc.",
+      "filer": "Mindlin Marcos Marcelo",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 3.44,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-02",
+      "accession": "0002022936-26-000016",
+      "sourceAccessions": [
+        "0002022936-26-000016"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2022936/000202293626000016/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "81.08999633789062",
+          "marketHigh": "83.36000061035156"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1457,6 +1592,249 @@
       "severity": "critical"
     },
     {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 45090,
+      "price": 0.38,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.799999952316284",
+          "marketHigh": "3.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1830,
+      "price": 0.38,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.799999952316284",
+          "marketHigh": "3.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 253080,
+      "price": 0.38,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.799999952316284",
+          "marketHigh": "3.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 10255,
+      "price": 0.35,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.4000000953674316",
+          "marketHigh": "3.0239999294281006"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 409,
+      "price": 0.35,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.4000000953674316",
+          "marketHigh": "3.0239999294281006"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 57476,
+      "price": 0.35,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.4000000953674316",
+          "marketHigh": "3.0239999294281006"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1159,
+      "price": 0.32,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.2079999446868896",
+          "marketHigh": "2.5999999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 46,
+      "price": 0.32,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.2079999446868896",
+          "marketHigh": "2.5999999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "5AM Partners VII, LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 6495,
+      "price": 0.32,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-20",
+      "accession": "0001231919-26-000959",
+      "sourceAccessions": [
+        "0001231919-26-000959"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926000959/form4-08202026_090856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.2079999446868896",
+          "marketHigh": "2.5999999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "AERO",
       "company": "Grupo Aeromexico, S.A.B. de C.V.",
       "filer": "Murray Aaron James",
@@ -1532,6 +1910,33 @@
           "severity": "critical",
           "marketLow": "79.91000366210938",
           "marketHigh": "81.80999755859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BFNH",
+      "company": "BIOFORCE NANOSCIENCES HOLDINGS, INC.",
+      "filer": "Ferguson Merle",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 26700000,
+      "price": 0.015,
+      "txDate": "2026-04-22",
+      "filedDate": "2026-09-02",
+      "accession": "0001091818-26-000134",
+      "sourceAccessions": [
+        "0001091818-26-000134"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000134/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.6000000238418579",
+          "marketHigh": "0.8899999856948853"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1836,33 +2241,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "BFNH",
-      "company": "BIOFORCE NANOSCIENCES HOLDINGS, INC.",
-      "filer": "Ferguson Merle",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 26700000,
-      "price": 0.015,
-      "txDate": "2026-04-22",
-      "filedDate": "2026-09-02",
-      "accession": "0001091818-26-000134",
-      "sourceAccessions": [
-        "0001091818-26-000134"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000134/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "0.6000000238418579",
-          "marketHigh": "0.8899999856948853"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "KC",
       "company": "Kingsoft Cloud Holdings Ltd",
       "filer": "Zou Tao",
@@ -2078,6 +2456,276 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 45090,
+      "price": 0.38,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.799999952316284",
+          "marketHigh": "3.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1830,
+      "price": 0.38,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.799999952316284",
+          "marketHigh": "3.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 253080,
+      "price": 0.38,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.799999952316284",
+          "marketHigh": "3.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 10255,
+      "price": 0.35,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.4000000953674316",
+          "marketHigh": "3.0239999294281006"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 409,
+      "price": 0.35,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.4000000953674316",
+          "marketHigh": "3.0239999294281006"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 57476,
+      "price": 0.35,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.4000000953674316",
+          "marketHigh": "3.0239999294281006"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1159,
+      "price": 0.32,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.2079999446868896",
+          "marketHigh": "2.5999999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 46,
+      "price": 0.32,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.2079999446868896",
+          "marketHigh": "2.5999999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SKYE",
+      "company": "Skye Bioscience, Inc.",
+      "filer": "Schwab Andrew J.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 6495,
+      "price": 0.32,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-20",
+      "accession": "0001598549-26-000005",
+      "sourceAccessions": [
+        "0001598549-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000005/form4-08202026_090822.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.2079999446868896",
+          "marketHigh": "2.5999999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ATHM",
+      "company": "Autohome Inc.",
+      "filer": "Liu Chi",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 23760,
+      "price": 5.5588,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-02",
+      "accession": "0002117458-26-000008",
+      "sourceAccessions": [
+        "0002117458-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000211745826000008/form4-09022026_040901.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "21.8799991607666",
+          "marketHigh": "22.729999542236328"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "CCHH",
@@ -2354,6 +3002,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BRCC",
+      "company": "BRC Inc.",
+      "filer": "Kadenacy Stephen M",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 105000,
+      "price": 0.8209,
+      "txDate": "2026-08-17",
+      "filedDate": "2026-08-18",
+      "accession": "0001628280-26-057660",
+      "sourceAccessions": [
+        "0001628280-26-057660"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1891101/000162828026057660/wk-form4_1787084351.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.010000228881836",
+          "marketHigh": "9.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Tien Bor-Zen",
@@ -2489,33 +3164,6 @@
       "severity": "review"
     },
     {
-      "ticker": "ATHM",
-      "company": "Autohome Inc.",
-      "filer": "Liu Chi",
-      "role": "Chief Executive Officer",
-      "txType": "매도",
-      "shares": 23760,
-      "price": 5.5588,
-      "txDate": "2026-08-31",
-      "filedDate": "2026-09-02",
-      "accession": "0002117458-26-000008",
-      "sourceAccessions": [
-        "0002117458-26-000008"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000211745826000008/form4-09022026_040901.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "21.8799991607666",
-          "marketHigh": "22.729999542236328"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
       "ticker": "FGL",
       "company": "Founder Group Ltd",
       "filer": "HRT FINANCIAL LP",
@@ -2564,6 +3212,33 @@
           "severity": "critical",
           "marketLow": "13.199999809265137",
           "marketHigh": "17.299999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GRML",
+      "company": "Greenland Mines Ltd",
+      "filer": "Sawyer Jason David",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 240000,
+      "price": 0.2331,
+      "txDate": "2026-07-22",
+      "filedDate": "2026-07-23",
+      "accession": "0001213900-26-080657",
+      "sourceAccessions": [
+        "0001213900-26-080657"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1907223/000121390026080657/marketforms-73628.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.0",
+          "marketHigh": "12.25"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2894,6 +3569,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BRCC",
+      "company": "BRC Inc.",
+      "filer": "Dickson Kathryn P",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 50000,
+      "price": 0.8495,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-19",
+      "accession": "0001628280-26-057956",
+      "sourceAccessions": [
+        "0001628280-26-057956"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1891101/000162828026057956/wk-form4_1787170590.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.0600004196167",
+          "marketHigh": "8.710000038146973"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PFSA",
       "company": "Profusa, Inc.",
       "filer": "HRT FINANCIAL LP",
@@ -2942,6 +3644,60 @@
           "severity": "review",
           "marketLow": "3.2239999771118164",
           "marketHigh": "3.803999900817871"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "KIDZ",
+      "company": "KIDZ AI Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 92271,
+      "price": 0.399,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-12",
+      "accession": "0001475597-26-000198",
+      "sourceAccessions": [
+        "0001475597-26-000198"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000198/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.699999809265137",
+          "marketHigh": "6.179999828338623"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ATHM",
+      "company": "Autohome Inc.",
+      "filer": "Zhou Shenglei",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 6548,
+      "price": 5.5588,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-02",
+      "accession": "0002111933-26-000005",
+      "sourceAccessions": [
+        "0002111933-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000211193326000005/form4-09022026_040903.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "21.8799991607666",
+          "marketHigh": "22.729999542236328"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -3002,6 +3758,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "YYAI",
+      "company": "AIRWA INC.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 75985,
+      "price": 0.078,
+      "txDate": "2026-08-07",
+      "filedDate": "2026-08-11",
+      "accession": "0001475597-26-000193",
+      "sourceAccessions": [
+        "0001475597-26-000193"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1674440/000147559726000193/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.3600000143051147",
+          "marketHigh": "1.559999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YYAI",
+      "company": "AIRWA INC.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 421879,
+      "price": 0.079,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-11",
+      "accession": "0001475597-26-000193",
+      "sourceAccessions": [
+        "0001475597-26-000193"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1674440/000147559726000193/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.4600000381469727",
+          "marketHigh": "1.659999966621399"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "FGBI",
       "company": "First Guaranty Bancshares, Inc.",
       "filer": "WALKER ROBERT W",
@@ -3027,6 +3837,60 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1086186,
+      "price": 0.028,
+      "txDate": "2026-07-28",
+      "filedDate": "2026-07-30",
+      "accession": "0001475597-26-000179",
+      "sourceAccessions": [
+        "0001475597-26-000179"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000179/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.599999904632568",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NRDY",
+      "company": "Nerdy Inc.",
+      "filer": "Bagga Atul Madan Mohan",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 36426,
+      "price": 0.83,
+      "txDate": "2026-07-16",
+      "filedDate": "2026-07-20",
+      "accession": "0001628280-26-048918",
+      "sourceAccessions": [
+        "0001628280-26-048918"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2129766/000162828026048918/wk-form4_1784596580.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.164999961853027",
+          "marketHigh": "13.109999656677246"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "ACGL",
@@ -3111,6 +3975,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 391577,
+      "price": 0.029,
+      "txDate": "2026-07-24",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000172",
+      "sourceAccessions": [
+        "0001475597-26-000172"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.400000095367432",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LBGJ",
+      "company": "Li Bang International Corp Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1068671,
+      "price": 0.026,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000172",
+      "sourceAccessions": [
+        "0001475597-26-000172"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000172/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.599999904632568",
+          "marketHigh": "5.800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "CAMP",
       "company": "Camp4 Therapeutics Corp",
       "filer": "Young Richard A",
@@ -3136,6 +4054,60 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "NRDY",
+      "company": "Nerdy Inc.",
+      "filer": "Paszterko John Andrew",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 31034,
+      "price": 0.83,
+      "txDate": "2026-07-16",
+      "filedDate": "2026-07-20",
+      "accession": "0001628280-26-048911",
+      "sourceAccessions": [
+        "0001628280-26-048911"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1819404/000162828026048911/wk-form4_1784596182.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.164999961853027",
+          "marketHigh": "13.109999656677246"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GRML",
+      "company": "Greenland Mines Ltd",
+      "filer": "McGarity Jon",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 140000,
+      "price": 0.1773,
+      "txDate": "2026-07-20",
+      "filedDate": "2026-07-20",
+      "accession": "0001213900-26-079548",
+      "sourceAccessions": [
+        "0001213900-26-079548"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1907223/000121390026079548/marketforms-73623.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.5",
+          "marketHigh": "10.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "BUDZ",
@@ -3246,31 +4218,31 @@
       "severity": "critical"
     },
     {
-      "ticker": "ATHM",
-      "company": "Autohome Inc.",
-      "filer": "Zhou Shenglei",
-      "role": "이사",
+      "ticker": "NRDY",
+      "company": "Nerdy Inc.",
+      "filer": "Swenson Christopher C.",
+      "role": "Chief Legal Officer",
       "txType": "매도",
-      "shares": 6548,
-      "price": 5.5588,
-      "txDate": "2026-08-31",
-      "filedDate": "2026-09-02",
-      "accession": "0002111933-26-000005",
+      "shares": 22707,
+      "price": 0.83,
+      "txDate": "2026-07-16",
+      "filedDate": "2026-07-20",
+      "accession": "0001628280-26-048909",
       "sourceAccessions": [
-        "0002111933-26-000005"
+        "0001628280-26-048909"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000211193326000005/form4-09022026_040903.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1819404/000162828026048909/wk-form4_1784596131.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "21.8799991607666",
-          "marketHigh": "22.729999542236328"
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.164999961853027",
+          "marketHigh": "13.109999656677246"
         }
       ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "FGL",
@@ -3354,6 +4326,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "PFSA",
+      "company": "Profusa, Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 14556,
+      "price": 0.958,
+      "txDate": "2026-08-03",
+      "filedDate": "2026-08-05",
+      "accession": "0001475597-26-000185",
+      "sourceAccessions": [
+        "0001475597-26-000185"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000185/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "3.5199999809265137",
+          "marketHigh": "4.119999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "PFSA",
+      "company": "Profusa, Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1368,
+      "price": 0.954,
+      "txDate": "2026-08-04",
+      "filedDate": "2026-08-05",
+      "accession": "0001475597-26-000185",
+      "sourceAccessions": [
+        "0001475597-26-000185"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000185/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "3.684000015258789",
+          "marketHigh": "4.039999961853027"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Wei Che-Chia",
@@ -3375,6 +4401,33 @@
           "severity": "critical",
           "marketLow": "413.1000061035156",
           "marketHigh": "424.7900085449219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NRDY",
+      "company": "Nerdy Inc.",
+      "filer": "Callaway Kyle",
+      "role": "Chief Accounting Officer",
+      "txType": "매도",
+      "shares": 13377,
+      "price": 0.83,
+      "txDate": "2026-07-16",
+      "filedDate": "2026-07-20",
+      "accession": "0001628280-26-048910",
+      "sourceAccessions": [
+        "0001628280-26-048910"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2145476/000162828026048910/wk-form4_1784596159.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.164999961853027",
+          "marketHigh": "13.109999656677246"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -3548,6 +4601,33 @@
       "filer": "HRT FINANCIAL LP",
       "role": "10%대주주",
       "txType": "매수",
+      "shares": 1063,
+      "price": 1.01,
+      "txDate": "2026-07-30",
+      "filedDate": "2026-08-03",
+      "accession": "0001475597-26-000183",
+      "sourceAccessions": [
+        "0001475597-26-000183"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000183/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "3.6440000534057617",
+          "marketHigh": "4.440000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "PFSA",
+      "company": "Profusa, Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
       "shares": 8811,
       "price": 1.05,
       "txDate": "2026-07-31",
@@ -3570,13 +4650,31 @@
       "severity": "review"
     },
     {
-      "accession": "0001628280-26-058610",
-      "company": "Cardlytics, Inc.",
-      "filedDate": "2026-08-24",
-      "reasonCode": "AMENDMENT_REFETCH_FAILED",
-      "severity": "critical",
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Bornman Ryno",
+      "role": "Financial Manager Ergo Ops.",
+      "txType": "매도",
+      "shares": 5490,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002119291-26-000006",
+      "sourceAccessions": [
+        "0002119291-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119291/000211929126000006/wk-form4_1788468192.xml",
       "qualityStatus": "pending",
-      "error": "no ownership XML for 0001628280-26-058610"
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     }
   ]
 }
