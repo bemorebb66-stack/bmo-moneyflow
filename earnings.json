@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-04T16:43:12.174861+00:00",
+    "generatedAt": "2026-09-05T01:28:05.511693+00:00",
     "status": "ok",
-    "from": "2026-07-21",
-    "to": "2027-03-03",
-    "count": 5180,
+    "from": "2026-07-22",
+    "to": "2027-03-04",
+    "count": 5223,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 603,
-      "supplementalTickerCount": 149,
-      "supplementalEventCount": 588,
+      "supplementalTickerCount": 150,
+      "supplementalEventCount": 599,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -136,6 +136,18 @@
       "revenueActual": 316964000.0
     },
     {
+      "ticker": "VMRK",
+      "company": "비브마크 레지덴셜",
+      "date": "2025-06-30",
+      "quarter": 2,
+      "year": 2025,
+      "revenueActual": 760195000.0,
+      "netIncomeActual": 268665000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "AAPL",
       "company": "애플",
       "date": "2025-09-30",
@@ -192,6 +204,20 @@
       "revenueActual": 11142000000.0
     },
     {
+      "ticker": "ACGL",
+      "company": "아치 캐피털 그룹",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 2.77,
+      "epsEstimate": 2.2988,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4973000000.0,
+      "netIncomeActual": 1350000000.0
+    },
+    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2025-09-30",
@@ -218,6 +244,62 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 1772000000.0,
       "revenueActual": 5988000000.0
+    },
+    {
+      "ticker": "ADM",
+      "company": "아처 대니얼스 미들랜드",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 0.92,
+      "epsEstimate": 0.8614,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 20372000000.0,
+      "netIncomeActual": 108000000.0
+    },
+    {
+      "ticker": "ADP",
+      "company": "오토매틱 데이터 프로세싱",
+      "date": "2025-09-30",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 2.49,
+      "epsEstimate": 2.4628,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5175200000.0,
+      "netIncomeActual": 1013000000.0
+    },
+    {
+      "ticker": "AEE",
+      "company": "애머런",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 2.17,
+      "epsEstimate": 2.1282,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2221000000.0,
+      "netIncomeActual": 275000000.0
+    },
+    {
+      "ticker": "AEP",
+      "company": "아메리칸 일렉트릭 파워 컴퍼니",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 1.8,
+      "epsEstimate": 1.8257,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 972000000.0,
+      "revenueActual": 6010400000.0
     },
     {
       "ticker": "ALAB",
@@ -5026,7 +5108,7 @@
       "epsEstimate": 0.4424,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
+      "source": "Yahoo Finance quarterly fundamentals",
       "revenueActual": 766796000.0,
       "netIncomeActual": 381306000.0
     },
@@ -5437,6 +5519,34 @@
       "netIncomeActual": 230900000.0
     },
     {
+      "ticker": "ZBRA",
+      "company": "지브라 테크놀로지스",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 3.88,
+      "epsEstimate": 3.8259,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1320000000.0,
+      "netIncomeActual": 101000000.0
+    },
+    {
+      "ticker": "ZTS",
+      "company": "조에티스",
+      "date": "2025-09-30",
+      "quarter": 3,
+      "year": 2025,
+      "epsActual": 1.7,
+      "epsEstimate": 1.6379,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2400000000.0,
+      "netIncomeActual": 721000000.0
+    },
+    {
       "ticker": "FDXF",
       "company": "페덱스 프레이트 홀딩 컴퍼니",
       "date": "2025-11-30",
@@ -5447,6 +5557,20 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "A",
+      "company": "애질런트 테크놀로지스",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 1.59,
+      "epsEstimate": 1.6158,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1738000000.0,
+      "netIncomeActual": 336000000.0
     },
     {
       "ticker": "AAPL",
@@ -5505,6 +5629,20 @@
       "revenueActual": 11369000000.0
     },
     {
+      "ticker": "ACGL",
+      "company": "아치 캐피털 그룹",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 2.98,
+      "epsEstimate": 2.6435,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4762000000.0,
+      "netIncomeActual": 1238000000.0
+    },
+    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2025-12-31",
@@ -5547,6 +5685,34 @@
       "netIncomeActual": 518518000.0
     },
     {
+      "ticker": "ADM",
+      "company": "아처 대니얼스 미들랜드",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 0.87,
+      "epsEstimate": 0.8038,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 18556000000.0,
+      "netIncomeActual": 456000000.0
+    },
+    {
+      "ticker": "ADP",
+      "company": "오토매틱 데이터 프로세싱",
+      "date": "2025-12-31",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 2.62,
+      "epsEstimate": 2.5987,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5359300000.0,
+      "netIncomeActual": 1062000000.0
+    },
+    {
       "ticker": "ADSK",
       "company": "오토데스크",
       "date": "2025-12-31",
@@ -5559,6 +5725,34 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 313000000.0,
       "revenueActual": 1763000000.0
+    },
+    {
+      "ticker": "AEE",
+      "company": "애머런",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 0.78,
+      "epsEstimate": 0.7803,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2699000000.0,
+      "netIncomeActual": 640000000.0
+    },
+    {
+      "ticker": "AEP",
+      "company": "아메리칸 일렉트릭 파워 컴퍼니",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 1.19,
+      "epsEstimate": 1.1596,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 582000000.0,
+      "revenueActual": 5315300000.0
     },
     {
       "ticker": "ALAB",
@@ -10689,7 +10883,7 @@
       "epsEstimate": 0.3911,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
+      "source": "Yahoo Finance quarterly fundamentals",
       "revenueActual": 767856000.0,
       "netIncomeActual": 164733000.0
     },
@@ -11142,6 +11336,48 @@
       "netIncomeActual": 139300000.0
     },
     {
+      "ticker": "ZBRA",
+      "company": "지브라 테크놀로지스",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 4.33,
+      "epsEstimate": 4.4171,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1475000000.0,
+      "netIncomeActual": 70000000.0
+    },
+    {
+      "ticker": "ZTS",
+      "company": "조에티스",
+      "date": "2025-12-31",
+      "quarter": 4,
+      "year": 2025,
+      "epsActual": 1.48,
+      "epsEstimate": 1.4159,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2387000000.0,
+      "netIncomeActual": 603000000.0
+    },
+    {
+      "ticker": "A",
+      "company": "애질런트 테크놀로지스",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.36,
+      "epsEstimate": 1.396,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1861000000.0,
+      "netIncomeActual": 434000000.0
+    },
+    {
       "ticker": "AAPL",
       "company": "애플",
       "date": "2026-03-31",
@@ -11198,6 +11434,20 @@
       "revenueActual": 11459000000.0
     },
     {
+      "ticker": "ACGL",
+      "company": "아치 캐피털 그룹",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 2.5,
+      "epsEstimate": 2.5277,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4371000000.0,
+      "netIncomeActual": 1047000000.0
+    },
+    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2026-03-31",
@@ -11240,6 +11490,34 @@
       "netIncomeActual": 787738000.0
     },
     {
+      "ticker": "ADM",
+      "company": "아처 대니얼스 미들랜드",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 0.71,
+      "epsEstimate": 0.6661,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 20490000000.0,
+      "netIncomeActual": 298000000.0
+    },
+    {
+      "ticker": "ADP",
+      "company": "오토매틱 데이터 프로세싱",
+      "date": "2026-03-31",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": 3.38,
+      "epsEstimate": 3.3251,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5939200000.0,
+      "netIncomeActual": 1359800000.0
+    },
+    {
       "ticker": "ADSK",
       "company": "오토데스크",
       "date": "2026-03-31",
@@ -11252,6 +11530,34 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 343000000.0,
       "revenueActual": 1853000000.0
+    },
+    {
+      "ticker": "AEE",
+      "company": "애머런",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.28,
+      "epsEstimate": 1.1927,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1782000000.0,
+      "netIncomeActual": 252000000.0
+    },
+    {
+      "ticker": "AEP",
+      "company": "아메리칸 일렉트릭 파워 컴퍼니",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.64,
+      "epsEstimate": 1.585,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 874000000.0,
+      "revenueActual": 6020000000.0
     },
     {
       "ticker": "ALAB",
@@ -16369,7 +16675,7 @@
       "epsEstimate": 0.3156,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
+      "source": "Yahoo Finance quarterly fundamentals",
       "revenueActual": 770279000.0,
       "netIncomeActual": 325730000.0
     },
@@ -16822,6 +17128,48 @@
       "netIncomeActual": 238100000.0
     },
     {
+      "ticker": "ZBRA",
+      "company": "지브라 테크놀로지스",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 4.75,
+      "epsEstimate": 4.3336,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1495000000.0,
+      "netIncomeActual": 135000000.0
+    },
+    {
+      "ticker": "ZTS",
+      "company": "조에티스",
+      "date": "2026-03-31",
+      "quarter": 1,
+      "year": 2026,
+      "epsActual": 1.53,
+      "epsEstimate": 1.6309,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2262000000.0,
+      "netIncomeActual": 601000000.0
+    },
+    {
+      "ticker": "A",
+      "company": "애질런트 테크놀로지스",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.49,
+      "epsEstimate": 1.4351,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1798000000.0,
+      "netIncomeActual": 305000000.0
+    },
+    {
       "ticker": "AAPL",
       "company": "애플",
       "date": "2026-06-30",
@@ -16878,6 +17226,20 @@
       "revenueActual": 11164000000.0
     },
     {
+      "ticker": "ACGL",
+      "company": "아치 캐피털 그룹",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 2.56,
+      "epsEstimate": 2.4829,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 4489000000.0,
+      "netIncomeActual": 1057000000.0
+    },
+    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2026-06-30",
@@ -16920,6 +17282,34 @@
       "netIncomeActual": 830826000.0
     },
     {
+      "ticker": "ADM",
+      "company": "아처 대니얼스 미들랜드",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.84,
+      "epsEstimate": 1.4509,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 22681000000.0,
+      "netIncomeActual": 908000000.0
+    },
+    {
+      "ticker": "ADP",
+      "company": "오토매틱 데이터 프로세싱",
+      "date": "2026-06-30",
+      "quarter": 4,
+      "year": 2026,
+      "epsActual": 2.64,
+      "epsEstimate": 2.6205,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 5473800000.0,
+      "netIncomeActual": 978600000.0
+    },
+    {
       "ticker": "ADSK",
       "company": "오토데스크",
       "date": "2026-06-30",
@@ -16932,6 +17322,34 @@
       "source": "Finnhub Company Earnings",
       "netIncomeActual": 316000000.0,
       "revenueActual": 1957000000.0
+    },
+    {
+      "ticker": "AEE",
+      "company": "애머런",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.13,
+      "epsEstimate": 1.0976,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2176000000.0,
+      "netIncomeActual": 357000000.0
+    },
+    {
+      "ticker": "AEP",
+      "company": "아메리칸 일렉트릭 파워 컴퍼니",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.36,
+      "epsEstimate": 1.5103,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "netIncomeActual": 713000000.0,
+      "revenueActual": 5445000000.0
     },
     {
       "ticker": "ALAB",
@@ -22078,7 +22496,7 @@
       "epsEstimate": 0.4368,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
+      "source": "Yahoo Finance quarterly fundamentals",
       "revenueActual": 777768000.0,
       "netIncomeActual": 155720000.0
     },
@@ -22529,6 +22947,34 @@
       "source": "Finnhub Company Earnings",
       "revenueActual": 2177000000.0,
       "netIncomeActual": 198300000.0
+    },
+    {
+      "ticker": "ZBRA",
+      "company": "지브라 테크놀로지스",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 6.35,
+      "epsEstimate": 4.4449,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1557000000.0,
+      "netIncomeActual": 233000000.0
+    },
+    {
+      "ticker": "ZTS",
+      "company": "조에티스",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "epsActual": 1.87,
+      "epsEstimate": 1.8742,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 2468000000.0,
+      "netIncomeActual": 691000000.0
     },
     {
       "ticker": "PEP",
@@ -29505,6 +29951,20 @@
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "A",
+      "company": "애질런트 테크놀로지스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "epsActual": 1.62,
+      "epsEstimate": 1.5154,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings",
+      "revenueActual": 1835000000.0,
+      "netIncomeActual": 339000000.0
     },
     {
       "ticker": "ADI",
@@ -68330,6 +68790,128 @@
       "year": 2027,
       "epsEstimate": 1.2423,
       "revenueEstimate": 445511000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "EVEX",
+      "company": "이브 홀딩 INC",
+      "date": "2027-03-04",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.1979,
+      "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "GCO",
+      "company": "제네스코(주)",
+      "date": "2027-03-04",
+      "quarter": 4,
+      "year": 2027,
+      "epsEstimate": 4.4465,
+      "revenueEstimate": 804894250.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "IMXI",
+      "company": "국제 화폐 익스프레스 INC",
+      "date": "2027-03-04",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.2448,
+      "revenueEstimate": 133632240.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "JBIO",
+      "company": "제이드 바이오사이언스 INC",
+      "date": "2027-03-04",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.7337,
+      "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "MKTW",
+      "company": "마켓와이즈 INC 클래스 A",
+      "date": "2027-03-04",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.7395,
+      "revenueEstimate": 84840203.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "MRVL",
+      "company": "마벨 테크놀로지 그룹",
+      "date": "2027-03-04",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2027,
+      "epsEstimate": 1.2612,
+      "revenueEstimate": 3452161725.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "NODK",
+      "company": "NI 홀딩스 INC",
+      "date": "2027-03-04",
+      "quarter": 4,
+      "year": 2026,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "NTAP",
+      "company": "넷앱",
+      "date": "2027-03-04",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 2.3029,
+      "revenueEstimate": 1887664662.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "SLDB",
+      "company": "솔리드 바이오사이언스 INC",
+      "date": "2027-03-04",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.4352,
+      "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "TIPT",
+      "company": "팁트리 주식회사",
+      "date": "2027-03-04",
+      "quarter": 4,
+      "year": 2026,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
