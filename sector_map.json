@@ -2231,7 +2231,7 @@
   "name": "Fiserv",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 28040058880,
+  "mcap": 28183635968,
   "name_ko": "파이서브",
   "universe": [
    "Russell 1000",
@@ -9775,7 +9775,7 @@
   "name": "LIONSGATE STUDIOS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 3302912512,
+  "mcap": 3323741696,
   "name_ko": "라이온스게이트 스튜디오스",
   "universe": [
    "Russell 2000"
@@ -11573,7 +11573,7 @@
   "name_ko": "마스터브랜드"
  },
  "VRDN": {
-  "name": "VIRIDIAN THERAPEUTICS ORS INC",
+  "name": "VIRIDIAN THERAPEUTICS ORS",
   "sector": "Healthcare",
   "industry": "Biotechnology",
   "mcap": 2179842304,
@@ -17313,7 +17313,7 @@
   "name": "NIQ GLOBAL INTELLIGENCE PLC",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 5551069184,
+  "mcap": 5424238080,
   "universe": [
    "Russell 1000"
   ],
@@ -17753,7 +17753,7 @@
   "translation_attempted": true
  },
  "HLMN": {
-  "name": "HILLMAN SOLUTIONS CORP",
+  "name": "HILLMAN SOLUTIONS",
   "sector": "Industrials",
   "industry": "Tools & Accessories",
   "mcap": 1579487360,
@@ -19082,7 +19082,7 @@
   "metadata_attempted": true
  },
  "NWPX": {
-  "name": "NWPX INFRASTRUCTURE INC",
+  "name": "NWPX INFRASTRUCTURE",
   "sector": "Basic Materials",
   "industry": "Steel",
   "mcap": 1236042624,
@@ -29683,7 +29683,7 @@
   "name": "SHOULDER INNOVATIONS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 424498496,
+  "mcap": 423041184,
   "universe": [
    "Russell 2000"
   ],
@@ -30457,7 +30457,7 @@
   "metadata_attempted": true
  },
  "PLX": {
-  "name": "PROTALIX BIOTHERAPEUTICS INC",
+  "name": "PROTALIX BIOTHERAPEUTICS",
   "sector": "Healthcare",
   "industry": "Biotechnology",
   "mcap": 187731920,
@@ -33528,8 +33528,8 @@
  },
  "HOS": {
   "name": "HORNBECK OFFSHORE SERVICES INC",
-  "sector": "기타",
-  "industry": "기타",
+  "sector": "Industrials",
+  "industry": "Marine Shipping",
   "mcap": 0,
   "metadata_attempted": true,
   "translation_attempted": true,
@@ -33545,6 +33545,18 @@
   "metadata_attempted": true,
   "translation_attempted": true,
   "universe": [
+   "Russell 2000"
+  ]
+ },
+ "ETD_USD": {
+  "name": "ETD USD BALANCE WITH R30382",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000",
    "Russell 2000"
   ]
  }
