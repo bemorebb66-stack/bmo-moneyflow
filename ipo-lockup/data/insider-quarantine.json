@@ -1,48 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-09-05T08:08:14.092920+00:00",
-    "count": 171
+    "generatedAt": "2026-09-08T08:35:16.194405+00:00",
+    "count": 184
   },
   "pendingTrades": [
-    {
-      "ticker": "GWRE",
-      "company": "Guidewire Software, Inc.",
-      "filer": "Mullen John P",
-      "role": "President",
-      "txType": "매도",
-      "shares": 1800,
-      "price": 188.46,
-      "txDate": "2026-08-25",
-      "filedDate": "2026-08-26",
-      "accession": "0001917389-26-000012",
-      "sourceAccessions": [
-        "0001917389-26-000012"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000012/wk-form4a_1787780481.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
-      "severity": "critical"
-    },
-    {
-      "ticker": "GWRE",
-      "company": "Guidewire Software, Inc.",
-      "filer": "Mullen John P",
-      "role": "President",
-      "txType": "매도",
-      "shares": 16200,
-      "price": 185,
-      "txDate": "2026-08-19",
-      "filedDate": "2026-08-26",
-      "accession": "0001917389-26-000012",
-      "sourceAccessions": [
-        "0001917389-26-000010",
-        "0001917389-26-000012"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1528396/000191738926000012/wk-form4a_1787780481.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
     {
       "ticker": "REBN",
       "company": "Reborn Coffee, Inc.",
@@ -827,6 +788,87 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "DE ANGOITIA ALFONSO",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 145490,
+      "price": 20.9999,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-04",
+      "accession": "0001724519-26-000010",
+      "sourceAccessions": [
+        "0001724519-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1724519/000172451926000010/wk-form4_1788571868.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.460000038146973",
+          "marketHigh": "8.645000457763672"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "DE ANGOITIA ALFONSO",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 17596,
+      "price": 20.649,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-04",
+      "accession": "0001724519-26-000010",
+      "sourceAccessions": [
+        "0001724519-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1724519/000172451926000010/wk-form4_1788571868.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.479999542236328",
+          "marketHigh": "8.579999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "DE ANGOITIA ALFONSO",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 313104,
+      "price": 20.9511,
+      "txDate": "2026-09-02",
+      "filedDate": "2026-09-04",
+      "accession": "0001724519-26-000010",
+      "sourceAccessions": [
+        "0001724519-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1724519/000172451926000010/wk-form4_1788571868.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.600000381469727",
+          "marketHigh": "8.824999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "AEIS",
@@ -2159,6 +2201,34 @@
       "severity": "critical"
     },
     {
+      "ticker": "ETSY",
+      "company": "ETSY INC",
+      "filer": "Colburn Richard Edward III",
+      "role": "Chief Product & Tech Officer",
+      "txType": "매도",
+      "shares": 1344,
+      "price": 81.39,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-03",
+      "accession": "0002068229-26-000015",
+      "sourceAccessions": [
+        "0002068229-26-000015"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2068229/000206822926000015/form4-09032026_100948.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "81.39",
+          "expectedLow": "82.73",
+          "expectedHigh": "83.57"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
@@ -2398,6 +2468,60 @@
           "severity": "critical",
           "marketLow": "410.7699890136719",
           "marketHigh": "419.6300048828125"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Fang Shu-Hua",
+      "role": "SVP and GC",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 77.09,
+      "txDate": "2026-07-02",
+      "filedDate": "2026-09-04",
+      "accession": "0001046179-26-000596",
+      "sourceAccessions": [
+        "0001046179-26-000596"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2113698/000104617926000596/wk-form4_1788517801.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "429.5",
+          "marketHigh": "461.4700012207031"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Fang Shu-Hua",
+      "role": "SVP and GC",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 77.09,
+      "txDate": "2026-07-02",
+      "filedDate": "2026-09-04",
+      "accession": "0001046179-26-000596",
+      "sourceAccessions": [
+        "0001046179-26-000596"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2113698/000104617926000596/wk-form4_1788517801.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "429.5",
+          "marketHigh": "461.4700012207031"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2966,6 +3090,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Pretorius Daniel",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 35537,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002114067-26-000006",
+      "sourceAccessions": [
+        "0002114067-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211406726000006/wk-form4_1788467856.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "SCCO",
       "company": "SOUTHERN COPPER CORP/",
       "filer": "PALOMINO BONILLA LUIS MIGUEL",
@@ -3245,6 +3396,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Lindecke Dean",
+      "role": "General Manager Ergo Ops.",
+      "txType": "매도",
+      "shares": 20060,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002119238-26-000008",
+      "sourceAccessions": [
+        "0002119238-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211923826000008/wk-form4_1788468867.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "APHP",
       "company": "American Picture House Corp",
       "filer": "MacGregor Bannor Michael",
@@ -3297,6 +3475,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Schoeman Jacobus",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 19403,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002114041-26-000006",
+      "sourceAccessions": [
+        "0002114041-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211404126000006/wk-form4_1788469063.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "FGL",
@@ -3482,6 +3687,33 @@
           "severity": "critical",
           "marketLow": "25.299999237060547",
           "marketHigh": "27.799999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Gouws Henry",
+      "role": "Head of Prod., Dir. of Ergo",
+      "txType": "매도",
+      "shares": 16826,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002114019-26-000006",
+      "sourceAccessions": [
+        "0002114019-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211401926000006/wk-form4_1788468995.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -3812,6 +4044,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Moloto Kgabo",
+      "role": "General Manager FWGR Ops.",
+      "txType": "매도",
+      "shares": 11586,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002119220-26-000006",
+      "sourceAccessions": [
+        "0002119220-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211922026000006/wk-form4_1788469199.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "FGBI",
       "company": "First Guaranty Bancshares, Inc.",
       "filer": "WALKER ROBERT W",
@@ -4083,6 +4342,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Laas Lihan",
+      "role": "Financial Manager FWGR Ops.",
+      "txType": "매도",
+      "shares": 9029,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002119288-26-000008",
+      "sourceAccessions": [
+        "0002119288-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211928826000008/wk-form4_1788468386.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "GRML",
       "company": "Greenland Mines Ltd",
       "filer": "McGarity Jon",
@@ -4191,6 +4477,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Hooijer Henriette",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 8313,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002114034-26-000006",
+      "sourceAccessions": [
+        "0002114034-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211403426000006/wk-form4_1788467950.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ZNB",
       "company": "Zeta Network Group",
       "filer": "HRT FINANCIAL LP",
@@ -4212,6 +4525,33 @@
           "severity": "critical",
           "marketLow": "2.9600000381469727",
           "marketHigh": "3.440000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Kruger Kevin",
+      "role": "Head of Technical Services",
+      "txType": "매도",
+      "shares": 7561,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002114046-26-000006",
+      "sourceAccessions": [
+        "0002114046-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211404626000006/wk-form4_1788468068.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -4378,6 +4718,60 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Bornman Ryno",
+      "role": "Financial Manager Ergo Ops.",
+      "txType": "매도",
+      "shares": 5490,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002119291-26-000006",
+      "sourceAccessions": [
+        "0002119291-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119291/000211929126000006/wk-form4_1788468192.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Mashatola Mpho",
+      "role": "Group Fin. & Business Dev. Mgr",
+      "txType": "매도",
+      "shares": 5275,
+      "price": 2.7545,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-03",
+      "accession": "0002114274-26-000006",
+      "sourceAccessions": [
+        "0002114274-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211427426000006/wk-form4_1788468303.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.110000610351562",
+          "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "TSM",
@@ -4648,33 +5042,6 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
-    },
-    {
-      "ticker": "DRD",
-      "company": "DRDGOLD LTD",
-      "filer": "Bornman Ryno",
-      "role": "Financial Manager Ergo Ops.",
-      "txType": "매도",
-      "shares": 5490,
-      "price": 2.7545,
-      "txDate": "2026-09-01",
-      "filedDate": "2026-09-03",
-      "accession": "0002119291-26-000006",
-      "sourceAccessions": [
-        "0002119291-26-000006"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119291/000211929126000006/wk-form4_1788468192.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "27.110000610351562",
-          "marketHigh": "28.059999465942383"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
     }
   ]
 }
