@@ -229,8 +229,10 @@ class EarningsPipelineTests(unittest.TestCase):
         financials = [{"ticker": "AAA", "date": "2026-03-31", "revenueActual": 100}]
         merged = merge_company_financial_history(earnings, financials)
         self.assertEqual(merged[0]["revenueActual"], 100)
-        self.assertEqual(len(merged), 1)
+        self.assertEqual(len(merged), 2)
         self.assertEqual(merged[0]["epsActual"], 1)
+        self.assertEqual(merged[1]["epsActual"], 2)
+        self.assertNotIn("revenueActual", merged[1])
 
     def test_cached_positional_join_is_removed_and_cleanup_is_idempotent(self) -> None:
         rows = [
@@ -240,11 +242,35 @@ class EarningsPipelineTests(unittest.TestCase):
              "source": "Yahoo Finance quarterly fundamentals", "revenueActual": 100},
         ]
         clean = reconcile_cached_history(rows)
-        self.assertEqual(len(clean), 1)
+        self.assertEqual(len(clean), 2)
         self.assertNotIn("year", clean[0])
         self.assertNotIn("epsActual", clean[0])
         self.assertEqual(clean[0]["dateKind"], "period-end")
+        self.assertEqual(clean[1]["epsActual"], .8)
+        self.assertEqual(clean[1]["dateKind"], "provider-period")
+        self.assertNotIn("revenueActual", clean[1])
         self.assertEqual(clean, reconcile_cached_history(clean))
+
+    def test_official_consolidation_preserves_provider_estimate(self) -> None:
+        rows = [
+            {"ticker": "MRVL", "date": "2026-06-30", "year": 2027, "quarter": 1,
+             "source": "Finnhub Company Earnings", "epsActual": .8, "epsEstimate": .8076},
+            {"ticker": "MRVL", "date": "2026-05-27", "periodEnd": "2026-05-02",
+             "dateKind": "announcement", "confirmed": True, "year": 2027, "quarter": 1,
+             "epsActual": .8, "revenueActual": 2417800000, "source": "Marvell Investor Relations"},
+        ]
+        clean = reconcile_cached_history(rows)
+        self.assertEqual(len(clean), 1)
+        self.assertEqual(clean[0]["epsEstimate"], .8076)
+        self.assertEqual(clean, reconcile_cached_history(clean))
+
+    def test_provider_periods_do_not_evict_eight_financial_quarters(self) -> None:
+        rows = [
+            {"ticker": "AAA", "date": f"2025-{month:02d}-01", "epsActual": 1,
+             "dateKind": kind}
+            for month in range(1, 9) for kind in ("period-end", "provider-period")
+        ]
+        self.assertEqual(len(limit_reported_history(rows)), 16)
 
     def test_official_release_replaces_rounded_statement_period(self) -> None:
         rows = [

@@ -120,10 +120,12 @@ def limit_reported_history(events, max_quarters=MAX_REPORTED_QUARTERS):
             retained.append(row)
             continue
         ticker = str(row.get("ticker") or "").upper()
-        count = reported_by_ticker.get(ticker, 0)
+        # Separate provider EPS periods must not evict statement history.
+        history_key = (ticker, row.get("dateKind") == "provider-period")
+        count = reported_by_ticker.get(history_key, 0)
         if count < max_quarters:
             retained.append(row)
-            reported_by_ticker[ticker] = count + 1
+            reported_by_ticker[history_key] = count + 1
     return sorted(retained, key=lambda row: (row.get("date", ""), row.get("ticker", "")))
 
 
@@ -336,6 +338,9 @@ def merge_company_financial_history(earnings_rows, financial_rows):
                 if matches[0].get(key) is not None:
                     row[key] = matches[0][key]
         merged.append(row)
+    used = {(r.get("ticker"), r["date"]) for r in financial_rows}
+    merged.extend(dict(r, dateKind="provider-period") for r in earnings_rows
+                  if (r.get("ticker"), r["date"]) not in used)
     return sorted(merged, key=lambda row: row["date"])
 
 
@@ -407,25 +412,41 @@ def reconcile_cached_history(events):
     """Remove legacy positional joins; never infer fiscal periods from months.
 
     Finnhub company periods can be fiscal/calendar placeholders, not actual
-    closing dates. Prefer dated financial statements when available and retain
-    EPS only on an exact matching statement period. Official releases override
+    closing dates. Preserve unmatched EPS as separate provider periods.
+    Only consolidate after transferring their values. Official releases override
     their corresponding statement, including providers' month-end rounding.
     """
     financials = {}
     for row in events:
         if row.get("source") == "Yahoo Finance quarterly fundamentals":
             financials.setdefault(row["ticker"], []).append(row)
-    official = [r for r in events if r.get("confirmed") and r.get("periodEnd")
+    official = [dict(r) for r in events if r.get("confirmed") and r.get("periodEnd")
                 and r.get("dateKind") == "announcement"]
+    def official_match(row):
+        matches = [r for r in official if r["ticker"] == row["ticker"]
+                   and row.get("year") == r.get("year") and row.get("quarter") == r.get("quarter")
+                   and row.get("epsActual") is not None and row.get("epsActual") == r.get("epsActual")
+                   and abs((date.fromisoformat(row["date"]) - date.fromisoformat(r["date"])).days) <= 120]
+        return matches[0] if len(matches) == 1 else None
+    for row in events:
+        if row.get("source") == "Finnhub Company Earnings":
+            match = official_match(row)
+            if match is not None and row.get("epsEstimate") is not None and match.get("epsEstimate") is None:
+                match["epsEstimate"] = row["epsEstimate"]
+                match["epsEstimateSource"] = row["source"]
     clean = []
     for original in events:
         row = dict(original)
         source = row.get("source", "")
+        if row.get("confirmed") and row.get("periodEnd") and row.get("dateKind") == "announcement":
+            row = next(r for r in official if r["ticker"] == row["ticker"] and r["date"] == row["date"])
         if source == "Finnhub Company Earnings":
             # These fields may have been copied by the old index-based join.
             row.pop("revenueActual", None)
             row.pop("netIncomeActual", None)
-            if row["ticker"] in financials:
+            if official_match(row) is not None:
+                continue
+            if any(f["date"] == row["date"] for f in financials.get(row["ticker"], [])):
                 continue
             row["dateKind"] = "provider-period"
             row.pop("periodEnd", None)

@@ -388,7 +388,7 @@ function StockDetail({
         ? previous.year === row.year && previous.quarter === row.quarter
         : previous.date === row.date,
     ))
-    .slice(0, 8);
+    .slice(0, 16);
   const earningsTier = earnings.find((row) => row.trackingTier)?.trackingTier;
   const sectorRow = LIVE_MARKET_DATA.sector["1d"].find(
     (row) => row.name === stock.sector,
@@ -1183,7 +1183,8 @@ function ReportedEarningsChart({
   ticker: string;
   rows: typeof EARNINGS_ROWS;
 }) {
-  const chartRows = [...rows].reverse().map((row) => ({
+  const chartRows = rows.filter((row) => row.revenueActual != null || row.netIncomeActual != null)
+    .slice(0, 8).reverse().map((row) => ({
     period:
       row.year && row.quarter
         ? `FY${row.year} ${row.quarter}Q`

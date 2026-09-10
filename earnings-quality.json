@@ -34,5 +34,11 @@
     "TTAN",
     "WMT"
   ],
-  "note": "Structural audit only; not an IR verification of every company. Unmatched provider EPS periods are excluded when dated financial statements exist."
+  "note": "Structural audit; unmatched EPS provider periods are preserved separately. Marvell latest eight quarters verified from company releases; remaining companies are not individually IR-verified.",
+  "historyRestoration": {
+    "restoredEpsRows": 578,
+    "restoredTickerCount": 148,
+    "marvellVerifiedQuarters": 8,
+    "refreshIdempotence": "passed"
+  }
 }
