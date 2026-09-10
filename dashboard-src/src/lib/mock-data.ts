@@ -569,6 +569,9 @@ export const INSIDER_PENDING_ROWS: InsiderRow[] = [];
 export type EarningsHour = "bmo" | "amc" | "dmh" | "";
 
 export interface EarningsRow {
+  periodEnd?: string;
+  dateKind?: "announcement" | "period-end" | "provider-period";
+  epsBasis?: string;
   ticker: string;
   company: string;
   date: string;

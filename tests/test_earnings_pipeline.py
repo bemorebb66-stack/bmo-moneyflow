@@ -14,6 +14,7 @@ from fetch_earnings import (
     normalize_reported_financials,
     normalize_yahoo_financials,
     select_supplemental_tickers,
+    reconcile_cached_history,
 )
 
 
@@ -228,7 +229,34 @@ class EarningsPipelineTests(unittest.TestCase):
         financials = [{"ticker": "AAA", "date": "2026-03-31", "revenueActual": 100}]
         merged = merge_company_financial_history(earnings, financials)
         self.assertEqual(merged[0]["revenueActual"], 100)
-        self.assertNotIn("revenueActual", merged[1])
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["epsActual"], 1)
+
+    def test_cached_positional_join_is_removed_and_cleanup_is_idempotent(self) -> None:
+        rows = [
+            {"ticker": "MRVL", "date": "2026-06-30", "year": 2027, "quarter": 1,
+             "source": "Finnhub Company Earnings", "epsActual": .8, "revenueActual": 100},
+            {"ticker": "MRVL", "date": "2026-04-30", "year": 2026, "quarter": 2,
+             "source": "Yahoo Finance quarterly fundamentals", "revenueActual": 100},
+        ]
+        clean = reconcile_cached_history(rows)
+        self.assertEqual(len(clean), 1)
+        self.assertNotIn("year", clean[0])
+        self.assertNotIn("epsActual", clean[0])
+        self.assertEqual(clean[0]["dateKind"], "period-end")
+        self.assertEqual(clean, reconcile_cached_history(clean))
+
+    def test_official_release_replaces_rounded_statement_period(self) -> None:
+        rows = [
+            {"ticker": "MRVL", "date": "2026-07-31", "source": "Yahoo Finance quarterly fundamentals", "revenueActual": 100},
+            {"ticker": "MRVL", "date": "2026-08-27", "periodEnd": "2026-08-01",
+             "dateKind": "announcement", "confirmed": True, "year": 2027, "quarter": 2,
+             "revenueActual": 100, "epsActual": .94, "source": "Marvell Investor Relations"},
+        ]
+        clean = reconcile_cached_history(rows)
+        self.assertEqual(len(clean), 1)
+        self.assertEqual(clean[0]["date"], "2026-08-27")
+        self.assertEqual(clean[0]["quarter"], 2)
 
     def test_fiscal_label_does_not_copy_results_into_next_year(self) -> None:
         calendar = [{"ticker": "AAA", "date": "2027-06-30", "year": 2027, "quarter": 2}]

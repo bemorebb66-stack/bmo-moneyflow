@@ -999,6 +999,9 @@ export async function hydrateLiveData(provided?: HydrationPayloads) {
           row.company ||
           row.ticker,
         date: row.date,
+        periodEnd: row.periodEnd,
+        dateKind: row.dateKind,
+        epsBasis: row.epsBasis,
         hour: ["bmo", "amc", "dmh"].includes(row.hour) ? row.hour : "",
         quarter: Number(row.quarter) || undefined,
         year: Number(row.year) || undefined,

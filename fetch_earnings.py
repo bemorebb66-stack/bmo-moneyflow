@@ -312,8 +312,6 @@ def normalize_yahoo_financials(payload, ticker, companies, universe, cutoff):
                 "company": companies[ticker],
                 "date": event_date,
                 "hour": "",
-                "quarter": ((month - 1) // 3) + 1,
-                "year": int(event_date[:4]),
                 "periodEnd": event_date,
                 "dateKind": "period-end",
                 **values,
@@ -326,28 +324,18 @@ def normalize_yahoo_financials(payload, ticker, companies, universe, cutoff):
 
 
 def merge_company_financial_history(earnings_rows, financial_rows):
-    earnings = sorted(earnings_rows, key=lambda row: row["date"], reverse=True)
-    financials = sorted(financial_rows, key=lambda row: row["date"], reverse=True)
+    if not financial_rows:
+        return earnings_rows
     merged = []
-    used_dates = set()
-    for row in earnings:
-        # Both providers supply period end dates. List positions are unrelated
-        # when one provider is missing a quarter or has updated earlier.
-        match = next((item for item in financials
-                      if item.get("ticker") == row.get("ticker")
-                      and item["date"] == row.get("periodEnd", row["date"])), None)
-        if match:
-            used_dates.add((match.get("ticker"), match["date"]))
-            actuals = {
-                key: value
-                for key, value in match.items()
-                if key in {"revenueActual", "netIncomeActual"} and value is not None
-            }
-            merged.append({**row, **actuals})
-        else:
-            merged.append(row)
-    merged.extend(row for row in financials
-                  if (row.get("ticker"), row["date"]) not in used_dates)
+    for financial in financial_rows:
+        row = dict(financial)
+        matches = [e for e in earnings_rows if e.get("ticker") == row.get("ticker")
+                   and e["date"] == row["date"]]
+        if len(matches) == 1:
+            for key in ("epsActual", "epsEstimate"):
+                if matches[0].get(key) is not None:
+                    row[key] = matches[0][key]
+        merged.append(row)
     return sorted(merged, key=lambda row: row["date"])
 
 
@@ -386,6 +374,7 @@ def merge_reported_history(calendar_events, reported_events):
 
 
 def write_output(events, source, params=None, coverage=None):
+    events = reconcile_cached_history(events)
     # A future period cannot contain published actuals. Quarantine these rows
     # even when an older cached file is reused without API credentials.
     today = date.today().isoformat()
@@ -412,6 +401,51 @@ def write_output(events, source, params=None, coverage=None):
         json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(f"Saved {len(events)} earnings events to {OUTPUT.name}.")
+
+
+def reconcile_cached_history(events):
+    """Remove legacy positional joins; never infer fiscal periods from months.
+
+    Finnhub company periods can be fiscal/calendar placeholders, not actual
+    closing dates. Prefer dated financial statements when available and retain
+    EPS only on an exact matching statement period. Official releases override
+    their corresponding statement, including providers' month-end rounding.
+    """
+    financials = {}
+    for row in events:
+        if row.get("source") == "Yahoo Finance quarterly fundamentals":
+            financials.setdefault(row["ticker"], []).append(row)
+    official = [r for r in events if r.get("confirmed") and r.get("periodEnd")
+                and r.get("dateKind") == "announcement"]
+    clean = []
+    for original in events:
+        row = dict(original)
+        source = row.get("source", "")
+        if source == "Finnhub Company Earnings":
+            # These fields may have been copied by the old index-based join.
+            row.pop("revenueActual", None)
+            row.pop("netIncomeActual", None)
+            if row["ticker"] in financials:
+                continue
+            row["dateKind"] = "provider-period"
+            row.pop("periodEnd", None)
+        if source == "Yahoo Finance quarterly fundamentals":
+            row.pop("year", None)
+            row.pop("quarter", None)
+            row["periodEnd"] = row["date"]
+            row["dateKind"] = "period-end"
+            if any(r["ticker"] == row["ticker"] and abs((
+                date.fromisoformat(r["periodEnd"]) - date.fromisoformat(row["date"])
+            ).days) <= 7 for r in official):
+                continue
+            matches = [r for r in events if r.get("source") == "Finnhub Company Earnings"
+                       and r["ticker"] == row["ticker"] and r["date"] == row["date"]]
+            if len(matches) == 1:
+                for key in ("epsActual", "epsEstimate"):
+                    if matches[0].get(key) is not None:
+                        row[key] = matches[0][key]
+        clean.append(row)
+    return merge_events([], clean)
 
 
 def main():
@@ -516,7 +550,7 @@ def main():
     events = merge_reported_history(events, reported_rows)
     persisted_events = merge_with_existing(existing, events, today)
     merged_events = limit_reported_history(
-        merge_events(persisted_events, manual_events)
+        reconcile_cached_history(merge_events(persisted_events, manual_events))
     )
     for event in merged_events:
         has_result = (

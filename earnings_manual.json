@@ -6,6 +6,17 @@
   },
   "events": [
     {
+      "ticker": "TSLA",
+      "company": "테슬라",
+      "date": "2026-07-22",
+      "hour": "amc",
+      "quarter": 2,
+      "year": 2026,
+      "confirmed": true,
+      "source": "Tesla Investor Relations",
+      "sourceUrl": "https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments"
+    },
+    {
       "ticker": "STX",
       "company": "씨게이트 테크놀로지",
       "date": "2026-07-28",
@@ -22,31 +33,12 @@
       "sourceUrl": "https://investors.seagate.com/news/news-details/2026/Seagate-Technology-Reports-Fiscal-Fourth-Quarter-and-Fiscal-Year-2026-Financial-Results/default.aspx"
     },
     {
-      "ticker": "TSLA",
-      "company": "테슬라",
-      "date": "2026-07-22",
-      "hour": "amc",
-      "quarter": 2,
-      "year": 2026,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
-      "confirmed": true,
-      "source": "Tesla Investor Relations",
-      "sourceUrl": "https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments"
-    },
-    {
       "ticker": "V",
       "company": "비자",
       "date": "2026-07-28",
       "hour": "amc",
       "quarter": 3,
       "year": 2026,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
       "confirmed": true,
       "source": "Visa Investor Relations",
       "sourceUrl": "https://investor.visa.com/news/news-details/2026/Visa-to-Announce-Fiscal-Third-Quarter-2026-Financial-Results-on-July-28-2026/default.aspx"
@@ -58,10 +50,6 @@
       "hour": "amc",
       "quarter": 2,
       "year": 2026,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
       "confirmed": true,
       "source": "Meta Investor Relations",
       "sourceUrl": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-to-Announce-Second-Quarter-2026-Results/default.aspx"
@@ -73,10 +61,6 @@
       "hour": "amc",
       "quarter": 4,
       "year": 2026,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
       "confirmed": true,
       "source": "Microsoft Investor Relations",
       "sourceUrl": "https://news.microsoft.com/source/2026/07/08/microsoft-announces-quarterly-earnings-release-date-68/"
@@ -88,10 +72,6 @@
       "hour": "amc",
       "quarter": 2,
       "year": 2026,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
       "confirmed": true,
       "source": "AMD Investor Relations",
       "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1289/amd-to-report-fiscal-second-quarter-2026-financial-results"
@@ -103,13 +83,28 @@
       "hour": "amc",
       "quarter": 2,
       "year": 2027,
-      "epsActual": null,
-      "epsEstimate": null,
-      "revenueActual": null,
-      "revenueEstimate": null,
       "confirmed": true,
       "source": "NVIDIA Investor Relations",
       "sourceUrl": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/event-details/2026/NVIDIA-2nd-Quarter-FY27-Financial-Results/default.aspx"
+    },
+    {
+      "ticker": "MRVL",
+      "company": "마벨 테크놀로지 그룹",
+      "date": "2026-08-27",
+      "periodEnd": "2026-08-01",
+      "dateKind": "announcement",
+      "hour": "amc",
+      "year": 2027,
+      "quarter": 2,
+      "epsActual": 0.94,
+      "epsBasis": "non-GAAP",
+      "revenueActual": 2739300000,
+      "netIncomeActual": 308000000,
+      "confirmed": true,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Marvell Investor Relations",
+      "sourceUrl": "https://investor.marvell.com/news-events/press-releases/detail/1031/marvell-technology-inc-reports-second-quarter-of-fiscal-year-2027-financial-results"
     }
   ]
 }

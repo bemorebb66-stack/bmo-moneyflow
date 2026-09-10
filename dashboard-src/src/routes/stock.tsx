@@ -911,11 +911,15 @@ function StockDetail({
                           <tr key={`${row.ticker}-${row.date}`}>
                             <td className="px-4 py-3 font-medium tabular sm:px-5">
                               {row.date}
+                              <span className="ml-2 text-[10px] text-muted-foreground">
+                                {row.dateKind === "period-end" ? "결산 기준 · 발표일 미확인" : row.dateKind === "provider-period" ? "제공사 기준 기간" : "발표"}
+                              </span>
                             </td>
                             <td className="px-4 py-3 tabular">
                               {row.epsActual == null
                                 ? "-"
                                 : `$${row.epsActual.toFixed(2)}`}
+                              {row.epsBasis && <span className="ml-1 text-[10px] text-muted-foreground">{row.epsBasis}</span>}
                             </td>
                             <td className="px-4 py-3 tabular text-muted-foreground">
                               {row.epsEstimate == null
@@ -1182,8 +1186,8 @@ function ReportedEarningsChart({
   const chartRows = [...rows].reverse().map((row) => ({
     period:
       row.year && row.quarter
-        ? `${String(row.year).slice(-2)}년 ${row.quarter}Q`
-        : row.date.slice(2, 7).replace("-", "."),
+        ? `FY${row.year} ${row.quarter}Q`
+        : `${(row.periodEnd ?? row.date).slice(2, 7).replace("-", ".")} 결산`,
     epsActual: row.epsActual,
     revenueActual:
       row.revenueActual == null ? undefined : row.revenueActual / 1e9,
