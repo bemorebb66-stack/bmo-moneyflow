@@ -378,10 +378,16 @@ function StockDetail({
   const recentEarnings = earnings
     .filter(
       (row) =>
-        row.epsActual != null ||
+        row.date <= new Date().toISOString().slice(0, 10) &&
+        (row.epsActual != null ||
         row.revenueActual != null ||
-        row.netIncomeActual != null,
+        row.netIncomeActual != null),
     )
+    .filter((row, index, rows) => !rows.slice(0, index).some((previous) =>
+      row.year && row.quarter
+        ? previous.year === row.year && previous.quarter === row.quarter
+        : previous.date === row.date,
+    ))
     .slice(0, 8);
   const earningsTier = earnings.find((row) => row.trackingTier)?.trackingTier;
   const sectorRow = LIVE_MARKET_DATA.sector["1d"].find(
@@ -884,7 +890,7 @@ function StockDetail({
                     <thead className="bg-surface-2 text-[10px] text-muted-foreground">
                       <tr>
                         <th className="px-4 py-2.5 font-medium sm:px-5">
-                          발표일
+                          발표일 / 결산일
                         </th>
                         <th className="px-4 py-2.5 font-medium">EPS 실제</th>
                         <th className="px-4 py-2.5 font-medium">EPS 예상</th>

@@ -190,7 +190,7 @@ class EarningsPipelineTests(unittest.TestCase):
         self.assertEqual(merged[0]["date"], "2026-08-26")
         self.assertEqual(merged[0]["revenueActual"], 13_900_000_000)
 
-    def test_yahoo_quarterly_financials_are_normalized_and_aligned_by_recency(self) -> None:
+    def test_yahoo_quarterly_financials_are_aligned_by_period_end(self) -> None:
         payload = {
             "timeseries": {
                 "result": [
@@ -214,11 +214,28 @@ class EarningsPipelineTests(unittest.TestCase):
             {"NVDA": "core-index"},
             date(2025, 1, 1),
         )
-        earnings = [{"ticker": "NVDA", "date": "2026-06-30", "year": 2026, "quarter": 2, "epsActual": 1.23}]
+        earnings = [{"ticker": "NVDA", "date": "2026-04-30", "year": 2027, "quarter": 1, "epsActual": 1.23}]
         merged = merge_company_financial_history(earnings, financials)
-        self.assertEqual(merged[0]["date"], "2026-06-30")
+        self.assertEqual(merged[0]["date"], "2026-04-30")
         self.assertEqual(merged[0]["revenueActual"], 13_900_000_000)
         self.assertEqual(merged[0]["netIncomeActual"], 10_700_000_000)
+
+    def test_missing_quarter_does_not_shift_financials(self) -> None:
+        earnings = [
+            {"ticker": "AAA", "date": "2026-06-30", "epsActual": 2},
+            {"ticker": "AAA", "date": "2026-03-31", "epsActual": 1},
+        ]
+        financials = [{"ticker": "AAA", "date": "2026-03-31", "revenueActual": 100}]
+        merged = merge_company_financial_history(earnings, financials)
+        self.assertEqual(merged[0]["revenueActual"], 100)
+        self.assertNotIn("revenueActual", merged[1])
+
+    def test_fiscal_label_does_not_copy_results_into_next_year(self) -> None:
+        calendar = [{"ticker": "AAA", "date": "2027-06-30", "year": 2027, "quarter": 2}]
+        reported = [{"ticker": "AAA", "date": "2026-06-30", "year": 2027, "quarter": 2, "epsActual": 1}]
+        merged = merge_reported_history(calendar, reported)
+        self.assertEqual(len(merged), 2)
+        self.assertNotIn("epsActual", merged[1])
 
 
 if __name__ == "__main__":

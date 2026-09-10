@@ -277,6 +277,8 @@ def normalize_company_earnings(rows, ticker, companies, universe, cutoff):
                 "hour": "",
                 "quarter": row.get("quarter"),
                 "year": row.get("year"),
+                "periodEnd": event_date,
+                "dateKind": "period-end",
                 "epsActual": actual,
                 "epsEstimate": number_or_none(row.get("estimate")),
                 "status": "reported",
@@ -312,6 +314,8 @@ def normalize_yahoo_financials(payload, ticker, companies, universe, cutoff):
                 "hour": "",
                 "quarter": ((month - 1) // 3) + 1,
                 "year": int(event_date[:4]),
+                "periodEnd": event_date,
+                "dateKind": "period-end",
                 **values,
                 "status": "reported",
                 "trackingTier": universe.get(ticker, "calendar"),
@@ -325,18 +329,25 @@ def merge_company_financial_history(earnings_rows, financial_rows):
     earnings = sorted(earnings_rows, key=lambda row: row["date"], reverse=True)
     financials = sorted(financial_rows, key=lambda row: row["date"], reverse=True)
     merged = []
-    for index, row in enumerate(earnings):
-        if index < len(financials):
+    used_dates = set()
+    for row in earnings:
+        # Both providers supply period end dates. List positions are unrelated
+        # when one provider is missing a quarter or has updated earlier.
+        match = next((item for item in financials
+                      if item.get("ticker") == row.get("ticker")
+                      and item["date"] == row.get("periodEnd", row["date"])), None)
+        if match:
+            used_dates.add((match.get("ticker"), match["date"]))
             actuals = {
                 key: value
-                for key, value in financials[index].items()
+                for key, value in match.items()
                 if key in {"revenueActual", "netIncomeActual"} and value is not None
             }
             merged.append({**row, **actuals})
         else:
             merged.append(row)
-    if not earnings:
-        merged.extend(financials)
+    merged.extend(row for row in financials
+                  if (row.get("ticker"), row["date"]) not in used_dates)
     return sorted(merged, key=lambda row: row["date"])
 
 
@@ -351,14 +362,18 @@ def merge_reported_history(calendar_events, reported_events):
     for row in calendar_events:
         period = (row.get("ticker"), row.get("year"), row.get("quarter"))
         reported = reported_by_period.get(period)
-        if reported:
+        # Fiscal labels alone can refer to different calendar years across
+        # providers. Never attach results to an unrelated future announcement.
+        if reported and row["date"] <= date.today().isoformat() and period not in used_periods and 0 <= (date.fromisoformat(row["date"]) - date.fromisoformat(
+            reported.get("periodEnd", reported["date"])
+        )).days <= 120:
             actuals = {
                 key: value
                 for key, value in reported.items()
                 if key in {"epsActual", "revenueActual", "netIncomeActual"}
                 and value is not None
             }
-            merged.append({**reported, **row, **actuals, "status": "reported"})
+            merged.append({**reported, **row, **actuals, "status": "reported", "dateKind": "announcement"})
             used_periods.add(period)
         else:
             merged.append(row)
@@ -371,6 +386,14 @@ def merge_reported_history(calendar_events, reported_events):
 
 
 def write_output(events, source, params=None, coverage=None):
+    # A future period cannot contain published actuals. Quarantine these rows
+    # even when an older cached file is reused without API credentials.
+    today = date.today().isoformat()
+    events = [row for row in events if not (
+        row.get("date", "") > today
+        and any(row.get(key) is not None for key in
+                ("epsActual", "revenueActual", "netIncomeActual"))
+    )]
     dates = [row["date"] for row in events if row.get("date")]
     output = {
         "meta": {

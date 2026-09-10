@@ -1,90 +1,87 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-25T13:22:19.366Z",
+  "generatedAt": "2026-09-10T10:18:43.774Z",
   "status": "ok",
-  "freshness": "delayed",
-  "delayedSources": [
-    "insider",
-    "lockup"
-  ],
+  "freshness": "unknown",
+  "delayedSources": [],
   "unknownFreshnessSources": [
     "history",
     "stockDirectory"
   ],
-  "marketDate": "2026-08-24",
+  "marketDate": "2026-09-09",
   "lastGood": {
-    "marketDate": "2026-08-24",
-    "marketSha256": "d084ce7b8f3ce251c8aa3b662d4f18eab4ee6071caac7a40dd3c4824f2a415c3",
-    "replayLastDate": "2026-08-24"
+    "marketDate": "2026-09-09",
+    "marketSha256": "eb33126f34891006f89639fe87d02fc3e5862ae39e1c5a530ad06a9f3e9e1995",
+    "replayLastDate": "2026-09-09"
   },
   "sources": {
     "market": {
       "path": "data.json",
-      "updatedAt": "2026-08-25 07:19 UTC",
+      "updatedAt": "2026-09-10 01:29 UTC",
       "freshness": "normal",
-      "sha256": "d084ce7b8f3ce251c8aa3b662d4f18eab4ee6071caac7a40dd3c4824f2a415c3",
+      "sha256": "eb33126f34891006f89639fe87d02fc3e5862ae39e1c5a530ad06a9f3e9e1995",
       "tradingDaysBehind": 0
     },
     "history": {
       "path": "history.json",
       "updatedAt": null,
       "freshness": "unknown",
-      "sha256": "c0f5acfd4bca3b778820c7475362c4c319721ba85d66f7f22ba048f4158997fa"
+      "sha256": "256135422768d9ad945411f328f1a718472d91e1d2da050ac7fa09572806b3b2"
     },
     "insider": {
       "path": "insider/data/insider.json",
-      "updatedAt": "2026-08-18T04:00:58.107Z",
-      "freshness": "delayed",
-      "sha256": "7a5b9bca09e8bedf9f7cdaff773a33b9c6746d1bb933832f59457ce7a0467d3e"
+      "updatedAt": "2026-09-08T07:51:32.831Z",
+      "freshness": "normal",
+      "sha256": "580f0d9c0113eb5a342cd53d56df5fa988bbe3db6eb2d8f1dec48b8015c79f4e"
     },
     "lockup": {
       "path": "ipo-lockup/data/lockup.json",
-      "updatedAt": "2026-08-18T04:04:44.163Z",
-      "freshness": "delayed",
-      "sha256": "cc2220ca0a217507b6e8c02c11d672481d6811f0859e2ecec8b15474030489b1"
+      "updatedAt": "2026-09-08T07:52:09.609Z",
+      "freshness": "normal",
+      "sha256": "8445d3ab04f22c399ee8abd275427a66214e2b323b6b5c75186c31e96a87a62d"
     },
     "earnings": {
       "path": "earnings.json",
-      "updatedAt": "2026-08-24T13:45:01.048917+00:00",
+      "updatedAt": "2026-09-10T01:42:17.879544+00:00",
       "freshness": "normal",
-      "sha256": "2ec3af5f28e4759843a3e929916826351c95e12705bab595a9e3a7a311bacf17"
+      "sha256": "c9e8d1fffa1080d6eb82fcd110dbbeba76755d94788af42b6c3fea905cc37fec"
     },
     "economic": {
       "path": "economic_events.json",
-      "updatedAt": "2026-08-21 23:54 UTC",
+      "updatedAt": "2026-09-10 01:29 UTC",
       "freshness": "normal",
-      "sha256": "84df7327f75372192bcbe162561c8465603d2fcea115efc51409d4e180daed3c"
+      "sha256": "2a192dab2559aac7d47ad9d9a0f032bcd3f184fa25477b8c6637f65401f688f8"
     },
     "news": {
       "path": "news.json",
-      "updatedAt": "2026-08-24T13:50:07.649655+00:00",
+      "updatedAt": "2026-09-10T01:47:08.171784+00:00",
       "freshness": "normal",
-      "sha256": "87e65d4f7394cd96980e8ba28eb3a67404ee1995cd3a26487f308afb36261940"
+      "sha256": "5be85d3393e7926e8bce0d5fc7613f3895b0b7f37bcf998b441538fcc4624cd0"
     },
     "weekly": {
       "path": "weekly_summary.json",
-      "updatedAt": "2026-08-25T07:19:57+00:00",
+      "updatedAt": "2026-09-10T01:38:49+00:00",
       "freshness": "normal",
-      "sha256": "f5804f3d2a5819b1389a6890047bb240a7071c29e65623604602171f2a514866"
+      "sha256": "a5fa0365a401fc05bbcf3b9ea4b9f5c30cf3968fb98a6b99131539141417232f"
     },
     "stockDirectory": {
       "path": "stock_directory.json",
       "updatedAt": null,
       "freshness": "unknown",
-      "sha256": "a8a4805790b25a0f63ebf8ebfe7c2d68de477091fc2d39fc752abdd5d5d3550a"
+      "sha256": "db094b024bdabe126ff01e07cfb727255621aca7c4272b45061afeb61789945f"
     },
     "replayManifest": {
       "path": "replay_data/manifest.json",
-      "updatedAt": "2026-08-25T07:19:50+00:00",
+      "updatedAt": "2026-09-10T01:38:44+00:00",
       "freshness": "normal",
-      "sha256": "de544f8c20fc508c28ec8ce50539affda66d78077286dd88a568477de79448f6",
+      "sha256": "87dd9a93ac050e736aa110559da445254bbf5eb3764affce6e0731bc765d4798",
       "tradingDaysBehind": 0
     }
   },
   "checks": {
     "sourceCount": 10,
-    "stockCount": 2974,
-    "historyLastDate": "2026-08-24",
-    "replaySnapshotCount": 116
+    "stockCount": 2967,
+    "historyLastDate": "2026-09-09",
+    "replaySnapshotCount": 124
   }
 }
