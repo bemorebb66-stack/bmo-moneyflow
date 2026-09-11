@@ -10483,7 +10483,7 @@
   "name_ko": "세인트 조"
  },
  "NRIX": {
-  "name": "NURIX THERAPEUTICS INC",
+  "name": "NURIX THERAPEUTICS",
   "sector": "Healthcare",
   "industry": "Biotechnology",
   "mcap": 2384538112,
@@ -23719,7 +23719,7 @@
   "metadata_attempted": true
  },
  "FBRT": {
-  "name": "FRANKLIN BSP REALTY TRUST INC",
+  "name": "FRANKLIN BSP REALTY TRUST",
   "sector": "Real Estate",
   "industry": "REIT - Mortgage",
   "mcap": 602620352,
@@ -30517,7 +30517,7 @@
   "metadata_attempted": true
  },
  "EIKN": {
-  "name": "EIKON THERAPEUTICS INC",
+  "name": "EIKON THERAPEUTICS",
   "sector": "Healthcare",
   "industry": "Biotechnology",
   "mcap": 534889664,
@@ -32955,7 +32955,7 @@
   "metadata_attempted": true
  },
  "ZENA": {
-  "name": "ZENATECH INC",
+  "name": "ZENATECH",
   "sector": "Technology",
   "industry": "Software - Infrastructure",
   "mcap": 115549448,
@@ -33557,6 +33557,17 @@
   "translation_attempted": true,
   "universe": [
    "Russell 1000",
+   "Russell 2000"
+  ]
+ },
+ "TSE": {
+  "name": "TRINSEO PLC Prvt",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
    "Russell 2000"
   ]
  }
