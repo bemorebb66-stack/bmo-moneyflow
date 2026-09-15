@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-15T01:58:09+00:00",
+  "updated_at": "2026-09-15T11:59:35+00:00",
   "first_date": "2026-03-10",
   "last_date": "2026-09-14",
   "snapshot_count": 127,
-  "revision_count": 42,
-  "selectable_revision_count": 41,
+  "revision_count": 43,
+  "selectable_revision_count": 42,
   "first_selectable_date": "2026-07-29",
   "last_selectable_date": "2026-09-14",
   "dates": [
@@ -674,6 +674,19 @@
       "replay_rule_version": "bvt-replay/2.0.0",
       "calendar_version": "XNYS-regular/2026.2",
       "path": "revisions/2026-09-11/0731f2b9bfa3377cc0ef8a72f7075ae5268803dc97b58c21bea855b2d0b517a5.json",
+      "selectable": true
+    },
+    {
+      "trading_date": "2026-09-14",
+      "available_at": "2026-09-15T11:59:35+00:00",
+      "data_grade": "CURRENT_PROXY",
+      "content_hash": "sha256:42d368da8b10cfc4aee34cbab1aa67736180fea747390446d11bb9d585c8eb7d",
+      "file_hash": "sha256:a876f38cbe22cee1107f170eee28426e29a4c60497a362222405a73b59ec1526",
+      "data_contract_version": "bvt-market-data/2.0.0",
+      "signal_rule_version": "bvt-signal/2.0.0",
+      "replay_rule_version": "bvt-replay/2.0.0",
+      "calendar_version": "XNYS-regular/2026.2",
+      "path": "revisions/2026-09-14/42d368da8b10cfc4aee34cbab1aa67736180fea747390446d11bb9d585c8eb7d.json",
       "selectable": true
     },
     {
