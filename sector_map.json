@@ -2231,7 +2231,7 @@
   "name": "Fiserv",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 27428528128,
+  "mcap": 27114786816,
   "name_ko": "파이서브",
   "universe": [
    "Russell 1000",
@@ -3114,7 +3114,6 @@
   "industry": "Packaged Foods",
   "mcap": 30083180544,
   "universe": [
-   "Nasdaq 100",
    "Russell 1000",
    "S&P 500"
   ],
@@ -9775,7 +9774,7 @@
   "name": "LIONSGATE STUDIOS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 3353497856,
+  "mcap": 3460619008,
   "name_ko": "라이온스게이트 스튜디오스",
   "universe": [
    "Russell 2000"
@@ -17313,7 +17312,7 @@
   "name": "NIQ GLOBAL INTELLIGENCE PLC",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 5262012928,
+  "mcap": 5495027712,
   "universe": [
    "Russell 1000"
   ],
@@ -29683,7 +29682,7 @@
   "name": "SHOULDER INNOVATIONS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 385775264,
+  "mcap": 382027840,
   "universe": [
    "Russell 2000"
   ],
@@ -33562,6 +33561,39 @@
  },
  "TSE": {
   "name": "TRINSEO PLC Prvt",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "FAZ6": {
+  "name": "SP MID 400 EMINI DEC 26",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "ESZ6": {
+  "name": "SP500 EMINI DEC 26",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "RTYZ6": {
+  "name": "RUSSELL 2000 EMINI CME DEC 26",
   "sector": "기타",
   "industry": "기타",
   "mcap": 0,
