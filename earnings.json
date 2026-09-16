@@ -1,17 +1,17 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-16T01:49:00.251986+00:00",
+    "generatedAt": "2026-09-16T17:26:20.171876+00:00",
     "status": "ok",
     "from": "2026-08-02",
     "to": "2027-03-15",
-    "count": 6407,
+    "count": 6414,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
+      "trackedUniverseCount": 604,
       "supplementalTickerCount": 150,
       "supplementalEventCount": 860,
       "reportedHistoryQuarters": 8,
@@ -3834,6 +3834,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "PFE",
+      "company": "화이자",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 14653000000.0,
+      "netIncomeActual": 2910000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "PG",
       "company": "P&G(프록터 & 갬블)",
       "date": "2025-06-30",
@@ -4035,6 +4047,18 @@
       "dateKind": "period-end",
       "revenueActual": 6022000000.0,
       "netIncomeActual": 884000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SYY",
+      "company": "시스코",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 21138000000.0,
+      "netIncomeActual": 531000000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -4888,6 +4912,18 @@
       "dateKind": "period-end",
       "revenueActual": 2536300000.0,
       "netIncomeActual": 253800000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2025-07-31",
+      "periodEnd": "2025-07-31",
+      "dateKind": "period-end",
+      "revenueActual": 1739737000.0,
+      "netIncomeActual": 242509000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -9969,14 +10005,15 @@
       "ticker": "PFE",
       "company": "화이자",
       "date": "2025-09-30",
-      "quarter": 3,
-      "year": 2025,
       "epsActual": 0.87,
       "epsEstimate": 0.6397,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-09-30",
+      "revenueActual": 16654000000.0,
+      "netIncomeActual": 3541000000.0
     },
     {
       "ticker": "PFG",
@@ -10828,14 +10865,15 @@
       "ticker": "SYY",
       "company": "시스코",
       "date": "2025-09-30",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 1.15,
       "epsEstimate": 1.1333,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-09-30",
+      "revenueActual": 21148000000.0,
+      "netIncomeActual": 476000000.0
     },
     {
       "ticker": "T",
@@ -12125,6 +12163,18 @@
       "dateKind": "period-end",
       "revenueActual": 2474000000.0,
       "netIncomeActual": 334000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2025-10-31",
+      "periodEnd": "2025-10-31",
+      "dateKind": "period-end",
+      "revenueActual": 2254860000.0,
+      "netIncomeActual": 448696000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -17542,14 +17592,15 @@
       "ticker": "PFE",
       "company": "화이자",
       "date": "2025-12-31",
-      "quarter": 4,
-      "year": 2025,
       "epsActual": 0.66,
       "epsEstimate": 0.5775,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "revenueActual": 17557000000.0,
+      "netIncomeActual": -1648000000.0
     },
     {
       "ticker": "PFG",
@@ -18481,14 +18532,15 @@
       "ticker": "SYY",
       "company": "시스코",
       "date": "2025-12-31",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 0.99,
       "epsEstimate": 0.9863,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "revenueActual": 20762000000.0,
+      "netIncomeActual": 389000000.0
     },
     {
       "ticker": "T",
@@ -19883,6 +19935,18 @@
       "dateKind": "period-end",
       "revenueActual": 2594000000.0,
       "netIncomeActual": 432000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2026-01-31",
+      "periodEnd": "2026-01-31",
+      "dateKind": "period-end",
+      "revenueActual": 2408798000.0,
+      "netIncomeActual": 64958000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -25301,14 +25365,15 @@
       "ticker": "PFE",
       "company": "화이자",
       "date": "2026-03-31",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 0.75,
       "epsEstimate": 0.7243,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "revenueActual": 14450000000.0,
+      "netIncomeActual": 2687000000.0
     },
     {
       "ticker": "PFG",
@@ -26252,14 +26317,15 @@
       "ticker": "SYY",
       "company": "시스코",
       "date": "2026-03-31",
-      "quarter": 3,
-      "year": 2026,
       "epsActual": 0.94,
       "epsEstimate": 0.9538,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "revenueActual": 20519000000.0,
+      "netIncomeActual": 340000000.0
     },
     {
       "ticker": "T",
@@ -27654,6 +27720,18 @@
       "dateKind": "period-end",
       "revenueActual": 3002000000.0,
       "netIncomeActual": -177000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2026-04-30",
+      "periodEnd": "2026-04-30",
+      "dateKind": "period-end",
+      "revenueActual": 2275985000.0,
+      "netIncomeActual": 17105000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -29412,10 +29490,11 @@
       "epsEstimate": 7.305,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 932000000.0,
+      "revenueActual": 9457000000.0
     },
     {
       "ticker": "CMS",
@@ -29808,10 +29887,11 @@
       "epsEstimate": 0.6887,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 4480000000.0,
+      "netIncomeActual": 340000000.0
     },
     {
       "ticker": "DAL",
@@ -30382,10 +30462,11 @@
       "epsEstimate": 3.1015,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 8531000000.0,
+      "netIncomeActual": 821000000.0
     },
     {
       "ticker": "ETR",
@@ -31029,10 +31110,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -33043,14 +33125,15 @@
       "ticker": "PFE",
       "company": "화이자",
       "date": "2026-06-30",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 0.77,
       "epsEstimate": 0.6914,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 15034000000.0,
+      "netIncomeActual": -248000000.0
     },
     {
       "ticker": "PFG",
@@ -33996,14 +34079,15 @@
       "ticker": "SYY",
       "company": "시스코",
       "date": "2026-06-30",
-      "quarter": 4,
-      "year": 2026,
       "epsActual": 1.53,
       "epsEstimate": 1.5263,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 22124000000.0,
+      "netIncomeActual": 551000000.0
     },
     {
       "ticker": "T",
@@ -39700,6 +39784,18 @@
       "dateKind": "period-end",
       "revenueActual": 3410000000.0,
       "netIncomeActual": -282000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SNPS",
+      "company": "시놉시스",
+      "date": "2026-07-31",
+      "periodEnd": "2026-07-31",
+      "dateKind": "period-end",
+      "revenueActual": 2476822000.0,
+      "netIncomeActual": 545800000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -73868,7 +73964,7 @@
       "epsEstimate": 0.1301,
       "revenueEstimate": 116751750.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -74650,7 +74746,7 @@
       "epsEstimate": 0.5369,
       "revenueEstimate": 271743085.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -75399,7 +75495,7 @@
       "epsEstimate": 0.4949,
       "revenueEstimate": 295875460.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -75577,7 +75673,7 @@
       "epsEstimate": -0.0238,
       "revenueEstimate": 1358177389.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76125,7 +76221,7 @@
       "epsEstimate": 0.1985,
       "revenueEstimate": 231646052.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76216,7 +76312,7 @@
       "epsEstimate": -0.4952,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76531,7 +76627,7 @@
       "epsEstimate": 1.916,
       "revenueEstimate": 275860356.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -77714,7 +77810,7 @@
       "epsEstimate": -0.0238,
       "revenueEstimate": 44497500.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -77740,7 +77836,7 @@
       "epsEstimate": -1.4076,
       "revenueEstimate": 23325931.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78269,7 +78365,7 @@
       "epsEstimate": 0.4964,
       "revenueEstimate": 597599640.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79048,7 +79144,7 @@
       "epsEstimate": -0.0371,
       "revenueEstimate": 291662737.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79122,7 +79218,7 @@
       "epsEstimate": 0.2582,
       "revenueEstimate": 684040121.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79540,7 +79636,7 @@
     },
     {
       "ticker": "AQST",
-      "company": "AQUESTIVE THERAPEUTICS",
+      "company": "수용성 치료제",
       "date": "2027-03-02",
       "hour": "amc",
       "quarter": 4,
@@ -79609,7 +79705,7 @@
       "epsEstimate": 0.068,
       "revenueEstimate": 232972845.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -80643,7 +80739,7 @@
       "epsEstimate": -0.1162,
       "revenueEstimate": 90692950.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
