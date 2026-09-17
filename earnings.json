@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-17T01:47:35.203386+00:00",
+    "generatedAt": "2026-09-17T01:57:06.287414+00:00",
     "status": "ok",
     "from": "2026-08-03",
     "to": "2027-03-16",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 604,
       "supplementalTickerCount": 150,
-      "supplementalEventCount": 860,
+      "supplementalEventCount": 862,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -29078,11 +29078,10 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 5442000000.0,
-      "netIncomeActual": 907000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "BTDR",
@@ -31140,11 +31139,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
