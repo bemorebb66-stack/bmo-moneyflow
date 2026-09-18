@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-18T01:47:42.616305+00:00",
+    "generatedAt": "2026-09-18T16:52:01.543674+00:00",
     "status": "ok",
     "from": "2026-08-04",
     "to": "2027-03-17",
@@ -11,9 +11,9 @@
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 594,
-      "supplementalTickerCount": 152,
-      "supplementalEventCount": 858,
+      "trackedUniverseCount": 604,
+      "supplementalTickerCount": 144,
+      "supplementalEventCount": 824,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -29695,15 +29695,14 @@
       "ticker": "BEN",
       "company": "프랭클린 리소시스",
       "date": "2026-06-30",
-      "dateKind": "period-end",
+      "dateKind": "provider-period",
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
+      "source": "Finnhub Company Earnings",
       "epsActual": 0.72,
       "epsEstimate": 0.6781,
-      "periodEnd": "2026-06-30",
-      "revenueActual": 2358400000.0,
-      "netIncomeActual": 171500000.0
+      "quarter": 3,
+      "year": 2026
     },
     {
       "ticker": "BF-B",
@@ -76548,7 +76547,7 @@
       "epsEstimate": 0.1969,
       "revenueEstimate": 114436523.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -77161,7 +77160,7 @@
       "epsEstimate": -0.4952,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
