@@ -1,9 +1,88 @@
 {
   "meta": {
-    "generatedAt": "2026-09-09T08:34:28.601586+00:00",
-    "count": 184
+    "generatedAt": "2026-09-22T09:11:23.840883+00:00",
+    "count": 236
   },
   "pendingTrades": [
+    {
+      "ticker": "GPUS",
+      "company": "Hyperscale Data, Inc.",
+      "filer": "AULT MILTON C III",
+      "role": "Executive Chairman",
+      "txType": "매수",
+      "shares": 80200,
+      "price": 0.189,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-14",
+      "accession": "0001214659-26-011678",
+      "sourceAccessions": [
+        "0001214659-26-011678"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GPUS",
+      "company": "Hyperscale Data, Inc.",
+      "filer": "AULT MILTON C III",
+      "role": "Executive Chairman",
+      "txType": "매수",
+      "shares": 5500,
+      "price": 0.1887,
+      "txDate": "2026-09-09",
+      "filedDate": "2026-09-14",
+      "accession": "0001214659-26-011678",
+      "sourceAccessions": [
+        "0001214659-26-011648",
+        "0001214659-26-011678"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GPUS",
+      "company": "Hyperscale Data, Inc.",
+      "filer": "AULT MILTON C III",
+      "role": "Executive Chairman",
+      "txType": "매수",
+      "shares": 22800,
+      "price": 0.1857,
+      "txDate": "2026-09-10",
+      "filedDate": "2026-09-14",
+      "accession": "0001214659-26-011678",
+      "sourceAccessions": [
+        "0001214659-26-011648",
+        "0001214659-26-011678"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GPUS",
+      "company": "Hyperscale Data, Inc.",
+      "filer": "AULT MILTON C III",
+      "role": "Executive Chairman",
+      "txType": "매수",
+      "shares": 150000,
+      "price": 0.1892,
+      "txDate": "2026-09-11",
+      "filedDate": "2026-09-14",
+      "accession": "0001214659-26-011678",
+      "sourceAccessions": [
+        "0001214659-26-011648",
+        "0001214659-26-011678"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
     {
       "ticker": "REBN",
       "company": "Reborn Coffee, Inc.",
@@ -290,6 +369,60 @@
           "severity": "critical",
           "marketLow": "0.27000001072883606",
           "marketHigh": "0.33500000834465027"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "UMC",
+      "company": "UNITED MICROELECTRONICS CORP",
+      "filer": "Liu Chitung",
+      "role": "CFO & SVP",
+      "txType": "매도",
+      "shares": 1200000,
+      "price": 142.333,
+      "txDate": "2026-09-16",
+      "filedDate": "2026-09-17",
+      "accession": "0001193125-26-393652",
+      "sourceAccessions": [
+        "0001193125-26-393652"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2120081/000119312526393652/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "22.25",
+          "marketHigh": "22.84000015258789"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "UMC",
+      "company": "UNITED MICROELECTRONICS CORP",
+      "filer": "Liu Chitung",
+      "role": "CFO & SVP",
+      "txType": "매도",
+      "shares": 400000,
+      "price": 145,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-17",
+      "accession": "0001193125-26-393652",
+      "sourceAccessions": [
+        "0001193125-26-393652"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2120081/000119312526393652/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "23.299999237060547",
+          "marketHigh": "24.549999237060547"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1039,6 +1172,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "ARDC",
+      "company": "Ares Dynamic Credit Allocation Fund, Inc.",
+      "filer": "THRIVENT FINANCIAL FOR LUTHERANS",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 240000,
+      "price": 25,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0000314984-26-000042",
+      "sourceAccessions": [
+        "0000314984-26-000042"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1515324/000031498426000042/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "12.0600004196167",
+          "marketHigh": "12.239999771118164"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "BABA",
       "company": "Alibaba Group Holding Ltd",
       "filer": "Wu Yongming",
@@ -1063,6 +1223,34 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "CRWD",
+      "company": "CrowdStrike Holdings, Inc.",
+      "filer": "Kurtz George",
+      "role": "PRESIDENT AND CEO",
+      "txType": "매도",
+      "shares": 354,
+      "price": 364.26,
+      "txDate": "2026-09-16",
+      "filedDate": "2026-09-17",
+      "accession": "0001778564-26-000163",
+      "sourceAccessions": [
+        "0001778564-26-000163"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1535527/000177856426000163/form4-09172026_080901.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "364.26",
+          "expectedLow": "237.67",
+          "expectedHigh": "238.64"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -1525,6 +1713,33 @@
       "severity": "review"
     },
     {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Scarpelli Cassiano Ricardo",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 70000,
+      "price": 18.5,
+      "txDate": "2026-09-10",
+      "filedDate": "2026-09-11",
+      "accession": "0001292814-26-004536",
+      "sourceAccessions": [
+        "0001292814-26-004536"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004536/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4000000953674316",
+          "marketHigh": "3.619999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "LITB",
       "company": "LightInTheBox Holding Co., Ltd.",
       "filer": "He Jian",
@@ -1577,6 +1792,33 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZKH",
+      "company": "ZKH Group Ltd",
+      "filer": "Han Yunjie",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 9289000,
+      "price": 0.0834,
+      "txDate": "2026-09-11",
+      "filedDate": "2026-09-15",
+      "accession": "0001104659-26-107659",
+      "sourceAccessions": [
+        "0001104659-26-107659"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2105611/000110465926107659/tm2625375-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.8550000190734863",
+          "marketHigh": "2.9549999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -1958,6 +2200,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Paris Roberto de Jesus",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 25000,
+      "price": 18.5,
+      "txDate": "2026-09-10",
+      "filedDate": "2026-09-11",
+      "accession": "0001292814-26-004532",
+      "sourceAccessions": [
+        "0001292814-26-004532"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004532/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4000000953674316",
+          "marketHigh": "3.619999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Paris Roberto de Jesus",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 25000,
+      "price": 18.25,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-09",
+      "accession": "0001292814-26-004502",
+      "sourceAccessions": [
+        "0001292814-26-004502"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004502/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.5399999618530273",
+          "marketHigh": "3.619999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BFNH",
       "company": "BIOFORCE NANOSCIENCES HOLDINGS, INC.",
       "filer": "Ferguson Merle",
@@ -2141,6 +2437,60 @@
           "severity": "critical",
           "marketLow": "413.55999755859375",
           "marketHigh": "425.3999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Fernandes Oswaldo Tadeu",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 16300,
+      "price": 18.41,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-09",
+      "accession": "0001292814-26-004504",
+      "sourceAccessions": [
+        "0001292814-26-004504"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004504/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.5399999618530273",
+          "marketHigh": "3.619999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Fernandes Oswaldo Tadeu",
+      "role": "Executive Officer",
+      "txType": "매도",
+      "shares": 12,
+      "price": 18.41,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-09",
+      "accession": "0001292814-26-004504",
+      "sourceAccessions": [
+        "0001292814-26-004504"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004504/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.5399999618530273",
+          "marketHigh": "3.619999885559082"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2474,6 +2824,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VIPS",
+      "company": "Vipshop Holdings Ltd",
+      "filer": "Wang Yuhua",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 2499,
+      "price": 64.949,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-10",
+      "accession": "0002114343-26-000002",
+      "sourceAccessions": [
+        "0002114343-26-000002"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1529192/000211434326000002/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "12.90999984741211",
+          "marketHigh": "13.069999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Fang Shu-Hua",
@@ -2522,6 +2899,33 @@
           "severity": "critical",
           "marketLow": "429.5",
           "marketHigh": "461.4700012207031"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 93931,
+      "price": 1.59,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-07-28",
+      "accession": "0001475597-26-000170",
+      "sourceAccessions": [
+        "0001475597-26-000170"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000170/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "19.0",
+          "marketHigh": "41.20000076293945"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2825,6 +3229,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "FCNCA",
+      "company": "FIRST CITIZENS BANCSHARES INC /DE/",
+      "filer": "Holding Olivia Britton",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 2000,
+      "price": 19.6,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-17",
+      "accession": "0001563717-26-000004",
+      "sourceAccessions": [
+        "0001563717-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/798941/000156371726000004/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2159.179931640625",
+          "marketHigh": "2194.77001953125"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FCNCA",
+      "company": "FIRST CITIZENS BANCSHARES INC /DE/",
+      "filer": "Holding Olivia Britton",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 5000,
+      "price": 19.5,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-17",
+      "accession": "0001563717-26-000004",
+      "sourceAccessions": [
+        "0001563717-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/798941/000156371726000004/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2159.179931640625",
+          "marketHigh": "2194.77001953125"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ATHM",
       "company": "Autohome Inc.",
       "filer": "Liu Chi",
@@ -2931,6 +3389,87 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Fernando Adrian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 35000,
+      "price": 1.19,
+      "txDate": "2026-09-09",
+      "filedDate": "2026-09-14",
+      "accession": "0001034957-26-000067",
+      "sourceAccessions": [
+        "0001034957-26-000067"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000103495726000067/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.819999694824219",
+          "marketHigh": "12.210000038146973"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Fernando Adrian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 65000,
+      "price": 1.25,
+      "txDate": "2026-09-10",
+      "filedDate": "2026-09-14",
+      "accession": "0001034957-26-000067",
+      "sourceAccessions": [
+        "0001034957-26-000067"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000103495726000067/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.800000190734863",
+          "marketHigh": "12.789999961853027"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "Stark Eugene S",
+      "role": "VP Administration",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 24,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-15",
+      "accession": "0000040417-26-000047",
+      "sourceAccessions": [
+        "0000040417-26-000047"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000047/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "64.31999969482422",
+          "marketHigh": "65.44999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "LMT",
@@ -3117,40 +3656,31 @@
       "severity": "critical"
     },
     {
-      "ticker": "SCCO",
-      "company": "SOUTHERN COPPER CORP/",
-      "filer": "PALOMINO BONILLA LUIS MIGUEL",
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "WALKER ROBERT W",
       "role": "이사",
-      "txType": "매도",
-      "shares": 0,
-      "price": 0,
-      "txDate": "2026-08-31",
-      "filedDate": "2026-09-01",
-      "accession": "0001284489-26-000034",
+      "txType": "매수",
+      "shares": 2500,
+      "price": 18.18,
+      "txDate": "2026-09-10",
+      "filedDate": "2026-09-11",
+      "accession": "0001437749-26-030168",
       "sourceAccessions": [
-        "0001284489-26-000032",
-        "0001284489-26-000034"
+        "0001437749-26-030168"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1284489/000128448926000034/form4a-09012026_090916.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926030168/rdgdoc.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "INVALID_SHARES",
-          "severity": "critical"
-        },
-        {
-          "code": "INVALID_PRICE",
-          "severity": "critical"
-        },
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "205.0",
-          "marketHigh": "213.0399932861328"
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "7.849999904632568",
+          "marketHigh": "8.220000267028809"
         }
       ],
-      "reasonCode": "INVALID_SHARES",
-      "severity": "critical"
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "BRCC",
@@ -3177,6 +3707,61 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NBP",
+      "company": "NovaBridge Biosciences",
+      "filer": "Cao Sean Wuxiong",
+      "role": "Chief Bus. Development Officer",
+      "txType": "매도",
+      "shares": 107978,
+      "price": 0.74,
+      "txDate": "2026-09-09",
+      "filedDate": "2026-09-11",
+      "accession": "0002109966-26-000008",
+      "sourceAccessions": [
+        "0002109966-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2109966/000210996626000008/form4-09112026_040901.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.6799999475479126",
+          "marketHigh": "1.7999999523162842"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "JUSH",
+      "company": "Jushi Holdings Inc.",
+      "filer": "Arsenault Denis J.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 118034,
+      "price": 0.59,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-14",
+      "accession": "0001628280-26-061833",
+      "sourceAccessions": [
+        "0001628280-26-061833"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1949999/000162828026061833/wk-form4_1789416413.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "0.59",
+          "expectedLow": "0.81",
+          "expectedHigh": "0.82"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -3363,6 +3948,33 @@
           "severity": "critical",
           "marketLow": "13.199999809265137",
           "marketHigh": "17.299999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZKH",
+      "company": "ZKH Group Ltd",
+      "filer": "Han Yunjie",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 672910,
+      "price": 0.0846,
+      "txDate": "2026-09-09",
+      "filedDate": "2026-09-11",
+      "accession": "0001104659-26-106881",
+      "sourceAccessions": [
+        "0001104659-26-106881"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2105611/000110465926106881/tm2625264-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.9200000762939453",
+          "marketHigh": "2.9600000381469727"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -3639,6 +4251,87 @@
       "severity": "critical"
     },
     {
+      "ticker": "COHU",
+      "company": "COHU INC",
+      "filer": "BOHRSON CHRISTOPHER",
+      "role": "Chief Recurring Officer",
+      "txType": "매도",
+      "shares": 1000,
+      "price": 51.07,
+      "txDate": "2025-09-15",
+      "filedDate": "2026-09-17",
+      "accession": "0001437749-26-030695",
+      "sourceAccessions": [
+        "0001437749-26-030695"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1701398/000143774926030695/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "20.690000534057617",
+          "marketHigh": "21.290000915527344"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 31226,
+      "price": 1.46,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-23",
+      "accession": "0001475597-26-000165",
+      "sourceAccessions": [
+        "0001475597-26-000165"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000165/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "27.6200008392334",
+          "marketHigh": "31.399999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 3763,
+      "price": 1.36,
+      "txDate": "2026-07-22",
+      "filedDate": "2026-07-23",
+      "accession": "0001475597-26-000165",
+      "sourceAccessions": [
+        "0001475597-26-000165"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000165/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "25.0",
+          "marketHigh": "28.200000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "FGL",
       "company": "Founder Group Ltd",
       "filer": "HRT FINANCIAL LP",
@@ -3828,6 +4521,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 45130,
+      "price": 0.939,
+      "txDate": "2026-08-06",
+      "filedDate": "2026-08-10",
+      "accession": "0001475597-26-000190",
+      "sourceAccessions": [
+        "0001475597-26-000190"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000190/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "17.5",
+          "marketHigh": "19.799999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PFSA",
       "company": "Profusa, Inc.",
       "filer": "HRT FINANCIAL LP",
@@ -3930,6 +4650,33 @@
           "severity": "review",
           "marketLow": "21.8799991607666",
           "marketHigh": "22.729999542236328"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "WALKER ROBERT W",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 4000,
+      "price": 17.74,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-17",
+      "accession": "0001437749-26-030686",
+      "sourceAccessions": [
+        "0001437749-26-030686"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926030686/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.329999923706055",
+          "marketHigh": "8.430000305175781"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -4044,6 +4791,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 16205,
+      "price": 1.04,
+      "txDate": "2026-07-30",
+      "filedDate": "2026-08-03",
+      "accession": "0001475597-26-000184",
+      "sourceAccessions": [
+        "0001475597-26-000184"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000184/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "19.600000381469727",
+          "marketHigh": "22.399999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 34355,
+      "price": 0.943,
+      "txDate": "2026-07-31",
+      "filedDate": "2026-08-03",
+      "accession": "0001475597-26-000184",
+      "sourceAccessions": [
+        "0001475597-26-000184"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000184/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "17.860000610351562",
+          "marketHigh": "19.799999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
       "filer": "Moloto Kgabo",
@@ -4069,6 +4870,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "VIPS",
+      "company": "Vipshop Holdings Ltd",
+      "filer": "Yang Donghao",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 479,
+      "price": 64.8025,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-10",
+      "accession": "0001501343-26-000004",
+      "sourceAccessions": [
+        "0001501343-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1529192/000150134326000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "12.90999984741211",
+          "marketHigh": "13.069999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "FGBI",
@@ -4315,6 +5143,114 @@
       "severity": "review"
     },
     {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "Flynn James Peter",
+      "role": "CEO",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 0.6066,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001727995-26-000002",
+      "sourceAccessions": [
+        "0001727995-26-000002"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1727995/000172799526000002/form4-08202026_040803.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.800000190734863",
+          "marketHigh": "6.199999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "Flynn James Peter",
+      "role": "CEO",
+      "txType": "매수",
+      "shares": 24000,
+      "price": 0.6084,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001727995-26-000002",
+      "sourceAccessions": [
+        "0001727995-26-000002"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1727995/000172799526000002/form4-08202026_040803.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.800000190734863",
+          "marketHigh": "6.199999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 8435,
+      "price": 1.43,
+      "txDate": "2026-07-23",
+      "filedDate": "2026-07-27",
+      "accession": "0001475597-26-000166",
+      "sourceAccessions": [
+        "0001475597-26-000166"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000166/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "23.0",
+          "marketHigh": "27.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 27702,
+      "price": 0.954,
+      "txDate": "2026-07-24",
+      "filedDate": "2026-07-27",
+      "accession": "0001475597-26-000166",
+      "sourceAccessions": [
+        "0001475597-26-000166"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000166/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "17.540000915527344",
+          "marketHigh": "21.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "NRDY",
       "company": "Nerdy Inc.",
       "filer": "Paszterko John Andrew",
@@ -4423,6 +5359,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "ATHE",
+      "company": "ALTERITY THERAPEUTICS LTD",
+      "filer": "Marks Peter Ashley",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 47620,
+      "price": 0.5,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-08",
+      "accession": "0002127888-26-000004",
+      "sourceAccessions": [
+        "0002127888-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1131343/000212788826000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.480000019073486",
+          "marketHigh": "4.659999847412109"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "FGL",
       "company": "Founder Group Ltd",
       "filer": "HRT FINANCIAL LP",
@@ -4504,6 +5467,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 6219,
+      "price": 3.48,
+      "txDate": "2026-09-04",
+      "filedDate": "2026-09-08",
+      "accession": "0002118015-26-000004",
+      "sourceAccessions": [
+        "0002118015-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "34.4900016784668",
+          "marketHigh": "35.11000061035156"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ZNB",
       "company": "Zeta Network Group",
       "filer": "HRT FINANCIAL LP",
@@ -4556,6 +5546,168 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "Flynn James Peter",
+      "role": "CEO",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 0.6821,
+      "txDate": "2026-08-21",
+      "filedDate": "2026-08-25",
+      "accession": "0001727995-26-000006",
+      "sourceAccessions": [
+        "0001727995-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1727995/000172799526000006/form4-08252026_040801.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.5",
+          "marketHigh": "7.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "Flynn James Peter",
+      "role": "CEO",
+      "txType": "매수",
+      "shares": 10000,
+      "price": 0.6825,
+      "txDate": "2026-08-24",
+      "filedDate": "2026-08-25",
+      "accession": "0001727995-26-000006",
+      "sourceAccessions": [
+        "0001727995-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1727995/000172799526000006/form4-08252026_040801.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.599999904632568",
+          "marketHigh": "6.900000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "McAnally Bruce",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 199,
+      "price": 19.5,
+      "txDate": "2026-07-24",
+      "filedDate": "2026-09-08",
+      "accession": "0001437749-26-029825",
+      "sourceAccessions": [
+        "0001437749-26-029825"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926029825/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.989999771118164",
+          "marketHigh": "9.489999771118164"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "McAnally Bruce",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 200,
+      "price": 19,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-08",
+      "accession": "0001437749-26-029825",
+      "sourceAccessions": [
+        "0001437749-26-029825"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926029825/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.470000267028809",
+          "marketHigh": "8.710000038146973"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "McAnally Bruce",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 200,
+      "price": 18.75,
+      "txDate": "2026-09-02",
+      "filedDate": "2026-09-08",
+      "accession": "0001437749-26-029825",
+      "sourceAccessions": [
+        "0001437749-26-029825"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926029825/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.25",
+          "marketHigh": "8.470000267028809"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "McAnally Bruce",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 200,
+      "price": 18.5,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001437749-26-029825",
+      "sourceAccessions": [
+        "0001437749-26-029825"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926029825/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.270000457763672",
+          "marketHigh": "8.460000038146973"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "NRDY",
@@ -4768,6 +5920,222 @@
           "severity": "critical",
           "marketLow": "27.110000610351562",
           "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "BRIGGS JAMES A",
+      "role": "Chief Financial Officer",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 0.6899,
+      "txDate": "2026-08-24",
+      "filedDate": "2026-08-25",
+      "accession": "0001752395-26-000002",
+      "sourceAccessions": [
+        "0001752395-26-000002"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1752395/000175239526000002/form4-08252026_040803.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.599999904632568",
+          "marketHigh": "6.900000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "McAnally Bruce",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 500,
+      "price": 18.4,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-10",
+      "accession": "0001437749-26-030075",
+      "sourceAccessions": [
+        "0001437749-26-030075"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926030075/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.180000305175781",
+          "marketHigh": "8.75"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FGBI",
+      "company": "First Guaranty Bancshares, Inc.",
+      "filer": "McAnally Bruce",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 250,
+      "price": 18.25,
+      "txDate": "2026-09-09",
+      "filedDate": "2026-09-10",
+      "accession": "0001437749-26-030075",
+      "sourceAccessions": [
+        "0001437749-26-030075"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1408534/000143774926030075/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "7.820000171661377",
+          "marketHigh": "8.149999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 1827,
+      "price": 0.926,
+      "txDate": "2026-08-03",
+      "filedDate": "2026-08-05",
+      "accession": "0001475597-26-000186",
+      "sourceAccessions": [
+        "0001475597-26-000186"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000186/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "17.299999237060547",
+          "marketHigh": "19.34000015258789"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LGHL",
+      "company": "Lion Group Holding Ltd",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 13764,
+      "price": 0.92,
+      "txDate": "2026-08-04",
+      "filedDate": "2026-08-05",
+      "accession": "0001475597-26-000186",
+      "sourceAccessions": [
+        "0001475597-26-000186"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000186/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "18.0",
+          "marketHigh": "19.18000030517578"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "Flynn James Peter",
+      "role": "CEO",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 0.6279,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-21",
+      "accession": "0001727995-26-000004",
+      "sourceAccessions": [
+        "0001727995-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1727995/000172799526000004/form4-08212026_040804.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.0",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "HOULIHAN WILLIAM A",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 0.62,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-08-21",
+      "accession": "0001185292-26-000013",
+      "sourceAccessions": [
+        "0001185292-26-000013"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1185292/000118529226000013/form4-08212026_040802.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.0",
+          "marketHigh": "6.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LFT",
+      "company": "Lument Finance Trust, Inc.",
+      "filer": "HOULIHAN WILLIAM A",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 20000,
+      "price": 0.6,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001185292-26-000011",
+      "sourceAccessions": [
+        "0001185292-26-000011"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1185292/000118529226000011/form4-08202026_040801.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.800000190734863",
+          "marketHigh": "6.199999809265137"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
