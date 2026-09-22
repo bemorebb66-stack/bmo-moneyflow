@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-22T02:00:47.469777+00:00",
+    "generatedAt": "2026-09-22T17:29:53.229147+00:00",
     "status": "ok",
     "from": "2026-08-08",
     "to": "2027-03-21",
@@ -11,9 +11,9 @@
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 602,
-      "supplementalTickerCount": 148,
-      "supplementalEventCount": 844,
+      "trackedUniverseCount": 598,
+      "supplementalTickerCount": 159,
+      "supplementalEventCount": 913,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -31876,10 +31876,11 @@
       "epsEstimate": 1.318,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 7592000000.0,
+      "netIncomeActual": 1092000000.0
     },
     {
       "ticker": "DVA",
@@ -31889,10 +31890,11 @@
       "epsEstimate": 3.9212,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 3554084000.0,
+      "netIncomeActual": 265397000.0
     },
     {
       "ticker": "DVN",
@@ -32000,10 +32002,11 @@
       "epsEstimate": 14.8252,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 559000000.0,
+      "revenueActual": 3910000000.0
     },
     {
       "ticker": "EIX",
@@ -32069,10 +32072,11 @@
       "epsEstimate": 1.6931,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 3,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 4873000000.0,
+      "netIncomeActual": 718000000.0
     },
     {
       "ticker": "EOG",
@@ -32082,10 +32086,11 @@
       "epsEstimate": 5.0287,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 8494000000.0,
+      "netIncomeActual": 2724000000.0
     },
     {
       "ticker": "EQIX",
@@ -32205,10 +32210,11 @@
       "epsEstimate": 0.7627,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 1741000000.0,
+      "netIncomeActual": 241900000.0
     },
     {
       "ticker": "EXC",
