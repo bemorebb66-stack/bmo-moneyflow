@@ -863,13 +863,12 @@
   "name_ko": "브라운포맨"
  },
  "BLDR": {
-  "name": "Builders FirstSource",
+  "name": "BUILDERS FIRSTSOURCE INC",
   "sector": "Industrials",
   "industry": "Building Products & Equipment",
   "mcap": 9109245952,
   "universe": [
-   "Russell 1000",
-   "S&P 500"
+   "Russell 1000"
   ],
   "name_ko": "빌더스 퍼스트소스"
  },
@@ -2231,7 +2230,7 @@
   "name": "Fiserv",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 25094070272,
+  "mcap": 24711200768,
   "name_ko": "파이서브",
   "universe": [
    "Russell 1000",
@@ -3558,13 +3557,12 @@
   "name_ko": "모더나"
  },
  "TAP": {
-  "name": "Molson Coors Beverage Company",
+  "name": "MOLSON COORS BREWING CLASS B",
   "sector": "Consumer Defensive",
   "industry": "Beverages - Brewers",
   "mcap": 7460792832,
   "universe": [
-   "Russell 1000",
-   "S&P 500"
+   "Russell 1000"
   ],
   "name_ko": "몰슨 쿠어스 베버리지 Class B"
  },
@@ -4967,13 +4965,12 @@
   "name_ko": "TKO 그룹 홀딩스"
  },
  "TTD": {
-  "name": "Trade Desk (The)",
+  "name": "TRADE DESK INC CLASS A",
   "sector": "Communication Services",
   "industry": "Advertising Agencies",
   "mcap": 8979069952,
   "universe": [
-   "Russell 1000",
-   "S&P 500"
+   "Russell 1000"
   ],
   "name_ko": "트레이드 데스크"
  },
@@ -9774,7 +9771,7 @@
   "name": "LIONSGATE STUDIOS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 3195790848,
+  "mcap": 3415984896,
   "name_ko": "라이온스게이트 스튜디오스",
   "universe": [
    "Russell 2000"
@@ -11803,13 +11800,14 @@
   ]
  },
  "BE": {
-  "name": "BLOOM ENERGY CLASS A",
+  "name": "Bloom Energy",
   "sector": "Industrials",
   "industry": "Electrical Equipment & Parts",
   "mcap": 70066069504,
   "name_ko": "블룸 에너지",
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "S&P 500"
   ]
  },
  "LNG": {
@@ -11914,13 +11912,14 @@
   ]
  },
  "ILMN": {
-  "name": "ILLUMINA INC",
+  "name": "Illumina, Inc.",
   "sector": "Healthcare",
   "industry": "Diagnostics & Research",
   "mcap": 28772720640,
   "name_ko": "일루미나",
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "S&P 500"
   ]
  },
  "CRS": {
@@ -11995,13 +11994,14 @@
   ]
  },
  "P": {
-  "name": "EVERPURE INC CLASS A",
+  "name": "Everpure",
   "sector": "Technology",
   "industry": "Computer Hardware",
   "mcap": 26248353792,
   "name_ko": "에버퓨어",
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "S&P 500"
   ]
  },
  "NVT": {
@@ -12215,7 +12215,7 @@
   ]
  },
  "FWONK": {
-  "name": "LIBERTY MEDIA FORMULA ONE SERIES C",
+  "name": "LIBERTY MEDIA SERIES C",
   "sector": "Communication Services",
   "industry": "Entertainment",
   "mcap": 24005521408,
@@ -16649,7 +16649,7 @@
   ]
  },
  "FWONA": {
-  "name": "LIBERTY MEDIA FORMULA ONE SERIES A",
+  "name": "LIBERTY MEDIA SERIES A",
   "sector": "Communication Services",
   "industry": "Entertainment",
   "mcap": 22193641472,
@@ -17312,7 +17312,7 @@
   "name": "NIQ GLOBAL INTELLIGENCE PLC",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 5365247488,
+  "mcap": 5424238080,
   "universe": [
    "Russell 1000"
   ],
@@ -25798,7 +25798,7 @@
   "metadata_attempted": true
  },
  "WEAV": {
-  "name": "WEAVE COMMUNICATIONS",
+  "name": "WEAVE COMMUNICATIONS INC",
   "sector": "Healthcare",
   "industry": "Health Information Services",
   "mcap": 548207168,
@@ -29683,7 +29683,7 @@
   "name": "SHOULDER INNOVATIONS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 378072224,
+  "mcap": 364748128,
   "universe": [
    "Russell 2000"
   ],
@@ -33621,5 +33621,357 @@
    "Russell 1000"
   ],
   "name_ko": "현금 담보 USD UBFUT"
+ },
+ "INIO": {
+  "name": "INNIO N V NV",
+  "sector": "Industrials",
+  "industry": "Specialty Industrial Machinery",
+  "mcap": 15224999936,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "QNT": {
+  "name": "QUANTINUUM INC CLASS A",
+  "sector": "Technology",
+  "industry": "Software - Application",
+  "mcap": 13589412864,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "FRVO": {
+  "name": "FERVO ENERGY CLASS A",
+  "sector": "Utilities",
+  "industry": "Utilities - Renewable",
+  "mcap": 4960864768,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "DPC": {
+  "name": "DPC HOLDINGS PLC",
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "mcap": 6152004608,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "JMKE": {
+  "name": "JERSEY MIKES SUBS INC CLASS A",
+  "sector": "Consumer Cyclical",
+  "industry": "Restaurants",
+  "mcap": 4465759744,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
+ },
+ "BXDC": {
+  "name": "BLACKSTONE DIGITAL INFRASTRUCTURE",
+  "sector": "Real Estate",
+  "industry": "REIT - Specialty",
+  "mcap": 1942543104,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "PBLS": {
+  "name": "PARABILIS MEDICINES INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 4562082816,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "CSQR": {
+  "name": "CSQUARE INC",
+  "sector": "Technology",
+  "industry": "Information Technology Services",
+  "mcap": 3041070080,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "COAG": {
+  "name": "HEMAB THERAPEUTICS HOLDINGS INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1773659136,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "LCLN": {
+  "name": "LINCOLN INTERNATIONAL INC CLASS A",
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "mcap": 2596468480,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "KARD": {
+  "name": "KARDIGAN INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1524110208,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "AADX": {
+  "name": "APPLIED AEROSPACE AND DEFENSE INC",
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "mcap": 2222152448,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "ODTX": {
+  "name": "ODYSSEY THERAPEUTICS INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1108229632,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "GMRS": {
+  "name": "GMR SOLUTIONS INC CLASS A",
+  "sector": "Healthcare",
+  "industry": "Medical Care Facilities",
+  "mcap": 623950784,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "LFTO": {
+  "name": "LIFTOFF MOBILE INC",
+  "sector": "Communication Services",
+  "industry": "Advertising Agencies",
+  "mcap": 2988701184,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "SSMR": {
+  "name": "SUNSHINE SILVER MINING AND REFININ",
+  "sector": "Basic Materials",
+  "industry": "Other Industrial Metals & Mining",
+  "mcap": 2321184768,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "EROC": {
+  "name": "EROCK INC CLASS A",
+  "sector": "Industrials",
+  "industry": "Specialty Industrial Machinery",
+  "mcap": 3656762112,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "APMD": {
+  "name": "APNIMED INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1091559040,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "BRUN": {
+  "name": "BOOST RUN INC CLASS A",
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "mcap": 1364799360,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "SCTX": {
+  "name": "SCRIBE THERAPEUTICS INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 531033600,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "HAWK": {
+  "name": "HAWKEYE INC",
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "mcap": 1592919936,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "SPTX": {
+  "name": "SEAPORT THERAPEUTICS INC",
+  "sector": "Healthcare",
+  "industry": "Biotechnology",
+  "mcap": 1130565248,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "BRR": {
+  "name": "PROCAP FINANCIAL INC",
+  "sector": "Financial Services",
+  "industry": "Capital Markets",
+  "mcap": 359664192,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "LIME": {
+  "name": "NEUTRON HOLDINGS INC",
+  "sector": "Industrials",
+  "industry": "Rental & Leasing Services",
+  "mcap": 1857392384,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "ITG": {
+  "name": "ITG CLASS A INC",
+  "sector": "Industrials",
+  "industry": "Engineering & Construction",
+  "mcap": 1443655808,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "REF": {
+  "name": "REFORMATION",
+  "sector": "Consumer Cyclical",
+  "industry": "Apparel Retail",
+  "mcap": 790481280,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "WHK": {
+  "name": "WHITEHAWK MINERALS CORP CLASS A",
+  "sector": "Energy",
+  "industry": "Oil & Gas Midstream",
+  "mcap": 626296256,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "MOBI": {
+  "name": "MOBIA MEDICAL INC",
+  "sector": "Healthcare",
+  "industry": "Medical Devices",
+  "mcap": 323256544,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "SUJA": {
+  "name": "SUJA LIFE INC CLASS A",
+  "sector": "Consumer Defensive",
+  "industry": "Beverages - Non-Alcoholic",
+  "mcap": 311317600,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "FCBM": {
+  "name": "FIRST CAROLINA FINANCIAL SERVICES",
+  "sector": "Financial Services",
+  "industry": "Banks - Regional",
+  "mcap": 396127872,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "REA": {
+  "name": "RARE EARTHS AMERICAS INC",
+  "sector": "Basic Materials",
+  "industry": "Other Industrial Metals & Mining",
+  "mcap": 223084512,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
+ },
+ "SHIM": {
+  "name": "SHIMMICK CORP",
+  "sector": "Industrials",
+  "industry": "Engineering & Construction",
+  "mcap": 137648288,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
  }
 }

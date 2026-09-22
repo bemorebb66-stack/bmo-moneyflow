@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-21T18:26:10.390444+00:00",
+    "generatedAt": "2026-09-22T01:51:24.139861+00:00",
     "status": "ok",
-    "from": "2026-08-07",
-    "to": "2027-03-20",
-    "count": 6573,
+    "from": "2026-08-08",
+    "to": "2027-03-21",
+    "count": 6577,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
-      "supplementalTickerCount": 149,
-      "supplementalEventCount": 841,
+      "trackedUniverseCount": 602,
+      "supplementalTickerCount": 148,
+      "supplementalEventCount": 844,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -1424,6 +1424,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 574000000.0,
       "revenueActual": 4726000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "BE",
+      "company": "블룸 에너지",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -42619000.0,
+      "revenueActual": 401242000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -7122,6 +7134,20 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 3.96,
       "epsEstimate": 3.9618
+    },
+    {
+      "ticker": "BE",
+      "company": "블룸 에너지",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -23093000.0,
+      "revenueActual": 519048000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.15,
+      "epsEstimate": 0.0967
     },
     {
       "ticker": "BEN",
@@ -14650,6 +14676,20 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 2.91,
       "epsEstimate": 2.8405
+    },
+    {
+      "ticker": "BE",
+      "company": "블룸 에너지",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 1092000.0,
+      "revenueActual": 777683000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.45,
+      "epsEstimate": 0.3198
     },
     {
       "ticker": "BEN",
@@ -22557,6 +22597,20 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 2.9,
       "epsEstimate": 2.8027
+    },
+    {
+      "ticker": "BE",
+      "company": "블룸 에너지",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 70653000.0,
+      "revenueActual": 751054000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.44,
+      "epsEstimate": 0.1339
     },
     {
       "ticker": "BEN",
@@ -30482,17 +30536,32 @@
       "epsEstimate": 3.1728
     },
     {
+      "ticker": "BE",
+      "company": "블룸 에너지",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 196290000.0,
+      "revenueActual": 1065365000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.78,
+      "epsEstimate": 0.418
+    },
+    {
       "ticker": "BEN",
       "company": "프랭클린 리소시스",
       "date": "2026-06-30",
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
+      "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 0.72,
       "epsEstimate": 0.6781,
-      "quarter": 3,
-      "year": 2026
+      "periodEnd": "2026-06-30",
+      "revenueActual": 2358400000.0,
+      "netIncomeActual": 171500000.0
     },
     {
       "ticker": "BF-B",
@@ -30681,10 +30750,11 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 5442000000.0,
+      "netIncomeActual": 907000000.0
     },
     {
       "ticker": "BTDR",
@@ -32742,10 +32812,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -44066,32 +44137,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
-    },
-    {
-      "ticker": "AZO",
-      "company": "오토존",
-      "date": "2026-09-21",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsEstimate": 54.9844,
-      "revenueEstimate": 6789495275.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "MU",
-      "company": "마이크론 테크놀로지",
-      "date": "2026-09-21",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsEstimate": 32.2476,
-      "revenueEstimate": 52142950606.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "CTAS",
@@ -75349,7 +75394,7 @@
       "epsEstimate": 0.2387,
       "revenueEstimate": 163613538.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -75602,7 +75647,7 @@
       "epsEstimate": 0.556,
       "revenueEstimate": 1219316670.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -75870,7 +75915,7 @@
       "epsEstimate": -0.1436,
       "revenueEstimate": 75031057.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76093,7 +76138,7 @@
       "epsEstimate": -0.255,
       "revenueEstimate": 21995137.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76116,7 +76161,7 @@
       "epsEstimate": 0.6124,
       "revenueEstimate": 402731258.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76280,7 +76325,7 @@
       "epsEstimate": 0.4313,
       "revenueEstimate": 141405996.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -76679,7 +76724,7 @@
       "epsEstimate": -0.2244,
       "revenueEstimate": 17019424.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -77271,7 +77316,7 @@
       "epsEstimate": 0.5712,
       "revenueEstimate": 346536258.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -77374,7 +77419,7 @@
       "epsEstimate": -0.0238,
       "revenueEstimate": 1358177389.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78417,7 +78462,7 @@
       "epsEstimate": -1.2811,
       "revenueEstimate": 3448732.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79307,7 +79352,7 @@
       "epsEstimate": -0.0442,
       "revenueEstimate": 71159861.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79818,7 +79863,7 @@
       "epsEstimate": 0.2285,
       "revenueEstimate": 838910016.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -80806,7 +80851,7 @@
       "epsEstimate": -0.187,
       "revenueEstimate": 63273996.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81058,7 +81103,7 @@
       "epsEstimate": -0.822,
       "revenueEstimate": 5203744.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81406,7 +81451,7 @@
       "epsEstimate": 0.068,
       "revenueEstimate": 232972845.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82242,7 +82287,7 @@
       "epsEstimate": 1.1448,
       "revenueEstimate": 235664155.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82844,7 +82889,7 @@
       "epsEstimate": -1.1074,
       "revenueEstimate": 309610.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -83165,7 +83210,7 @@
       "epsEstimate": 0.278,
       "revenueEstimate": 270299184.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -83253,7 +83298,7 @@
       "epsEstimate": 0.0068,
       "revenueEstimate": 11696676.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -84336,7 +84381,7 @@
       "epsEstimate": -0.1377,
       "revenueEstimate": 441996.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -84374,7 +84419,7 @@
       "epsEstimate": -0.6578,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -84411,6 +84456,19 @@
       "year": 2027,
       "epsEstimate": 0.1102,
       "revenueEstimate": 332554445.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "SHIM",
+      "company": "SHIMMICK CORP",
+      "date": "2027-03-10",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.0867,
+      "revenueEstimate": 168555000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
@@ -84497,7 +84555,7 @@
       "epsEstimate": 0.3401,
       "revenueEstimate": 300340917.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85184,7 +85242,7 @@
       "epsEstimate": -0.0936,
       "revenueEstimate": 68092282.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
