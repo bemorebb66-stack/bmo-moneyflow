@@ -10779,7 +10779,7 @@
   "name_ko": "하와이안 일렉트릭 인더스트리스"
  },
  "HTFL": {
-  "name": "HEARTFLOW",
+  "name": "HEARTFLOW INC",
   "sector": "Healthcare",
   "industry": "Health Information Services",
   "mcap": 2304355072,
@@ -32800,7 +32800,7 @@
   "metadata_attempted": true
  },
  "CVRX": {
-  "name": "CVRX",
+  "name": "CVRX INC",
   "sector": "Healthcare",
   "industry": "Medical Devices",
   "mcap": 129495408,
@@ -34004,5 +34004,16 @@
    "Russell 2000"
   ],
   "name_ko": "심믹(주)"
+ },
+ "SVIA": {
+  "name": "SILVIA INC",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "translation_attempted": true,
+  "universe": [
+   "Russell 2000"
+  ]
  }
 }
