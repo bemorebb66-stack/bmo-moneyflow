@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-23T09:13:07.580825+00:00",
-    "count": 252
+    "generatedAt": "2026-09-24T09:09:59.843331+00:00",
+    "count": 269
   },
   "pendingTrades": [
     {
@@ -1578,6 +1578,33 @@
       "severity": "review"
     },
     {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Denise Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 130596,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004635",
+      "sourceAccessions": [
+        "0001292814-26-004635"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126543/000129281426004635/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PAM",
       "company": "Pampa Energy Inc.",
       "filer": "Mindlin Marcos Marcelo",
@@ -1632,6 +1659,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Paris Roberto de Jesus",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 96702,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004658",
+      "sourceAccessions": [
+        "0001292814-26-004658"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004658/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PAM",
       "company": "Pampa Energy Inc.",
       "filer": "Mindlin Marcos Marcelo",
@@ -1653,6 +1707,33 @@
           "severity": "critical",
           "marketLow": "81.08999633789062",
           "marketHigh": "83.36000061035156"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "UMC",
+      "company": "UNITED MICROELECTRONICS CORP",
+      "filer": "LIN JEN-TSUNG",
+      "role": "Vice President",
+      "txType": "매도",
+      "shares": 10000,
+      "price": 163,
+      "txDate": "2026-09-22",
+      "filedDate": "2026-09-22",
+      "accession": "0001193125-26-397195",
+      "sourceAccessions": [
+        "0001193125-26-397195"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2133616/000119312526397195/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "25.1299991607666",
+          "marketHigh": "25.799999237060547"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1769,6 +1850,33 @@
     {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
+      "filer": "Fernandes Oswaldo Tadeu",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 79782,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004654",
+      "sourceAccessions": [
+        "0001292814-26-004654"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004654/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
       "filer": "Scarpelli Cassiano Ricardo",
       "role": "Executive Officer",
       "txType": "매도",
@@ -1788,6 +1896,87 @@
           "severity": "critical",
           "marketLow": "3.4000000953674316",
           "marketHigh": "3.619999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Ramalho Miranda Jose Augusto",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 63719,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004646",
+      "sourceAccessions": [
+        "0001292814-26-004646"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004646/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Machado Silvana Rosa",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 62048,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004660",
+      "sourceAccessions": [
+        "0001292814-26-004660"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004660/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Marcilio Juliano Ribeiro",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 60779,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004642",
+      "sourceAccessions": [
+        "0001292814-26-004642"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004642/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1823,6 +2012,33 @@
     {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
+      "filer": "Favarao Vinicius Urias",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 60492,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004664",
+      "sourceAccessions": [
+        "0001292814-26-004664"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004664/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
       "filer": "de Souza Cintia Scovine Barcelos",
       "role": "Executive Officer",
       "txType": "매수",
@@ -1835,6 +2051,60 @@
         "0001292814-26-004617"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004617/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Tescarolo Marcos Valerio",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 57012,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004652",
+      "sourceAccessions": [
+        "0001292814-26-004652"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004652/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Bueno Julio Cesar",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 56355,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004650",
+      "sourceAccessions": [
+        "0001292814-26-004650"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004650/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -1877,6 +2147,87 @@
     {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
+      "filer": "de Oliveira Tulio Xavier",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 55444,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004662",
+      "sourceAccessions": [
+        "0001292814-26-004662"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004662/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Mantarro Renata Geiser",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 54760,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004656",
+      "sourceAccessions": [
+        "0001292814-26-004656"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004656/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Freiberger Fernando",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 49550,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004648",
+      "sourceAccessions": [
+        "0001292814-26-004648"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004648/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
       "filer": "da Cunha Paulo Roberto Simoes",
       "role": "이사",
       "txType": "매수",
@@ -1889,6 +2240,60 @@
         "0001292814-26-004625"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004625/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 46874,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004638",
+      "sourceAccessions": [
+        "0001292814-26-004638"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004638/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Pavarina Denise Pauli",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 46874,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004633",
+      "sourceAccessions": [
+        "0001292814-26-004633"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004633/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -2356,6 +2761,60 @@
           "severity": "critical",
           "marketLow": "15.390000343322754",
           "marketHigh": "15.970000267028809"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Nunes Regina Helena Jorge",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 31266,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004644",
+      "sourceAccessions": [
+        "0001292814-26-004644"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004644/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Caffarelli Paulo Rogerio",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 31266,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-22",
+      "accession": "0001292814-26-004666",
+      "sourceAccessions": [
+        "0001292814-26-004666"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004666/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
