@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-23T17:38:24.493958+00:00",
+    "generatedAt": "2026-09-24T01:50:04.951841+00:00",
     "status": "ok",
-    "from": "2026-08-09",
-    "to": "2027-03-22",
-    "count": 6678,
+    "from": "2026-08-10",
+    "to": "2027-03-23",
+    "count": 6694,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 603,
-      "supplementalTickerCount": 142,
-      "supplementalEventCount": 810,
+      "supplementalTickerCount": 145,
+      "supplementalEventCount": 822,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -1102,7 +1102,9 @@
       "revenueActual": 5082000000.0,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 1.0,
+      "epsEstimate": 1.1061
     },
     {
       "ticker": "AMD",
@@ -31174,15 +31176,14 @@
       "ticker": "BEN",
       "company": "프랭클린 리소시스",
       "date": "2026-06-30",
-      "dateKind": "period-end",
+      "dateKind": "provider-period",
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
+      "source": "Finnhub Company Earnings",
       "epsActual": 0.72,
       "epsEstimate": 0.6781,
-      "periodEnd": "2026-06-30",
-      "revenueActual": 2358400000.0,
-      "netIncomeActual": 171500000.0
+      "quarter": 3,
+      "year": 2026
     },
     {
       "ticker": "BF-B",
@@ -31371,11 +31372,10 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 5442000000.0,
-      "netIncomeActual": 907000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "BTDR",
@@ -33439,11 +33439,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -44826,19 +44825,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
-    },
-    {
-      "ticker": "JBL",
-      "company": "자빌",
-      "date": "2026-09-23",
-      "hour": "bmo",
-      "quarter": 4,
-      "year": 2026,
-      "epsEstimate": 4.0989,
-      "revenueEstimate": 9789710042.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "ACN",
@@ -77955,7 +77941,7 @@
       "epsEstimate": 1.0252,
       "revenueEstimate": 652628336.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -77980,7 +77966,7 @@
       "epsEstimate": 0.5712,
       "revenueEstimate": 346536258.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78109,7 +78095,7 @@
       "epsEstimate": 0.1969,
       "revenueEstimate": 114436523.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78273,7 +78259,7 @@
       "epsEstimate": -0.0536,
       "revenueEstimate": 34753103.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78709,7 +78695,7 @@
       "epsEstimate": -0.1785,
       "revenueEstimate": 102846875.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79139,7 +79125,7 @@
       "epsEstimate": -1.284,
       "revenueEstimate": 3535646.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -79203,7 +79189,7 @@
       "epsEstimate": 1.3627,
       "revenueEstimate": 380246106.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -80603,7 +80589,7 @@
       "epsEstimate": -0.8694,
       "revenueEstimate": 594150.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -80615,7 +80601,7 @@
       "epsEstimate": 0.8617,
       "revenueEstimate": 1224099450.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81842,7 +81828,7 @@
       "epsEstimate": 0.2602,
       "revenueEstimate": 868946251.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82251,7 +82237,7 @@
       "epsEstimate": 0.6377,
       "revenueEstimate": 927192413.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -83753,7 +83739,7 @@
       "epsEstimate": -1.0819,
       "revenueEstimate": 348840.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -84175,7 +84161,7 @@
       "epsEstimate": 0.0068,
       "revenueEstimate": 11696676.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85248,7 +85234,7 @@
       "epsEstimate": -2.798,
       "revenueEstimate": 10743150.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85298,7 +85284,7 @@
       "epsEstimate": -0.6578,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86566,7 +86552,7 @@
       "epsEstimate": 1.7213,
       "revenueEstimate": 56898996.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87060,6 +87046,214 @@
       "year": 2027,
       "epsEstimate": 1.111,
       "revenueEstimate": 399450758.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "CELC",
+      "company": "셀큐이티",
+      "date": "2027-03-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -1.0855,
+      "revenueEstimate": 32041168.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "CTAS",
+      "company": "신타스",
+      "date": "2027-03-23",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 1.3803,
+      "revenueEstimate": 3095127647.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "EPAC",
+      "company": "에너팩 툴 그룹",
+      "date": "2027-03-23",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 0.51,
+      "revenueEstimate": 165454200.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "FUL",
+      "company": "풀러 H B",
+      "date": "2027-03-23",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 0.7979,
+      "revenueEstimate": 864762000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "IMMX",
+      "company": "IMMIX 바이오파마 INC",
+      "date": "2027-03-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.2009,
+      "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "JEF",
+      "company": "제프리스 파이낸셜 그룹",
+      "date": "2027-03-23",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.0167,
+      "revenueEstimate": 2297488410.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "KRMN",
+      "company": "카르만 홀딩스",
+      "date": "2027-03-23",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.194,
+      "revenueEstimate": 218327603.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "LUCD",
+      "company": "루시드 진단 INC",
+      "date": "2027-03-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.0643,
+      "revenueEstimate": 2000832.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "MLKN",
+      "company": "밀러놀 INC",
+      "date": "2027-03-23",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 0.5304,
+      "revenueEstimate": 1003119000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "NKTX",
+      "company": "엔카르타 INC",
+      "date": "2027-03-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.4447,
+      "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "ONDS",
+      "company": "온다스",
+      "date": "2027-03-23",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.0714,
+      "revenueEstimate": 259317435.0,
+      "status": "scheduled",
+      "trackingTier": "popular-small-cap",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "PAYX",
+      "company": "페이첵스",
+      "date": "2027-03-23",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 1.8731,
+      "revenueEstimate": 1946860332.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "PDD",
+      "company": "핀둬둬 ADR",
+      "date": "2027-03-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 20.8752,
+      "revenueEstimate": 133262752371.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "PGEN",
+      "company": "프리시젠(주)",
+      "date": "2027-03-23",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.1122,
+      "revenueEstimate": 87238896.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "TRON",
+      "company": "트론 주식회사",
+      "date": "2027-03-23",
+      "quarter": 4,
+      "year": 2026,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "WATT",
+      "company": "에너지 기업",
+      "date": "2027-03-23",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.204,
+      "revenueEstimate": 5202000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "WS",
+      "company": "워싱턴 스틸 INC",
+      "date": "2027-03-23",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 0.5459,
+      "revenueEstimate": 961505000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
