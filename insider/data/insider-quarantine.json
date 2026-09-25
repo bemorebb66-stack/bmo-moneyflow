@@ -1,88 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-09-24T09:09:59.843331+00:00",
-    "count": 269
+    "generatedAt": "2026-09-25T09:28:06.065416+00:00",
+    "count": 275
   },
   "pendingTrades": [
-    {
-      "ticker": "GPUS",
-      "company": "Hyperscale Data, Inc.",
-      "filer": "AULT MILTON C III",
-      "role": "Executive Chairman",
-      "txType": "매수",
-      "shares": 80200,
-      "price": 0.189,
-      "txDate": "2026-09-08",
-      "filedDate": "2026-09-14",
-      "accession": "0001214659-26-011678",
-      "sourceAccessions": [
-        "0001214659-26-011678"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
-      "severity": "critical"
-    },
-    {
-      "ticker": "GPUS",
-      "company": "Hyperscale Data, Inc.",
-      "filer": "AULT MILTON C III",
-      "role": "Executive Chairman",
-      "txType": "매수",
-      "shares": 5500,
-      "price": 0.1887,
-      "txDate": "2026-09-09",
-      "filedDate": "2026-09-14",
-      "accession": "0001214659-26-011678",
-      "sourceAccessions": [
-        "0001214659-26-011648",
-        "0001214659-26-011678"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
-      "ticker": "GPUS",
-      "company": "Hyperscale Data, Inc.",
-      "filer": "AULT MILTON C III",
-      "role": "Executive Chairman",
-      "txType": "매수",
-      "shares": 22800,
-      "price": 0.1857,
-      "txDate": "2026-09-10",
-      "filedDate": "2026-09-14",
-      "accession": "0001214659-26-011678",
-      "sourceAccessions": [
-        "0001214659-26-011648",
-        "0001214659-26-011678"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
-      "ticker": "GPUS",
-      "company": "Hyperscale Data, Inc.",
-      "filer": "AULT MILTON C III",
-      "role": "Executive Chairman",
-      "txType": "매수",
-      "shares": 150000,
-      "price": 0.1892,
-      "txDate": "2026-09-11",
-      "filedDate": "2026-09-14",
-      "accession": "0001214659-26-011678",
-      "sourceAccessions": [
-        "0001214659-26-011648",
-        "0001214659-26-011678"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011678/doc4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
     {
       "ticker": "REBN",
       "company": "Reborn Coffee, Inc.",
@@ -531,6 +452,33 @@
           "severity": "review",
           "marketLow": "43.400001525878906",
           "marketHigh": "44.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BEKE",
+      "company": "KE Holdings Inc.",
+      "filer": "Shan Yigang",
+      "role": "Executive Director",
+      "txType": "매도",
+      "shares": 3326670,
+      "price": 5.4393,
+      "txDate": "2026-09-21",
+      "filedDate": "2026-09-23",
+      "accession": "0001193125-26-398439",
+      "sourceAccessions": [
+        "0001193125-26-398439"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1809587/000119312526398439/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "16.114999771118164",
+          "marketHigh": "16.579999923706055"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -2172,6 +2120,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "UXIN",
+      "company": "Uxin Ltd",
+      "filer": "Li Bin (William)",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 104931794,
+      "price": 0.0095,
+      "txDate": "2026-09-23",
+      "filedDate": "2026-09-24",
+      "accession": "0001104659-26-110226",
+      "sourceAccessions": [
+        "0001104659-26-110226"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2115037/000110465926110226/tm2626079-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.059999942779541",
+          "marketHigh": "1.1100000143051147"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Mantarro Renata Geiser",
@@ -3254,6 +3229,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "DAVIDSON SPENCER",
+      "role": "임원",
+      "txType": "매수",
+      "shares": 10000,
+      "price": 22.75,
+      "txDate": "2026-09-23",
+      "filedDate": "2026-09-24",
+      "accession": "0000040417-26-000052",
+      "sourceAccessions": [
+        "0000040417-26-000052"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1215920/000004041726000052/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "64.66000366210938",
+          "marketHigh": "65.27999877929688"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
@@ -4250,6 +4252,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "Stark Eugene S",
+      "role": "VP Administration",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 22.75,
+      "txDate": "2026-09-23",
+      "filedDate": "2026-09-24",
+      "accession": "0000040417-26-000051",
+      "sourceAccessions": [
+        "0000040417-26-000051"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000051/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "64.66000366210938",
+          "marketHigh": "65.27999877929688"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Ramalho Miranda Jose Augusto",
@@ -4681,6 +4710,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "KITT",
+      "company": "Nauticus Robotics, Inc.",
+      "filer": "DROR BRIAN ISAAC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 32539,
+      "price": 2.021,
+      "txDate": "2026-06-01",
+      "filedDate": "2026-07-27",
+      "accession": "0002147429-26-000003",
+      "sourceAccessions": [
+        "0002147429-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2147429/000214742926000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.159998893737793",
+          "marketHigh": "12.479998588562012"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "FGL",
@@ -5680,6 +5736,141 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 1440,
+      "price": 0.27,
+      "txDate": "2026-05-26",
+      "filedDate": "2026-09-24",
+      "accession": "0001104659-26-110132",
+      "sourceAccessions": [
+        "0001104659-26-110132"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926110132/tm2626076-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.260000228881836",
+          "marketHigh": "5.760000228881836"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 3400,
+      "price": 0.25,
+      "txDate": "2026-05-27",
+      "filedDate": "2026-09-24",
+      "accession": "0001104659-26-110132",
+      "sourceAccessions": [
+        "0001104659-26-110132"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926110132/tm2626076-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.75",
+          "marketHigh": "5.550000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 49920,
+      "price": 0.23,
+      "txDate": "2026-06-12",
+      "filedDate": "2026-09-24",
+      "accession": "0001104659-26-110132",
+      "sourceAccessions": [
+        "0001104659-26-110132"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926110132/tm2626076-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.449999809265137",
+          "marketHigh": "5.130000114440918"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 44000,
+      "price": 0.23,
+      "txDate": "2026-06-15",
+      "filedDate": "2026-09-24",
+      "accession": "0001104659-26-110132",
+      "sourceAccessions": [
+        "0001104659-26-110132"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926110132/tm2626076-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.429999828338623",
+          "marketHigh": "5.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 44000,
+      "price": 0.18,
+      "txDate": "2026-09-23",
+      "filedDate": "2026-09-24",
+      "accession": "0001104659-26-110132",
+      "sourceAccessions": [
+        "0001104659-26-110132"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926110132/tm2626076-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.5199999809265137",
+          "marketHigh": "3.8499999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "LBGJ",
