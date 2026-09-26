@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-25T17:40:59.343033+00:00",
+    "generatedAt": "2026-09-26T01:57:30.405474+00:00",
     "status": "ok",
-    "from": "2026-08-11",
-    "to": "2027-03-24",
-    "count": 6709,
+    "from": "2026-08-12",
+    "to": "2027-03-25",
+    "count": 6719,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 603,
-      "supplementalTickerCount": 150,
-      "supplementalEventCount": 850,
+      "supplementalTickerCount": 158,
+      "supplementalEventCount": 901,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -467,6 +467,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 777000000.0,
       "revenueActual": 4074000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "ILMN",
+      "company": "일루미나",
+      "date": "2025-03-31",
+      "periodEnd": "2025-03-31",
+      "dateKind": "period-end",
+      "revenueActual": 1041000000.0,
+      "netIncomeActual": 131000000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -3517,6 +3529,18 @@
       "dateKind": "period-end",
       "revenueActual": 1919000000.0,
       "netIncomeActual": 599000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "ILMN",
+      "company": "일루미나",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 1059000000.0,
+      "netIncomeActual": 235000000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -10024,6 +10048,20 @@
       "periodEnd": "2025-09-30",
       "revenueActual": 2694000000.0,
       "netIncomeActual": 40000000.0
+    },
+    {
+      "ticker": "ILMN",
+      "company": "일루미나",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 1084000000.0,
+      "netIncomeActual": 150000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 1.34,
+      "epsEstimate": 1.1895
     },
     {
       "ticker": "INCY",
@@ -17824,6 +17862,20 @@
       "periodEnd": "2025-12-31",
       "revenueActual": 2589000000.0,
       "netIncomeActual": 31000000.0
+    },
+    {
+      "ticker": "ILMN",
+      "company": "일루미나",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "revenueActual": 1159000000.0,
+      "netIncomeActual": 334000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 1.15,
+      "epsEstimate": 1.0754
     },
     {
       "ticker": "INCY",
@@ -25833,6 +25885,20 @@
       "netIncomeActual": 169000000.0
     },
     {
+      "ticker": "ILMN",
+      "company": "일루미나",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "revenueActual": 1091000000.0,
+      "netIncomeActual": 134000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 1.15,
+      "epsEstimate": 1.0754
+    },
+    {
       "ticker": "INCY",
       "company": "인사이트",
       "date": "2026-03-31",
@@ -33830,6 +33896,19 @@
       "periodEnd": "2026-06-30",
       "revenueActual": 1954000000.0,
       "netIncomeActual": 50000000.0
+    },
+    {
+      "ticker": "ILMN",
+      "company": "일루미나",
+      "date": "2026-06-30",
+      "quarter": 2,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.31,
+      "epsEstimate": 1.2507,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
     },
     {
       "ticker": "INCY",
@@ -77941,7 +78020,7 @@
       "epsEstimate": 0.5712,
       "revenueEstimate": 346536258.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78285,7 +78364,7 @@
       "epsEstimate": 0.4658,
       "revenueEstimate": 500676690.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -80551,7 +80630,7 @@
       "epsEstimate": 0.5234,
       "revenueEstimate": 4086997200.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -80576,7 +80655,7 @@
       "epsEstimate": 0.8617,
       "revenueEstimate": 1224099450.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81206,7 +81285,7 @@
       "epsEstimate": 4.9776,
       "revenueEstimate": 214504429.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81576,7 +81655,7 @@
       "epsEstimate": -0.187,
       "revenueEstimate": 63273996.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81828,7 +81907,7 @@
       "epsEstimate": -0.8276,
       "revenueEstimate": 5057027.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82064,7 +82143,7 @@
       "epsEstimate": -0.3337,
       "revenueEstimate": 4732942.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82212,7 +82291,7 @@
       "epsEstimate": 0.6377,
       "revenueEstimate": 927192413.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -83299,7 +83378,7 @@
       "epsEstimate": -0.3833,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -83714,7 +83793,7 @@
       "epsEstimate": -1.0819,
       "revenueEstimate": 348840.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85209,7 +85288,7 @@
       "epsEstimate": -2.798,
       "revenueEstimate": 10743150.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85259,7 +85338,7 @@
       "epsEstimate": -0.6578,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85715,7 +85794,7 @@
       "epsEstimate": 1.1147,
       "revenueEstimate": 367325051.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86850,7 +86929,7 @@
       "epsEstimate": 0.729,
       "revenueEstimate": 1152117968.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87440,6 +87519,56 @@
       "year": 2026,
       "epsEstimate": -0.5485,
       "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "KOPN",
+      "company": "코핀코퍼레이션",
+      "date": "2027-03-25",
+      "hour": "bmo",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.0015,
+      "revenueEstimate": 21065621.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "LGN",
+      "company": "레전스",
+      "date": "2027-03-25",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.5636,
+      "revenueEstimate": 1237413367.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "MNPR",
+      "company": "모노파 테라퓨틱스 INC",
+      "date": "2027-03-25",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -1.1848,
+      "revenueEstimate": 0.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "SBC",
+      "company": "SBC 메디컬 그룹 홀딩스 INC",
+      "date": "2027-03-25",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.1172,
+      "revenueEstimate": 50326482.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
