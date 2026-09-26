@@ -14,15 +14,15 @@
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-09-25T09:28:06.065416+00:00",
+    "validatedAt": "2026-09-26T09:13:49.044188+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 11480,
-    "pendingCount": 275,
+    "acceptedCount": 11478,
+    "pendingCount": 277,
     "uniqueAccessionCount": 9248,
-    "marketCoverage": 0.979626,
+    "marketCoverage": 0.986935,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "5b5a68bf2aef9e2b56b3591ad3daed0107f48d552d5df090bd8e555f9cc7244a"
+    "dataSha256": "20650a51b516e1835732451eeadf6a02b236b078871606923068a03efb469d4b"
   },
   "trades": [
     {
@@ -6254,7 +6254,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1668397/000162205826000016/wk-form4_1790193932.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 7
     },
@@ -12771,7 +12771,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1468642/000211790526000042/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 3
     },
@@ -16687,7 +16687,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1651902/000147443226000094/wk-form4_1790281255.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 2
     },
@@ -18230,7 +18230,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1889539/000119312526401049/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 1
     },
@@ -19740,7 +19740,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1700626/000170062626000008/wk-form4_1790283741.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 10,
       "clusterCount": 3
     },
@@ -25145,7 +25145,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1798849/000119312526401141/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -29207,7 +29207,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1814238/000181423826000017/wk-form4_1790280647.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 2
     },
@@ -35575,7 +35575,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1106578/000110657826000147/primarydocument.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 10,
       "clusterCount": 3
     },
@@ -36124,7 +36124,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1776985/000212397526000021/wk-form4_1790111057.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -37120,7 +37120,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1974191/000092963826003625/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -47741,7 +47741,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1965706/000119312526398436/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 9
     },
@@ -48927,7 +48927,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1933414/000196390126000003/wk-form4_1790300978.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -54303,7 +54303,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1535527/000177856426000171/form4-09242026_080901.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 6,
       "clusterCount": 9
     },
@@ -60664,7 +60664,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2020876/000090514826004271/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -63054,7 +63054,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1835963/000119312526400838/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 4
     },
@@ -63863,7 +63863,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1770787/000161071726000421/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 5,
       "clusterCount": 6
     },
@@ -65357,7 +65357,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1758247/000175824726000004/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 5,
       "clusterCount": 9
     },
@@ -70035,7 +70035,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1477333/000136657426000024/wk-form4_1790198061.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 8
     },
@@ -71880,7 +71880,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/320335/000032033526000222/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 5
     },
@@ -72311,7 +72311,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/47111/000095014226002578/es260833359_4-hsy.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 3
     },
@@ -81218,7 +81218,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/4977/000110465926110391/tm2624595d15_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -81938,7 +81938,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1477720/000207500626000008/wk-form4_1790203823.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -91957,7 +91957,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1779472/000143774926031086/rdgdoc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 6
     },
@@ -96286,7 +96286,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1204816/000120481626000047/wk-form4_1790197132.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 6,
       "clusterCount": 3
     },
@@ -97271,7 +97271,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1089063/000177240926000009/wk-form4_1790281326.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 6
     },
@@ -102619,7 +102619,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1506293/000177391426000029/wk-form4_1790202532.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -103332,7 +103332,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1979088/000162828026063104/wk-form4_1790118466.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 8
     },
@@ -106601,7 +106601,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2045034/000204503426000007/wk-form4_1790212257.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -108630,7 +108630,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1194016/000119401626000008/form4-09222026_090944.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 5
     },
@@ -121043,7 +121043,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1674416/000119312526401237/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -121299,7 +121299,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 1
     },
     {
       "ticker": "TXRH",
@@ -126289,7 +126289,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/6281/000200911026000009/wk-form4_1790194680.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -128443,7 +128443,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1562088/000162828026063251/wk-form4_1790198043.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 5
     },
@@ -131177,7 +131177,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1188095/000119312526400762/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -132373,7 +132373,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1766478/000176647826000050/wk-form4_1790195395.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -138447,7 +138447,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1512673/000162828026063269/wk-form4_1790199272.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -140682,7 +140682,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1770787/000161071726000422/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 5,
       "clusterCount": 6
     },
@@ -155433,7 +155433,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/910612/000119312526399365/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -161084,7 +161084,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1634117/000163411726000096/wk-form4_1790280518.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -163019,7 +163019,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1687932/000119312526399620/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -167766,7 +167766,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2121755/000129281426004678/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -169125,7 +169125,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1748668/000114036126037594/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -170718,7 +170718,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1910424/000197640826000863/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -173792,7 +173792,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2126676/000091957426006451/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -173848,7 +173848,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1747172/000118325426000006/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -181220,7 +181220,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2037087/000092963826003634/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 9
     },
@@ -182093,7 +182093,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1513030/000151303026000009/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -183354,7 +183354,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1061983/000106198326000096/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -183382,7 +183382,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2019410/000207192326000007/wk-form4_1790197601.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -191484,7 +191484,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2005787/000143774926031169/rdgdoc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -196108,7 +196108,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2130408/000119312526401327/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 3,
       "clusterCount": 2
     },
@@ -196192,7 +196192,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1680630/000119312526401345/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -200550,34 +200550,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
-    },
-    {
-      "ticker": "RCT",
-      "company": "RedCloud Holdings plc",
-      "filer": "Floyd Justin Beck Hinton",
-      "role": "Chief Executive Officer",
-      "txType": "매수",
-      "shares": 74000,
-      "price": 2.5,
-      "value": 185000,
-      "ownBefore": 1587037,
-      "filedDate": "2026-09-23",
-      "txDate": "2026-09-22",
-      "ownAfter": 1661037,
-      "ownChangePct": 4.7,
-      "id": "f4-0001493152-26-043846-90b8051595",
-      "accession": "0001493152-26-043846",
-      "sourceAccessions": [
-        "0001493152-26-043846"
-      ],
-      "transactionIds": [
-        "0001493152-26-043846:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2070905/000149315226043846/ownership.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
-      "transactionCount": 1,
-      "clusterCount": 2
     },
     {
       "ticker": "WEX",
@@ -205303,7 +205275,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1814287/000162828026063137/wk-form4_1790125047.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -206190,7 +206162,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1814287/000162828026063138/wk-form4_1790125066.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -206218,7 +206190,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1814287/000162828026063139/wk-form4_1790125108.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -210457,7 +210429,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2028403/000202840326000018/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -212435,7 +212407,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2096362/000149315226043974/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -213423,7 +213395,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1674632/000204846726000007/form4-09232026_090948.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 6
     },
@@ -218736,7 +218708,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/858706/000151028126000311/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -220123,7 +220095,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1620833/000157112326000145/wk-form4_1790107253.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -220319,7 +220291,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1244715/000124471526000014/form4-09242026_080901.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -221111,7 +221083,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1477713/000202911826000108/wk-form4_1790196092.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -222810,7 +222782,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1792626/000119312526399653/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -222894,7 +222866,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2059765/000205976526000005/wk-form4_1790280190.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -224172,7 +224144,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1703399/000119312526398435/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 9
     },
@@ -231923,7 +231895,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1120193/000119312526400998/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -235803,7 +235775,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1040739/000119312526397230/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -243071,7 +243043,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1401521/000155778526000012/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -247219,7 +247191,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1396536/000155335026000136/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -248091,7 +248063,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1944552/000212933126000005/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -248343,7 +248315,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1477720/000147772026000062/wk-form4_1790204064.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -249299,7 +249271,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1822523/000162828026063379/wk-form4_1790280664.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -251629,7 +251601,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/807882/000178382026000014/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -254594,7 +254566,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1818383/000181838326000241/wk-form4_1790207501.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -254876,7 +254848,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1538379/000162828026063218/wk-form4_1790194834.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 4
     },
@@ -257429,7 +257401,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000864/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -260781,7 +260753,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1805526/000208792526000006/wk-form4_1790211527.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -262158,7 +262130,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1777393/000162828026063130/wk-form4_1790122294.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -271832,7 +271804,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1777393/000162828026063129/wk-form4_1790122277.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -272701,7 +272673,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1390376/000123191926001224/form4-09242026_080923.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 2
     },
@@ -272730,7 +272702,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1598549/000159854926000015/form4-09242026_080953.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 2
     },
@@ -273178,7 +273150,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/76282/000162828026063150/wk-form4_1790167556.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -273801,34 +273773,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
-    },
-    {
-      "ticker": "GAM",
-      "company": "GENERAL AMERICAN INVESTORS CO INC",
-      "filer": "Grassi Craig Anthony",
-      "role": "Vice-President",
-      "txType": "매수",
-      "shares": 2000,
-      "price": 23.08,
-      "value": 46160,
-      "ownBefore": 1100,
-      "filedDate": "2026-09-23",
-      "txDate": "2026-09-22",
-      "ownAfter": 3100,
-      "ownChangePct": 181.8,
-      "id": "f4-0000040417-26-000050-c03d3b41d2",
-      "accession": "0000040417-26-000050",
-      "sourceAccessions": [
-        "0000040417-26-000050"
-      ],
-      "transactionIds": [
-        "0000040417-26-000050:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000050/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
-      "transactionCount": 1,
-      "clusterCount": 1
     },
     {
       "ticker": "KROS",
@@ -276105,7 +276049,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1095435/000117184326006194/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -277985,7 +277929,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2078710/000162828026063128/wk-form4_1790122255.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -278217,7 +278161,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1549748/000110465926109712/tm2625961-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -283212,7 +283156,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1653409/000149315226043852/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -284728,7 +284672,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1859448/000185944826000015/wk-form4_1790119406.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -289867,7 +289811,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1182567/000168316826007377/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -290007,7 +289951,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1805526/000208792526000006/wk-form4_1790211527.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -290681,7 +290625,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1584549/000119312526397890/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -293151,7 +293095,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1830487/000119312526400435/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 9
     },
@@ -296640,7 +296584,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/15847/000133259626000008/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 3
     },
@@ -299007,7 +298951,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1657788/000110465926110082/tm2626051-1_4seq1.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -299399,7 +299343,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1464637/000146463726000002/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -308382,7 +308326,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/723603/000203266126000003/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -310859,7 +310803,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1525221/000090266426003928/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
     },
@@ -312969,7 +312913,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926011957/doc4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -313866,7 +313810,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1777393/000162828026063131/wk-form4_1790122312.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -318636,7 +318580,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1818383/000181838326000241/wk-form4_1790207501.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
     },
@@ -321960,7 +321904,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1730229/000155278126000501/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -323479,7 +323423,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1868995/000129281426004680/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -329028,7 +328972,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/65433/000151028126000310/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -335009,6 +334953,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "RCT",
+      "company": "RedCloud Holdings plc",
+      "filer": "Floyd Justin Beck Hinton",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 74000,
+      "price": 2.5,
+      "txDate": "2026-09-22",
+      "filedDate": "2026-09-23",
+      "accession": "0001493152-26-043846",
+      "sourceAccessions": [
+        "0001493152-26-043846"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2070905/000149315226043846/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.17000000178813934",
+          "marketHigh": "0.20000000298023224"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "EQPT",
       "company": "EquipmentShare.com Inc",
       "filer": "Schlacks William J.",
@@ -336348,8 +336319,8 @@
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "11.159998893737793",
-          "marketHigh": "12.479998588562012"
+          "marketLow": "11.15999984741211",
+          "marketHigh": "12.479999542236328"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -336867,6 +336838,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "Grassi Craig Anthony",
+      "role": "Vice-President",
+      "txType": "매수",
+      "shares": 2000,
+      "price": 23.08,
+      "txDate": "2026-09-22",
+      "filedDate": "2026-09-23",
+      "accession": "0000040417-26-000050",
+      "sourceAccessions": [
+        "0000040417-26-000050"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000050/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "64.9000015258789",
+          "marketHigh": "65.94999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "CRESY",
