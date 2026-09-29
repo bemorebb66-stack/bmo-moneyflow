@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-09-28T19:57:44.837739+00:00",
+    "generatedAt": "2026-09-29T02:47:58.355818+00:00",
     "status": "ok",
-    "from": "2026-08-14",
-    "to": "2027-03-27",
-    "count": 6780,
+    "from": "2026-08-15",
+    "to": "2027-03-28",
+    "count": 6790,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 603,
-      "supplementalTickerCount": 148,
-      "supplementalEventCount": 854,
+      "supplementalTickerCount": 146,
+      "supplementalEventCount": 834,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -3848,17 +3848,6 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
-      "ticker": "KIM",
-      "company": "킴코 리얼티",
-      "date": "2025-06-30",
-      "periodEnd": "2025-06-30",
-      "dateKind": "period-end",
-      "netIncomeActual": 162986000.0,
-      "status": "awaiting-results",
-      "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals"
-    },
-    {
       "ticker": "KKR",
       "company": "케이케이알",
       "date": "2025-06-30",
@@ -3916,6 +3905,18 @@
       "revenueActual": 12535000000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "KOD",
+      "company": "KODIAK 과학 INC",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -54313000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -6846,6 +6847,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 26422000000.0,
       "revenueActual": 46743000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2025-07-31",
+      "periodEnd": "2025-07-31",
+      "dateKind": "period-end",
+      "revenueActual": 861002000.0,
+      "netIncomeActual": 47118000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -10948,6 +10961,20 @@
       "revenueActual": 12455000000.0
     },
     {
+      "ticker": "KOD",
+      "company": "KODIAK 과학 INC",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -61457000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.16,
+      "epsEstimate": -1.0393
+    },
+    {
       "ticker": "KR",
       "company": "크로거",
       "date": "2025-09-30",
@@ -14503,6 +14530,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 31910000000.0,
       "revenueActual": 57006000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2025-10-31",
+      "periodEnd": "2025-10-31",
+      "dateKind": "period-end",
+      "revenueActual": 964453000.0,
+      "netIncomeActual": 54806000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -18876,6 +18915,20 @@
       "revenueActual": 11822000000.0
     },
     {
+      "ticker": "KOD",
+      "company": "KODIAK 과학 INC",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -56736000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.04,
+      "epsEstimate": -1.0639
+    },
+    {
       "ticker": "KR",
       "company": "크로거",
       "date": "2025-12-31",
@@ -20037,6 +20090,19 @@
       "periodEnd": "2025-12-31",
       "revenueActual": 1752000000.0,
       "netIncomeActual": 102000000.0
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2025-12-31",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.58,
+      "epsEstimate": 0.5948,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
     },
     {
       "ticker": "PANW",
@@ -22624,6 +22690,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 42960000000.0,
       "revenueActual": 68127000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2026-01-31",
+      "periodEnd": "2026-01-31",
+      "dateKind": "period-end",
+      "revenueActual": 1058903000.0,
+      "netIncomeActual": 100252000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -26998,6 +27076,20 @@
       "revenueActual": 12472000000.0
     },
     {
+      "ticker": "KOD",
+      "company": "KODIAK 과학 INC",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -58158000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.94,
+      "epsEstimate": -1.0226
+    },
+    {
       "ticker": "KR",
       "company": "크로거",
       "date": "2026-03-31",
@@ -28159,6 +28251,19 @@
       "periodEnd": "2026-03-31",
       "revenueActual": 5230000000.0,
       "netIncomeActual": 3345000000.0
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2026-03-31",
+      "quarter": 4,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.69,
+      "epsEstimate": 0.6591,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
     },
     {
       "ticker": "PANW",
@@ -30759,6 +30864,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 58321000000.0,
       "revenueActual": 81615000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2026-04-30",
+      "periodEnd": "2026-04-30",
+      "dateKind": "period-end",
+      "revenueActual": 1052896000.0,
+      "netIncomeActual": 24078000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -35105,6 +35222,20 @@
       "revenueActual": 13380000000.0
     },
     {
+      "ticker": "KOD",
+      "company": "KODIAK 과학 INC",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -65643000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.05,
+      "epsEstimate": -0.9656
+    },
+    {
       "ticker": "KR",
       "company": "크로거",
       "date": "2026-06-30",
@@ -36264,6 +36395,19 @@
       "periodEnd": "2026-06-30",
       "revenueActual": 8065000000.0,
       "netIncomeActual": 2977000000.0
+    },
+    {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2026-06-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 0.47,
+      "epsEstimate": 0.4037,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
     },
     {
       "ticker": "PANW",
@@ -43171,6 +43315,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2026-07-31",
+      "periodEnd": "2026-07-31",
+      "dateKind": "period-end",
+      "revenueActual": 1185898000.0,
+      "netIncomeActual": 74149000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "PANW",
       "company": "팔로 알토 네트웍스",
       "date": "2026-07-31",
@@ -45735,6 +45891,18 @@
       "epsEstimateSource": "Finnhub Company Earnings"
     },
     {
+      "ticker": "ADBE",
+      "company": "어도비",
+      "date": "2026-08-31",
+      "periodEnd": "2026-08-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 1827000000.0,
+      "revenueActual": 6760000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "ORCL",
       "company": "오라클",
       "date": "2026-08-31",
@@ -45745,43 +45913,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
-    },
-    {
-      "ticker": "CCL",
-      "company": "카니발",
-      "date": "2026-09-28",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.3652,
-      "revenueEstimate": 8392954014.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "NKE",
-      "company": "나이키",
-      "date": "2026-09-28",
-      "quarter": 1,
-      "year": 2027,
-      "epsEstimate": 0.4528,
-      "revenueEstimate": 11493511311.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "PAYX",
-      "company": "페이첵스",
-      "date": "2026-09-28",
-      "quarter": 1,
-      "year": 2027,
-      "epsEstimate": 1.3478,
-      "revenueEstimate": 1659139680.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "MKC",
@@ -78835,7 +78966,7 @@
       "epsEstimate": 1.0252,
       "revenueEstimate": 652628336.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -78989,7 +79120,7 @@
       "epsEstimate": 0.1969,
       "revenueEstimate": 114436523.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81483,7 +81614,7 @@
       "epsEstimate": -0.8694,
       "revenueEstimate": 594150.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -81693,7 +81824,7 @@
       "epsEstimate": 0.4964,
       "revenueEstimate": 597599640.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82534,7 +82665,7 @@
       "epsEstimate": -0.0375,
       "revenueEstimate": 291332675.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -82983,7 +83114,7 @@
       "epsEstimate": -0.3337,
       "revenueEstimate": 4732942.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -83021,7 +83152,7 @@
       "epsEstimate": 0.0102,
       "revenueEstimate": 43074804.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86128,7 +86259,7 @@
       "epsEstimate": -2.798,
       "revenueEstimate": 10743150.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
