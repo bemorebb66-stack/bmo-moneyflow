@@ -3,26 +3,26 @@
     "source": "SEC EDGAR daily form index + Form 4 XML",
     "universe": "All SEC Form 4 issuers",
     "universeSize": null,
-    "filedDate": "2026-09-28",
+    "filedDate": "2026-09-29",
     "dateRange": {
-      "from": "2026-09-19",
-      "to": "2026-09-29"
+      "from": "2026-09-20",
+      "to": "2026-09-30"
     },
-    "generatedAt": "2026-09-29T09:13:04.214Z",
-    "filingsScanned": 4343,
+    "generatedAt": "2026-09-30T09:18:15.360Z",
+    "filingsScanned": 5140,
     "monthlyRowCap": 3000,
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-09-29T10:29:15.220009+00:00",
+    "validatedAt": "2026-09-30T10:19:01.950362+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 11679,
-    "pendingCount": 284,
-    "uniqueAccessionCount": 9400,
-    "marketCoverage": 0.987227,
+    "acceptedCount": 11768,
+    "pendingCount": 297,
+    "uniqueAccessionCount": 9486,
+    "marketCoverage": 0.98704,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "d3132f6c82385a98c35e7c26f0b69db86fc02bd1691e6c665217cff525cfcbe4"
+    "dataSha256": "b244d10e3c9f3c7e783e39f48fa8aeb4191ffd724bf09a9ebf343cbe34a7d6ba"
   },
   "trades": [
     {
@@ -1875,7 +1875,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "INNV",
@@ -1903,7 +1903,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "ILMN",
@@ -7399,6 +7399,66 @@
       "clusterCount": 2
     },
     {
+      "ticker": "ADRX",
+      "company": "ADARx Pharmaceuticals, Inc.",
+      "filer": "George Simeon",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1600000,
+      "price": 17,
+      "value": 27200000,
+      "ownBefore": null,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": null,
+      "ownChangePct": 0.0,
+      "id": "f4-0001193125-26-408061-8a9b7e12f2",
+      "accession": "0001193125-26-408061",
+      "sourceAccessions": [
+        "0001193125-26-408061"
+      ],
+      "transactionIds": [
+        "0001193125-26-408061:nonDerivative:3",
+        "0001193125-26-408061:nonDerivative:5",
+        "0001193125-26-408061:nonDerivative:8"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526408061/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 3,
+      "clusterCount": 2
+    },
+    {
+      "ticker": "ADRX",
+      "company": "ADARx Pharmaceuticals, Inc.",
+      "filer": "SR ONE CAPITAL MANAGEMENT, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1600000,
+      "price": 17,
+      "value": 27200000,
+      "ownBefore": null,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": null,
+      "ownChangePct": 0.0,
+      "id": "f4-0001193125-26-408064-3b22bae65a",
+      "accession": "0001193125-26-408064",
+      "sourceAccessions": [
+        "0001193125-26-408064"
+      ],
+      "transactionIds": [
+        "0001193125-26-408064:nonDerivative:3",
+        "0001193125-26-408064:nonDerivative:5",
+        "0001193125-26-408064:nonDerivative:8"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1802369/000119312526408064/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 3,
+      "clusterCount": 2
+    },
+    {
       "ticker": "DELL",
       "company": "Dell Technologies Inc.",
       "filer": "SL SPV-2, L.P.",
@@ -9689,6 +9749,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
+    },
+    {
+      "ticker": "BRK.A",
+      "company": "BERKSHIRE HATHAWAY INC",
+      "filer": "Jain Ajit",
+      "role": "Vice Chairman",
+      "txType": "매도",
+      "shares": 39700,
+      "price": 503.09,
+      "value": 19972776.22,
+      "ownBefore": 107308,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 67608,
+      "ownChangePct": -37.0,
+      "id": "f4-0001728451-26-000004-1512dbcfb4",
+      "accession": "0001728451-26-000004",
+      "sourceAccessions": [
+        "0001728451-26-000004"
+      ],
+      "transactionIds": [
+        "0001728451-26-000004:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1067983/000172845126000004/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "unverified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "BLK",
@@ -14771,6 +14859,36 @@
       "clusterCount": 12
     },
     {
+      "ticker": "ANET",
+      "company": "Arista Networks, Inc.",
+      "filer": "Ullal Jayshree",
+      "role": "CEO and Chairperson",
+      "txType": "매도",
+      "shares": 62622,
+      "price": 211.4,
+      "value": 13238021.53,
+      "ownBefore": null,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": null,
+      "ownChangePct": 0.0,
+      "id": "f4-0001596532-26-000234-e45231f69d",
+      "accession": "0001596532-26-000234",
+      "sourceAccessions": [
+        "0001596532-26-000234"
+      ],
+      "transactionIds": [
+        "0001596532-26-000234:nonDerivative:0",
+        "0001596532-26-000234:nonDerivative:1",
+        "0001596532-26-000234:nonDerivative:2"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000234/edgardoc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 3,
+      "clusterCount": 7
+    },
+    {
       "ticker": "KO",
       "company": "COCA COLA CO",
       "filer": "Quincey James",
@@ -15366,6 +15484,38 @@
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 6
+    },
+    {
+      "ticker": "P",
+      "company": "Everpure, Inc.",
+      "filer": "Colgrove John",
+      "role": "Chief Visionary Officer",
+      "txType": "매도",
+      "shares": 100000,
+      "price": 124.63,
+      "value": 12463098.11,
+      "ownBefore": 100000,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 0,
+      "ownChangePct": -100.0,
+      "id": "f4-0001474432-26-000096-a659c33a40",
+      "accession": "0001474432-26-000096",
+      "sourceAccessions": [
+        "0001474432-26-000096"
+      ],
+      "transactionIds": [
+        "0001474432-26-000096:nonDerivative:2",
+        "0001474432-26-000096:nonDerivative:3",
+        "0001474432-26-000096:nonDerivative:4",
+        "0001474432-26-000096:nonDerivative:5",
+        "0001474432-26-000096:nonDerivative:6"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1651902/000147443226000096/wk-form4_1790713436.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 5,
+      "clusterCount": 3
     },
     {
       "ticker": "TVTX",
@@ -18065,6 +18215,35 @@
       "clusterCount": 3
     },
     {
+      "ticker": "GME",
+      "company": "GameStop Corp.",
+      "filer": "Cohen Ryan",
+      "role": "President, CEO and Chairman",
+      "txType": "매수",
+      "shares": 450000,
+      "price": 23.48,
+      "value": 10563796.1,
+      "ownBefore": 40498522,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 40948522,
+      "ownChangePct": 1.1,
+      "id": "f4-0000921895-26-002670-6f3e1088c1",
+      "accession": "0000921895-26-002670",
+      "sourceAccessions": [
+        "0000921895-26-002670"
+      ],
+      "transactionIds": [
+        "0000921895-26-002670:nonDerivative:0",
+        "0000921895-26-002670:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1767470/000092189526002670/form413177gme_09292026.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 4
+    },
+    {
       "ticker": "RDW",
       "company": "Redwire Corp",
       "filer": "AE RED HOLDINGS, LLC",
@@ -18574,6 +18753,66 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "CRDO",
+      "company": "Credo Technology Group Holding Ltd",
+      "filer": "Lam Yat Tung",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 206.3,
+      "value": 10314882.76,
+      "ownBefore": 2529169,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 2479169,
+      "ownChangePct": -2.0,
+      "id": "f4-0001628280-26-063815-b9c18a6e9a",
+      "accession": "0001628280-26-063815",
+      "sourceAccessions": [
+        "0001628280-26-063815"
+      ],
+      "transactionIds": [
+        "0001628280-26-063815:nonDerivative:0",
+        "0001628280-26-063815:nonDerivative:1",
+        "0001628280-26-063815:nonDerivative:2"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026063815/wk-form4_1790713681.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 3,
+      "clusterCount": 4
+    },
+    {
+      "ticker": "CRDO",
+      "company": "Credo Technology Group Holding Ltd",
+      "filer": "Lam Yat Tung",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 206.29,
+      "value": 10314537.13,
+      "ownBefore": 300000,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 250000,
+      "ownChangePct": -16.7,
+      "id": "f4-0001628280-26-063815-5da85ea759",
+      "accession": "0001628280-26-063815",
+      "sourceAccessions": [
+        "0001628280-26-063815"
+      ],
+      "transactionIds": [
+        "0001628280-26-063815:nonDerivative:3",
+        "0001628280-26-063815:nonDerivative:4",
+        "0001628280-26-063815:nonDerivative:5"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026063815/wk-form4_1790713681.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 3,
+      "clusterCount": 4
     },
     {
       "ticker": "CRWV",
@@ -27289,6 +27528,34 @@
       "clusterCount": 7
     },
     {
+      "ticker": "COUR",
+      "company": "Coursera, Inc.",
+      "filer": "Pale Fire Capital SE",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1332742,
+      "price": 5.06,
+      "value": 6748872.21,
+      "ownBefore": 26473673,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 27806415,
+      "ownChangePct": 5.0,
+      "id": "f4-0000921895-26-002677-7d082f08a1",
+      "accession": "0000921895-26-002677",
+      "sourceAccessions": [
+        "0000921895-26-002677"
+      ],
+      "transactionIds": [
+        "0000921895-26-002677:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1892479/000092189526002677/form413335011_09292026.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "VST",
       "company": "Vistra Corp.",
       "filer": "HUDSON SCOTT A",
@@ -28977,6 +29244,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 3,
       "clusterCount": 3
+    },
+    {
+      "ticker": "CRBG",
+      "company": "Corebridge Financial, Inc.",
+      "filer": "NIPPON LIFE INSURANCE CO",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 178840,
+      "price": 34.52,
+      "value": 6174129.09,
+      "ownBefore": 124595032,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 124773872,
+      "ownChangePct": 0.1,
+      "id": "f4-0001193125-26-407701-0a4816a7bd",
+      "accession": "0001193125-26-407701",
+      "sourceAccessions": [
+        "0001193125-26-407701"
+      ],
+      "transactionIds": [
+        "0001193125-26-407701:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1889539/000119312526407701/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "COE",
@@ -31462,7 +31757,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "WBD",
@@ -33990,7 +34285,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
-      "clusterCount": 1
+      "clusterCount": 2
     },
     {
       "ticker": "APMD",
@@ -37269,6 +37564,34 @@
       "clusterCount": 2
     },
     {
+      "ticker": "COUR",
+      "company": "Coursera, Inc.",
+      "filer": "Pale Fire Capital SE",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 4.61,
+      "value": 4606200,
+      "ownBefore": 27806415,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 28806415,
+      "ownChangePct": 3.6,
+      "id": "f4-0000921895-26-002677-daed0a9cb9",
+      "accession": "0000921895-26-002677",
+      "sourceAccessions": [
+        "0000921895-26-002677"
+      ],
+      "transactionIds": [
+        "0000921895-26-002677:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1892479/000092189526002677/form413335011_09292026.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "CRCL",
       "company": "Circle Internet Group, Inc.",
       "filer": "Neville Patrick Sean",
@@ -37480,6 +37803,47 @@
       "marketValidationStatus": "verified",
       "transactionCount": 6,
       "clusterCount": 4
+    },
+    {
+      "ticker": "UTHR",
+      "company": "UNITED THERAPEUTICS Corp",
+      "filer": "ROTHBLATT MARTINE A",
+      "role": "Chairperson & CEO",
+      "txType": "매도",
+      "shares": 9500,
+      "price": 480.85,
+      "value": 4568106.27,
+      "ownBefore": null,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": null,
+      "ownChangePct": 0.0,
+      "id": "f4-0001106578-26-000151-c8971df054",
+      "accession": "0001106578-26-000151",
+      "sourceAccessions": [
+        "0001106578-26-000151"
+      ],
+      "transactionIds": [
+        "0001106578-26-000151:nonDerivative:1",
+        "0001106578-26-000151:nonDerivative:10",
+        "0001106578-26-000151:nonDerivative:11",
+        "0001106578-26-000151:nonDerivative:12",
+        "0001106578-26-000151:nonDerivative:13",
+        "0001106578-26-000151:nonDerivative:14",
+        "0001106578-26-000151:nonDerivative:2",
+        "0001106578-26-000151:nonDerivative:3",
+        "0001106578-26-000151:nonDerivative:4",
+        "0001106578-26-000151:nonDerivative:5",
+        "0001106578-26-000151:nonDerivative:6",
+        "0001106578-26-000151:nonDerivative:7",
+        "0001106578-26-000151:nonDerivative:8",
+        "0001106578-26-000151:nonDerivative:9"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1106578/000110657826000151/primarydocument.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 14,
+      "clusterCount": 3
     },
     {
       "ticker": "CVNA",
@@ -42801,6 +43165,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "SNEX",
+      "company": "StoneX Group Inc.",
+      "filer": "Smith Philip Andrew",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 56250,
+      "price": 65.69,
+      "value": 3694888.13,
+      "ownBefore": 794466,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 738216,
+      "ownChangePct": -7.1,
+      "id": "f4-0001569789-26-000015-6978f6ed26",
+      "accession": "0001569789-26-000015",
+      "sourceAccessions": [
+        "0001569789-26-000015"
+      ],
+      "transactionIds": [
+        "0001569789-26-000015:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1569789/000156978926000015/wk-form4_1790732333.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 7
+    },
+    {
       "ticker": "COE",
       "company": "51Talk Online Education Group",
       "filer": "Huang Jack Jiajia",
@@ -46322,7 +46714,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1924629/000192462926000005/primarydocument.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -48368,7 +48760,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1924629/000192462926000005/primarydocument.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -54640,6 +55032,35 @@
       "marketValidationStatus": "verified",
       "transactionCount": 4,
       "clusterCount": 5
+    },
+    {
+      "ticker": "WOR",
+      "company": "WORTHINGTON ENTERPRISES, INC.",
+      "filer": "MCCONNELL JOHN P/OH",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 42491,
+      "price": 60.43,
+      "value": 2567544.5,
+      "ownBefore": 1378139,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 1335648,
+      "ownChangePct": -3.1,
+      "id": "f4-0001193125-26-406248-e29ad07a9f",
+      "accession": "0001193125-26-406248",
+      "sourceAccessions": [
+        "0001193125-26-406248"
+      ],
+      "transactionIds": [
+        "0001193125-26-406248:nonDerivative:1",
+        "0001193125-26-406248:nonDerivative:2"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1106145/000119312526406248/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 1
     },
     {
       "ticker": "ESTC",
@@ -61678,7 +62099,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "CRWV",
@@ -66862,6 +67283,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 5,
       "clusterCount": 9
+    },
+    {
+      "ticker": "PAM",
+      "company": "Pampa Energy Inc.",
+      "filer": "Mariani Gustavo",
+      "role": "Vicepresident",
+      "txType": "매수",
+      "shares": 25000,
+      "price": 78.26,
+      "value": 1956500,
+      "ownBefore": 1591184,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 1616184,
+      "ownChangePct": 1.6,
+      "id": "f4-0002028917-26-000003-f3a0f2e5fc",
+      "accession": "0002028917-26-000003",
+      "sourceAccessions": [
+        "0002028917-26-000003"
+      ],
+      "transactionIds": [
+        "0002028917-26-000003:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2028917/000202891726000003/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "GILD",
@@ -72410,6 +72859,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
+    },
+    {
+      "ticker": "MNOV",
+      "company": "MEDICINOVA INC",
+      "filer": "3D Investment Partners Pte. Ltd.",
+      "role": "임원",
+      "txType": "매도",
+      "shares": 640000,
+      "price": 2.7,
+      "value": 1728000,
+      "ownBefore": 5502047,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 4862047,
+      "ownChangePct": -11.6,
+      "id": "f4-0001213900-26-104739-2cdd8e951c",
+      "accession": "0001213900-26-104739",
+      "sourceAccessions": [
+        "0001213900-26-104739"
+      ],
+      "transactionIds": [
+        "0001213900-26-104739:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1841538/000121390026104739/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "PGR",
@@ -79471,6 +79948,34 @@
       "clusterCount": 2
     },
     {
+      "ticker": "MEDP",
+      "company": "Medpace Holdings, Inc.",
+      "filer": "Troendle August J.",
+      "role": "President & CEO",
+      "txType": "매도",
+      "shares": 2410,
+      "price": 620.07,
+      "value": 1494368.7,
+      "ownBefore": 389302,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 386892,
+      "ownChangePct": -0.6,
+      "id": "f4-0001622058-26-000020-2e2a6b982a",
+      "accession": "0001622058-26-000020",
+      "sourceAccessions": [
+        "0001622058-26-000020"
+      ],
+      "transactionIds": [
+        "0001622058-26-000020:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668397/000162205826000020/wk-form4_1790712800.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 7
+    },
+    {
       "ticker": "BJRI",
       "company": "BJs RESTAURANTS INC",
       "filer": "Lynds Gregory S",
@@ -83563,6 +84068,35 @@
       "clusterCount": 1
     },
     {
+      "ticker": "AFL",
+      "company": "AFLAC INC",
+      "filer": "Japan Post Holdings Co., Ltd.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 12100,
+      "price": 113.56,
+      "value": 1374068,
+      "ownBefore": 50481490,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 50469390,
+      "ownChangePct": -0.0,
+      "id": "f4-0001104659-26-111922-f62f1bdf68",
+      "accession": "0001104659-26-111922",
+      "sourceAccessions": [
+        "0001104659-26-111922"
+      ],
+      "transactionIds": [
+        "0001104659-26-111922:nonDerivative:0",
+        "0001104659-26-111922:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/4977/000110465926111922/tm2624595-18_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 3
+    },
+    {
       "ticker": "ASAN",
       "company": "Asana, Inc.",
       "filer": "Rogers Daniel Mark",
@@ -84831,7 +85365,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "CXW",
@@ -85734,7 +86268,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "SUJA",
@@ -86957,6 +87491,34 @@
       "clusterCount": 2
     },
     {
+      "ticker": "EOG",
+      "company": "EOG RESOURCES INC",
+      "filer": "Leitzell Jeffrey R.",
+      "role": "EVP & COO",
+      "txType": "매도",
+      "shares": 9039,
+      "price": 140.61,
+      "value": 1270973.79,
+      "ownBefore": 99829.031,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 90790.031,
+      "ownChangePct": -9.1,
+      "id": "f4-0000821189-26-000199-b08f5bc8c7",
+      "accession": "0000821189-26-000199",
+      "sourceAccessions": [
+        "0000821189-26-000199"
+      ],
+      "transactionIds": [
+        "0000821189-26-000199:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/821189/000082118926000199/form4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
+    },
+    {
       "ticker": "ZION",
       "company": "ZIONS BANCORPORATION, NATIONAL ASSOCIATION /UT/",
       "filer": "MCLEAN SCOTT J",
@@ -87651,7 +88213,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "LITE",
@@ -88212,6 +88774,90 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 8
+    },
+    {
+      "ticker": "MAR",
+      "company": "MARRIOTT INTERNATIONAL INC /MD/",
+      "filer": "Harrison Deborah Marriott",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 3500,
+      "price": 352.09,
+      "value": 1232313.25,
+      "ownBefore": 285883,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 282383,
+      "ownChangePct": -1.2,
+      "id": "f4-0001225208-26-007999-5b1251bed7",
+      "accession": "0001225208-26-007999",
+      "sourceAccessions": [
+        "0001225208-26-007999"
+      ],
+      "transactionIds": [
+        "0001225208-26-007999:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1359807/000122520826007999/doc4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
+    },
+    {
+      "ticker": "MAR",
+      "company": "MARRIOTT INTERNATIONAL INC /MD/",
+      "filer": "MARRIOTT J W JR",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 3500,
+      "price": 352.09,
+      "value": 1232313.25,
+      "ownBefore": 285883,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 282383,
+      "ownChangePct": -1.2,
+      "id": "f4-0001225208-26-007997-fb527322a5",
+      "accession": "0001225208-26-007997",
+      "sourceAccessions": [
+        "0001225208-26-007997"
+      ],
+      "transactionIds": [
+        "0001225208-26-007997:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1048286/000122520826007997/doc4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
+    },
+    {
+      "ticker": "MAR",
+      "company": "MARRIOTT INTERNATIONAL INC /MD/",
+      "filer": "Marriott David S",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 3500,
+      "price": 352.09,
+      "value": 1232313.25,
+      "ownBefore": 285883,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 282383,
+      "ownChangePct": -1.2,
+      "id": "f4-0001225208-26-008000-a17de167e8",
+      "accession": "0001225208-26-008000",
+      "sourceAccessions": [
+        "0001225208-26-008000"
+      ],
+      "transactionIds": [
+        "0001225208-26-008000:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1048286/000122520826008000/doc4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "SPFI",
@@ -90832,6 +91478,34 @@
       "clusterCount": 6
     },
     {
+      "ticker": "DFTX",
+      "company": "Definium Therapeutics, Inc.",
+      "filer": "Barrow Robert",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 31550,
+      "price": 36.57,
+      "value": 1153783.5,
+      "ownBefore": 2244640,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 2213090,
+      "ownChangePct": -1.4,
+      "id": "f4-0001104659-26-112062-718fbe9f4e",
+      "accession": "0001104659-26-112062",
+      "sourceAccessions": [
+        "0001104659-26-112062"
+      ],
+      "transactionIds": [
+        "0001104659-26-112062:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1897557/000110465926112062/tm2626627-4_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
+    },
+    {
       "ticker": "ZM",
       "company": "Zoom Communications, Inc.",
       "filer": "Yuan Eric S.",
@@ -92031,7 +92705,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "SYM",
@@ -93322,7 +93996,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "CVNA",
@@ -93830,7 +94504,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "CUE",
@@ -94454,7 +95128,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "RSKD",
@@ -95141,7 +95815,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "BRZE",
@@ -95849,6 +96523,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 6
+    },
+    {
+      "ticker": "ARLO",
+      "company": "Arlo Technologies, Inc.",
+      "filer": "Binder Kurtis Joseph",
+      "role": "CHIEF FINANCIAL OFFICER",
+      "txType": "매도",
+      "shares": 83211,
+      "price": 12.44,
+      "value": 1034995.06,
+      "ownBefore": 442110,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 358899,
+      "ownChangePct": -18.8,
+      "id": "f4-0001654737-26-000014-94a1f6fce0",
+      "accession": "0001654737-26-000014",
+      "sourceAccessions": [
+        "0001654737-26-000014"
+      ],
+      "transactionIds": [
+        "0001654737-26-000014:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1736946/000165473726000014/form4-09292026_100936.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
     },
     {
       "ticker": "NDAQ",
@@ -96997,7 +97699,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "RTX",
@@ -98951,34 +99653,6 @@
       "clusterCount": 1
     },
     {
-      "ticker": "ONMD",
-      "company": "OneMedNet Corp",
-      "filer": "Kosasa Thomas",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1449275,
-      "price": 0.69,
-      "value": 999999.75,
-      "ownBefore": 17088875,
-      "filedDate": "2026-08-07",
-      "txDate": "2026-07-30",
-      "ownAfter": 18538150,
-      "ownChangePct": 8.5,
-      "id": "f4-0001493152-26-036660-b18970c7cb",
-      "accession": "0001493152-26-036660",
-      "sourceAccessions": [
-        "0001493152-26-036660"
-      ],
-      "transactionIds": [
-        "0001493152-26-036660:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989846/000149315226036660/ownership.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 2
-    },
-    {
       "ticker": "ATRA",
       "company": "Atara Biotherapeutics, Inc.",
       "filer": "Cherry Brian N",
@@ -100859,7 +101533,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "RS",
@@ -105817,6 +106491,34 @@
       "clusterCount": 2
     },
     {
+      "ticker": "PRTA",
+      "company": "PROTHENA CORP PUBLIC LTD CO",
+      "filer": "SCULLY WILLIAM P",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 103500,
+      "price": 8.6,
+      "value": 889872.3,
+      "ownBefore": 83500,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 187000,
+      "ownChangePct": 124.0,
+      "id": "f4-0001045463-26-000017-309150146c",
+      "accession": "0001045463-26-000017",
+      "sourceAccessions": [
+        "0001045463-26-000017"
+      ],
+      "transactionIds": [
+        "0001045463-26-000017:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1559053/000104546326000017/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "FTDR",
       "company": "Frontdoor, Inc.",
       "filer": "Collins Kathryn M",
@@ -107062,6 +107764,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "TEM",
+      "company": "Tempus AI, Inc.",
+      "filer": "Schoenherr Thomas Edward",
+      "role": "CEO, Diagnostics",
+      "txType": "매도",
+      "shares": 10281,
+      "price": 85,
+      "value": 873885,
+      "ownBefore": 87021,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 76740,
+      "ownChangePct": -11.8,
+      "id": "f4-0002113721-26-000018-2e9e9d77d5",
+      "accession": "0002113721-26-000018",
+      "sourceAccessions": [
+        "0002113721-26-000018"
+      ],
+      "transactionIds": [
+        "0002113721-26-000018:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2113721/000211372126000018/form4-09292026_040901.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 9
     },
     {
       "ticker": "PINS",
@@ -109280,7 +110010,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "WDC",
@@ -115525,7 +116255,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 1
+      "clusterCount": 5
     },
     {
       "ticker": "VLTO",
@@ -124680,7 +125410,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1619717/000161971726000011/primarydocument.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -128769,6 +129499,34 @@
       "clusterCount": 3
     },
     {
+      "ticker": "CIEN",
+      "company": "CIENA CORP",
+      "filer": "Cumello Joseph",
+      "role": "EVP & General Mgr.",
+      "txType": "매도",
+      "shares": 1586,
+      "price": 358.52,
+      "value": 568604.95,
+      "ownBefore": 41156,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 39570,
+      "ownChangePct": -3.9,
+      "id": "f4-0001963638-26-000013-3ae0d86092",
+      "accession": "0001963638-26-000013",
+      "sourceAccessions": [
+        "0001963638-26-000013"
+      ],
+      "transactionIds": [
+        "0001963638-26-000013:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/936395/000196363826000013/edgardoc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 8
+    },
+    {
       "ticker": "KEY",
       "company": "KEYCORP /NEW/",
       "filer": "Ramani Mohit",
@@ -131618,7 +132376,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "TVTX",
@@ -133035,7 +133793,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "CYTK",
@@ -134741,6 +135499,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 6
+    },
+    {
+      "ticker": "DFTX",
+      "company": "Definium Therapeutics, Inc.",
+      "filer": "Sullivan Mark",
+      "role": "Chief Legal Officer",
+      "txType": "매도",
+      "shares": 14051,
+      "price": 36.57,
+      "value": 513845.07,
+      "ownBefore": 508279,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 494228,
+      "ownChangePct": -2.8,
+      "id": "f4-0001104659-26-112060-04868d6e0d",
+      "accession": "0001104659-26-112060",
+      "sourceAccessions": [
+        "0001104659-26-112060"
+      ],
+      "transactionIds": [
+        "0001104659-26-112060:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1813814/000110465926112060/tm2626627-2_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
     },
     {
       "ticker": "ADI",
@@ -152984,6 +153770,62 @@
       "clusterCount": 6
     },
     {
+      "ticker": "HGBL",
+      "company": "Heritage Global Inc.",
+      "filer": "Burnham William L",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 300000,
+      "price": 1.33,
+      "value": 399000,
+      "ownBefore": 0,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 300000,
+      "ownChangePct": 0.0,
+      "id": "f4-0001193125-26-407271-f65e52d38a",
+      "accession": "0001193125-26-407271",
+      "sourceAccessions": [
+        "0001193125-26-407271"
+      ],
+      "transactionIds": [
+        "0001193125-26-407271:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1248150/000119312526407271/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
+    },
+    {
+      "ticker": "HGBL",
+      "company": "Heritage Global Inc.",
+      "filer": "DOVE ROSS",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 300000,
+      "price": 1.33,
+      "value": 399000,
+      "ownBefore": 2321917,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 2021917,
+      "ownChangePct": -12.9,
+      "id": "f4-0001193125-26-407272-82059eca2d",
+      "accession": "0001193125-26-407272",
+      "sourceAccessions": [
+        "0001193125-26-407272"
+      ],
+      "transactionIds": [
+        "0001193125-26-407272:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1245119/000119312526407272/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "WKC",
       "company": "WORLD KINECT CORP",
       "filer": "Manley John L",
@@ -153178,7 +154020,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 6
     },
     {
       "ticker": "LNC",
@@ -153399,6 +154241,34 @@
         "0000100517-26-000163:nonDerivative:0"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1314824/000010051726000163/wk-form4_1785967723.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
+    },
+    {
+      "ticker": "DFTX",
+      "company": "Definium Therapeutics, Inc.",
+      "filer": "Karlin Daniel",
+      "role": "Chief Medical Officer",
+      "txType": "매도",
+      "shares": 10853,
+      "price": 36.57,
+      "value": 396894.21,
+      "ownBefore": 803699,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 792846,
+      "ownChangePct": -1.4,
+      "id": "f4-0001104659-26-112065-025c06101b",
+      "accession": "0001104659-26-112065",
+      "sourceAccessions": [
+        "0001104659-26-112065"
+      ],
+      "transactionIds": [
+        "0001104659-26-112065:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1813814/000110465926112065/tm2626627-5_4seq1.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -154470,7 +155340,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "ADI",
@@ -160388,7 +161258,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 2,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "MNPR",
@@ -168423,6 +169293,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "Leoni Mollie",
+      "role": "Chief Medical Officer",
+      "txType": "매도",
+      "shares": 28802,
+      "price": 10.75,
+      "value": 309566.78,
+      "ownBefore": 169897,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 141095,
+      "ownChangePct": -17.0,
+      "id": "f4-0001193125-26-407937-59738cff07",
+      "accession": "0001193125-26-407937",
+      "sourceAccessions": [
+        "0001193125-26-407937"
+      ],
+      "transactionIds": [
+        "0001193125-26-407937:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1422143/000119312526407937/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
       "ticker": "FIGR",
       "company": "Figure Technology Solutions, Inc.",
       "filer": "Kgil Minchung",
@@ -170579,6 +171477,35 @@
       "clusterCount": 16
     },
     {
+      "ticker": "CRAFX",
+      "company": "Cascade Real Assets Fund",
+      "filer": "Williams Paul Jay",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 30000,
+      "price": 10,
+      "value": 300000,
+      "ownBefore": 0,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 30000,
+      "ownChangePct": 0.0,
+      "id": "f4-0001213900-26-104418-c05bdbc432",
+      "accession": "0001213900-26-104418",
+      "sourceAccessions": [
+        "0001213900-26-104418"
+      ],
+      "transactionIds": [
+        "0001213900-26-104418:nonDerivative:0",
+        "0001213900-26-104418:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114459/000121390026104418/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 2
+    },
+    {
       "ticker": "SLB",
       "company": "SLB LIMITED/NV",
       "filer": "Le Peuch Olivier",
@@ -171709,7 +172636,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 1
+      "clusterCount": 2
     },
     {
       "ticker": "NWPX",
@@ -173330,7 +174257,35 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
+    },
+    {
+      "ticker": "BSBR",
+      "company": "Banco Santander (Brasil) S.A.",
+      "filer": "Viani Ede Ilson",
+      "role": "VP Exec Officer",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 5.79,
+      "value": 289500,
+      "ownBefore": 350203,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-22",
+      "ownAfter": 300203,
+      "ownChangePct": -14.3,
+      "id": "f4-0001292814-26-004738-277e992e9d",
+      "accession": "0001292814-26-004738",
+      "sourceAccessions": [
+        "0001292814-26-004738"
+      ],
+      "transactionIds": [
+        "0001292814-26-004738:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1471055/000129281426004738/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 14
     },
     {
       "ticker": "JAZZ",
@@ -173530,6 +174485,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
+    },
+    {
+      "ticker": "PLAB",
+      "company": "PHOTRONICS INC",
+      "filer": "Park Han Kyung",
+      "role": "SVP & GM of FPD Ops",
+      "txType": "매도",
+      "shares": 9500,
+      "price": 30.37,
+      "value": 288515,
+      "ownBefore": 75500,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 66000,
+      "ownChangePct": -12.6,
+      "id": "f4-0001140361-26-038036-ceb1da92a2",
+      "accession": "0001140361-26-038036",
+      "sourceAccessions": [
+        "0001140361-26-038036"
+      ],
+      "transactionIds": [
+        "0001140361-26-038036:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/810136/000114036126038036/form4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
     },
     {
       "ticker": "CCAP",
@@ -174152,6 +175135,35 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 7
+    },
+    {
+      "ticker": "IOT",
+      "company": "Samsara Inc.",
+      "filer": "Eltoukhy Adam",
+      "role": "SEE REMARKS",
+      "txType": "매도",
+      "shares": 7306,
+      "price": 39.07,
+      "value": 285432.87,
+      "ownBefore": 389160,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 381854,
+      "ownChangePct": -1.9,
+      "id": "f4-0001895101-26-000020-3c0f7e91d6",
+      "accession": "0001895101-26-000020",
+      "sourceAccessions": [
+        "0001895101-26-000020"
+      ],
+      "transactionIds": [
+        "0001895101-26-000020:nonDerivative:0",
+        "0001895101-26-000020:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1895101/000189510126000020/form4-09292026_100901.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 6
     },
     {
       "ticker": "QRVO",
@@ -181757,7 +182769,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "BETA",
@@ -182551,6 +183563,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
+    },
+    {
+      "ticker": "XERS",
+      "company": "Xeris Biopharma Holdings, Inc.",
+      "filer": "McCulloch Kevin",
+      "role": "See Remarks",
+      "txType": "매도",
+      "shares": 25000,
+      "price": 10,
+      "value": 250000,
+      "ownBefore": 1639208,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 1614208,
+      "ownChangePct": -1.5,
+      "id": "f4-0001867096-26-000078-3604c4b745",
+      "accession": "0001867096-26-000078",
+      "sourceAccessions": [
+        "0001867096-26-000078"
+      ],
+      "transactionIds": [
+        "0001867096-26-000078:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2031695/000186709626000078/wk-form4_1790715570.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "AEP",
@@ -184965,6 +186005,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "PGY",
+      "company": "Pagaya Technologies Ltd.",
+      "filer": "DAS SANJIV",
+      "role": "President",
+      "txType": "매도",
+      "shares": 14300,
+      "price": 17.04,
+      "value": 243672,
+      "ownBefore": 188164,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 173864,
+      "ownChangePct": -7.6,
+      "id": "f4-0001628280-26-063865-45cae00080",
+      "accession": "0001628280-26-063865",
+      "sourceAccessions": [
+        "0001628280-26-063865"
+      ],
+      "transactionIds": [
+        "0001628280-26-063865:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1654849/000162828026063865/wk-form4_1790721085.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
+    },
+    {
       "ticker": "NMAX",
       "company": "Newsmax Inc.",
       "filer": "CONYERS INVESTMENTS LLC",
@@ -185364,7 +186432,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "LZ",
@@ -189401,7 +190469,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "EBC",
@@ -190026,6 +191094,34 @@
       "clusterCount": 5
     },
     {
+      "ticker": "IBEX",
+      "company": "IBEX Ltd",
+      "filer": "Dechant Robert Thomas",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 5000,
+      "price": 45.02,
+      "value": 225095.5,
+      "ownBefore": 262011,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 257011,
+      "ownChangePct": -1.9,
+      "id": "f4-0001298255-26-000019-4618ef5bba",
+      "accession": "0001298255-26-000019",
+      "sourceAccessions": [
+        "0001298255-26-000019"
+      ],
+      "transactionIds": [
+        "0001298255-26-000019:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1298255/000129825526000019/wk-form4_1790717025.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 7
+    },
+    {
       "ticker": "MRSH",
       "company": "MARSH & MCLENNAN COMPANIES, INC.",
       "filer": "Brennan Katherine",
@@ -190163,7 +191259,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 6
     },
     {
       "ticker": "CBLL",
@@ -191220,7 +192316,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 1
+      "clusterCount": 2
     },
     {
       "ticker": "NHC",
@@ -195495,6 +196591,34 @@
       "clusterCount": 5
     },
     {
+      "ticker": "INNV",
+      "company": "InnovAge Holding Corp.",
+      "filer": "DAMATO NICOLE",
+      "role": "CHIEF LEGAL OFFICER",
+      "txType": "매도",
+      "shares": 23814,
+      "price": 8.7,
+      "value": 207181.8,
+      "ownBefore": 328711,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 304897,
+      "ownChangePct": -7.2,
+      "id": "f4-0001834376-26-000051-a0f7632cf1",
+      "accession": "0001834376-26-000051",
+      "sourceAccessions": [
+        "0001834376-26-000051"
+      ],
+      "transactionIds": [
+        "0001834376-26-000051:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1884895/000183437626000051/wk-form4_1790712237.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
+    },
+    {
       "ticker": "MASS",
       "company": "908 Devices Inc.",
       "filer": "Knopp Kevin J.",
@@ -196366,6 +197490,34 @@
       "clusterCount": 4
     },
     {
+      "ticker": "SWX",
+      "company": "Southwest Gas Holdings, Inc.",
+      "filer": "Williams Julie M.",
+      "role": "SVP/Cont. Improvement and Opt.",
+      "txType": "매도",
+      "shares": 2500,
+      "price": 81.81,
+      "value": 204518.5,
+      "ownBefore": 28949.801,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 26449.801,
+      "ownChangePct": -8.6,
+      "id": "f4-0001932678-26-000002-535972bbfe",
+      "accession": "0001932678-26-000002",
+      "sourceAccessions": [
+        "0001932678-26-000002"
+      ],
+      "transactionIds": [
+        "0001932678-26-000002:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1692115/000193267826000002/wk-form4_1790720499.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "YELP",
       "company": "YELP INC",
       "filer": "Schwarzbach David A",
@@ -196420,6 +197572,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
+    },
+    {
+      "ticker": "MONIX",
+      "company": "Monachil Credit Income Fund",
+      "filer": "Meli Ali",
+      "role": "President and CEO",
+      "txType": "매도",
+      "shares": 20000,
+      "price": 10.21,
+      "value": 204200,
+      "ownBefore": 1192754.295,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 1172754.295,
+      "ownChangePct": -1.7,
+      "id": "f4-0001953760-26-000001-b4ad489abc",
+      "accession": "0001953760-26-000001",
+      "sourceAccessions": [
+        "0001953760-26-000001"
+      ],
+      "transactionIds": [
+        "0001953760-26-000001:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1953760/000195376026000001/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "PTCT",
@@ -197817,6 +198997,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
+    },
+    {
+      "ticker": "GDEV",
+      "company": "GDEV Inc.",
+      "filer": "Reingold Anton",
+      "role": "See Remarks",
+      "txType": "매도",
+      "shares": 18209,
+      "price": 11.03,
+      "value": 200845.27,
+      "ownBefore": 383518,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 365309,
+      "ownChangePct": -4.7,
+      "id": "f4-0001104659-26-111965-a87d38e51b",
+      "accession": "0001104659-26-111965",
+      "sourceAccessions": [
+        "0001104659-26-111965"
+      ],
+      "transactionIds": [
+        "0001104659-26-111965:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1848739/000110465926111965/tm2626566-1_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "DY",
@@ -202618,7 +203826,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1820872/000197901326000005/primarydocument.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -204865,6 +206073,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "ORIC",
+      "company": "Oric Pharmaceuticals, Inc.",
+      "filer": "Piscitelli Dominic",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 13400,
+      "price": 13.53,
+      "value": 181257.78,
+      "ownBefore": 83228,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 69828,
+      "ownChangePct": -16.1,
+      "id": "f4-0001695028-26-000010-bef37cdf8c",
+      "accession": "0001695028-26-000010",
+      "sourceAccessions": [
+        "0001695028-26-000010"
+      ],
+      "transactionIds": [
+        "0001695028-26-000010:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1796280/000169502826000010/form4-09292026_110919.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
+    },
+    {
       "ticker": "VSAT",
       "company": "VIASAT INC",
       "filer": "Palmer Benjamin Edward",
@@ -205529,6 +206765,35 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "Powl Brian T.",
+      "role": "Chief Commercial Officer",
+      "txType": "매도",
+      "shares": 17020,
+      "price": 10.53,
+      "value": 179183.25,
+      "ownBefore": 169269,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 152249,
+      "ownChangePct": -10.1,
+      "id": "f4-0001193125-26-407935-95025a49e4",
+      "accession": "0001193125-26-407935",
+      "sourceAccessions": [
+        "0001193125-26-407935"
+      ],
+      "transactionIds": [
+        "0001193125-26-407935:nonDerivative:0",
+        "0001193125-26-407935:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1422143/000119312526407935/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 6
     },
     {
       "ticker": "GLXY",
@@ -209162,7 +210427,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "CUE",
@@ -209482,6 +210747,34 @@
       "clusterCount": 9
     },
     {
+      "ticker": "BKV",
+      "company": "BKV Corp",
+      "filer": "Hinojosa Javier",
+      "role": "Senior Vice President of Power",
+      "txType": "매도",
+      "shares": 7428,
+      "price": 22.66,
+      "value": 168321.45,
+      "ownBefore": 84276,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 76848,
+      "ownChangePct": -8.8,
+      "id": "f4-0001628280-26-063784-392c66115d",
+      "accession": "0001628280-26-063784",
+      "sourceAccessions": [
+        "0001628280-26-063784"
+      ],
+      "transactionIds": [
+        "0001628280-26-063784:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1838406/000162828026063784/wk-form4_1790697998.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
+    },
+    {
       "ticker": "ALLE",
       "company": "Allegion plc",
       "filer": "Wenos Vincent",
@@ -209564,6 +210857,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
+    },
+    {
+      "ticker": "ARLO",
+      "company": "Arlo Technologies, Inc.",
+      "filer": "Binder Kurtis Joseph",
+      "role": "CHIEF FINANCIAL OFFICER",
+      "txType": "매도",
+      "shares": 13358,
+      "price": 12.58,
+      "value": 168004.9,
+      "ownBefore": 358899,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 345541,
+      "ownChangePct": -3.7,
+      "id": "f4-0001654737-26-000014-0c9c849bc7",
+      "accession": "0001654737-26-000014",
+      "sourceAccessions": [
+        "0001654737-26-000014"
+      ],
+      "transactionIds": [
+        "0001654737-26-000014:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1736946/000165473726000014/form4-09292026_100936.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
     },
     {
       "ticker": "LIF",
@@ -210159,7 +211480,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "GEF, GEF-B",
@@ -210417,6 +211738,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 4,
       "clusterCount": 5
+    },
+    {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "Powl Brian T.",
+      "role": "Chief Commercial Officer",
+      "txType": "매도",
+      "shares": 15430,
+      "price": 10.75,
+      "value": 165852.44,
+      "ownBefore": 152249,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 136819,
+      "ownChangePct": -10.1,
+      "id": "f4-0001193125-26-407935-73e904c6c0",
+      "accession": "0001193125-26-407935",
+      "sourceAccessions": [
+        "0001193125-26-407935"
+      ],
+      "transactionIds": [
+        "0001193125-26-407935:nonDerivative:2"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1422143/000119312526407935/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
     },
     {
       "ticker": "KVYO",
@@ -212998,6 +214347,34 @@
         "0002016857-26-000008:nonDerivative:2"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2016857/000201685726000008/wk-form4_1785877534.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 9
+    },
+    {
+      "ticker": "RVMD",
+      "company": "Revolution Medicines, Inc.",
+      "filer": "Cislini Jeff",
+      "role": "SVP & General Counsel",
+      "txType": "매도",
+      "shares": 765,
+      "price": 207.32,
+      "value": 158599.88,
+      "ownBefore": 52541,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 51776,
+      "ownChangePct": -1.5,
+      "id": "f4-0001969082-26-000011-32f9f1c936",
+      "accession": "0001969082-26-000011",
+      "sourceAccessions": [
+        "0001969082-26-000011"
+      ],
+      "transactionIds": [
+        "0001969082-26-000011:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1969082/000196908226000011/ownership.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -215894,6 +217271,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "GLRE",
+      "company": "GREENLIGHT CAPITAL RE, LTD.",
+      "filer": "Isaacs Ian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 10000,
+      "price": 14.95,
+      "value": 149512,
+      "ownBefore": 53142,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 43142,
+      "ownChangePct": -18.8,
+      "id": "f4-0001385613-26-000133-78a500aaf1",
+      "accession": "0001385613-26-000133",
+      "sourceAccessions": [
+        "0001385613-26-000133"
+      ],
+      "transactionIds": [
+        "0001385613-26-000133:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1385613/000138561326000133/wk-form4_1790706828.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
     },
     {
       "ticker": "MAX",
@@ -219415,7 +220820,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "TER",
@@ -224458,6 +225863,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "Leoni Mollie",
+      "role": "Chief Medical Officer",
+      "txType": "매도",
+      "shares": 12448,
+      "price": 10.5,
+      "value": 130670.39,
+      "ownBefore": 182345,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 169897,
+      "ownChangePct": -6.8,
+      "id": "f4-0001193125-26-407937-c6c7573264",
+      "accession": "0001193125-26-407937",
+      "sourceAccessions": [
+        "0001193125-26-407937"
+      ],
+      "transactionIds": [
+        "0001193125-26-407937:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1422143/000119312526407937/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
       "ticker": "CRT",
       "company": "CROSS TIMBERS ROYALTY TRUST",
       "filer": "OLIVER ERIC L",
@@ -227888,6 +229321,34 @@
       "clusterCount": 5
     },
     {
+      "ticker": "DFTX",
+      "company": "Definium Therapeutics, Inc.",
+      "filer": "Roberts Brandi",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 3377,
+      "price": 36.57,
+      "value": 123496.89,
+      "ownBefore": 397905,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 394528,
+      "ownChangePct": -0.8,
+      "id": "f4-0001104659-26-112058-3b5748e1f3",
+      "accession": "0001104659-26-112058",
+      "sourceAccessions": [
+        "0001104659-26-112058"
+      ],
+      "transactionIds": [
+        "0001104659-26-112058:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1813814/000110465926112058/tm2626627-1_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
+    },
+    {
       "ticker": "DGICA",
       "company": "DONEGAL GROUP INC",
       "filer": "DONEGAL MUTUAL INSURANCE CO",
@@ -229508,6 +230969,35 @@
       "clusterCount": 2
     },
     {
+      "ticker": "SE",
+      "company": "Sea Ltd",
+      "filer": "Wang Yanjun",
+      "role": "CCO and GC",
+      "txType": "매도",
+      "shares": 1200,
+      "price": 100.04,
+      "value": 120050.17,
+      "ownBefore": 93980,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 92780,
+      "ownChangePct": -1.3,
+      "id": "f4-0001193125-26-405898-683e80dba9",
+      "accession": "0001193125-26-405898",
+      "sourceAccessions": [
+        "0001193125-26-405898"
+      ],
+      "transactionIds": [
+        "0001193125-26-405898:nonDerivative:0",
+        "0001193125-26-405898:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1703399/000119312526405898/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 9
+    },
+    {
       "ticker": "AVR",
       "company": "Anteris Technologies Global Corp.",
       "filer": "L1 Capital Pty Ltd",
@@ -229677,6 +231167,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 4,
       "clusterCount": 9
+    },
+    {
+      "ticker": "QTEX",
+      "company": "QTREX Quantum Ltd.",
+      "filer": "Ben-Noon Dagi Shahar",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 168894,
+      "price": 0.71,
+      "value": 119543.17,
+      "ownBefore": 3477239,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 3646133,
+      "ownChangePct": 4.9,
+      "id": "f4-0001185185-26-004397-e75b785e0d",
+      "accession": "0001185185-26-004397",
+      "sourceAccessions": [
+        "0001185185-26-004397"
+      ],
+      "transactionIds": [
+        "0001185185-26-004397:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1911928/000118518526004397/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "LAD",
@@ -232067,7 +233585,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "EW",
@@ -232152,6 +233670,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 6
+    },
+    {
+      "ticker": "DFTX",
+      "company": "Definium Therapeutics, Inc.",
+      "filer": "Wiley Matthew T.",
+      "role": "Chief Commercial Officer",
+      "txType": "매도",
+      "shares": 3097,
+      "price": 36.57,
+      "value": 113257.29,
+      "ownBefore": 362133,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 359036,
+      "ownChangePct": -0.9,
+      "id": "f4-0001104659-26-112061-30d4949df7",
+      "accession": "0001104659-26-112061",
+      "sourceAccessions": [
+        "0001104659-26-112061"
+      ],
+      "transactionIds": [
+        "0001104659-26-112061:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1813814/000110465926112061/tm2626627-3_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
     },
     {
       "ticker": "URG",
@@ -233417,6 +234963,34 @@
         "0001834423-26-000008:nonDerivative:0"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1703057/000183442326000008/wk-form4_1787078721.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
+    },
+    {
+      "ticker": "PONY",
+      "company": "Pony AI Inc.",
+      "filer": "ZHANG NING",
+      "role": "Vice President",
+      "txType": "매도",
+      "shares": 15524,
+      "price": 7.1,
+      "value": 110279.39,
+      "ownBefore": 661359,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 645835,
+      "ownChangePct": -2.3,
+      "id": "f4-0001104659-26-111924-52018f5748",
+      "accession": "0001104659-26-111924",
+      "sourceAccessions": [
+        "0001104659-26-111924"
+      ],
+      "transactionIds": [
+        "0001104659-26-111924:nonDerivative:3"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1969302/000110465926111924/tm2626561-3_4seq1.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -237350,6 +238924,34 @@
       "clusterCount": 5
     },
     {
+      "ticker": "GFS",
+      "company": "GLOBALFOUNDRIES Inc.",
+      "filer": "Raman Pradheepa",
+      "role": "Chief People Officer",
+      "txType": "매도",
+      "shares": 2145,
+      "price": 48.83,
+      "value": 104740.35,
+      "ownBefore": 2145,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 0,
+      "ownChangePct": -100.0,
+      "id": "f4-0001628280-26-063835-0844b2e6c6",
+      "accession": "0001628280-26-063835",
+      "sourceAccessions": [
+        "0001628280-26-063835"
+      ],
+      "transactionIds": [
+        "0001628280-26-063835:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1709048/000162828026063835/wk-form4_1790714934.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
+    },
+    {
       "ticker": "CE",
       "company": "Celanese Corp",
       "filer": "Kyrish Chuck",
@@ -239077,7 +240679,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "PANW",
@@ -239779,6 +241381,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "ABEO",
+      "company": "ABEONA THERAPEUTICS INC.",
+      "filer": "Seshadri Vishwas",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 19608,
+      "price": 5.16,
+      "value": 101091,
+      "ownBefore": 1306108,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 1286500,
+      "ownChangePct": -1.5,
+      "id": "f4-0001493152-26-044974-9acfa5429e",
+      "accession": "0001493152-26-044974",
+      "sourceAccessions": [
+        "0001493152-26-044974"
+      ],
+      "transactionIds": [
+        "0001493152-26-044974:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/318306/000149315226044974/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
     },
     {
       "ticker": "CHE",
@@ -243063,6 +244693,37 @@
       "clusterCount": 1
     },
     {
+      "ticker": "SE",
+      "company": "Sea Ltd",
+      "filer": "Wang Yanjun",
+      "role": "CCO and GC",
+      "txType": "매도",
+      "shares": 1000,
+      "price": 98.65,
+      "value": 98646.47,
+      "ownBefore": 92780,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 91780,
+      "ownChangePct": -1.1,
+      "id": "f4-0001193125-26-405898-a9e138fbe4",
+      "accession": "0001193125-26-405898",
+      "sourceAccessions": [
+        "0001193125-26-405898"
+      ],
+      "transactionIds": [
+        "0001193125-26-405898:nonDerivative:2",
+        "0001193125-26-405898:nonDerivative:3",
+        "0001193125-26-405898:nonDerivative:4",
+        "0001193125-26-405898:nonDerivative:5"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1703399/000119312526405898/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 4,
+      "clusterCount": 9
+    },
+    {
       "ticker": "MBLY",
       "company": "Mobileye Global Inc.",
       "filer": "Yeary Frank D",
@@ -243622,6 +245283,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "PONY",
+      "company": "Pony AI Inc.",
+      "filer": "Wang Haojun",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 13751,
+      "price": 7.1,
+      "value": 97684.35,
+      "ownBefore": 1477217,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 1463466,
+      "ownChangePct": -0.9,
+      "id": "f4-0001104659-26-111926-0a123b2ab3",
+      "accession": "0001104659-26-111926",
+      "sourceAccessions": [
+        "0001104659-26-111926"
+      ],
+      "transactionIds": [
+        "0001104659-26-111926:nonDerivative:3"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1969302/000110465926111926/tm2626561-4_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "ALKS",
@@ -244634,6 +246323,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "MEDP",
+      "company": "Medpace Holdings, Inc.",
+      "filer": "Troendle August J.",
+      "role": "President & CEO",
+      "txType": "매도",
+      "shares": 154,
+      "price": 620.6,
+      "value": 95572.4,
+      "ownBefore": 389456,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 389302,
+      "ownChangePct": -0.0,
+      "id": "f4-0001622058-26-000020-4ea88fb152",
+      "accession": "0001622058-26-000020",
+      "sourceAccessions": [
+        "0001622058-26-000020"
+      ],
+      "transactionIds": [
+        "0001622058-26-000020:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668397/000162205826000020/wk-form4_1790712800.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 7
+    },
+    {
       "ticker": "MAX",
       "company": "MediaAlpha, Inc.",
       "filer": "Nonko Eugene",
@@ -245249,7 +246966,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1619717/000161971726000010/primarydocument.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -247926,34 +249643,6 @@
       "clusterCount": 3
     },
     {
-      "ticker": "ONMD",
-      "company": "OneMedNet Corp",
-      "filer": "Yu Jeffrey",
-      "role": "Chief Medical Officer",
-      "txType": "매수",
-      "shares": 142857,
-      "price": 0.63,
-      "value": 89999.91,
-      "ownBefore": 8780410,
-      "filedDate": "2026-09-14",
-      "txDate": "2026-09-10",
-      "ownAfter": 8923267,
-      "ownChangePct": 1.6,
-      "id": "f4-0001493152-26-042642-531a8f944a",
-      "accession": "0001493152-26-042642",
-      "sourceAccessions": [
-        "0001493152-26-042642"
-      ],
-      "transactionIds": [
-        "0001493152-26-042642:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1849380/000149315226042642/ownership.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 2
-    },
-    {
       "ticker": "MCB",
       "company": "Metropolitan Bank Holding Corp.",
       "filer": "Dougherty Daniel F",
@@ -248992,6 +250681,34 @@
       "clusterCount": 5
     },
     {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "Bair Teresa Brophy",
+      "role": "Chief Legal Officer",
+      "txType": "매도",
+      "shares": 8442,
+      "price": 10.5,
+      "value": 88618.21,
+      "ownBefore": 195444,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 187002,
+      "ownChangePct": -4.3,
+      "id": "f4-0001193125-26-407939-397ba3da8b",
+      "accession": "0001193125-26-407939",
+      "sourceAccessions": [
+        "0001193125-26-407939"
+      ],
+      "transactionIds": [
+        "0001193125-26-407939:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1813058/000119312526407939/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
       "ticker": "PCTY",
       "company": "Paylocity Holding Corp",
       "filer": "Sarowitz Steven I",
@@ -249075,6 +250792,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
+    },
+    {
+      "ticker": "PONY",
+      "company": "Pony AI Inc.",
+      "filer": "Mo Luyi",
+      "role": "Vice President",
+      "txType": "매도",
+      "shares": 12425,
+      "price": 7.1,
+      "value": 88264.72,
+      "ownBefore": 375162,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 362737,
+      "ownChangePct": -3.3,
+      "id": "f4-0001104659-26-111919-76cabe342c",
+      "accession": "0001104659-26-111919",
+      "sourceAccessions": [
+        "0001104659-26-111919"
+      ],
+      "transactionIds": [
+        "0001104659-26-111919:nonDerivative:3"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2072435/000110465926111919/tm2626561-2_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "OMDA",
@@ -249355,7 +251100,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 1
+      "clusterCount": 5
     },
     {
       "ticker": "ORLY",
@@ -249846,7 +251591,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "SYM",
@@ -250497,6 +252242,62 @@
       "clusterCount": 5
     },
     {
+      "ticker": "MONIX",
+      "company": "Monachil Credit Income Fund",
+      "filer": "Meli Ali",
+      "role": "President and CEO",
+      "txType": "매수",
+      "shares": 8423.114,
+      "price": 10.21,
+      "value": 85999.99,
+      "ownBefore": 1184331.181,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 1192754.295,
+      "ownChangePct": 0.7,
+      "id": "f4-0001953760-26-000001-c506046a07",
+      "accession": "0001953760-26-000001",
+      "sourceAccessions": [
+        "0001953760-26-000001"
+      ],
+      "transactionIds": [
+        "0001953760-26-000001:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1953760/000195376026000001/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "AMFN",
+      "company": "American Fusion, Inc.",
+      "filer": "Rossa Alexander William",
+      "role": "임원",
+      "txType": "매수",
+      "shares": 842775,
+      "price": 0.1,
+      "value": 85963.05,
+      "ownBefore": 2157225,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-22",
+      "ownAfter": 3000000,
+      "ownChangePct": 39.1,
+      "id": "f4-0001079973-26-001308-1ccb7adb95",
+      "accession": "0001079973-26-001308",
+      "sourceAccessions": [
+        "0001079973-26-001308"
+      ],
+      "transactionIds": [
+        "0001079973-26-001308:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/96664/000107997326001308/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "EVLV",
       "company": "Evolv Technologies Holdings, Inc.",
       "filer": "Kuhl Henrik",
@@ -250579,6 +252380,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
+    },
+    {
+      "ticker": "MXF",
+      "company": "MEXICO FUND INC",
+      "filer": "Saba Capital Management, L.P.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 4133,
+      "price": 20.74,
+      "value": 85718.42,
+      "ownBefore": 2343069,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 2347202,
+      "ownChangePct": 0.2,
+      "id": "f4-0001510281-26-000314-49686a1794",
+      "accession": "0001510281-26-000314",
+      "sourceAccessions": [
+        "0001510281-26-000314"
+      ],
+      "transactionIds": [
+        "0001510281-26-000314:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/65433/000151028126000314/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "COHN",
@@ -253133,7 +254962,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 7
+      "clusterCount": 8
     },
     {
       "ticker": "ANL",
@@ -254370,7 +256199,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "UPWK",
@@ -255492,6 +257321,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "GLRE",
+      "company": "GREENLIGHT CAPITAL RE, LTD.",
+      "filer": "Isaacs Ian",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 5150,
+      "price": 14.9,
+      "value": 76739.12,
+      "ownBefore": 43142,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 37992,
+      "ownChangePct": -11.9,
+      "id": "f4-0001385613-26-000133-76ad6fa084",
+      "accession": "0001385613-26-000133",
+      "sourceAccessions": [
+        "0001385613-26-000133"
+      ],
+      "transactionIds": [
+        "0001385613-26-000133:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1385613/000138561326000133/wk-form4_1790706828.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
     },
     {
       "ticker": "MASS",
@@ -256868,7 +258725,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 1
+      "clusterCount": 2
     },
     {
       "ticker": "MWA",
@@ -258318,6 +260175,34 @@
       "clusterCount": 5
     },
     {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "FORD KATHLEEN",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 6906,
+      "price": 10.5,
+      "value": 72494.35,
+      "ownBefore": 153560,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 146654,
+      "ownChangePct": -4.5,
+      "id": "f4-0001193125-26-407938-80bf249a7b",
+      "accession": "0001193125-26-407938",
+      "sourceAccessions": [
+        "0001193125-26-407938"
+      ],
+      "transactionIds": [
+        "0001193125-26-407938:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1785406/000119312526407938/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
       "ticker": "LOB",
       "company": "Live Oak Bancshares, Inc.",
       "filer": "WILLIAMS WILLIAM L. III",
@@ -259663,34 +261548,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
-    },
-    {
-      "ticker": "CTSO",
-      "company": "Cytosorbents Corp",
-      "filer": "Chan Phillip P.",
-      "role": "Chief Executive Officer",
-      "txType": "매수",
-      "shares": 200000,
-      "price": 0.35,
-      "value": 70000,
-      "ownBefore": 1744432,
-      "filedDate": "2026-09-09",
-      "txDate": "2026-09-04",
-      "ownAfter": 1944432,
-      "ownChangePct": 11.5,
-      "id": "f4-0001104659-26-106308-cbfcc10a27",
-      "accession": "0001104659-26-106308",
-      "sourceAccessions": [
-        "0001104659-26-106308"
-      ],
-      "transactionIds": [
-        "0001104659-26-106308:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1442786/000110465926106308/tm2625061-1_4seq1.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 3
     },
     {
       "ticker": "ALHC",
@@ -261095,7 +262952,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "SMTC",
@@ -261527,19 +263384,20 @@
       "price": 43.18,
       "value": 67104.83,
       "ownBefore": 6590148,
-      "filedDate": "2026-09-24",
+      "filedDate": "2026-09-29",
       "txDate": "2026-09-22",
       "ownAfter": 6591702,
       "ownChangePct": 0.0,
-      "id": "f4-0001976408-26-000864-3d14f27b00",
-      "accession": "0001976408-26-000864",
+      "id": "f4-0001976408-26-000873-7f00c824d9",
+      "accession": "0001976408-26-000873",
       "sourceAccessions": [
-        "0001976408-26-000864"
+        "0001976408-26-000864",
+        "0001976408-26-000873"
       ],
       "transactionIds": [
-        "0001976408-26-000864:nonDerivative:0"
+        "0001976408-26-000873:nonDerivative:0"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000864/primary_doc.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000873/primary_doc.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -261911,6 +263769,34 @@
       "clusterCount": 4
     },
     {
+      "ticker": "OKLO",
+      "company": "Oklo Inc.",
+      "filer": "Goodwin William Carroll Murphy",
+      "role": "Chief Strategy Officer",
+      "txType": "매도",
+      "shares": 1775,
+      "price": 37.39,
+      "value": 66367.25,
+      "ownBefore": 48562,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 46787,
+      "ownChangePct": -3.7,
+      "id": "f4-0002080717-26-000013-51d9837fdb",
+      "accession": "0002080717-26-000013",
+      "sourceAccessions": [
+        "0002080717-26-000013"
+      ],
+      "transactionIds": [
+        "0002080717-26-000013:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2080717/000208071726000013/wk-form4_1790713476.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 8
+    },
+    {
       "ticker": "BWMX",
       "company": "BETTERWARE DE MEXICO, S.A.P.I. DE C.V",
       "filer": "Campos Luis",
@@ -262161,7 +264047,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 4
     },
     {
       "ticker": "BSBR",
@@ -262189,7 +264075,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "UUU",
@@ -266752,6 +268638,35 @@
       "clusterCount": 1
     },
     {
+      "ticker": "SWZ",
+      "company": "Total Return Securities Fund",
+      "filer": "Dakos Andrew",
+      "role": "President and CEO",
+      "txType": "매수",
+      "shares": 10000,
+      "price": 5.81,
+      "value": 58123.51,
+      "ownBefore": 40000,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 50000,
+      "ownChangePct": 25.0,
+      "id": "f4-0001398344-26-017532-1c389e734e",
+      "accession": "0001398344-26-017532",
+      "sourceAccessions": [
+        "0001398344-26-017532"
+      ],
+      "transactionIds": [
+        "0001398344-26-017532:nonDerivative:0",
+        "0001398344-26-017532:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1341021/000139834426017532/fp0100983-1_4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 3
+    },
+    {
       "ticker": "OWLS",
       "company": "OBOOK HOLDINGS INC.",
       "filer": "WANG CHUN KAI",
@@ -267030,6 +268945,35 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "SWZ",
+      "company": "Total Return Securities Fund",
+      "filer": "Dakos Andrew",
+      "role": "President and CEO",
+      "txType": "매수",
+      "shares": 10000,
+      "price": 5.77,
+      "value": 57690,
+      "ownBefore": 50000,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 60000,
+      "ownChangePct": 20.0,
+      "id": "f4-0001398344-26-017532-277de754aa",
+      "accession": "0001398344-26-017532",
+      "sourceAccessions": [
+        "0001398344-26-017532"
+      ],
+      "transactionIds": [
+        "0001398344-26-017532:nonDerivative:2",
+        "0001398344-26-017532:nonDerivative:3"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1341021/000139834426017532/fp0100983-1_4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 3
     },
     {
       "ticker": "CWCO",
@@ -272101,7 +274045,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 6
     },
     {
       "ticker": "CRDA CRDB",
@@ -276319,6 +278263,34 @@
       "clusterCount": 2
     },
     {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "DOYLE THOMAS JAMES",
+      "role": "SVP, Finance & Accounting",
+      "txType": "매도",
+      "shares": 4607,
+      "price": 10.5,
+      "value": 48360.6,
+      "ownBefore": 147035,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 142428,
+      "ownChangePct": -3.1,
+      "id": "f4-0001193125-26-407936-1f6ea8508d",
+      "accession": "0001193125-26-407936",
+      "sourceAccessions": [
+        "0001193125-26-407936"
+      ],
+      "transactionIds": [
+        "0001193125-26-407936:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1910331/000119312526407936/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
       "ticker": "EPSN",
       "company": "Epsilon Energy Ltd.",
       "filer": "Stabell Jason",
@@ -277017,6 +278989,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
+    },
+    {
+      "ticker": "ABEO",
+      "company": "ABEONA THERAPEUTICS INC.",
+      "filer": "Vazzano Joseph Walter",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 9191,
+      "price": 5.16,
+      "value": 47385.12,
+      "ownBefore": 492079,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 482888,
+      "ownChangePct": -1.9,
+      "id": "f4-0001493152-26-044973-a561388c25",
+      "accession": "0001493152-26-044973",
+      "sourceAccessions": [
+        "0001493152-26-044973"
+      ],
+      "transactionIds": [
+        "0001493152-26-044973:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/318306/000149315226044973/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
     },
     {
       "ticker": "FBIZ",
@@ -281681,7 +283681,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "PEBK",
@@ -283807,6 +285807,62 @@
       "clusterCount": 1
     },
     {
+      "ticker": "OKLO",
+      "company": "Oklo Inc.",
+      "filer": "Hanson John",
+      "role": "Chief of Staff",
+      "txType": "매도",
+      "shares": 1100,
+      "price": 37.39,
+      "value": 41129,
+      "ownBefore": 362450,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 361350,
+      "ownChangePct": -0.3,
+      "id": "f4-0002146828-26-000008-a3607f999b",
+      "accession": "0002146828-26-000008",
+      "sourceAccessions": [
+        "0002146828-26-000008"
+      ],
+      "transactionIds": [
+        "0002146828-26-000008:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2146828/000214682826000008/wk-form4_1790713603.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 8
+    },
+    {
+      "ticker": "OKLO",
+      "company": "Oklo Inc.",
+      "filer": "Renner Alexandra",
+      "role": "Chief Product Officer",
+      "txType": "매도",
+      "shares": 1100,
+      "price": 37.39,
+      "value": 41129,
+      "ownBefore": 478695,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 477595,
+      "ownChangePct": -0.2,
+      "id": "f4-0002147680-26-000012-db3ef1dc6c",
+      "accession": "0002147680-26-000012",
+      "sourceAccessions": [
+        "0002147680-26-000012"
+      ],
+      "transactionIds": [
+        "0002147680-26-000012:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1849056/000214768026000012/wk-form4_1790713525.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 8
+    },
+    {
       "ticker": "SYNA",
       "company": "SYNAPTICS Inc",
       "filer": "Gupta Vikram",
@@ -285756,6 +287812,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "KURA",
+      "company": "Kura Oncology, Inc.",
+      "filer": "FORD KATHLEEN",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 3668,
+      "price": 10.75,
+      "value": 39436.87,
+      "ownBefore": 146654,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 142986,
+      "ownChangePct": -2.5,
+      "id": "f4-0001193125-26-407938-7893e6277b",
+      "accession": "0001193125-26-407938",
+      "sourceAccessions": [
+        "0001193125-26-407938"
+      ],
+      "transactionIds": [
+        "0001193125-26-407938:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1785406/000119312526407938/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
       "ticker": "SOPH",
       "company": "SOPHiA GENETICS SA",
       "filer": "Menu Philippe",
@@ -287557,7 +289641,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "ANIP",
@@ -288428,6 +290512,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
+    },
+    {
+      "ticker": "PGY",
+      "company": "Pagaya Technologies Ltd.",
+      "filer": "Vieira Cory",
+      "role": "Chief Accounting Officer",
+      "txType": "매도",
+      "shares": 2170,
+      "price": 17.04,
+      "value": 36976.8,
+      "ownBefore": 27330,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 25160,
+      "ownChangePct": -7.9,
+      "id": "f4-0001628280-26-063879-d5fe622e43",
+      "accession": "0001628280-26-063879",
+      "sourceAccessions": [
+        "0001628280-26-063879"
+      ],
+      "transactionIds": [
+        "0001628280-26-063879:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1883085/000162828026063879/wk-form4_1790729921.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
     },
     {
       "ticker": "EMBC",
@@ -291087,6 +293199,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "ABEO",
+      "company": "ABEONA THERAPEUTICS INC.",
+      "filer": "O'Malley Brendan M.",
+      "role": "SVP, Chief Legal Officer",
+      "txType": "매도",
+      "shares": 6727,
+      "price": 5.16,
+      "value": 34681.72,
+      "ownBefore": 427953,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 421226,
+      "ownChangePct": -1.6,
+      "id": "f4-0001493152-26-044972-574060fa34",
+      "accession": "0001493152-26-044972",
+      "sourceAccessions": [
+        "0001493152-26-044972"
+      ],
+      "transactionIds": [
+        "0001493152-26-044972:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/318306/000149315226044972/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
+    },
+    {
       "ticker": "BLNE",
       "company": "Beeline Holdings, Inc.",
       "filer": "Liuzza Nicholas Reyland JR",
@@ -293396,6 +295536,34 @@
         "0001628873-26-000064:nonDerivative:1"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1031235/000162887326000064/form4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
+    },
+    {
+      "ticker": "FTHY",
+      "company": "FIRST TRUST HIGH YIELD OPPORTUNITIES 2027 TERM FUND",
+      "filer": "HOUSEY WILLIAM A JR",
+      "role": "임원",
+      "txType": "매수",
+      "shares": 2500,
+      "price": 12.87,
+      "value": 32162.5,
+      "ownBefore": 21841,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 24341,
+      "ownChangePct": 11.4,
+      "id": "f4-0001445546-26-007166-879a67fe69",
+      "accession": "0001445546-26-007166",
+      "sourceAccessions": [
+        "0001445546-26-007166"
+      ],
+      "transactionIds": [
+        "0001445546-26-007166:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1810523/000144554626007166/housey4_fthy.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -295878,19 +298046,20 @@
       "price": 43.07,
       "value": 30150.82,
       "ownBefore": 6591702,
-      "filedDate": "2026-09-24",
+      "filedDate": "2026-09-29",
       "txDate": "2026-09-23",
       "ownAfter": 6592402,
       "ownChangePct": 0.0,
-      "id": "f4-0001976408-26-000864-38770510bb",
-      "accession": "0001976408-26-000864",
+      "id": "f4-0001976408-26-000873-f4aa64a1a9",
+      "accession": "0001976408-26-000873",
       "sourceAccessions": [
-        "0001976408-26-000864"
+        "0001976408-26-000864",
+        "0001976408-26-000873"
       ],
       "transactionIds": [
-        "0001976408-26-000864:nonDerivative:1"
+        "0001976408-26-000873:nonDerivative:1"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000864/primary_doc.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000873/primary_doc.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -296961,7 +299130,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "BOLT",
@@ -301689,6 +303858,34 @@
       "clusterCount": 3
     },
     {
+      "ticker": "ABEO",
+      "company": "ABEONA THERAPEUTICS INC.",
+      "filer": "Vasanthavada Madhav",
+      "role": "Chief Commercial Officer",
+      "txType": "매도",
+      "shares": 4902,
+      "price": 5.16,
+      "value": 25272.75,
+      "ownBefore": 290623,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 285721,
+      "ownChangePct": -1.7,
+      "id": "f4-0001493152-26-044971-23489f7620",
+      "accession": "0001493152-26-044971",
+      "sourceAccessions": [
+        "0001493152-26-044971"
+      ],
+      "transactionIds": [
+        "0001493152-26-044971:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/318306/000149315226044971/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
+    },
+    {
       "ticker": "AMRC",
       "company": "Ameresco, Inc.",
       "filer": "Sakellaris George P",
@@ -304053,6 +306250,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 3
+    },
+    {
+      "ticker": "NMAX",
+      "company": "Newsmax Inc.",
+      "filer": "CONYERS INVESTMENTS LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 2191,
+      "price": 11.05,
+      "value": 24210.55,
+      "ownBefore": 21964848,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 21962657,
+      "ownChangePct": -0.0,
+      "id": "f4-0001513030-26-000011-0c1f1b5e9e",
+      "accession": "0001513030-26-000011",
+      "sourceAccessions": [
+        "0001513030-26-000011"
+      ],
+      "transactionIds": [
+        "0001513030-26-000011:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1513030/000151303026000011/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "GRCE",
@@ -306896,6 +309121,35 @@
       "clusterCount": 1
     },
     {
+      "ticker": "NYAX",
+      "company": "Nayax Ltd.",
+      "filer": "Ben-Avi David",
+      "role": "CTO and Co Founder",
+      "txType": "매수",
+      "shares": 500,
+      "price": 44.03,
+      "value": 22015.1,
+      "ownBefore": 6592502,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-24",
+      "ownAfter": 6593002,
+      "ownChangePct": 0.0,
+      "id": "f4-0001976408-26-000873-710591ceaa",
+      "accession": "0001976408-26-000873",
+      "sourceAccessions": [
+        "0001976408-26-000864",
+        "0001976408-26-000873"
+      ],
+      "transactionIds": [
+        "0001976408-26-000873:nonDerivative:3"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000873/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
+    },
+    {
       "ticker": "CBAN",
       "company": "COLONY BANKCORP INC",
       "filer": "Canup Edward G",
@@ -306977,7 +309231,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 4
     },
     {
       "ticker": "MLTX",
@@ -312388,7 +314642,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 13
+      "clusterCount": 14
     },
     {
       "ticker": "NYAX",
@@ -312417,7 +314671,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 2,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "HNNA",
@@ -313541,7 +315795,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "DSS",
@@ -313680,6 +315934,34 @@
         "0000707605-26-000060:nonDerivative:1"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/707605/000070760526000060/form4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "AHRT",
+      "company": "AH Realty Trust, Inc.",
+      "filer": "Wittman Lori",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 3000,
+      "price": 5.95,
+      "value": 17835,
+      "ownBefore": 0,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 3000,
+      "ownChangePct": 0.0,
+      "id": "f4-0001569187-26-000154-13d71849f6",
+      "accession": "0001569187-26-000154",
+      "sourceAccessions": [
+        "0001569187-26-000154"
+      ],
+      "transactionIds": [
+        "0001569187-26-000154:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1569187/000156918726000154/wk-form4_1790712372.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -315209,6 +317491,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "GPUS",
+      "company": "Hyperscale Data, Inc.",
+      "filer": "Horne William B.",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 100000,
+      "price": 0.17,
+      "value": 16800,
+      "ownBefore": 300000,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-29",
+      "ownAfter": 400000,
+      "ownChangePct": 33.3,
+      "id": "f4-0001214659-26-012204-593a469cda",
+      "accession": "0001214659-26-012204",
+      "sourceAccessions": [
+        "0001214659-26-012204"
+      ],
+      "transactionIds": [
+        "0001214659-26-012204:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1333268/000121465926012204/doc4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
+    },
+    {
       "ticker": "GLOO",
       "company": "Gloo Holdings, Inc.",
       "filer": "THRIVENT FINANCIAL FOR LUTHERANS",
@@ -315739,6 +318049,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 9
+    },
+    {
+      "ticker": "DTIL",
+      "company": "PRECISION BIOSCIENCES INC",
+      "filer": "Germano Geno J",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 2609,
+      "price": 6.28,
+      "value": 16384.52,
+      "ownBefore": 44883,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 47492,
+      "ownChangePct": 5.8,
+      "id": "f4-0001628280-26-063766-ee8eb97418",
+      "accession": "0001628280-26-063766",
+      "sourceAccessions": [
+        "0001628280-26-063766"
+      ],
+      "transactionIds": [
+        "0001628280-26-063766:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1424383/000162828026063766/wk-form4_1790679609.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "GROV",
@@ -320067,6 +322405,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "BDX",
+      "company": "BECTON DICKINSON & CO",
+      "filer": "Feld Michael",
+      "role": "EVP, Chief Revenue Officer",
+      "txType": "매도",
+      "shares": 76,
+      "price": 183.7,
+      "value": 13961.2,
+      "ownBefore": 19720,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 19644,
+      "ownChangePct": -0.4,
+      "id": "f4-0001628280-26-063882-cac459f731",
+      "accession": "0001628280-26-063882",
+      "sourceAccessions": [
+        "0001628280-26-063882"
+      ],
+      "transactionIds": [
+        "0001628280-26-063882:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/10795/000162828026063882/wk-form4_1790730831.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
+    },
+    {
       "ticker": "BFLY",
       "company": "Butterfly Network, Inc.",
       "filer": "Caezza Nicholas",
@@ -320485,6 +322851,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 4
+    },
+    {
+      "ticker": "GF",
+      "company": "NEW GERMANY FUND INC",
+      "filer": "Saba Capital Management, L.P.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1272,
+      "price": 10.73,
+      "value": 13648.56,
+      "ownBefore": 3704214,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 3705486,
+      "ownChangePct": 0.0,
+      "id": "f4-0001510281-26-000315-3a00909d1e",
+      "accession": "0001510281-26-000315",
+      "sourceAccessions": [
+        "0001510281-26-000315"
+      ],
+      "transactionIds": [
+        "0001510281-26-000315:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/858706/000151028126000315/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
     },
     {
       "ticker": "GAIA",
@@ -321271,6 +323665,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
+    },
+    {
+      "ticker": "NYAX",
+      "company": "Nayax Ltd.",
+      "filer": "Manor Sagit",
+      "role": "CFO",
+      "txType": "매도",
+      "shares": 293,
+      "price": 44.8,
+      "value": 13126.81,
+      "ownBefore": 45115,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 44822,
+      "ownChangePct": -0.6,
+      "id": "f4-0001976408-26-000872-699cd2423c",
+      "accession": "0001976408-26-000872",
+      "sourceAccessions": [
+        "0001976408-26-000872"
+      ],
+      "transactionIds": [
+        "0001976408-26-000872:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1999977/000197640826000872/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "NTHI",
@@ -323796,7 +326218,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "INDI",
@@ -324306,7 +326728,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 3
+      "clusterCount": 4
     },
     {
       "ticker": "OTF",
@@ -327427,7 +329849,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "SKYH",
@@ -327456,6 +329878,62 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
+    },
+    {
+      "ticker": "VRXA",
+      "company": "Veraxa Biotech AG",
+      "filer": "Hosseinion Warren",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 6024,
+      "price": 1.67,
+      "value": 10060.08,
+      "ownBefore": 628668,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-10",
+      "ownAfter": 634692,
+      "ownChangePct": 1.0,
+      "id": "f4-0001829126-26-010557-ac2d052f46",
+      "accession": "0001829126-26-010557",
+      "sourceAccessions": [
+        "0001829126-26-010557"
+      ],
+      "transactionIds": [
+        "0001829126-26-010557:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1438327/000182912626010557/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 2
+    },
+    {
+      "ticker": "PGY",
+      "company": "Pagaya Technologies Ltd.",
+      "filer": "Dobres Jonathan",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 590,
+      "price": 17.04,
+      "value": 10053.6,
+      "ownBefore": 10807,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-28",
+      "ownAfter": 10217,
+      "ownChangePct": -5.5,
+      "id": "f4-0001628280-26-063864-36f7f35765",
+      "accession": "0001628280-26-063864",
+      "sourceAccessions": [
+        "0001628280-26-063864"
+      ],
+      "transactionIds": [
+        "0001628280-26-063864:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1814297/000162828026063864/wk-form4_1790721078.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 4
     },
     {
       "ticker": "ENGN",
@@ -327648,6 +330126,62 @@
         "0001493152-26-041423:nonDerivative:2"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1549145/000149315226041423/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "QNBC",
+      "company": "QNB CORP.",
+      "filer": "Bimes Randy S.",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 220.7506,
+      "price": 45.3,
+      "value": 10000,
+      "ownBefore": 268462.978,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 268683.7286,
+      "ownChangePct": 0.1,
+      "id": "f4-0001814053-26-000003-55fbaa6ecf",
+      "accession": "0001814053-26-000003",
+      "sourceAccessions": [
+        "0001814053-26-000003"
+      ],
+      "transactionIds": [
+        "0001814053-26-000003:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1814053/000181405326000003/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "VRA",
+      "company": "Vera Bradley, Inc.",
+      "filer": "Brockman Ivan",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 2500,
+      "price": 4,
+      "value": 10000,
+      "ownBefore": 0,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-25",
+      "ownAfter": 2500,
+      "ownChangePct": 0.0,
+      "id": "f4-0001853943-26-000006-fba83069c9",
+      "accession": "0001853943-26-000006",
+      "sourceAccessions": [
+        "0001853943-26-000006"
+      ],
+      "transactionIds": [
+        "0001853943-26-000006:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1853943/000185394326000006/form4-09292026_090912.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -329450,7 +331984,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "ISRG",
@@ -332327,6 +334861,34 @@
       "clusterCount": 1
     },
     {
+      "ticker": "NMAX",
+      "company": "Newsmax Inc.",
+      "filer": "CONYERS INVESTMENTS LLC",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 441,
+      "price": 11.02,
+      "value": 4859.82,
+      "ownBefore": 21965289,
+      "filedDate": "2026-09-29",
+      "txDate": "2026-09-24",
+      "ownAfter": 21964848,
+      "ownChangePct": -0.0,
+      "id": "f4-0001513030-26-000011-053f02c682",
+      "accession": "0001513030-26-000011",
+      "sourceAccessions": [
+        "0001513030-26-000011"
+      ],
+      "transactionIds": [
+        "0001513030-26-000011:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1513030/000151303026000011/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
       "ticker": "CUEN",
       "company": "Cuentas Inc.",
       "filer": "Maimon Shalom Arik",
@@ -333009,34 +335571,6 @@
       "marketValidationStatus": "verified",
       "transactionCount": 3,
       "clusterCount": 3
-    },
-    {
-      "ticker": "NYAX",
-      "company": "Nayax Ltd.",
-      "filer": "Ben-Avi David",
-      "role": "CTO and Co Founder",
-      "txType": "매수",
-      "shares": 100,
-      "price": 42.09,
-      "value": 4209.06,
-      "ownBefore": 6592402,
-      "filedDate": "2026-09-24",
-      "txDate": "2026-09-24",
-      "ownAfter": 6592502,
-      "ownChangePct": 0.0,
-      "id": "f4-0001976408-26-000864-b6a95715d3",
-      "accession": "0001976408-26-000864",
-      "sourceAccessions": [
-        "0001976408-26-000864"
-      ],
-      "transactionIds": [
-        "0001976408-26-000864:nonDerivative:2"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2000237/000197640826000864/primary_doc.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 2
     },
     {
       "ticker": "LUCY",
@@ -334049,7 +336583,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "QVCG",
@@ -337797,6 +340331,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BEKE",
+      "company": "KE Holdings Inc.",
+      "filer": "Peng Yongdong",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 16033983,
+      "price": 5.2733,
+      "txDate": "2026-09-25",
+      "filedDate": "2026-09-29",
+      "accession": "0001193125-26-405896",
+      "sourceAccessions": [
+        "0001193125-26-405896"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1809587/000119312526405896/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "16.280000686645508",
+          "marketHigh": "16.665000915527344"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TYG",
       "company": "TORTOISE ENERGY INFRASTRUCTURE CORP",
       "filer": "PRUDENTIAL FINANCIAL INC",
@@ -339216,6 +341777,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Xu Hong",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 103046,
+      "price": 13.68,
+      "txDate": "2026-09-25",
+      "filedDate": "2026-09-29",
+      "accession": "0001193125-26-405899",
+      "sourceAccessions": [
+        "0001193125-26-405899"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526405899/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "109.55999755859375",
+          "marketHigh": "111.2249984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Scarpelli Cassiano Ricardo",
@@ -339480,6 +342068,33 @@
           "severity": "critical",
           "marketLow": "3.4200000762939453",
           "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ONMD",
+      "company": "OneMedNet Corp",
+      "filer": "Kosasa Thomas",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1449275,
+      "price": 0.69,
+      "txDate": "2026-07-30",
+      "filedDate": "2026-08-07",
+      "accession": "0001493152-26-036660",
+      "sourceAccessions": [
+        "0001493152-26-036660"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1989846/000149315226036660/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.619999885559082",
+          "marketHigh": "7.349999904632568"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -341997,6 +344612,60 @@
       "severity": "review"
     },
     {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Yu Siying",
+      "role": "General Counsel",
+      "txType": "매도",
+      "shares": 6764,
+      "price": 13.58,
+      "txDate": "2026-09-25",
+      "filedDate": "2026-09-29",
+      "accession": "0001193125-26-405907",
+      "sourceAccessions": [
+        "0001193125-26-405907"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526405907/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "109.55999755859375",
+          "marketHigh": "111.2249984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ONMD",
+      "company": "OneMedNet Corp",
+      "filer": "Yu Jeffrey",
+      "role": "Chief Medical Officer",
+      "txType": "매수",
+      "shares": 142857,
+      "price": 0.63,
+      "txDate": "2026-09-10",
+      "filedDate": "2026-09-14",
+      "accession": "0001493152-26-042642",
+      "sourceAccessions": [
+        "0001493152-26-042642"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1849380/000149315226042642/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.510000228881836",
+          "marketHigh": "6.800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BRCC",
       "company": "BRC Inc.",
       "filer": "Kadenacy Stephen M",
@@ -342214,6 +344883,33 @@
       "severity": "review"
     },
     {
+      "ticker": "CTSO",
+      "company": "Cytosorbents Corp",
+      "filer": "Chan Phillip P.",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 200000,
+      "price": 0.35,
+      "txDate": "2026-09-04",
+      "filedDate": "2026-09-09",
+      "accession": "0001104659-26-106308",
+      "sourceAccessions": [
+        "0001104659-26-106308"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1442786/000110465926106308/tm2625061-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.739999771118164",
+          "marketHigh": "7.400000095367432"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "YYAI",
       "company": "AIRWA INC.",
       "filer": "HRT FINANCIAL LP",
@@ -342293,6 +344989,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Jiang Fang",
+      "role": "Chief People Officer",
+      "txType": "매도",
+      "shares": 4889,
+      "price": 13.57,
+      "txDate": "2026-09-25",
+      "filedDate": "2026-09-29",
+      "accession": "0001193125-26-405904",
+      "sourceAccessions": [
+        "0001193125-26-405904"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526405904/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "109.55999755859375",
+          "marketHigh": "111.2249984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "KITT",
@@ -343076,6 +345799,168 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 1440,
+      "price": 0.27,
+      "txDate": "2026-05-26",
+      "filedDate": "2026-09-29",
+      "accession": "0001104659-26-111575",
+      "sourceAccessions": [
+        "0001104659-26-111575"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926111575/tm2626562-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.260000228881836",
+          "marketHigh": "5.760000228881836"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 3400,
+      "price": 0.25,
+      "txDate": "2026-05-27",
+      "filedDate": "2026-09-29",
+      "accession": "0001104659-26-111575",
+      "sourceAccessions": [
+        "0001104659-26-111575"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926111575/tm2626562-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.75",
+          "marketHigh": "5.550000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 49920,
+      "price": 0.23,
+      "txDate": "2026-06-12",
+      "filedDate": "2026-09-29",
+      "accession": "0001104659-26-111575",
+      "sourceAccessions": [
+        "0001104659-26-111575"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926111575/tm2626562-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.449999809265137",
+          "marketHigh": "5.130000114440918"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 44000,
+      "price": 0.23,
+      "txDate": "2026-06-15",
+      "filedDate": "2026-09-29",
+      "accession": "0001104659-26-111575",
+      "sourceAccessions": [
+        "0001104659-26-111575"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926111575/tm2626562-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.429999828338623",
+          "marketHigh": "5.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 44000,
+      "price": 0.18,
+      "txDate": "2026-09-23",
+      "filedDate": "2026-09-29",
+      "accession": "0001104659-26-111575",
+      "sourceAccessions": [
+        "0001104659-26-111575"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926111575/tm2626562-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.5199999809265137",
+          "marketHigh": "3.8499999046325684"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "YI",
+      "company": "111, Inc.",
+      "filer": "Chen Yang Luke",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 38120,
+      "price": 0.18,
+      "txDate": "2026-09-28",
+      "filedDate": "2026-09-29",
+      "accession": "0001104659-26-111575",
+      "sourceAccessions": [
+        "0001104659-26-111575"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926111575/tm2626562-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.5199999809265137",
+          "marketHigh": "3.9000000953674316"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "KIDZ",
