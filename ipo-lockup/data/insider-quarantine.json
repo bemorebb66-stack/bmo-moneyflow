@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-30T10:19:01.950362+00:00",
-    "count": 297
+    "generatedAt": "2026-10-01T10:51:21.029674+00:00",
+    "count": 303
   },
   "pendingTrades": [
     {
@@ -2122,6 +2122,114 @@
     {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
+      "filer": "Di Marcello Francesco",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 56800,
+      "price": 17.65,
+      "txDate": "2026-09-28",
+      "filedDate": "2026-09-30",
+      "accession": "0001292814-26-004756",
+      "sourceAccessions": [
+        "0001292814-26-004756"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004756/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.3399999141693115",
+          "marketHigh": "3.4000000953674316"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Di Marcello Francesco",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 50,
+      "price": 17.66,
+      "txDate": "2026-09-28",
+      "filedDate": "2026-09-30",
+      "accession": "0001292814-26-004756",
+      "sourceAccessions": [
+        "0001292814-26-004756"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004756/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.3399999141693115",
+          "marketHigh": "3.4000000953674316"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Di Marcello Francesco",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 10,
+      "price": 17.56,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-09-30",
+      "accession": "0001292814-26-004756",
+      "sourceAccessions": [
+        "0001292814-26-004756"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004756/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.299999952316284",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Di Marcello Francesco",
+      "role": "Executive Officer",
+      "txType": "매수",
+      "shares": 300,
+      "price": 17.55,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-09-30",
+      "accession": "0001292814-26-004756",
+      "sourceAccessions": [
+        "0001292814-26-004756"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004756/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.299999952316284",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
       "filer": "Pedras Carlos Henrique Villela",
       "role": "Executive Officer",
       "txType": "매수",
@@ -3141,6 +3249,33 @@
           "severity": "review",
           "marketLow": "8.489999771118164",
           "marketHigh": "8.625"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "MNSO",
+      "company": "MINISO Group Holding Ltd",
+      "filer": "Zhang Jingjing Eason",
+      "role": "VP and Chief Financial Officer",
+      "txType": "매수",
+      "shares": 150600,
+      "price": 2.2583,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-09-30",
+      "accession": "0001104659-26-112076",
+      "sourceAccessions": [
+        "0001104659-26-112076"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1815846/000110465926112076/tm2626576-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "9.100000381469727",
+          "marketHigh": "9.25"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -8087,6 +8222,26 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "LTH",
+      "company": "Life Time Group Holdings, Inc.",
+      "filer": "Danhakl John G",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 10238198,
+      "price": 43.16,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-12",
+      "accession": "0001193125-26-347311",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1162644/000119312526347311/ownership.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out. (read timeout=30)"
     }
   ]
 }
