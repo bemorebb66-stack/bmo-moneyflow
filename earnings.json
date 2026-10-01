@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-01T02:36:17.469862+00:00",
+    "generatedAt": "2026-10-01T18:42:17.562672+00:00",
     "status": "ok",
     "from": "2026-08-17",
     "to": "2027-03-30",
-    "count": 6865,
+    "count": 6878,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 595,
-      "supplementalTickerCount": 151,
-      "supplementalEventCount": 867,
+      "trackedUniverseCount": 605,
+      "supplementalTickerCount": 153,
+      "supplementalEventCount": 896,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -263,6 +263,18 @@
       "dateKind": "period-end",
       "revenueActual": 4076000000.0,
       "netIncomeActual": 665000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "DD",
+      "company": "듀폰",
+      "date": "2025-03-31",
+      "periodEnd": "2025-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -589000000.0,
+      "revenueActual": 1612000000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -3872,17 +3884,6 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
-      "ticker": "KIM",
-      "company": "킴코 리얼티",
-      "date": "2025-06-30",
-      "periodEnd": "2025-06-30",
-      "dateKind": "period-end",
-      "netIncomeActual": 162986000.0,
-      "status": "awaiting-results",
-      "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals"
-    },
-    {
       "ticker": "KKR",
       "company": "케이케이알",
       "date": "2025-06-30",
@@ -4084,6 +4085,18 @@
       "netIncomeActual": 174000000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "LQDA",
+      "company": "리퀴디아",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -41579000.0,
+      "revenueActual": 8837000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -11213,6 +11226,20 @@
       "periodEnd": "2025-09-30",
       "revenueActual": 1210000000.0,
       "netIncomeActual": 281000000.0
+    },
+    {
+      "ticker": "LQDA",
+      "company": "리퀴디아",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -3533000.0,
+      "revenueActual": 54342000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.04,
+      "epsEstimate": -0.4094
     },
     {
       "ticker": "LRCX",
@@ -19195,6 +19222,20 @@
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
       "dateKind": "provider-period"
+    },
+    {
+      "ticker": "LQDA",
+      "company": "리퀴디아",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 14555000.0,
+      "revenueActual": 92021000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.17,
+      "epsEstimate": 0.184
     },
     {
       "ticker": "LRCX",
@@ -27373,6 +27414,20 @@
       "dateKind": "provider-period"
     },
     {
+      "ticker": "LQDA",
+      "company": "리퀴디아",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 52862000.0,
+      "revenueActual": 132865000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.52,
+      "epsEstimate": 0.4183
+    },
+    {
       "ticker": "LRCX",
       "company": "램 리서치",
       "date": "2026-03-31",
@@ -32858,11 +32913,10 @@
       "epsEstimate": 7.305,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "netIncomeActual": 932000000.0,
-      "revenueActual": 9457000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "CMS",
@@ -33255,11 +33309,10 @@
       "epsEstimate": 0.6887,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 4480000000.0,
-      "netIncomeActual": 340000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "DAL",
@@ -33297,11 +33350,10 @@
       "epsEstimate": 1.8127,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "netIncomeActual": 143000000.0,
-      "revenueActual": 1819000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "DDOG",
@@ -34478,11 +34530,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -35532,6 +35583,20 @@
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings",
       "dateKind": "provider-period"
+    },
+    {
+      "ticker": "LQDA",
+      "company": "리퀴디아",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 74722000.0,
+      "revenueActual": 171679000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.74,
+      "epsEstimate": 0.7577
     },
     {
       "ticker": "LRCX",
@@ -46023,6 +46088,19 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "ADBE",
+      "company": "어도비",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 6.13,
+      "epsEstimate": 6.2084,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "AMAT",
       "company": "어플라이드 머티어리얼즈",
       "date": "2026-09-30",
@@ -46062,6 +46140,32 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "CIEN",
+      "company": "시에나",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.11,
+      "epsEstimate": 1.7641,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "COO",
+      "company": "쿠퍼 컴퍼니스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.15,
+      "epsEstimate": 1.1293,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "COST",
       "company": "코스트코 홀세일",
       "date": "2026-09-30",
@@ -46070,6 +46174,19 @@
       "dateKind": "provider-period",
       "epsActual": 6.6,
       "epsEstimate": 6.6561,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "CPRT",
+      "company": "코파트",
+      "date": "2026-09-30",
+      "quarter": 4,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.35,
+      "epsEstimate": 0.3912,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -46114,6 +46231,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "CTAS",
+      "company": "신타스",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 1.39,
+      "epsEstimate": 1.3817,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "DE",
       "company": "디어",
       "date": "2026-09-30",
@@ -46135,6 +46265,45 @@
       "dateKind": "provider-period",
       "epsActual": 7.04,
       "epsEstimate": 5.0105,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "DG",
+      "company": "달러 제너럴",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.23,
+      "epsEstimate": 2.0679,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "DLTR",
+      "company": "달러 트리",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.7,
+      "epsEstimate": 1.1643,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "DRI",
+      "company": "다든 레스토랑",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.05,
+      "epsEstimate": 2.0756,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -85730,7 +85899,7 @@
       "epsEstimate": -0.0269,
       "revenueEstimate": 10996375.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85941,7 +86110,7 @@
       "epsEstimate": -0.2252,
       "revenueEstimate": 7656936.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86015,7 +86184,7 @@
       "epsEstimate": 0.1616,
       "revenueEstimate": 47314965.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86327,7 +86496,7 @@
       "epsEstimate": -0.2187,
       "revenueEstimate": 7515502.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86678,7 +86847,7 @@
       "epsEstimate": -2.7496,
       "revenueEstimate": 10743150.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86876,7 +87045,7 @@
       "epsEstimate": -0.1547,
       "revenueEstimate": 19402297.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87171,7 +87340,7 @@
       "epsEstimate": -0.5202,
       "revenueEstimate": 7230168.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87958,7 +88127,7 @@
       "epsEstimate": 7.2898,
       "revenueEstimate": 2405198143.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88159,7 +88328,7 @@
       "epsEstimate": 1.4494,
       "revenueEstimate": 918674285.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88259,7 +88428,7 @@
       "epsEstimate": 2.8662,
       "revenueEstimate": 2479555403.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88479,7 +88648,7 @@
       "epsEstimate": -0.0102,
       "revenueEstimate": 39575316.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88516,7 +88685,7 @@
       "epsEstimate": -1.0821,
       "revenueEstimate": 30859284.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89072,7 +89241,7 @@
       "epsEstimate": -0.2302,
       "revenueEstimate": 2360575.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89347,7 +89516,7 @@
       "epsEstimate": -0.0795,
       "revenueEstimate": 337375768.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89357,7 +89526,7 @@
       "hour": "amc",
       "quarter": 4,
       "year": 2026,
-      "epsEstimate": -0.3395,
+      "epsEstimate": -0.3351,
       "revenueEstimate": 374513.0,
       "status": "scheduled",
       "trackingTier": "calendar",
