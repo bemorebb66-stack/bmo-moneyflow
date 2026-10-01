@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-01T02:26:26.567967+00:00",
+    "generatedAt": "2026-10-01T02:36:17.469862+00:00",
     "status": "ok",
     "from": "2026-08-17",
     "to": "2027-03-30",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 595,
       "supplementalTickerCount": 151,
-      "supplementalEventCount": 869,
+      "supplementalEventCount": 867,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -34478,10 +34478,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -35057,10 +35058,11 @@
       "epsEstimate": 3.8652,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 1675943000.0,
+      "netIncomeActual": 275498000.0
     },
     {
       "ticker": "ITW",
