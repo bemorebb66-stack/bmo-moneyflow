@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-01T18:42:17.562672+00:00",
+    "generatedAt": "2026-10-02T02:36:21.132431+00:00",
     "status": "ok",
-    "from": "2026-08-17",
-    "to": "2027-03-30",
-    "count": 6878,
+    "from": "2026-08-18",
+    "to": "2027-03-31",
+    "count": 6888,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 605,
-      "supplementalTickerCount": 153,
-      "supplementalEventCount": 896,
+      "trackedUniverseCount": 604,
+      "supplementalTickerCount": 142,
+      "supplementalEventCount": 815,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -34530,10 +34530,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -46088,6 +46089,19 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "ACN",
+      "company": "액센추어",
+      "date": "2026-09-30",
+      "quarter": 4,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 3.29,
+      "epsEstimate": 3.2141,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ADBE",
       "company": "어도비",
       "date": "2026-09-30",
@@ -46096,6 +46110,19 @@
       "dateKind": "provider-period",
       "epsActual": 6.13,
       "epsEstimate": 6.2084,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "ADI",
+      "company": "애널로그 디바이시스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 3.45,
+      "epsEstimate": 3.3681,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -46421,6 +46448,45 @@
       "dateKind": "provider-period",
       "epsActual": 33.42,
       "epsEstimate": 32.5625,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "NDSN",
+      "company": "노드슨",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 3.25,
+      "epsEstimate": 3.1657,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "NKE",
+      "company": "나이키",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 0.48,
+      "epsEstimate": 0.4364,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "NTAP",
+      "company": "넷앱",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.58,
+      "epsEstimate": 2.163,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -86110,7 +86176,7 @@
       "epsEstimate": -0.2252,
       "revenueEstimate": 7656936.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86897,7 +86963,7 @@
       "epsEstimate": -0.6578,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87340,7 +87406,7 @@
       "epsEstimate": -0.5202,
       "revenueEstimate": 7230168.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88648,7 +88714,7 @@
       "epsEstimate": -0.0102,
       "revenueEstimate": 39575316.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89516,7 +89582,7 @@
       "epsEstimate": -0.0795,
       "revenueEstimate": 337375768.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89648,6 +89714,66 @@
       "year": 2027,
       "epsEstimate": 1.4722,
       "revenueEstimate": 651450000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "AIRO",
+      "company": "에어로 그룹 홀딩스 INC",
+      "date": "2027-03-31",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.1183,
+      "revenueEstimate": 49129320.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "AIRS",
+      "company": "AIRSCULPT TECHNOLOGIES INC",
+      "date": "2027-03-31",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": -0.0204,
+      "revenueEstimate": 41064180.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "ANGO",
+      "company": "혈관역학 INC",
+      "date": "2027-03-31",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": -0.0612,
+      "revenueEstimate": 85374000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "AYI",
+      "company": "어큐이티",
+      "date": "2027-03-31",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 4.5926,
+      "revenueEstimate": 1117257283.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "LNN",
+      "company": "린지 주식회사",
+      "date": "2027-03-31",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 1.5554,
+      "revenueEstimate": 163620000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
