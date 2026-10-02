@@ -1,9 +1,36 @@
 {
   "meta": {
-    "generatedAt": "2026-10-01T10:51:21.029674+00:00",
-    "count": 303
+    "generatedAt": "2026-10-02T10:26:11.467604+00:00",
+    "count": 312
   },
   "pendingTrades": [
+    {
+      "ticker": "SLBT",
+      "company": "SL Science Holding Ltd",
+      "filer": "Wang Ching-Dong",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 4545306,
+      "price": 2272653,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-10-01",
+      "accession": "0001104659-26-112844",
+      "sourceAccessions": [
+        "0001104659-26-112844"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2070534/000110465926112844/tm2626692-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.8300000429153442",
+          "marketHigh": "1.9190000295639038"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
     {
       "ticker": "REBN",
       "company": "Reborn Coffee, Inc.",
@@ -398,6 +425,33 @@
           "severity": "critical",
           "marketLow": "21.0",
           "marketHigh": "21.375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "UUU",
+      "company": "UNIVERSAL SAFETY PRODUCTS, INC.",
+      "filer": "AULT MILTON C III",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 18000,
+      "price": 5134,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0001214659-26-012438",
+      "sourceAccessions": [
+        "0001214659-26-012438"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926012438/doc4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.71999979019165",
+          "marketHigh": "5.5"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -1032,6 +1086,33 @@
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
+    },
+    {
+      "ticker": "GPUS",
+      "company": "Hyperscale Data, Inc.",
+      "filer": "AULT MILTON C III",
+      "role": "Executive Chairman",
+      "txType": "매수",
+      "shares": 10000000,
+      "price": 0.5,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0001214659-26-012383",
+      "sourceAccessions": [
+        "0001214659-26-012383"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926012383/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.1599999964237213",
+          "marketHigh": "0.17000000178813934"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "TTAN",
@@ -2392,33 +2473,6 @@
     {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
-      "filer": "da Cunha Paulo Roberto Simoes",
-      "role": "이사",
-      "txType": "매수",
-      "shares": 46874,
-      "price": 17.98,
-      "txDate": "2026-09-18",
-      "filedDate": "2026-09-21",
-      "accession": "0001292814-26-004625",
-      "sourceAccessions": [
-        "0001292814-26-004625"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004625/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "3.4200000762939453",
-          "marketHigh": "3.4800000190734863"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "BBD",
-      "company": "BANK BRADESCO",
       "filer": "Alvarez Rubens Aguiar",
       "role": "이사",
       "txType": "매수",
@@ -2458,6 +2512,33 @@
         "0001292814-26-004633"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004633/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.4200000762939453",
+          "marketHigh": "3.4800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "da Cunha Paulo Roberto Simoes",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 46874,
+      "price": 17.98,
+      "txDate": "2026-09-18",
+      "filedDate": "2026-09-21",
+      "accession": "0001292814-26-004625",
+      "sourceAccessions": [
+        "0001292814-26-004625"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004625/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -3228,6 +3309,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "TKLF",
+      "company": "Tokyo Lifestyle Co., Ltd.",
+      "filer": "Kanayama Mei",
+      "role": "Representative Director (PEO)",
+      "txType": "매수",
+      "shares": 1396755,
+      "price": 0.274,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-10-01",
+      "accession": "0001213900-26-105765",
+      "sourceAccessions": [
+        "0001213900-26-105765"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1906212/000121390026105765/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.559999942779541",
+          "marketHigh": "1.6100000143051147"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "LILA",
       "company": "Liberty Latin America Ltd.",
       "filer": "BRACKEN CHARLES H R",
@@ -3717,6 +3825,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 512,
+      "price": 20.4492,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-10-01",
+      "accession": "0000937797-26-000034",
+      "sourceAccessions": [
+        "0000937797-26-000034"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000034/wk-form4_1790885152.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.359999656677246",
+          "marketHigh": "8.475000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1013,
+      "price": 20.4301,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0000937797-26-000034",
+      "sourceAccessions": [
+        "0000937797-26-000034"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000034/wk-form4_1790885152.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.274999618530273",
+          "marketHigh": "8.529999732971191"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "KC",
       "company": "Kingsoft Cloud Holdings Ltd",
       "filer": "Zou Tao",
@@ -3824,6 +3986,33 @@
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
+    },
+    {
+      "ticker": "ATHM",
+      "company": "Autohome Inc.",
+      "filer": "Long Quan",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 34400,
+      "price": 5.2876,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0001975515-26-000006",
+      "sourceAccessions": [
+        "0001975515-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000197551526000006/form4-10022026_011025.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "20.969999313354492",
+          "marketHigh": "21.549999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "TSM",
@@ -4733,6 +4922,33 @@
           "severity": "critical",
           "marketLow": "3.119999885559082",
           "marketHigh": "3.2699999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "RDGL",
+      "company": "VIVOS INC",
+      "filer": "Korenko Michael K",
+      "role": "CEO",
+      "txType": "매수",
+      "shares": 200000,
+      "price": 0.498,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0001486806-26-000010",
+      "sourceAccessions": [
+        "0001486806-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1486806/000148680626000010/form4-10012026_091054.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.04399999976158142",
+          "marketHigh": "0.05400000140070915"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -5712,6 +5928,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "ATHM",
+      "company": "Autohome Inc.",
+      "filer": "Zeng Yan",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 9316,
+      "price": 5.2876,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0001976012-26-000008",
+      "sourceAccessions": [
+        "0001976012-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000197601226000008/form4-10022026_011022.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "20.969999313354492",
+          "marketHigh": "21.549999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "FGL",
       "company": "Founder Group Ltd",
       "filer": "HRT FINANCIAL LP",
@@ -6655,6 +6898,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "ATHM",
+      "company": "Autohome Inc.",
+      "filer": "Xiang Bibo",
+      "role": "Chief Technology Officer",
+      "txType": "매도",
+      "shares": 5588,
+      "price": 5.2876,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-01",
+      "accession": "0001975234-26-000008",
+      "sourceAccessions": [
+        "0001975234-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1527636/000197523426000008/form4-10022026_011013.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "20.969999313354492",
+          "marketHigh": "21.549999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "ACGL",
@@ -8222,26 +8492,6 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
-    },
-    {
-      "ticker": "LTH",
-      "company": "Life Time Group Holdings, Inc.",
-      "filer": "Danhakl John G",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 10238198,
-      "price": 43.16,
-      "txDate": "2026-08-10",
-      "filedDate": "2026-08-12",
-      "accession": "0001193125-26-347311",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1162644/000119312526347311/ownership.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out. (read timeout=30)"
     }
   ]
 }
