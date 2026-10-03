@@ -14,15 +14,15 @@
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-10-02T10:26:11.467604+00:00",
+    "validatedAt": "2026-10-03T09:52:17.537390+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
     "acceptedCount": 12010,
     "pendingCount": 312,
     "uniqueAccessionCount": 9686,
-    "marketCoverage": 0.987208,
+    "marketCoverage": 0.987122,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "b5e39618799a787be16f7566374df129355a3a4726924335c6bbc930751be02b"
+    "dataSha256": "ddc2914039ecb72699111210f22b1b60623b2d5c7e8508979454d6819ce340a0"
   },
   "trades": [
     {
@@ -49366,7 +49366,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2097545/000119312526410415/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
@@ -114424,7 +114424,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2097545/000092963826003758/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 3
     },
