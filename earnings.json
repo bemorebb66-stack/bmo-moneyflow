@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-02T18:10:29.749441+00:00",
+    "generatedAt": "2026-10-03T02:20:58.172379+00:00",
     "status": "ok",
-    "from": "2026-08-18",
-    "to": "2027-03-31",
-    "count": 6888,
+    "from": "2026-08-19",
+    "to": "2027-04-01",
+    "count": 6894,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
       "trackedUniverseCount": 604,
-      "supplementalTickerCount": 142,
-      "supplementalEventCount": 815,
+      "supplementalTickerCount": 155,
+      "supplementalEventCount": 873,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -5405,6 +5405,18 @@
       "dateKind": "period-end",
       "revenueActual": 21581000000.0,
       "netIncomeActual": 1657000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "RVTY",
+      "company": "레비티",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 720284000.0,
+      "netIncomeActual": 53948000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -12872,14 +12884,15 @@
       "ticker": "RVTY",
       "company": "레비티",
       "date": "2025-09-30",
-      "quarter": 3,
-      "year": 2025,
       "epsActual": 1.18,
       "epsEstimate": 1.1599,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-09-30",
+      "revenueActual": 698949000.0,
+      "netIncomeActual": 46652000.0
     },
     {
       "ticker": "SBAC",
@@ -20935,14 +20948,15 @@
       "ticker": "RVTY",
       "company": "레비티",
       "date": "2025-12-31",
-      "quarter": 4,
-      "year": 2025,
       "epsActual": 1.7,
       "epsEstimate": 1.5822,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "revenueActual": 772056000.0,
+      "netIncomeActual": 98364000.0
     },
     {
       "ticker": "SBAC",
@@ -29126,14 +29140,15 @@
       "ticker": "RVTY",
       "company": "레비티",
       "date": "2026-03-31",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 1.06,
       "epsEstimate": 1.0365,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "revenueActual": 711118000.0,
+      "netIncomeActual": 40718000.0
     },
     {
       "ticker": "SBAC",
@@ -36830,7 +36845,7 @@
       "dateKind": "period-end",
       "periodEnd": "2026-06-30",
       "netIncomeActual": 2040000000.0,
-      "revenueActual": 6429000000.0
+      "revenueActual": 6435000000.0
     },
     {
       "ticker": "PNR",
@@ -37296,14 +37311,15 @@
       "ticker": "RVTY",
       "company": "레비티",
       "date": "2026-06-30",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 1.41,
       "epsEstimate": 1.2468,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 729688000.0,
+      "netIncomeActual": 51820000.0
     },
     {
       "ticker": "SBAC",
@@ -46518,6 +46534,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "P",
+      "company": "에버퓨어",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 0.7,
+      "epsEstimate": 0.5897,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "PANW",
       "company": "팔로 알토 네트웍스",
       "date": "2026-09-30",
@@ -46526,6 +46555,32 @@
       "dateKind": "provider-period",
       "epsActual": 1.02,
       "epsEstimate": 0.9959,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "PAYX",
+      "company": "페이첵스",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 1.34,
+      "epsEstimate": 1.3465,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "ROST",
+      "company": "로스 스토어스",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.06,
+      "epsEstimate": 1.9782,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -89774,6 +89829,30 @@
       "year": 2027,
       "epsEstimate": 1.5554,
       "revenueEstimate": 163620000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "LFCR",
+      "company": "라이프코어 바이오메디칼 INC",
+      "date": "2027-04-01",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": -0.289,
+      "revenueEstimate": 27562185.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "RCMT",
+      "company": "RCM 기술 INC",
+      "date": "2027-04-01",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": 0.8619,
+      "revenueEstimate": 98964990.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
