@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-06T03:29:43.912154+00:00",
+    "generatedAt": "2026-10-06T18:46:13.111603+00:00",
     "status": "ok",
     "from": "2026-08-22",
     "to": "2027-04-04",
-    "count": 6898,
+    "count": 6901,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 583,
-      "supplementalTickerCount": 149,
-      "supplementalEventCount": 855,
+      "trackedUniverseCount": 604,
+      "supplementalTickerCount": 148,
+      "supplementalEventCount": 834,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -46211,6 +46211,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "ADSK",
+      "company": "오토데스크",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 3.3,
+      "epsEstimate": 3.1864,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "AMAT",
       "company": "어플라이드 머티어리얼즈",
       "date": "2026-09-30",
@@ -46245,6 +46258,32 @@
       "dateKind": "provider-period",
       "epsActual": 56.05,
       "epsEstimate": 54.4026,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "BBY",
+      "company": "베스트 바이",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 1.47,
+      "epsEstimate": 1.3937,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "BF-B",
+      "company": "브라운포맨",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 0.38,
+      "epsEstimate": 0.3755,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
