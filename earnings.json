@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-03T02:20:58.172379+00:00",
+    "generatedAt": "2026-10-06T03:20:05.902282+00:00",
     "status": "ok",
-    "from": "2026-08-19",
-    "to": "2027-04-01",
-    "count": 6894,
+    "from": "2026-08-22",
+    "to": "2027-04-04",
+    "count": 6898,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 604,
-      "supplementalTickerCount": 155,
-      "supplementalEventCount": 873,
+      "trackedUniverseCount": 583,
+      "supplementalTickerCount": 149,
+      "supplementalEventCount": 855,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -4853,6 +4853,18 @@
       "netIncomeActual": 549000000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "PCVX",
+      "company": "백사이트",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -166573000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -12225,6 +12237,20 @@
       "periodEnd": "2025-09-30",
       "revenueActual": 6250000000.0,
       "netIncomeActual": 850000000.0
+    },
+    {
+      "ticker": "PCVX",
+      "company": "백사이트",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -212830000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.56,
+      "epsEstimate": -1.2943
     },
     {
       "ticker": "PDD",
@@ -20287,6 +20313,20 @@
       "periodEnd": "2025-12-31",
       "revenueActual": 6804000000.0,
       "netIncomeActual": 670000000.0
+    },
+    {
+      "ticker": "PCVX",
+      "company": "백사이트",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -246507000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.8,
+      "epsEstimate": -1.5459
     },
     {
       "ticker": "PDD",
@@ -28480,6 +28520,20 @@
       "netIncomeActual": 885000000.0
     },
     {
+      "ticker": "PCVX",
+      "company": "백사이트",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -320622000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -2.3,
+      "epsEstimate": -1.7865
+    },
+    {
       "ticker": "PDD",
       "company": "핀둬둬 ADR",
       "date": "2026-03-31",
@@ -32928,10 +32982,11 @@
       "epsEstimate": 7.305,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 932000000.0,
+      "revenueActual": 9457000000.0
     },
     {
       "ticker": "CMS",
@@ -33324,10 +33379,11 @@
       "epsEstimate": 0.6887,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 4480000000.0,
+      "netIncomeActual": 340000000.0
     },
     {
       "ticker": "DAL",
@@ -33365,10 +33421,11 @@
       "epsEstimate": 1.8127,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 143000000.0,
+      "revenueActual": 1819000000.0
     },
     {
       "ticker": "DDOG",
@@ -36650,6 +36707,20 @@
       "periodEnd": "2026-06-30",
       "revenueActual": 5902000000.0,
       "netIncomeActual": 761000000.0
+    },
+    {
+      "ticker": "PCVX",
+      "company": "백사이트",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -284302000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.97,
+      "epsEstimate": -2.0967
     },
     {
       "ticker": "PDD",
@@ -46183,6 +46254,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "CCL",
+      "company": "카니발",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.43,
+      "epsEstimate": 1.3694,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "CIEN",
       "company": "시에나",
       "date": "2026-09-30",
@@ -46623,32 +46707,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
-    },
-    {
-      "ticker": "MKC",
-      "company": "맥코믹 앤 컴퍼니 무의결권주",
-      "date": "2026-10-05",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 0.764,
-      "revenueEstimate": 1999456600.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "STZ",
-      "company": "컨스텔레이션 브랜즈",
-      "date": "2026-10-05",
-      "hour": "bmo",
-      "quarter": 2,
-      "year": 2027,
-      "epsEstimate": 3.662,
-      "revenueEstimate": 2574679274.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "DAL",
@@ -86968,7 +87026,7 @@
       "epsEstimate": -2.7496,
       "revenueEstimate": 10743150.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87166,7 +87224,7 @@
       "epsEstimate": -0.1547,
       "revenueEstimate": 19402297.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87868,7 +87926,7 @@
       "epsEstimate": -0.0934,
       "revenueEstimate": 68123250.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88248,7 +88306,7 @@
       "epsEstimate": 7.2898,
       "revenueEstimate": 2405198143.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88806,7 +88864,7 @@
       "epsEstimate": -1.0821,
       "revenueEstimate": 30859284.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89026,7 +89084,7 @@
       "epsEstimate": 3.1983,
       "revenueEstimate": 375100870.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89758,7 +89816,7 @@
       "epsEstimate": 0.8112,
       "revenueEstimate": 536436023.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
