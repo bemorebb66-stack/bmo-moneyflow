@@ -1,9 +1,86 @@
 {
   "meta": {
-    "generatedAt": "2026-10-03T09:52:17.537390+00:00",
-    "count": 312
+    "generatedAt": "2026-10-06T11:10:14.909945+00:00",
+    "count": 319
   },
   "pendingTrades": [
+    {
+      "ticker": "FLXS",
+      "company": "FLEXSTEEL INDUSTRIES INC",
+      "filer": "Creekmuir William S.",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 250,
+      "price": 81.5154,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-10-02",
+      "accession": "0000037472-26-000114",
+      "sourceAccessions": [
+        "0000037472-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000114/form4a.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_TRANSACTION_AMBIGUOUS",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FLXS",
+      "company": "FLEXSTEEL INDUSTRIES INC",
+      "filer": "Creekmuir William S.",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 2135,
+      "price": 81.2007,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0000037472-26-000100",
+      "sourceAccessions": [
+        "0000037472-26-000100"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FLXS",
+      "company": "FLEXSTEEL INDUSTRIES INC",
+      "filer": "Creekmuir William S.",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 815,
+      "price": 81.6604,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0000037472-26-000100",
+      "sourceAccessions": [
+        "0000037472-26-000100"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FLXS",
+      "company": "FLEXSTEEL INDUSTRIES INC",
+      "filer": "Creekmuir William S.",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 1000,
+      "price": 81.0327,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-10-02",
+      "accession": "0000037472-26-000114",
+      "sourceAccessions": [
+        "0000037472-26-000100",
+        "0000037472-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000114/form4a.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
     {
       "ticker": "SLBT",
       "company": "SL Science Holding Ltd",
@@ -1280,6 +1357,60 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "BABA",
+      "company": "Alibaba Group Holding Ltd",
+      "filer": "Jiang Fang",
+      "role": "Chief People Officer",
+      "txType": "매도",
+      "shares": 885272,
+      "price": 13.55,
+      "txDate": "2026-09-30",
+      "filedDate": "2026-10-02",
+      "accession": "0001193125-26-411206",
+      "sourceAccessions": [
+        "0001193125-26-411206"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1577552/000119312526411206/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "107.54000091552734",
+          "marketHigh": "108.9000015258789"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "PAM",
+      "company": "Pampa Energy Inc.",
+      "filer": "Mindlin Damian Miguel",
+      "role": "Vicepresident",
+      "txType": "매수",
+      "shares": 1417197,
+      "price": 3.105,
+      "txDate": "2026-09-28",
+      "filedDate": "2026-10-02",
+      "accession": "0002028916-26-000011",
+      "sourceAccessions": [
+        "0002028916-26-000011"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2028916/000202891626000011/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "76.27999877929688",
+          "marketHigh": "78.37000274658203"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "BBD",
@@ -6192,6 +6323,33 @@
           "severity": "critical",
           "marketLow": "17.5",
           "marketHigh": "19.799999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GUTS",
+      "company": "FRACTYL HEALTH, INC.",
+      "filer": "BRADLEY WILLIAM",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 64516,
+      "price": 0.6185,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001193125-26-393052",
+      "sourceAccessions": [
+        "0001193125-26-393052"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1177319/000119312526393052/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "7.019999980926514",
+          "marketHigh": "7.800000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
