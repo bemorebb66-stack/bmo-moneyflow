@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-06T18:46:13.111603+00:00",
+    "generatedAt": "2026-10-07T02:45:09.196354+00:00",
     "status": "ok",
-    "from": "2026-08-22",
-    "to": "2027-04-04",
-    "count": 6901,
+    "from": "2026-08-23",
+    "to": "2027-04-05",
+    "count": 6915,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 604,
       "supplementalTickerCount": 148,
-      "supplementalEventCount": 834,
+      "supplementalEventCount": 837,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -4796,6 +4796,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "OPCH",
+      "company": "옵션 케어 헬스",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 50523000.0,
+      "revenueActual": 1416085000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "ORLY",
       "company": "오레일리 오토모티브",
       "date": "2025-06-30",
@@ -5973,6 +5985,18 @@
       "netIncomeActual": -11900000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "TWST",
+      "company": "트위스트 바이오사이언스",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 20390000.0,
+      "revenueActual": 96057000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -12130,6 +12154,20 @@
       "revenueActual": 1550900000.0
     },
     {
+      "ticker": "OPCH",
+      "company": "옵션 케어 헬스",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 51816000.0,
+      "revenueActual": 1435016000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.45,
+      "epsEstimate": 0.4386
+    },
+    {
       "ticker": "ORCL",
       "company": "오라클",
       "date": "2025-09-30",
@@ -13592,6 +13630,20 @@
       "periodEnd": "2025-09-30",
       "revenueActual": 1773800000.0,
       "netIncomeActual": -133900000.0
+    },
+    {
+      "ticker": "TWST",
+      "company": "트위스트 바이오사이언스",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -27138000.0,
+      "revenueActual": 99009000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.45,
+      "epsEstimate": -0.4378
     },
     {
       "ticker": "TXN",
@@ -20193,6 +20245,20 @@
       "revenueActual": 1530100000.0
     },
     {
+      "ticker": "OPCH",
+      "company": "옵션 케어 헬스",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 58504000.0,
+      "revenueActual": 1465446000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.46,
+      "epsEstimate": 0.4673
+    },
+    {
       "ticker": "ORCL",
       "company": "오라클",
       "date": "2025-12-31",
@@ -21743,6 +21809,20 @@
       "periodEnd": "2025-12-31",
       "revenueActual": 1699000000.0,
       "netIncomeActual": -92900000.0
+    },
+    {
+      "ticker": "TWST",
+      "company": "트위스트 바이오사이언스",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -30507000.0,
+      "revenueActual": 103698000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.5,
+      "epsEstimate": -0.4386
     },
     {
       "ticker": "TXN",
@@ -28398,6 +28478,20 @@
       "revenueActual": 1513300000.0
     },
     {
+      "ticker": "OPCH",
+      "company": "옵션 케어 헬스",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 45343000.0,
+      "revenueActual": 1350654000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.4,
+      "epsEstimate": 0.3793
+    },
+    {
       "ticker": "ORCL",
       "company": "오라클",
       "date": "2026-03-31",
@@ -29961,6 +30055,20 @@
       "periodEnd": "2026-03-31",
       "revenueActual": 1679800000.0,
       "netIncomeActual": -59500000.0
+    },
+    {
+      "ticker": "TWST",
+      "company": "트위스트 바이오사이언스",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -44021000.0,
+      "revenueActual": 110715000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.59,
+      "epsEstimate": -0.4869
     },
     {
       "ticker": "TXN",
@@ -32541,10 +32649,11 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 5442000000.0,
+      "netIncomeActual": 907000000.0
     },
     {
       "ticker": "BTDR",
@@ -32982,10 +33091,11 @@
       "epsEstimate": 7.305,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 932000000.0,
+      "revenueActual": 9457000000.0
     },
     {
       "ticker": "CMS",
@@ -34599,10 +34709,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -36583,6 +36694,20 @@
       "revenueActual": 1603500000.0
     },
     {
+      "ticker": "OPCH",
+      "company": "옵션 케어 헬스",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 53913000.0,
+      "revenueActual": 1442400000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.45,
+      "epsEstimate": 0.4362
+    },
+    {
       "ticker": "ORCL",
       "company": "오라클",
       "date": "2026-06-30",
@@ -38146,6 +38271,20 @@
       "periodEnd": "2026-06-30",
       "revenueActual": 1533900000.0,
       "netIncomeActual": -34100000.0
+    },
+    {
+      "ticker": "TWST",
+      "company": "트위스트 바이오사이언스",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -35051000.0,
+      "revenueActual": 118376000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.56,
+      "epsEstimate": -0.5036
     },
     {
       "ticker": "TXN",
@@ -46284,6 +46423,19 @@
       "dateKind": "provider-period",
       "epsActual": 0.38,
       "epsEstimate": 0.3755,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "CASY",
+      "company": "케이시스 제너럴 스토어스",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 7.37,
+      "epsEstimate": 6.8885,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -84606,7 +84758,7 @@
       "epsEstimate": -1.1446,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -85630,7 +85782,7 @@
       "epsEstimate": -0.296,
       "revenueEstimate": 60891195.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86113,7 +86265,7 @@
       "epsEstimate": -0.0269,
       "revenueEstimate": 10996375.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87247,7 +87399,7 @@
       "epsEstimate": 0.3395,
       "revenueEstimate": 300197352.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88899,7 +89051,7 @@
       "epsEstimate": -1.0821,
       "revenueEstimate": 30859284.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89119,7 +89271,7 @@
       "epsEstimate": 3.1983,
       "revenueEstimate": 375100870.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89792,7 +89944,7 @@
       "epsEstimate": 0.431,
       "revenueEstimate": 668363160.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89946,6 +90098,42 @@
       "year": 2026,
       "epsEstimate": 0.8619,
       "revenueEstimate": 98964990.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "AEHR",
+      "company": "에흐르 테스트 시스템즈",
+      "date": "2027-04-05",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 0.2023,
+      "revenueEstimate": 35208360.0,
+      "status": "scheduled",
+      "trackingTier": "popular-small-cap",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "GBX",
+      "company": "그린브리어 INC",
+      "date": "2027-04-05",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 0.8181,
+      "revenueEstimate": 598711335.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "KRUS",
+      "company": "쿠라 스시 USA INC",
+      "date": "2027-04-05",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": -0.0198,
+      "revenueEstimate": 93078060.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
