@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-07T19:11:15.665459+00:00",
+    "generatedAt": "2026-10-08T02:58:15.520699+00:00",
     "status": "ok",
-    "from": "2026-08-23",
-    "to": "2027-04-05",
-    "count": 6915,
+    "from": "2026-08-24",
+    "to": "2027-04-06",
+    "count": 6941,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 604,
-      "supplementalTickerCount": 148,
-      "supplementalEventCount": 837,
+      "trackedUniverseCount": 603,
+      "supplementalTickerCount": 150,
+      "supplementalEventCount": 856,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -884,6 +884,18 @@
       "netIncomeActual": 297200000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2025-05-31",
+      "periodEnd": "2025-05-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 2661000.0,
+      "revenueActual": 324251000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -5446,6 +5458,30 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SBAC",
+      "company": "SBA 커뮤니케이션스",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 698981000.0,
+      "netIncomeActual": 225794000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SBUX",
+      "company": "스타벅스",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 9456000000.0,
+      "netIncomeActual": 558300000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SCHW",
       "company": "찰스 슈왑",
       "date": "2025-06-30",
@@ -5470,6 +5506,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SHW",
+      "company": "셔윈-윌리엄즈",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 754700000.0,
+      "revenueActual": 6314500000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SLB",
       "company": "에스엘비",
       "date": "2025-06-30",
@@ -5489,6 +5537,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 195154000.0,
       "revenueActual": 5756911000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SNA",
+      "company": "스냅-온",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 250300000.0,
+      "revenueActual": 1281100000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
@@ -6996,6 +7056,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SJM",
+      "company": "J.M. 스머커",
+      "date": "2025-07-31",
+      "periodEnd": "2025-07-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -43900000.0,
+      "revenueActual": 2113300000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2025-07-31",
@@ -7338,6 +7410,18 @@
       "netIncomeActual": 383800000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2025-08-31",
+      "periodEnd": "2025-08-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 9431000.0,
+      "revenueActual": 337922000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -12962,27 +13046,29 @@
       "ticker": "SBAC",
       "company": "SBA 커뮤니케이션스",
       "date": "2025-09-30",
-      "quarter": 3,
-      "year": 2025,
       "epsActual": 2.2,
       "epsEstimate": 2.2408,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-09-30",
+      "revenueActual": 732327000.0,
+      "netIncomeActual": 236816000.0
     },
     {
       "ticker": "SBUX",
       "company": "스타벅스",
       "date": "2025-09-30",
-      "quarter": 4,
-      "year": 2025,
       "epsActual": 0.52,
       "epsEstimate": 0.5743,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-09-30",
+      "revenueActual": 9569000000.0,
+      "netIncomeActual": 133200000.0
     },
     {
       "ticker": "SCHW",
@@ -13016,14 +13102,15 @@
       "ticker": "SHW",
       "company": "셔윈-윌리엄즈",
       "date": "2025-09-30",
-      "quarter": 3,
-      "year": 2025,
       "epsActual": 3.59,
       "epsEstimate": 3.4749,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-09-30",
+      "netIncomeActual": 833100000.0,
+      "revenueActual": 6358200000.0
     },
     {
       "ticker": "SLB",
@@ -13050,6 +13137,18 @@
       "periodEnd": "2025-09-30",
       "netIncomeActual": 168285000.0,
       "revenueActual": 5017790000.0
+    },
+    {
+      "ticker": "SNA",
+      "company": "스냅-온",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 265400000.0,
+      "revenueActual": 1291900000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "SNDK",
@@ -14751,6 +14850,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SJM",
+      "company": "J.M. 스머커",
+      "date": "2025-10-31",
+      "periodEnd": "2025-10-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 241300000.0,
+      "revenueActual": 2330100000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2025-10-31",
@@ -15084,6 +15195,18 @@
       "netIncomeActual": 395400000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2025-11-30",
+      "periodEnd": "2025-11-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 5270000.0,
+      "revenueActual": 343071000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -20423,6 +20546,19 @@
       "netIncomeActual": 315000000.0
     },
     {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2025-12-31",
+      "quarter": 1,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.49,
+      "epsEstimate": 0.4441,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "PEP",
       "company": "펩시코",
       "date": "2025-12-31",
@@ -21068,27 +21204,29 @@
       "ticker": "SBAC",
       "company": "SBA 커뮤니케이션스",
       "date": "2025-12-31",
-      "quarter": 4,
-      "year": 2025,
       "epsActual": 3.47,
       "epsEstimate": 3.8682,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "revenueActual": 719583000.0,
+      "netIncomeActual": 370290000.0
     },
     {
       "ticker": "SBUX",
       "company": "스타벅스",
       "date": "2025-12-31",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 0.56,
       "epsEstimate": 0.5978,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "revenueActual": 9915100000.0,
+      "netIncomeActual": 293300000.0
     },
     {
       "ticker": "SCHW",
@@ -21122,14 +21260,15 @@
       "ticker": "SHW",
       "company": "셔윈-윌리엄즈",
       "date": "2025-12-31",
-      "quarter": 4,
-      "year": 2025,
       "epsActual": 2.23,
       "epsEstimate": 2.1832,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "netIncomeActual": 476800000.0,
+      "revenueActual": 5595900000.0
     },
     {
       "ticker": "SJM",
@@ -21176,14 +21315,15 @@
       "ticker": "SNA",
       "company": "스냅-온",
       "date": "2025-12-31",
-      "quarter": 4,
-      "year": 2025,
       "epsActual": 4.94,
       "epsEstimate": 4.9655,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2025-12-31",
+      "netIncomeActual": 260700000.0,
+      "revenueActual": 1339900000.0
     },
     {
       "ticker": "SNDK",
@@ -22983,6 +23123,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SJM",
+      "company": "J.M. 스머커",
+      "date": "2026-01-31",
+      "periodEnd": "2026-01-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -724200000.0,
+      "revenueActual": 2339400000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2026-01-31",
@@ -23304,6 +23456,18 @@
       "netIncomeActual": 560300000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2026-02-28",
+      "periodEnd": "2026-02-28",
+      "dateKind": "period-end",
+      "netIncomeActual": 37452000.0,
+      "revenueActual": 342999000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -28656,6 +28820,19 @@
       "netIncomeActual": 741000000.0
     },
     {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2026-03-31",
+      "quarter": 2,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.52,
+      "epsEstimate": 0.431,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "PEP",
       "company": "펩시코",
       "date": "2026-03-31",
@@ -29302,27 +29479,29 @@
       "ticker": "SBAC",
       "company": "SBA 커뮤니케이션스",
       "date": "2026-03-31",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 1.74,
       "epsEstimate": 1.815,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "revenueActual": 703438000.0,
+      "netIncomeActual": 184830000.0
     },
     {
       "ticker": "SBUX",
       "company": "스타벅스",
       "date": "2026-03-31",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 0.5,
       "epsEstimate": 0.4379,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "revenueActual": 9531500000.0,
+      "netIncomeActual": 510900000.0
     },
     {
       "ticker": "SCHW",
@@ -29356,14 +29535,15 @@
       "ticker": "SHW",
       "company": "셔윈-윌리엄즈",
       "date": "2026-03-31",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 2.35,
       "epsEstimate": 2.2803,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "netIncomeActual": 534700000.0,
+      "revenueActual": 5666900000.0
     },
     {
       "ticker": "SJM",
@@ -29410,14 +29590,15 @@
       "ticker": "SNA",
       "company": "스냅-온",
       "date": "2026-03-31",
-      "quarter": 1,
-      "year": 2026,
       "epsActual": 4.69,
       "epsEstimate": 4.7997,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-03-31",
+      "netIncomeActual": 247000000.0,
+      "revenueActual": 1308300000.0
     },
     {
       "ticker": "SNDK",
@@ -31229,6 +31410,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SJM",
+      "company": "J.M. 스머커",
+      "date": "2026-04-30",
+      "periodEnd": "2026-04-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 388100000.0,
+      "revenueActual": 2268100000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2026-04-30",
@@ -31571,6 +31764,18 @@
       "netIncomeActual": 420600000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2026-05-31",
+      "periodEnd": "2026-05-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 44689000.0,
+      "revenueActual": 478713000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -34707,10 +34912,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -36869,6 +37075,19 @@
       "netIncomeActual": 334000000.0
     },
     {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2026-06-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.84,
+      "epsEstimate": 0.5505,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "PEP",
       "company": "펩시코",
       "date": "2026-06-30",
@@ -37514,27 +37733,29 @@
       "ticker": "SBAC",
       "company": "SBA 커뮤니케이션스",
       "date": "2026-06-30",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 1.87,
       "epsEstimate": 1.9156,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 715274000.0,
+      "netIncomeActual": 198777000.0
     },
     {
       "ticker": "SBUX",
       "company": "스타벅스",
       "date": "2026-06-30",
-      "quarter": 3,
-      "year": 2026,
       "epsActual": 0.85,
       "epsEstimate": 0.6743,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 9322700000.0,
+      "netIncomeActual": 1045300000.0
     },
     {
       "ticker": "SCHW",
@@ -37568,14 +37789,15 @@
       "ticker": "SHW",
       "company": "셔윈-윌리엄즈",
       "date": "2026-06-30",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 3.7,
       "epsEstimate": 3.5546,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 843600000.0,
+      "revenueActual": 6789300000.0
     },
     {
       "ticker": "SJM",
@@ -37622,14 +37844,15 @@
       "ticker": "SNA",
       "company": "스냅-온",
       "date": "2026-06-30",
-      "quarter": 2,
-      "year": 2026,
       "epsActual": 4.96,
       "epsEstimate": 4.9982,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 260600000.0,
+      "revenueActual": 1334800000.0
     },
     {
       "ticker": "SNDK",
@@ -43744,6 +43967,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "SJM",
+      "company": "J.M. 스머커",
+      "date": "2026-07-31",
+      "periodEnd": "2026-07-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 324300000.0,
+      "revenueActual": 2219300000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "SNPS",
       "company": "시놉시스",
       "date": "2026-07-31",
@@ -46841,6 +47076,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "PENG",
+      "company": "펭귄 솔루션스",
+      "date": "2026-09-30",
+      "quarter": 4,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.0,
+      "epsEstimate": 0.7844,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ROST",
       "company": "로스 스토어스",
       "date": "2026-09-30",
@@ -46849,6 +47097,19 @@
       "dateKind": "provider-period",
       "epsActual": 2.06,
       "epsEstimate": 1.9782,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "SJM",
+      "company": "J.M. 스머커",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.4,
+      "epsEstimate": 2.2385,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -46891,32 +47152,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
-    },
-    {
-      "ticker": "DAL",
-      "company": "델타 에어라인스",
-      "date": "2026-10-07",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 2.2127,
-      "revenueEstimate": 17765318098.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "PEP",
-      "company": "펩시코",
-      "date": "2026-10-07",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 2.3233,
-      "revenueEstimate": 25253303275.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "BLK",
@@ -84755,7 +84990,7 @@
       "epsEstimate": -1.1446,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -86262,7 +86497,7 @@
       "epsEstimate": -0.0269,
       "revenueEstimate": 10996375.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87396,7 +87631,7 @@
       "epsEstimate": 0.3395,
       "revenueEstimate": 300197352.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88110,7 +88345,7 @@
       "epsEstimate": -0.0934,
       "revenueEstimate": 68123250.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88728,7 +88963,7 @@
       "epsEstimate": 0.2189,
       "revenueEstimate": 249137335.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89048,7 +89283,7 @@
       "epsEstimate": -1.0821,
       "revenueEstimate": 30859284.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89941,7 +90176,7 @@
       "epsEstimate": 0.431,
       "revenueEstimate": 668363160.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -90133,6 +90368,101 @@
       "revenueEstimate": 93078060.0,
       "status": "scheduled",
       "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "APLD",
+      "company": "어플라이드 디지털",
+      "date": "2027-04-06",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": -0.2945,
+      "revenueEstimate": 233407528.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "DAL",
+      "company": "델타 에어라인스",
+      "date": "2027-04-06",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 0.7279,
+      "revenueEstimate": 15648534151.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "NRIX",
+      "company": "누릭스 테라퓨틱스",
+      "date": "2027-04-06",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": -0.5406,
+      "revenueEstimate": 19482000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "PCYO",
+      "company": "퓨어사이클(주)",
+      "date": "2027-04-06",
+      "quarter": 2,
+      "year": 2027,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "PSMT",
+      "company": "프라이스스마트",
+      "date": "2027-04-06",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 1.7906,
+      "revenueEstimate": 1654272210.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "RELL",
+      "company": "리차드슨 전자 회사",
+      "date": "2027-04-06",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 0.128,
+      "revenueEstimate": 62684100.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "RPM",
+      "company": "RPM 인터내셔널",
+      "date": "2027-04-06",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 0.6224,
+      "revenueEstimate": 1713284927.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "STZ",
+      "company": "컨스텔레이션 브랜즈",
+      "date": "2027-04-06",
+      "hour": "amc",
+      "quarter": 4,
+      "year": 2027,
+      "epsEstimate": 1.9258,
+      "revenueEstimate": 1927431863.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     }
   ]
