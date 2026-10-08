@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-08T03:08:36.259518+00:00",
+    "generatedAt": "2026-10-08T19:08:00.699470+00:00",
     "status": "ok",
     "from": "2026-08-24",
     "to": "2027-04-06",
-    "count": 6941,
+    "count": 6942,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 603,
       "supplementalTickerCount": 150,
-      "supplementalEventCount": 856,
+      "supplementalEventCount": 857,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -47085,6 +47085,19 @@
       "epsEstimate": 0.7844,
       "status": "reported",
       "trackingTier": "popular-small-cap",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "PEP",
+      "company": "펩시코",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.34,
+      "epsEstimate": 2.319,
+      "status": "reported",
+      "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
     },
     {
