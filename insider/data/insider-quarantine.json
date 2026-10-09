@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-08T11:24:33.853601+00:00",
-    "count": 346
+    "generatedAt": "2026-10-09T11:16:28.494615+00:00",
+    "count": 351
   },
   "pendingTrades": [
     {
@@ -2197,114 +2197,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 222223,
-      "price": 1.5,
-      "txDate": "2026-05-28",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "7.829999923706055",
-          "marketHigh": "10.800000190734863"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 500000,
-      "price": 1.33,
-      "txDate": "2026-06-02",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "8.081999778747559",
-          "marketHigh": "8.90999984741211"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 500000,
-      "price": 1.33,
-      "txDate": "2026-06-18",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "6.389999866485596",
-          "marketHigh": "7.551000118255615"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 2500000,
-      "price": 1,
-      "txDate": "2026-07-27",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.0299999713897705",
-          "marketHigh": "3.299999952316284"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
       "ticker": "ZSTK",
       "company": "ZeroStack Corp.",
       "filer": "Heinrich Michael",
@@ -2464,6 +2356,62 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZM",
+      "company": "Zoom Communications, Inc.",
+      "filer": "Yuan Eric S.",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 11896,
+      "price": 94.0653,
+      "txDate": "2026-10-06",
+      "filedDate": "2026-10-07",
+      "accession": "0001585521-26-000139",
+      "sourceAccessions": [
+        "0001585521-26-000139"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1773298/000158552126000139/wk-form4_1791404929.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "94.0653",
+          "expectedLow": "95.18",
+          "expectedHigh": "96.175"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZM",
+      "company": "Zoom Communications, Inc.",
+      "filer": "Yuan Eric S.",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 204,
+      "price": 94.5935,
+      "txDate": "2026-10-06",
+      "filedDate": "2026-10-07",
+      "accession": "0001585521-26-000139",
+      "sourceAccessions": [
+        "0001585521-26-000139"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1773298/000158552126000139/wk-form4_1791404929.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "94.5935",
+          "expectedLow": "96.18",
+          "expectedHigh": "97.06"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -5869,6 +5817,87 @@
       "severity": "critical"
     },
     {
+      "ticker": "RAKR",
+      "company": "Rainmaker Worldwide Inc.",
+      "filer": "O'CONNOR MICHAEL JOHN",
+      "role": "임원",
+      "txType": "매도",
+      "shares": 1000000,
+      "price": 0.03,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-10-08",
+      "accession": "0001493152-26-046313",
+      "sourceAccessions": [
+        "0001493152-26-046313"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2055656/000149315226046313/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.00019999999494757503",
+          "marketHigh": "0.00019999999494757503"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "RAKR",
+      "company": "Rainmaker Worldwide Inc.",
+      "filer": "O'CONNOR MICHAEL JOHN",
+      "role": "임원",
+      "txType": "매도",
+      "shares": 3750000,
+      "price": 0.0125,
+      "txDate": "2026-09-29",
+      "filedDate": "2026-10-08",
+      "accession": "0001493152-26-046313",
+      "sourceAccessions": [
+        "0001493152-26-046313"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2055656/000149315226046313/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.00019999999494757503",
+          "marketHigh": "0.00019999999494757503"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "RAKR",
+      "company": "Rainmaker Worldwide Inc.",
+      "filer": "O'CONNOR MICHAEL JOHN",
+      "role": "임원",
+      "txType": "매도",
+      "shares": 3500000,
+      "price": 0.005,
+      "txDate": "2026-10-07",
+      "filedDate": "2026-10-08",
+      "accession": "0001493152-26-046313",
+      "sourceAccessions": [
+        "0001493152-26-046313"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2055656/000149315226046313/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.00019999999494757503",
+          "marketHigh": "0.00019999999494757503"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "GAM",
       "company": "GENERAL AMERICAN INVESTORS CO INC",
       "filer": "Priest Jeffrey W",
@@ -8436,6 +8465,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Barcos Melgar Pablo",
+      "role": "VP INVESTMENT OFFICER",
+      "txType": "매도",
+      "shares": 6154,
+      "price": 3.51,
+      "txDate": "2026-08-25",
+      "filedDate": "2026-10-07",
+      "accession": "0002117903-26-000001",
+      "sourceAccessions": [
+        "0002117903-26-000001"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117903/000211790326000001/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.0099983215332",
+          "marketHigh": "35.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ZNB",
       "company": "Zeta Network Group",
       "filer": "HRT FINANCIAL LP",
@@ -9116,6 +9172,33 @@
       "filer": "Wei Che-Chia",
       "role": "Chairman and CEO",
       "txType": "매수",
+      "shares": 144,
+      "price": 79.39,
+      "txDate": "2026-10-07",
+      "filedDate": "2026-10-08",
+      "accession": "0001046179-26-000715",
+      "sourceAccessions": [
+        "0001046179-26-000715"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000715/wk-form4_1791455546.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "471.29998779296875",
+          "marketHigh": "475.79998779296875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Wei Che-Chia",
+      "role": "Chairman and CEO",
+      "txType": "매수",
       "shares": 152,
       "price": 73.31,
       "txDate": "2026-08-07",
@@ -9136,6 +9219,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "MGF",
+      "company": "ABERDEEN GOVERNMENT MARKETS INCOME FUND",
+      "filer": "Reit Todd",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 3900,
+      "price": 2.85,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-21",
+      "accession": "0001104659-26-085330",
+      "sourceAccessions": [
+        "0001104659-26-085330"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/811922/000110465926085330/tm2621009-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "14.149999618530273",
+          "marketHigh": "14.449999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "NRDY",
@@ -9186,6 +9296,33 @@
           "severity": "critical",
           "marketLow": "10.579999923706055",
           "marketHigh": "11.15999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "MIN",
+      "company": "ABERDEEN INTERMEDIATE INCOME FUND",
+      "filer": "Reit Todd",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 4400,
+      "price": 2.49,
+      "txDate": "2026-07-21",
+      "filedDate": "2026-07-21",
+      "accession": "0001104659-26-085331",
+      "sourceAccessions": [
+        "0001104659-26-085331"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/826735/000110465926085331/tm2621009-2_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "14.760000228881836",
+          "marketHigh": "14.9399995803833"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
