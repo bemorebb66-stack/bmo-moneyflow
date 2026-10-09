@@ -1440,13 +1440,12 @@
   "name_ko": "콜페이"
  },
  "CTVA": {
-  "name": "Corteva",
+  "name": "CORTEVA",
   "sector": "Basic Materials",
   "industry": "Agricultural Inputs",
   "mcap": 57384755200,
   "universe": [
-   "Russell 1000",
-   "S&P 500"
+   "Russell 1000"
   ],
   "name_ko": "코르테바"
  },
@@ -2230,7 +2229,7 @@
   "name": "Fiserv",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 24094351360,
+  "mcap": 24429363200,
   "name_ko": "파이서브",
   "universe": [
    "Russell 1000",
@@ -9770,7 +9769,7 @@
   "name": "LIONSGATE STUDIOS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 3365400064,
+  "mcap": 3356473088,
   "name_ko": "라이온스게이트 스튜디오스",
   "universe": [
    "Russell 2000"
@@ -11891,13 +11890,14 @@
   ]
  },
  "TWLO": {
-  "name": "TWILIO CLASS A",
+  "name": "Twilio",
   "sector": "Technology",
   "industry": "Software - Infrastructure",
   "mcap": 33177765888,
   "name_ko": "트윌리오",
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "S&P 500"
   ]
  },
  "SUNB": {
@@ -14401,7 +14401,8 @@
   "mcap": 8123560448,
   "name_ko": "레플리젠",
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "Russell 2000"
   ]
  },
  "KEX": {
@@ -17311,7 +17312,7 @@
   "name": "NIQ GLOBAL INTELLIGENCE PLC",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 5011300352,
+  "mcap": 5282659840,
   "universe": [
    "Russell 1000"
   ],
@@ -29682,7 +29683,7 @@
   "name": "SHOULDER INNOVATIONS",
   "sector": "기타",
   "industry": "기타",
-  "mcap": 389522656,
+  "mcap": 372451104,
   "universe": [
    "Russell 2000"
   ],
@@ -34041,15 +34042,40 @@
   "name_ko": "베르데라 에너지 주식회사"
  },
  "VYLR": {
-  "name": "VYLOR",
+  "name": "Vylor",
   "sector": "Financial Services",
   "industry": "Shell Companies",
   "mcap": 52177670144,
   "metadata_attempted": true,
   "translation_attempted": true,
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "S&P 500"
   ],
   "name_ko": "바이러 INC"
+ },
+ "SKYD": {
+  "name": "Skydance Corporation",
+  "sector": "Communication Services",
+  "industry": "Entertainment",
+  "mcap": 46791409664,
+  "metadata_attempted": true,
+  "name_ko": "스카이댄스 코퍼레이션",
+  "translation_attempted": true,
+  "universe": [
+   "S&P 500"
+  ]
+ },
+ "UWMC-R-W": {
+  "name": "UWM HOLDINGS RIGHTS WHEN ISSUED EX",
+  "sector": "기타",
+  "industry": "기타",
+  "mcap": 0,
+  "metadata_attempted": true,
+  "name_ko": "EX 발행 시 UWM 보유 권리",
+  "translation_attempted": true,
+  "universe": [
+   "Russell 1000"
+  ]
  }
 }

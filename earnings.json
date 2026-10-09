@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-08T19:08:00.699470+00:00",
+    "generatedAt": "2026-10-09T03:10:22.345884+00:00",
     "status": "ok",
-    "from": "2026-08-24",
-    "to": "2027-04-06",
-    "count": 6942,
+    "from": "2026-08-25",
+    "to": "2027-04-07",
+    "count": 6946,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
-      "supplementalTickerCount": 150,
-      "supplementalEventCount": 857,
+      "trackedUniverseCount": 581,
+      "supplementalTickerCount": 154,
+      "supplementalEventCount": 869,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -46854,6 +46854,32 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "FDS",
+      "company": "팩트셋 리서치 시스템즈",
+      "date": "2026-09-30",
+      "quarter": 4,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 4.52,
+      "epsEstimate": 4.3779,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "GIS",
+      "company": "제너럴 밀즈",
+      "date": "2026-09-30",
+      "quarter": 1,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 0.75,
+      "epsEstimate": 0.7265,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "HD",
       "company": "홈디포",
       "date": "2026-09-30",
@@ -87183,7 +87209,7 @@
       "epsEstimate": -0.1357,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -88975,7 +89001,7 @@
       "epsEstimate": 0.2189,
       "revenueEstimate": 249137335.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -90188,7 +90214,7 @@
       "epsEstimate": 0.431,
       "revenueEstimate": 668363160.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -90475,6 +90501,30 @@
       "revenueEstimate": 1927431863.0,
       "status": "scheduled",
       "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "NEOG",
+      "company": "니오젠",
+      "date": "2027-04-07",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": -0.0374,
+      "revenueEstimate": 220116000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "SMPL",
+      "company": "심플리 굿 푸드 컴퍼니",
+      "date": "2027-04-07",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 0.4182,
+      "revenueEstimate": 306214373.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     }
   ]
