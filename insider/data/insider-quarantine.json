@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-09T11:16:28.494615+00:00",
-    "count": 351
+    "generatedAt": "2026-10-10T10:38:09.085608+00:00",
+    "count": 362
   },
   "pendingTrades": [
     {
@@ -167,6 +167,33 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "IHT",
+      "company": "INNSUITES HOSPITALITY TRUST",
+      "filer": "WIRTH JAMES F",
+      "role": "President & CEO",
+      "txType": "매도",
+      "shares": 43111,
+      "price": 50410.8,
+      "txDate": "2026-10-07",
+      "filedDate": "2026-10-09",
+      "accession": "0001493152-26-046636",
+      "sourceAccessions": [
+        "0001493152-26-046636"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/82473/000149315226046636/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.0099999904632568",
+          "marketHigh": "1.190000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -587,6 +614,168 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 2200,
+      "price": 17.32,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-10-09",
+      "accession": "0001292814-26-004880",
+      "sourceAccessions": [
+        "0001292814-26-004880"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004880/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.2699999809265137",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 26300,
+      "price": 17.3,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-10-09",
+      "accession": "0001292814-26-004880",
+      "sourceAccessions": [
+        "0001292814-26-004880"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004880/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.2699999809265137",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 27700,
+      "price": 17.36,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-10-09",
+      "accession": "0001292814-26-004880",
+      "sourceAccessions": [
+        "0001292814-26-004880"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004880/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.2699999809265137",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 34700,
+      "price": 17.35,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-10-09",
+      "accession": "0001292814-26-004880",
+      "sourceAccessions": [
+        "0001292814-26-004880"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004880/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.2699999809265137",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 56100,
+      "price": 17.33,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-10-09",
+      "accession": "0001292814-26-004880",
+      "sourceAccessions": [
+        "0001292814-26-004880"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004880/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.2699999809265137",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "BBD",
+      "company": "BANK BRADESCO",
+      "filer": "Alvarez Rubens Aguiar",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 1698000,
+      "price": 17.37,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-10-09",
+      "accession": "0001292814-26-004880",
+      "sourceAccessions": [
+        "0001292814-26-004880"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126531/000129281426004880/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "3.2699999809265137",
+          "marketHigh": "3.369999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "TYG",
@@ -2195,6 +2384,114 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 222223,
+      "price": 1.5,
+      "txDate": "2026-05-28",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "7.829999923706055",
+          "marketHigh": "10.800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 1.33,
+      "txDate": "2026-06-02",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.081999778747559",
+          "marketHigh": "8.90999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 1.33,
+      "txDate": "2026-06-18",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "6.389999866485596",
+          "marketHigh": "7.551000118255615"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 2500000,
+      "price": 1,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "3.0299999713897705",
+          "marketHigh": "3.299999952316284"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "ZSTK",
