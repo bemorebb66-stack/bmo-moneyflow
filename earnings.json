@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-09T18:38:22.167607+00:00",
+    "generatedAt": "2026-10-10T02:44:12.146925+00:00",
     "status": "ok",
-    "from": "2026-08-25",
-    "to": "2027-04-07",
-    "count": 6946,
+    "from": "2026-08-26",
+    "to": "2027-04-08",
+    "count": 6952,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 581,
-      "supplementalTickerCount": 154,
-      "supplementalEventCount": 869,
+      "trackedUniverseCount": 603,
+      "supplementalTickerCount": 150,
+      "supplementalEventCount": 858,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -39009,7 +39009,7 @@
       "company": "웨이스트 매니지먼트",
       "date": "2026-06-30",
       "epsActual": 2.02,
-      "epsEstimate": 2.0394,
+      "epsEstimate": 2.0434,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
@@ -46542,6 +46542,19 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "A",
+      "company": "애질런트 테크놀로지스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.62,
+      "epsEstimate": 1.5154,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2026-09-30",
@@ -46784,6 +46797,19 @@
       "dateKind": "provider-period",
       "epsActual": 1.39,
       "epsEstimate": 1.3817,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "DAL",
+      "company": "델타 에어라인스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.72,
+      "epsEstimate": 1.9868,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -47179,6 +47205,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "WDAY",
+      "company": "워크데이",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.75,
+      "epsEstimate": 2.6605,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "WMT",
       "company": "월마트",
       "date": "2026-09-30",
@@ -47187,6 +47226,19 @@
       "dateKind": "provider-period",
       "epsActual": 0.81,
       "epsEstimate": 0.7487,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "WSM",
+      "company": "윌리엄 소노마",
+      "date": "2026-09-30",
+      "quarter": 2,
+      "year": 2027,
+      "dateKind": "provider-period",
+      "epsActual": 2.1,
+      "epsEstimate": 2.0987,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -89321,7 +89373,7 @@
       "epsEstimate": -1.0821,
       "revenueEstimate": 30859284.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89541,7 +89593,7 @@
       "epsEstimate": 3.1983,
       "revenueEstimate": 375100870.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -90523,6 +90575,30 @@
       "year": 2027,
       "epsEstimate": 0.4182,
       "revenueEstimate": 306214373.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "WDFC",
+      "company": "더블유디-40",
+      "date": "2027-04-07",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 1.4688,
+      "revenueEstimate": 174602916.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "ASPI",
+      "company": "ASP 동위원소",
+      "date": "2027-04-08",
+      "quarter": 4,
+      "year": 2026,
+      "epsEstimate": -0.1666,
+      "revenueEstimate": 10131996.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
