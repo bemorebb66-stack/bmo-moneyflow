@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-13T04:06:19.255095+00:00",
+    "generatedAt": "2026-10-13T19:42:36.728081+00:00",
     "status": "ok",
     "from": "2026-08-29",
     "to": "2027-04-11",
-    "count": 6957,
+    "count": 6963,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 604,
-      "supplementalTickerCount": 150,
-      "supplementalEventCount": 855,
+      "trackedUniverseCount": 601,
+      "supplementalTickerCount": 151,
+      "supplementalEventCount": 873,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -1632,6 +1632,18 @@
       "revenueActual": 5423000000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "BMBL",
+      "company": "범블 INC 클래스 A",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -253744000.0,
+      "revenueActual": 248229000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -8364,6 +8376,20 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 11.55,
       "epsEstimate": 11.3567
+    },
+    {
+      "ticker": "BMBL",
+      "company": "범블 INC 클래스 A",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": 37338000.0,
+      "revenueActual": 246163000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.33,
+      "epsEstimate": 0.3366
     },
     {
       "ticker": "BMNR",
@@ -16261,6 +16287,20 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 13.16,
       "epsEstimate": 12.3297
+    },
+    {
+      "ticker": "BMBL",
+      "company": "범블 INC 클래스 A",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -490176000.0,
+      "revenueActual": 224165000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -4.06,
+      "epsEstimate": 0.2448
     },
     {
       "ticker": "BMNR",
@@ -24541,6 +24581,20 @@
       "epsEstimate": 11.6529
     },
     {
+      "ticker": "BMBL",
+      "company": "범블 INC 클래스 A",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": 45211000.0,
+      "revenueActual": 212383000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.34,
+      "epsEstimate": 0.2778
+    },
+    {
       "ticker": "BMNR",
       "company": "비트마인 이머전 테크놀로지스",
       "date": "2026-03-31",
@@ -25887,7 +25941,7 @@
       "company": "에베레스트 그룹",
       "date": "2026-03-31",
       "epsActual": 16.08,
-      "epsEstimate": 14.3896,
+      "epsEstimate": 14.4273,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
@@ -32834,6 +32888,20 @@
       "epsEstimate": 12.7175
     },
     {
+      "ticker": "BMBL",
+      "company": "범블 INC 클래스 A",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -110057000.0,
+      "revenueActual": 210526000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.84,
+      "epsEstimate": 0.2524
+    },
+    {
       "ticker": "BMNR",
       "company": "비트마인 이머전 테크놀로지스",
       "date": "2026-06-30",
@@ -34981,11 +35049,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -46757,6 +46824,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "C",
+      "company": "씨티그룹",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.85,
+      "epsEstimate": 2.7311,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "CASY",
       "company": "케이시스 제너럴 스토어스",
       "date": "2026-09-30",
@@ -46952,6 +47032,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "DPZ",
+      "company": "도미노피자",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 4.6,
+      "epsEstimate": 4.4127,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "DRI",
       "company": "다든 레스토랑",
       "date": "2026-09-30",
@@ -46986,6 +47079,19 @@
       "dateKind": "provider-period",
       "epsActual": 0.75,
       "epsEstimate": 0.7265,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "GS",
+      "company": "골드만삭스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 17.01,
+      "epsEstimate": 15.0539,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -47064,6 +47170,32 @@
       "dateKind": "provider-period",
       "epsActual": 4.4,
       "epsEstimate": 4.109,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "JNJ",
+      "company": "존슨앤드존슨",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.59,
+      "epsEstimate": 2.5881,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "JPM",
+      "company": "제이피모간체이스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 5.75,
+      "epsEstimate": 5.9185,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -47303,6 +47435,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "UNH",
+      "company": "유나이티드헬스 그룹",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 4.69,
+      "epsEstimate": 4.1893,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "WDAY",
       "company": "워크데이",
       "date": "2026-09-30",
@@ -47311,6 +47456,19 @@
       "dateKind": "provider-period",
       "epsActual": 2.75,
       "epsEstimate": 2.6605,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "WFC",
+      "company": "웰스파고",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.87,
+      "epsEstimate": 1.8754,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -47355,31 +47513,6 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
-      "ticker": "C",
-      "company": "씨티그룹",
-      "date": "2026-10-13",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 2.7269,
-      "revenueEstimate": 24230437701.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "GS",
-      "company": "골드만삭스",
-      "date": "2026-10-13",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 16.8366,
-      "revenueEstimate": 17864586399.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
       "ticker": "JBHT",
       "company": "J.B 헌트 운송 서비스",
       "date": "2026-10-13",
@@ -47388,30 +47521,6 @@
       "year": 2026,
       "epsEstimate": 2.1835,
       "revenueEstimate": 3612772965.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "JNJ",
-      "company": "존슨앤드존슨",
-      "date": "2026-10-13",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 2.9499,
-      "revenueEstimate": 25572367679.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "JPM",
-      "company": "제이피모간체이스",
-      "date": "2026-10-13",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 5.8957,
-      "revenueEstimate": 51500360176.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -47449,19 +47558,6 @@
       "year": 2026,
       "epsEstimate": 3.153,
       "revenueEstimate": 17964302693.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "WFC",
-      "company": "웰스파고",
-      "date": "2026-10-13",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.8608,
-      "revenueEstimate": 22591027873.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -49383,19 +49479,6 @@
       "year": 2026,
       "epsEstimate": 5.2784,
       "revenueEstimate": 4767195162.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "UNH",
-      "company": "유나이티드헬스 그룹",
-      "date": "2026-10-26",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 4.1695,
-      "revenueEstimate": 112517372895.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -86660,7 +86743,7 @@
       "epsEstimate": -0.0269,
       "revenueEstimate": 10996375.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87806,7 +87889,7 @@
       "epsEstimate": -0.1547,
       "revenueEstimate": 19402297.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89679,7 +89762,7 @@
       "epsEstimate": -0.0727,
       "revenueEstimate": 256809735.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -90111,7 +90194,7 @@
       "epsEstimate": -1.0403,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
