@@ -1,86 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-10-10T10:38:09.085608+00:00",
-    "count": 362
+    "generatedAt": "2026-10-13T11:25:53.549531+00:00",
+    "count": 358
   },
   "pendingTrades": [
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 250,
-      "price": 81.5154,
-      "txDate": "2026-09-14",
-      "filedDate": "2026-10-02",
-      "accession": "0000037472-26-000114",
-      "sourceAccessions": [
-        "0000037472-26-000114"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000114/form4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_TRANSACTION_AMBIGUOUS",
-      "severity": "critical"
-    },
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 2135,
-      "price": 81.2007,
-      "txDate": "2026-09-14",
-      "filedDate": "2026-09-16",
-      "accession": "0000037472-26-000100",
-      "sourceAccessions": [
-        "0000037472-26-000100"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 815,
-      "price": 81.6604,
-      "txDate": "2026-09-14",
-      "filedDate": "2026-09-16",
-      "accession": "0000037472-26-000100",
-      "sourceAccessions": [
-        "0000037472-26-000100"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 1000,
-      "price": 81.0327,
-      "txDate": "2026-09-15",
-      "filedDate": "2026-10-02",
-      "accession": "0000037472-26-000114",
-      "sourceAccessions": [
-        "0000037472-26-000100",
-        "0000037472-26-000114"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000114/form4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
     {
       "ticker": "SLBT",
       "company": "SL Science Holding Ltd",
@@ -2405,8 +2328,8 @@
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "7.829999923706055",
-          "marketHigh": "10.800000190734863"
+          "marketLow": "31.31999969482422",
+          "marketHigh": "43.20000076293945"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2432,8 +2355,8 @@
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "8.081999778747559",
-          "marketHigh": "8.90999984741211"
+          "marketLow": "32.327999114990234",
+          "marketHigh": "35.63999938964844"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2457,14 +2380,14 @@
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "6.389999866485596",
-          "marketHigh": "7.551000118255615"
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "25.559999465942383",
+          "marketHigh": "30.20400047302246"
         }
       ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "NIVF",
@@ -2484,14 +2407,14 @@
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.0299999713897705",
-          "marketHigh": "3.299999952316284"
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.119999885559082",
+          "marketHigh": "13.199999809265137"
         }
       ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "ZSTK",

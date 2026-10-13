@@ -5,24 +5,24 @@
     "universeSize": null,
     "filedDate": "2026-10-09",
     "dateRange": {
-      "from": "2026-09-30",
-      "to": "2026-10-10"
+      "from": "2026-10-03",
+      "to": "2026-10-13"
     },
-    "generatedAt": "2026-10-10T09:41:38.084Z",
-    "filingsScanned": 8889,
+    "generatedAt": "2026-10-13T10:07:14.859Z",
+    "filingsScanned": 4700,
     "monthlyRowCap": 3000,
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-10-10T10:38:09.085608+00:00",
+    "validatedAt": "2026-10-13T11:25:53.549531+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 13055,
-    "pendingCount": 362,
-    "uniqueAccessionCount": 10468,
-    "marketCoverage": 0.984212,
+    "acceptedCount": 13057,
+    "pendingCount": 358,
+    "uniqueAccessionCount": 10466,
+    "marketCoverage": 0.984254,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "5a80459c8ccb9cd5fc7d825e7f43e5c768d375bef0d31d0e60e6612cbb78461b"
+    "dataSha256": "7568c1cfaae1692871bb735c560ed0cffda7c89e66b0e1024b5d4f3b7c9552fa"
   },
   "trades": [
     {
@@ -15800,7 +15800,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1276187/000119312526359388/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -27395,7 +27395,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1276187/000119312526359388/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
+      "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -186243,7 +186243,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1378789/000095015726000871/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -206152,6 +206152,35 @@
       "marketValidationStatus": "verified",
       "transactionCount": 2,
       "clusterCount": 16
+    },
+    {
+      "ticker": "FLXS",
+      "company": "FLEXSTEEL INDUSTRIES INC",
+      "filer": "Creekmuir William S.",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 2950,
+      "price": 81.33,
+      "value": 239916.72,
+      "ownBefore": 23176,
+      "filedDate": "2026-09-16",
+      "txDate": "2026-09-14",
+      "ownAfter": 20226,
+      "ownChangePct": -12.7,
+      "id": "f4-0000037472-26-000100-3b95a5b245",
+      "accession": "0000037472-26-000100",
+      "sourceAccessions": [
+        "0000037472-26-000100"
+      ],
+      "transactionIds": [
+        "0000037472-26-000100:nonDerivative:0",
+        "0000037472-26-000100:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 2,
+      "clusterCount": 5
     },
     {
       "ticker": "SYNA",
@@ -280001,6 +280030,34 @@
       "clusterCount": 2
     },
     {
+      "ticker": "FLXS",
+      "company": "FLEXSTEEL INDUSTRIES INC",
+      "filer": "Creekmuir William S.",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 1000,
+      "price": 81.03,
+      "value": 81032.7,
+      "ownBefore": 20226,
+      "filedDate": "2026-09-16",
+      "txDate": "2026-09-15",
+      "ownAfter": 19226,
+      "ownChangePct": -4.9,
+      "id": "f4-0000037472-26-000100-d5aafe1943",
+      "accession": "0000037472-26-000100",
+      "sourceAccessions": [
+        "0000037472-26-000100"
+      ],
+      "transactionIds": [
+        "0000037472-26-000100:nonDerivative:2"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 5
+    },
+    {
       "ticker": "EU",
       "company": "enCore Energy Corp.",
       "filer": "SHERIFF WILLIAM M",
@@ -343290,21 +343347,20 @@
       "shares": 9771,
       "price": 2.1,
       "value": 20519.1,
-      "ownBefore": 2775229,
-      "filedDate": "2026-10-01",
+      "ownBefore": 2840229,
+      "filedDate": "2026-09-23",
       "txDate": "2026-09-21",
-      "ownAfter": 2785000,
-      "ownChangePct": 0.4,
-      "id": "f4-0001493152-26-045347-e2fe03af21",
-      "accession": "0001493152-26-045347",
+      "ownAfter": 2850000,
+      "ownChangePct": 0.3,
+      "id": "f4-0001493152-26-043996-9e712d8a75",
+      "accession": "0001493152-26-043996",
       "sourceAccessions": [
-        "0001493152-26-043996",
-        "0001493152-26-045347"
+        "0001493152-26-043996"
       ],
       "transactionIds": [
-        "0001493152-26-045347:nonDerivative:0"
+        "0001493152-26-043996:nonDerivative:0"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1444192/000149315226045347/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1444192/000149315226043996/ownership.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -344459,34 +344515,6 @@
       "clusterCount": 4
     },
     {
-      "ticker": "MOALX",
-      "company": "Lord Abbett Municipal Opportunities Fund",
-      "filer": "Shuman Gregory M.",
-      "role": "임원",
-      "txType": "매수",
-      "shares": 2079.002,
-      "price": 9.62,
-      "value": 20000,
-      "ownBefore": 115908.992,
-      "filedDate": "2026-09-30",
-      "txDate": "2026-09-28",
-      "ownAfter": 117987.994,
-      "ownChangePct": 1.8,
-      "id": "f4-0000930413-26-003008-55c213d4a9",
-      "accession": "0000930413-26-003008",
-      "sourceAccessions": [
-        "0000930413-26-003008"
-      ],
-      "transactionIds": [
-        "0000930413-26-003008:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2029852/000093041326003008/ownership.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 1,
-      "clusterCount": 3
-    },
-    {
       "ticker": "INLX",
       "company": "INTELLINETICS, INC.",
       "filer": "TAGLICH ROBERT",
@@ -344513,6 +344541,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 1
+    },
+    {
+      "ticker": "MOALX",
+      "company": "Lord Abbett Municipal Opportunities Fund",
+      "filer": "Shuman Gregory M.",
+      "role": "임원",
+      "txType": "매수",
+      "shares": 2079.002,
+      "price": 9.62,
+      "value": 20000,
+      "ownBefore": 115908.992,
+      "filedDate": "2026-09-30",
+      "txDate": "2026-09-28",
+      "ownAfter": 117987.994,
+      "ownChangePct": 1.8,
+      "id": "f4-0000930413-26-003008-55c213d4a9",
+      "accession": "0000930413-26-003008",
+      "sourceAccessions": [
+        "0000930413-26-003008"
+      ],
+      "transactionIds": [
+        "0000930413-26-003008:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2029852/000093041326003008/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "SCCO",
@@ -361753,21 +361809,20 @@
       "shares": 5318,
       "price": 2.1,
       "value": 11167.8,
-      "ownBefore": 2785000,
-      "filedDate": "2026-10-01",
+      "ownBefore": 2850000,
+      "filedDate": "2026-09-23",
       "txDate": "2026-09-23",
-      "ownAfter": 2790318,
+      "ownAfter": 2855318,
       "ownChangePct": 0.2,
-      "id": "f4-0001493152-26-045347-7ad292ba70",
-      "accession": "0001493152-26-045347",
+      "id": "f4-0001493152-26-043996-9f6d26a5ca",
+      "accession": "0001493152-26-043996",
       "sourceAccessions": [
-        "0001493152-26-043996",
-        "0001493152-26-045347"
+        "0001493152-26-043996"
       ],
       "transactionIds": [
-        "0001493152-26-045347:nonDerivative:1"
+        "0001493152-26-043996:nonDerivative:1"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1444192/000149315226045347/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1444192/000149315226043996/ownership.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -377249,83 +377304,6 @@
   ],
   "pendingTrades": [
     {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 250,
-      "price": 81.5154,
-      "txDate": "2026-09-14",
-      "filedDate": "2026-10-02",
-      "accession": "0000037472-26-000114",
-      "sourceAccessions": [
-        "0000037472-26-000114"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000114/form4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_TRANSACTION_AMBIGUOUS",
-      "severity": "critical"
-    },
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 2135,
-      "price": 81.2007,
-      "txDate": "2026-09-14",
-      "filedDate": "2026-09-16",
-      "accession": "0000037472-26-000100",
-      "sourceAccessions": [
-        "0000037472-26-000100"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 815,
-      "price": 81.6604,
-      "txDate": "2026-09-14",
-      "filedDate": "2026-09-16",
-      "accession": "0000037472-26-000100",
-      "sourceAccessions": [
-        "0000037472-26-000100"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000100/form4.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
-      "ticker": "FLXS",
-      "company": "FLEXSTEEL INDUSTRIES INC",
-      "filer": "Creekmuir William S.",
-      "role": "이사",
-      "txType": "매도",
-      "shares": 1000,
-      "price": 81.0327,
-      "txDate": "2026-09-15",
-      "filedDate": "2026-10-02",
-      "accession": "0000037472-26-000114",
-      "sourceAccessions": [
-        "0000037472-26-000100",
-        "0000037472-26-000114"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1668493/000003747226000114/form4a.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
-    {
       "ticker": "SLBT",
       "company": "SL Science Holding Ltd",
       "filer": "Wang Ching-Dong",
@@ -379649,8 +379627,8 @@
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "7.829999923706055",
-          "marketHigh": "10.800000190734863"
+          "marketLow": "31.31999969482422",
+          "marketHigh": "43.20000076293945"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -379676,8 +379654,8 @@
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "8.081999778747559",
-          "marketHigh": "8.90999984741211"
+          "marketLow": "32.327999114990234",
+          "marketHigh": "35.63999938964844"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -379701,14 +379679,14 @@
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "6.389999866485596",
-          "marketHigh": "7.551000118255615"
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "25.559999465942383",
+          "marketHigh": "30.20400047302246"
         }
       ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "NIVF",
@@ -379728,14 +379706,14 @@
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.0299999713897705",
-          "marketHigh": "3.299999952316284"
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.119999885559082",
+          "marketHigh": "13.199999809265137"
         }
       ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "ZSTK",
