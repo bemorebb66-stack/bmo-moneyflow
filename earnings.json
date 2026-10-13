@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-12T21:31:23.181343+00:00",
+    "generatedAt": "2026-10-13T03:55:07.030966+00:00",
     "status": "ok",
-    "from": "2026-08-28",
-    "to": "2027-04-10",
-    "count": 6959,
+    "from": "2026-08-29",
+    "to": "2027-04-11",
+    "count": 6957,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 571,
-      "supplementalTickerCount": 147,
-      "supplementalEventCount": 847,
+      "trackedUniverseCount": 604,
+      "supplementalTickerCount": 150,
+      "supplementalEventCount": 855,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -34981,11 +34981,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -35561,11 +35560,10 @@
       "epsEstimate": 3.8652,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 1675943000.0,
-      "netIncomeActual": 275498000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "ITW",
@@ -47340,31 +47338,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
-    },
-    {
-      "ticker": "BLK",
-      "company": "블랙록",
-      "date": "2026-10-12",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 14.4203,
-      "revenueEstimate": 7629624436.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "DPZ",
-      "company": "도미노피자",
-      "date": "2026-10-12",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 4.4335,
-      "revenueEstimate": 1184639857.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "ABT",
@@ -86795,7 +86768,7 @@
       "epsEstimate": 0.1939,
       "revenueEstimate": 204026928.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87359,7 +87332,7 @@
       "epsEstimate": -0.1357,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87683,7 +87656,7 @@
       "epsEstimate": -0.6578,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -87819,7 +87792,7 @@
       "epsEstimate": 0.3395,
       "revenueEstimate": 300197352.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
