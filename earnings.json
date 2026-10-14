@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-14T02:24:46.064486+00:00",
+    "generatedAt": "2026-10-14T17:44:42.260956+00:00",
     "status": "ok",
     "from": "2026-08-30",
     "to": "2027-04-12",
-    "count": 6977,
+    "count": 6978,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 603,
       "supplementalTickerCount": 145,
-      "supplementalEventCount": 846,
+      "supplementalEventCount": 849,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -35060,10 +35060,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -46783,6 +46784,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "ASML",
+      "company": "ASML 홀딩 ADR",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 13.302726,
+      "epsEstimate": 10.8209,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "AVGO",
       "company": "브로드컴",
       "date": "2026-09-30",
@@ -46804,6 +46818,19 @@
       "dateKind": "provider-period",
       "epsActual": 56.05,
       "epsEstimate": 54.4026,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "BAC",
+      "company": "뱅크오브아메리카",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.08,
+      "epsEstimate": 1.1619,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -47290,6 +47317,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "MS",
+      "company": "모간스탠리",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 3.03,
+      "epsEstimate": 3.1669,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "MU",
       "company": "마이크론 테크놀로지",
       "date": "2026-09-30",
@@ -47563,19 +47603,6 @@
       "source": "Finnhub Company Earnings"
     },
     {
-      "ticker": "BAC",
-      "company": "뱅크오브아메리카",
-      "date": "2026-10-14",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.2059,
-      "revenueEstimate": 31608688673.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
       "ticker": "CSX",
       "company": "씨에스엑스",
       "date": "2026-10-14",
@@ -47621,19 +47648,6 @@
       "year": 2026,
       "epsEstimate": 2.0196,
       "revenueEstimate": 6784123091.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "MS",
-      "company": "모간스탠리",
-      "date": "2026-10-14",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 3.2299,
-      "revenueEstimate": 21121001016.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
