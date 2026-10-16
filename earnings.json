@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-16T01:52:32.381515+00:00",
+    "generatedAt": "2026-10-16T17:07:31.445833+00:00",
     "status": "ok",
     "from": "2026-09-01",
     "to": "2027-04-14",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 602,
       "supplementalTickerCount": 150,
-      "supplementalEventCount": 863,
+      "supplementalEventCount": 864,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -47562,6 +47562,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "RF",
+      "company": "리전스 파이낸셜",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.73,
+      "epsEstimate": 0.6833,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ROST",
       "company": "로스 스토어스",
       "date": "2026-09-30",
@@ -47750,18 +47763,6 @@
       "year": 2026,
       "epsEstimate": 5.0017,
       "revenueEstimate": 2558539140.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "RF",
-      "company": "리전스 파이낸셜",
-      "date": "2026-10-16",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 0.6811,
-      "revenueEstimate": 2046094515.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
