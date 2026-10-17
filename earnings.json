@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-16T17:07:31.445833+00:00",
+    "generatedAt": "2026-10-17T01:38:26.154917+00:00",
     "status": "ok",
-    "from": "2026-09-01",
-    "to": "2027-04-14",
-    "count": 7009,
+    "from": "2026-09-02",
+    "to": "2027-04-15",
+    "count": 7021,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 602,
-      "supplementalTickerCount": 150,
-      "supplementalEventCount": 864,
+      "trackedUniverseCount": 603,
+      "supplementalTickerCount": 149,
+      "supplementalEventCount": 849,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -6310,6 +6310,18 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "periodEnd": "2025-06-30",
       "dateKind": "period-end"
+    },
+    {
+      "ticker": "VRNS",
+      "company": "바로니스 시스템즈",
+      "date": "2025-06-30",
+      "periodEnd": "2025-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -35824000.0,
+      "revenueActual": 152163000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "VRSK",
@@ -14071,6 +14083,20 @@
       "netIncomeActual": 381306000.0,
       "periodEnd": "2025-09-30",
       "dateKind": "period-end"
+    },
+    {
+      "ticker": "VRNS",
+      "company": "바로니스 시스템즈",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -29942000.0,
+      "revenueActual": 161577000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.06,
+      "epsEstimate": 0.0595
     },
     {
       "ticker": "VRSK",
@@ -22346,6 +22372,20 @@
       "netIncomeActual": 164733000.0,
       "periodEnd": "2025-12-31",
       "dateKind": "period-end"
+    },
+    {
+      "ticker": "VRNS",
+      "company": "바로니스 시스템즈",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -27775000.0,
+      "revenueActual": 173369000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.08,
+      "epsEstimate": 0.0331
     },
     {
       "ticker": "VRSK",
@@ -30676,6 +30716,20 @@
       "dateKind": "period-end"
     },
     {
+      "ticker": "VRNS",
+      "company": "바로니스 시스템즈",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -36854000.0,
+      "revenueActual": 173126000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.06,
+      "epsEstimate": -0.0544
+    },
+    {
       "ticker": "VRSK",
       "company": "베리스크 애널리틱스",
       "date": "2026-03-31",
@@ -38969,6 +39023,20 @@
       "netIncomeActual": 155720000.0,
       "periodEnd": "2026-06-30",
       "dateKind": "period-end"
+    },
+    {
+      "ticker": "VRNS",
+      "company": "바로니스 시스템즈",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -46809000.0,
+      "revenueActual": 180023000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.04,
+      "epsEstimate": 0.0088
     },
     {
       "ticker": "VRSK",
@@ -47666,6 +47734,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "TRV",
+      "company": "트래블러스 컴퍼니스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 9.18,
+      "epsEstimate": 7.4909,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ULTA",
       "company": "울타 뷰티",
       "date": "2026-09-30",
@@ -47742,42 +47823,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
-    },
-    {
-      "ticker": "CFG",
-      "company": "시티즌스 파이낸셜 그룹",
-      "date": "2026-10-16",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.4081,
-      "revenueEstimate": 2362888940.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "MTB",
-      "company": "M&T 뱅크",
-      "date": "2026-10-16",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 5.0017,
-      "revenueEstimate": 2558539140.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "TFC",
-      "company": "트루이스트 파이낸셜",
-      "date": "2026-10-16",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.1243,
-      "revenueEstimate": 5421059254.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "CB",
@@ -88976,7 +89021,7 @@
       "year": 2026,
       "epsEstimate": -0.0505,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89754,7 +89799,7 @@
       "epsEstimate": 1.4443,
       "revenueEstimate": 2249608683.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -89940,7 +89985,7 @@
       "epsEstimate": 0.5636,
       "revenueEstimate": 1237413367.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -90939,7 +90984,7 @@
       "epsEstimate": 0.631,
       "revenueEstimate": 295651080.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -91200,7 +91245,7 @@
       "epsEstimate": 0.7237,
       "revenueEstimate": 4696848116.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -91307,6 +91352,110 @@
       "year": 2027,
       "epsEstimate": 1.1689,
       "revenueEstimate": 62730000.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "ALLY",
+      "company": "앨라이 파이낸셜",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.4648,
+      "revenueEstimate": 2396436817.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "BMI",
+      "company": "배저 미터",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.0745,
+      "revenueEstimate": 227655212.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "CFG",
+      "company": "시티즌스 파이낸셜 그룹",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.4468,
+      "revenueEstimate": 2410321448.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "CHMG",
+      "company": "채멍파이낸셜(주)",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 2.0125,
+      "revenueEstimate": 25950840.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "HIFS",
+      "company": "HINGHAM 저축 연구소",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "MTB",
+      "company": "M&T 뱅크",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 4.647,
+      "revenueEstimate": 2568530899.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "PKBK",
+      "company": "파크 뱅코프 INC",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "STT",
+      "company": "스테이트 스트리트",
+      "date": "2027-04-15",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 3.4506,
+      "revenueEstimate": 4140632804.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "WAFD",
+      "company": "와에프디",
+      "date": "2027-04-15",
+      "quarter": 2,
+      "year": 2027,
+      "epsEstimate": 0.8211,
+      "revenueEstimate": 185538000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
