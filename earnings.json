@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-17T01:48:20.354706+00:00",
+    "generatedAt": "2026-10-19T18:57:34.163779+00:00",
     "status": "ok",
-    "from": "2026-09-02",
-    "to": "2027-04-15",
-    "count": 7021,
+    "from": "2026-09-04",
+    "to": "2027-04-17",
+    "count": 7023,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
-      "supplementalTickerCount": 149,
-      "supplementalEventCount": 849,
+      "trackedUniverseCount": 599,
+      "supplementalTickerCount": 147,
+      "supplementalEventCount": 840,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -91460,6 +91460,30 @@
       "revenueEstimate": 185538000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "TFC",
+      "company": "트루이스트 파이낸셜",
+      "date": "2027-04-16",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.1343,
+      "revenueEstimate": 5379315691.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "USB",
+      "company": "US 뱅코프",
+      "date": "2027-04-16",
+      "quarter": 1,
+      "year": 2027,
+      "epsEstimate": 1.3324,
+      "revenueEstimate": 8052870137.0,
+      "status": "scheduled",
+      "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     }
   ]
