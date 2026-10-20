@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-20T02:19:45.551853+00:00",
+    "generatedAt": "2026-10-20T17:40:59.405887+00:00",
     "status": "ok",
     "from": "2026-09-05",
     "to": "2027-04-18",
-    "count": 7002,
+    "count": 7003,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 603,
       "supplementalTickerCount": 149,
-      "supplementalEventCount": 847,
+      "supplementalEventCount": 848,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -32915,15 +32915,14 @@
       "ticker": "BEN",
       "company": "프랭클린 리소시스",
       "date": "2026-06-30",
-      "dateKind": "period-end",
+      "dateKind": "provider-period",
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
+      "source": "Finnhub Company Earnings",
       "epsActual": 0.72,
       "epsEstimate": 0.6781,
-      "periodEnd": "2026-06-30",
-      "revenueActual": 2358400000.0,
-      "netIncomeActual": 171500000.0
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "BF-B",
@@ -33126,11 +33125,10 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 5442000000.0,
-      "netIncomeActual": 907000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "BTDR",
@@ -34537,11 +34535,10 @@
       "epsEstimate": 3.1015,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 8531000000.0,
-      "netIncomeActual": 821000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "ETR",
@@ -35186,11 +35183,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -47750,6 +47746,19 @@
       "dateKind": "provider-period",
       "epsActual": 2.06,
       "epsEstimate": 1.9782,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "RTX",
+      "company": "알티엑스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.26,
+      "epsEstimate": 1.7938,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
