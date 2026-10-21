@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-21T02:10:41.387953+00:00",
+    "generatedAt": "2026-10-21T17:49:50.652588+00:00",
     "status": "ok",
     "from": "2026-09-06",
     "to": "2027-04-19",
-    "count": 7090,
+    "count": 7094,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
-      "supplementalTickerCount": 151,
-      "supplementalEventCount": 867,
+      "trackedUniverseCount": 579,
+      "supplementalTickerCount": 147,
+      "supplementalEventCount": 838,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -35279,11 +35279,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -46989,6 +46988,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "ABT",
+      "company": "애보트 래보라토리",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.42,
+      "epsEstimate": 1.4297,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ACN",
       "company": "액센추어",
       "date": "2026-09-30",
@@ -47405,6 +47417,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "DHR",
+      "company": "다나허",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.11,
+      "epsEstimate": 1.9359,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "DLTR",
       "company": "달러 트리",
       "date": "2026-09-30",
@@ -47769,6 +47794,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "NEE",
+      "company": "넥스트에라 에너지",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.24,
+      "epsEstimate": 1.188,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "NFLX",
       "company": "넷플릭스",
       "date": "2026-09-30",
@@ -47790,6 +47828,19 @@
       "dateKind": "provider-period",
       "epsActual": 0.48,
       "epsEstimate": 0.4364,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "NOC",
+      "company": "노스롭 그루만",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 7.89,
+      "epsEstimate": 7.253,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -48063,6 +48114,19 @@
       "dateKind": "provider-period",
       "epsActual": 1.22,
       "epsEstimate": 1.2004,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "TMO",
+      "company": "써모 피셔 사이언티픽",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 6.68,
+      "epsEstimate": 6.4673,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -49007,19 +49071,6 @@
       "year": 2026,
       "epsEstimate": 0.7373,
       "revenueEstimate": 10191388476.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "NEE",
-      "company": "넥스트에라 에너지",
-      "date": "2026-10-26",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.2076,
-      "revenueEstimate": 9001868238.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
