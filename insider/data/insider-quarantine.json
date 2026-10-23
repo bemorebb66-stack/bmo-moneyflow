@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-13T11:25:53.549531+00:00",
-    "count": 358
+    "generatedAt": "2026-10-23T09:20:43.550362+00:00",
+    "count": 368
   },
   "pendingTrades": [
     {
@@ -114,6 +114,33 @@
           "severity": "critical",
           "marketLow": "1.0099999904632568",
           "marketHigh": "1.190000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "IHT",
+      "company": "INNSUITES HOSPITALITY TRUST",
+      "filer": "WIRTH JAMES F",
+      "role": "President & CEO",
+      "txType": "매도",
+      "shares": 43111,
+      "price": 46654.38,
+      "txDate": "2026-10-20",
+      "filedDate": "2026-10-22",
+      "accession": "0001493152-26-048149",
+      "sourceAccessions": [
+        "0001493152-26-048149"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/82473/000149315226048149/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "1.0499999523162842",
+          "marketHigh": "1.1699999570846558"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -368,6 +395,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "SAFX",
+      "company": "XCF Global, Inc.",
+      "filer": "EEME Energy SPV I, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 119397857.6,
+      "price": 1.19,
+      "txDate": "2026-10-16",
+      "filedDate": "2026-10-16",
+      "accession": "0002106572-26-000003",
+      "sourceAccessions": [
+        "0002106572-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2106572/000210657226000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.1379999965429306",
+          "marketHigh": "0.18000000715255737"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "APCX",
@@ -780,6 +834,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "NZF",
+      "company": "Nuveen Municipal Credit Income Fund",
+      "filer": "Robert Young L",
+      "role": "임원",
+      "txType": "매도",
+      "shares": 16131,
+      "price": 1093,
+      "txDate": "2026-10-16",
+      "filedDate": "2026-10-20",
+      "accession": "0001225208-26-008478",
+      "sourceAccessions": [
+        "0001225208-26-008478"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1137887/000122520826008478/doc4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "10.920000076293945",
+          "marketHigh": "11.069999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "BBD",
@@ -2178,15 +2259,16 @@
       "filer": "de Oliveira Andre Luis Duarte",
       "role": "Executive Officer",
       "txType": "매수",
-      "shares": 309111,
+      "shares": 63861,
       "price": 17.98,
       "txDate": "2026-09-18",
-      "filedDate": "2026-09-21",
-      "accession": "0001292814-26-004621",
+      "filedDate": "2026-10-15",
+      "accession": "0001292814-26-004938",
       "sourceAccessions": [
-        "0001292814-26-004621"
+        "0001292814-26-004621",
+        "0001292814-26-004938"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004621/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004938/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -2303,114 +2385,6 @@
           "severity": "critical",
           "marketLow": "78.93000030517578",
           "marketHigh": "80.54000091552734"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 222223,
-      "price": 1.5,
-      "txDate": "2026-05-28",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "31.31999969482422",
-          "marketHigh": "43.20000076293945"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 500000,
-      "price": 1.33,
-      "txDate": "2026-06-02",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "32.327999114990234",
-          "marketHigh": "35.63999938964844"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 500000,
-      "price": 1.33,
-      "txDate": "2026-06-18",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "25.559999465942383",
-          "marketHigh": "30.20400047302246"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NIVF",
-      "company": "NewGenIvf Group Ltd",
-      "filer": "Cheung Kong Yiu",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 2500000,
-      "price": 1,
-      "txDate": "2026-07-27",
-      "filedDate": "2026-09-02",
-      "accession": "0001213900-26-096450",
-      "sourceAccessions": [
-        "0001213900-26-096450"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.119999885559082",
-          "marketHigh": "13.199999809265137"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -2632,6 +2606,33 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ASX",
+      "company": "ASE Technology Holding Co., Ltd.",
+      "filer": "Uang Du-Tsuen",
+      "role": "Chief Administration Officer",
+      "txType": "매도",
+      "shares": 3000,
+      "price": 752,
+      "txDate": "2026-10-12",
+      "filedDate": "2026-10-14",
+      "accession": "0000950103-26-015546",
+      "sourceAccessions": [
+        "0000950103-26-015546"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1122411/000095010326015546/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "46.11000061035156",
+          "marketHigh": "47.83000183105469"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -3281,6 +3282,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "IIPR",
+      "company": "INNOVATIVE INDUSTRIAL PROPERTIES INC",
+      "filer": "Gold Alan D",
+      "role": "EXECUTIVE CHAIRMAN",
+      "txType": "매수",
+      "shares": 40000,
+      "price": 25,
+      "txDate": "2026-10-08",
+      "filedDate": "2026-10-13",
+      "accession": "0000897069-26-001838",
+      "sourceAccessions": [
+        "0000897069-26-001838"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1298786/000089706926001838/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "50.5",
+          "marketHigh": "52.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "ONMD",
@@ -4663,6 +4691,42 @@
       "severity": "review"
     },
     {
+      "ticker": "SBLK",
+      "company": "Star Bulk Carriers Corp.",
+      "filer": "Zagari Raffaele",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 0,
+      "price": 0,
+      "txDate": "2026-10-13",
+      "filedDate": "2026-10-14",
+      "accession": "0002005037-26-000016",
+      "sourceAccessions": [
+        "0002005037-26-000015",
+        "0002005037-26-000016"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1386716/000200503726000016/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "INVALID_SHARES",
+          "severity": "critical"
+        },
+        {
+          "code": "INVALID_PRICE",
+          "severity": "critical"
+        },
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "29.610000610351562",
+          "marketHigh": "30.040000915527344"
+        }
+      ],
+      "reasonCode": "INVALID_SHARES",
+      "severity": "critical"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
@@ -5151,6 +5215,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "ELPC",
+      "company": "ENERGY CO OF PARANA",
+      "filer": "Sales Pedro Franco",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 3.4768,
+      "txDate": "2026-10-19",
+      "filedDate": "2026-10-20",
+      "accession": "0001292814-26-004956",
+      "sourceAccessions": [
+        "0001292814-26-004956"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1041792/000129281426004956/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "13.805000305175781",
+          "marketHigh": "14.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "VIPS",
       "company": "Vipshop Holdings Ltd",
       "filer": "Wang Yuhua",
@@ -5172,6 +5263,33 @@
           "severity": "review",
           "marketLow": "12.90999984741211",
           "marketHigh": "13.069999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "DX",
+      "company": "DYNEX CAPITAL INC",
+      "filer": "Popenoe Smriti Laxman",
+      "role": "Co-CEO and President",
+      "txType": "매수",
+      "shares": 2000,
+      "price": 25.18,
+      "txDate": "2026-10-20",
+      "filedDate": "2026-10-20",
+      "accession": "0000826675-26-000121",
+      "sourceAccessions": [
+        "0000826675-26-000121"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/826675/000082667526000121/wk-form4_1792532957.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "10.59000015258789",
+          "marketHigh": "10.970000267028809"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -5230,6 +5348,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "VIPS",
+      "company": "Vipshop Holdings Ltd",
+      "filer": "Li Tianmin",
+      "role": "Chief Technology Officer",
+      "txType": "매도",
+      "shares": 2394,
+      "price": 64.0585,
+      "txDate": "2026-10-13",
+      "filedDate": "2026-10-15",
+      "accession": "0002111248-26-000004",
+      "sourceAccessions": [
+        "0002111248-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2111248/000211124826000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "12.75",
+          "marketHigh": "13.029999732971191"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "LGHL",
@@ -6250,6 +6395,62 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Sherry David",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 56,
+      "price": 75.22,
+      "txDate": "2026-10-15",
+      "filedDate": "2026-10-19",
+      "accession": "0001638826-26-000112",
+      "sourceAccessions": [
+        "0001638826-26-000112"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1638826/000163882626000112/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "75.22",
+          "expectedLow": "71.65",
+          "expectedHigh": "72.64"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Sherry David",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 60,
+      "price": 75.22,
+      "txDate": "2026-10-15",
+      "filedDate": "2026-10-19",
+      "accession": "0001638826-26-000112",
+      "sourceAccessions": [
+        "0001638826-26-000112"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1638826/000163882626000112/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "75.22",
+          "expectedLow": "72.65",
+          "expectedHigh": "73.64"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -8955,6 +9156,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "TEO",
+      "company": "TELECOM ARGENTINA SA",
+      "filer": "Heine Martin Andres",
+      "role": "See Remarks",
+      "txType": "매수",
+      "shares": 7000,
+      "price": 2.6661,
+      "txDate": "2026-10-09",
+      "filedDate": "2026-10-13",
+      "accession": "0001104659-26-115671",
+      "sourceAccessions": [
+        "0001104659-26-115671"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118333/000110465926115671/tm2627513-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "12.319999694824219",
+          "marketHigh": "12.930000305175781"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "GPUS",
       "company": "Hyperscale Data, Inc.",
       "filer": "Horne William B.",
@@ -9387,6 +9615,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VIPS",
+      "company": "Vipshop Holdings Ltd",
+      "filer": "Liu Chun",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 181,
+      "price": 63.8505,
+      "txDate": "2026-10-13",
+      "filedDate": "2026-10-15",
+      "accession": "0001972323-26-000008",
+      "sourceAccessions": [
+        "0001972323-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1972323/000197232326000008/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "12.75",
+          "marketHigh": "13.029999732971191"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Wei Che-Chia",
@@ -9736,6 +9991,26 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "BSBR",
+      "company": "Banco Santander (Brasil) S.A.",
+      "filer": "Saes Edmilson",
+      "role": "VP Exec Officer",
+      "txType": "매도",
+      "shares": 100000,
+      "price": 5.79,
+      "txDate": "2026-09-22",
+      "filedDate": "2026-09-28",
+      "accession": "0001292814-26-004728",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "404 Client Error: Not Found for url: https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml?output=1"
     }
   ]
 }
