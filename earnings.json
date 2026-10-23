@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-23T02:05:50.964334+00:00",
+    "generatedAt": "2026-10-23T17:39:27.223221+00:00",
     "status": "ok",
     "from": "2026-09-08",
     "to": "2027-04-21",
-    "count": 7329,
+    "count": 7330,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -46962,6 +46962,18 @@
       "dateKind": "period-end",
       "netIncomeActual": 1827000000.0,
       "revenueActual": 6760000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "GIS",
+      "company": "제너럴 밀즈",
+      "date": "2026-08-31",
+      "periodEnd": "2026-08-31",
+      "dateKind": "period-end",
+      "revenueActual": 4389500000.0,
+      "netIncomeActual": 397000000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
