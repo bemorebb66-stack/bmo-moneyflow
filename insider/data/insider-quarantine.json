@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-23T09:20:43.550362+00:00",
-    "count": 368
+    "generatedAt": "2026-10-24T09:01:55.994270+00:00",
+    "count": 378
   },
   "pendingTrades": [
     {
@@ -2385,6 +2385,114 @@
           "severity": "critical",
           "marketLow": "78.93000030517578",
           "marketHigh": "80.54000091552734"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 222223,
+      "price": 1.5,
+      "txDate": "2026-05-28",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "250.55999755859375",
+          "marketHigh": "345.6000061035156"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 1.33,
+      "txDate": "2026-06-02",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "258.6239929199219",
+          "marketHigh": "285.1199951171875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 1.33,
+      "txDate": "2026-06-18",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "204.47999572753906",
+          "marketHigh": "241.6320037841797"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NIVF",
+      "company": "NewGenIvf Group Ltd",
+      "filer": "Cheung Kong Yiu",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 2500000,
+      "price": 1,
+      "txDate": "2026-07-27",
+      "filedDate": "2026-09-02",
+      "accession": "0001213900-26-096450",
+      "sourceAccessions": [
+        "0001213900-26-096450"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148231/000121390026096450/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "96.95999908447266",
+          "marketHigh": "105.5999984741211"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -9669,6 +9777,87 @@
       "severity": "critical"
     },
     {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.0005,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.0005,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 97500,
+      "price": 0.0005,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Wei Che-Chia",
@@ -10011,6 +10200,66 @@
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
       "error": "404 Client Error: Not Found for url: https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml?output=1"
+    },
+    {
+      "ticker": "NYSE: VTEX",
+      "company": "VTEX",
+      "filer": "Gomide De Faria Mariano",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 9616,
+      "price": 4.4,
+      "txDate": "2026-08-03",
+      "filedDate": "2026-08-05",
+      "accession": "0001193125-26-334639",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1968909/000119312526334639/ownership.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out. (read timeout=30)"
+    },
+    {
+      "ticker": "CBLL",
+      "company": "Ceribell, Inc.",
+      "filer": "Blumberg Scott",
+      "role": "CFO",
+      "txType": "매도",
+      "shares": 1692,
+      "price": 25,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-17",
+      "accession": "0001193125-26-394789",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2035786/000119312526394789/ownership.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "503 Server Error: Service Unavailable for url: https://www.sec.gov/Archives/edgar/data/2035786/000119312526394789/ownership.xml?output=1"
+    },
+    {
+      "ticker": "SSGC",
+      "company": "SafeSpace Global Corp",
+      "filer": "Hillis Dustin Michael",
+      "role": "Pres. &amp; Chief Strat ",
+      "txType": "매수",
+      "shares": 339500,
+      "price": 0.12,
+      "txDate": "2026-07-22",
+      "filedDate": "2026-08-14",
+      "accession": "0001493152-26-038106",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2032455/000149315226038106/ownership.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "503 Server Error: Service Unavailable for url: https://www.sec.gov/Archives/edgar/data/2032455/000149315226038106/ownership.xml?output=1"
     }
   ]
 }
