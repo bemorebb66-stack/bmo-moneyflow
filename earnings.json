@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-27T02:38:02.221620+00:00",
+    "generatedAt": "2026-10-27T18:31:43.627254+00:00",
     "status": "ok",
     "from": "2026-09-12",
     "to": "2027-04-25",
-    "count": 7325,
+    "count": 7327,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 603,
       "supplementalTickerCount": 148,
-      "supplementalEventCount": 841,
+      "supplementalEventCount": 846,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -47287,6 +47287,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "BA",
+      "company": "보잉",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": -0.34,
+      "epsEstimate": -0.2138,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "BAC",
       "company": "뱅크오브아메리카",
       "date": "2026-09-30",
@@ -47836,6 +47849,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "GLW",
+      "company": "코닝",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.91,
+      "epsEstimate": 0.8903,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "GM",
       "company": "제너럴 모터스",
       "date": "2026-09-30",
@@ -48107,6 +48133,19 @@
       "dateKind": "provider-period",
       "epsActual": 0.35,
       "epsEstimate": 0.326,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "KO",
+      "company": "코카콜라",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.91,
+      "epsEstimate": 0.9071,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -48711,6 +48750,19 @@
       "netIncomeActual": 4404000000.0
     },
     {
+      "ticker": "SPGI",
+      "company": "S&P 글로벌",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 4.58,
+      "epsEstimate": 4.5167,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "STLD",
       "company": "스틸 다이내믹스",
       "date": "2026-09-30",
@@ -48951,6 +49003,19 @@
       "netIncomeActual": 2076000000.0
     },
     {
+      "ticker": "UPS",
+      "company": "UPS(유나이티드 파셀 서비스)",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.69,
+      "epsEstimate": 1.6417,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "URI",
       "company": "유나이티드 렌탈스",
       "date": "2026-09-30",
@@ -49089,19 +49154,6 @@
       "year": 2026,
       "epsEstimate": 1.1792,
       "revenueEstimate": 794005167.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "BA",
-      "company": "보잉",
-      "date": "2026-10-27",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": -0.1479,
-      "revenueEstimate": 25798998490.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -49649,19 +49701,6 @@
       "year": 2026,
       "epsEstimate": 0.1212,
       "revenueEstimate": 435077952.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "UPS",
-      "company": "UPS(유나이티드 파셀 서비스)",
-      "date": "2026-10-27",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.6496,
-      "revenueEstimate": 22373069317.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -50303,19 +50342,6 @@
       "year": 2026,
       "epsEstimate": 1.7139,
       "revenueEstimate": 8826500313.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "SPGI",
-      "company": "S&P 글로벌",
-      "date": "2026-10-28",
-      "hour": "bmo",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 4.5208,
-      "revenueEstimate": 3712345437.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
