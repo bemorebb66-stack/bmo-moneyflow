@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-24T09:01:55.994270+00:00",
-    "count": 378
+    "generatedAt": "2026-10-27T09:45:05.995707+00:00",
+    "count": 377
   },
   "pendingTrades": [
     {
@@ -2259,16 +2259,15 @@
       "filer": "de Oliveira Andre Luis Duarte",
       "role": "Executive Officer",
       "txType": "매수",
-      "shares": 63861,
+      "shares": 309111,
       "price": 17.98,
       "txDate": "2026-09-18",
-      "filedDate": "2026-10-15",
-      "accession": "0001292814-26-004938",
+      "filedDate": "2026-09-21",
+      "accession": "0001292814-26-004621",
       "sourceAccessions": [
-        "0001292814-26-004621",
-        "0001292814-26-004938"
+        "0001292814-26-004621"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004938/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1160330/000129281426004621/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -4808,12 +4807,11 @@
       "price": 0,
       "txDate": "2026-10-13",
       "filedDate": "2026-10-14",
-      "accession": "0002005037-26-000016",
+      "accession": "0002005037-26-000015",
       "sourceAccessions": [
-        "0002005037-26-000015",
-        "0002005037-26-000016"
+        "0002005037-26-000015"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1386716/000200503726000016/primary_doc.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1386716/000200503726000015/primary_doc.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -8399,6 +8397,33 @@
       "severity": "review"
     },
     {
+      "ticker": "GMEX",
+      "company": "GMEX Robotics Corp",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 40841,
+      "price": 0.71,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-10",
+      "accession": "0001475597-26-000238",
+      "sourceAccessions": [
+        "0001475597-26-000238"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1928581/000147559726000238/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.670000076293945",
+          "marketHigh": "7.85699987411499"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "VEL",
       "company": "Velocity Financial, Inc.",
       "filer": "Kelly Roland Thomas",
@@ -10182,6 +10207,33 @@
       "severity": "review"
     },
     {
+      "ticker": "FRGT",
+      "company": "Freight Technologies, Inc.",
+      "filer": "HRT FINANCIAL LP",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 7382,
+      "price": 1.39,
+      "txDate": "2026-08-31",
+      "filedDate": "2026-09-02",
+      "accession": "0001475597-26-000229",
+      "sourceAccessions": [
+        "0001475597-26-000229"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1687542/000147559726000229/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.399999618530273",
+          "marketHigh": "14.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BSBR",
       "company": "Banco Santander (Brasil) S.A.",
       "filer": "Saes Edmilson",
@@ -10200,66 +10252,6 @@
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
       "error": "404 Client Error: Not Found for url: https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml?output=1"
-    },
-    {
-      "ticker": "NYSE: VTEX",
-      "company": "VTEX",
-      "filer": "Gomide De Faria Mariano",
-      "role": "CEO",
-      "txType": "매도",
-      "shares": 9616,
-      "price": 4.4,
-      "txDate": "2026-08-03",
-      "filedDate": "2026-08-05",
-      "accession": "0001193125-26-334639",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1968909/000119312526334639/ownership.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out. (read timeout=30)"
-    },
-    {
-      "ticker": "CBLL",
-      "company": "Ceribell, Inc.",
-      "filer": "Blumberg Scott",
-      "role": "CFO",
-      "txType": "매도",
-      "shares": 1692,
-      "price": 25,
-      "txDate": "2026-09-15",
-      "filedDate": "2026-09-17",
-      "accession": "0001193125-26-394789",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2035786/000119312526394789/ownership.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "503 Server Error: Service Unavailable for url: https://www.sec.gov/Archives/edgar/data/2035786/000119312526394789/ownership.xml?output=1"
-    },
-    {
-      "ticker": "SSGC",
-      "company": "SafeSpace Global Corp",
-      "filer": "Hillis Dustin Michael",
-      "role": "Pres. &amp; Chief Strat ",
-      "txType": "매수",
-      "shares": 339500,
-      "price": 0.12,
-      "txDate": "2026-07-22",
-      "filedDate": "2026-08-14",
-      "accession": "0001493152-26-038106",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2032455/000149315226038106/ownership.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "503 Server Error: Service Unavailable for url: https://www.sec.gov/Archives/edgar/data/2032455/000149315226038106/ownership.xml?output=1"
     }
   ]
 }
