@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-28T02:50:53.186541+00:00",
+    "generatedAt": "2026-10-28T18:38:44.993744+00:00",
     "status": "ok",
     "from": "2026-09-13",
     "to": "2027-04-26",
-    "count": 7495,
+    "count": 7497,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 604,
       "supplementalTickerCount": 148,
-      "supplementalEventCount": 868,
+      "supplementalEventCount": 873,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -35363,10 +35363,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -47247,6 +47248,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "AEP",
+      "company": "아메리칸 일렉트릭 파워 컴퍼니",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.23,
+      "epsEstimate": 2.0749,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "AMAT",
       "company": "어플라이드 머티어리얼즈",
       "date": "2026-09-30",
@@ -47255,6 +47269,19 @@
       "dateKind": "provider-period",
       "epsActual": 3.5,
       "epsEstimate": 3.4626,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "APH",
+      "company": "암페놀",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.8,
+      "epsEstimate": 0.7312,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
@@ -47847,6 +47874,19 @@
       "periodEnd": "2026-09-30",
       "netIncomeActual": 2288000000.0,
       "revenueActual": 14118000000.0
+    },
+    {
+      "ticker": "GEV",
+      "company": "GE 버노바",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 4.81,
+      "epsEstimate": 4.0059,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
     },
     {
       "ticker": "GIS",
@@ -49213,6 +49253,19 @@
       "epsEstimate": 2.4577
     },
     {
+      "ticker": "VRT",
+      "company": "버티브 홀딩스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 2.21,
+      "epsEstimate": 1.8488,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "VTR",
       "company": "벤타스",
       "date": "2026-09-30",
@@ -49461,18 +49514,6 @@
       "source": "Finnhub Earnings Calendar"
     },
     {
-      "ticker": "APH",
-      "company": "암페놀",
-      "date": "2026-10-28",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 1.4056,
-      "revenueEstimate": 9313493729.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
       "ticker": "APTV",
       "company": "앱티브",
       "date": "2026-10-28",
@@ -49705,18 +49746,6 @@
       "year": 2026,
       "epsEstimate": 1.8875,
       "revenueEstimate": 1354338048.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "GEV",
-      "company": "GE 버노바",
-      "date": "2026-10-28",
-      "quarter": 3,
-      "year": 2026,
-      "epsEstimate": 4.0925,
-      "revenueEstimate": 12117556507.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
