@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-28T10:34:14.746041+00:00",
-    "count": 388
+    "generatedAt": "2026-10-29T10:46:02.229156+00:00",
+    "count": 398
   },
   "pendingTrades": [
     {
@@ -53,6 +53,33 @@
           "severity": "critical",
           "marketLow": "1.3700000047683716",
           "marketHigh": "1.5299999713897705"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LONA",
+      "company": "LeonaBio, Inc.",
+      "filer": "Portman David J.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 3149470,
+      "price": 3149.47,
+      "txDate": "2026-10-26",
+      "filedDate": "2026-10-28",
+      "accession": "0002126186-26-000002",
+      "sourceAccessions": [
+        "0002126186-26-000002"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1620463/000212618626000002/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "4.550000190734863",
+          "marketHigh": "5.0"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -4607,6 +4634,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "RCT",
+      "company": "RedCloud Holdings plc",
+      "filer": "Senn Nikolaus Beat",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1700000,
+      "price": 0.25,
+      "txDate": "2026-10-28",
+      "filedDate": "2026-10-28",
+      "accession": "0001493152-26-048958",
+      "sourceAccessions": [
+        "0001493152-26-048958"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2027360/000149315226048958/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.050999999046325684",
+          "marketHigh": "0.07999999821186066"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "ENHA",
       "company": "Enhanced Group Inc.",
       "filer": "Apeiron Investment Group Ltd.",
@@ -5040,6 +5094,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Pretorius Daniel",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 117980,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002114067-26-000009",
+      "sourceAccessions": [
+        "0002114067-26-000009"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211406726000009/wk-form4_1793203280.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ETSY",
       "company": "ETSY INC",
       "filer": "Colburn Richard Edward III",
@@ -5065,6 +5146,33 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Schoeman Jacobus",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 94575,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002114041-26-000008",
+      "sourceAccessions": [
+        "0002114041-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211404126000008/wk-form4_1793205124.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -5127,6 +5235,33 @@
         }
       ],
       "reasonCode": "INVALID_SHARES",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Gouws Henry",
+      "role": "Head of Prod., Dir. of Ergo",
+      "txType": "매도",
+      "shares": 89160,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002114019-26-000008",
+      "sourceAccessions": [
+        "0002114019-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211401926000008/wk-form4_1793204041.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -5535,6 +5670,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Kruger Kevin",
+      "role": "Head of Technical Services",
+      "txType": "매도",
+      "shares": 73830,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002114046-26-000008",
+      "sourceAccessions": [
+        "0002114046-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211404626000008/wk-form4_1793204838.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "TSM",
@@ -6345,6 +6507,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Lindecke Dean",
+      "role": "General Manager Ergo Ops.",
+      "txType": "매도",
+      "shares": 48948,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002119238-26-000010",
+      "sourceAccessions": [
+        "0002119238-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211923826000010/wk-form4_1793204455.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "LMT",
@@ -7319,6 +7508,33 @@
     {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
+      "filer": "Hooijer Henriette",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 22687,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002114034-26-000009",
+      "sourceAccessions": [
+        "0002114034-26-000009"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211403426000009/wk-form4_1793203603.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
       "filer": "Lindecke Dean",
       "role": "General Manager Ergo Ops.",
       "txType": "매도",
@@ -7396,6 +7612,33 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Moloto Kgabo",
+      "role": "General Manager FWGR Ops.",
+      "txType": "매도",
+      "shares": 21999,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002119220-26-000008",
+      "sourceAccessions": [
+        "0002119220-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211922026000008/wk-form4_1793204992.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "DRD",
@@ -7666,6 +7909,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "DCOM",
+      "company": "Dime Commercial Bancshares, Inc. /NY/",
+      "filer": "Perry Joseph",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 3000,
+      "price": 16.88,
+      "txDate": "2026-10-28",
+      "filedDate": "2026-10-28",
+      "accession": "0001338943-26-000007",
+      "sourceAccessions": [
+        "0001338943-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/846617/000133894326000007/primarydocument.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "41.439998626708984",
+          "marketHigh": "42.58000183105469"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "ATHM",
@@ -8235,6 +8505,33 @@
       "severity": "review"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Laas Lihan",
+      "role": "Financial Manager FWGR Ops.",
+      "txType": "매도",
+      "shares": 14787,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002119288-26-000010",
+      "sourceAccessions": [
+        "0002119288-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211928826000010/wk-form4_1793205055.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "DEL CASTILLO CACHO GUILLERMO",
@@ -8418,6 +8715,33 @@
           "severity": "critical",
           "marketLow": "27.110000610351562",
           "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Mashatola Mpho",
+      "role": "Group Fin. & Business Dev. Mgr",
+      "txType": "매도",
+      "shares": 13014,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002114274-26-000008",
+      "sourceAccessions": [
+        "0002114274-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000211427426000008/wk-form4_1793208251.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -9397,6 +9721,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Bornman Ryno",
+      "role": "Financial Manager Ergo Ops.",
+      "txType": "매도",
+      "shares": 8388,
+      "price": 2.4413,
+      "txDate": "2026-10-27",
+      "filedDate": "2026-10-28",
+      "accession": "0002119291-26-000008",
+      "sourceAccessions": [
+        "0002119291-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119291/000211929126000008/wk-form4_1793204605.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "24.299999237060547",
+          "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "LFT",
       "company": "Lument Finance Trust, Inc.",
       "filer": "Flynn James Peter",
@@ -10097,87 +10448,6 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-18",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-19",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 97500,
-      "price": 0.0005,
-      "txDate": "2026-08-20",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
     },
     {
       "ticker": "TSM",
