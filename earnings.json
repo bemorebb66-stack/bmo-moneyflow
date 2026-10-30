@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-30T02:56:07.404424+00:00",
+    "generatedAt": "2026-10-30T03:06:37.578907+00:00",
     "status": "ok",
     "from": "2026-09-15",
     "to": "2027-04-28",
@@ -33364,10 +33364,11 @@
       "epsEstimate": 0.8354,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 5442000000.0,
+      "netIncomeActual": 907000000.0
     },
     {
       "ticker": "BTDR",
@@ -33805,10 +33806,11 @@
       "epsEstimate": 7.305,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 932000000.0,
+      "revenueActual": 9457000000.0
     },
     {
       "ticker": "CMS",
@@ -34201,10 +34203,11 @@
       "epsEstimate": 0.6887,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 4480000000.0,
+      "netIncomeActual": 340000000.0
     },
     {
       "ticker": "DAL",
@@ -35437,10 +35440,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
