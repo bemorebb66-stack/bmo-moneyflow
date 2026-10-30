@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-10-30T03:06:37.578907+00:00",
+    "generatedAt": "2026-10-30T18:22:51.916878+00:00",
     "status": "ok",
     "from": "2026-09-15",
     "to": "2027-04-28",
-    "count": 7903,
+    "count": 7910,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 604,
       "supplementalTickerCount": 149,
-      "supplementalEventCount": 874,
+      "supplementalEventCount": 869,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -7909,7 +7909,7 @@
       "periodEnd": "2025-09-30",
       "dateKind": "period-end",
       "revenueActual": 1249026000.0,
-      "netIncomeActual": 251084000.0,
+      "netIncomeActual": 292683000.0,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
@@ -47283,6 +47283,19 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "ABBV",
+      "company": "애브비",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 3.82,
+      "epsEstimate": 3.8259,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "ABT",
       "company": "애보트 래보라토리",
       "date": "2026-09-30",
@@ -47404,14 +47417,15 @@
       "ticker": "ALNY",
       "company": "앨나일램 파마슈티컬스",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 16.26,
       "epsEstimate": 1.6502,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "revenueActual": 1458086000.0,
+      "netIncomeActual": 2167335000.0
     },
     {
       "ticker": "AMAT",
@@ -47888,6 +47902,19 @@
       "revenueActual": 16331000000.0
     },
     {
+      "ticker": "CBOE",
+      "company": "Cboe 글로벌 마켓",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 3.63,
+      "epsEstimate": 3.5041,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "CBRE",
       "company": "CBRE 그룹",
       "date": "2026-09-30",
@@ -47956,6 +47983,19 @@
       "revenueActual": 2322000000.0
     },
     {
+      "ticker": "CHD",
+      "company": "처치 & 드와이트",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.92,
+      "epsEstimate": 0.9102,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "CHRW",
       "company": "CH 로빈슨 월드와이드",
       "date": "2026-09-30",
@@ -47996,6 +48036,19 @@
       "epsEstimate": 2.0298
     },
     {
+      "ticker": "CL",
+      "company": "콜게이트-팜올리브",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 0.97,
+      "epsEstimate": 0.9535,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
       "ticker": "CMCSA",
       "company": "컴캐스트",
       "date": "2026-09-30",
@@ -48027,14 +48080,15 @@
       "ticker": "CMG",
       "company": "치폴레 멕시칸 그릴",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 0.27,
       "epsEstimate": 0.2936,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "revenueActual": 3293162000.0,
+      "netIncomeActual": 339874000.0
     },
     {
       "ticker": "CMS",
@@ -48262,6 +48316,32 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 0.39,
       "epsEstimate": 0.4485
+    },
+    {
+      "ticker": "CVX",
+      "company": "셰브론",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 5.28,
+      "epsEstimate": 4.9317,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "D",
+      "company": "도미니언 에너지",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 1.28,
+      "epsEstimate": 1.2356,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
     },
     {
       "ticker": "DAL",
@@ -48583,27 +48663,29 @@
       "ticker": "GOOG",
       "company": "알파벳 Class C",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 2.12,
       "epsEstimate": 3.1095,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 26468000000.0,
+      "revenueActual": 127577000000.0
     },
     {
       "ticker": "GOOGL",
       "company": "알파벳 Class A",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 2.12,
       "epsEstimate": 3.1095,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 26468000000.0,
+      "revenueActual": 127577000000.0
     },
     {
       "ticker": "GPC",
@@ -48794,14 +48876,15 @@
       "ticker": "HWM",
       "company": "하우멧 에어로스페이스",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 1.46,
       "epsEstimate": 1.3809,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 567000000.0,
+      "revenueActual": 2703000000.0
     },
     {
       "ticker": "IBKR",
@@ -48940,14 +49023,15 @@
       "ticker": "KLAC",
       "company": "케이엘에이",
       "date": "2026-09-30",
-      "quarter": 1,
-      "year": 2027,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 1.22,
       "epsEstimate": 1.2011,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 1548588000.0,
+      "revenueActual": 4136015000.0
     },
     {
       "ticker": "KMI",
@@ -49005,14 +49089,15 @@
       "ticker": "LIN",
       "company": "린드",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 4.59,
       "epsEstimate": 4.5612,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 1692000000.0,
+      "revenueActual": 9404000000.0
     },
     {
       "ticker": "LLY",
@@ -49112,14 +49197,15 @@
       "ticker": "MA",
       "company": "마스터카드",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 5.31,
       "epsEstimate": 5.3156,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 4628000000.0,
+      "revenueActual": 9807000000.0
     },
     {
       "ticker": "MCO",
@@ -49247,14 +49333,15 @@
       "ticker": "MSFT",
       "company": "마이크로소프트",
       "date": "2026-09-30",
-      "quarter": 1,
-      "year": 2027,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 4.89,
       "epsEstimate": 4.8165,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 36629000000.0,
+      "revenueActual": 92279000000.0
     },
     {
       "ticker": "MSTR",
@@ -49577,14 +49664,15 @@
       "ticker": "PWR",
       "company": "콴타 서비스",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 6.06,
       "epsEstimate": 5.0341,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 694859000.0,
+      "revenueActual": 12014877000.0
     },
     {
       "ticker": "RCL",
@@ -49802,14 +49890,15 @@
       "ticker": "STX",
       "company": "씨게이트 테크놀로지",
       "date": "2026-09-30",
-      "quarter": 1,
-      "year": 2027,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 7.68,
       "epsEstimate": 7.4926,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "revenueActual": 4233000000.0,
+      "netIncomeActual": 1761000000.0
     },
     {
       "ticker": "STZ",
@@ -49989,14 +50078,15 @@
       "ticker": "TT",
       "company": "트레인 테크놀로지",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 4.86,
       "epsEstimate": 4.8692,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 1048700000.0,
+      "revenueActual": 6759700000.0
     },
     {
       "ticker": "TWLO",
@@ -50330,6 +50420,19 @@
       "dateKind": "provider-period",
       "epsActual": 2.1,
       "epsEstimate": 2.0987,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "XOM",
+      "company": "엑슨모빌 홀딩스",
+      "date": "2026-09-30",
+      "quarter": 3,
+      "year": 2026,
+      "dateKind": "provider-period",
+      "epsActual": 4.23,
+      "epsEstimate": 4.1205,
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
