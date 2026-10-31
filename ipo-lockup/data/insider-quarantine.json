@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-30T10:46:23.446990+00:00",
-    "count": 394
+    "generatedAt": "2026-10-31T10:31:17.033743+00:00",
+    "count": 413
   },
   "pendingTrades": [
     {
@@ -1214,6 +1214,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 6080047,
+      "price": 1.15,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001193125-26-397056",
+      "sourceAccessions": [
+        "0001193125-26-397056"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526397056/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "14.300000190734863",
+          "marketHigh": "15.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "TTAN",
       "company": "ServiceTitan, Inc.",
       "filer": "Kuzoyan Vahe",
@@ -1951,6 +1978,87 @@
           "severity": "critical",
           "marketLow": "107.54000091552734",
           "marketHigh": "108.9000015258789"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 93000,
+      "price": 1.7012,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-08-20",
+      "accession": "0001193125-26-357979",
+      "sourceAccessions": [
+        "0001193125-26-357979"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526357979/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "16.0",
+          "marketHigh": "17.899999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1619316,
+      "price": 1.66,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001193125-26-357979",
+      "sourceAccessions": [
+        "0001193125-26-357979"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526357979/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "15.899999618530273",
+          "marketHigh": "17.200000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 55000,
+      "price": 1.6433,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-08-20",
+      "accession": "0001193125-26-357979",
+      "sourceAccessions": [
+        "0001193125-26-357979"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526357979/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "15.899999618530273",
+          "marketHigh": "17.200000762939453"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -3067,6 +3175,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 300000,
+      "price": 3.65,
+      "txDate": "2026-10-29",
+      "filedDate": "2026-10-30",
+      "accession": "0002116974-26-000005",
+      "sourceAccessions": [
+        "0002116974-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000005/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.849998474121094",
+          "marketHigh": "36.689998626708984"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 3.65,
+      "txDate": "2026-10-29",
+      "filedDate": "2026-10-30",
+      "accession": "0002116974-26-000005",
+      "sourceAccessions": [
+        "0002116974-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000005/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.849998474121094",
+          "marketHigh": "36.689998626708984"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Ramalho Miranda Jose Augusto",
@@ -3852,6 +4014,33 @@
       "severity": "review"
     },
     {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 200000,
+      "price": 1.6521,
+      "txDate": "2026-08-17",
+      "filedDate": "2026-08-18",
+      "accession": "0001193125-26-354788",
+      "sourceAccessions": [
+        "0001193125-26-354788"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526354788/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "15.100000381469727",
+          "marketHigh": "20.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "NCT",
       "company": "Intercont (Cayman) Ltd",
       "filer": "Zhu Muchun",
@@ -4176,6 +4365,114 @@
       "severity": "critical"
     },
     {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 150000,
+      "price": 1.9708,
+      "txDate": "2026-08-14",
+      "filedDate": "2026-08-17",
+      "accession": "0001193125-26-353161",
+      "sourceAccessions": [
+        "0001193125-26-353161"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526353161/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "16.600000381469727",
+          "marketHigh": "23.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 21034,
+      "price": 1.6116,
+      "txDate": "2026-09-04",
+      "filedDate": "2026-09-09",
+      "accession": "0001193125-26-386771",
+      "sourceAccessions": [
+        "0001193125-26-386771"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526386771/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "15.600000381469727",
+          "marketHigh": "16.700000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 59337,
+      "price": 1.5686,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-09",
+      "accession": "0001193125-26-386771",
+      "sourceAccessions": [
+        "0001193125-26-386771"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526386771/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "15.0",
+          "marketHigh": "16.200000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 99342,
+      "price": 1.6043,
+      "txDate": "2026-09-09",
+      "filedDate": "2026-09-09",
+      "accession": "0001193125-26-386771",
+      "sourceAccessions": [
+        "0001193125-26-386771"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526386771/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "14.899999618530273",
+          "marketHigh": "16.700000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "AERO",
       "company": "Grupo Aeromexico, S.A.B. de C.V.",
       "filer": "Murray Aaron James",
@@ -4471,6 +4768,60 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 107693,
+      "price": 1.5751,
+      "txDate": "2026-09-02",
+      "filedDate": "2026-09-04",
+      "accession": "0001193125-26-383717",
+      "sourceAccessions": [
+        "0001193125-26-383717"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526383717/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "14.800000190734863",
+          "marketHigh": "16.200000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ENHA",
+      "company": "Enhanced Group Inc.",
+      "filer": "Apeiron Investment Group Ltd.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 25414,
+      "price": 1.5799,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-04",
+      "accession": "0001193125-26-383717",
+      "sourceAccessions": [
+        "0001193125-26-383717"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1845872/000119312526383717/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "15.399999618530273",
+          "marketHigh": "16.299999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "BFNH",
@@ -5781,6 +6132,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "ZONE",
+      "company": "Zone Frontier Inc.",
+      "filer": "Hassen Tyler Lewis",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 250000,
+      "price": 0.1187,
+      "txDate": "2026-10-13",
+      "filedDate": "2026-10-13",
+      "accession": "0001213900-26-109187",
+      "sourceAccessions": [
+        "0001213900-26-109187"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126164/000121390026109187/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.539999961853027",
+          "marketHigh": "7.260000228881836"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZONE",
+      "company": "Zone Frontier Inc.",
+      "filer": "Hassen Tyler Lewis",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.1164,
+      "txDate": "2026-10-13",
+      "filedDate": "2026-10-13",
+      "accession": "0001213900-26-109187",
+      "sourceAccessions": [
+        "0001213900-26-109187"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126164/000121390026109187/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.539999961853027",
+          "marketHigh": "7.260000228881836"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "SKYE",
       "company": "Skye Bioscience, Inc.",
       "filer": "Schwab Andrew J.",
@@ -6184,6 +6589,60 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "BFH",
+      "company": "BREAD FINANCIAL HOLDINGS, INC.",
+      "filer": "Fawcett John J.",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 3000,
+      "price": 24.69,
+      "txDate": "2026-10-28",
+      "filedDate": "2026-10-30",
+      "accession": "0001614143-26-000006",
+      "sourceAccessions": [
+        "0001614143-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1101215/000161414326000006/wk-form4_1793385988.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "102.02999877929688",
+          "marketHigh": "105.38999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BFH",
+      "company": "BREAD FINANCIAL HOLDINGS, INC.",
+      "filer": "Fawcett John J.",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 2000,
+      "price": 24.71,
+      "txDate": "2026-10-28",
+      "filedDate": "2026-10-30",
+      "accession": "0001614143-26-000006",
+      "sourceAccessions": [
+        "0001614143-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1101215/000161414326000006/wk-form4_1793385988.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "102.02999877929688",
+          "marketHigh": "105.38999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "CRESY",
@@ -6804,6 +7263,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "ZONE",
+      "company": "Zone Frontier Inc.",
+      "filer": "Hassen Tyler Lewis",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 750000,
+      "price": 0.1136,
+      "txDate": "2026-10-14",
+      "filedDate": "2026-10-14",
+      "accession": "0001213900-26-109523",
+      "sourceAccessions": [
+        "0001213900-26-109523"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126164/000121390026109523/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "6.0",
+          "marketHigh": "7.139999866485596"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "NBP",
       "company": "NovaBridge Biosciences",
       "filer": "Cao Sean Wuxiong",
@@ -7312,6 +7798,33 @@
           "severity": "critical",
           "marketLow": "27.110000610351562",
           "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "ZONE",
+      "company": "Zone Frontier Inc.",
+      "filer": "Hassen Tyler Lewis",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 500000,
+      "price": 0.1103,
+      "txDate": "2026-10-16",
+      "filedDate": "2026-10-16",
+      "accession": "0001213900-26-110401",
+      "sourceAccessions": [
+        "0001213900-26-110401"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126164/000121390026110401/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.159999847412109",
+          "marketHigh": "7.139999866485596"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
