@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-31T10:31:17.033743+00:00",
-    "count": 413
+    "generatedAt": "2026-11-03T11:43:21.764551+00:00",
+    "count": 416
   },
   "pendingTrades": [
     {
@@ -3742,6 +3742,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 250000,
+      "price": 3.62,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-02",
+      "accession": "0002116974-26-000006",
+      "sourceAccessions": [
+        "0002116974-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000006/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.7599983215332",
+          "marketHigh": "36.58000183105469"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Freiberger Fernando",
@@ -5422,6 +5449,33 @@
           "severity": "critical",
           "marketLow": "34.400001525878906",
           "marketHigh": "36.04999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "PUCHEU ROMERO ALEJANDRO",
+      "role": "CHIEF LEGAL COUNSEL",
+      "txType": "매도",
+      "shares": 57650,
+      "price": 3.63,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-02",
+      "accession": "0002117143-26-000004",
+      "sourceAccessions": [
+        "0002117143-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117143/000211714326000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.7599983215332",
+          "marketHigh": "36.58000183105469"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -10499,6 +10553,33 @@
           "severity": "critical",
           "marketLow": "27.110000610351562",
           "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 3814,
+      "price": 3.65,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-02",
+      "accession": "0002118015-26-000005",
+      "sourceAccessions": [
+        "0002118015-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000005/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.7599983215332",
+          "marketHigh": "36.58000183105469"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
