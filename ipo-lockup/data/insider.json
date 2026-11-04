@@ -14,15 +14,15 @@
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-11-03T11:43:21.764551+00:00",
+    "validatedAt": "2026-11-04T11:52:18.442120+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 14954,
-    "pendingCount": 416,
+    "acceptedCount": 14957,
+    "pendingCount": 413,
     "uniqueAccessionCount": 11895,
-    "marketCoverage": 0.98381,
+    "marketCoverage": 0.983185,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "ca34f1cb7cdb3ca4d813e03e7d63969b72e70d3c8f3b73e0f3a8adb2113e7231"
+    "dataSha256": "ff3339730f6b1087735e0f039b33f819da496536c3c933cb6a7e0c13acfa85f9"
   },
   "trades": [
     {
@@ -160895,7 +160895,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1855012/000114036126034126/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -192886,7 +192886,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1853885/000114036126037155/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 2
     },
@@ -219536,7 +219536,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1182398/000197724926000126/form4.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 6
     },
@@ -298452,7 +298452,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1528584/000119312526356469/ownership.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -325730,7 +325730,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000021/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -339302,7 +339302,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2014440/000201444026000010/wk-form4_1785963124.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -340142,7 +340142,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/2014440/000201444026000012/wk-form4_1787860844.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -364072,7 +364072,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000021/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -384834,7 +384834,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1728328/000194027226000022/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -389076,7 +389076,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1728328/000194027226000022/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -413830,7 +413830,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1728328/000194027226000022/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -414762,7 +414762,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000021/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -415155,7 +415155,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000025/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -421110,7 +421110,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000023/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -425345,7 +425345,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000023/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -426895,7 +426895,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000023/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -429432,7 +429432,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000025/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -430274,7 +430274,7 @@
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000025/primary_doc.xml",
       "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
+      "marketValidationStatus": "unverified",
       "transactionCount": 1,
       "clusterCount": 1
     },
@@ -430840,6 +430840,62 @@
         "0001683168-26-007242:nonDerivative:2"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1953988/000168316826007242/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0,
+      "value": 500,
+      "ownBefore": 85000000,
+      "filedDate": "2026-10-23",
+      "txDate": "2026-08-18",
+      "ownAfter": 86000000,
+      "ownChangePct": 1.2,
+      "id": "f4-0002160363-26-000003-ec16aa67c3",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "transactionIds": [
+        "0002160363-26-000003:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0,
+      "value": 500,
+      "ownBefore": 86000000,
+      "filedDate": "2026-10-23",
+      "txDate": "2026-08-19",
+      "ownAfter": 87000000,
+      "ownChangePct": 1.2,
+      "id": "f4-0002160363-26-000003-3799f87ad1",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "transactionIds": [
+        "0002160363-26-000003:nonDerivative:1"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -431963,6 +432019,34 @@
         "0001193125-26-340202:nonDerivative:1"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1015739/000119312526340202/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 1
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 97500,
+      "price": 0,
+      "value": 48.75,
+      "ownBefore": 87000000,
+      "filedDate": "2026-10-23",
+      "txDate": "2026-08-20",
+      "ownAfter": 87097500,
+      "ownChangePct": 0.1,
+      "id": "f4-0002160363-26-000003-1b82bf158e",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "transactionIds": [
+        "0002160363-26-000003:nonDerivative:2"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -443016,87 +443100,6 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-18",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-19",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 97500,
-      "price": 0.0005,
-      "txDate": "2026-08-20",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
     },
     {
       "ticker": "TSM",

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-03T11:43:21.764551+00:00",
-    "count": 416
+    "generatedAt": "2026-11-04T11:52:18.442120+00:00",
+    "count": 413
   },
   "pendingTrades": [
     {
@@ -10854,87 +10854,6 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-18",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-19",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 97500,
-      "price": 0.0005,
-      "txDate": "2026-08-20",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
     },
     {
       "ticker": "TSM",
