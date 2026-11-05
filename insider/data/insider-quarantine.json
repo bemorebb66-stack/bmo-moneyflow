@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-04T11:52:18.442120+00:00",
-    "count": 413
+    "generatedAt": "2026-11-05T11:45:09.110051+00:00",
+    "count": 432
   },
   "pendingTrades": [
     {
@@ -614,6 +614,33 @@
           "severity": "review",
           "marketLow": "16.280000686645508",
           "marketHigh": "16.665000915527344"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "KNOP",
+      "company": "KNOT Offshore Partners LP",
+      "filer": "Seglem Trygve",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 2083333,
+      "price": 20.88,
+      "txDate": "2026-11-03",
+      "filedDate": "2026-11-04",
+      "accession": "0001104659-26-122691",
+      "sourceAccessions": [
+        "0001104659-26-122691"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1564180/000110465926122691/tm2628534-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.5",
+          "marketHigh": "8.960000038146973"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -5645,6 +5672,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "PUCHEU ROMERO ALEJANDRO",
+      "role": "CHIEF LEGAL COUNSEL",
+      "txType": "매도",
+      "shares": 52350,
+      "price": 3.64,
+      "txDate": "2026-11-03",
+      "filedDate": "2026-11-03",
+      "accession": "0002117143-26-000005",
+      "sourceAccessions": [
+        "0002117143-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117143/000211714326000005/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.970001220703125",
+          "marketHigh": "36.70000076293945"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "GGAL",
       "company": "GRUPO FINANCIERO GALICIA SA",
       "filer": "Braun Tomas",
@@ -5856,6 +5910,87 @@
           "severity": "critical",
           "marketLow": "24.299999237060547",
           "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 28505,
+      "price": 1.2938,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001940272-26-000021",
+      "sourceAccessions": [
+        "0001940272-26-000021"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000021/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.699999809265137",
+          "marketHigh": "13.199999809265137"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 54256,
+      "price": 1.2984,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-16",
+      "accession": "0001940272-26-000021",
+      "sourceAccessions": [
+        "0001940272-26-000021"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000021/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.5",
+          "marketHigh": "13.100000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 8340,
+      "price": 1.289,
+      "txDate": "2026-09-16",
+      "filedDate": "2026-09-16",
+      "accession": "0001940272-26-000021",
+      "sourceAccessions": [
+        "0001940272-26-000021"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000021/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.600000381469727",
+          "marketHigh": "13.100000381469727"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -6937,6 +7072,33 @@
       "severity": "review"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 3.64,
+      "txDate": "2026-11-03",
+      "filedDate": "2026-11-04",
+      "accession": "0002118015-26-000006",
+      "sourceAccessions": [
+        "0002118015-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000006/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.970001220703125",
+          "marketHigh": "36.70000076293945"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Ramalho Miranda Jose Augusto",
@@ -7534,6 +7696,33 @@
       "severity": "review"
     },
     {
+      "ticker": "ELVR",
+      "company": "Elevra Lithium Ltd",
+      "filer": "Collard Sylvain",
+      "role": "President Canada & Group COO",
+      "txType": "매도",
+      "shares": 32651,
+      "price": 2.1492,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-03",
+      "accession": "0001140361-26-041869",
+      "sourceAccessions": [
+        "0001140361-26-041869"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2122769/000114036126041869/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "22.09000015258789",
+          "marketHigh": "22.952999114990234"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "CTSO",
       "company": "Cytosorbents Corp",
       "filer": "Chan Phillip P.",
@@ -7744,6 +7933,87 @@
           "severity": "critical",
           "marketLow": "13.199999809265137",
           "marketHigh": "17.299999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 16431,
+      "price": 1.3298,
+      "txDate": "2026-10-01",
+      "filedDate": "2026-10-05",
+      "accession": "0001940272-26-000022",
+      "sourceAccessions": [
+        "0001940272-26-000022"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1728328/000194027226000022/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.199999809265137",
+          "marketHigh": "13.699000358581543"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 8307,
+      "price": 1.33,
+      "txDate": "2026-10-02",
+      "filedDate": "2026-10-05",
+      "accession": "0001940272-26-000022",
+      "sourceAccessions": [
+        "0001940272-26-000022"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1728328/000194027226000022/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.300000190734863",
+          "marketHigh": "13.850000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 18182,
+      "price": 1.33,
+      "txDate": "2026-10-05",
+      "filedDate": "2026-10-05",
+      "accession": "0001940272-26-000022",
+      "sourceAccessions": [
+        "0001940272-26-000022"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1728328/000194027226000022/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.300000190734863",
+          "marketHigh": "13.899999618530273"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -9695,6 +9965,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "FBRT",
+      "company": "Franklin BSP Realty Trust, Inc.",
+      "filer": "ORTALE BUFORD H",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 147,
+      "price": 17.07,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-04",
+      "accession": "0001104659-26-122724",
+      "sourceAccessions": [
+        "0001104659-26-122724"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1562528/000110465926122724/tm2628940-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "5.945000171661377",
+          "marketHigh": "6.144999980926514"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FBRT",
+      "company": "Franklin BSP Realty Trust, Inc.",
+      "filer": "ORTALE BUFORD H",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 1046,
+      "price": 17.25,
+      "txDate": "2026-11-03",
+      "filedDate": "2026-11-04",
+      "accession": "0001104659-26-122724",
+      "sourceAccessions": [
+        "0001104659-26-122724"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1562528/000110465926122724/tm2628940-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "6.0",
+          "marketHigh": "6.190000057220459"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
       "filer": "Laas Lihan",
@@ -9986,6 +10310,87 @@
           "severity": "critical",
           "marketLow": "27.110000610351562",
           "marketHigh": "28.059999465942383"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 5601,
+      "price": 1.3277,
+      "txDate": "2026-10-06",
+      "filedDate": "2026-10-08",
+      "accession": "0001940272-26-000023",
+      "sourceAccessions": [
+        "0001940272-26-000023"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000023/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.199999809265137",
+          "marketHigh": "13.800000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 3046,
+      "price": 1.33,
+      "txDate": "2026-10-07",
+      "filedDate": "2026-10-08",
+      "accession": "0001940272-26-000023",
+      "sourceAccessions": [
+        "0001940272-26-000023"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000023/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.300000190734863",
+          "marketHigh": "13.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 2256,
+      "price": 1.3283,
+      "txDate": "2026-10-08",
+      "filedDate": "2026-10-08",
+      "accession": "0001940272-26-000023",
+      "sourceAccessions": [
+        "0001940272-26-000023"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000023/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.199999809265137",
+          "marketHigh": "13.550000190734863"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -10289,6 +10694,87 @@
       "severity": "review"
     },
     {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 564,
+      "price": 1.33,
+      "txDate": "2026-10-13",
+      "filedDate": "2026-10-15",
+      "accession": "0001940272-26-000025",
+      "sourceAccessions": [
+        "0001940272-26-000025"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000025/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.300000190734863",
+          "marketHigh": "13.649999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 8021,
+      "price": 1.33,
+      "txDate": "2026-10-14",
+      "filedDate": "2026-10-15",
+      "accession": "0001940272-26-000025",
+      "sourceAccessions": [
+        "0001940272-26-000025"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000025/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.100000381469727",
+          "marketHigh": "13.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "INM",
+      "company": "InMed Pharmaceuticals Inc.",
+      "filer": "ADAR1 Capital Management, LLC",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 984,
+      "price": 1.3219,
+      "txDate": "2026-10-15",
+      "filedDate": "2026-10-15",
+      "accession": "0001940272-26-000025",
+      "sourceAccessions": [
+        "0001940272-26-000025"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1940272/000194027226000025/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "13.100000381469727",
+          "marketHigh": "13.399999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "NRDY",
       "company": "Nerdy Inc.",
       "filer": "Swenson Christopher C.",
@@ -10418,6 +10904,33 @@
           "severity": "critical",
           "marketLow": "16.799999237060547",
           "marketHigh": "18.399999618530273"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VNET",
+      "company": "VNET Group, Inc.",
+      "filer": "ZHANG ZHIHUA",
+      "role": "SVP, Operational Finance",
+      "txType": "매도",
+      "shares": 28740,
+      "price": 0.5472,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-03",
+      "accession": "0001104659-26-121672",
+      "sourceAccessions": [
+        "0001104659-26-121672"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1508475/000110465926121672/tm2628861-2_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.9700000286102295",
+          "marketHigh": "3.3299999237060547"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
