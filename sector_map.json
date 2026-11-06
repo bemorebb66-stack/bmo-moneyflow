@@ -14402,8 +14402,7 @@
   "mcap": 8123560448,
   "name_ko": "레플리젠",
   "universe": [
-   "Russell 1000",
-   "Russell 2000"
+   "Russell 1000"
   ]
  },
  "KEX": {
@@ -27390,7 +27389,7 @@
   "metadata_attempted": true
  },
  "FSBW": {
-  "name": "FS BANCORP INC",
+  "name": "FS BANCORP",
   "sector": "Financial Services",
   "industry": "Banks - Regional",
   "mcap": 322384288,
@@ -33555,16 +33554,16 @@
   "name_ko": "현금 담보 USD MS"
  },
  "ETD_USD": {
-  "name": "ETD USD BALANCE WITH R93531",
+  "name": "ETD USD BALANCE WITH R30382",
   "sector": "기타",
   "industry": "기타",
   "mcap": 0,
   "metadata_attempted": true,
   "translation_attempted": true,
   "universe": [
-   "Russell 1000",
-   "Russell 2000"
-  ]
+   "Russell 1000"
+  ],
+  "name_ko": "R30382를 사용한 ETD USD 잔액"
  },
  "TSE": {
   "name": "TRINSEO PLC Prvt",
