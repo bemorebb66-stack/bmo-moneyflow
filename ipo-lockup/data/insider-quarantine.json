@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-05T11:45:09.110051+00:00",
-    "count": 432
+    "generatedAt": "2026-11-06T11:39:58.661217+00:00",
+    "count": 451
   },
   "pendingTrades": [
     {
@@ -32,6 +32,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "SPPL",
+      "company": "SIMPPLE LTD.",
+      "filer": "Lee Kelvin Soon Sze",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 1,
+      "price": 1,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001493152-26-050230",
+      "sourceAccessions": [
+        "0001493152-26-050230"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2120165/000149315226050230/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "2.575000047683716",
+          "marketHigh": "2.799999952316284"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SPPL",
+      "company": "SIMPPLE LTD.",
+      "filer": "Lee Kelvin Soon Sze",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 189309,
+      "price": 270711.87,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001493152-26-050230",
+      "sourceAccessions": [
+        "0001493152-26-050230"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2120165/000149315226050230/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.575000047683716",
+          "marketHigh": "2.799999952316284"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "REBN",
       "company": "Reborn Coffee, Inc.",
       "filer": "Lim Jung Jae",
@@ -53,6 +107,33 @@
           "severity": "critical",
           "marketLow": "1.3700000047683716",
           "marketHigh": "1.5299999713897705"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SPPL",
+      "company": "SIMPPLE LTD.",
+      "filer": "Pat Daryl Kah Kit",
+      "role": "Acting Chief Executive Officer",
+      "txType": "매도",
+      "shares": 62894,
+      "price": 162219.43,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001493152-26-050229",
+      "sourceAccessions": [
+        "0001493152-26-050229"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126254/000149315226050229/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.575000047683716",
+          "marketHigh": "2.799999952316284"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -117,6 +198,33 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SPPL",
+      "company": "SIMPPLE LTD.",
+      "filer": "Soo QiKai",
+      "role": "Chief Technology Officer",
+      "txType": "매도",
+      "shares": 47171,
+      "price": 121664.57,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001493152-26-050231",
+      "sourceAccessions": [
+        "0001493152-26-050231"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1948697/000149315226050231/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2.575000047683716",
+          "marketHigh": "2.799999952316284"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -1762,6 +1870,202 @@
       "severity": "review"
     },
     {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 2672,
+      "price": 87.38,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "87.38",
+          "expectedLow": "84.50",
+          "expectedHigh": "85.49"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 2964,
+      "price": 87.38,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "87.38",
+          "expectedLow": "85.50",
+          "expectedHigh": "86.49"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 1141,
+      "price": 87.38,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "87.38",
+          "expectedLow": "88.50",
+          "expectedHigh": "88.78"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 16029,
+      "price": 83.78,
+      "txDate": "2026-11-05",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "83.78",
+          "expectedLow": "81.69",
+          "expectedHigh": "82.68"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 4430,
+      "price": 83.78,
+      "txDate": "2026-11-05",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "83.78",
+          "expectedLow": "84.69",
+          "expectedHigh": "85.68"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 5928,
+      "price": 83.78,
+      "txDate": "2026-11-05",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "83.78",
+          "expectedLow": "85.69",
+          "expectedHigh": "86.68"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TTAN",
+      "company": "ServiceTitan, Inc.",
+      "filer": "Mahdessian Ara",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 2764,
+      "price": 83.78,
+      "txDate": "2026-11-05",
+      "filedDate": "2026-11-05",
+      "accession": "0001638826-26-000114",
+      "sourceAccessions": [
+        "0001638826-26-000114"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1908788/000163882626000114/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "83.78",
+          "expectedLow": "86.69",
+          "expectedHigh": "87.32"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
       "ticker": "AEIS",
       "company": "ADVANCED ENERGY INDUSTRIES INC",
       "filer": "Acebedo Eduardo Bernal",
@@ -3250,6 +3554,33 @@
           "severity": "critical",
           "marketLow": "35.849998474121094",
           "marketHigh": "36.689998626708984"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "SOTTIL ACHUTEGUI JUAN FELIPE",
+      "role": "CHIEF FINANCIAL OFFICER",
+      "txType": "매도",
+      "shares": 330714,
+      "price": 3.71,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0002117779-26-000004",
+      "sourceAccessions": [
+        "0002117779-26-000004"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117779/000211777926000004/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.400001525878906",
+          "marketHigh": "37.474998474121094"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -6105,6 +6436,87 @@
       "severity": "review"
     },
     {
+      "ticker": "RYAAY",
+      "company": "RYANAIR HOLDINGS PLC",
+      "filer": "Sharkey Carol Marie",
+      "role": "Chief Risk Officer",
+      "txType": "매도",
+      "shares": 6166,
+      "price": 28.06,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0001104659-26-123411",
+      "sourceAccessions": [
+        "0001104659-26-123411"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1038683/000110465926123411/tm2629118-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "57.779998779296875",
+          "marketHigh": "59.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 35000,
+      "price": 3.73,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0002118015-26-000007",
+      "sourceAccessions": [
+        "0002118015-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.400001525878906",
+          "marketHigh": "37.474998474121094"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 10000,
+      "price": 3.73,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0002118015-26-000007",
+      "sourceAccessions": [
+        "0002118015-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.400001525878906",
+          "marketHigh": "37.474998474121094"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "VIPS",
       "company": "Vipshop Holdings Ltd",
       "filer": "Wang Yuhua",
@@ -7099,6 +7511,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Bettinger Davo Maria Fernanda",
+      "role": "INVESTOR RELATIONS OFFICER",
+      "txType": "매도",
+      "shares": 29000,
+      "price": 3.7,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-05",
+      "accession": "0002117128-26-000003",
+      "sourceAccessions": [
+        "0002117128-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117128/000211712826000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.400001525878906",
+          "marketHigh": "37.474998474121094"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Ramalho Miranda Jose Augusto",
@@ -7959,7 +8398,7 @@
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
           "marketLow": "13.199999809265137",
-          "marketHigh": "13.699000358581543"
+          "marketHigh": "13.699999809265137"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -11367,6 +11806,87 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.0005,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.0005,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 97500,
+      "price": 0.0005,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "TSM",
