@@ -1,9 +1,48 @@
 {
   "meta": {
-    "generatedAt": "2026-11-07T11:05:19.985634+00:00",
-    "count": 448
+    "generatedAt": "2026-11-10T12:03:57.995750+00:00",
+    "count": 468
   },
   "pendingTrades": [
+    {
+      "ticker": "SIBN",
+      "company": "SI-BONE, Inc.",
+      "filer": "PISETSKY MICHAEL A.",
+      "role": "SVP, Ops & Adm/Chief Legal Ofr",
+      "txType": "매도",
+      "shares": 12349,
+      "price": 25.0776,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-09",
+      "accession": "0001754765-26-000010",
+      "sourceAccessions": [
+        "0001754765-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1754765/000175476526000010/primarydocument.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SIBN",
+      "company": "SI-BONE, Inc.",
+      "filer": "PISETSKY MICHAEL A.",
+      "role": "SVP, Ops & Adm/Chief Legal Ofr",
+      "txType": "매도",
+      "shares": 23892,
+      "price": 24.7849,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-09",
+      "accession": "0001754765-26-000010",
+      "sourceAccessions": [
+        "0001754765-26-000009",
+        "0001754765-26-000010"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1754765/000175476526000010/primarydocument.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
+      "severity": "critical"
+    },
     {
       "ticker": "SLBT",
       "company": "SL Science Holding Ltd",
@@ -1373,6 +1412,42 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "DBX",
+      "company": "DROPBOX, INC.",
+      "filer": "Houston Andrew",
+      "role": "Co-CEO",
+      "txType": "매도",
+      "shares": 0,
+      "price": 0,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-09",
+      "accession": "0001734563-26-000026",
+      "sourceAccessions": [
+        "0001734563-26-000024",
+        "0001734563-26-000026"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1467623/000173456326000026/wk-form4a_1794268338.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "INVALID_SHARES",
+          "severity": "critical"
+        },
+        {
+          "code": "INVALID_PRICE",
+          "severity": "critical"
+        },
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.55500030517578",
+          "marketHigh": "36.209999084472656"
+        }
+      ],
+      "reasonCode": "INVALID_SHARES",
       "severity": "critical"
     },
     {
@@ -4399,6 +4474,114 @@
       "severity": "review"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 4128,
+      "price": 3.71,
+      "txDate": "2026-11-04",
+      "filedDate": "2026-11-09",
+      "accession": "0002116974-26-000007",
+      "sourceAccessions": [
+        "0002116974-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.400001525878906",
+          "marketHigh": "37.474998474121094"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 6041,
+      "price": 3.71,
+      "txDate": "2025-11-05",
+      "filedDate": "2026-11-09",
+      "accession": "0002116974-26-000007",
+      "sourceAccessions": [
+        "0002116974-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "29.8799991607666",
+          "marketHigh": "30.545000076293945"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 39831,
+      "price": 3.72,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-09",
+      "accession": "0002116974-26-000007",
+      "sourceAccessions": [
+        "0002116974-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.68000030517578",
+          "marketHigh": "37.83000183105469"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
+      "role": "Chief Executive Officer",
+      "txType": "매도",
+      "shares": 150000,
+      "price": 3.81,
+      "txDate": "2026-11-09",
+      "filedDate": "2026-11-09",
+      "accession": "0002116974-26-000007",
+      "sourceAccessions": [
+        "0002116974-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2116974/000211697426000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.54999923706055",
+          "marketHigh": "38.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ENHA",
       "company": "Enhanced Group Inc.",
       "filer": "Apeiron Investment Group Ltd.",
@@ -5122,6 +5305,33 @@
           "severity": "critical",
           "marketLow": "3.5399999618530273",
           "marketHigh": "3.619999885559082"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "PUCHEU ROMERO ALEJANDRO",
+      "role": "CHIEF LEGAL COUNSEL",
+      "txType": "매도",
+      "shares": 120000,
+      "price": 3.73,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-09",
+      "accession": "0002117143-26-000006",
+      "sourceAccessions": [
+        "0002117143-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117143/000211714326000006/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.68000030517578",
+          "marketHigh": "37.83000183105469"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -5892,6 +6102,60 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 3.7,
+      "txDate": "2026-11-05",
+      "filedDate": "2026-11-09",
+      "accession": "0002118015-26-000008",
+      "sourceAccessions": [
+        "0002118015-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000008/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.31999969482422",
+          "marketHigh": "37.369998931884766"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 23911,
+      "price": 3.75,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-09",
+      "accession": "0002118015-26-000008",
+      "sourceAccessions": [
+        "0002118015-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000008/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "36.68000030517578",
+          "marketHigh": "37.83000183105469"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -8000,6 +8264,42 @@
       "severity": "critical"
     },
     {
+      "ticker": "DBX",
+      "company": "DROPBOX, INC.",
+      "filer": "Schubach Sarah Elizabeth",
+      "role": "Chief Accounting Officer",
+      "txType": "매도",
+      "shares": 0,
+      "price": 0,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-09",
+      "accession": "0002075704-26-000043",
+      "sourceAccessions": [
+        "0002075704-26-000041",
+        "0002075704-26-000043"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1467623/000207570426000043/wk-form4a_1794268489.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "INVALID_SHARES",
+          "severity": "critical"
+        },
+        {
+          "code": "INVALID_PRICE",
+          "severity": "critical"
+        },
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "35.849998474121094",
+          "marketHigh": "36.619998931884766"
+        }
+      ],
+      "reasonCode": "INVALID_SHARES",
+      "severity": "critical"
+    },
+    {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
       "filer": "Tien Bor-Zen",
@@ -9321,6 +9621,60 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "STKH",
+      "company": "Steakholder Foods Ltd.",
+      "filer": "Kaufman Arik",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 36826,
+      "price": 0.3847,
+      "txDate": "2026-10-29",
+      "filedDate": "2026-11-02",
+      "accession": "0001213900-26-114637",
+      "sourceAccessions": [
+        "0001213900-26-114637"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713725/000121390026114637/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.75",
+          "marketHigh": "2.184999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "STKH",
+      "company": "Steakholder Foods Ltd.",
+      "filer": "Kaufman Arik",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 60000,
+      "price": 0.4,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-02",
+      "accession": "0001213900-26-114637",
+      "sourceAccessions": [
+        "0001213900-26-114637"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713725/000121390026114637/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.9249999523162842",
+          "marketHigh": "2.1500000953674316"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "PFSA",
@@ -10728,6 +11082,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "STKH",
+      "company": "Steakholder Foods Ltd.",
+      "filer": "Kaiser Yaron",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 30291,
+      "price": 0.4064,
+      "txDate": "2026-10-29",
+      "filedDate": "2026-11-02",
+      "accession": "0001213900-26-114660",
+      "sourceAccessions": [
+        "0001213900-26-114660"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1969335/000121390026114660/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.75",
+          "marketHigh": "2.184999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "STKH",
+      "company": "Steakholder Foods Ltd.",
+      "filer": "Kaiser Yaron",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 26141,
+      "price": 0.4162,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-02",
+      "accession": "0001213900-26-114660",
+      "sourceAccessions": [
+        "0001213900-26-114660"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1969335/000121390026114660/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.9249999523162842",
+          "marketHigh": "2.1500000953674316"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
       "filer": "Hooijer Henriette",
@@ -11023,6 +11431,60 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 8696,
+      "price": 0.2621,
+      "txDate": "2026-11-05",
+      "filedDate": "2026-11-09",
+      "accession": "0001193125-26-452558",
+      "sourceAccessions": [
+        "0001193125-26-452558"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526452558/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.8600000143051147",
+          "marketHigh": "1.1200000047683716"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 63552,
+      "price": 0.2777,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-09",
+      "accession": "0001193125-26-452558",
+      "sourceAccessions": [
+        "0001193125-26-452558"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526452558/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.8999999761581421",
+          "marketHigh": "1.309999942779541"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "FGBI",
@@ -11806,6 +12268,87 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.0005,
+      "txDate": "2026-08-18",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1000000,
+      "price": 0.0005,
+      "txDate": "2026-08-19",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NMHI",
+      "company": "Nature's Miracle Holding Inc.",
+      "filer": "Adair Kathleen Theresa",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 97500,
+      "price": 0.0005,
+      "txDate": "2026-08-20",
+      "filedDate": "2026-10-23",
+      "accession": "0002160363-26-000003",
+      "sourceAccessions": [
+        "0002160363-26-000003"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.0010000000474974513",
+          "marketHigh": "0.0010000000474974513"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "TSM",
