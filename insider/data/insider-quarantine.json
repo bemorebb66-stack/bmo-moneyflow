@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-10T12:03:57.995750+00:00",
-    "count": 468
+    "generatedAt": "2026-11-11T11:48:00.936216+00:00",
+    "count": 475
   },
   "pendingTrades": [
     {
@@ -3174,6 +3174,34 @@
       "severity": "critical"
     },
     {
+      "ticker": "HST",
+      "company": "HOST HOTELS & RESORTS, INC.",
+      "filer": "GHOSH SOURAV",
+      "role": "EVP, Chief Financial Officer",
+      "txType": "매도",
+      "shares": 93863,
+      "price": 24.7552,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001070750-26-000162",
+      "sourceAccessions": [
+        "0001070750-26-000162"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1780487/000107075026000162/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "24.7552",
+          "expectedLow": "25.2200",
+          "expectedHigh": "25.4900"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
       "ticker": "PAM",
       "company": "Pampa Energy Inc.",
       "filer": "Mindlin Marcos Marcelo",
@@ -5942,6 +5970,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 7960,
+      "price": 20.0795,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0000937797-26-000039",
+      "sourceAccessions": [
+        "0000937797-26-000039"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000039/wk-form4_1794345580.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.5600004196167",
+          "marketHigh": "9.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "MALONE JOHN C",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 3057,
+      "price": 20.0795,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0000937797-26-000039",
+      "sourceAccessions": [
+        "0000937797-26-000039"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1712184/000093779726000039/wk-form4_1794345580.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.5600004196167",
+          "marketHigh": "9.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
       "filer": "Gouws Henry",
@@ -6511,6 +6593,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "FMX",
+      "company": "MEXICAN ECONOMIC DEVELOPMENT INC",
+      "filer": "Estrada Attolini Gerardo",
+      "role": "Director of Corporate Control",
+      "txType": "매도",
+      "shares": 13936,
+      "price": 12.8885,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001628280-26-072719",
+      "sourceAccessions": [
+        "0001628280-26-072719"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117289/000162828026072719/wk-form4_1794344820.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "127.2699966430664",
+          "marketHigh": "130.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "INM",
       "company": "InMed Pharmaceuticals Inc.",
       "filer": "ADAR1 Capital Management, LLC",
@@ -6775,6 +6884,60 @@
           "severity": "critical",
           "marketLow": "36.400001525878906",
           "marketHigh": "37.474998474121094"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FMX",
+      "company": "MEXICAN ECONOMIC DEVELOPMENT INC",
+      "filer": "Gil Ortiz Alejandro",
+      "role": "General Counsel",
+      "txType": "매도",
+      "shares": 12000,
+      "price": 12.7254,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001628280-26-072537",
+      "sourceAccessions": [
+        "0001628280-26-072537"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2113320/000162828026072537/wk-form4_1794321025.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "127.2699966430664",
+          "marketHigh": "130.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FMX",
+      "company": "MEXICAN ECONOMIC DEVELOPMENT INC",
+      "filer": "Gil Ortiz Alejandro",
+      "role": "General Counsel",
+      "txType": "매도",
+      "shares": 1000,
+      "price": 12.7894,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001628280-26-072537",
+      "sourceAccessions": [
+        "0001628280-26-072537"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2113320/000162828026072537/wk-form4_1794321025.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "127.2699966430664",
+          "marketHigh": "130.25"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -12696,6 +12859,33 @@
           "severity": "critical",
           "marketLow": "13.399999618530273",
           "marketHigh": "14.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Wei Che-Chia",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 155,
+      "price": 70.5,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001046179-26-000779",
+      "sourceAccessions": [
+        "0001046179-26-000779"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000779/wk-form4_1794310680.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "367.95001220703125",
+          "marketHigh": "380.7200012207031"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
