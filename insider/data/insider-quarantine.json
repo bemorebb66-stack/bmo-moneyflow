@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-11T11:48:00.936216+00:00",
-    "count": 475
+    "generatedAt": "2026-11-12T12:11:38.504273+00:00",
+    "count": 470
   },
   "pendingTrades": [
     {
@@ -5366,33 +5366,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "RCT",
-      "company": "RedCloud Holdings plc",
-      "filer": "Senn Nikolaus Beat",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1700000,
-      "price": 0.25,
-      "txDate": "2026-10-28",
-      "filedDate": "2026-10-28",
-      "accession": "0001493152-26-048958",
-      "sourceAccessions": [
-        "0001493152-26-048958"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2027360/000149315226048958/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.050999999046325684",
-          "marketHigh": "0.07999999821186066"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
       "ticker": "ENHA",
       "company": "Enhanced Group Inc.",
       "filer": "Apeiron Investment Group Ltd.",
@@ -6478,33 +6451,6 @@
           "severity": "critical",
           "marketLow": "42.650001525878906",
           "marketHigh": "43.869998931884766"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "RCT",
-      "company": "RedCloud Holdings plc",
-      "filer": "Floyd Justin Beck Hinton",
-      "role": "Chief Executive Officer",
-      "txType": "매수",
-      "shares": 74000,
-      "price": 2.5,
-      "txDate": "2026-09-22",
-      "filedDate": "2026-09-23",
-      "accession": "0001493152-26-043846",
-      "sourceAccessions": [
-        "0001493152-26-043846"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2070905/000149315226043846/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "0.17000000178813934",
-          "marketHigh": "0.20000000298023224"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -8861,7 +8807,7 @@
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
           "marketLow": "13.199999809265137",
-          "marketHigh": "13.699999809265137"
+          "marketHigh": "13.699000358581543"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -12431,87 +12377,6 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-18",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1000000,
-      "price": 0.0005,
-      "txDate": "2026-08-19",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NMHI",
-      "company": "Nature's Miracle Holding Inc.",
-      "filer": "Adair Kathleen Theresa",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 97500,
-      "price": 0.0005,
-      "txDate": "2026-08-20",
-      "filedDate": "2026-10-23",
-      "accession": "0002160363-26-000003",
-      "sourceAccessions": [
-        "0002160363-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2160363/000216036326000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "0.0010000000474974513",
-          "marketHigh": "0.0010000000474974513"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
     },
     {
       "ticker": "TSM",
