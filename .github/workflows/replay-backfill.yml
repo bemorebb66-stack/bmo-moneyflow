@@ -7,6 +7,10 @@ on:
         description: Number of recent trading days to rebuild
         required: true
         default: "90"
+      missing_dates:
+        description: Space-separated YYYY-MM-DD trading dates to recover (overrides trading_days)
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -23,7 +27,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Build historical Replay snapshots
-        run: python scripts/backfill_replay_snapshots.py --days "${{ inputs.trading_days }}"
+        env:
+          TRADING_DAYS: ${{ inputs.trading_days }}
+          MISSING_DATES: ${{ inputs.missing_dates }}
+        run: |
+          if [[ -n "$MISSING_DATES" ]]; then
+            read -r -a dates <<< "$MISSING_DATES"
+            python scripts/backfill_replay_snapshots.py --missing-dates "${dates[@]}"
+          else
+            python scripts/backfill_replay_snapshots.py --days "$TRADING_DAYS"
+          fi
       - name: Rebuild Replay manifest from stored snapshots
         run: python scripts/build_replay_snapshot.py --manifest-only
       - name: Rebuild weekly market summary
