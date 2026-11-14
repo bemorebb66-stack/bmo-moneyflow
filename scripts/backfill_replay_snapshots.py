@@ -5,8 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -14,11 +15,11 @@ import pandas as pd
 
 try:
     from scripts.build_replay_snapshot import build_snapshot, content_hash, write_snapshot
-    from scripts.market_calendar import is_trading_day
+    from scripts.market_calendar import is_trading_day, session_bounds
     from scripts.signal_engine import CURRENT_PROXY, DATA_CONTRACT_VERSION, SIGNAL_RULE_VERSION, classify_stock_signal
 except ModuleNotFoundError:
     from build_replay_snapshot import build_snapshot, content_hash, write_snapshot
-    from market_calendar import is_trading_day
+    from market_calendar import is_trading_day, session_bounds
     from signal_engine import CURRENT_PROXY, DATA_CONTRACT_VERSION, SIGNAL_RULE_VERSION, classify_stock_signal
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,7 @@ INDEX_SYMBOLS = {
     "^RUT": "Russell 2000",
     "^DJI": "Dow Jones",
 }
+MINIMUM_SNAPSHOT_COVERAGE = 0.8
 
 
 def chunks(values: list[str], size: int) -> list[list[str]]:
@@ -140,14 +142,18 @@ def index_rows(index_history: dict[str, pd.DataFrame], trading_day: pd.Timestamp
 def build_historical_snapshots(
     source: dict[str, Any], history: dict[str, pd.DataFrame], days: int,
     index_history: dict[str, pd.DataFrame] | None = None,
+    *, target_dates: list[date] | None = None,
 ) -> tuple[list[dict[str, Any]], list[str]]:
     metadata = {str(row.get("t") or "").upper(): row for row in source.get("stocks", []) if row.get("t")}
-    all_dates = sorted({day for frame in history.values() for day in frame.index})
-    target_dates = [day for day in all_dates if is_trading_day(day.date())][-days:]
+    if target_dates is None:
+        all_dates = sorted({day for frame in history.values() for day in frame.index})
+        session_dates = [day for day in all_dates if is_trading_day(day.date())][-days:]
+    else:
+        session_dates = [pd.Timestamp(day) for day in target_dates]
     snapshots = []
     skipped_dates = []
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-    for trading_day in target_dates:
+    for trading_day in session_dates:
         stocks = []
         for ticker, frame in history.items():
             if ticker not in metadata or trading_day not in frame.index:
@@ -232,6 +238,8 @@ def build_historical_snapshots(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Backfill recent BVT Replay market snapshots")
     parser.add_argument("--days", type=int, default=90)
+    parser.add_argument("--missing-dates", type=date.fromisoformat, nargs="+",
+                        help="Recover only the specified trading dates whose snapshots are missing")
     parser.add_argument("--data", type=Path, default=ROOT / "data.json")
     parser.add_argument("--output", type=Path, default=ROOT / "replay_data")
     parser.add_argument("--batch-size", type=int, default=150)
@@ -241,22 +249,50 @@ def main() -> None:
         raise ValueError("--days must be between 1 and 260")
 
     source = json.loads(args.data.read_text(encoding="utf-8"))
+    source_tickers = {str(row["t"]).upper() for row in source.get("stocks", []) if row.get("t")}
     if args.etf_metadata.exists():
         etfs = json.loads(args.etf_metadata.read_text(encoding="utf-8"))
-        existing = {str(row.get("t") or "").upper() for row in source.get("stocks", [])}
-        source.setdefault("stocks", []).extend(row for row in etfs if str(row.get("t") or "").upper() not in existing)
+        source.setdefault("stocks", []).extend(row for row in etfs if str(row.get("t") or "").upper() not in source_tickers)
     tickers = sorted({str(row.get("t") or "").upper() for row in source.get("stocks", []) if row.get("t")})
-    end = datetime.now(timezone.utc).date() + timedelta(days=2)
-    start = end - timedelta(days=max(180, args.days * 2 + 45))
+    now = datetime.now(timezone.utc)
+    target_dates = None
+    if args.missing_dates:
+        source_date = date.fromisoformat(source["market_date"])
+        for day in args.missing_dates:
+            if not is_trading_day(day) or day > source_date or session_bounds(day)[1] > now:
+                parser.error(f"{day} must be a completed trading session covered by data.json")
+        target_dates = [
+            day for day in sorted(set(args.missing_dates))
+            if not (args.output / "snapshots" / f"{day}.json").exists()
+        ]
+        if not target_dates:
+            print("All requested snapshots are already present")
+            return
+        start = target_dates[0] - timedelta(days=60)
+        end = target_dates[-1] + timedelta(days=1)
+    else:
+        end = now.date() + timedelta(days=2)
+        start = end - timedelta(days=max(180, args.days * 2 + 45))
     history, failed = download_history(tickers, start.isoformat(), end.isoformat(), args.batch_size)
     indices, failed_indices = download_history(list(INDEX_SYMBOLS), start.isoformat(), end.isoformat(), 4)
-    snapshots, skipped_dates = build_historical_snapshots(source, history, args.days, indices)
+    snapshots, skipped_dates = build_historical_snapshots(
+        source, history, args.days, indices, target_dates=target_dates,
+    )
+    if target_dates is not None:
+        if skipped_dates:
+            raise RuntimeError(f"No usable stock data for: {', '.join(skipped_dates)}")
+        minimum_tickers = max(1, math.ceil(len(source_tickers) * MINIMUM_SNAPSHOT_COVERAGE))
+        for snapshot in snapshots:
+            if len(source_tickers.intersection(snapshot["tickers"])) < minimum_tickers:
+                raise RuntimeError(f"Incomplete stock coverage for {snapshot['trading_date']}")
+            if len(snapshot["market"]["indices"]) != len(INDEX_SYMBOLS):
+                raise RuntimeError(f"Incomplete index data for {snapshot['trading_date']}")
     for snapshot in snapshots:
         write_snapshot(snapshot, args.output)
 
     report = {
         "timestamp": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "requested_trading_days": args.days,
+        "requested_trading_days": len(target_dates) if target_dates is not None else args.days,
         "stored_dates": [snapshot["trading_date"] for snapshot in snapshots],
         "stored_count": len(snapshots),
         "source_ticker_count": len(tickers),
