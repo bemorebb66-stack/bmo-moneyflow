@@ -2,10 +2,13 @@ import csv
 import json
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
+from unittest.mock import patch
 
 import pandas as pd
 
+from scripts import backfill_replay_snapshots, build_weekly_summary
 from scripts.build_replay_snapshot import build_manifest, build_snapshot, content_hash, write_snapshot
 from scripts.backfill_replay_snapshots import build_historical_snapshots
 from scripts.replay_analyzer import analyze, combine_completed_trades, parse_executions
@@ -60,6 +63,50 @@ class ReplayTests(unittest.TestCase):
         self.assertEqual(etf["asset_type"], "LEVERAGED_ETF")
         self.assertEqual(etf["leverage_multiple"], 3)
         self.assertEqual(etf["underlying_industry"], "Semiconductors")
+
+    def test_targeted_backfill_recovers_week_without_rewriting_existing_closes(self):
+        dates = pd.bdate_range(end="2026-11-13", periods=25)
+        prices = pd.DataFrame({"Close": 100, "Adj Close": 100, "Volume": 100}, index=dates)
+        source = {"market_date": "2026-11-13", "stocks": [{"t": "NVDA"}]}
+        indices = {symbol: prices for symbol in backfill_replay_snapshots.INDEX_SYMBOLS}
+        missing = [date(2026, 11, day) for day in (9, 10, 11)]
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            data = root / "data.json"
+            data.write_text(json.dumps(source), encoding="utf-8")
+            output = root / "replay_data"
+            snapshots = output / "snapshots"
+            summary = root / "weekly_summary.json"
+            existing = {}
+            for day in (12, 13):
+                preexisting = build_snapshot({"market_date": f"2026-11-{day}", "stocks": [{"t": "NVDA", "c": 100, "dv": 10000}]})
+                path = write_snapshot(preexisting, output)
+                existing[path] = path.read_bytes()
+
+            command = ["backfill_replay_snapshots.py", "--data", str(data), "--output", str(output),
+                       "--etf-metadata", str(root / "unused.json"), "--missing-dates",
+                       *(str(day) for day in missing), "2026-11-12", "2026-11-13"]
+            with patch("sys.argv", command), patch.object(
+                backfill_replay_snapshots, "download_history", side_effect=[({"NVDA": prices}, []), (indices, [])],
+            ):
+                backfill_replay_snapshots.main()
+
+            for path, content in existing.items():
+                self.assertEqual(path.read_bytes(), content)
+            for day in missing:
+                recorded = json.loads((snapshots / f"{day}.json").read_text(encoding="utf-8"))
+                self.assertEqual(recorded["trading_date"], str(day))
+                self.assertEqual(recorded["data_grade"], "CURRENT_PROXY")
+            with patch.object(build_weekly_summary, "SNAPSHOTS", snapshots), patch.object(build_weekly_summary, "OUTPUT", summary):
+                build_weekly_summary.main()
+            week = json.loads(summary.read_text(encoding="utf-8"))["weeks"][0]
+            self.assertEqual((week["startDate"], week["endDate"], week["tradingDays"]), ("2026-11-09", "2026-11-13", 5))
+
+    def test_targeted_backfill_reports_dates_absent_from_download(self):
+        target = date(2026, 11, 9)
+        snapshots, skipped = build_historical_snapshots({"stocks": []}, {}, 90, target_dates=[target])
+        self.assertEqual(snapshots, [])
+        self.assertEqual(skipped, [str(target)])
 
     def test_snapshot_is_idempotent(self):
         data = {"market_date": "2026-07-17", "updated": "2026-07-18 06:00 UTC", "indices": [], "stocks": [{"t": "NVDA", "n": "NVIDIA", "c": 170, "pc": 2, "dv": 200, "dvp": 100, "a5": 125, "a20": 100, "sec": "Technology", "ind": "Semiconductors", "cap": "메가캡", "mc": 1000, "uni": ["S&P 500"]}]}
