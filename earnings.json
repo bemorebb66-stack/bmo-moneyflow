@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-17T05:30:16.293639+00:00",
+    "generatedAt": "2026-11-17T21:30:35.941519+00:00",
     "status": "ok",
     "from": "2026-10-03",
     "to": "2027-05-16",
-    "count": 9374,
+    "count": 9383,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 604,
-      "supplementalTickerCount": 148,
-      "supplementalEventCount": 838,
+      "trackedUniverseCount": 602,
+      "supplementalTickerCount": 151,
+      "supplementalEventCount": 868,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -12327,6 +12327,18 @@
       "netIncomeActual": 711000000.0
     },
     {
+      "ticker": "NSIT",
+      "company": "인사이트 엔터프라이지즈",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 2003845000.0,
+      "netIncomeActual": 50947000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "NTAP",
       "company": "넷앱",
       "date": "2025-09-30",
@@ -13392,6 +13404,18 @@
       "revenueActual": 8928000000.0,
       "status": "reported",
       "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
+      "ticker": "SLS",
+      "company": "셀라스 라이프 사이언스 그룹",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -6791000.0,
+      "revenueActual": 0.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
@@ -20634,6 +20658,20 @@
       "netIncomeActual": 644000000.0
     },
     {
+      "ticker": "NSIT",
+      "company": "인사이트 엔터프라이지즈",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "revenueActual": 2048297000.0,
+      "netIncomeActual": 51954000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 2.96,
+      "epsEstimate": 2.8968
+    },
+    {
       "ticker": "NTAP",
       "company": "넷앱",
       "date": "2025-12-31",
@@ -21769,6 +21807,20 @@
       "periodEnd": "2025-12-31",
       "netIncomeActual": 824000000.0,
       "revenueActual": 9745000000.0
+    },
+    {
+      "ticker": "SLS",
+      "company": "셀라스 라이프 사이언스 그룹",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -7658000.0,
+      "revenueActual": 0.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.05,
+      "epsEstimate": -0.0657
     },
     {
       "ticker": "SMCI",
@@ -29097,6 +29149,20 @@
       "netIncomeActual": 547000000.0
     },
     {
+      "ticker": "NSIT",
+      "company": "인사이트 엔터프라이지즈",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "revenueActual": 2127986000.0,
+      "netIncomeActual": 30009000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 2.88,
+      "epsEstimate": 2.4913
+    },
+    {
       "ticker": "NTAP",
       "company": "넷앱",
       "date": "2026-03-31",
@@ -30245,6 +30311,20 @@
       "periodEnd": "2026-03-31",
       "netIncomeActual": 752000000.0,
       "revenueActual": 8721000000.0
+    },
+    {
+      "ticker": "SLS",
+      "company": "셀라스 라이프 사이언스 그룹",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -8407000.0,
+      "revenueActual": 0.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.05,
+      "epsEstimate": -0.0404
     },
     {
       "ticker": "SMCI",
@@ -34091,10 +34171,11 @@
       "epsEstimate": 7.305,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "netIncomeActual": 932000000.0,
+      "revenueActual": 9457000000.0
     },
     {
       "ticker": "CMS",
@@ -35756,10 +35837,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -37560,6 +37642,20 @@
       "netIncomeActual": 734000000.0
     },
     {
+      "ticker": "NSIT",
+      "company": "인사이트 엔터프라이지즈",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 2399497000.0,
+      "netIncomeActual": 77569000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 3.86,
+      "epsEstimate": 2.9861
+    },
+    {
       "ticker": "NTAP",
       "company": "넷앱",
       "date": "2026-06-30",
@@ -38707,6 +38803,20 @@
       "periodEnd": "2026-06-30",
       "netIncomeActual": 786000000.0,
       "revenueActual": 8972000000.0
+    },
+    {
+      "ticker": "SLS",
+      "company": "셀라스 라이프 사이언스 그룹",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -9605000.0,
+      "revenueActual": 0.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.05,
+      "epsEstimate": -0.0455
     },
     {
       "ticker": "SMCI",
@@ -48365,7 +48475,7 @@
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
       "epsActual": 1.72,
-      "epsEstimate": 1.9126
+      "epsEstimate": 1.9234
     },
     {
       "ticker": "AXP",
@@ -49132,7 +49242,7 @@
       "company": "커민스",
       "date": "2026-09-30",
       "dateKind": "period-end",
-      "epsActual": 8.255,
+      "epsActual": 8.25,
       "epsEstimate": 8.2782,
       "status": "reported",
       "trackingTier": "core-index",
@@ -52544,6 +52654,20 @@
       "epsEstimate": 3.5056
     },
     {
+      "ticker": "NSIT",
+      "company": "인사이트 엔터프라이지즈",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 2441510000.0,
+      "netIncomeActual": 22161000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 3.59,
+      "epsEstimate": 2.907
+    },
+    {
       "ticker": "NTAP",
       "company": "넷앱",
       "date": "2026-09-30",
@@ -53532,6 +53656,20 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Finnhub Company Earnings"
+    },
+    {
+      "ticker": "SLS",
+      "company": "셀라스 라이프 사이언스 그룹",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -10091000.0,
+      "revenueActual": 0.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.05,
+      "epsEstimate": -0.0505
     },
     {
       "ticker": "SMCI",
@@ -54675,18 +54813,6 @@
       "revenueEstimate": 486098567.0,
       "status": "scheduled",
       "trackingTier": "calendar",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "HD",
-      "company": "홈디포",
-      "date": "2026-11-17",
-      "quarter": 3,
-      "year": 2027,
-      "epsEstimate": 4.0834,
-      "revenueEstimate": 44049696663.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -111997,7 +112123,7 @@
       "epsEstimate": 0.7032,
       "revenueEstimate": 290184216.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -112785,7 +112911,7 @@
       "epsEstimate": 0.4007,
       "revenueEstimate": 177203967.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -113564,7 +113690,7 @@
       "epsEstimate": 1.7593,
       "revenueEstimate": 734676110.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -113576,7 +113702,7 @@
       "epsEstimate": -0.0714,
       "revenueEstimate": 70315403.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -113693,7 +113819,7 @@
       "epsEstimate": 0.1952,
       "revenueEstimate": 94301376.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -113765,7 +113891,7 @@
       "epsEstimate": -0.0769,
       "revenueEstimate": 136634508.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -113859,7 +113985,7 @@
       "epsEstimate": -1.2524,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -113975,7 +114101,7 @@
       "epsEstimate": 2.4067,
       "revenueEstimate": 77657700.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -116459,7 +116585,7 @@
       "epsEstimate": 0.1049,
       "revenueEstimate": 533268435.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117149,7 +117275,7 @@
       "epsEstimate": -0.137,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117600,7 +117726,7 @@
       "epsEstimate": 0.1607,
       "revenueEstimate": 201529815.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117913,7 +118039,7 @@
       "epsEstimate": -0.0498,
       "revenueEstimate": 177303764.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118236,7 +118362,7 @@
       "year": 2027,
       "epsEstimate": -0.0505,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118352,7 +118478,7 @@
       "epsEstimate": -0.0548,
       "revenueEstimate": 315745614.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118911,7 +119037,7 @@
       "quarter": 1,
       "year": 2027,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118923,7 +119049,7 @@
       "epsEstimate": -0.699,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119243,7 +119369,7 @@
       "epsEstimate": 1.7679,
       "revenueEstimate": 620694602.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119405,7 +119531,7 @@
       "epsEstimate": 0.2404,
       "revenueEstimate": 441074746.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
