@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-19T04:42:20.966025+00:00",
+    "generatedAt": "2026-11-19T21:08:31.184179+00:00",
     "status": "ok",
     "from": "2026-10-05",
     "to": "2027-05-18",
-    "count": 9394,
+    "count": 9393,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 603,
+      "trackedUniverseCount": 602,
       "supplementalTickerCount": 152,
-      "supplementalEventCount": 866,
+      "supplementalEventCount": 871,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -35858,11 +35858,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
@@ -55088,18 +55087,6 @@
       "revenueEstimate": 1113840000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "WMT",
-      "company": "월마트",
-      "date": "2026-11-19",
-      "quarter": 3,
-      "year": 2027,
-      "epsEstimate": 0.6884,
-      "revenueEstimate": 190227435889.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -111786,7 +111773,7 @@
       "epsEstimate": 0.3646,
       "revenueEstimate": 451820424.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117093,7 +117080,7 @@
       "epsEstimate": -0.137,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117544,7 +117531,7 @@
       "epsEstimate": 0.1607,
       "revenueEstimate": 201529815.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118284,7 +118271,7 @@
       "epsEstimate": -0.1501,
       "revenueEstimate": 8635116.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118867,7 +118854,7 @@
       "epsEstimate": -0.699,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119187,7 +119174,7 @@
       "epsEstimate": 1.7679,
       "revenueEstimate": 620694602.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119937,7 +119924,7 @@
       "epsEstimate": -0.1989,
       "revenueEstimate": 251328.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
