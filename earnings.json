@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-24T07:08:47.455254+00:00",
+    "generatedAt": "2026-11-24T07:18:45.840020+00:00",
     "status": "ok",
     "from": "2026-10-10",
     "to": "2027-05-23",
@@ -13,7 +13,7 @@
       ],
       "trackedUniverseCount": 578,
       "supplementalTickerCount": 144,
-      "supplementalEventCount": 808,
+      "supplementalEventCount": 811,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -33561,15 +33561,14 @@
       "ticker": "BEN",
       "company": "프랭클린 리소시스",
       "date": "2026-06-30",
-      "dateKind": "period-end",
+      "dateKind": "provider-period",
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
+      "source": "Finnhub Company Earnings",
       "epsActual": 0.72,
       "epsEstimate": 0.6781,
-      "periodEnd": "2026-06-30",
-      "revenueActual": 2358400000.0,
-      "netIncomeActual": 171500000.0
+      "quarter": 3,
+      "year": 2026
     },
     {
       "ticker": "BF-B",
@@ -35232,11 +35231,10 @@
       "epsEstimate": 3.1015,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 8531000000.0,
-      "netIncomeActual": 821000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "ETR",
@@ -35898,11 +35896,10 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals",
-      "dateKind": "period-end",
-      "periodEnd": "2026-06-30",
-      "revenueActual": 20338000000.0,
-      "netIncomeActual": 6628000000.0
+      "source": "Finnhub Company Earnings",
+      "dateKind": "provider-period",
+      "quarter": 2,
+      "year": 2026
     },
     {
       "ticker": "GWW",
