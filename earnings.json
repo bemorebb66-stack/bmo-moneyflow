@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-24T00:31:55.728030+00:00",
+    "generatedAt": "2026-11-24T07:08:47.455254+00:00",
     "status": "ok",
     "from": "2026-10-10",
     "to": "2027-05-23",
-    "count": 9416,
+    "count": 9421,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 590,
-      "supplementalTickerCount": 145,
-      "supplementalEventCount": 837,
+      "trackedUniverseCount": 578,
+      "supplementalTickerCount": 144,
+      "supplementalEventCount": 808,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -11463,6 +11463,18 @@
       "netIncomeActual": 398000000.0
     },
     {
+      "ticker": "KYMR",
+      "company": "키메라 테라퓨틱스",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 2764000.0,
+      "netIncomeActual": -82175000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "L",
       "company": "로우스",
       "date": "2025-09-30",
@@ -12110,7 +12122,7 @@
       "epsActual": 8.42,
       "epsEstimate": 8.3144,
       "status": "reported",
-      "trackingTier": "theme",
+      "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
       "dateKind": "period-end",
       "periodEnd": "2025-09-30",
@@ -19742,6 +19754,20 @@
       "netIncomeActual": 330000000.0
     },
     {
+      "ticker": "KYMR",
+      "company": "키메라 테라퓨틱스",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "revenueActual": 2870000.0,
+      "netIncomeActual": -86981000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.97,
+      "epsEstimate": -0.8122
+    },
+    {
       "ticker": "L",
       "company": "로우스",
       "date": "2025-12-31",
@@ -20428,7 +20454,7 @@
       "epsActual": -42.93,
       "epsEstimate": 3.0277,
       "status": "reported",
-      "trackingTier": "theme",
+      "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
       "dateKind": "period-end",
       "periodEnd": "2025-12-31",
@@ -28248,6 +28274,20 @@
       "netIncomeActual": 474000000.0
     },
     {
+      "ticker": "KYMR",
+      "company": "키메라 테라퓨틱스",
+      "date": "2026-03-31",
+      "periodEnd": "2026-03-31",
+      "dateKind": "period-end",
+      "revenueActual": 34365000.0,
+      "netIncomeActual": -69234000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.71,
+      "epsEstimate": -0.8993
+    },
+    {
       "ticker": "L",
       "company": "로우스",
       "date": "2026-03-31",
@@ -28934,7 +28974,7 @@
       "epsActual": -38.25,
       "epsEstimate": -4.3945,
       "status": "reported",
-      "trackingTier": "theme",
+      "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
       "dateKind": "period-end",
       "periodEnd": "2026-03-31",
@@ -35192,10 +35232,11 @@
       "epsEstimate": 3.1015,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 8531000000.0,
+      "netIncomeActual": 821000000.0
     },
     {
       "ticker": "ETR",
@@ -35857,10 +35898,11 @@
       "epsEstimate": 14.9103,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings",
-      "dateKind": "provider-period",
-      "quarter": 2,
-      "year": 2026
+      "source": "Yahoo Finance quarterly fundamentals",
+      "dateKind": "period-end",
+      "periodEnd": "2026-06-30",
+      "revenueActual": 20338000000.0,
+      "netIncomeActual": 6628000000.0
     },
     {
       "ticker": "GWW",
@@ -36748,6 +36790,20 @@
       "netIncomeActual": 456000000.0
     },
     {
+      "ticker": "KYMR",
+      "company": "키메라 테라퓨틱스",
+      "date": "2026-06-30",
+      "periodEnd": "2026-06-30",
+      "dateKind": "period-end",
+      "revenueActual": 65000000.0,
+      "netIncomeActual": -61211000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.62,
+      "epsEstimate": -0.7273
+    },
+    {
       "ticker": "L",
       "company": "로우스",
       "date": "2026-06-30",
@@ -37432,7 +37488,7 @@
       "epsActual": -24.77,
       "epsEstimate": -7.6698,
       "status": "reported",
-      "trackingTier": "theme",
+      "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
       "dateKind": "period-end",
       "periodEnd": "2026-06-30",
@@ -48356,14 +48412,15 @@
       "ticker": "APD",
       "company": "에어 프로덕츠 앤 케미컬스",
       "date": "2026-09-30",
-      "quarter": 4,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 3.61,
       "epsEstimate": 3.6466,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 584300000.0,
+      "revenueActual": 3555600000.0
     },
     {
       "ticker": "APH",
@@ -48487,7 +48544,9 @@
       "netIncomeActual": 198978000.0,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Yahoo Finance quarterly fundamentals"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 1.09,
+      "epsEstimate": 1.169
     },
     {
       "ticker": "AVGO",
@@ -51839,6 +51898,20 @@
       "source": "Finnhub Company Earnings"
     },
     {
+      "ticker": "KYMR",
+      "company": "키메라 테라퓨틱스",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 0.0,
+      "netIncomeActual": -131999000.0,
+      "status": "reported",
+      "trackingTier": "popular-small-cap",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -1.32,
+      "epsEstimate": -1.2958
+    },
+    {
       "ticker": "L",
       "company": "로우스",
       "date": "2026-09-30",
@@ -52512,7 +52585,7 @@
       "epsActual": 44.75,
       "epsEstimate": 24.4997,
       "status": "reported",
-      "trackingTier": "theme",
+      "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals",
       "periodEnd": "2026-09-30",
       "revenueActual": 125427000.0,
@@ -55087,6 +55160,18 @@
       "source": "Yahoo Finance quarterly fundamentals"
     },
     {
+      "ticker": "HD",
+      "company": "홈디포",
+      "date": "2026-10-31",
+      "periodEnd": "2026-10-31",
+      "dateKind": "period-end",
+      "revenueActual": 43398000000.0,
+      "netIncomeActual": 3713000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "INTU",
       "company": "인튜이트",
       "date": "2026-10-31",
@@ -55615,19 +55700,6 @@
       "revenueEstimate": 791941000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
-      "source": "Finnhub Earnings Calendar"
-    },
-    {
-      "ticker": "HPE",
-      "company": "휴렛패커드 엔터프라이즈",
-      "date": "2026-12-02",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsEstimate": 1.0664,
-      "revenueEstimate": 13049254772.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -116701,7 +116773,7 @@
       "epsEstimate": -0.1443,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117537,7 +117609,7 @@
       "epsEstimate": -0.0491,
       "revenueEstimate": 185046502.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118580,8 +118652,8 @@
       "date": "2027-05-11",
       "quarter": 1,
       "year": 2027,
-      "epsEstimate": -0.7874,
-      "revenueEstimate": 1917891577.0,
+      "epsEstimate": -0.8721,
+      "revenueEstimate": 1815549948.0,
       "status": "scheduled",
       "trackingTier": "core-index",
       "source": "Finnhub Earnings Calendar"
@@ -119232,7 +119304,7 @@
       "epsEstimate": 1.4832,
       "revenueEstimate": 609710824.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119799,7 +119871,7 @@
       "epsEstimate": -0.5814,
       "revenueEstimate": 1530000.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -120217,7 +120289,7 @@
       "epsEstimate": 3.4088,
       "revenueEstimate": 1029217775.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -120374,7 +120446,7 @@
       "epsEstimate": 1.4514,
       "revenueEstimate": 1618262466.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
