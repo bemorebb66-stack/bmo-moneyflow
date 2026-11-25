@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-25T05:52:39.742382+00:00",
+    "generatedAt": "2026-11-25T22:06:31.454935+00:00",
     "status": "ok",
     "from": "2026-10-11",
     "to": "2027-05-24",
@@ -11,9 +11,9 @@
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 604,
+      "trackedUniverseCount": 603,
       "supplementalTickerCount": 147,
-      "supplementalEventCount": 849,
+      "supplementalEventCount": 855,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -12676,8 +12676,8 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "dateKind": "period-end",
       "periodEnd": "2025-09-30",
-      "revenueActual": 108276512000.0,
-      "netIncomeActual": 29328184000.0
+      "revenueActual": 108277000000.0,
+      "netIncomeActual": 29327000000.0
     },
     {
       "ticker": "PEG",
@@ -53236,6 +53236,20 @@
       "epsEstimate": 0.4229
     },
     {
+      "ticker": "PDD",
+      "company": "핀둬둬 ADR",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 108341000000.0,
+      "netIncomeActual": 29541000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 21.04,
+      "epsEstimate": 19.213
+    },
+    {
       "ticker": "PEG",
       "company": "퍼블릭 서비스 엔터프라이즈",
       "date": "2026-09-30",
@@ -55289,19 +55303,6 @@
       "status": "reported",
       "trackingTier": "core-index",
       "source": "Yahoo Finance quarterly fundamentals"
-    },
-    {
-      "ticker": "DE",
-      "company": "디어",
-      "date": "2026-11-25",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsEstimate": 4.5759,
-      "revenueEstimate": 11243499806.0,
-      "status": "scheduled",
-      "trackingTier": "core-index",
-      "source": "Finnhub Earnings Calendar"
     },
     {
       "ticker": "NAT",
@@ -116145,7 +116146,7 @@
       "epsEstimate": -0.3338,
       "revenueEstimate": 8232083.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -116835,7 +116836,7 @@
       "epsEstimate": -0.1443,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117334,7 +117335,7 @@
       "epsEstimate": 0.1607,
       "revenueEstimate": 201529815.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117671,7 +117672,7 @@
       "epsEstimate": -0.0491,
       "revenueEstimate": 185046502.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118739,7 +118740,7 @@
       "epsEstimate": -0.699,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118882,7 +118883,7 @@
       "epsEstimate": -0.4106,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119026,7 +119027,7 @@
       "epsEstimate": 1.428,
       "revenueEstimate": 2448000.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119169,7 +119170,7 @@
       "epsEstimate": -1.1949,
       "revenueEstimate": 35439696.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119366,7 +119367,7 @@
       "epsEstimate": 1.4832,
       "revenueEstimate": 609710824.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119933,7 +119934,7 @@
       "epsEstimate": -0.5814,
       "revenueEstimate": 1530000.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -120533,7 +120534,7 @@
       "epsEstimate": 0.944,
       "revenueEstimate": 2668442401.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
