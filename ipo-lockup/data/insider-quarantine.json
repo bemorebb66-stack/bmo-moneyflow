@@ -1,48 +1,9 @@
 {
   "meta": {
-    "generatedAt": "2026-11-12T12:11:38.504273+00:00",
-    "count": 470
+    "generatedAt": "2026-11-25T14:15:28.214097+00:00",
+    "count": 581
   },
   "pendingTrades": [
-    {
-      "ticker": "SIBN",
-      "company": "SI-BONE, Inc.",
-      "filer": "PISETSKY MICHAEL A.",
-      "role": "SVP, Ops & Adm/Chief Legal Ofr",
-      "txType": "매도",
-      "shares": 12349,
-      "price": 25.0776,
-      "txDate": "2026-11-04",
-      "filedDate": "2026-11-09",
-      "accession": "0001754765-26-000010",
-      "sourceAccessions": [
-        "0001754765-26-000010"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1754765/000175476526000010/primarydocument.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_TRANSACTION_NOT_FOUND",
-      "severity": "critical"
-    },
-    {
-      "ticker": "SIBN",
-      "company": "SI-BONE, Inc.",
-      "filer": "PISETSKY MICHAEL A.",
-      "role": "SVP, Ops & Adm/Chief Legal Ofr",
-      "txType": "매도",
-      "shares": 23892,
-      "price": 24.7849,
-      "txDate": "2026-11-04",
-      "filedDate": "2026-11-09",
-      "accession": "0001754765-26-000010",
-      "sourceAccessions": [
-        "0001754765-26-000009",
-        "0001754765-26-000010"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1754765/000175476526000010/primarydocument.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "AMENDMENT_UNRESOLVED_ORIGINAL",
-      "severity": "critical"
-    },
     {
       "ticker": "SLBT",
       "company": "SL Science Holding Ltd",
@@ -203,40 +164,6 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "PSX",
-      "company": "Phillips 66",
-      "filer": "Sutherland Vanessa Allen",
-      "role": "EVP, GC and Secretary",
-      "txType": "매도",
-      "shares": 3523,
-      "price": 2110482,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-21",
-      "accession": "0001534701-26-000026",
-      "sourceAccessions": [
-        "0001534701-26-000026"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1534701/000153470126000026/wk-form4_1784672731.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
-          "severity": "critical",
-          "observedPrice": "2110482",
-          "expectedLow": "211.00",
-          "expectedHigh": "211.05"
-        },
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "209.3800048828125",
-          "marketHigh": "212.38999938964844"
-        }
-      ],
-      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -713,33 +640,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "UUU",
-      "company": "UNIVERSAL SAFETY PRODUCTS, INC.",
-      "filer": "AULT MILTON C III",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 18000,
-      "price": 5134,
-      "txDate": "2026-09-30",
-      "filedDate": "2026-10-01",
-      "accession": "0001214659-26-012438",
-      "sourceAccessions": [
-        "0001214659-26-012438"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1212502/000121465926012438/doc4.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "4.71999979019165",
-          "marketHigh": "5.5"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "BEKE",
       "company": "KE Holdings Inc.",
       "filer": "Peng Yongdong",
@@ -765,6 +665,762 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1567.2555,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 9604,
+      "price": 1568.9988,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 910,
+      "price": 1570.0407,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 4558,
+      "price": 1571.2108,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1157,
+      "price": 1572.6026,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 306,
+      "price": 1573.1541,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 2588,
+      "price": 1574.5674,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 2778,
+      "price": 1575.5829,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 4139,
+      "price": 1576.8204,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 2876,
+      "price": 1578.3401,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 640,
+      "price": 1579.405,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1480,
+      "price": 1580.2465,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1080,
+      "price": 1583.7989,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1520,
+      "price": 1585.8487,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 165,
+      "price": 1587,
+      "txDate": "2026-09-17",
+      "filedDate": "2026-09-21",
+      "accession": "0001242648-26-000041",
+      "sourceAccessions": [
+        "0001242648-26-000041"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000041/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "195.5625",
+          "marketHigh": "203.16937255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 14364,
+      "price": 1522.5874,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 181,
+      "price": 1522.87,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 3075,
+      "price": 1524.2678,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 2280,
+      "price": 1526.4463,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 4080,
+      "price": 1528.4464,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 359,
+      "price": 1529.36,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1200,
+      "price": 1532.17,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 700,
+      "price": 1535.1168,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1695,
+      "price": 1535.9626,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 3200,
+      "price": 1537.6776,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 1480,
+      "price": 1539.19,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 864,
+      "price": 1540.7796,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Goeckeler David",
+      "role": "Chairman & CEO",
+      "txType": "매도",
+      "shares": 360,
+      "price": 1541.8811,
+      "txDate": "2026-09-14",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000032",
+      "sourceAccessions": [
+        "0001242648-26-000032"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1713941/000124264826000032/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.125",
+          "marketHigh": "197.72998046875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "KNOP",
@@ -956,54 +1612,54 @@
       "severity": "critical"
     },
     {
-      "ticker": "TYG",
-      "company": "TORTOISE ENERGY INFRASTRUCTURE CORP",
-      "filer": "PRUDENTIAL FINANCIAL INC",
-      "role": "10%대주주",
+      "ticker": "BH",
+      "company": "Biglari Holdings Inc.",
+      "filer": "BIGLARI, SARDAR",
+      "role": "Chairman and CEO",
       "txType": "매수",
-      "shares": 3000000,
-      "price": 10,
-      "txDate": "2026-07-15",
-      "filedDate": "2026-07-17",
-      "accession": "0001137774-26-000159",
+      "shares": 171,
+      "price": 1823.63,
+      "txDate": "2026-11-19",
+      "filedDate": "2026-11-23",
+      "accession": "0000921895-26-003247",
       "sourceAccessions": [
-        "0001137774-26-000159"
+        "0000921895-26-003247"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000159/primary_doc.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1334429/000092189526003247/form408106003_11232026.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_REVIEW",
           "severity": "review",
-          "marketLow": "43.400001525878906",
-          "marketHigh": "44.0"
+          "marketLow": "360.20001220703125",
+          "marketHigh": "374.0"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
     },
     {
-      "ticker": "TYG",
-      "company": "TORTOISE ENERGY INFRASTRUCTURE CORP",
-      "filer": "PRUDENTIAL FINANCIAL INC",
-      "role": "10%대주주",
+      "ticker": "BH",
+      "company": "Biglari Holdings Inc.",
+      "filer": "BIGLARI, SARDAR",
+      "role": "Chairman and CEO",
       "txType": "매수",
-      "shares": 3000000,
-      "price": 10,
-      "txDate": "2026-07-15",
-      "filedDate": "2026-07-17",
-      "accession": "0001137774-26-000159",
+      "shares": 640,
+      "price": 1795.41,
+      "txDate": "2026-11-20",
+      "filedDate": "2026-11-23",
+      "accession": "0000921895-26-003247",
       "sourceAccessions": [
-        "0001137774-26-000159"
+        "0000921895-26-003247"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000159/primary_doc.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1334429/000092189526003247/form408106003_11232026.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_REVIEW",
           "severity": "review",
-          "marketLow": "43.400001525878906",
-          "marketHigh": "44.0"
+          "marketLow": "348.6099853515625",
+          "marketHigh": "364.79998779296875"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -1415,21 +2071,20 @@
       "severity": "critical"
     },
     {
-      "ticker": "DBX",
-      "company": "DROPBOX, INC.",
-      "filer": "Houston Andrew",
-      "role": "Co-CEO",
-      "txType": "매도",
+      "ticker": "IMDX",
+      "company": "Insight Molecular Diagnostics Inc.",
+      "filer": "BROADWOOD PARTNERS, L.P.",
+      "role": "10%대주주",
+      "txType": "매수",
       "shares": 0,
       "price": 0,
-      "txDate": "2026-11-02",
-      "filedDate": "2026-11-09",
-      "accession": "0001734563-26-000026",
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-19",
+      "accession": "0000919574-26-008199",
       "sourceAccessions": [
-        "0001734563-26-000024",
-        "0001734563-26-000026"
+        "0000919574-26-008199"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1467623/000173456326000026/wk-form4a_1794268338.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1278387/000091957426008199/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
@@ -1443,8 +2098,8 @@
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "35.55500030517578",
-          "marketHigh": "36.209999084472656"
+          "marketLow": "1.6339999437332153",
+          "marketHigh": "1.7999999523162842"
         }
       ],
       "reasonCode": "INVALID_SHARES",
@@ -1673,6 +2328,60 @@
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
+    },
+    {
+      "ticker": "BH",
+      "company": "Biglari Holdings Inc.",
+      "filer": "BIGLARI, SARDAR",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 1017,
+      "price": 1727.65,
+      "txDate": "2026-11-11",
+      "filedDate": "2026-11-13",
+      "accession": "0000921895-26-003050",
+      "sourceAccessions": [
+        "0000921895-26-003050"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1334429/000092189526003050/form408106003_11122026.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "345.0",
+          "marketHigh": "364.6000061035156"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BH",
+      "company": "Biglari Holdings Inc.",
+      "filer": "BIGLARI, SARDAR",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 2012,
+      "price": 1767.99,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-13",
+      "accession": "0000921895-26-003050",
+      "sourceAccessions": [
+        "0000921895-26-003050"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1334429/000092189526003050/form408106003_11122026.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "353.2099914550781",
+          "marketHigh": "364.05999755859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "CHW",
@@ -2138,6 +2847,816 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1513.23,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1515.045,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 52,
+      "price": 1517.6823,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 68,
+      "price": 1519.2312,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1520.93,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1522.1,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1523.605,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1526.81,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1527.58,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1529.705,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1530.52,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1532.02,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 120,
+      "price": 1533.69,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1534.48,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1535.655,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 160,
+      "price": 1537.4875,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1538.41,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1539.61,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1541.005,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1542.675,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 2594,
+      "price": 1543.7634,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1546.02,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1547.46,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1548.85,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1550.48,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 120,
+      "price": 1553.35,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1554.02,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 78,
+      "price": 1555.5677,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 80,
+      "price": 1557.785,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Ilkbahar Alper",
+      "role": "EVP & Chief Technology Officer",
+      "txType": "매도",
+      "shares": 40,
+      "price": 1558.9,
+      "txDate": "2026-09-03",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000028",
+      "sourceAccessions": [
+        "0001242648-26-000028"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2059630/000124264826000028/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "188.875",
+          "marketHigh": "197.10000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -2822,6 +4341,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "LILA",
+      "company": "Liberty Latin America Ltd.",
+      "filer": "DE ANGOITIA ALFONSO",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 161,
+      "price": 20.05,
+      "txDate": "2026-11-09",
+      "filedDate": "2026-11-12",
+      "accession": "0001724519-26-000014",
+      "sourceAccessions": [
+        "0001724519-26-000014"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1724519/000172451926000014/wk-form4_1794517842.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "8.904999732971191",
+          "marketHigh": "9.319999694824219"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "BABA",
       "company": "Alibaba Group Holding Ltd",
       "filer": "Wu Yongming",
@@ -2877,6 +4423,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "BEKE",
+      "company": "KE Holdings Inc.",
+      "filer": "Xu Wangang",
+      "role": "Executive Director",
+      "txType": "매도",
+      "shares": 750000,
+      "price": 6.1289,
+      "txDate": "2026-11-18",
+      "filedDate": "2026-11-20",
+      "accession": "0001193125-26-469246",
+      "sourceAccessions": [
+        "0001193125-26-469246"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1809587/000119312526469246/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "18.0",
+          "marketHigh": "18.510000228881836"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "PAM",
       "company": "Pampa Energy Inc.",
       "filer": "Mindlin Marcos Marcelo",
@@ -2929,6 +4502,60 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "BH",
+      "company": "Biglari Holdings Inc.",
+      "filer": "BIGLARI, SARDAR",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 70,
+      "price": 1796.84,
+      "txDate": "2026-11-16",
+      "filedDate": "2026-11-18",
+      "accession": "0000921895-26-003217",
+      "sourceAccessions": [
+        "0000921895-26-003217"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1334429/000092189526003217/form408106003_11182026.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "350.5799865722656",
+          "marketHigh": "364.1600036621094"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BH",
+      "company": "Biglari Holdings Inc.",
+      "filer": "BIGLARI, SARDAR",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 70,
+      "price": 1799.84,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-18",
+      "accession": "0000921895-26-003217",
+      "sourceAccessions": [
+        "0000921895-26-003217"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1334429/000092189526003217/form408106003_11182026.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "359.25",
+          "marketHigh": "372.9200134277344"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "NIVF",
@@ -3039,31 +4666,31 @@
       "severity": "critical"
     },
     {
-      "ticker": "ZSTK",
-      "company": "ZeroStack Corp.",
-      "filer": "Heinrich Michael",
-      "role": "Executive Chairman",
-      "txType": "매수",
-      "shares": 4608575,
-      "price": 0.7549,
-      "txDate": "2026-07-20",
-      "filedDate": "2026-07-20",
-      "accession": "0000912282-26-000998",
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Shek Bernard",
+      "role": "Chief Legal Officer & Secty",
+      "txType": "매도",
+      "shares": 2308,
+      "price": 1767.33,
+      "txDate": "2026-09-08",
+      "filedDate": "2026-09-08",
+      "accession": "0001242648-26-000027",
       "sourceAccessions": [
-        "0000912282-26-000998"
+        "0001242648-26-000027"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2093136/000091228226000998/form4.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2023554/000124264826000027/edgardoc.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "1.6440000534057617",
-          "marketHigh": "1.690000057220459"
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "216.72250366210938",
+          "marketHigh": "225.92250061035156"
         }
       ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
     },
     {
       "ticker": "LILA",
@@ -3312,33 +4939,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "ASX",
-      "company": "ASE Technology Holding Co., Ltd.",
-      "filer": "Uang Du-Tsuen",
-      "role": "Chief Administration Officer",
-      "txType": "매도",
-      "shares": 3000,
-      "price": 665,
-      "txDate": "2026-07-22",
-      "filedDate": "2026-07-24",
-      "accession": "0000950103-26-011125",
-      "sourceAccessions": [
-        "0000950103-26-011125"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1122411/000095010326011125/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "39.099998474121094",
-          "marketHigh": "40.810001373291016"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "BBD",
       "company": "BANK BRADESCO",
       "filer": "Paris Roberto de Jesus",
@@ -3420,27 +5020,27 @@
       "severity": "critical"
     },
     {
-      "ticker": "TM",
-      "company": "TOYOTA MOTOR CORP/",
-      "filer": "Sato Koji",
-      "role": "Vice Chairman",
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Visoso Luis Felipe",
+      "role": "EVP & CFO",
       "txType": "매도",
-      "shares": 88600,
-      "price": 17.83,
-      "txDate": "2026-06-17",
-      "filedDate": "2026-07-20",
-      "accession": "0000947871-26-000712",
+      "shares": 1000,
+      "price": 1568.83,
+      "txDate": "2026-09-15",
+      "filedDate": "2026-09-16",
+      "accession": "0001242648-26-000033",
       "sourceAccessions": [
-        "0000947871-26-000712"
+        "0001242648-26-000033"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119473/000094787126000712/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2023554/000124264826000033/edgardoc.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "172.72000122070312",
-          "marketHigh": "176.67999267578125"
+          "marketLow": "188.64251708984375",
+          "marketHigh": "197.49874877929688"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -3471,6 +5071,41 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "LCTX",
+      "company": "Lineage Cell Therapeutics, Inc.",
+      "filer": "BROADWOOD PARTNERS, L.P.",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 0,
+      "price": 0,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-19",
+      "accession": "0000919574-26-008200",
+      "sourceAccessions": [
+        "0000919574-26-008200"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1278387/000091957426008200/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "INVALID_SHARES",
+          "severity": "critical"
+        },
+        {
+          "code": "INVALID_PRICE",
+          "severity": "critical"
+        },
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "0.7699999809265137",
+          "marketHigh": "0.8799999952316284"
+        }
+      ],
+      "reasonCode": "INVALID_SHARES",
       "severity": "critical"
     },
     {
@@ -3576,6 +5211,33 @@
           "severity": "critical",
           "marketLow": "109.55999755859375",
           "marketHigh": "111.2249984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FMX",
+      "company": "MEXICAN ECONOMIC DEVELOPMENT INC",
+      "filer": "Astaburuaga Sanjines Javier Gerardo",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 100000,
+      "price": 13.105,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-19",
+      "accession": "0001628280-26-075160",
+      "sourceAccessions": [
+        "0001628280-26-075160"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119324/000162828026075160/wk-form4_1795137195.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "129.0500030517578",
+          "marketHigh": "133.35000610351562"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -4203,6 +5865,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Shek Bernard",
+      "role": "Chief Legal Officer & Secty",
+      "txType": "매도",
+      "shares": 600,
+      "price": 1525.6,
+      "txDate": "2026-09-01",
+      "filedDate": "2026-09-02",
+      "accession": "0001363249-26-000074",
+      "sourceAccessions": [
+        "0001363249-26-000074"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2023554/000136324926000074/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "189.125",
+          "marketHigh": "201.20062255859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "BERHO CARRANZA LORENZO DOMINIQUE",
@@ -4448,6 +6137,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "SOTTIL ACHUTEGUI JUAN FELIPE",
+      "role": "CHIEF FINANCIAL OFFICER",
+      "txType": "매도",
+      "shares": 200000,
+      "price": 3.8,
+      "txDate": "2026-11-10",
+      "filedDate": "2026-11-12",
+      "accession": "0002117779-26-000005",
+      "sourceAccessions": [
+        "0002117779-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117779/000211777926000005/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.68000030517578",
+          "marketHigh": "38.3650016784668"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "LILA",
       "company": "Liberty Latin America Ltd.",
       "filer": "MALONE JOHN C",
@@ -4604,6 +6320,60 @@
           "severity": "critical",
           "marketLow": "37.54999923706055",
           "marketHigh": "38.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Shek Bernard",
+      "role": "Chief Legal Officer & Secty",
+      "txType": "매도",
+      "shares": 600,
+      "price": 1162.16,
+      "txDate": "2026-08-03",
+      "filedDate": "2026-08-04",
+      "accession": "0001363249-26-000058",
+      "sourceAccessions": [
+        "0001363249-26-000058"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2023554/000136324926000058/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "140.1581268310547",
+          "marketHigh": "164.55624389648438"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Shek Bernard",
+      "role": "Chief Legal Officer and Secty",
+      "txType": "매도",
+      "shares": 600,
+      "price": 1158.26,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-03",
+      "accession": "0001242648-26-000049",
+      "sourceAccessions": [
+        "0001242648-26-000049"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2023554/000124264826000049/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "133.42501831054688",
+          "marketHigh": "144.9131317138672"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -4961,6 +6731,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "RCT",
+      "company": "RedCloud Holdings plc",
+      "filer": "Senn Nikolaus Beat",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 2500000,
+      "price": 0.25,
+      "txDate": "2026-08-27",
+      "filedDate": "2026-09-02",
+      "accession": "0001493152-26-041236",
+      "sourceAccessions": [
+        "0001493152-26-041236"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2027360/000149315226041236/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "19.299999237060547",
+          "marketHigh": "21.200000762939453"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ENHA",
       "company": "Enhanced Group Inc.",
       "filer": "Apeiron Investment Group Ltd.",
@@ -5177,6 +6974,60 @@
       "severity": "review"
     },
     {
+      "ticker": "SNDK",
+      "company": "Sandisk Corp",
+      "filer": "Shek Bernard",
+      "role": "Chief Legal Officer and Secty",
+      "txType": "매도",
+      "shares": 600,
+      "price": 1734.94,
+      "txDate": "2026-10-01",
+      "filedDate": "2026-10-02",
+      "accession": "0001242648-26-000045",
+      "sourceAccessions": [
+        "0001242648-26-000045"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2023554/000124264826000045/edgardoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "213.5",
+          "marketHigh": "225.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "FCNCA",
+      "company": "FIRST CITIZENS BANCSHARES INC /DE/",
+      "filer": "Alemany Ellen R",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 30000,
+      "price": 17.34,
+      "txDate": "2026-11-19",
+      "filedDate": "2026-11-23",
+      "accession": "0001193125-26-471975",
+      "sourceAccessions": [
+        "0001193125-26-471975"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1537972/000119312526471975/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "2141.659912109375",
+          "marketHigh": "2288.449951171875"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PAM",
       "company": "Pampa Energy Inc.",
       "filer": "Mindlin Marcos Marcelo",
@@ -5198,6 +7049,33 @@
           "severity": "critical",
           "marketLow": "79.91000366210938",
           "marketHigh": "81.80999755859375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CORONA LORENZO MANUEL",
+      "role": "Executive Chairman Board",
+      "txType": "매도",
+      "shares": 128959,
+      "price": 3.77,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-13",
+      "accession": "0002124256-26-000006",
+      "sourceAccessions": [
+        "0002124256-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2124256/000212425626000006/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.18000030517578",
+          "marketHigh": "38.11000061035156"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -5366,6 +7244,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "RCT",
+      "company": "RedCloud Holdings plc",
+      "filer": "Senn Nikolaus Beat",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 1700000,
+      "price": 0.25,
+      "txDate": "2026-10-28",
+      "filedDate": "2026-10-28",
+      "accession": "0001493152-26-048958",
+      "sourceAccessions": [
+        "0001493152-26-048958"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2027360/000149315226048958/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "5.099999904632568",
+          "marketHigh": "8.0"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ENHA",
       "company": "Enhanced Group Inc.",
       "filer": "Apeiron Investment Group Ltd.",
@@ -5441,6 +7346,87 @@
           "severity": "critical",
           "marketLow": "0.6000000238418579",
           "marketHigh": "0.8899999856948853"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 3.79,
+      "txDate": "2026-11-09",
+      "filedDate": "2026-11-12",
+      "accession": "0002118015-26-000009",
+      "sourceAccessions": [
+        "0002118015-26-000009"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000009/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.54999923706055",
+          "marketHigh": "38.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 3065,
+      "price": 3.85,
+      "txDate": "2026-11-09",
+      "filedDate": "2026-11-12",
+      "accession": "0002118015-26-000009",
+      "sourceAccessions": [
+        "0002118015-26-000009"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000009/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.54999923706055",
+          "marketHigh": "38.5"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "Berho Carranza Diego",
+      "role": "Chief Portfolio Officer",
+      "txType": "매도",
+      "shares": 50000,
+      "price": 3.83,
+      "txDate": "2026-11-10",
+      "filedDate": "2026-11-12",
+      "accession": "0002118015-26-000009",
+      "sourceAccessions": [
+        "0002118015-26-000009"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2118015/000211801526000009/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.68000030517578",
+          "marketHigh": "38.3650016784668"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -5528,6 +7514,33 @@
       "severity": "review"
     },
     {
+      "ticker": "SENEA",
+      "company": "Seneca Foods Corp",
+      "filer": "Erstad Dean Everett",
+      "role": "Senior VP Sales & Marketing",
+      "txType": "매도",
+      "shares": 1587,
+      "price": 206.16,
+      "txDate": "2026-09-04",
+      "filedDate": "2026-09-08",
+      "accession": "0001437749-26-029826",
+      "sourceAccessions": [
+        "0001437749-26-029826"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1348504/000143774926029826/rdgdoc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "39.141998291015625",
+          "marketHigh": "40.91400146484375"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "PGNY",
       "company": "Progyny, Inc.",
       "filer": "GORDON KEVIN K",
@@ -5585,25 +7598,25 @@
     {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Tien Bor-Zen",
+      "filer": "Lu Lee-Chung",
       "role": "VP",
       "txType": "매수",
-      "shares": 1000,
-      "price": 74.13,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-23",
-      "accession": "0001046179-26-000457",
+      "shares": 2000,
+      "price": 60.57,
+      "txDate": "2026-11-20",
+      "filedDate": "2026-11-20",
+      "accession": "0002114032-26-000002",
       "sourceAccessions": [
-        "0001046179-26-000457"
+        "0002114032-26-000002"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114032/000211403226000002/wk-form4_1795172790.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "413.55999755859375",
-          "marketHigh": "425.3999938964844"
+          "marketLow": "318.4800109863281",
+          "marketHigh": "343.75"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -5612,83 +7625,299 @@
     {
       "ticker": "TSM",
       "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Tien Bor-Zen",
+      "filer": "Lu Lee-Chung",
       "role": "VP",
       "txType": "매수",
-      "shares": 1000,
-      "price": 73.98,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-23",
-      "accession": "0001046179-26-000457",
+      "shares": 3000,
+      "price": 60.57,
+      "txDate": "2026-11-20",
+      "filedDate": "2026-11-20",
+      "accession": "0002114032-26-000002",
       "sourceAccessions": [
-        "0001046179-26-000457"
+        "0002114032-26-000002"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114032/000211403226000002/wk-form4_1795172790.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "413.55999755859375",
-          "marketHigh": "425.3999938964844"
+          "marketLow": "318.4800109863281",
+          "marketHigh": "343.75"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
-      "ticker": "TSM",
-      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Tien Bor-Zen",
-      "role": "VP",
-      "txType": "매수",
-      "shares": 1000,
-      "price": 74.44,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-23",
-      "accession": "0001046179-26-000457",
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 10251,
+      "price": 0.3986,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
       "sourceAccessions": [
-        "0001046179-26-000457"
+        "0001213900-26-122253"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.3049999475479126",
+          "marketHigh": "1.649999976158142"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 147214,
+      "price": 0.2853,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.1549999713897705",
+          "marketHigh": "1.9500000476837158"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 2567,
+      "price": 0.2319,
+      "txDate": "2026-11-03",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "413.55999755859375",
-          "marketHigh": "425.3999938964844"
+          "marketLow": "1.350000023841858",
+          "marketHigh": "1.6299999952316284"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
-      "ticker": "TSM",
-      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Tien Bor-Zen",
-      "role": "VP",
-      "txType": "매수",
-      "shares": 1000,
-      "price": 74.75,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-23",
-      "accession": "0001046179-26-000457",
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 241063,
+      "price": 0.4505,
+      "txDate": "2026-11-11",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
       "sourceAccessions": [
-        "0001046179-26-000457"
+        "0001213900-26-122253"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000457/wk-form4_1784801765.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.1549999713897705",
+          "marketHigh": "2.950000047683716"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 213334,
+      "price": 0.375,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.3049999475479126",
+          "marketHigh": "1.649999976158142"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 204600,
+      "price": 0.4639,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.3049999475479126",
+          "marketHigh": "1.649999976158142"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 9180,
+      "price": 0.4005,
+      "txDate": "2026-10-30",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.3049999475479126",
+          "marketHigh": "1.649999976158142"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매수",
+      "shares": 147214,
+      "price": 0.285,
+      "txDate": "2026-11-02",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.1549999713897705",
+          "marketHigh": "1.9500000476837158"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 2654,
+      "price": 0.2327,
+      "txDate": "2026-11-03",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "413.55999755859375",
-          "marketHigh": "425.3999938964844"
+          "marketLow": "1.350000023841858",
+          "marketHigh": "1.6299999952316284"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "SMTK",
+      "company": "SmartKem, Inc.",
+      "filer": "Zaino Fredric Gordon",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 197549,
+      "price": 0.4505,
+      "txDate": "2026-11-11",
+      "filedDate": "2026-11-19",
+      "accession": "0001213900-26-122253",
+      "sourceAccessions": [
+        "0001213900-26-122253"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1817760/000121390026122253/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.1549999713897705",
+          "marketHigh": "2.950000047683716"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "BBD",
@@ -5743,6 +7972,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "SSII",
+      "company": "SS Innovations International, Inc.",
+      "filer": "Sudhir Srivastava",
+      "role": "Chairman and CEO",
+      "txType": "매수",
+      "shares": 100000,
+      "price": 3,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-17",
+      "accession": "0001213900-26-121405",
+      "sourceAccessions": [
+        "0001213900-26-121405"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1676163/000121390026121405/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.1200000047683716",
+          "marketHigh": "1.4299999475479126"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "IVHI",
@@ -5826,6 +8082,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "PUCHEU ROMERO ALEJANDRO",
+      "role": "CHIEF LEGAL COUNSEL",
+      "txType": "매도",
+      "shares": 70000,
+      "price": 3.78,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-13",
+      "accession": "0002117143-26-000007",
+      "sourceAccessions": [
+        "0002117143-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117143/000211714326000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.18000030517578",
+          "marketHigh": "38.11000061035156"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ETSY",
       "company": "ETSY INC",
       "filer": "Colburn Richard Edward III",
@@ -5875,6 +8158,33 @@
           "severity": "critical",
           "marketLow": "24.299999237060547",
           "marketHigh": "24.829999923706055"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "VTMX",
+      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
+      "filer": "BERHO CORONA LORENZO MANUEL",
+      "role": "Executive Chairman Board",
+      "txType": "매도",
+      "shares": 60875,
+      "price": 3.76,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-17",
+      "accession": "0002124256-26-000007",
+      "sourceAccessions": [
+        "0002124256-26-000007"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2124256/000212425626000007/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "37.3650016784668",
+          "marketHigh": "38.099998474121094"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -5943,6 +8253,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "BFH",
+      "company": "BREAD FINANCIAL HOLDINGS, INC.",
+      "filer": "Fawcett John J.",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 22.56,
+      "txDate": "2026-11-10",
+      "filedDate": "2026-11-12",
+      "accession": "0001614143-26-000008",
+      "sourceAccessions": [
+        "0001614143-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1101215/000161414326000008/wk-form4_1794501070.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "95.5199966430664",
+          "marketHigh": "99.7699966430664"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BFH",
+      "company": "BREAD FINANCIAL HOLDINGS, INC.",
+      "filer": "Fawcett John J.",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 22.64,
+      "txDate": "2026-11-10",
+      "filedDate": "2026-11-12",
+      "accession": "0001614143-26-000008",
+      "sourceAccessions": [
+        "0001614143-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1101215/000161414326000008/wk-form4_1794501070.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "95.5199966430664",
+          "marketHigh": "99.7699966430664"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "LILA",
       "company": "Liberty Latin America Ltd.",
       "filer": "MALONE JOHN C",
@@ -5991,6 +8355,60 @@
           "severity": "review",
           "marketLow": "8.5600004196167",
           "marketHigh": "9.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BFH",
+      "company": "BREAD FINANCIAL HOLDINGS, INC.",
+      "filer": "Beberman Perry S",
+      "role": "EVP, Chief Financial Officer",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 21.85,
+      "txDate": "2026-11-19",
+      "filedDate": "2026-11-20",
+      "accession": "0001869941-26-000008",
+      "sourceAccessions": [
+        "0001869941-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1101215/000186994126000008/wk-form4_1795180884.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "92.69000244140625",
+          "marketHigh": "98.1500015258789"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "BFH",
+      "company": "BREAD FINANCIAL HOLDINGS, INC.",
+      "filer": "Beberman Perry S",
+      "role": "EVP, Chief Financial Officer",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 22.23,
+      "txDate": "2026-11-19",
+      "filedDate": "2026-11-20",
+      "accession": "0001869941-26-000008",
+      "sourceAccessions": [
+        "0001869941-26-000008"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1101215/000186994126000008/wk-form4_1795180884.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "92.69000244140625",
+          "marketHigh": "98.1500015258789"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -6132,6 +8550,33 @@
       "severity": "review"
     },
     {
+      "ticker": "TIMB",
+      "company": "TIM S.A.",
+      "filer": "Fadda Luca",
+      "role": "Business Support Officer",
+      "txType": "매도",
+      "shares": 53229,
+      "price": 3.86,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-16",
+      "accession": "0001292814-26-005333",
+      "sourceAccessions": [
+        "0001292814-26-005333"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117399/000129281426005333/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "18.979999542236328",
+          "marketHigh": "19.520000457763672"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "UUU",
       "company": "UNIVERSAL SAFETY PRODUCTS, INC.",
       "filer": "AULT MILTON C III",
@@ -6157,6 +8602,33 @@
         }
       ],
       "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SLQT",
+      "company": "SelectQuote, Inc.",
+      "filer": "Weldon Raymond F",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 409836,
+      "price": 0.49,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001794783-26-000094",
+      "sourceAccessions": [
+        "0001794783-26-000094"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1794783/000179478326000094/wk-form4_1794346924.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.0",
+          "marketHigh": "10.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -6266,60 +8738,6 @@
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
       "severity": "review"
-    },
-    {
-      "ticker": "KC",
-      "company": "Kingsoft Cloud Holdings Ltd",
-      "filer": "Zou Tao",
-      "role": "Acting Chief Executive Officer",
-      "txType": "매도",
-      "shares": 26000,
-      "price": 0.6459,
-      "txDate": "2026-07-17",
-      "filedDate": "2026-07-21",
-      "accession": "0001104659-26-085199",
-      "sourceAccessions": [
-        "0001104659-26-085199"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1795589/000110465926085199/tm2620958-1_4seq1.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "9.289999961853027",
-          "marketHigh": "9.654999732971191"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "KC",
-      "company": "Kingsoft Cloud Holdings Ltd",
-      "filer": "Zou Tao",
-      "role": "Acting Chief Executive Officer",
-      "txType": "매도",
-      "shares": 274000,
-      "price": 0.637,
-      "txDate": "2026-07-17",
-      "filedDate": "2026-07-21",
-      "accession": "0001104659-26-085199",
-      "sourceAccessions": [
-        "0001104659-26-085199"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1795589/000110465926085199/tm2620958-1_4seq1.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "9.289999961853027",
-          "marketHigh": "9.654999732971191"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
     },
     {
       "ticker": "VTMX",
@@ -6451,6 +8869,33 @@
           "severity": "critical",
           "marketLow": "42.650001525878906",
           "marketHigh": "43.869998931884766"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "RCT",
+      "company": "RedCloud Holdings plc",
+      "filer": "Floyd Justin Beck Hinton",
+      "role": "Chief Executive Officer",
+      "txType": "매수",
+      "shares": 74000,
+      "price": 2.5,
+      "txDate": "2026-09-22",
+      "filedDate": "2026-09-23",
+      "accession": "0001493152-26-043846",
+      "sourceAccessions": [
+        "0001493152-26-043846"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2070905/000149315226043846/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "17.0",
+          "marketHigh": "20.0"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -6917,6 +9362,34 @@
       "severity": "review"
     },
     {
+      "ticker": "AEYE",
+      "company": "AUDIOEYE INC",
+      "filer": "HAWKINS JAMES B",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 5000,
+      "price": 11.5,
+      "txDate": "2026-11-23",
+      "filedDate": "2026-11-23",
+      "accession": "0000898243-26-000031",
+      "sourceAccessions": [
+        "0000898243-26-000031"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1362190/000089824326000031/form4-11232026_101108.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "11.50",
+          "expectedLow": "10.49",
+          "expectedHigh": "10.50"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
+      "severity": "critical"
+    },
+    {
       "ticker": "DX",
       "company": "DYNEX CAPITAL INC",
       "filer": "Popenoe Smriti Laxman",
@@ -7046,60 +9519,6 @@
           "severity": "critical",
           "marketLow": "19.0",
           "marketHigh": "41.20000076293945"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "TSM",
-      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Lin Shyue-Shyh",
-      "role": "VP",
-      "txType": "매수",
-      "shares": 1000,
-      "price": 72.65,
-      "txDate": "2026-07-20",
-      "filedDate": "2026-07-22",
-      "accession": "0001046179-26-000455",
-      "sourceAccessions": [
-        "0001046179-26-000455"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114025/000104617926000455/wk-form4_1784715422.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "400.0799865722656",
-          "marketHigh": "409.8900146484375"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "TSM",
-      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Lin Shyue-Shyh",
-      "role": "VP",
-      "txType": "매수",
-      "shares": 1000,
-      "price": 74.13,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-22",
-      "accession": "0001046179-26-000455",
-      "sourceAccessions": [
-        "0001046179-26-000455"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2114025/000104617926000455/wk-form4_1784715422.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "413.55999755859375",
-          "marketHigh": "425.3999938964844"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -7457,6 +9876,60 @@
       "severity": "critical"
     },
     {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Alejandro Gustavo",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 220,
+      "price": 0.97,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-20",
+      "accession": "0002119764-26-000037",
+      "sourceAccessions": [
+        "0002119764-26-000037"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000211976426000037/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.979999542236328",
+          "marketHigh": "10.010000228881836"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Alejandro Gustavo",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 37279,
+      "price": 0.93,
+      "txDate": "2026-11-16",
+      "filedDate": "2026-11-20",
+      "accession": "0002119764-26-000037",
+      "sourceAccessions": [
+        "0002119764-26-000037"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000211976426000037/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "9.119999885559082",
+          "marketHigh": "9.850000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ATHM",
       "company": "Autohome Inc.",
       "filer": "Liu Chi",
@@ -7559,6 +10032,60 @@
           "severity": "critical",
           "marketLow": "11.510000228881836",
           "marketHigh": "12.75"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "IRS",
+      "company": "IRSA INVESTMENTS & REPRESENTATIONS INC",
+      "filer": "Elsztain Alejandro Gustavo",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 78971,
+      "price": 1.26,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-13",
+      "accession": "0002119764-26-000034",
+      "sourceAccessions": [
+        "0002119764-26-000034"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119764/000211976426000034/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "12.15999984741211",
+          "marketHigh": "12.6899995803833"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "IRS",
+      "company": "IRSA INVESTMENTS & REPRESENTATIONS INC",
+      "filer": "Elsztain Alejandro Gustavo",
+      "role": "이사",
+      "txType": "매도",
+      "shares": 20000,
+      "price": 1.23,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-13",
+      "accession": "0002119764-26-000034",
+      "sourceAccessions": [
+        "0002119764-26-000034"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2119764/000211976426000034/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "11.859999656677246",
+          "marketHigh": "12.670000076293945"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -7671,6 +10198,87 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "FBRT",
+      "company": "Franklin BSP Realty Trust, Inc.",
+      "filer": "ORTALE BUFORD H",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 1419,
+      "price": 16.93,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-18",
+      "accession": "0001104659-26-129744",
+      "sourceAccessions": [
+        "0001104659-26-129744"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1562528/000110465926129744/tm2629997-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "6.050000190734863",
+          "marketHigh": "6.25"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FBRT",
+      "company": "Franklin BSP Realty Trust, Inc.",
+      "filer": "ORTALE BUFORD H",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 3984,
+      "price": 16.9,
+      "txDate": "2026-11-16",
+      "filedDate": "2026-11-18",
+      "accession": "0001104659-26-129744",
+      "sourceAccessions": [
+        "0001104659-26-129744"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1562528/000110465926129744/tm2629997-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "6.125",
+          "marketHigh": "6.289999961853027"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "FBRT",
+      "company": "Franklin BSP Realty Trust, Inc.",
+      "filer": "ORTALE BUFORD H",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 1807,
+      "price": 16.9,
+      "txDate": "2026-11-16",
+      "filedDate": "2026-11-18",
+      "accession": "0001104659-26-129744",
+      "sourceAccessions": [
+        "0001104659-26-129744"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1562528/000110465926129744/tm2629997-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "6.125",
+          "marketHigh": "6.289999961853027"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "GAM",
@@ -7824,6 +10432,60 @@
           "severity": "critical",
           "marketLow": "34.3650016784668",
           "marketHigh": "35.290000915527344"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SLQT",
+      "company": "SelectQuote, Inc.",
+      "filer": "Hawks Donald L III",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 26598,
+      "price": 0.439,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001794783-26-000092",
+      "sourceAccessions": [
+        "0001794783-26-000092"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1804623/000179478326000092/wk-form4_1794346913.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.0",
+          "marketHigh": "10.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SLQT",
+      "company": "SelectQuote, Inc.",
+      "filer": "Hawks Donald L III",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 223402,
+      "price": 0.459,
+      "txDate": "2026-11-09",
+      "filedDate": "2026-11-10",
+      "accession": "0001794783-26-000092",
+      "sourceAccessions": [
+        "0001794783-26-000092"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1804623/000179478326000092/wk-form4_1794346913.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.819999694824219",
+          "marketHigh": "9.899999618530273"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -8208,6 +10870,87 @@
       "severity": "critical"
     },
     {
+      "ticker": "CRESY",
+      "company": "CRESUD INC",
+      "filer": "Elsztain Alejandro Gustavo",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 100000,
+      "price": 0.89,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-13",
+      "accession": "0002119764-26-000036",
+      "sourceAccessions": [
+        "0002119764-26-000036"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1034957/000211976426000036/section16.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.739999771118164",
+          "marketHigh": "9.180000305175781"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "Stark Eugene S",
+      "role": "VP Administration",
+      "txType": "매수",
+      "shares": 3000,
+      "price": 22,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-13",
+      "accession": "0000040417-26-000056",
+      "sourceAccessions": [
+        "0000040417-26-000056"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000056/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "64.9000015258789",
+          "marketHigh": "66.13999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "Stark Eugene S",
+      "role": "VP Administration",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 22,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-13",
+      "accession": "0000040417-26-000056",
+      "sourceAccessions": [
+        "0000040417-26-000056"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000056/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "64.9000015258789",
+          "marketHigh": "66.13999938964844"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "BRCC",
       "company": "BRC Inc.",
       "filer": "Kadenacy Stephen M",
@@ -8232,6 +10975,67 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "NBP",
+      "company": "NovaBridge Biosciences",
+      "filer": "Hagler Mark Arnold",
+      "role": "Chief Commercial Officer",
+      "txType": "매수",
+      "shares": 46000,
+      "price": 0.343,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-19",
+      "accession": "0002126029-26-000006",
+      "sourceAccessions": [
+        "0002126029-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126029/000212602926000006/form4-11192026_041101.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.7509999871253967",
+          "marketHigh": "0.8330000042915344"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "NBP",
+      "company": "NovaBridge Biosciences",
+      "filer": "Hagler Mark Arnold",
+      "role": "Chief Commercial Officer",
+      "txType": "매수",
+      "shares": 184000,
+      "price": 0.381,
+      "txDate": "2026-11-18",
+      "filedDate": "2026-11-19",
+      "accession": "0002126029-26-000006",
+      "sourceAccessions": [
+        "0002126029-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2126029/000212602926000006/form4-11192026_041101.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
+          "severity": "critical",
+          "observedPrice": "0.381",
+          "expectedLow": "0.84",
+          "expectedHigh": "0.90"
+        },
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.8159999847412109",
+          "marketHigh": "0.9070000052452087"
+        }
+      ],
+      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -8373,39 +11177,57 @@
       "severity": "critical"
     },
     {
-      "ticker": "DBX",
-      "company": "DROPBOX, INC.",
-      "filer": "Schubach Sarah Elizabeth",
-      "role": "Chief Accounting Officer",
+      "ticker": "TIMB",
+      "company": "TIM S.A.",
+      "filer": "Viegas Marques Andrea Palma",
+      "role": "Chief Financial Officer",
       "txType": "매도",
-      "shares": 0,
-      "price": 0,
-      "txDate": "2026-10-30",
-      "filedDate": "2026-11-09",
-      "accession": "0002075704-26-000043",
+      "shares": 20000,
+      "price": 3.9,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-18",
+      "accession": "0001292814-26-005352",
       "sourceAccessions": [
-        "0002075704-26-000041",
-        "0002075704-26-000043"
+        "0001292814-26-005352"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1467623/000207570426000043/wk-form4a_1794268489.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1826168/000129281426005352/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "INVALID_SHARES",
-          "severity": "critical"
-        },
-        {
-          "code": "INVALID_PRICE",
-          "severity": "critical"
-        },
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "19.100000381469727",
+          "marketHigh": "19.65999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "ELVR",
+      "company": "Elevra Lithium Ltd",
+      "filer": "Collard Sylvain",
+      "role": "President Canada & Group COO",
+      "txType": "매수",
+      "shares": 30000,
+      "price": 2.4926,
+      "txDate": "2026-11-10",
+      "filedDate": "2026-11-12",
+      "accession": "0001140361-26-043429",
+      "sourceAccessions": [
+        "0001140361-26-043429"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2122769/000114036126043429/form4.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "35.849998474121094",
-          "marketHigh": "36.619998931884766"
+          "marketLow": "24.5",
+          "marketHigh": "25.719999313354492"
         }
       ],
-      "reasonCode": "INVALID_SHARES",
+      "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
     },
     {
@@ -8538,6 +11360,33 @@
           "severity": "review",
           "marketLow": "8.329999923706055",
           "marketHigh": "8.430000305175781"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "TIMB",
+      "company": "TIM S.A.",
+      "filer": "Viegas Marques Andrea Palma",
+      "role": "Chief Financial Officer",
+      "txType": "매도",
+      "shares": 18000,
+      "price": 3.91,
+      "txDate": "2026-11-11",
+      "filedDate": "2026-11-13",
+      "accession": "0001292814-26-005317",
+      "sourceAccessions": [
+        "0001292814-26-005317"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1826168/000129281426005317/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "19.399999618530273",
+          "marketHigh": "19.790000915527344"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -8679,6 +11528,37 @@
       "severity": "review"
     },
     {
+      "ticker": "NWE",
+      "company": "NorthWestern Energy Group, Inc.",
+      "filer": "Berzina Jeffrey B.",
+      "role": "Controller",
+      "txType": "매도",
+      "shares": 3133,
+      "price": 0,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-17",
+      "accession": "0001450010-26-000006",
+      "sourceAccessions": [
+        "0001450010-26-000006"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1450010/000145001026000006/wk-form4_1794936149.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "INVALID_PRICE",
+          "severity": "critical"
+        },
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "84.66000366210938",
+          "marketHigh": "86.125"
+        }
+      ],
+      "reasonCode": "INVALID_PRICE",
+      "severity": "critical"
+    },
+    {
       "ticker": "BABA",
       "company": "Alibaba Group Holding Ltd",
       "filer": "Jiang Fang",
@@ -8787,6 +11667,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "TIMB",
+      "company": "TIM S.A.",
+      "filer": "Ferreira Vicente De Moraes",
+      "role": "Investor Relations Officer",
+      "txType": "매도",
+      "shares": 15000,
+      "price": 3.84,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-16",
+      "accession": "0001292814-26-005331",
+      "sourceAccessions": [
+        "0001292814-26-005331"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117371/000129281426005331/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "18.979999542236328",
+          "marketHigh": "19.520000457763672"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "INM",
       "company": "InMed Pharmaceuticals Inc.",
       "filer": "ADAR1 Capital Management, LLC",
@@ -8889,33 +11796,6 @@
           "severity": "critical",
           "marketLow": "2.9200000762939453",
           "marketHigh": "2.9600000381469727"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "GRML",
-      "company": "Greenland Mines Ltd",
-      "filer": "Sawyer Jason David",
-      "role": "이사",
-      "txType": "매수",
-      "shares": 240000,
-      "price": 0.2331,
-      "txDate": "2026-07-22",
-      "filedDate": "2026-07-23",
-      "accession": "0001213900-26-080657",
-      "sourceAccessions": [
-        "0001213900-26-080657"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1907223/000121390026080657/marketforms-73628.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "11.0",
-          "marketHigh": "12.25"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -9165,87 +12045,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "VTMX",
-      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
-      "filer": "DEL CASTILLO CACHO GUILLERMO",
-      "role": "ENERGY MANAGER",
-      "txType": "매도",
-      "shares": 8500,
-      "price": 3.41,
-      "txDate": "2026-05-22",
-      "filedDate": "2026-07-24",
-      "accession": "0002121472-26-000001",
-      "sourceAccessions": [
-        "0002121472-26-000001"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2121472/000212147226000001/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "33.81999969482422",
-          "marketHigh": "34.380001068115234"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "VTMX",
-      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
-      "filer": "DEL CASTILLO CACHO GUILLERMO",
-      "role": "ENERGY MANAGER",
-      "txType": "매도",
-      "shares": 3400,
-      "price": 3.37,
-      "txDate": "2026-06-23",
-      "filedDate": "2026-07-24",
-      "accession": "0002121472-26-000001",
-      "sourceAccessions": [
-        "0002121472-26-000001"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2121472/000212147226000001/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "33.0099983215332",
-          "marketHigh": "33.630001068115234"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "VTMX",
-      "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
-      "filer": "DEL CASTILLO CACHO GUILLERMO",
-      "role": "ENERGY MANAGER",
-      "txType": "매도",
-      "shares": 3400,
-      "price": 3.37,
-      "txDate": "2026-06-26",
-      "filedDate": "2026-07-24",
-      "accession": "0002121472-26-000001",
-      "sourceAccessions": [
-        "0002121472-26-000001"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2121472/000212147226000001/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "33.349998474121094",
-          "marketHigh": "33.95899963378906"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "DCX",
       "company": "Digital Currency X Technology Inc.",
       "filer": "Chen Melissa N",
@@ -9300,54 +12099,27 @@
       "severity": "review"
     },
     {
-      "ticker": "LGHL",
-      "company": "Lion Group Holding Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 31226,
-      "price": 1.46,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-23",
-      "accession": "0001475597-26-000165",
+      "ticker": "SLQT",
+      "company": "SelectQuote, Inc.",
+      "filer": "Danker Timothy Robert",
+      "role": "CHIEF EXECUTIVE OFFICER",
+      "txType": "매수",
+      "shares": 100668,
+      "price": 0.504,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001794783-26-000091",
       "sourceAccessions": [
-        "0001475597-26-000165"
+        "0001794783-26-000091"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000165/primary_doc.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1804636/000179478326000091/wk-form4_1794346907.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "27.6200008392334",
-          "marketHigh": "31.399999618530273"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "LGHL",
-      "company": "Lion Group Holding Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 3763,
-      "price": 1.36,
-      "txDate": "2026-07-22",
-      "filedDate": "2026-07-23",
-      "accession": "0001475597-26-000165",
-      "sourceAccessions": [
-        "0001475597-26-000165"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000165/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "25.0",
-          "marketHigh": "28.200000762939453"
+          "marketLow": "8.0",
+          "marketHigh": "10.600000381469727"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -9699,6 +12471,60 @@
           "severity": "critical",
           "marketLow": "17.5",
           "marketHigh": "19.799999237060547"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SLQT",
+      "company": "SelectQuote, Inc.",
+      "filer": "Grant Robert Clay",
+      "role": "PRESIDENT",
+      "txType": "매수",
+      "shares": 79801,
+      "price": 0.505,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001794783-26-000090",
+      "sourceAccessions": [
+        "0001794783-26-000090"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1804765/000179478326000090/wk-form4_1794346899.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.0",
+          "marketHigh": "10.600000381469727"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
+      "ticker": "SLQT",
+      "company": "SelectQuote, Inc.",
+      "filer": "Grant William Thomas III",
+      "role": "CHIEF OPERATING OFFICER",
+      "txType": "매수",
+      "shares": 79600,
+      "price": 0.505,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001794783-26-000093",
+      "sourceAccessions": [
+        "0001794783-26-000093"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1804642/000179478326000093/wk-form4_1794346919.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "8.0",
+          "marketHigh": "10.600000381469727"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -10083,6 +12909,33 @@
       "severity": "critical"
     },
     {
+      "ticker": "DRD",
+      "company": "DRDGOLD LTD",
+      "filer": "Hoffman Mark C A",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 15923,
+      "price": 2.2076,
+      "txDate": "2026-11-18",
+      "filedDate": "2026-11-19",
+      "accession": "0002148394-26-000005",
+      "sourceAccessions": [
+        "0002148394-26-000005"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1023512/000214839426000005/wk-form4_1795090284.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "20.559999465942383",
+          "marketHigh": "21.610000610351562"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "VTMX",
       "company": "Vesta Real Estate Corporation, S.A.B. de C.V.",
       "filer": "DEL CASTILLO CACHO GUILLERMO",
@@ -10326,6 +13179,60 @@
       "severity": "review"
     },
     {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 62496,
+      "price": 0.2868,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-16",
+      "accession": "0001193125-26-461836",
+      "sourceAccessions": [
+        "0001193125-26-461836"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526461836/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.9599999785423279",
+          "marketHigh": "1.2300000190734863"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 49336,
+      "price": 0.2631,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-16",
+      "accession": "0001193125-26-461836",
+      "sourceAccessions": [
+        "0001193125-26-461836"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526461836/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.9200000166893005",
+          "marketHigh": "1.0800000429153442"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "FGBI",
       "company": "First Guaranty Bancshares, Inc.",
       "filer": "WALKER ROBERT W",
@@ -10509,33 +13416,6 @@
           "severity": "critical",
           "marketLow": "4.599999904632568",
           "marketHigh": "6.400000095367432"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Bagga Atul Madan Mohan",
-      "role": "Chief Financial Officer",
-      "txType": "매도",
-      "shares": 36426,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048918",
-      "sourceAccessions": [
-        "0001628280-26-048918"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2129766/000162828026048918/wk-form4_1784596580.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999961853027",
-          "marketHigh": "13.109999656677246"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -10840,31 +13720,58 @@
       "severity": "critical"
     },
     {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Paszterko John Andrew",
-      "role": "Chief Operating Officer",
-      "txType": "매도",
-      "shares": 31034,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048911",
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 76120,
+      "price": 0.2536,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-19",
+      "accession": "0001193125-26-467675",
       "sourceAccessions": [
-        "0001628280-26-048911"
+        "0001193125-26-467675"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1819404/000162828026048911/wk-form4_1784596182.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526467675/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999961853027",
-          "marketHigh": "13.109999656677246"
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "0.9599999785423279",
+          "marketHigh": "1.0499999523162842"
         }
       ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 24828,
+      "price": 0.2776,
+      "txDate": "2026-11-18",
+      "filedDate": "2026-11-19",
+      "accession": "0001193125-26-467675",
+      "sourceAccessions": [
+        "0001193125-26-467675"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526467675/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.0099999904632568",
+          "marketHigh": "1.149999976158142"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "FBRT",
@@ -10942,33 +13849,6 @@
           "severity": "critical",
           "marketLow": "27.110000610351562",
           "marketHigh": "28.059999465942383"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "GRML",
-      "company": "Greenland Mines Ltd",
-      "filer": "McGarity Jon",
-      "role": "이사",
-      "txType": "매수",
-      "shares": 140000,
-      "price": 0.1773,
-      "txDate": "2026-07-20",
-      "filedDate": "2026-07-20",
-      "accession": "0001213900-26-079548",
-      "sourceAccessions": [
-        "0001213900-26-079548"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1907223/000121390026079548/marketforms-73623.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "8.5",
-          "marketHigh": "10.5"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -11110,6 +13990,33 @@
       "severity": "review"
     },
     {
+      "ticker": "ASR",
+      "company": "SOUTHEAST AIRPORT GROUP",
+      "filer": "Perez Alonso Aurelio",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 885,
+      "price": 27.35,
+      "txDate": "2026-11-13",
+      "filedDate": "2026-11-19",
+      "accession": "0001104659-26-130042",
+      "sourceAccessions": [
+        "0001104659-26-130042"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2122873/000110465926130042/tm2630283-1_4seq1.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_EXTREME",
+          "severity": "critical",
+          "marketLow": "269.20001220703125",
+          "marketHigh": "274.20001220703125"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_EXTREME",
+      "severity": "critical"
+    },
+    {
       "ticker": "ATHE",
       "company": "ALTERITY THERAPEUTICS LTD",
       "filer": "Marks Peter Ashley",
@@ -11245,6 +14152,33 @@
       "severity": "review"
     },
     {
+      "ticker": "TIMB",
+      "company": "TIM S.A.",
+      "filer": "Lima Auana Mattar",
+      "role": "Chief Information Officer",
+      "txType": "매도",
+      "shares": 5900,
+      "price": 3.9,
+      "txDate": "2026-11-17",
+      "filedDate": "2026-11-18",
+      "accession": "0001292814-26-005350",
+      "sourceAccessions": [
+        "0001292814-26-005350"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117373/000129281426005350/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "19.100000381469727",
+          "marketHigh": "19.65999984741211"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
       "filer": "Hooijer Henriette",
@@ -11270,6 +14204,33 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "GAM",
+      "company": "GENERAL AMERICAN INVESTORS CO INC",
+      "filer": "Stark Eugene S",
+      "role": "VP Administration",
+      "txType": "매수",
+      "shares": 1000,
+      "price": 21.95,
+      "txDate": "2026-11-12",
+      "filedDate": "2026-11-12",
+      "accession": "0000040417-26-000055",
+      "sourceAccessions": [
+        "0000040417-26-000055"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/40417/000004041726000055/primary_doc.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "65.37000274658203",
+          "marketHigh": "66.08000183105469"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "INM",
@@ -11401,33 +14362,6 @@
           "severity": "critical",
           "marketLow": "35.0099983215332",
           "marketHigh": "35.5"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "ZNB",
-      "company": "Zeta Network Group",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 53030,
-      "price": 0.4,
-      "txDate": "2026-07-20",
-      "filedDate": "2026-07-22",
-      "accession": "0001475597-26-000164",
-      "sourceAccessions": [
-        "0001475597-26-000164"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000164/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "2.9600000381469727",
-          "marketHigh": "3.440000057220459"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -11785,31 +14719,31 @@
       "severity": "critical"
     },
     {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Swenson Christopher C.",
-      "role": "Chief Legal Officer",
+      "ticker": "TIMB",
+      "company": "TIM S.A.",
+      "filer": "Creo Claudio",
+      "role": "VP, Risk & Compliance",
       "txType": "매도",
-      "shares": 22707,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048909",
+      "shares": 5000,
+      "price": 3.77,
+      "txDate": "2026-11-10",
+      "filedDate": "2026-11-12",
+      "accession": "0001292814-26-005285",
       "sourceAccessions": [
-        "0001628280-26-048909"
+        "0001292814-26-005285"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1819404/000162828026048909/wk-form4_1784596131.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2117378/000129281426005285/ownership.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999961853027",
-          "marketHigh": "13.109999656677246"
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "18.600000381469727",
+          "marketHigh": "19.3700008392334"
         }
       ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "TEO",
@@ -12080,6 +15014,60 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
+    },
+    {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 29672,
+      "price": 0.2729,
+      "txDate": "2026-11-19",
+      "filedDate": "2026-11-23",
+      "accession": "0001193125-26-470875",
+      "sourceAccessions": [
+        "0001193125-26-470875"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526470875/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.0199999809265137",
+          "marketHigh": "1.1299999952316284"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
+    },
+    {
+      "ticker": "MSC",
+      "company": "STUDIO CITY INTERNATIONAL HOLDINGS Ltd",
+      "filer": "HO LAWRENCE YAU LUNG",
+      "role": "이사",
+      "txType": "매수",
+      "shares": 72412,
+      "price": 0.2882,
+      "txDate": "2026-11-20",
+      "filedDate": "2026-11-23",
+      "accession": "0001193125-26-470875",
+      "sourceAccessions": [
+        "0001193125-26-470875"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1958709/000119312526470875/ownership.xml",
+      "qualityStatus": "pending",
+      "validationReasons": [
+        {
+          "code": "MARKET_PRICE_REVIEW",
+          "severity": "review",
+          "marketLow": "1.059999942779541",
+          "marketHigh": "1.1799999475479126"
+        }
+      ],
+      "reasonCode": "MARKET_PRICE_REVIEW",
+      "severity": "review"
     },
     {
       "ticker": "VTMX",
@@ -12406,60 +15394,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "MGF",
-      "company": "ABERDEEN GOVERNMENT MARKETS INCOME FUND",
-      "filer": "Reit Todd",
-      "role": "이사",
-      "txType": "매수",
-      "shares": 3900,
-      "price": 2.85,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-21",
-      "accession": "0001104659-26-085330",
-      "sourceAccessions": [
-        "0001104659-26-085330"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/811922/000110465926085330/tm2621009-1_4seq1.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "14.149999618530273",
-          "marketHigh": "14.449999809265137"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "NRDY",
-      "company": "Nerdy Inc.",
-      "filer": "Callaway Kyle",
-      "role": "Chief Accounting Officer",
-      "txType": "매도",
-      "shares": 13377,
-      "price": 0.83,
-      "txDate": "2026-07-16",
-      "filedDate": "2026-07-20",
-      "accession": "0001628280-26-048910",
-      "sourceAccessions": [
-        "0001628280-26-048910"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2145476/000162828026048910/wk-form4_1784596159.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "12.164999961853027",
-          "marketHigh": "13.109999656677246"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "CRESY",
       "company": "CRESUD INC",
       "filer": "Elsztain Fernando Adrian",
@@ -12487,27 +15421,27 @@
       "severity": "critical"
     },
     {
-      "ticker": "MIN",
-      "company": "ABERDEEN INTERMEDIATE INCOME FUND",
-      "filer": "Reit Todd",
-      "role": "이사",
+      "ticker": "TSM",
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "filer": "Wei Che-Chia",
+      "role": "Chairman and CEO",
       "txType": "매수",
-      "shares": 4400,
-      "price": 2.49,
-      "txDate": "2026-07-21",
-      "filedDate": "2026-07-21",
-      "accession": "0001104659-26-085331",
+      "shares": 155,
+      "price": 70.5,
+      "txDate": "2026-11-06",
+      "filedDate": "2026-11-10",
+      "accession": "0001046179-26-000779",
       "sourceAccessions": [
-        "0001104659-26-085331"
+        "0001046179-26-000779"
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/826735/000110465926085331/tm2621009-2_4seq1.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000779/wk-form4_1794310680.xml",
       "qualityStatus": "pending",
       "validationReasons": [
         {
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
-          "marketLow": "14.760000228881836",
-          "marketHigh": "14.9399995803833"
+          "marketLow": "367.95001220703125",
+          "marketHigh": "380.7200012207031"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -12730,31 +15664,64 @@
       "severity": "critical"
     },
     {
-      "ticker": "TSM",
-      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-      "filer": "Wei Che-Chia",
-      "role": "Chairman and CEO",
-      "txType": "매수",
-      "shares": 155,
-      "price": 70.5,
-      "txDate": "2026-11-06",
-      "filedDate": "2026-11-10",
-      "accession": "0001046179-26-000779",
+      "ticker": "BMBL",
+      "company": "Bumble Inc.",
+      "filer": "Blackstone Holdings Iii Gp Management L.l.c.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 41445536,
+      "price": 2.94,
+      "txDate": "2026-09-28",
+      "filedDate": "2026-09-30",
+      "accession": "0001193125-26-409231",
       "sourceAccessions": [
-        "0001046179-26-000779"
+        null
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000779/wk-form4_1794310680.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml",
       "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "367.95001220703125",
-          "marketHigh": "380.7200012207031"
-        }
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml?output=1"
+    },
+    {
+      "ticker": "UTHR",
+      "company": "UNITED THERAPEUTICS Corp",
+      "filer": "Rothblatt Martine A",
+      "role": "CEO",
+      "txType": "매도",
+      "shares": 19000,
+      "price": 504.24,
+      "txDate": "2026-08-13",
+      "filedDate": "2026-08-14",
+      "accession": "0001106578-26-000120",
+      "sourceAccessions": [
+        null
       ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml?output=1"
+    },
+    {
+      "ticker": "ZVRA",
+      "company": "ZEVRA THERAPEUTICS, INC.",
+      "filer": "Thompson Rahsaan",
+      "role": "Chief Legal &amp; Compli",
+      "txType": "매도",
+      "shares": 85332,
+      "price": 11.13,
+      "txDate": "2026-08-14",
+      "filedDate": "2026-08-17",
+      "accession": "0001434647-26-000073",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml?output=1"
     },
     {
       "ticker": "BSBR",
@@ -12775,6 +15742,26 @@
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
       "error": "404 Client Error: Not Found for url: https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml?output=1"
+    },
+    {
+      "ticker": "NTCT",
+      "company": "NETSCOUT SYSTEMS INC",
+      "filer": "Munshi Sanjay",
+      "role": "COO",
+      "txType": "매도",
+      "shares": 4538,
+      "price": 39.27,
+      "txDate": "2026-08-17",
+      "filedDate": "2026-08-19",
+      "accession": "0001078075-26-000115",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml?output=1"
     }
   ]
 }
