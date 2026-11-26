@@ -9046,7 +9046,7 @@
   "name_ko": "그레일"
  },
  "STEP": {
-  "name": "STEPSTONE GROUP CLASS A",
+  "name": "STEPSTONE GROUP INC CLASS A",
   "sector": "Financial Services",
   "industry": "Asset Management",
   "mcap": 5414511104,
@@ -19393,7 +19393,7 @@
   "metadata_attempted": true
  },
  "WGS": {
-  "name": "GENEDX HOLDINGS CLASS A",
+  "name": "GENEDX HOLDINGS CORP CLASS A",
   "sector": "Healthcare",
   "industry": "Diagnostics & Research",
   "mcap": 1837095168,
@@ -33554,14 +33554,15 @@
   "name_ko": "현금 담보 USD MS"
  },
  "ETD_USD": {
-  "name": "ETD USD BALANCE WITH R30382",
+  "name": "ETD USD BALANCE WITH R93531",
   "sector": "기타",
   "industry": "기타",
   "mcap": 0,
   "metadata_attempted": true,
   "translation_attempted": true,
   "universe": [
-   "Russell 1000"
+   "Russell 1000",
+   "Russell 2000"
   ],
   "name_ko": "R30382를 사용한 ETD USD 잔액"
  },
