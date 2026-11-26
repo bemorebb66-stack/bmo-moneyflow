@@ -14,15 +14,15 @@
     "daysPerMonthCap": 999,
     "rowsPerIndexDayCap": 1000,
     "note": "공개시장 매수(P)/매도(S)만 집계, $10k 미만 제외",
-    "validatedAt": "2026-11-25T14:15:28.214097+00:00",
+    "validatedAt": "2026-11-26T13:35:44.905847+00:00",
     "validationVersion": 1,
     "validationStatus": "passed",
-    "acceptedCount": 18687,
-    "pendingCount": 581,
-    "uniqueAccessionCount": 14897,
-    "marketCoverage": 0.983306,
+    "acceptedCount": 18689,
+    "pendingCount": 579,
+    "uniqueAccessionCount": 14899,
+    "marketCoverage": 0.983339,
     "validationRule": "Form 4/A transaction replacement, accession dedupe, exact amount cross-check, transaction-date market range",
-    "dataSha256": "69ebcbccdbbfc9fc32b912b9f90a02dbbd5b2e688372eeb112d3f5964ddd3ab5"
+    "dataSha256": "700f979e0cb43891a0100527d271bb9142e5cc06619baac4848034d1138e48b2"
   },
   "trades": [
     {
@@ -23529,7 +23529,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
-      "clusterCount": 6
+      "clusterCount": 5
     },
     {
       "ticker": "STNG",
@@ -23913,7 +23913,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 2,
-      "clusterCount": 6
+      "clusterCount": 5
     },
     {
       "ticker": "DDOG",
@@ -26472,6 +26472,40 @@
         "0001193125-26-409193:nonDerivative:6"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1844875/000119312526409193/ownership.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 7,
+      "clusterCount": 5
+    },
+    {
+      "ticker": "BMBL",
+      "company": "Bumble Inc.",
+      "filer": "Blackstone Holdings III GP Management L.L.C.",
+      "role": "10%대주주",
+      "txType": "매도",
+      "shares": 3767776,
+      "price": 2.94,
+      "value": 11070102.67,
+      "ownBefore": null,
+      "filedDate": "2026-09-30",
+      "txDate": "2026-09-28",
+      "ownAfter": null,
+      "ownChangePct": 0.0,
+      "id": "f4-0001193125-26-409231-30b5196f1a",
+      "accession": "0001193125-26-409231",
+      "sourceAccessions": [
+        "0001193125-26-409231"
+      ],
+      "transactionIds": [
+        "0001193125-26-409231:nonDerivative:0",
+        "0001193125-26-409231:nonDerivative:1",
+        "0001193125-26-409231:nonDerivative:2",
+        "0001193125-26-409231:nonDerivative:3",
+        "0001193125-26-409231:nonDerivative:4",
+        "0001193125-26-409231:nonDerivative:5",
+        "0001193125-26-409231:nonDerivative:6"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 7,
@@ -55345,6 +55379,45 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 5
+    },
+    {
+      "ticker": "UTHR",
+      "company": "UNITED THERAPEUTICS Corp",
+      "filer": "ROTHBLATT MARTINE A",
+      "role": "Chairperson & CEO",
+      "txType": "매도",
+      "shares": 9500,
+      "price": 504.24,
+      "value": 4790316.4,
+      "ownBefore": null,
+      "filedDate": "2026-08-14",
+      "txDate": "2026-08-13",
+      "ownAfter": null,
+      "ownChangePct": 0.0,
+      "id": "f4-0001106578-26-000120-6b30279592",
+      "accession": "0001106578-26-000120",
+      "sourceAccessions": [
+        "0001106578-26-000120"
+      ],
+      "transactionIds": [
+        "0001106578-26-000120:nonDerivative:1",
+        "0001106578-26-000120:nonDerivative:10",
+        "0001106578-26-000120:nonDerivative:11",
+        "0001106578-26-000120:nonDerivative:12",
+        "0001106578-26-000120:nonDerivative:2",
+        "0001106578-26-000120:nonDerivative:3",
+        "0001106578-26-000120:nonDerivative:4",
+        "0001106578-26-000120:nonDerivative:5",
+        "0001106578-26-000120:nonDerivative:6",
+        "0001106578-26-000120:nonDerivative:7",
+        "0001106578-26-000120:nonDerivative:8",
+        "0001106578-26-000120:nonDerivative:9"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 12,
+      "clusterCount": 4
     },
     {
       "ticker": "HOOD",
@@ -87035,41 +87108,6 @@
       "clusterCount": 5
     },
     {
-      "ticker": "MTSI",
-      "company": "MACOM Technology Solutions Holdings, Inc.",
-      "filer": "Kober John",
-      "role": "Senior VP and CFO",
-      "txType": "매도",
-      "shares": 7389,
-      "price": 326.08,
-      "value": 2409422.52,
-      "ownBefore": 40972,
-      "filedDate": "2026-08-19",
-      "txDate": "2026-08-17",
-      "ownAfter": 33583,
-      "ownChangePct": -18.0,
-      "id": "f4-0000904454-26-000468-86fb422b2a",
-      "accession": "0000904454-26-000468",
-      "sourceAccessions": [
-        "0000904454-26-000468"
-      ],
-      "transactionIds": [
-        "0000904454-26-000468:nonDerivative:0",
-        "0000904454-26-000468:nonDerivative:1",
-        "0000904454-26-000468:nonDerivative:2",
-        "0000904454-26-000468:nonDerivative:3",
-        "0000904454-26-000468:nonDerivative:4",
-        "0000904454-26-000468:nonDerivative:5",
-        "0000904454-26-000468:nonDerivative:6",
-        "0000904454-26-000468:nonDerivative:7"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "verified",
-      "transactionCount": 8,
-      "clusterCount": 4
-    },
-    {
       "ticker": "DXCM",
       "company": "DEXCOM INC",
       "filer": "SAYER KEVIN R",
@@ -91673,35 +91711,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
-      "clusterCount": 6
-    },
-    {
-      "ticker": "PNAQ",
-      "company": "Pinnacle Acquisition Corp",
-      "filer": "PAC Sponsor, LLC",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 225000,
-      "price": 10,
-      "value": 2250000,
-      "ownBefore": 0,
-      "filedDate": "2026-08-12",
-      "txDate": "2026-08-10",
-      "ownAfter": 225000,
-      "ownChangePct": 0.0,
-      "id": "f4-0001213900-26-088543-ec0122c676",
-      "accession": "0001213900-26-088543",
-      "sourceAccessions": [
-        "0001213900-26-088543"
-      ],
-      "transactionIds": [
-        "0001213900-26-088543:nonDerivative:0"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml",
-      "qualityStatus": "accepted",
-      "marketValidationStatus": "unverified",
-      "transactionCount": 1,
-      "clusterCount": 6
+      "clusterCount": 5
     },
     {
       "ticker": "DASH",
@@ -217977,7 +217987,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "ABNB",
@@ -218145,7 +218155,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "WKC",
@@ -218370,6 +218380,34 @@
       "marketValidationStatus": "verified",
       "transactionCount": 1,
       "clusterCount": 7
+    },
+    {
+      "ticker": "ZVRA",
+      "company": "ZEVRA THERAPEUTICS, INC.",
+      "filer": "Thompson Rahsaan",
+      "role": "Chief Legal & Compliance",
+      "txType": "매도",
+      "shares": 42666,
+      "price": 11.13,
+      "value": 474774.45,
+      "ownBefore": 80235,
+      "filedDate": "2026-08-17",
+      "txDate": "2026-08-14",
+      "ownAfter": 37569,
+      "ownChangePct": -53.2,
+      "id": "f4-0001434647-26-000073-d81c90e9cf",
+      "accession": "0001434647-26-000073",
+      "sourceAccessions": [
+        "0001434647-26-000073"
+      ],
+      "transactionIds": [
+        "0001434647-26-000073:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 3
     },
     {
       "ticker": "ROK",
@@ -248539,7 +248577,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
-      "clusterCount": 6
+      "clusterCount": 5
     },
     {
       "ticker": "CAKE",
@@ -261652,7 +261690,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "GATX",
@@ -276652,7 +276690,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "URBN",
@@ -280682,7 +280720,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "KNX",
@@ -294360,7 +294398,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "MRSH",
@@ -333125,7 +333163,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "PDFS",
@@ -341294,7 +341332,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 2
+      "clusterCount": 3
     },
     {
       "ticker": "SAFE",
@@ -356061,7 +356099,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
-      "clusterCount": 5
+      "clusterCount": 6
     },
     {
       "ticker": "FULT",
@@ -373279,7 +373317,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
-      "clusterCount": 6
+      "clusterCount": 5
     },
     {
       "ticker": "HEPA",
@@ -373363,7 +373401,7 @@
       "qualityStatus": "accepted",
       "marketValidationStatus": "unverified",
       "transactionCount": 1,
-      "clusterCount": 6
+      "clusterCount": 5
     },
     {
       "ticker": "SLDE",
@@ -385967,6 +386005,34 @@
         "0001104659-26-108649:nonDerivative:0"
       ],
       "secUrl": "https://www.sec.gov/Archives/edgar/data/1996758/000110465926108649/tm2625608-1_4seq1.xml",
+      "qualityStatus": "accepted",
+      "marketValidationStatus": "verified",
+      "transactionCount": 1,
+      "clusterCount": 6
+    },
+    {
+      "ticker": "NTCT",
+      "company": "NETSCOUT SYSTEMS INC",
+      "filer": "Munshi Sanjay",
+      "role": "Chief Operating Officer",
+      "txType": "매도",
+      "shares": 2269,
+      "price": 39.27,
+      "value": 89103.63,
+      "ownBefore": 8998,
+      "filedDate": "2026-08-19",
+      "txDate": "2026-08-17",
+      "ownAfter": 6729,
+      "ownChangePct": -25.2,
+      "id": "f4-0001078075-26-000115-59b393849a",
+      "accession": "0001078075-26-000115",
+      "sourceAccessions": [
+        "0001078075-26-000115"
+      ],
+      "transactionIds": [
+        "0001078075-26-000115:nonDerivative:0"
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml",
       "qualityStatus": "accepted",
       "marketValidationStatus": "verified",
       "transactionCount": 1,
@@ -555091,64 +555157,44 @@
       "severity": "critical"
     },
     {
-      "ticker": "BMBL",
-      "company": "Bumble Inc.",
-      "filer": "Blackstone Holdings Iii Gp Management L.l.c.",
+      "ticker": "MTSI",
+      "company": "MACOM Technology Solutions Holdings, Inc.",
+      "filer": "Kober John",
+      "role": "CFO",
+      "txType": "매도",
+      "shares": 14778,
+      "price": 326.08,
+      "txDate": "2026-08-17",
+      "filedDate": "2026-08-19",
+      "accession": "0000904454-26-000468",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml?output=1"
+    },
+    {
+      "ticker": "PNAQ",
+      "company": "Pinnacle Acquisition Corp",
+      "filer": "Pac Sponsor, Llc",
       "role": "10%대주주",
-      "txType": "매도",
-      "shares": 41445536,
-      "price": 2.94,
-      "txDate": "2026-09-28",
-      "filedDate": "2026-09-30",
-      "accession": "0001193125-26-409231",
+      "txType": "매수",
+      "shares": 450000,
+      "price": 10,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-12",
+      "accession": "0001213900-26-088543",
       "sourceAccessions": [
         null
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml",
       "qualityStatus": "pending",
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
-      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml?output=1"
-    },
-    {
-      "ticker": "UTHR",
-      "company": "UNITED THERAPEUTICS Corp",
-      "filer": "Rothblatt Martine A",
-      "role": "CEO",
-      "txType": "매도",
-      "shares": 19000,
-      "price": 504.24,
-      "txDate": "2026-08-13",
-      "filedDate": "2026-08-14",
-      "accession": "0001106578-26-000120",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml?output=1"
-    },
-    {
-      "ticker": "ZVRA",
-      "company": "ZEVRA THERAPEUTICS, INC.",
-      "filer": "Thompson Rahsaan",
-      "role": "Chief Legal &amp; Compli",
-      "txType": "매도",
-      "shares": 85332,
-      "price": 11.13,
-      "txDate": "2026-08-14",
-      "filedDate": "2026-08-17",
-      "accession": "0001434647-26-000073",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml?output=1"
+      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml?output=1"
     },
     {
       "ticker": "BSBR",
@@ -555169,26 +555215,6 @@
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
       "error": "404 Client Error: Not Found for url: https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml?output=1"
-    },
-    {
-      "ticker": "NTCT",
-      "company": "NETSCOUT SYSTEMS INC",
-      "filer": "Munshi Sanjay",
-      "role": "COO",
-      "txType": "매도",
-      "shares": 4538,
-      "price": 39.27,
-      "txDate": "2026-08-17",
-      "filedDate": "2026-08-19",
-      "accession": "0001078075-26-000115",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml?output=1"
     }
   ]
 }

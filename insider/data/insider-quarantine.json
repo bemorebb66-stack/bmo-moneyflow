@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-25T14:15:28.214097+00:00",
-    "count": 581
+    "generatedAt": "2026-11-26T13:35:44.905847+00:00",
+    "count": 579
   },
   "pendingTrades": [
     {
@@ -15664,64 +15664,44 @@
       "severity": "critical"
     },
     {
-      "ticker": "BMBL",
-      "company": "Bumble Inc.",
-      "filer": "Blackstone Holdings Iii Gp Management L.l.c.",
+      "ticker": "MTSI",
+      "company": "MACOM Technology Solutions Holdings, Inc.",
+      "filer": "Kober John",
+      "role": "CFO",
+      "txType": "매도",
+      "shares": 14778,
+      "price": 326.08,
+      "txDate": "2026-08-17",
+      "filedDate": "2026-08-19",
+      "accession": "0000904454-26-000468",
+      "sourceAccessions": [
+        null
+      ],
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml",
+      "qualityStatus": "pending",
+      "reasonCode": "SOURCE_REFETCH_FAILED",
+      "severity": "critical",
+      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml?output=1"
+    },
+    {
+      "ticker": "PNAQ",
+      "company": "Pinnacle Acquisition Corp",
+      "filer": "Pac Sponsor, Llc",
       "role": "10%대주주",
-      "txType": "매도",
-      "shares": 41445536,
-      "price": 2.94,
-      "txDate": "2026-09-28",
-      "filedDate": "2026-09-30",
-      "accession": "0001193125-26-409231",
+      "txType": "매수",
+      "shares": 450000,
+      "price": 10,
+      "txDate": "2026-08-10",
+      "filedDate": "2026-08-12",
+      "accession": "0001213900-26-088543",
       "sourceAccessions": [
         null
       ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml",
+      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml",
       "qualityStatus": "pending",
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
-      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/1844987/000119312526409231/ownership.xml?output=1"
-    },
-    {
-      "ticker": "UTHR",
-      "company": "UNITED THERAPEUTICS Corp",
-      "filer": "Rothblatt Martine A",
-      "role": "CEO",
-      "txType": "매도",
-      "shares": 19000,
-      "price": 504.24,
-      "txDate": "2026-08-13",
-      "filedDate": "2026-08-14",
-      "accession": "0001106578-26-000120",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/1106578/000110657826000120/primarydocument.xml?output=1"
-    },
-    {
-      "ticker": "ZVRA",
-      "company": "ZEVRA THERAPEUTICS, INC.",
-      "filer": "Thompson Rahsaan",
-      "role": "Chief Legal &amp; Compli",
-      "txType": "매도",
-      "shares": 85332,
-      "price": 11.13,
-      "txDate": "2026-08-14",
-      "filedDate": "2026-08-17",
-      "accession": "0001434647-26-000073",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/1788524/000143464726000073/wk-form4_1786998758.xml?output=1"
+      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml?output=1"
     },
     {
       "ticker": "BSBR",
@@ -15742,26 +15722,6 @@
       "reasonCode": "SOURCE_REFETCH_FAILED",
       "severity": "critical",
       "error": "404 Client Error: Not Found for url: https://www.sec.gov/Archives/edgar/data/1471055/000129281426004728/ownership.xml?output=1"
-    },
-    {
-      "ticker": "NTCT",
-      "company": "NETSCOUT SYSTEMS INC",
-      "filer": "Munshi Sanjay",
-      "role": "COO",
-      "txType": "매도",
-      "shares": 4538,
-      "price": 39.27,
-      "txDate": "2026-08-17",
-      "filedDate": "2026-08-19",
-      "accession": "0001078075-26-000115",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/2068013/000107807526000115/form4.xml?output=1"
     }
   ]
 }
