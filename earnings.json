@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-27T05:32:33.254994+00:00",
+    "generatedAt": "2026-11-27T21:47:29.015767+00:00",
     "status": "ok",
     "from": "2026-10-13",
     "to": "2027-05-26",
-    "count": 9478,
+    "count": 9483,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 604,
-      "supplementalTickerCount": 158,
-      "supplementalEventCount": 896,
+      "trackedUniverseCount": 586,
+      "supplementalTickerCount": 148,
+      "supplementalEventCount": 833,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -14466,6 +14466,18 @@
       "netIncomeActual": -128200000.0
     },
     {
+      "ticker": "VYLR",
+      "company": "바이러 INC",
+      "date": "2025-09-30",
+      "periodEnd": "2025-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -320000000.0,
+      "revenueActual": 2618000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
+    },
+    {
       "ticker": "VZ",
       "company": "버라이존",
       "date": "2025-09-30",
@@ -14504,8 +14516,8 @@
       "source": "Yahoo Finance quarterly fundamentals",
       "dateKind": "period-end",
       "periodEnd": "2025-09-30",
-      "netIncomeActual": 148923000.0,
-      "revenueActual": 799887000.0
+      "netIncomeActual": 149000000.0,
+      "revenueActual": 800000000.0
     },
     {
       "ticker": "WBD",
@@ -22980,6 +22992,18 @@
       "periodEnd": "2025-12-31",
       "revenueActual": 3703600000.0,
       "netIncomeActual": -340100000.0
+    },
+    {
+      "ticker": "VYLR",
+      "company": "바이러 INC",
+      "date": "2025-12-31",
+      "periodEnd": "2025-12-31",
+      "dateKind": "period-end",
+      "netIncomeActual": -1270000000.0,
+      "revenueActual": -3424000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals"
     },
     {
       "ticker": "VZ",
@@ -54832,6 +54856,20 @@
       "epsEstimate": 2.9229
     },
     {
+      "ticker": "VMRK",
+      "company": "비브마크 레지덴셜",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 1195484000.0,
+      "netIncomeActual": -735148000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.46,
+      "epsEstimate": 0.0442
+    },
+    {
       "ticker": "VRSN",
       "company": "베리사인",
       "date": "2026-09-30",
@@ -54900,6 +54938,34 @@
       "netIncomeActual": 65380000.0
     },
     {
+      "ticker": "VTRS",
+      "company": "비아트리스",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "revenueActual": 3749500000.0,
+      "netIncomeActual": -325300000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": 0.71,
+      "epsEstimate": 0.6495
+    },
+    {
+      "ticker": "VYLR",
+      "company": "바이러 INC",
+      "date": "2026-09-30",
+      "periodEnd": "2026-09-30",
+      "dateKind": "period-end",
+      "netIncomeActual": -570000000.0,
+      "revenueActual": 2458000000.0,
+      "status": "reported",
+      "trackingTier": "core-index",
+      "source": "Yahoo Finance quarterly fundamentals",
+      "epsActual": -0.41,
+      "epsEstimate": -0.5415
+    },
+    {
       "ticker": "VZ",
       "company": "버라이존",
       "date": "2026-09-30",
@@ -54931,14 +54997,15 @@
       "ticker": "WAT",
       "company": "워터스",
       "date": "2026-09-30",
-      "quarter": 3,
-      "year": 2026,
-      "dateKind": "provider-period",
+      "dateKind": "period-end",
       "epsActual": 4.1,
       "epsEstimate": 4.0372,
       "status": "reported",
       "trackingTier": "core-index",
-      "source": "Finnhub Company Earnings"
+      "source": "Yahoo Finance quarterly fundamentals",
+      "periodEnd": "2026-09-30",
+      "netIncomeActual": 81000000.0,
+      "revenueActual": 1767000000.0
     },
     {
       "ticker": "WDAY",
@@ -117325,7 +117392,7 @@
       "epsEstimate": 0.1607,
       "revenueEstimate": 201529815.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117337,7 +117404,7 @@
       "epsEstimate": -0.5406,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -118885,7 +118952,7 @@
       "epsEstimate": -0.4106,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119369,7 +119436,7 @@
       "epsEstimate": 1.4832,
       "revenueEstimate": 609710824.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119441,7 +119508,7 @@
       "epsEstimate": -0.0632,
       "revenueEstimate": 12290490.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119762,7 +119829,7 @@
       "year": 2027,
       "epsEstimate": 2.5466,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
