@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-11-26T13:35:44.905847+00:00",
-    "count": 579
+    "generatedAt": "2026-11-27T13:15:36.335955+00:00",
+    "count": 567
   },
   "pendingTrades": [
     {
@@ -272,40 +272,6 @@
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "NMM",
-      "company": "Navios Maritime Partners L.P.",
-      "filer": "Frangou Angeliki",
-      "role": "See Remarks",
-      "txType": "매수",
-      "shares": 1131,
-      "price": 748119,
-      "txDate": "2026-07-23",
-      "filedDate": "2026-07-27",
-      "accession": "0001193125-26-318541",
-      "sourceAccessions": [
-        "0001193125-26-318541"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1310495/000119312526318541/ownership.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "SEC_FOOTNOTE_PRICE_CONFLICT",
-          "severity": "critical",
-          "observedPrice": "748119",
-          "expectedLow": "73.73",
-          "expectedHigh": "76.34"
-        },
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "73.31999969482422",
-          "marketHigh": "77.08000183105469"
-        }
-      ],
-      "reasonCode": "SEC_FOOTNOTE_PRICE_CONFLICT",
       "severity": "critical"
     },
     {
@@ -11586,33 +11552,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "KITT",
-      "company": "Nauticus Robotics, Inc.",
-      "filer": "DROR BRIAN ISAAC",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 32539,
-      "price": 2.021,
-      "txDate": "2026-06-01",
-      "filedDate": "2026-07-27",
-      "accession": "0002147429-26-000003",
-      "sourceAccessions": [
-        "0002147429-26-000003"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2147429/000214742926000003/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "11.15999984741211",
-          "marketHigh": "12.479999542236328"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
       "ticker": "FGL",
       "company": "Founder Group Ltd",
       "filer": "HRT FINANCIAL LP",
@@ -11714,7 +11653,7 @@
           "code": "MARKET_PRICE_EXTREME",
           "severity": "critical",
           "marketLow": "13.199999809265137",
-          "marketHigh": "13.699000358581543"
+          "marketHigh": "13.699999809265137"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -12606,60 +12545,6 @@
           "severity": "review",
           "marketLow": "1.9249999523162842",
           "marketHigh": "2.1500000953674316"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "PFSA",
-      "company": "Profusa, Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 5585,
-      "price": 0.964,
-      "txDate": "2026-08-12",
-      "filedDate": "2026-08-14",
-      "accession": "0001475597-26-000201",
-      "sourceAccessions": [
-        "0001475597-26-000201"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000201/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.799999952316284",
-          "marketHigh": "3.880000114440918"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "PFSA",
-      "company": "Profusa, Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 42411,
-      "price": 0.888,
-      "txDate": "2026-08-13",
-      "filedDate": "2026-08-14",
-      "accession": "0001475597-26-000201",
-      "sourceAccessions": [
-        "0001475597-26-000201"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000201/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.2239999771118164",
-          "marketHigh": "3.803999900817871"
         }
       ],
       "reasonCode": "MARKET_PRICE_REVIEW",
@@ -13660,60 +13545,6 @@
           "severity": "critical",
           "marketLow": "5.800000190734863",
           "marketHigh": "6.199999809265137"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "LGHL",
-      "company": "Lion Group Holding Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매도",
-      "shares": 8435,
-      "price": 1.43,
-      "txDate": "2026-07-23",
-      "filedDate": "2026-07-27",
-      "accession": "0001475597-26-000166",
-      "sourceAccessions": [
-        "0001475597-26-000166"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000166/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "23.0",
-          "marketHigh": "27.600000381469727"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_EXTREME",
-      "severity": "critical"
-    },
-    {
-      "ticker": "LGHL",
-      "company": "Lion Group Holding Ltd",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 27702,
-      "price": 0.954,
-      "txDate": "2026-07-24",
-      "filedDate": "2026-07-27",
-      "accession": "0001475597-26-000166",
-      "sourceAccessions": [
-        "0001475597-26-000166"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000166/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_EXTREME",
-          "severity": "critical",
-          "marketLow": "17.540000915527344",
-          "marketHigh": "21.0"
         }
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
@@ -14908,60 +14739,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "PFSA",
-      "company": "Profusa, Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 14556,
-      "price": 0.958,
-      "txDate": "2026-08-03",
-      "filedDate": "2026-08-05",
-      "accession": "0001475597-26-000185",
-      "sourceAccessions": [
-        "0001475597-26-000185"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000185/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.5199999809265137",
-          "marketHigh": "4.119999885559082"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "PFSA",
-      "company": "Profusa, Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1368,
-      "price": 0.954,
-      "txDate": "2026-08-04",
-      "filedDate": "2026-08-05",
-      "accession": "0001475597-26-000185",
-      "sourceAccessions": [
-        "0001475597-26-000185"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000185/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.684000015258789",
-          "marketHigh": "4.039999961853027"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
       "ticker": "DRD",
       "company": "DRDGOLD LTD",
       "filer": "Bornman Ryno",
@@ -15583,60 +15360,6 @@
       "severity": "critical"
     },
     {
-      "ticker": "PFSA",
-      "company": "Profusa, Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 1063,
-      "price": 1.01,
-      "txDate": "2026-07-30",
-      "filedDate": "2026-08-03",
-      "accession": "0001475597-26-000183",
-      "sourceAccessions": [
-        "0001475597-26-000183"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000183/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.6440000534057617",
-          "marketHigh": "4.440000057220459"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
-      "ticker": "PFSA",
-      "company": "Profusa, Inc.",
-      "filer": "HRT FINANCIAL LP",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 8811,
-      "price": 1.05,
-      "txDate": "2026-07-31",
-      "filedDate": "2026-08-03",
-      "accession": "0001475597-26-000183",
-      "sourceAccessions": [
-        "0001475597-26-000183"
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1475597/000147559726000183/primary_doc.xml",
-      "qualityStatus": "pending",
-      "validationReasons": [
-        {
-          "code": "MARKET_PRICE_REVIEW",
-          "severity": "review",
-          "marketLow": "3.9200000762939453",
-          "marketHigh": "4.440000057220459"
-        }
-      ],
-      "reasonCode": "MARKET_PRICE_REVIEW",
-      "severity": "review"
-    },
-    {
       "ticker": "FRGT",
       "company": "Freight Technologies, Inc.",
       "filer": "HRT FINANCIAL LP",
@@ -15662,46 +15385,6 @@
       ],
       "reasonCode": "MARKET_PRICE_EXTREME",
       "severity": "critical"
-    },
-    {
-      "ticker": "MTSI",
-      "company": "MACOM Technology Solutions Holdings, Inc.",
-      "filer": "Kober John",
-      "role": "CFO",
-      "txType": "매도",
-      "shares": 14778,
-      "price": 326.08,
-      "txDate": "2026-08-17",
-      "filedDate": "2026-08-19",
-      "accession": "0000904454-26-000468",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "504 Server Error: Gateway Time-out for url: https://www.sec.gov/Archives/edgar/data/1338249/000090445426000468/edgar.xml?output=1"
-    },
-    {
-      "ticker": "PNAQ",
-      "company": "Pinnacle Acquisition Corp",
-      "filer": "Pac Sponsor, Llc",
-      "role": "10%대주주",
-      "txType": "매수",
-      "shares": 450000,
-      "price": 10,
-      "txDate": "2026-08-10",
-      "filedDate": "2026-08-12",
-      "accession": "0001213900-26-088543",
-      "sourceAccessions": [
-        null
-      ],
-      "secUrl": "https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml",
-      "qualityStatus": "pending",
-      "reasonCode": "SOURCE_REFETCH_FAILED",
-      "severity": "critical",
-      "error": "502 Server Error: Bad Gateway for url: https://www.sec.gov/Archives/edgar/data/2148398/000121390026088543/ownership.xml?output=1"
     },
     {
       "ticker": "BSBR",
