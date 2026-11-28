@@ -1,19 +1,19 @@
 {
   "meta": {
     "source": "Finnhub Earnings Calendar + official company IR pages",
-    "generatedAt": "2026-11-27T21:47:29.015767+00:00",
+    "generatedAt": "2026-11-28T04:59:26.745478+00:00",
     "status": "ok",
-    "from": "2026-10-13",
-    "to": "2027-05-26",
-    "count": 9483,
+    "from": "2026-10-14",
+    "to": "2027-05-27",
+    "count": 9484,
     "coverage": {
       "coreIndices": [
         "Nasdaq 100",
         "S&P 500"
       ],
-      "trackedUniverseCount": 586,
-      "supplementalTickerCount": 148,
-      "supplementalEventCount": 833,
+      "trackedUniverseCount": 570,
+      "supplementalTickerCount": 142,
+      "supplementalEventCount": 806,
       "reportedHistoryQuarters": 8,
       "reportedHistoryLookbackDays": 550,
       "themes": [
@@ -116203,7 +116203,7 @@
       "epsEstimate": -0.3338,
       "revenueEstimate": 8232083.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -116893,7 +116893,7 @@
       "epsEstimate": -0.1443,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "calendar",
+      "trackingTier": "popular-small-cap",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117404,7 +117404,7 @@
       "epsEstimate": -0.5406,
       "revenueEstimate": 0.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -117729,7 +117729,7 @@
       "epsEstimate": -0.0491,
       "revenueEstimate": 185046502.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -119508,7 +119508,7 @@
       "epsEstimate": -0.0632,
       "revenueEstimate": 12290490.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -120003,7 +120003,7 @@
       "epsEstimate": -0.5814,
       "revenueEstimate": 1530000.0,
       "status": "scheduled",
-      "trackingTier": "popular-small-cap",
+      "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
     },
     {
@@ -121458,6 +121458,18 @@
       "year": 2027,
       "epsEstimate": -0.4223,
       "revenueEstimate": 1294497300.0,
+      "status": "scheduled",
+      "trackingTier": "calendar",
+      "source": "Finnhub Earnings Calendar"
+    },
+    {
+      "ticker": "GCO",
+      "company": "제네스코(주)",
+      "date": "2027-05-27",
+      "quarter": 1,
+      "year": 2028,
+      "epsEstimate": -1.5756,
+      "revenueEstimate": 495910000.0,
       "status": "scheduled",
       "trackingTier": "calendar",
       "source": "Finnhub Earnings Calendar"
